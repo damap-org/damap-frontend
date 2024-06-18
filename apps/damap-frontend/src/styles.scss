@@ -13,6 +13,11 @@
       95
     )};
   --accent-color-lighter: #{mat.get-theme-color($app-light-theme, primary, 60)};
+  --accent-color-very-light: #{mat.get-theme-color(
+      $app-light-theme,
+      primary,
+      98
+    )};
   --secondary: #{mat.get-theme-color($app-light-theme, secondary)};
   --secondary-container: #{mat.get-theme-color(
       $app-light-theme,
@@ -59,6 +64,11 @@
       neutral-variant,
       60
     )};
+  --landing-page-info-bar-color: #{mat.get-theme-color(
+      $app-light-theme,
+      neutral,
+      40
+    )};
 
   // mat3 provides colors for error states, but not for success or warning...
   // so it is set to predefined values here
@@ -77,4 +87,20 @@
       body-medium,
       font
     )};
+
+  --body-large: #{mat.get-theme-typography($app-light-theme, body-large, font)};
+
+  --display-large: #{mat.get-theme-typography(
+      $app-light-theme,
+      display-large,
+      font
+    )};
+
+  --display-medium: #{mat.get-theme-typography(
+      $app-light-theme,
+      display-medium,
+      font
+    )};
+
+  --title-large: #{mat.get-theme-typography($app-light-theme, title-large, font)};
 }

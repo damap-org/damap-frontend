@@ -24,6 +24,7 @@ export function HttpLoaderFactory(http: HttpBackend): MultiTranslateHttpLoader {
   return new MultiTranslateHttpLoader(http, [
     '/assets/i18n/layout/',
     '/assets/i18n/consent/',
+    '/assets/i18n/landing-page/',
     '/assets/damap-core/i18n/dashboard/',
     '/assets/damap-core/i18n/plans/',
     '/assets/damap-core/i18n/http/',

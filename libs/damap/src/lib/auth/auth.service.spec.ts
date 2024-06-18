@@ -12,6 +12,8 @@ describe('AuthService', () => {
       'getAccessToken',
       'hasValidAccessToken',
       'getIdentityClaims',
+      'hasValidIdToken',
+      'initLoginFlow',
     ]);
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
@@ -79,6 +81,39 @@ describe('AuthService', () => {
   });
 
   it('should check if is admin', () => {
+    spy.getAccessToken.and.returnValue(
+      '.' + window.btoa('{ "realm_access": { "roles": [ "Damap Admin" ] }}'),
+    );
+    expect(service.isAdmin()).toBeTrue();
+
+    spy.getAccessToken.and.returnValue(
+      '.' + window.btoa('{ "realm_access": { "roles": [] }}'),
+    );
+    expect(service.isAdmin()).toBeFalse();
+  });
+
+  it('should return true if the user is authenticated', () => {
+    spy.hasValidIdToken.and.returnValue(true);
+    spy.hasValidAccessToken.and.returnValue(true);
+
+    const result = service.isAuthenticated('/some-route');
+
+    expect(result).toBeTrue();
+    expect(spy.initLoginFlow).not.toHaveBeenCalled();
+  });
+
+  it('should return false and call initLoginFlow if the user is not authenticated', () => {
+    spy.hasValidIdToken.and.returnValue(false);
+    spy.hasValidAccessToken.and.returnValue(false);
+
+    const route = '/some-route';
+    const result = service.isAuthenticated(route);
+
+    expect(result).toBeFalse();
+    expect(spy.initLoginFlow).toHaveBeenCalledWith(route);
+  });
+
+  it('should check if user is admin', () => {
     spy.getAccessToken.and.returnValue(
       '.' + window.btoa('{ "realm_access": { "roles": [ "Damap Admin" ] }}'),
     );

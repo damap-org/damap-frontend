@@ -200,6 +200,12 @@ html {
   --mdc-protected-button-label-text-color: var(--on-primary);
 }
 
+// only works for fab-button
+.fab-button-color-primary {
+  --mdc-fab-container-color: var(--primary);
+  --mat-fab-foreground-color: var(--on-primary);
+}
+
 .card-selected {
   --mdc-elevated-card-container-color: var(--surface-container-low);
 }

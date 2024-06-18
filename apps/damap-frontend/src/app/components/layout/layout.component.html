@@ -1,4 +1,4 @@
-<mat-sidenav-container autosize>
+<mat-sidenav-container>
   <mat-sidenav
     #sidenav
     [mode]="isSmallScreen && !isCollapsed ? 'over' : 'side'"
@@ -24,6 +24,8 @@
             title="Damap"
             id="damap-logo"
             class="mat-focus-indicator"
+            [routerLink]="'/dashboard'">
+            {{ "title" | translate }}
             [routerLink]="'/dashboard'">
             <span *ngIf="!isCollapsed">{{ "title" | translate }}</span>
           </a>

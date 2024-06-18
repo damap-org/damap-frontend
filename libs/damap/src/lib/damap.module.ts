@@ -16,7 +16,6 @@ import { AdminModule } from './components/admin/admin.module';
 import { AdminGuard } from './guards/admin.guard';
 
 export const DAMAP_ROUTES: Route[] = [
-  { path: '', component: DashboardComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'plans', component: PlansComponent },
   {

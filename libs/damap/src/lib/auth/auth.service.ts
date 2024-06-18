@@ -34,11 +34,14 @@ export class AuthService {
     return claims['preferred_username'];
   }
 
-  isAuthenticated(): boolean {
-    return (
+  isAuthenticated(route: string): boolean {
+    const isAuthenticated =
       this.oAuthService.hasValidIdToken() &&
-      this.oAuthService.hasValidAccessToken()
-    );
+      this.oAuthService.hasValidAccessToken();
+    if (!isAuthenticated) {
+      this.oAuthService.initLoginFlow(route);
+    }
+    return isAuthenticated;
   }
 
   isAdmin(): boolean {
