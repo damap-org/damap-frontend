@@ -69,3 +69,5 @@ export * from './lib/domain/enum/funding-state.enum';
 export * from './lib/domain/enum/identifier-type.enum';
 export * from './lib/domain/enum/loading-state.enum';
 export * from './lib/domain/enum/security-measure.enum';
+
+export * from './lib/interceptors/auth.interceptor';

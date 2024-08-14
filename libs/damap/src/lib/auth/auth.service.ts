@@ -53,4 +53,9 @@ export class AuthService {
   logout() {
     this.oAuthService.logOut();
   }
+
+  logoutAndLogin(redirectUrl: string) {
+    this.oAuthService.logOut();
+    this.oAuthService.initLoginFlow(redirectUrl);
+  }
 }
