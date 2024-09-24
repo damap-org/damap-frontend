@@ -24,6 +24,17 @@
       [disabled]="dmpForm.invalid || this.savingDmp">
       {{ "button.version" | translate }}
     </button>
+    <div
+      matTooltip="{{ 'button.preview.tooltipDisabled' | translate }}"
+      [matTooltipDisabled]="previewEnabled()">
+      <button
+        class="action-button button-color-primary"
+        mat-raised-button
+        [disabled]="!previewEnabled()"
+        (click)="showPreview()">
+        {{ "button.preview.content" | translate }}
+      </button>
+    </div>
     <button
       class="action-button button-color-primary"
       mat-raised-button

@@ -468,7 +468,11 @@
     "save": "Save changes",
     "discard": "Discard changes",
     "version": "Save new version",
-    "export": "Export document"
+    "export": "Export document",
+    "preview": {
+      "tooltipDisabled": "Please save the DMP before being able to preview it.",
+      "content": "Show preview"
+    }
   },
   "form": {
     "error": {
@@ -938,5 +942,12 @@
   "fair": "FAIR",
   "contenttypes": "Content types",
   "metadatastandards": "Metadata standards",
-  "or": "or"
+  "or": "or",
+  "preview": {
+    "title": "Live Preview",
+    "info": "Only data that has been saved will be displayed in the preview, if you are missing recent changes please save your DMP first.",
+    "templateSelection": "Choose preview format",
+    "loading": "Loading",
+    "requestTemplateSelection": "Please select a template in the dropdown"
+  }
 }

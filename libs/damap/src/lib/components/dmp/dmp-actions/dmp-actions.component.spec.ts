@@ -19,12 +19,16 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { TranslateTestingModule } from '../../../testing/translate-testing/translate-testing.module';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { BackendService } from '../../../services/backend.service';
+import { LivePreviewModule } from '../live-preview/live-preview.module';
+import { LivePreviewComponent } from '../live-preview/live-preview.component';
 
 describe('DmpActionsComponent', () => {
   let component: DmpActionsComponent;
   let fixture: ComponentFixture<DmpActionsComponent>;
   let loader: HarnessLoader;
   let store: MockStore;
+  let backendSpy: jasmine.SpyObj<BackendService>;
   const initialState = {
     damap: {
       form: { dmp: null, changed: false },
@@ -33,6 +37,10 @@ describe('DmpActionsComponent', () => {
   };
 
   beforeEach(waitForAsync(() => {
+    backendSpy = jasmine.createSpyObj(
+      Object.getOwnPropertyNames(BackendService.prototype),
+    );
+
     TestBed.configureTestingModule({
       imports: [
         ExportWarningModule,
@@ -42,10 +50,14 @@ describe('DmpActionsComponent', () => {
         NoopAnimationsModule,
         TranslateTestingModule,
         FormTestingModule,
+        LivePreviewModule,
       ],
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [DmpActionsComponent, SaveVersionDialogComponent],
-      providers: [provideMockStore({ initialState })],
+      providers: [
+        provideMockStore({ initialState }),
+        { provide: BackendService, useValue: backendSpy },
+      ],
     }).compileComponents();
     store = TestBed.inject(MockStore);
   }));
@@ -93,11 +105,11 @@ describe('DmpActionsComponent', () => {
 
     await inputs[0].setValue('test');
     const buttons = await loader.getAllHarnesses(MatButtonHarness);
-    expect(buttons.length).toBe(6);
-    expect(await buttons[5].getText()).toBe('dmp.dialog.button.save');
-    expect(await buttons[5].isDisabled()).toBe(false);
+    expect(buttons.length).toBe(7);
+    expect(await buttons[6].getText()).toBe('dmp.dialog.button.save');
+    expect(await buttons[6].isDisabled()).toBe(false);
 
-    await buttons[5].click();
+    await buttons[6].click();
     dialogs = await loader.getAllHarnesses(MatDialogHarness);
     expect(store.dispatch).toHaveBeenCalledTimes(1);
     expect(dialogs.length).toBe(0);

@@ -1,6 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription, take } from 'rxjs';
 import { Store } from '@ngrx/store';
 import {
   UntypedFormArray,
@@ -30,6 +30,7 @@ import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { Config } from '../../domain/config';
 import { InfoLabelService } from '../../services/infoLabel.service';
 import { InfoBoxDetails } from '../../domain/infoBox-details';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dmp',

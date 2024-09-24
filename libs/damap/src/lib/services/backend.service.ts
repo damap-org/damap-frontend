@@ -292,6 +292,17 @@ export class BackendService {
       });
   }
 
+  getPreviewPDF(dmpId: number, template: string): Observable<Blob> {
+    return this.http
+      .get(
+        `${this.backendUrl}document/${dmpId}/export?template=${template}&download=false&filetype=pdf`,
+        {
+          responseType: 'blob',
+        },
+      )
+      .pipe(catchError(this.handleError('http.error.document')));
+  }
+
   getDmpDocument(id: number): void {
     this.http
       .get(`${this.backendUrl}document/${id}`, {
@@ -332,6 +343,12 @@ export class BackendService {
 
   getGdpr(): Observable<Gdpr[]> {
     return this.http.get<Gdpr[]>(`${this.backendUrl}gdpr/extended`);
+  }
+
+  getTemplateType(dmpId: number): Observable<string> {
+    return this.http
+      .get<string>(`${this.backendUrl}document/${dmpId}/template_type`)
+      .pipe(retry(3), catchError(this.handleError('http.error.template')));
   }
 
   createInternalStorage(storage: InternalStorage): Observable<InternalStorage> {
