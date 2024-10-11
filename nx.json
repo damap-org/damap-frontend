@@ -1,7 +1,4 @@
 {
-  "affected": {
-    "defaultBase": "next"
-  },
   "targetDefaults": {
     "build": {
       "dependsOn": ["^build"],
@@ -43,5 +40,6 @@
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "sharedGlobals": [],
     "production": ["default"]
-  }
+  },
+  "defaultBase": "next"
 }

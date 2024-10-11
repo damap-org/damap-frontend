@@ -4,6 +4,7 @@
   "projectType": "library",
   "sourceRoot": "libs/damap/src",
   "prefix": "damap",
+  "tags": [],
   "targets": {
     "build": {
       "executor": "@nrwl/angular:package",
@@ -35,6 +36,5 @@
         "lintFilePatterns": ["libs/damap/**/*.ts", "libs/damap/**/*.html"]
       }
     }
-  },
-  "tags": []
+  }
 }

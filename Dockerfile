@@ -23,7 +23,7 @@ COPY . /app
 ENV PATH="$PATH:/app/node_modules/@angular/cli/bin/"
 
 # install and build the application on the builder container
-RUN npm install --ignore-scripts -g "nx@19.3.0"
+RUN npm install --ignore-scripts -g "nx@19.8.8"
 RUN npm ci --ignore-scripts
 RUN npx nx build damap-frontend
 
@@ -31,6 +31,6 @@ ARG APP=damap-frontend
 
 # create a second container running a webserver and holding the built frontend application
 FROM nginxinc/nginx-unprivileged AS runner
-ADD docker/conf.d/* /etc/nginx/conf.d
+COPY docker/conf.d/* /etc/nginx/conf.d
 
 COPY --from=deps --chown=1001:0 /app/dist/apps/damap-frontend/ /usr/share/nginx/html/

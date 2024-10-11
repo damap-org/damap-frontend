@@ -3,6 +3,8 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/damap-frontend-e2e/src",
   "projectType": "application",
+  "tags": [],
+  "implicitDependencies": ["damap-frontend"],
   "targets": {
     "e2e": {
       "executor": "@nrwl/cypress:cypress",
@@ -24,7 +26,5 @@
         "lintFilePatterns": ["apps/damap-frontend-e2e/**/*.{js,ts}"]
       }
     }
-  },
-  "tags": [],
-  "implicitDependencies": ["damap-frontend"]
+  }
 }
