@@ -62,11 +62,6 @@ mat-card {
   width: 100%;
 }
 
-.wrap-normal-label {
-  white-space: normal;
-  height: auto;
-}
-
 .flex-radio {
   display: flex;
   flex-direction: column;
@@ -145,4 +140,56 @@ mat-card {
 .mat-icon-shadow:hover {
   transform: scale(1.005) translateZ(0);
   box-shadow: 0px 0px 15px 10px rgba(246, 246, 246, 1);
+}
+
+.zebra-table {
+  & tbody tr:not(.expanded-row):hover {
+    background: var(--secondary-container);
+    color: var(--on-secondary-container);
+  }
+
+  & tbody tr:not(.expanded-row):active {
+    background: var(--secondary-fixed-dim);
+  }
+
+  & tbody tr:nth-child(odd) {
+    background-color: var(--surface-container-low);
+  }
+
+  .mat-mdc-cell {
+    border-bottom: none;
+  }
+}
+
+.mat-mdc-form-field {
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__notch,
+  .mdc-notched-outline__trailing {
+    border-width: 1px !important;
+    border-color: var(--primary) !important;
+  }
+}
+
+.mat-mdc-form-field.mat-focused {
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__trailing {
+    border-width: 2px !important;
+    border-color: var(--primary) !important;
+  }
+
+  .mdc-notched-outline__notch {
+    border-right-width: 1px !important;
+    border-left-width: 1px !important;
+    border-bottom-width: 2px !important;
+    border-top-width: 2px !important;
+    border-color: var(--primary) !important;
+  }
+}
+
+// Angular material labels are bugged for the outline appearance of formfields
+// they dont reserve space above, so in combination with other components, the labels are cut off
+// this should offset the bug, and should be removed when the bug is fixed
+mat-dialog-content mat-form-field,
+mat-tab-body mat-form-field {
+  margin-top: 5px !important;
 }

@@ -93,7 +93,7 @@ describe('PlansComponent', () => {
     expect(dialogs.length).toBe(1);
 
     const buttons = await loader.getAllHarnesses(MatButtonHarness);
-    await buttons[2].click();
+    await buttons[1].click();
 
     expect(backendSpy.deleteDmp).toHaveBeenCalledWith(1);
     expect(store.dispatch).toHaveBeenCalledTimes(1);

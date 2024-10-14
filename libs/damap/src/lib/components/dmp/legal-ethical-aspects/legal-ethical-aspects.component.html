@@ -44,7 +44,7 @@
       </div>
       <div>
         <div class="form-field-hint">
-          <mat-form-field appearance="fill" [style]="'width: 100%'">
+          <mat-form-field class="full-width">
             <mat-label
               >{{
                 "dmp.steps.legal.question.sensitiveDataSecurity" | translate
@@ -62,17 +62,15 @@
           </app-tooltip>
         </div>
         <ng-container *ngIf="isOtherMeasureSelected">
-          <app-input-wrapper
+          <app-textarea-wrapper
             [label]="'dmp.steps.legal.question.otherDataSecurityMeasures'"
             [control]="otherDataSecurityMeasures"
-            [maxLength]="4000"
-            appearance="fill"></app-input-wrapper>
+            [maxLength]="4000"></app-textarea-wrapper>
         </ng-container>
-        <app-input-wrapper
+        <app-textarea-wrapper
           [label]="'dmp.steps.legal.question.sensitiveDataAccess'"
           [control]="sensitiveDataAccess"
-          [maxLength]="4000"
-          appearance="fill"></app-input-wrapper>
+          [maxLength]="4000"></app-textarea-wrapper>
       </div>
     </ng-container>
     <hr />
@@ -117,7 +115,7 @@
         </section>
       </div>
       <div>
-        <mat-form-field appearance="fill" [style]="'width: 100%'">
+        <mat-form-field class="full-width">
           <mat-label>{{
             "dmp.steps.legal.question.personalDataCompliance" | translate
           }}</mat-label>
@@ -134,11 +132,10 @@
         </mat-form-field>
         <br /><br />
         <ng-container *ngIf="isOtherSelected">
-          <app-input-wrapper
+          <app-textarea-wrapper
             [label]="'dmp.steps.legal.question.otherPersonalDataCompliance'"
             [control]="otherPersonalDataCompliance"
-            appearance="fill"
-            [maxLength]="4000"></app-input-wrapper>
+            [maxLength]="4000"></app-textarea-wrapper>
         </ng-container>
       </div>
     </ng-container>
@@ -168,13 +165,12 @@
         </section>
       </div>
       <div>
-        <app-input-wrapper
+        <app-textarea-wrapper
           [label]="'dmp.steps.legal.question.legalRestrictionsComment'"
-          appearance="fill"
           [control]="legalRestrictionsComment"
-          [maxLength]="4000"></app-input-wrapper>
+          [maxLength]="4000"></app-textarea-wrapper>
       </div>
-      <mat-form-field appearance="fill" [style]="'width: 100%'">
+      <mat-form-field class="full-width">
         <mat-label>{{
           "dmp.steps.legal.question.legalRestrictionsDocuments" | translate
         }}</mat-label>
@@ -187,20 +183,18 @@
         </mat-select>
       </mat-form-field>
       <ng-container *ngIf="isOtherDocumentSelected">
-        <app-input-wrapper
+        <app-textarea-wrapper
           [label]="'dmp.steps.legal.question.otherLegalRestrictionsDocuments'"
           [maxLength]="4000"
-          appearance="fill"
-          [control]="otherLegalRestrictionsDocuments"></app-input-wrapper>
+          [control]="otherLegalRestrictionsDocuments"></app-textarea-wrapper>
       </ng-container>
     </ng-container>
     <hr *ngIf="!last" />
   </div>
-  <app-input-wrapper
+  <app-textarea-wrapper
     [label]="'dmp.steps.legal.question.dataRightsAndAccessControl'"
     [maxLength]="4000"
-    appearance="fill"
-    [control]="dataRightsAndAccessControl"></app-input-wrapper>
+    [control]="dataRightsAndAccessControl"></app-textarea-wrapper>
 </div>
 
 <app-ethical-aspects

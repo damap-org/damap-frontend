@@ -18,14 +18,11 @@
   [control]="documentation">
 </app-textarea-wrapper>
 
-<mat-form-field
-  appearance="fill"
-  [style]="'width: 100%'"
-  [formGroup]="docDataStep">
+<mat-form-field class="full-width" [formGroup]="docDataStep">
   <mat-label
     >{{ "dmp.steps.documentation.question.dataQuality" | translate }}
   </mat-label>
-  <mat-select formControlName="dataQuality" multiple #matSelect>
+  <mat-select formControlName="dataQuality" multiple>
     <mat-option
       *ngFor="let option of dataQualityOptions | keyvalue: originalOrder"
       [value]="option.key">
@@ -34,9 +31,8 @@
   </mat-select>
 </mat-form-field>
 
-<app-input-wrapper
+<app-textarea-wrapper
   *ngIf="isOtherDataQualitySelected"
-  appearance="fill"
   [maxLength]="4000"
   [label]="'dmp.steps.documentation.question.otherDataQuality'"
-  [control]="otherDataQuality"></app-input-wrapper>
+  [control]="otherDataQuality"></app-textarea-wrapper>

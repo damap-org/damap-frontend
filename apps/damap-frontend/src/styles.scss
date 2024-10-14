@@ -27,6 +27,15 @@
       $app-light-theme,
       on-secondary-container
     )};
+  --secondary-fixed-dim: #{mat.get-theme-color(
+      $app-light-theme,
+      secondary-fixed-dim
+    )};
+  --tertiary: #{mat.get-theme-color($app-light-theme, tertiary)};
+  --tertiary-container: #{mat.get-theme-color(
+      $app-light-theme,
+      tertiary-container
+    )};
   --tertiary-color-very-light: #{mat.get-theme-color(
       $app-light-theme,
       tertiary,
@@ -37,6 +46,10 @@
   --surface-container-low: #{mat.get-theme-color(
       $app-light-theme,
       surface-container-low
+    )};
+  --surface-container-lowest: #{mat.get-theme-color(
+      $app-light-theme,
+      surface-container-lowest
     )};
   --surface-container-high: #{mat.get-theme-color(
       $app-light-theme,
@@ -88,6 +101,20 @@
       font
     )};
 
+  --body-large-typography: #{mat.get-theme-typography(
+      $app-light-theme,
+      body-large,
+      font
+    )};
+
+  --title-medium-typography: #{mat.get-theme-typography(
+      $app-light-theme,
+      title-medium,
+      font
+    )};
+
+  --title-large: #{mat.get-theme-typography($app-light-theme, title-large, font)};
+
   --body-large: #{mat.get-theme-typography($app-light-theme, body-large, font)};
 
   --display-large: #{mat.get-theme-typography(
@@ -101,6 +128,4 @@
       display-medium,
       font
     )};
-
-  --title-large: #{mat.get-theme-typography($app-light-theme, title-large, font)};
 }

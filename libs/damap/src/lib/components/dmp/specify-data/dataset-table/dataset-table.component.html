@@ -6,7 +6,7 @@
     mat-table
     [dataSource]="datasets.value | datasetSource: sourceType"
     multiTemplateDataRows="true"
-    class="mat-elevation-z8"
+    class="mat-elevation-z8 zebra-table"
     aria-label="{{ tableHeading | translate }}">
     <ng-container matColumnDef="dataset">
       <th mat-header-cell *matHeaderCellDef>

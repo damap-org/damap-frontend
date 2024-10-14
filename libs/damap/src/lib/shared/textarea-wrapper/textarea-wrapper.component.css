@@ -6,15 +6,6 @@ mat-form-field {
   width: 100%;
 }
 
-.custom-style ::ng-deep .mat-mdc-text-field-wrapper {
-  background-color: var(--primary);
-  background-image: linear-gradient(
-    rgba(255, 255, 255, 0.9),
-    rgba(255, 255, 255, 0.9)
-  );
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
-}
-
 .no-resize {
   resize: none;
 }

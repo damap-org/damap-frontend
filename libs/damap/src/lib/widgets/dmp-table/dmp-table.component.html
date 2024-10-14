@@ -1,140 +1,153 @@
-<mat-form-field>
-  <mat-label>{{ "plans.table.search" | translate }}</mat-label>
-  <input
-    matInput
-    (keyup)="applyFilter($event)"
-    placeholder="{{ 'plans.table.search' | translate }}"
-    #input />
-</mat-form-field>
+<div class="button-and-search">
+  <button class="button-color-primary" [routerLink]="'/dmp'" mat-raised-button>
+    <mat-icon>add</mat-icon>
+    {{ "plans.create.dmp" | translate }}
+  </button>
 
-<table
-  mat-table
-  [dataSource]="dataSource"
-  multiTemplateDataRows="true"
-  class="mat-elevation-z8"
-  style="outline: none"
-  matSort
-  aria-label="Available DMPs">
-  <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>
-      {{ "plans.table.header.title" | translate }}
-    </th>
-    <td mat-cell *matCellDef="let element">
-      <a class="title" routerLink="/dmp/{{ element.id }}">
-        <h3 matTooltip="Edit DMP">
-          {{ element.project?.title || "DMP ID: " + element.id }}
-        </h3>
-      </a>
-    </td>
-  </ng-container>
+  <app-search-field
+    *ngIf="(dmpsLoaded | async) === LoadingState.LOADED"
+    class="search-bar"
+    [label]="'plans.table.search'"
+    (searchChange)="applyFilter($event)"></app-search-field>
+</div>
 
-  <ng-container matColumnDef="version">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>
-      {{ "plans.table.header.version" | translate }}
-    </th>
-    <td mat-cell *matCellDef="let element">
-      <a class="version" routerLink="/dmp/{{ element.id }}/version">
-        {{ element.versionCount !== null ? element.versionCount : 0 }}
-      </a>
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="version_name">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>
-      {{ "plans.table.header.version_name" | translate }}
-    </th>
-    <td mat-cell *matCellDef="let element">
-      <a class="version word-break" routerLink="/dmp/{{ element.id }}/version">
-        {{ element.latestVersionName }}
-      </a>
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="created">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>
-      {{ "plans.table.header.created" | translate }}
-    </th>
-    <td mat-cell *matCellDef="let element">{{ element.created | date }}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="modified">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>
-      {{ "plans.table.header.modified" | translate }}
-    </th>
-    <td mat-cell *matCellDef="let element">{{ element.modified | date }}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="contact">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>
-      {{ "plans.table.header.contact" | translate }}
-    </th>
-    <td mat-cell *matCellDef="let element">
-      <ng-container *ngIf="element.contact; else nocontact">
-        {{ element.contact?.firstName + " " + element.contact?.lastName }}
-      </ng-container>
-      <ng-template #nocontact>
-        {{ "plans.table.nocontact" | translate }}
-      </ng-template>
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="edit" style="width: 10px">
-    <th mat-header-cell *matHeaderCellDef>
-      <span class="sr-only">{{ "plans.table.actions.edit" | translate }}</span>
-    </th>
-    <td mat-cell *matCellDef="let element">
-      <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu" xPosition="before">
-        <button mat-menu-item routerLink="/dmp/{{ element.id }}/access">
-          <mat-icon>admin_panel_settings</mat-icon>
-          {{ "plans.table.actions.access" | translate }}
-        </button>
-        <button mat-menu-item (click)="getJsonFile(element.id)">
-          <mat-icon>code</mat-icon>
-          {{ "plans.table.export.json" | translate }}
-        </button>
-        <button mat-menu-item (click)="getDocument(element.id)">
-          <mat-icon>description</mat-icon>
-          {{ "plans.table.export.doc" | translate }}
-        </button>
-        <button mat-menu-item routerLink="/dmp/{{ element.id }}/version">
-          <mat-icon>history</mat-icon>
-          {{ "plans.table.actions.history" | translate }}
-        </button>
-        <button
-          mat-menu-item
-          *ngIf="element.accessType === FUNCTION_ROLES.OWNER || admin"
-          (click)="deleteDmp(element.id)">
-          <mat-icon>delete</mat-icon>
-          {{ "plans.table.actions.delete" | translate }}
-        </button>
-      </mat-menu>
-    </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="tableHeaders"></tr>
-  <tr
-    mat-row
-    *matRowDef="let element; columns: tableHeaders"
-    class="element-row"></tr>
-  <!-- Row shown when there is no matching data. -->
-  <tr class="mat-row" *matNoDataRow>
-    <ng-container *ngIf="input.value.length > 0; else empty">
-      <td class="mat-cell" colspan="4">
-        {{ "plans.table.nodatafilter" | translate: { value: input.value } }}"
+<div class="table-wrapper" *ngIf="(dmpsLoaded | async) === LoadingState.LOADED">
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    multiTemplateDataRows="true"
+    class="mat-elevation-z8 zebra-table"
+    matSort
+    aria-label="Available DMPs">
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ "plans.table.header.title" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <a class="title" routerLink="/dmp/{{ element.id }}">
+          <h3 matTooltip="Edit DMP">
+            {{ element.project?.title || "DMP ID: " + element.id }}
+          </h3>
+        </a>
       </td>
     </ng-container>
-    <ng-template #empty>
-      <td class="mat-cell" colspan="4">
-        {{ "plans.table.empty" | translate }}
+
+    <ng-container matColumnDef="version">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ "plans.table.header.version" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <a class="version" routerLink="/dmp/{{ element.id }}/version">
+          {{
+            element.versionCount !== null
+              ? ("plans.table.header.version_tag" | translate) + ": "
+              : ""
+          }}
+          <span class="underlined">{{
+            element.versionCount !== null ? "#" + element.versionCount : ""
+          }}</span>
+          <br />
+          {{
+            element.versionCount !== null
+              ? ("plans.table.header.version_name" | translate) + ": "
+              : ""
+          }}
+          <span class="underlined">{{
+            element.versionCount !== null ? element.latestVersionName : ""
+          }}</span>
+        </a>
       </td>
-    </ng-template>
-  </tr>
-</table>
-<mat-paginator
-  class="mat-elevation-z8"
-  [pageSize]="10"
-  [pageSizeOptions]="[10, 15, 20]"
-  showFirstLastButtons="true"></mat-paginator>
+    </ng-container>
+
+    <ng-container matColumnDef="created">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ "plans.table.header.created" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.created | date }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="modified">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ "plans.table.header.modified" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.modified | date }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="contact">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ "plans.table.header.contact" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container *ngIf="element.contact; else nocontact">
+          {{ element.contact?.firstName + " " + element.contact?.lastName }}
+        </ng-container>
+        <ng-template #nocontact>
+          {{ "plans.table.nocontact" | translate }}
+        </ng-template>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef>
+        <span class="sr-only">{{
+          "plans.table.actions.edit" | translate
+        }}</span>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+        <mat-menu
+          #menu="matMenu"
+          xPosition="before"
+          class="mat-menu-secondary-container">
+          <button mat-menu-item routerLink="/dmp/{{ element.id }}/access">
+            <mat-icon>admin_panel_settings</mat-icon>
+            {{ "plans.table.actions.access" | translate }}
+          </button>
+          <button mat-menu-item (click)="getJsonFile(element.id)">
+            <mat-icon>code</mat-icon>
+            {{ "plans.table.export.json" | translate }}
+          </button>
+          <button mat-menu-item (click)="getDocument(element.id)">
+            <mat-icon>description</mat-icon>
+            {{ "plans.table.export.doc" | translate }}
+          </button>
+          <button mat-menu-item routerLink="/dmp/{{ element.id }}/version">
+            <mat-icon>history</mat-icon>
+            {{ "plans.table.actions.history" | translate }}
+          </button>
+          <button
+            mat-menu-item
+            *ngIf="element.accessType === FUNCTION_ROLES.OWNER || admin"
+            (click)="deleteDmp(element.id)">
+            <mat-icon>delete</mat-icon>
+            {{ "plans.table.actions.delete" | translate }}
+          </button>
+        </mat-menu>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="tableHeaders"></tr>
+    <tr mat-row *matRowDef="let element; columns: tableHeaders"></tr>
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow></tr>
+    <tr class="mat-row" *matNoDataRow>
+      <ng-container *ngIf="searchTerm.length > 0; else empty">
+        <td class="mat-cell" colspan="4">
+          {{ "plans.table.nodatafilter" | translate: { value: searchTerm } }}
+        </td>
+      </ng-container>
+      <ng-template #empty>
+        <td class="mat-cell" colspan="4">
+          {{ "plans.table.empty" | translate }}
+        </td>
+      </ng-template>
+    </tr>
+  </table>
+  <mat-paginator
+    class="mat-elevation-z8"
+    [pageSize]="10"
+    [pageSizeOptions]="[10, 15, 20]"
+    showFirstLastButtons="true"></mat-paginator>
+</div>

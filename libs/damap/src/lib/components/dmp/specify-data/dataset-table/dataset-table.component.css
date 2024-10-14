@@ -8,14 +8,6 @@ tr.detail-row {
   height: 0;
 }
 
-tr.element-row:not(.expanded-row):hover {
-  background: var(--surface-container-low);
-}
-
-tr.element-row:not(.expanded-row):active {
-  background: var(--surface-container-high);
-}
-
 .element-row td {
   border-bottom-width: 0;
 }

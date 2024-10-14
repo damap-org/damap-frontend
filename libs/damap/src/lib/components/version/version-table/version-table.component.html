@@ -8,7 +8,11 @@
   </button>
 </div>
 <div class="mat-elevation-z8" *ngIf="versions">
-  <table mat-table [dataSource]="versions" aria-label="DMP Versions">
+  <table
+    mat-table
+    [dataSource]="versions"
+    aria-label="DMP Versions"
+    class="zebra-table">
     <!-- Version Column -->
     <ng-container matColumnDef="version">
       <th mat-header-cell *matHeaderCellDef>

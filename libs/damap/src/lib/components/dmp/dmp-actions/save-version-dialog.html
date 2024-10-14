@@ -1,10 +1,11 @@
 <h1 mat-dialog-title>{{'dmp.dialog.title' | translate}}</h1>
 <mat-dialog-content>
   <p>{{'dmp.dialog.description' | translate}}:</p>
-  <mat-form-field appearance="fill" [style.width.%]="100">
-    <mat-label>{{'dmp.dialog.label' | translate}}</mat-label>
-    <input matInput [(ngModel)]="versionName" />
-  </mat-form-field>
+  <app-input-wrapper
+    [label]="'dmp.dialog.label'"
+    [control]="mockControl"
+    [maxLength]="255"
+    (inputChange)="readInput($event)"></app-input-wrapper>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="onNoClick()">

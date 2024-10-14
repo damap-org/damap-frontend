@@ -13,7 +13,7 @@ import {
 import { AppState } from '../../../store/states/app.state';
 import { ETemplateType } from '../../../domain/enum/export-template-type.enum';
 import { ExportWarningDialogComponent } from '../../../widgets/export-warning-dialog/export-warning-dialog.component';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, UntypedFormControl } from '@angular/forms';
 import { FormService } from '../../../services/form.service';
 import { selectDmpSaving } from '../../../store/selectors/dmp.selectors';
 import {
@@ -109,7 +109,7 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
             versionName,
           }),
         );
-      } else {
+      } else if (versionName.length > 255) {
         this.feedbackService.error('Version name is too long');
       }
     });
@@ -181,10 +181,15 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
 })
 export class SaveVersionDialogComponent {
   versionName = '';
+  mockControl = new UntypedFormControl();
 
   constructor(public dialogRef: MatDialogRef<SaveVersionDialogComponent>) {}
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  readInput(input: string): void {
+    this.versionName = input;
   }
 }

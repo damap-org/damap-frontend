@@ -1,13 +1,8 @@
 <form>
-  <mat-form-field class="search-field">
-    <mat-label>{{ "dmp.steps.people.search" | translate }}</mat-label>
-    <input
-      #searchBox
-      type="search"
-      matInput
-      (input)="search(searchBox.value)" />
-    <mat-icon matSuffix>search</mat-icon>
-  </mat-form-field>
+  <app-search-field
+    class="search-field"
+    [label]="'dmp.steps.people.search'"
+    (searchChange)="search($event)"></app-search-field>
   <div class="result-list" *ngIf="currentSearchTerm && result.length > 0">
     <mat-selection-list
       hideSingleSelectionIndicator
@@ -18,29 +13,27 @@
         [style]="'height: auto;'"
         [selected]="false"
         [value]="person">
-        <mat-card-content>
-          <div class="mat-card-container">
-            <div>
-              <div matListItemTitle class="person-detail-content">
-                <strong> {{ person.firstName }} {{ person.lastName }} </strong>
-              </div>
-              <div
-                matListItemLine
-                *ngIf="person.mbox"
-                class="person-detail-content">
-                <mat-icon class="outline" inline="true">mail</mat-icon>
-                {{ person.mbox }}
-              </div>
-              <div
-                matListItemLine
-                *ngIf="person.personId?.identifier"
-                class="person-detail-content">
-                <mat-icon inline="true">fingerprint</mat-icon>
-                {{ person.personId?.type }}: {{ person.personId.identifier }}
-              </div>
+        <div class="list-option-container">
+          <div>
+            <div matListItemTitle class="person-detail-content">
+              <strong> {{ person.firstName }} {{ person.lastName }} </strong>
+            </div>
+            <div
+              matListItemLine
+              *ngIf="person.mbox"
+              class="person-detail-content">
+              <mat-icon class="outline" inline="true">mail</mat-icon>
+              {{ person.mbox }}
+            </div>
+            <div
+              matListItemLine
+              *ngIf="person.personId?.identifier"
+              class="person-detail-content">
+              <mat-icon inline="true">fingerprint</mat-icon>
+              {{ person.personId?.type }}: {{ person.personId.identifier }}
             </div>
           </div>
-        </mat-card-content>
+        </div>
       </mat-list-option>
     </mat-selection-list>
   </div>

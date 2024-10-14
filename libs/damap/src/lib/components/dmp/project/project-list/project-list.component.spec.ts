@@ -26,6 +26,7 @@ import { TranslateTestingModule } from '../../../../testing/translate-testing/tr
 import { mockProject } from '../../../../mocks/project-mocks';
 import { of } from 'rxjs';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { SearchFieldComponent } from '../../../../shared/search-field/search-field.component';
 
 describe('ProjectListComponent', () => {
   let component: ProjectListComponent;
@@ -56,7 +57,7 @@ describe('ProjectListComponent', () => {
         NoopAnimationsModule,
       ],
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [ProjectListComponent],
+      declarations: [ProjectListComponent, SearchFieldComponent],
       providers: [{ provide: BackendService, useValue: backendSpy }],
     }).compileComponents();
 

@@ -10,7 +10,8 @@
     "table": {
       "header": {
         "title": "Titel",
-        "version": "Version #",
+        "version": "Version",
+        "version_tag": "Versionsnummer",
         "version_name": "Versionsname",
         "created": "Erstellt",
         "modified": "Zuletzt geändert",

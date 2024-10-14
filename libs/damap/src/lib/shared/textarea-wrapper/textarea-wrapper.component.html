@@ -1,7 +1,10 @@
-<mat-form-field
-  [appearance]="appearance"
-  [class.custom-style]="applyCustomStyle">
-  <mat-label class="wrap-label">{{ label | translate }}</mat-label>
+<mat-form-field [appearance]="appearance" class="mat-textarea-density">
+  <mat-label
+    >{{ label | translate }}
+    <ng-container *ngFor="let set of labelDatasets; last as last">
+      "{{ set.title }}"<span *ngIf="!last">, </span>.
+    </ng-container>
+  </mat-label>
 
   <ng-template #standard>
     <textarea

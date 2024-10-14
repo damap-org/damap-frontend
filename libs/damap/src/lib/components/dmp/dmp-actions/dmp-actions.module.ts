@@ -14,6 +14,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SaveStatusModule } from '../../../widgets/save-status/save-status.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { SharedModule } from '../../../shared/shared.module';
 import { LivePreviewModule } from '../live-preview/live-preview.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
@@ -35,6 +36,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     TranslateModule,
     RouterModule,
     SaveStatusModule,
+    SharedModule,
     LivePreviewModule,
 
     // Materials

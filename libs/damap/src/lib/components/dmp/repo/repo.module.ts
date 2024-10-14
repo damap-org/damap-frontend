@@ -32,6 +32,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { TagModule } from '../../../widgets/tag/tag.module';
 import { InfoMessageModule } from '../../../widgets/info-message/info-message.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { SharedModule } from '../../../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -44,6 +45,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     DatasetSourceModule,
     TagModule,
     InfoMessageModule,
+    SharedModule,
 
     // Materials
     MatCardModule,
@@ -81,6 +83,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     DatasetSourceModule,
     TagModule,
     RepoComponent,
+    SharedModule,
 
     // Materials
     MatCardModule,

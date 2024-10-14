@@ -3,7 +3,7 @@ import { UntypedFormControl, Validators } from '@angular/forms';
 
 import { MatFormFieldAppearance } from '@angular/material/form-field';
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
-import { ContentObserver } from '@angular/cdk/observers';
+import { Dataset } from '../../domain/dataset';
 
 @Component({
   selector: 'app-textarea-wrapper [label] [control]',
@@ -12,12 +12,12 @@ import { ContentObserver } from '@angular/cdk/observers';
 })
 export class TextareaWrapperComponent implements OnInit {
   @Input() label: string;
+  @Input() labelDatasets: Dataset[];
   @Input() control: UntypedFormControl;
   @Input() placeholder: string;
   @Input() autocompleteOptions: string[];
   @Input() appearance: MatFormFieldAppearance = 'fill';
   @Input() maxLength = 4000;
-  @Input() applyCustomStyle = false;
   @Input() showLength = true;
   @Input() minRows = 5;
   @Input() maxRows = 9;

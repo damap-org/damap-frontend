@@ -1,0 +1,15 @@
+<mat-form-field [appearance]="appearance" class="search-field focus-icon">
+  <!-- translate has to happen here, if it is done outside label is rendered as empty string always-->
+  <mat-label *ngIf="label">{{ label | translate }}</mat-label>
+  <input
+    type="search"
+    matInput
+    placeholder="{{ placeholder }}"
+    [formControl]="control"
+    (input)="onSearchChange(input.value)"
+    #input />
+  <mat-icon matIconSuffix>search</mat-icon>
+  <mat-error *ngIf="errorMessage">
+    {{ errorMessage | translate }}
+  </mat-error>
+</mat-form-field>

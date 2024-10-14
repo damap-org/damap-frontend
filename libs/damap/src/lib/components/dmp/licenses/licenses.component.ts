@@ -1,5 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';
+import {
+  UntypedFormArray,
+  UntypedFormControl,
+  UntypedFormGroup,
+} from '@angular/forms';
 
 import { ComplianceType } from '../../../domain/enum/compliance-type.enum';
 import { DataAccessType } from '../../../domain/enum/data-access-type.enum';
@@ -59,5 +63,13 @@ export class LicensesComponent {
 
   getFormGroup(index: number): UntypedFormGroup {
     return this.datasets.at(index) as UntypedFormGroup;
+  }
+
+  get restrictedAccessInfo(): UntypedFormControl {
+    return this.dmpForm.get('restrictedAccessInfo') as UntypedFormControl;
+  }
+
+  get closedAccessInfo(): UntypedFormControl {
+    return this.dmpForm.get('closedAccessInfo') as UntypedFormControl;
   }
 }

@@ -18,6 +18,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { environment } from '../environments/environment';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 // required for AOT compilation
 export function HttpLoaderFactory(http: HttpBackend): MultiTranslateHttpLoader {
@@ -77,6 +78,10 @@ export function HttpLoaderFactory(http: HttpBackend): MultiTranslateHttpLoader {
         configService.initializeApp(),
       multi: true,
       deps: [ConfigService],
+    },
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'outline' },
     },
     AuthGuard,
     ConsentGuard,

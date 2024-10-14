@@ -1,27 +1,19 @@
 <form>
   <div class="form-row">
-    <mat-form-field class="full-width">
-      <mat-label>{{
-        "dmp.steps.data.specify.doi.search" | translate
-      }}</mat-label>
-      <input
-        matInput
-        #searchBox
-        type="search"
-        [formControl]="doi"
-        placeholder="10.5281/zenodo.3885730" />
-      <mat-icon matSuffix>search</mat-icon>
-      <mat-error *ngIf="doi?.errors?.doi">
-        {{ "form.error.doi" | translate }}
-      </mat-error>
-    </mat-form-field>
+    <app-search-field
+      class="full-width"
+      [label]="'dmp.steps.data.specify.doi.search'"
+      [placeholder]="'10.5281/zenodo.3885730'"
+      [control]="doi"
+      [errorMessage]="'form.error.doi'"
+      (searchChange)="searchChange($event)"></app-search-field>
     <button
       mat-raised-button
       class="button-color-primary"
       type="submit"
-      (click)="search(searchBox.value)"
+      (click)="search(searchTerm)"
       [disabled]="
-        !searchBox.value || doi.invalid || loading === loadingState.LOADING
+        !searchTerm || doi.invalid || loading === loadingState.LOADING
       ">
       {{ "dmp.steps.data.specify.button.add.doi" | translate }}
     </button>

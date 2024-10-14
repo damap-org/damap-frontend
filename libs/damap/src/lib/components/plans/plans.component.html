@@ -1,17 +1,11 @@
 <app-info-card></app-info-card>
 <div id="content" style="max-width: 1440px">
   <h2 translate>plans.mydmps</h2>
-  <button
-    class="button-position button-color-primary"
-    [routerLink]="'/dmp'"
-    mat-raised-button>
-    <mat-icon>add</mat-icon>
-    {{ "plans.create.dmp" | translate }}
-  </button>
 
-  <div *ngIf="(dmpsLoaded$ | async) === LoadingState.LOADED">
+  <div>
     <app-dmp-table
       [dmps]="dmps$ | async"
+      [dmpsLoaded]="dmpsLoaded$"
       (createDocument)="getDocument($event)"
       (createJsonFile)="getJsonFile($event)"
       (dmpToDelete)="deleteDmp($event)"></app-dmp-table>
@@ -29,6 +23,7 @@
     <h2 translate>plans.alldmps</h2>
     <app-dmp-table
       [dmps]="allDmps$ | async"
+      [dmpsLoaded]="dmpsLoaded$"
       (createDocument)="getDocument($event)"
       [admin]="true"
       (createJsonFile)="getJsonFile($event)"

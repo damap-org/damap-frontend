@@ -1,85 +1,66 @@
-table {
-  width: 100%;
-}
-
-tr.detail-row {
-  height: 0;
-}
-
-tr.element-row:not(.expanded-row):hover {
-  background: var(--surface-container-low);
-}
-
-tr.element-row:not(.expanded-row):active {
-  background: var(--surface-container-high);
-}
-
-.element-detail {
-  overflow: hidden;
+.button-and-search {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.search-bar {
+  width: 100%;
+  max-width: 435px;
+}
+
+.table-wrapper {
+  background-color: var(--mat-table-background-color);
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: auto;
+}
+
+th.mat-column-title {
+  font: var(--title-medium-typography);
+}
+
+th.mat-column-version,
+th.mat-column-created,
+th.mat-column-modified,
+th.mat-column-contact {
+  font: var(--body-large-typography);
+  text-align: left;
+}
+
+td.mat-column-version {
+  max-width: 250px;
+  min-width: 150px;
+  overflow: hidden;
 }
 
 td.mat-column-created,
 td.mat-column-modified,
 td.mat-column-contact {
-  width: 120px;
+  width: 140px;
   overflow: hidden;
 }
 
-td.mat-column-version,
-td.mat-column-version_name {
-  width: 150px;
-  overflow: hidden;
-  text-align: center;
-}
-
-.mat-column-edit {
-  width: 30px;
-}
-
-::ng-deep button.mdc-button_label {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
-#dmp-actions {
-  margin: 1rem 0.5rem;
-}
-
-#dmp-actions > button {
-  margin-right: 0.5rem;
-}
-
-::ng-deep .mat-mdc-menu-content {
-  display: flex;
-  flex-direction: column;
-  padding: 5px;
-  gap: 5px;
+td.mat-column-edit {
+  width: 20px;
 }
 
 a.title {
-  display: inline-flex;
-  align-items: center;
   text-decoration: none;
   color: var(--on-surface);
 }
 
 a.version {
   text-align: center;
-  color: var(--on-surface);
+  text-decoration: none;
 }
 
-button.mat-focus-indicator .mat-mdc-unelevated-button.mat-primary,
-.mat-mdc-raised-button.mat-primary,
-.mat-mdc-fab.mat-primary,
-.mat-mdc-mini-fab.mat-primary {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
+.underlined {
+  text-decoration: underline;
 }
 
 .word-break {

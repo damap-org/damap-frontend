@@ -53,17 +53,15 @@
   <ng-container
     *ngIf="(licenseList | licenseFilter: '')?.length else noLicense">
     <div id="ls-search">
-      <mat-form-field>
-        <mat-label>{{'license.wizard.search' | translate}}</mat-label>
-        <input #searchBox type="search" matInput />
-        <mat-icon matSuffix>search</mat-icon>
-      </mat-form-field>
+      <app-search-field
+        [label]="'license.wizard.search'"
+        (searchChange)="searchChange($event)"></app-search-field>
     </div>
     <div class="ls-list">
       <mat-card
         appearance="raised"
         class="ls-item"
-        *ngFor="let license of (licenseList | licenseFilter:searchBox.value)">
+        *ngFor="let license of (licenseList | licenseFilter:searchTerm)">
         <mat-card-content>
           <div class="ls-item-header">
             <h4 [mat-dialog-close]="license">{{license.name | translate}}</h4>

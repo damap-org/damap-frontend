@@ -1,13 +1,8 @@
 <div class="repo-search-bar">
-  <mat-form-field>
-    <mat-label>{{ "dmp.steps.repositories.search" | translate }}</mat-label>
-    <input
-      matInput
-      (keyup)="applyFilter($event)"
-      placeholder="Search repository"
-      #input />
-  </mat-form-field>
-
+  <app-search-field
+    [label]="'dmp.steps.repositories.filters'"
+    [placeholder]="'Search Repository'"
+    (searchChange)="applyFilter($event)"></app-search-field>
   <div>
     <button
       mat-raised-button
@@ -111,11 +106,11 @@
       class="detail-row"></tr>
     <!-- Row shown when there is no matching data. -->
     <tr class="mat-row" *matNoDataRow>
-      <ng-container *ngIf="input.value.length > 0; else empty">
+      <ng-container *ngIf="this.input.length > 0; else empty">
         <td class="mat-cell" colspan="4">
           {{
             "dmp.steps.repositories.nodatafilter"
-              | translate: { value: input.value }
+              | translate: { value: this.input }
           }}"
         </td>
       </ng-container>

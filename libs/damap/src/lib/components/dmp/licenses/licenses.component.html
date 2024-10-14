@@ -103,33 +103,21 @@
 <div [style.margin.px]="'5'">
   <div [formGroup]="dmpForm">
     <ng-container *ngIf="restricted?.length > 0">
-      <mat-form-field class="full-width custom-style">
-        <mat-label class="wrap-normal-label"
-          >{{ "dmp.steps.licensing.question.restrictedAccessInfo" | translate }}
-          <ng-container *ngFor="let set of restricted; last as last">
-            "{{ set.title }}"<span *ngIf="!last">, </span>.
-          </ng-container>
-        </mat-label>
-        <textarea
-          matInput
-          formControlName="restrictedAccessInfo"
-          [maxLength]="4000"></textarea>
-      </mat-form-field>
+      <app-textarea-wrapper
+        [label]="'dmp.steps.licensing.question.restrictedAccessInfo'"
+        [labelDatasets]="restricted"
+        [control]="restrictedAccessInfo"
+        [maxLength]="4000">
+      </app-textarea-wrapper>
     </ng-container>
 
     <ng-container *ngIf="closed?.length > 0">
-      <mat-form-field class="full-width custom-style">
-        <mat-label class="wrap-normal-label"
-          >{{ "dmp.steps.licensing.question.closedAccessInfo" | translate }}
-          <span *ngFor="let set of closed; last as last">
-            "{{ set.title }}"<span *ngIf="!last">, </span>.
-          </span>
-        </mat-label>
-        <textarea
-          matInput
-          formControlName="closedAccessInfo"
-          [maxLength]="4000"></textarea>
-      </mat-form-field>
+      <app-textarea-wrapper
+        [label]="'dmp.steps.licensing.question.closedAccessInfo'"
+        [labelDatasets]="closed"
+        [control]="closedAccessInfo"
+        [maxLength]="4000">
+      </app-textarea-wrapper>
     </ng-container>
   </div>
 </div>

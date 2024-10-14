@@ -35,4 +35,8 @@ export class ReuseComponent {
   get targetAudience() {
     return this.reuseStep.get('targetAudience') as UntypedFormControl;
   }
+
+  get tools() {
+    return this.reuseStep.get('tools') as UntypedFormControl;
+  }
 }

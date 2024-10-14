@@ -15,6 +15,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { PersonSearchComponent } from './person-search.component';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { TranslateTestingModule } from '../../testing/translate-testing/translate-testing.module';
+import { SearchFieldComponent } from '../../shared/search-field/search-field.component';
 
 describe('PersonSearchComponent', () => {
   let component: PersonSearchComponent;
@@ -30,7 +31,7 @@ describe('PersonSearchComponent', () => {
         MatListModule,
         NoopAnimationsModule,
       ],
-      declarations: [PersonSearchComponent],
+      declarations: [PersonSearchComponent, SearchFieldComponent],
     }).compileComponents();
   }));
   beforeEach(() => {

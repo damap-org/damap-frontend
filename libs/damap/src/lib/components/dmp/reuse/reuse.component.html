@@ -2,22 +2,18 @@
   <app-textarea-wrapper
     [label]="'dmp.steps.data.reuse.question.targetAudience'"
     [control]="targetAudience"
-    [showLength]="false"
-    [minRows]="2"
-    [maxRows]="6"
     [autocompleteOptions]="optionsTargetAudience">
   </app-textarea-wrapper>
 
-  <mat-form-field class="full-width" appearance="fill">
-    <mat-label class="wrap-label"
-      >{{ "dmp.steps.data.reuse.question.tools" | translate }}
-    </mat-label>
-    <textarea matInput formControlName="tools" [maxLength]="4000"></textarea>
-  </mat-form-field>
+  <app-textarea-wrapper
+    [label]="'dmp.steps.data.reuse.question.tools'"
+    [control]="tools"
+    [maxLength]="4000">
+  </app-textarea-wrapper>
 
   <ng-container *ngIf="restricted?.length > 0">
-    <mat-form-field class="full-width" appearance="fill">
-      <mat-label class="wrap-label">
+    <mat-form-field class="full-width">
+      <mat-label>
         {{ "dmp.steps.data.reuse.question.restrictedDataAccess" | translate }}
         <span *ngFor="let set of restricted; last as last">
           "{{ set.title }}"<span *ngIf="!last">, </span>.

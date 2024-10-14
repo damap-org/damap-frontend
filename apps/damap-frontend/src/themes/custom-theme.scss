@@ -194,7 +194,7 @@ html {
   --mdc-text-button-label-text-weight: bold;
 }
 
-// only works for mat-raised-button
+// only works for mat-raised-button, since they are the most used button in the application by far
 .button-color-primary {
   --mdc-protected-button-container-color: var(--primary);
   --mdc-protected-button-label-text-color: var(--on-primary);
@@ -221,3 +221,17 @@ html {
 .mat-sidenav-divider-grey {
   --mat-sidenav-container-divider-color: var(--outline-variant);
 }
+
+.mat-menu-secondary-container {
+  --mat-menu-container-color: var(--secondary-container);
+  --mat-menu-item-label-text-color: var(--on-secondary-container);
+}
+
+// custom component densities (density defines the size of material components)
+.mat-textarea-density {
+  @include mat.form-field-density(-1);
+  @include mat.input-density(-1);
+}
+@include mat.form-field-density(-4);
+@include mat.input-density(-4);
+@include mat.select-density(-4);

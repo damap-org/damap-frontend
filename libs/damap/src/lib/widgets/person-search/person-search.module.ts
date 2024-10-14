@@ -9,6 +9,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FormsModule } from '@angular/forms';
 import { MatListModule } from '@angular/material/list';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [PersonSearchComponent],
@@ -16,6 +17,7 @@ import { MatListModule } from '@angular/material/list';
     CommonModule,
     TranslateModule,
     FormsModule,
+    SharedModule,
 
     // Materials
     MatFormFieldModule,
@@ -30,6 +32,7 @@ import { MatListModule } from '@angular/material/list';
     TranslateModule,
     FormsModule,
     PersonSearchComponent,
+    SharedModule,
 
     // Materials
     MatFormFieldModule,

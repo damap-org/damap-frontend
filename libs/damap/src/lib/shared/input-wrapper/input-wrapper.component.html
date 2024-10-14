@@ -1,6 +1,6 @@
 <mat-form-field [appearance]="appearance">
-  <mat-label class="wrap-label"
-    >{{ label | translate }}
+  <mat-label>
+    {{ label | translate }}
     <app-tooltip *ngIf="info?.length" [tooltip]="info"></app-tooltip>
   </mat-label>
   <span matTextPrefix>{{ prefix }}</span>
@@ -12,6 +12,7 @@
     [required]="required"
     [step]="type === 'number' ? 0.01 : null"
     [maxLength]="maxLength"
+    (input)="onInputChange(message.value)"
     #message />
   <mat-hint align="end">{{ message.value.length }} / {{ maxLength }}</mat-hint>
   <mat-error *ngIf="!control?.errors?.required && control?.errors?.empty">
