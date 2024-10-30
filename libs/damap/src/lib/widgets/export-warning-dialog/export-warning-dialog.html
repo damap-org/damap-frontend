@@ -3,7 +3,7 @@
   {{'dialog.export.content' | translate}}
   <div class="container">
     <ng-container>
-      <mat-form-field *ngIf="!funderSupported">
+      <mat-form-field>
         <mat-label>{{ 'dialog.export.type' | translate }}</mat-label>
         <mat-select [(value)]="selectedTemplate">
           <mat-option

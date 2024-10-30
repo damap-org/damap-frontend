@@ -7,6 +7,8 @@ import { FormGroup } from '@angular/forms';
 import { FormService } from '../../../services/form.service';
 import { ETemplateType } from '../../../domain/enum/export-template-type.enum';
 import { DomSanitizer } from '@angular/platform-browser';
+import { TemplateSelectorService } from '../../../services/template-selector.service';
+import { Dmp } from '../../../domain/dmp';
 
 @Component({
   selector: 'damap-live-preview',
@@ -16,20 +18,28 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class LivePreviewComponent implements OnInit {
   @Input() selectedTemplate = '';
 
-  dmpForm: FormGroup;
+  dmpForm: Dmp;
   dmpTemplate: any = ETemplateType;
   pdfUrl: any = null;
+  templateOptions = Object.values(ETemplateType);
 
   constructor(
     public dialogRef: MatDialogRef<ExportWarningDialogComponent>,
     private backendService: BackendService,
     private formService: FormService,
     private sanitizer: DomSanitizer,
+    private templateService: TemplateSelectorService,
   ) {
-    this.dmpForm = this.formService.dmpForm;
+    this.dmpForm = this.formService.exportFormToDmp();
   }
 
   ngOnInit(): void {
+    this.selectedTemplate =
+      Object.keys(ETemplateType)[
+        this.templateOptions.indexOf(
+          this.templateService.selectTemplate(this.dmpForm),
+        )
+      ];
     this.refreshPreview();
   }
 
@@ -45,7 +55,7 @@ export class LivePreviewComponent implements OnInit {
     this.pdfUrl = null;
 
     this.backendService
-      .getPreviewPDF(this.dmpForm.value.id, template.value)
+      .getPreviewPDF(this.dmpForm.id, template.value)
       .subscribe((response: any) => {
         const url = window.URL.createObjectURL(response);
         this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);

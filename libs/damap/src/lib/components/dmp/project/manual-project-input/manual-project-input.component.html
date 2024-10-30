@@ -3,7 +3,7 @@
 }}</mat-label>
 <mat-card class="manual-project-input-card card-shadow">
   <mat-card-content>
-    <form>
+    <form [formGroup]="form">
       <div class="form-row">
         <app-input-wrapper
           class="input-full"
@@ -42,6 +42,55 @@
         label="{{
           'dmp.steps.project.input.description' | translate
         }}"></app-textarea-wrapper>
+
+      <div formGroupName="funding">
+        <div class="form-row" formGroupName="funderId">
+          <app-input-wrapper-options
+            class="input-60"
+            [control]="funder"
+            [options]="funderOptions"
+            (inputChange)="selectOptionFunderId($event)"
+            label="{{
+              'dmp.steps.project.input.funderID' | translate
+            }}"></app-input-wrapper-options>
+          <mat-form-field>
+            <mat-label>{{
+              "dmp.steps.project.input.funderType" | translate
+            }}</mat-label>
+            <mat-select formControlName="type">
+              <mat-option
+                *ngFor="let type of funderTypeObject | keyvalue"
+                [value]="type.value">
+                {{ type.value | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="form-row" formGroupName="grantId">
+          <app-input-wrapper
+            class="input-60"
+            [control]="grant"
+            (inputChange)="checkValidators()"
+            label="{{
+              'dmp.steps.project.input.grantID' | translate
+            }}"></app-input-wrapper>
+
+          <mat-form-field>
+            <mat-label>{{
+              "dmp.steps.project.input.grantType" | translate
+            }}</mat-label>
+            <mat-select formControlName="type">
+              <mat-option
+                *ngFor="let type of grantTypeObject | keyvalue"
+                [value]="type.value">
+                {{ type.value | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
       <button
         class="button-position-left button-color-primary"
         mat-raised-button
@@ -52,3 +101,92 @@
     </form>
   </mat-card-content>
 </mat-card>
+
+<!-- <form [formGroup]="form">  
+  <div class="form-row">
+    <app-input-wrapper
+      class="input-60"
+      [control]="title"
+      label="{{
+        'dmp.steps.project.input.title' | translate
+      }}"></app-input-wrapper>
+    <app-input-wrapper
+      class="input-fill"
+      [control]="acronym"
+      label="{{
+        'dmp.steps.project.input.acronym' | translate
+      }}"></app-input-wrapper>
+    <mat-form-field class="input-fill">
+      <mat-label>{{ "dmp.steps.project.input.date" | translate }}</mat-label>
+      <mat-date-range-input [formGroup]="form" [rangePicker]="picker">
+        <input matStartDate formControlName="start" placeholder="Start date" />
+        <input matEndDate formControlName="end" placeholder="End date" />
+      </mat-date-range-input>
+      <mat-hint>{{ "dmp.steps.project.input.datehint" | translate }}</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+  </div>
+  <app-textarea-wrapper
+    [control]="description"
+    label="{{
+      'dmp.steps.project.input.description' | translate
+    }}"></app-textarea-wrapper>
+
+  <div formGroupName="funding">
+    <div class="form-row" formGroupName="funderId">
+      <app-input-wrapper-options
+        class="input-60"
+        [control]="funder"
+        [options]="funderOptions"
+        (inputChange)="selectOptionFunderId($event)"
+        label="{{
+          'dmp.steps.project.input.funderID' | translate
+        }}"></app-input-wrapper-options>
+
+      <mat-form-field>
+        <mat-label>{{
+          "dmp.steps.project.input.funderType" | translate
+        }}</mat-label>
+        <mat-select formControlName="type">
+          <mat-option
+            *ngFor="let type of funderTypeObject | keyvalue"
+            [value]="type.value">
+            {{ type.value  | translate }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row" formGroupName="grantId">
+      <app-input-wrapper
+        class="input-60"
+        [control]="grant"
+        (inputChange)="checkValidators()"
+        label="{{
+          'dmp.steps.project.input.grantID' | translate
+        }}"></app-input-wrapper>
+
+      <mat-form-field>
+        <mat-label>{{
+          "dmp.steps.project.input.grantType" | translate
+        }}</mat-label>
+        <mat-select formControlName="type" >
+          <mat-option
+            *ngFor="let type of grantTypeObject | keyvalue"
+            [value]="type.value">
+            {{ type.value | translate }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <button
+    class="button-position-left button-color-primary"
+    mat-raised-button
+    [disabled]="form.invalid"
+    (click)="updateProject()">
+    {{ "dmp.steps.project.input.button" | translate }}
+  </button>
+</form>  -->

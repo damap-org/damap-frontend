@@ -10,10 +10,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { TooltipModule } from '../widgets/tooltip/tooltip.module';
 import { SearchFieldComponent } from './search-field/search-field.component';
 import { MatIconButton } from '@angular/material/button';
+import { InputWrapperOptionsComponent } from './input-wrapper-options/input-wrapper-options.component';
 
 @NgModule({
   declarations: [
     InputWrapperComponent,
+    InputWrapperOptionsComponent,
     TextareaWrapperComponent,
     SearchFieldComponent,
   ],
@@ -36,6 +38,7 @@ import { MatIconButton } from '@angular/material/button';
     FormsModule,
     ReactiveFormsModule,
     InputWrapperComponent,
+    InputWrapperOptionsComponent,
     TextareaWrapperComponent,
     TooltipModule,
     SearchFieldComponent,
