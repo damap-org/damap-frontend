@@ -6,10 +6,23 @@
   margin: 20px;
 }
 
+.steps-container{
+  width: 35%;
+}
+
 .instructions-container {
   flex: 1;
   max-width: 300px;
   padding: 20px;
+}
+
+.content-card {
+  width: 70%;
+}
+
+.label-container{
+  width: 100px;
+  white-space: normal; /* Allows text to wrap onto multiple lines */
 }
 
 .detailed-view-container {
@@ -28,14 +41,68 @@
   padding: 20px !important;
 }
 
+::ng-deep .mat-step-icon {
+  width: 26px; /* Smaller icon width for medium screens */
+  height: 26px;
+  font-size: 0.875rem; /* Smaller font size */
+}
+
 @media (max-width: 1300px) {
+
+  ::ng-deep .mat-step-icon {
+    width: 24px; /* Smaller icon width for medium screens */
+    height: 24px;
+    font-size: 0.875rem; /* Smaller font size */
+  }
+
+  .label-container{
+    width: 100px;
+    white-space: normal; /* Allows text to wrap onto multiple lines */
+  }
+
+  .steps-container{
+    width: 35%;
+  }
+
+  .content-card {
+    width: 70%;
+  }
+
   .dmp-container {
     flex-wrap: wrap;
     gap: 10px;
   }
+
+  .verticalStepper {
+    width: 100%;
+    --mat-stepper-header-label-text-size: 12px
+  }
 }
 
 @media (max-width: 960px) {
+
+  ::ng-deep .mat-step-icon {
+    width: 18px !important; /* Smaller icon width for medium screens */
+    height: 18px !important;
+    margin-right: 5px !important;
+    font-size: 0.8rem; /* Smaller font size */
+  }
+
+  .label-container{
+    width: 100px;
+    white-space: normal; /* Allows text to wrap onto multiple lines */
+  }
+
+
+
+  .steps-container{
+    width: 30%;
+  }
+
+  .content-card {
+    width: 70%;
+  }
+
   .dmp-container {
     flex-direction: column;
     flex-wrap: wrap;
@@ -56,10 +123,18 @@
 
   .verticalStepper {
     width: 100%;
+    --mat-stepper-header-selected-state-label-text-size: 11px;
+    --mat-stepper-header-label-text-size: 11px
   }
 }
 
 @media (max-width: 480px) {
+
+  .label-container{
+    width: 100px;
+    white-space: normal; /* Allows text to wrap onto multiple lines */
+  }
+
   .dmp-container {
     flex-direction: column;
     flex-wrap: wrap;
@@ -73,8 +148,13 @@
     padding: 5px;
   }
 
+  .content-card {
+    width: 70%;
+  }
+
   .verticalStepper {
-    width: 100%;
+    width: 80%;
+  --mat-stepper-header-label-text-size: 8px
   }
 
   ::ng-deep .mat-vertical-content {

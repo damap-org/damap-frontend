@@ -3,7 +3,7 @@
   <div class="steps-container">
     <mat-vertical-stepper
       #stepper
-      class="verticalStepper card-shadow"
+      class="mat-stepper-font-size verticalStepper card-shadow"
       [linear]="false"
       orientation="vertical"
       (selectionChange)="handleStepChange($event)">
@@ -15,7 +15,7 @@
             "></app-project-instruction>
         </ng-container>
       </mat-step>
-      <mat-step label="{{ 'dmp.steps.people.label' | translate }}">
+      <mat-step class="label-container" label="{{ 'dmp.steps.people.label' | translate }}">
         <ng-container *ngIf="selectedStep === 1">
           <app-people-instruction
             (selectionChange)="
@@ -64,7 +64,7 @@
     </mat-vertical-stepper>
   </div>
 
-  <div class="detailed-view-container card-shadow">
+  <div class="detailed-view-container content-card card-shadow">
     <ng-container *ngIf="selectedStep === 0">
       <app-dmp-project
         #projectComponent

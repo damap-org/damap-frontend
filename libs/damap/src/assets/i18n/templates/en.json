@@ -201,7 +201,7 @@
         }
       },
       "storage": {
-        "label": "Storage and backup during the research process",
+        "label": "Storage and Backup",
         "greeting": "Step 5, Let’s elaborate on your storage, Firstname",
         "summaryLine": "Define who can access and modify your data and describe your storage and backup strategies.",
         "instructions": "This step helps you 1) document who is allowed to see or edit your data in the project phase and 2) find appropriate storage and backup solutions for your data.",
@@ -305,7 +305,7 @@
         "years": "Years"
       },
       "repositories": {
-        "label": "Specify repositories for publication and preservation",
+        "label": "Repositories and preservation",
         "greeting": "Step 8, Firstname",
         "summaryLine": "Choose suitable repositories for your data.",
         "instructions": "Repositories are used for sustainable data management beyond the lifetime of the project and to make data discoverable and reusable to others. If available, use a domain specific repository for your data. The search filter below may help you to find one.",
