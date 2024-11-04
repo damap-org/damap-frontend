@@ -27,6 +27,13 @@ td.mat-column-contact {
   overflow: hidden;
 }
 
+td.mat-column-version,
+td.mat-column-version_name {
+  width: 150px;
+  overflow: hidden;
+  text-align: center;
+}
+
 .mat-column-edit {
   width: 30px;
 }
@@ -59,6 +66,11 @@ a.title {
   color: var(--on-surface);
 }
 
+a.version {
+  text-align: center;
+  color: var(--on-surface);
+}
+
 button.mat-focus-indicator .mat-mdc-unelevated-button.mat-primary,
 .mat-mdc-raised-button.mat-primary,
 .mat-mdc-fab.mat-primary,
@@ -68,4 +80,8 @@ button.mat-focus-indicator .mat-mdc-unelevated-button.mat-primary,
   justify-content: space-between;
   align-items: center;
   gap: 10px;
+}
+
+.word-break {
+  word-break: break-all;
 }

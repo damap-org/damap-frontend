@@ -10,6 +10,8 @@
     "table": {
       "header": {
         "title": "Titel",
+        "version": "Version #",
+        "version_name": "Versionsname",
         "created": "Erstellt",
         "modified": "Zuletzt geändert",
         "contact": "Kontakt"

@@ -13,5 +13,7 @@ export const mockDmpList: DmpListItem[] = [
     description: 'Mock Dmp List Item',
     project: mockProject,
     accessType: FunctionRole.OWNER,
+    versionCount: 1,
+    latestVersionName: 'Mock Version',
   },
 ];

@@ -23,6 +23,7 @@ import {
 import { Location } from '@angular/common';
 import { LivePreviewComponent } from '../live-preview/live-preview.component';
 import { BackendService } from '../../../services/backend.service';
+import { FeedbackService } from '../../../services/feedback.service';
 
 @Component({
   selector: 'app-actions',
@@ -50,6 +51,7 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
     private store: Store<AppState>,
     private location: Location,
     private backendService: BackendService,
+    private feedbackService: FeedbackService,
   ) {
     this.dmpForm = this.formService.dmpForm;
   }
@@ -100,13 +102,15 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(versionName => {
-      if (versionName) {
+      if (versionName && versionName.length <= 255) {
         this.store.dispatch(
           saveDmpVersion({
             dmp: this.formService.exportFormToDmp(),
             versionName,
           }),
         );
+      } else {
+        this.feedbackService.error('Version name is too long');
       }
     });
   }

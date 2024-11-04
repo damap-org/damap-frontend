@@ -4,6 +4,7 @@ import {
   EventEmitter,
   Input,
   OnChanges,
+  OnInit,
   Output,
   SimpleChanges,
   ViewChild,
@@ -14,6 +15,7 @@ import { FunctionRole } from '../../domain/enum/function-role.enum';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-dmp-table',
@@ -34,6 +36,8 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
 
   readonly tableHeaders: string[] = [
     'title',
+    'version',
+    'version_name',
     'created',
     'modified',
     'contact',
@@ -51,6 +55,8 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
     this.dataSource.filterPredicate = (data: DmpListItem, filter: string) =>
       data.project?.title?.toLowerCase().includes(filter) ||
       data.title?.toLowerCase().includes(filter) ||
+      data.latestVersionName?.toLowerCase().includes(filter) ||
+      data.versionCount?.toString().includes(filter) ||
       data.id.toString().includes(filter);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -63,6 +69,10 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
           return item.project?.title || 'DMP ID: ' + item.id;
         case 'contact':
           return item.contact?.firstName + ' ' + item.contact?.lastName;
+        case 'version':
+          return item.versionCount;
+        case 'version_name':
+          return item.latestVersionName;
         default:
           return item[property];
       }

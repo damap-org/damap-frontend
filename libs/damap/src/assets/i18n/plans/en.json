@@ -11,6 +11,8 @@
     "table": {
       "header": {
         "title": "Title",
+        "version": "Version #",
+        "version_name": "Version Name",
         "created": "Created",
         "modified": "Last modified",
         "contact": "Contact"

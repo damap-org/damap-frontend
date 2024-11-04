@@ -11,4 +11,6 @@ export interface DmpListItem {
   readonly description: string;
   readonly project: Project;
   readonly accessType: FunctionRole;
+  readonly versionCount: number;
+  readonly latestVersionName: string;
 }

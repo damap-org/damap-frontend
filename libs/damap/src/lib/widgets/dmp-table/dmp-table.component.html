@@ -28,6 +28,28 @@
     </td>
   </ng-container>
 
+  <ng-container matColumnDef="version">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      {{ "plans.table.header.version" | translate }}
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <a class="version" routerLink="/dmp/{{ element.id }}/version">
+        {{ element.versionCount !== null ? element.versionCount : 0 }}
+      </a>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="version_name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      {{ "plans.table.header.version_name" | translate }}
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <a class="version word-break" routerLink="/dmp/{{ element.id }}/version">
+        {{ element.latestVersionName }}
+      </a>
+    </td>
+  </ng-container>
+
   <ng-container matColumnDef="created">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>
       {{ "plans.table.header.created" | translate }}
