@@ -33,7 +33,8 @@
       "storages": "Failed to load storages. ",
       "storageErrors": {
         "stillInUse": "Storage is used in at least one DMP and therefore cannot be deleted.",
-        "lastTranslation": "The last translation for a given storage cannot be deleted."
+        "lastTranslation": "The last translation for a given storage cannot be deleted.",
+        "invalidUrl": "The provided URL is not valid."
       },
       "versions": {
         "load": "Failed to load DMP versions. ",

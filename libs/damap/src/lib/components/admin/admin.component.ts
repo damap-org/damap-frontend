@@ -11,6 +11,7 @@ import { FeedbackService } from '../../services/feedback.service';
 import { Router } from '@angular/router';
 import { InternalStorageTranslationDialogComponent } from './internal-storage-translation-dialog/internal-storage-translation-dialog.component';
 import { firstValueFrom } from 'rxjs';
+import validator from 'validator';
 
 @Component({
   selector: 'damap-admin',
@@ -48,6 +49,10 @@ export class AdminComponent implements OnInit {
 
     const storage = await firstValueFrom(dialogRef.afterClosed());
     if (storage) {
+      if (!this.isValidUrl(storage.url)) {
+        this.feedbackService.error('http.error.storageErrors.invalidUrl');
+        return;
+      }
       this.backendService.createInternalStorage(storage).subscribe(
         () => {
           this.feedbackService.success('http.success.storage.add');
@@ -65,6 +70,17 @@ export class AdminComponent implements OnInit {
         },
       );
     }
+  }
+
+  isValidUrl(url: string): boolean {
+    return validator.isURL(url, {
+      protocols: ['http', 'https'],
+      require_protocol: false,
+      require_valid_protocol: true,
+      allow_underscores: false,
+      allow_trailing_dot: false,
+      allow_protocol_relative_urls: false,
+    });
   }
 
   openTranslationDialog() {

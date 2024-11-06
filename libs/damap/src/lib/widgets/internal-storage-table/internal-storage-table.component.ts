@@ -20,6 +20,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { InternalStorageDialogComponent } from '../../components/admin/internal-storage-dialog/internal-storage-dialog.component';
 import { DeleteStorageWarningDialogComponent } from './dialog/delete-storage-warning-dialog.component';
 import { TranslateService } from '@ngx-translate/core';
+import validator from 'validator';
 
 @Component({
   selector: 'damap-internal-storage-table',
@@ -123,6 +124,10 @@ export class InternalStorageTableComponent implements AfterViewInit, OnChanges {
 
     dialogRef.afterClosed().subscribe(storage => {
       if (storage) {
+        if (!this.isValidUrl(storage.url)) {
+          this.feedbackService.error('http.error.storageErrors.invalidUrl');
+          return;
+        }
         this.backendService.updateInternalStorage(storage).subscribe(
           () => {
             this.internalStorages = this.internalStorages.map(s =>
@@ -137,6 +142,17 @@ export class InternalStorageTableComponent implements AfterViewInit, OnChanges {
           },
         );
       }
+    });
+  }
+
+  isValidUrl(url: string): boolean {
+    return validator.isURL(url, {
+      protocols: ['http', 'https'],
+      require_protocol: false,
+      require_valid_protocol: true,
+      allow_underscores: false,
+      allow_trailing_dot: false,
+      allow_protocol_relative_urls: false,
     });
   }
 
