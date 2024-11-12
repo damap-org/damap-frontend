@@ -1,11 +1,13 @@
 {
   "admin": {
     "title": "Admin page",
+    "banner": "Banner",
     "internal-storage": "Internal Storage",
     "internal-storage-translations": "Translations for: ",
     "internal-storage-translations-no-selected": "Translations",
     "reset-selection": "Reset selection",
     "translation-info": "In order to see the translations for a specific internal storage, please select the internal storage from the list in the actions menu, and the option 'Translations'.",
+    "banner-missing-info": "There is no banner currently set for the app.",
     "table": {
       "header": {
         "url": "URL",
@@ -30,7 +32,14 @@
     },
     "create": {
       "storage": "Add new internal storage",
-      "translation": "Add new translation"
+      "translation": "Add new translation",
+      "banner": "Add app banner"
+    },
+    "edit": {
+      "banner": "Edit app banner"
+    },
+    "delete": {
+      "banner": "Delete app banner"
     },
     "dialog": {
       "internal-storage": {
@@ -63,6 +72,21 @@
           "backupFrequency": "Backup Frequency",
           "eng": "English",
           "deu": "German"
+        }
+      },
+      "banner": {
+        "edit": "Edit banner",
+        "add": "Create banner",
+        "captions": {
+          "title": "Title",
+          "description": "Description",
+          "color": "Background color",
+          "dismissible": "Dismissible"
+        },
+        "button": {
+          "update": "Edit",
+          "add": "Add",
+          "cancel": "Cancel"
         }
       }
     }

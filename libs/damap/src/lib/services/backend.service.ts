@@ -28,6 +28,7 @@ import { RepositoryDetails } from '../domain/repository-details';
 import { SearchResult } from '../domain/search/search-result';
 import { TranslateService } from '@ngx-translate/core';
 import { Version } from '../domain/version';
+import { Banner } from '../domain/banner';
 
 @Injectable({
   providedIn: 'root',
@@ -433,6 +434,22 @@ export class BackendService {
     return this.http.get<InternalStorageTranslation[]>(
       `${this.backendUrl}storages/${id}/translations/`,
     );
+  }
+
+  getAppBanner(): Observable<Banner> {
+    return this.http.get<Banner>(`${this.backendUrl}admin/banner`);
+  }
+
+  createAppBanner(banner: Banner): Observable<Banner> {
+    return this.http.post<Banner>(`${this.backendUrl}admin/banner`, banner);
+  }
+
+  updateAppBanner(banner: Banner): Observable<Banner> {
+    return this.http.put<Banner>(`${this.backendUrl}admin/banner`, banner);
+  }
+
+  deleteAppBanner(): Observable<void> {
+    return this.http.delete<void>(`${this.backendUrl}admin/banner`);
   }
 
   private handleError(message = 'http.error.standard') {

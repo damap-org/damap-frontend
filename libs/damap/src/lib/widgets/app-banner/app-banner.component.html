@@ -1,0 +1,19 @@
+<mat-card
+  *ngIf="bannerVisible"
+  appearance="raised"
+  [ngStyle]="{ 'background-color': banner.color }">
+  <mat-card-header>
+    <mat-card-title>
+      <strong> {{ banner.title }} </strong>
+    </mat-card-title>
+    <mat-icon
+      *ngIf="banner.dismissible"
+      class="dismiss-btn"
+      (click)="dismissBanner()"
+      >close</mat-icon
+    >
+  </mat-card-header>
+  <mat-card-content>
+    <p>{{ banner.description }}</p>
+  </mat-card-content>
+</mat-card>

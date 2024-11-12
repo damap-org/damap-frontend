@@ -481,6 +481,36 @@ export class FormService {
     });
   }
 
+  public createBannerFormGroup(): UntypedFormGroup {
+    return this.formBuilder.group({
+      title: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(this.TEXT_SHORT_LENGTH),
+          notEmptyValidator(),
+        ],
+      ],
+      description: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(this.TEXT_SHORT_LENGTH),
+          notEmptyValidator(),
+        ],
+      ],
+      dismissible: [true],
+      color: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(this.TEXT_SHORT_LENGTH),
+          notEmptyValidator(),
+        ],
+      ],
+    });
+  }
+
   public createInternalStorageTranslationFormGroup(): UntypedFormGroup {
     return this.formBuilder.group({
       id: [null, { disabled: true }],

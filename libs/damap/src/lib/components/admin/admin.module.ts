@@ -20,6 +20,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { InternalStoragaTranslationTableModule } from '../../widgets/internal-storage-translation-table/internal-storage-translation-table.module';
 import { InternalStorageTranslationDialogComponent } from './internal-storage-translation-dialog/internal-storage-translation-dialog.component';
+import { BannerDialogComponent } from './banner-dialog/banner-dialog.component';
 
 @NgModule({
   imports: [
@@ -47,6 +48,7 @@ import { InternalStorageTranslationDialogComponent } from './internal-storage-tr
     AdminComponent,
     InternalStorageDialogComponent,
     InternalStorageTranslationDialogComponent,
+    BannerDialogComponent,
   ],
   exports: [
     CommonModule,

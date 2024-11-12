@@ -11,6 +11,10 @@ import { FeedbackService } from '../../services/feedback.service';
 import { Router } from '@angular/router';
 import { InternalStorageTranslationDialogComponent } from './internal-storage-translation-dialog/internal-storage-translation-dialog.component';
 import { firstValueFrom } from 'rxjs';
+import { Banner } from '../../domain/banner';
+import { BannerDialogComponent } from './banner-dialog/banner-dialog.component';
+import { DeleteStorageWarningDialogComponent } from '../../widgets/internal-storage-table/dialog/delete-storage-warning-dialog.component';
+import { DeleteBannerWarningDialogComponent } from './banner-dialog/delete-banner-warning-dialog.component';
 import validator from 'validator';
 
 @Component({
@@ -31,12 +35,18 @@ export class AdminComponent implements OnInit {
   selectedInternalStorageId: number;
   selectedInternalStorageUrl: string;
 
+  appBanner: Banner | null = null;
+
   ngOnInit(): void {
     this.selectedInternalStorageId = null;
     this.selectedInternalStorageUrl = null;
 
     this.backendService.searchInternalStorage({}).subscribe(data => {
       this.internalStorages = data.items;
+    });
+
+    this.backendService.getAppBanner().subscribe(banner => {
+      this.appBanner = banner;
     });
   }
 
@@ -70,6 +80,77 @@ export class AdminComponent implements OnInit {
         },
       );
     }
+  }
+
+  openBannerDialog(type: 'edit' | 'add') {
+    const dialogRef = this.dialog.open(BannerDialogComponent, {
+      width: '75%',
+      maxWidth: '800px',
+      data: { mode: type, banner: this.appBanner },
+    });
+
+    dialogRef.afterClosed().subscribe(banner => {
+      if (banner) {
+        if (type === 'edit') {
+          this.backendService.updateAppBanner(banner).subscribe(
+            () => {
+              this.appBanner = banner;
+              this.feedbackService.success('http.success.banner.edit');
+              this.refreshPage();
+            },
+            error => {
+              if (error.error?.message) {
+                this.feedbackService.error(error.error.message);
+              } else {
+                this.feedbackService.error(error.message);
+              }
+            },
+          );
+        } else {
+          this.backendService.createAppBanner(banner).subscribe(
+            () => {
+              this.appBanner = banner;
+              this.feedbackService.success('http.success.banner.add');
+              this.refreshPage();
+            },
+            error => {
+              if (error.error?.message) {
+                this.feedbackService.error(error.error.message);
+              } else {
+                this.feedbackService.error(error.message);
+              }
+            },
+          );
+        }
+      }
+    });
+  }
+
+  deleteBanner() {
+    this.dialog
+      .open(DeleteBannerWarningDialogComponent)
+      .afterClosed()
+      .subscribe({
+        next: response => {
+          if (!response) {
+            return;
+          }
+          this.backendService.deleteAppBanner().subscribe(
+            () => {
+              this.appBanner = null;
+              this.feedbackService.success('http.success.banner.delete');
+              this.refreshPage();
+            },
+            error => {
+              if (error.error?.message) {
+                this.feedbackService.error(error.error.message);
+              } else {
+                this.feedbackService.error(error.message);
+              }
+            },
+          );
+        },
+      });
   }
 
   isValidUrl(url: string): boolean {
@@ -149,5 +230,9 @@ export class AdminComponent implements OnInit {
     this.backendService.searchInternalStorage({}).subscribe(data => {
       this.internalStorages = data.items;
     });
+  }
+
+  refreshPage() {
+    window.location.reload();
   }
 }

@@ -1,5 +1,6 @@
 <div id="content" class="content-max-width">
   <h1 translate>admin.title</h1>
+  <hr />
   <h2 translate>admin.internal-storage</h2>
   <button
     class="button-position button-color-primary"
@@ -45,5 +46,49 @@
       [selectedInternalStorageId]="
         selectedInternalStorageId
       "></damap-internal-storage-translation-table>
+  </div>
+  <hr />
+  <h2 translate>admin.banner</h2>
+  <div *ngIf="!appBanner">
+    <button
+      class="button-position button-color-primary"
+      mat-raised-button
+      (click)="openBannerDialog('add')">
+      <mat-icon>add</mat-icon>
+      {{ "admin.create.banner" | translate }}
+    </button>
+    <p translate>admin.banner-missing-info</p>
+  </div>
+  <div *ngIf="appBanner">
+    <button
+      class="button-position button-color-primary"
+      mat-raised-button
+      (click)="openBannerDialog('edit')">
+      <mat-icon>edit</mat-icon>
+      {{ "admin.edit.banner" | translate }}
+    </button>
+    <button
+      class="button-position button-color-primary"
+      mat-raised-button
+      (click)="deleteBanner()">
+      <mat-icon>delete</mat-icon>
+      {{ "admin.delete.banner" | translate }}
+    </button>
+    <div>
+      <p>Title: {{ appBanner.title }}</p>
+      <p>Description: {{ appBanner.description }}</p>
+      <p style="display: flex; align-items: center">
+        Color: {{ appBanner.color }}
+        <span
+          style="
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+          "
+          [style.background-color]="appBanner.color"></span>
+      </p>
+      <p>Dismissible: {{ appBanner.dismissible }}</p>
+    </div>
   </div>
 </div>
