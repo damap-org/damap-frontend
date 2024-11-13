@@ -163,7 +163,7 @@
         "reuse": {
           "label": "Reuse of data",
           "greeting": "On to Step 9, Firstname",
-          "summaryLine": "Image/Describe potential reuse opportunities of your data. or  Imagine/Describe conceivable purposes for the reuse of your data.",
+          "summaryLine": "Consider potential research uses and users of your data sets.",
           "instructions": "This step helps you think about future research uses or users of your data and what potential users may require to access your data.",
           "intro": "This step helps you to think about foreseeable research uses or users of your data sets and what potential reusers require to access your data.",
           "question": {
