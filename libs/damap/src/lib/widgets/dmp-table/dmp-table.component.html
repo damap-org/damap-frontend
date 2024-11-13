@@ -39,21 +39,29 @@
       <td mat-cell *matCellDef="let element">
         <a class="version" routerLink="/dmp/{{ element.id }}/version">
           {{
-            element.versionCount !== null
+            element.versionCount !== null && element.versionCount !== undefined
               ? ("plans.table.header.version_tag" | translate) + ": "
               : ""
           }}
           <span class="underlined">{{
-            element.versionCount !== null ? "#" + element.versionCount : ""
-          }}</span>
-          <br />
-          {{
-            element.versionCount !== null
-              ? ("plans.table.header.version_name" | translate) + ": "
+            element.versionCount !== null && element.versionCount !== undefined
+              ? "#" + element.versionCount
               : ""
+          }}</span>
+          <br
+            *ngIf="
+              element.versionCount !== null &&
+              element.versionCount !== undefined
+            " />
+          {{
+            element.versionCount !== null && element.versionCount !== undefined
+              ? ("plans.table.header.version_name" | translate) + ": "
+              : "No versions for this DMP available"
           }}
           <span class="underlined">{{
-            element.versionCount !== null ? element.latestVersionName : ""
+            element.versionCount !== null && element.versionCount !== undefined
+              ? element.latestVersionName
+              : ""
           }}</span>
         </a>
       </td>
