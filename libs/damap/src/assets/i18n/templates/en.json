@@ -112,7 +112,7 @@
           "table": {
             "heading": {
               "default": "Data",
-              "reused": "Reused data",
+              "reused": "Existing data",
               "new": "New data"
             },
             "header": {
