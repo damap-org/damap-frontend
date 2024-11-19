@@ -1,6 +1,6 @@
 {
   "name": "damap-frontend",
-  "version": "4.2.2",
+  "version": "4.3.0",
   "scripts": {
     "ng": "nx",
     "start": "npx nx serve damap-frontend",
