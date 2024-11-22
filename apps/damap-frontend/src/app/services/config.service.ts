@@ -1,17 +1,18 @@
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
+import { BehaviorSubject, Observable, lastValueFrom } from 'rxjs';
 import { Injectable, isDevMode } from '@angular/core';
 
 import { Config } from '@damap/core';
 import { HttpClient } from '@angular/common/http';
-import { lastValueFrom } from 'rxjs';
-import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConfigService {
   private config: Config;
+  private configSubject = new BehaviorSubject<Config | null>(null);
 
   constructor(
     private http: HttpClient,
@@ -28,6 +29,7 @@ export class ConfigService {
           return new Promise<boolean>(resolve => resolve(false));
         } else {
           this.config = config;
+          this.configSubject.next(config);
           const authConfig: AuthConfig = {
             issuer: config.authUrl,
             clientId: config.authClient,
@@ -74,9 +76,15 @@ export class ConfigService {
     return this.config.env;
   }
 
+  public getConfig$(): Observable<Config> {
+    return this.configSubject.asObservable();
+  }
+
   private async loadConfig(): Promise<Config> {
     const host = environment.backendurl;
     const config$ = this.http.get<Config>(`${host}config`);
-    return await lastValueFrom(config$);
+    const config = await lastValueFrom(config$);
+    this.configSubject.next(config);
+    return config;
   }
 }

@@ -1,3 +1,4 @@
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import {
   Component,
   EventEmitter,
@@ -6,11 +7,11 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
 
 import { AbstractBaseDataComponent } from '../abstract-base-data.component';
 import { Config } from '../../../../domain/config';
 import { DatasetDialogComponent } from '../dataset-dialog/dataset-dialog.component';
+import { DatasetDialogUploadComponent } from '../dataset-dialog/dataset-dialog-upload.component';
 import { MatDialog } from '@angular/material/dialog';
 import { UntypedFormControl } from '@angular/forms';
 
@@ -28,8 +29,10 @@ export class CreatedDataComponent
 
   @Output() fileToAnalyse = new EventEmitter<File>();
   @Output() uploadToCancel = new EventEmitter<number>();
+  @Input() fitsServiceAvailable$: BehaviorSubject<boolean>;
+  fitsServiceAvailable: boolean;
+  fitsServiceSubscription: Subscription;
 
-  fitsServiceAvailable: boolean = false;
   configSubscription: Subscription;
 
   readonly tableHeaders: string[] = [
@@ -46,13 +49,17 @@ export class CreatedDataComponent
   }
 
   ngOnInit(): void {
-    this.configSubscription = this.config$.subscribe(config => {
-      this.fitsServiceAvailable = config.fitsServiceAvailable || false;
-    });
+    if (this.fitsServiceAvailable$) {
+      this.fitsServiceSubscription = this.fitsServiceAvailable$.subscribe(
+        value => {
+          this.fitsServiceAvailable = value;
+        },
+      );
+    }
   }
 
   ngOnDestroy(): void {
-    this.configSubscription.unsubscribe();
+    this.fitsServiceSubscription?.unsubscribe();
   }
 
   openDatasetDialog() {
@@ -69,6 +76,23 @@ export class CreatedDataComponent
     });
   }
 
+  openUploadDialog() {
+    const dialogRef = this.dialog.open(DatasetDialogUploadComponent, {
+      width: '75%',
+      maxWidth: '800px',
+      data: {
+        fileUpload: this.fileUpload,
+        analyseFile: (file: File) => this.analyseFile(file),
+        cancelUpload: (index: number) => this.cancelUpload(index),
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(dataset => {
+      if (dataset) {
+        this.datasetToAdd.emit(dataset);
+      }
+    });
+  }
   get kind(): UntypedFormControl {
     return this.specifyDataStep.get('kind') as UntypedFormControl;
   }

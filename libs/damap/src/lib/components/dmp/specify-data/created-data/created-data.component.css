@@ -1,63 +1,19 @@
-.data-container {
-  box-sizing: border-box;
-  width: 100%;
-}
-
-.button-position {
-  width: auto;
+.example-flex-container {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
 }
 
 @media (max-width: 768px) {
-  .data-container {
-    padding: 15px;
-  }
-
-  .button-position {
-    width: 100%;
-  }
-
-  mat-tab-group {
-    width: 100%;
-  }
-
   app-dataset-table {
     width: 100%;
     overflow-x: auto;
-  }
-
-  mat-form-field {
-    width: 100%;
   }
 }
 
 @media (max-width: 480px) {
-  .data-container {
-    padding: 10px;
-  }
-
-  .button-position {
-    width: 100%;
-  }
-
-  mat-tab-group {
-    width: 100%;
-    display: block;
-  }
-
-  mat-tab-body-wrapper {
-    display: block;
-  }
-
   app-dataset-table {
     width: 100%;
     overflow-x: auto;
-  }
-
-  mat-form-field {
-    width: 100%;
-  }
-
-  mat-tab-header {
-    flex-wrap: wrap;
   }
 }

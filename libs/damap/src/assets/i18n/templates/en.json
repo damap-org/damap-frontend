@@ -98,6 +98,7 @@
           "tab": {
             "manual": "Manually",
             "upload": "Upload sample data",
+            "cancel": "Cancel",
             "doi": "Enter DOI",
             "access": "Access rights",
             "storage": "Storage",

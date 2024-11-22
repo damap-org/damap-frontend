@@ -89,6 +89,7 @@
     <ng-container *ngIf="selectedStep === 2">
       <app-dmp-specify-data
         #specifyData
+        *ngIf="selectedStep === 2"
         [config$]="config$"
         [specifyDataStep]="specifyDataStep"
         [datasets]="datasets"

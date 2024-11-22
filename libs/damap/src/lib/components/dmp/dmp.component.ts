@@ -182,6 +182,7 @@ export class DmpComponent implements OnInit, OnDestroy {
   changeStep($event: StepperSelectionEvent) {
     this.stepChanged$.next($event);
     this.getInstruction($event.selectedIndex);
+    this.cdr.detectChanges();
   }
 
   handleStepChange(event: StepperSelectionEvent) {

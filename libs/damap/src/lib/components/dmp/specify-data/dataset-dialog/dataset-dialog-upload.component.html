@@ -1,0 +1,17 @@
+<div>
+  <h2 mat-dialog-title>
+    {{ "dmp.steps.data.specify.tab.upload" | translate }}
+  </h2>
+  <mat-dialog-content>
+    <app-file-upload
+      [fileUpload]="data.fileUpload"
+      (fileToUpload)="data.analyseFile($event)"
+      (uploadToCancel)="data.cancelUpload($event)">
+    </app-file-upload>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">
+      {{ "dmp.steps.data.specify.tab.cancel" | translate }}
+    </button>
+  </mat-dialog-actions>
+</div>

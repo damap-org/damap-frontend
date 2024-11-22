@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CreatedDataComponent } from './created-data/created-data.component';
 import { DataMcComponent } from './data-mc/data-mc.component';
 import { DatasetDialogComponent } from './dataset-dialog/dataset-dialog.component';
+import { DatasetDialogUploadComponent } from './dataset-dialog/dataset-dialog-upload.component';
 import { DatasetSourceModule } from '../../../pipes/dataset-source/dataset-source.module';
 import { DatasetTableComponent } from './dataset-table/dataset-table.component';
 import { DoiSearchModule } from '../../../widgets/doi-search/doi-search.module';
@@ -51,6 +52,7 @@ import { TranslateModule } from '@ngx-translate/core';
     ReusedDataComponent,
     DatasetTableComponent,
     DataMcComponent,
+    DatasetDialogUploadComponent,
     SpecifyDataInstructionComponent,
   ],
   exports: [
@@ -65,6 +67,7 @@ import { TranslateModule } from '@ngx-translate/core';
     DoiSearchModule,
     ToggleButtonsModule,
     SpecifyDataInstructionComponent,
+    DatasetDialogUploadComponent,
 
     // Materials
     MatDialogModule,

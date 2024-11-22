@@ -1,8 +1,8 @@
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { AbstractBaseDataComponent } from './abstract-base-data.component';
 import { Config } from '../../../domain/config';
-import { Observable } from 'rxjs';
 import { UntypedFormControl } from '@angular/forms';
 
 @Component({
@@ -17,7 +17,25 @@ export class SpecifyDataComponent extends AbstractBaseDataComponent {
   @Output() fileToAnalyse = new EventEmitter<File>();
   @Output() uploadToCancel = new EventEmitter<number>();
 
+  fitsServiceAvailable$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   selectedView: 'primaryView' | 'secondaryView' = 'primaryView';
+
+  private configSubscription: Subscription;
+
+  ngOnInit(): void {
+    if (this.config$) {
+      this.config$.subscribe(config => {
+        this.fitsServiceAvailable$.next(!!config.fitsServiceAvailable);
+        //console.log('fitsServiceAvailable updated in SpecifyDataComponent:', !!config.fitsServiceAvailable);
+      });
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.configSubscription) {
+      this.configSubscription.unsubscribe();
+    }
+  }
 
   get dataGeneration(): UntypedFormControl {
     return this.specifyDataStep.get('dataGeneration') as UntypedFormControl;

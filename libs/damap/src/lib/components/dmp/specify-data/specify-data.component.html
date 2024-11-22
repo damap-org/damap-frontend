@@ -1,6 +1,8 @@
 <div class="step-container">
   <div *ngIf="selectedView === 'primaryView'">
     <app-created-data
+      *ngIf="selectedView === 'primaryView'"
+      [fitsServiceAvailable$]="fitsServiceAvailable$"
       [specifyDataStep]="specifyDataStep"
       [datasets]="datasets"
       [fileUpload]="fileUpload"
@@ -9,7 +11,8 @@
       (updateDataset)="update($event)"
       (removeDataset)="remove($event)"
       (fileToAnalyse)="analyseFile($event)"
-      (uploadToCancel)="cancelUpload($event)"></app-created-data>
+      (uploadToCancel)="cancelUpload($event)">
+    </app-created-data>
   </div>
   <div *ngIf="selectedView === 'secondaryView'">
     <app-reused-data
