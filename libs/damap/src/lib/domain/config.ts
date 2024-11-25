@@ -8,4 +8,5 @@ export interface Config {
   readonly env: string;
   readonly personSearchServiceConfigs: ServiceConfig[];
   readonly fitsServiceAvailable: boolean;
+  readonly livePreviewAvailable: boolean;
 }

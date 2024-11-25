@@ -33,6 +33,7 @@ import { selectDmpSaving } from '../../../store/selectors/dmp.selectors';
 export class DmpActionsComponent implements OnInit, OnDestroy {
   @Input() stepChanged$: Subject<any>;
   @Input() admin = false;
+  @Input() preview = false;
 
   dmpForm: FormGroup;
 

@@ -65,6 +65,7 @@
       {{ "button.version" | translate }}
     </button>
     <div
+      *ngIf="preview"
       matTooltip="{{ 'button.preview.tooltipDisabled' | translate }}"
       [matTooltipDisabled]="previewEnabled()">
       <button

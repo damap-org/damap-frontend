@@ -16,4 +16,5 @@ export const configMockData: Config = {
   env: '',
   personSearchServiceConfigs: serviceConfigMockData,
   fitsServiceAvailable: true,
+  livePreviewAvailable: true,
 };

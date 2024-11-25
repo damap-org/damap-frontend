@@ -55,6 +55,7 @@ export class DmpComponent implements OnInit, OnDestroy {
   @ViewChild('legalEthicalAspects')
   legalEthicalAspectsComponent: LegalEthicalAspectsComponent;
   @ViewChild('repo') repoComponent: RepoComponent;
+  livePreviewEnabled: boolean = true;
 
   selectedViewStorage: 'primaryView' | 'secondaryView' = 'primaryView';
 
@@ -117,7 +118,10 @@ export class DmpComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.getInstruction(0);
       this.config$ = this.backendService.loadServiceConfig();
-      this.config$.subscribe(() => this.cdr.detectChanges());
+      this.config$.subscribe(config => {
+        this.livePreviewEnabled = config.livePreviewAvailable;
+        this.cdr.detectChanges();
+      });
       this.dmpForm.valueChanges.subscribe(() => this.cdr.detectChanges());
       this.dmpForm.valueChanges.subscribe(value => {
         this.logger.debug(value);
