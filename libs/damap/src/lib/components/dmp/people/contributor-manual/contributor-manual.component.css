@@ -16,6 +16,7 @@
   display: flex;
   justify-content: flex-start;
   gap: 10px;
+  margin-top: 5px;
 }
 
 .input-wrapper {
@@ -33,6 +34,14 @@
   margin-top: 20px;
 }
 
+.button-diable {
+  background-color: var(--secondary-fixed-dim);
+}
+
+.button-available {
+  background-color: var(--primary-lightest);
+  color: var(--primary);
+}
 @media (max-width: 768px) {
   .form-row {
     flex-direction: column;

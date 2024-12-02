@@ -1,115 +1,251 @@
-<div *ngIf="selectedView === 'primaryView'">
-  <mat-label
-    class="label-title mat-title-large"
-    id="example-radio-group-label"
-    >{{ "dmp.steps.people.general.search" | translate }}</mat-label
-  >
-  <!-- CONTRIBUTORS -->
-  <div [formGroup]="dmpForm">
-    <ng-container formArrayName="contributors">
-      <div *ngIf="contributors.length > 0">
-        <div *ngFor="let contributor of contributors.controls; index as i">
-          <mat-card appearance="raised" class="card-selected">
-            <mat-card-content>
-              <div class="mat-card-container">
-                <div class="mat-card-left">
-                  <div>
-                    <mat-icon class="mat-icon-style">person</mat-icon>
-                    {{ contributor.value.firstName }}
-                    {{ contributor.value.lastName }}
-                    <mat-icon
-                      *ngIf="contributor.value.contact"
-                      class="mat-icon-contact button-color-primary">
-                      contact_mail
-                    </mat-icon>
-                    <span class="sr-only">{{
-                      "dmp.steps.people.contact.person" | translate
-                    }}</span>
-                  </div>
-                  <mat-icon class="mat-icon-style outline">mail</mat-icon>
-                  {{ contributor.value.mbox }}
-                  <app-orcid
-                    *ngIf="
-                      contributor.value.personId?.identifier &&
-                      contributor.value.personId?.type === identifierType.ORCID
-                    "
-                    [orcidId]="
-                      contributor.value.personId?.identifier
-                    "></app-orcid>
+<mat-label
+  *ngIf="contributors.length > 0"
+  class="label-title mat-title-large"
+  id="example-radio-group-label"
+  >{{ "dmp.steps.people.contact.title" | translate }}</mat-label
+>
+<div [formGroup]="dmpForm">
+  <ng-container formArrayName="contributors">
+    <div>
+      <div *ngFor="let contributor of contributors.controls; index as i">
+        <mat-card
+          *ngIf="contributor.value.contact"
+          appearance="raised"
+          class="card-selected-empty">
+          <mat-card-content>
+            <div class="mat-card-container">
+              <div class="mat-card-left">
+                <div>
+                  <mat-icon class="mat-icon-style">person</mat-icon>
+                  {{ contributor.value.firstName }}
+                  {{ contributor.value.lastName }}
+                  <span class="sr-only">{{
+                    "dmp.steps.people.contact.person" | translate
+                  }}</span>
                 </div>
-                <div [formGroupName]="i">
-                  <mat-form-field>
-                    <mat-label>{{
-                      "dmp.steps.people.contributor.role" | translate
-                    }}</mat-label>
-                    <mat-select formControlName="role">
-                      <mat-option
-                        *ngFor="let role of roles | keyvalue"
-                        [value]="role.key">
-                        {{ translateEnumPrefix + role.value | translate }}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="mat-card-right">
-                  <button
-                    mat-icon-button
-                    (click)="changeContactPerson(contributor.value)"
-                    *ngIf="!contributor.value.contact"
-                    title="{{ 'dmp.steps.people.contact.add' | translate }}">
-                    <mat-icon>contact_mail</mat-icon>
-                  </button>
-                  <button
-                    mat-icon-button
-                    (click)="triggerUpdateContributorDetails(i)"
-                    title="{{ 'dmp.steps.people.contact.edit' | translate }}">
-                    <mat-icon>edit</mat-icon>
-                  </button>
-                  <button
-                    mat-icon-button
-                    (click)="removeContributor(i)"
-                    title="{{
-                      'dmp.steps.people.contributor.remove' | translate
-                    }}">
-                    <mat-icon>delete</mat-icon>
-                  </button>
-                </div>
+                <mat-icon class="mat-icon-style outline">mail</mat-icon>
+                {{ contributor.value.mbox }}
+                <app-orcid
+                  *ngIf="
+                    contributor.value.personId?.identifier &&
+                    contributor.value.personId?.type === identifierType.ORCID
+                  "
+                  [orcidId]="
+                    contributor.value.personId?.identifier
+                  "></app-orcid>
               </div>
-            </mat-card-content>
-          </mat-card>
-          <div *ngIf="currentUpdateContributorIdx === i" [formGroup]="form">
-            <div class="form-fields">
-              <app-input-wrapper
-                [label]="
-                  'dmp.steps.people.manual.input.question.mbox' | translate
-                "
-                [control]="mbox()"></app-input-wrapper>
-              <app-input-wrapper
-                [label]="
-                  'dmp.steps.people.manual.input.question.orcid' | translate
-                "
-                [control]="identifier()"></app-input-wrapper>
+              <div [formGroupName]="i">
+                <mat-form-field>
+                  <mat-label>{{
+                    "dmp.steps.people.contributor.role" | translate
+                  }}</mat-label>
+                  <mat-select formControlName="role">
+                    <mat-option
+                      *ngFor="let role of roles | keyvalue"
+                      [value]="role.key">
+                      {{ translateEnumPrefix + role.value | translate }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="mat-card-right">
+                <button
+                  mat-icon-button
+                  (click)="changeContactPerson()"
+                  title="{{ 'dmp.steps.people.contact.person' | translate }}">
+                  <mat-icon>how_to_reg</mat-icon>
+                </button>
+                <button
+                  mat-icon-button
+                  (click)="triggerUpdateContributorDetails(i)"
+                  title="{{ 'dmp.steps.people.contact.edit' | translate }}">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button
+                  mat-icon-button
+                  (click)="removeContributor(i)"
+                  title="{{
+                    'dmp.steps.people.contributor.remove' | translate
+                  }}">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
             </div>
-            <div class="form-buttons">
-              <button
-                class="button-position button-color-primary"
-                mat-raised-button
-                [disabled]="form.invalid"
-                (click)="updateContributorDetails(i)">
-                {{ "dmp.steps.people.contact.update" | translate }}
-              </button>
-              <button
-                class="button-position button-color-primary"
-                mat-raised-button
-                (click)="cancelUpdateContributorDetails()">
-                {{ "dmp.steps.people.contact.cancel" | translate }}
-              </button>
-            </div>
+          </mat-card-content>
+        </mat-card>
+        <div *ngIf="currentUpdateContributorIdx === i" [formGroup]="form">
+          <div class="form-fields">
+            <app-input-wrapper
+              [label]="
+                'dmp.steps.people.manual.input.question.mbox' | translate
+              "
+              [control]="mbox()"></app-input-wrapper>
+            <app-input-wrapper
+              [label]="
+                'dmp.steps.people.manual.input.question.orcid' | translate
+              "
+              [control]="identifier()"></app-input-wrapper>
+          </div>
+          <div class="form-buttons">
+            <button
+              mat-icon-button
+              title="{{ 'dmp.steps.people.contact.add' | translate }}">
+              <mat-icon>contact_mail</mat-icon>
+            </button>
+            <button
+              class="button-position button-color-primary"
+              mat-raised-button
+              [disabled]="form.invalid"
+              (click)="updateContributorDetails(i)">
+              {{ "dmp.steps.people.contact.update" | translate }}
+            </button>
+            <button
+              class="button-position button-color-primary"
+              mat-raised-button
+              (click)="cancelUpdateContributorDetails()">
+              {{ "dmp.steps.people.contact.cancel" | translate }}
+            </button>
           </div>
         </div>
       </div>
-    </ng-container>
-  </div>
+    </div>
+  </ng-container>
+</div>
+
+<div *ngIf="contactContributor() === -1">
+  <mat-card appearance="raised" class="card-selected-empty">
+    <mat-card-content>
+      <mat-icon class="material-icon-primary outline">info</mat-icon>
+      {{ "dmp.steps.people.contact.info" | translate }}
+      <mat-icon>contact_mail</mat-icon>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<!-- CONTRIBUTORS -->
+
+<mat-label
+  *ngIf="contributors.length > 0"
+  class="label-title mat-title-large title-search"
+  id="example-radio-group-label"
+  >{{ "Contributors" | translate }}</mat-label
+>
+
+<div [formGroup]="dmpForm">
+  <ng-container formArrayName="contributors">
+    <div *ngIf="contributors.length > 0">
+      <div *ngFor="let contributor of contributors.controls; index as i">
+        <mat-card
+          *ngIf="!contributor.value.contact"
+          appearance="raised"
+          class="card-selected">
+          <mat-card-content>
+            <div class="mat-card-container">
+              <div class="mat-card-left">
+                <div>
+                  <mat-icon class="mat-icon-style">person</mat-icon>
+                  {{ contributor.value.firstName }}
+                  {{ contributor.value.lastName }}
+                  <mat-icon
+                    *ngIf="contributor.value.contact"
+                    class="mat-icon-contact button-color-primary">
+                    contact_mail
+                  </mat-icon>
+                  <span class="sr-only">{{
+                    "dmp.steps.people.contact.person" | translate
+                  }}</span>
+                </div>
+                <mat-icon class="mat-icon-style outline">mail</mat-icon>
+                {{ contributor.value.mbox }}
+                <app-orcid
+                  *ngIf="
+                    contributor.value.personId?.identifier &&
+                    contributor.value.personId?.type === identifierType.ORCID
+                  "
+                  [orcidId]="
+                    contributor.value.personId?.identifier
+                  "></app-orcid>
+              </div>
+              <div [formGroupName]="i">
+                <mat-form-field>
+                  <mat-label>{{
+                    "dmp.steps.people.contributor.role" | translate
+                  }}</mat-label>
+                  <mat-select formControlName="role">
+                    <mat-option
+                      *ngFor="let role of roles | keyvalue"
+                      [value]="role.key">
+                      {{ translateEnumPrefix + role.value | translate }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="mat-card-right">
+                <button
+                  mat-icon-button
+                  (click)="changeContactPerson(contributor.value)"
+                  *ngIf="!contributor.value.contact"
+                  title="{{ 'dmp.steps.people.contact.add' | translate }}">
+                  <mat-icon>contact_mail</mat-icon>
+                </button>
+                <button
+                  mat-icon-button
+                  (click)="triggerUpdateContributorDetails(i)"
+                  title="{{ 'dmp.steps.people.contact.edit' | translate }}">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button
+                  mat-icon-button
+                  (click)="removeContributor(i)"
+                  title="{{
+                    'dmp.steps.people.contributor.remove' | translate
+                  }}">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+        <div *ngIf="currentUpdateContributorIdx === i" [formGroup]="form">
+          <div class="form-fields">
+            <app-input-wrapper
+              [label]="
+                'dmp.steps.people.manual.input.question.mbox' | translate
+              "
+              [control]="mbox()"></app-input-wrapper>
+            <app-input-wrapper
+              [label]="
+                'dmp.steps.people.manual.input.question.orcid' | translate
+              "
+              [control]="identifier()"></app-input-wrapper>
+          </div>
+          <div class="form-buttons">
+            <button
+              class="button-position button-color-primary"
+              mat-raised-button
+              [disabled]="form.invalid"
+              (click)="updateContributorDetails(i)">
+              {{ "dmp.steps.people.contact.update" | translate }}
+            </button>
+            <button
+              class="button-position button-color-primary"
+              mat-raised-button
+              (click)="cancelUpdateContributorDetails()">
+              {{ "dmp.steps.people.contact.cancel" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<div *ngIf="selectedView === 'primaryView'">
+  <mat-label
+    class="label-title mat-title-large title-search"
+    id="example-radio-group-label"
+    >{{ "dmp.steps.people.general.search" | translate }}</mat-label
+  >
 
   <!-- SEARCH -->
   <div [formGroup]="dmpForm" class="mat-search-form-field">

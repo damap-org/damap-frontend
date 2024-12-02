@@ -6,15 +6,7 @@
       "dmp.steps.summary.people.contributor.additional" | translate
     }}</mat-label
   >
-  <button mat-raised-button (click)="show = !show">
-    <ng-container *ngIf="show">{{
-      "dmp.steps.people.manual.input.hide" | translate
-    }}</ng-container>
-    <ng-container *ngIf="!show">{{
-      "dmp.steps.people.manual.input.show" | translate
-    }}</ng-container>
-  </button>
-  <mat-card class="card-container" appearance="raised" *ngIf="show">
+  <mat-card class="card-container" appearance="raised">
     <mat-card-content>
       <div [formGroup]="form" class="form-row">
         <app-input-wrapper
@@ -40,20 +32,49 @@
       </div>
       <div class="button-row">
         <button
-          mat-icon-button
+          mat-fab
+          extended
+          [ngClass]="{
+            'button-available': !form.invalid,
+            'button-diable': form.invalid,
+          }"
           [disabled]="form.invalid"
           (click)="changeContactPerson()"
           title="{{ 'dmp.steps.people.contact.add' | translate }}">
-          <mat-icon class="material-icon-primary">contact_mail</mat-icon>
+          <mat-icon
+            [ngClass]="{
+              'material-icon-primary': !form.invalid,
+              'material-icon-on-secondary-container': form.invalid,
+            }"
+            >contact_mail</mat-icon
+          >
+          {{ "dmp.steps.people.contact.add" | translate }}
         </button>
         <button
-          mat-icon-button
+          mat-fab
+          extended
+          [ngClass]="{
+            'button-available': !form.invalid,
+            'button-diable': form.invalid,
+          }"
           [disabled]="form.invalid"
           (click)="addContributor()"
           title="{{ 'dmp.steps.people.contributor.add' | translate }}">
-          <mat-icon class="material-icon-primary">person_add</mat-icon>
+          <mat-icon
+            [ngClass]="{
+              'material-icon-primary': !form.invalid,
+              'material-icon-on-secondary-container': form.invalid,
+            }"
+            >person_add</mat-icon
+          >
+          {{ "dmp.steps.people.contributor.add" | translate }}
         </button>
       </div>
     </mat-card-content>
   </mat-card>
 </div>
+
+<!-- [ngClass]="{
+  'material-icon-primary': !form.invalid,
+  'material-icon-on-secondary-container': form.invalid,
+}" -->

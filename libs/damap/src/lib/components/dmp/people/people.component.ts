@@ -100,6 +100,7 @@ export class PeopleComponent implements OnInit, OnDestroy {
         });
       this.subscriptions.push(searchSubscription);
     });
+    this.contactContributor();
   }
 
   mbox(): UntypedFormControl {
@@ -122,10 +123,12 @@ export class PeopleComponent implements OnInit, OnDestroy {
 
   changeContactPerson(contact: Contributor): void {
     this.contactPerson.emit(contact);
+    this.contactContributor();
   }
 
   addContributor(contributor: Contributor): void {
     this.contributorToAdd.emit(contributor);
+    this.contactContributor();
   }
 
   triggerUpdateContributorDetails(idx: number) {
@@ -189,6 +192,7 @@ export class PeopleComponent implements OnInit, OnDestroy {
         }
       });
     }
+    this.contactContributor();
   }
 
   searchContributor(term: string): void {
@@ -202,6 +206,13 @@ export class PeopleComponent implements OnInit, OnDestroy {
   private getDatasetsForContributor(contributor: Contributor): Dataset[] {
     const datasets = this.dmpForm.controls.datasets.value;
     return datasets.filter(item => item.deletionPerson?.id === contributor?.id);
+  }
+
+  contactContributor(): number {
+    let contributors = this.dmpForm.get('contributors') as UntypedFormArray;
+    return contributors.controls.findIndex(
+      (contributor, index) => contributor.value.contact,
+    );
   }
 
   onViewChange(view: 'primaryView' | 'secondaryView'): void {

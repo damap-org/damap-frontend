@@ -83,6 +83,14 @@ mat-form-field {
   margin-right: 0.5em;
 }
 
+.title-search {
+  margin-top: 20px;
+}
+
+.card-selected-empty {
+  border: 2px solid var(--accent-color-lighter);
+}
+
 @media (max-width: 768px) {
   .mat-card-container {
     flex-direction: column;

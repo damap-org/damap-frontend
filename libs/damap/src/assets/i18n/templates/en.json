@@ -44,15 +44,18 @@
         },
         "contact": {
           "person": "Contact person",
+          "contributor": "Change to contributor",
           "add": "Set as contact",
-          "remove": "Remove as contact",
+          "remove": "Remove",
           "edit": "Edit contact person",
           "update": "Update",
-          "cancel": "Cancel"
+          "cancel": "Cancel",
+          "title": "Project contact",
+          "info": "Select a contact from the list of contributors using the button"
         },
         "manual.input": {
           "show": "Add contributor manually",
-          "hide": "Hide manual contributor input",
+          "hide": "Input contributor manually",
           "tooltip": "Use to add project contributor not found in database above",
           "question": {
             "firstname": "First name",
