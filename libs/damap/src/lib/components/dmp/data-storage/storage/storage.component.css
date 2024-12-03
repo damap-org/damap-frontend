@@ -28,7 +28,7 @@
 
 .storage-avatar {
   background-color: var(--primary-color-light);
-  color: white;
+  color: var(--primary-lightest);
   width: 30px;
   height: 30px;
 }

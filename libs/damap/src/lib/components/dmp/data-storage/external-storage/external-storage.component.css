@@ -19,10 +19,11 @@
   display: flex;
   flex-grow: 1;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
+  gap: 10px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 960px) {
   .storage-card-top {
     flex-direction: row;
     align-items: flex-start;
@@ -39,7 +40,7 @@
   width: 30%;
   margin-top: 15px;
   max-height: 400px;
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: hidden;
   margin-bottom: 20px;
 }
@@ -79,6 +80,11 @@
     width: 100%;
     margin-top: 10px;
     max-height: 200px;
+  }
+
+  .storage-textarea {
+    margin-top: 15px;
+    margin-left: 5px;
   }
 
   .storage-card-container,

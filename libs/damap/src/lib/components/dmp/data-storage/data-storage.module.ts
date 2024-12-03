@@ -4,6 +4,7 @@ import { DataStorageInstructionComponent } from './data-storage-instruction/data
 import { ExternalStorageComponent } from './external-storage/external-storage.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -14,6 +15,7 @@ import { SharedModule } from '../../../shared/shared.module';
 import { StepIntroModule } from '../../../widgets/step-intro/step-intro.module';
 import { StorageComponent } from './storage/storage.component';
 import { StorageFilterPipe } from './storage/storage-filter.pipe';
+import { StorageInfoDialogComponent } from './storage-dialog/storage-info-dialog.component';
 import { ToggleButtonsModule } from '../../../widgets/toggle-buttons/toggle-buttons.module';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -33,6 +35,9 @@ import { TranslateModule } from '@ngx-translate/core';
     MatButtonModule,
     MatCardModule,
     MatIconModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatFormFieldModule,
   ],
   declarations: [
     DataAccessComponent,
@@ -40,6 +45,7 @@ import { TranslateModule } from '@ngx-translate/core';
     StorageComponent,
     StorageFilterPipe,
     DataStorageInstructionComponent,
+    StorageInfoDialogComponent,
   ],
   exports: [
     CommonModule,
@@ -51,12 +57,14 @@ import { TranslateModule } from '@ngx-translate/core';
     ExternalStorageComponent,
     StorageComponent,
     DataStorageInstructionComponent,
+    StorageInfoDialogComponent,
 
     // Materials
     MatExpansionModule,
     MatFormFieldModule,
     MatSelectModule,
     MatButtonModule,
+    MatDialogModule,
     MatCardModule,
     MatIconModule,
   ],

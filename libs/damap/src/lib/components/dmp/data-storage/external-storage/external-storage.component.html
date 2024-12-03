@@ -27,15 +27,13 @@
               <app-input-wrapper
                 [label]="'dmp.steps.storage.external.question.name'"
                 [control]="getFormControl(i, 'title')"></app-input-wrapper>
-              <button
-                mat-icon-button
-                aria-label="{{
-                  'dmp.steps.storage.external.remove' | translate
-                }}"
-                (click)="removeExternalStorage(i)">
-                <mat-icon class="material-icon-primary">cancel</mat-icon>
-              </button>
             </div>
+            <button
+              mat-icon-button
+              aria-label="{{ 'dmp.steps.storage.external.remove' | translate }}"
+              (click)="removeExternalStorage(i)">
+              <mat-icon class="material-icon-primary">cancel</mat-icon>
+            </button>
           </div>
           <div class="form-row">
             <div class="storage-card-container">
