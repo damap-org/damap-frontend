@@ -37,6 +37,7 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  length: number;
   searchTerm: string = '';
 
   readonly tableHeaders: string[] = [
@@ -51,7 +52,7 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.dmps) {
-      this.dataSource.data = this.dmps;
+      this.dataSource.data = this.dmps || [];
     }
   }
 
@@ -62,8 +63,6 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
       data.latestVersionName?.toLowerCase().includes(filter) ||
       data.versionCount?.toString().includes(filter) ||
       data.id.toString().includes(filter);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
     this.dataSource.sortingDataAccessor = (
       item: DmpListItem,
       property: string,
@@ -81,14 +80,19 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
           return item[property];
       }
     };
+    this.dataSource.sort = this.sort;
+    setTimeout(() => {
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }, 250);
   }
 
   applyFilter(filterValue: string) {
     this.searchTerm = filterValue;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
+      this.length = this.dataSource.data.length;
     }
   }
 

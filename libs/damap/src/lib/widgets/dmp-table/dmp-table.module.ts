@@ -34,6 +34,7 @@ import { SharedModule } from '../../shared/shared.module';
     MatSortModule,
     MatMenuModule,
     MatTooltipModule,
+    MatPaginatorModule,
   ],
   declarations: [DmpTableComponent],
   exports: [
