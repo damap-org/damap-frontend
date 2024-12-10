@@ -53,6 +53,7 @@ export const initialFormState: FormState = {
     tools: '',
     id: null,
     project: null,
+    ethicalIssuesReport: '',
   },
   changed: undefined,
 };

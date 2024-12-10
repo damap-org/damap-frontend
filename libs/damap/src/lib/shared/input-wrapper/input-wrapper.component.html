@@ -34,6 +34,12 @@
   <mat-error *ngIf="control?.errors?.orcid">
     {{ "form.error.orcid" | translate }}
   </mat-error>
+  <mat-error *ngIf="control?.errors?.url">
+    {{ "form.error.url" | translate }}
+  </mat-error>
+  <mat-error *ngIf="control?.errors?.uri">
+    {{ "form.error.uri" | translate }}
+  </mat-error>
 </mat-form-field>
 <!--{{control.errors | json}}-->
 <!--{{control.valid}}-->

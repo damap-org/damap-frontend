@@ -273,7 +273,8 @@
               "link": "https://www.tuwien.at/forschung/fti-support/responsible-research-practices/research-ethics-committee"
             },
             "suffix": ", or a similar body?"
-          }
+          },
+          "ethicalIssueReport": "Please provide the ethical issue report."
         }
       },
       "licensing": {
@@ -491,6 +492,8 @@
       "maxlength": "Value must not exceed {{value}} characters.",
       "pattern.currency": "Invalid input, please use the following format: 1234.56",
       "orcid": "Invalid ORCID iD.",
+      "url": "Invalid URL. Must be formatted as https://example.com",
+      "uri": "Invalid URI",
       "doi": "Invalid DOI. Must be formatted as 10.1234/56789 or https://doi.org/10.1234/56789 or doi:10.1234/56789",
       "duplicateDoi": "DOI already added."
     },

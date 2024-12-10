@@ -102,6 +102,7 @@ export const completeDmp: Dmp = {
   structure: 'VCS',
   targetAudience: 'students',
   tools: 'proprietary software needed',
+  ethicalIssuesReport: '',
 };
 
 export const noDataDmp: Dmp = {
@@ -171,4 +172,5 @@ export const noDataDmp: Dmp = {
   structure: 'VCS',
   targetAudience: 'students',
   tools: 'proprietary software needed',
+  ethicalIssuesReport: '',
 };

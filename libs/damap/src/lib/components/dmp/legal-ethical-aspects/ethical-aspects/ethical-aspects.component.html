@@ -109,6 +109,16 @@
           </mat-radio-button>
         </mat-radio-group>
       </div>
+      <div
+        *ngIf="
+          legalEthicalStep.controls.committeeReviewed.value &&
+          ethicalReportEnabled
+        ">
+        <app-input-wrapper
+          [label]="'dmp.steps.ethical.question.ethicalIssueReport'"
+          [maxLength]="255"
+          [control]="ethicalIssuesReport"></app-input-wrapper>
+      </div>
       <app-info-message>
         {{ "info.ethical.committeeReviewed.prefix" | translate }}
         <a

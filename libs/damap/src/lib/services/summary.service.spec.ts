@@ -403,5 +403,6 @@ describe('SummaryService', () => {
     structure: '',
     targetAudience: '',
     tools: '',
+    ethicalIssuesReport: '',
   };
 });

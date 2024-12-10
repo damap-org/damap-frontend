@@ -156,11 +156,9 @@
           #legalEthicalAspects
           [dmpForm]="dmpForm"
           [legalEthicalStep]="legalEthicalStep"
-          [datasets]="datasets">
+          [datasets]="datasets"
+          [ethicalReportEnabled]="ethicalReportEnabled">
         </app-dmp-legal-ethical-aspects>
-        <div *ngIf="legalEthicalStep.invalid" class="error-message">
-          {{ "dmp.steps.legal.error" | translate }}
-        </div>
       </ng-container>
     </ng-container>
     <ng-container *ngIf="selectedStep === 6">

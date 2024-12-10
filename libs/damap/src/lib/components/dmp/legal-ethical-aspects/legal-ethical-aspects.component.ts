@@ -18,6 +18,7 @@ export class LegalEthicalAspectsComponent {
   @Input() dmpForm: UntypedFormGroup;
   @Input() legalEthicalStep: UntypedFormGroup;
   @Input() datasets: UntypedFormArray;
+  @Input() ethicalReportEnabled: boolean;
 
   translateAgreementPrefixEnum = 'enum.agreement.';
   translateCompliancePrefixEnum = 'enum.compliance.';

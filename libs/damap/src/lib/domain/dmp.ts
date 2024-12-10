@@ -50,6 +50,7 @@ export interface Dmp {
   ethicalIssuesExistCris: boolean;
   committeeReviewed: boolean;
   committeeReviewedCris: boolean;
+  ethicalIssuesReport: string;
   storage: Storage[];
   externalStorage: ExternalStorage[];
   externalStorageInfo: string;

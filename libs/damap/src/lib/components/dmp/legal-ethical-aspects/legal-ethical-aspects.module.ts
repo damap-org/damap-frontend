@@ -13,6 +13,7 @@ import { StepIntroModule } from '../../../widgets/step-intro/step-intro.module';
 import { ToggleButtonsModule } from '../../../widgets/toggle-buttons/toggle-buttons.module';
 import { TooltipModule } from '../../../widgets/tooltip/tooltip.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { TextFieldModule } from '@angular/cdk/text-field';
 
 @NgModule({
   imports: [

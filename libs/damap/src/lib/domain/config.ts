@@ -9,4 +9,5 @@ export interface Config {
   readonly personSearchServiceConfigs: ServiceConfig[];
   readonly fitsServiceAvailable: boolean;
   readonly livePreviewAvailable: boolean;
+  readonly ethicalReportEnabled: boolean;
 }
