@@ -5,9 +5,9 @@
         [label]="'dmp.steps.repositories.filters'"
         [placeholder]="'Search Repository'"
         (searchChange)="applyFilter($event)"></app-search-field>
-
-      <div>
+      <span class="repo-filter-container">
         <button
+          class="reset-filter-button"
           mat-raised-button
           (click)="resetFilter()"
           [disabled]="!filtersActive()">
@@ -17,7 +17,7 @@
         <app-repo-filter
           [filters]="filters"
           (filterChange)="onFilterChange($event)"></app-repo-filter>
-      </div>
+      </span>
     </div>
 
     <div class="scrollable-repo-content">

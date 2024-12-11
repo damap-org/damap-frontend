@@ -6,6 +6,10 @@
   margin-bottom: 1rem;
 }
 
+.mat-card-container {
+  gap: 15px;
+}
+
 .warning-icon {
   padding-right: 0.5rem;
 }
@@ -36,4 +40,48 @@
 
 .no-resize {
   resize: none;
+}
+
+.warning-icon {
+  padding-right: 0.5rem;
+}
+
+.date-form {
+  min-width: 300px;
+}
+
+.licenseContainerParent {
+  display: flex;
+  align-items: flex-end;
+  gap: 30px;
+}
+
+.licenseContainer {
+  display: flex;
+  gap: 0.938rem;
+}
+
+#accessTypeContainer {
+  margin-top: 0.5rem;
+}
+
+.icon-size {
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
+}
+
+.no-resize {
+  resize: none;
+}
+
+@media (max-width: 1300px) {
+  .mat-card-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .card-content-estimation {
+    margin-top: 25px;
+  }
 }

@@ -88,7 +88,13 @@
   }
 
   .steps-container {
-    width: 30%;
+    width: 100%;
+  }
+
+  ::ng-deep .mat-step-header .mat-step-label {
+    white-space: normal;
+    font-size: 0.9rem;
+    max-width: 100%;
   }
 
   .content-card {

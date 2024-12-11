@@ -235,3 +235,15 @@ html {
 @include mat.form-field-density(-4);
 @include mat.input-density(-4);
 @include mat.select-density(-4);
+
+@media (max-width: 860px) {
+  button.mat-mdc-button,
+  button.mat-mdc-raised-button,
+  button.mat-mdc-stroked-button,
+  button.mat-mdc-unelevated-button,
+  button.mat-mdc-fab,
+  button.mat-mdc-mini-fab {
+    font-size: small;
+    line-height: normal;
+  }
+}

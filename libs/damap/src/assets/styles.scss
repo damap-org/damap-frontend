@@ -176,31 +176,39 @@ mat-card {
     border-bottom: none;
   }
 }
+/*
+  The following styles cause rendering issues in Chrome, particularly with
+  form field outlines not displaying correctly or causing layout glitches.
+  Therefore, these styles are commented out as a workaround.
+  Tested in Chrome Version Version 131.0.6778.140.
 
-.mat-mdc-form-field {
-  .mdc-notched-outline__leading,
-  .mdc-notched-outline__notch,
-  .mdc-notched-outline__trailing {
-    border-width: 1px !important;
-    border-color: var(--primary) !important;
-  }
-}
+  Uncomment and test thoroughly if you plan to modify these styles.
 
-.mat-mdc-form-field.mat-focused {
-  .mdc-notched-outline__leading,
-  .mdc-notched-outline__trailing {
-    border-width: 2px !important;
-    border-color: var(--primary) !important;
-  }
+  // .mat-mdc-form-field {
+  //   .mdc-notched-outline__leading,
+  //   .mdc-notched-outline__notch,
+  //   .mdc-notched-outline__trailing {
+  //     border-width: 1px !important;
+  //     border-color: var(--primary) !important;
+  //   }
+  // }
 
-  .mdc-notched-outline__notch {
-    border-right-width: 1px !important;
-    border-left-width: 1px !important;
-    border-bottom-width: 2px !important;
-    border-top-width: 2px !important;
-    border-color: var(--primary) !important;
-  }
-}
+  // .mat-mdc-form-field.mat-focused {
+  //   .mdc-notched-outline__leading,
+  //   .mdc-notched-outline__trailing {
+  //     border-width: 2px !important;
+  //     border-color: var(--primary) !important;
+  //   }
+
+  //   .mdc-notched-outline__notch {
+  //     border-right-width: 1px !important;
+  //     border-left-width: 1px !important;
+  //     border-bottom-width: 2px !important;
+  //     border-top-width: 2px !important;
+  //     border-color: var(--primary) !important;
+  //   }
+  // }
+*/
 
 // Angular material labels are bugged for the outline appearance of formfields
 // they dont reserve space above, so in combination with other components, the labels are cut off

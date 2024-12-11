@@ -30,7 +30,7 @@
     <ng-container *ngIf="costsStep.controls.exist.value">
       <button
         mat-raised-button
-        class="button-color-primary"
+        class="button-color-primary add-cost-container"
         (click)="addCost()">
         <mat-icon>add_circle</mat-icon>
         {{ "dmp.steps.costs.addButton" | translate }}
@@ -38,7 +38,14 @@
       <div [formGroup]="costsStep" class="scrollable-cost-list">
         <mat-accordion formArrayName="list">
           <mat-expansion-panel
+            class="expansion-panel"
             *ngFor="let item of list.controls; let i = index">
+            <button
+              mat-icon-button
+              aria-label="Remove cost"
+              (click)="removeCost(i)">
+              <mat-icon>cancel</mat-icon>
+            </button>
             <mat-expansion-panel-header>
               <mat-panel-title [class.form-error]="item.invalid">
                 {{ item.value.title }}
@@ -47,19 +54,13 @@
                 {{ item.value.value | currency: item.value.currencyCode }}
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <div [formArrayName]="i">
+            <div [formArrayName]="i" class="cost-form-container">
               <div class="form-row">
                 <div class="form-row-group">
                   <app-input-wrapper
                     [label]="'dmp.steps.costs.question.title'"
                     [control]="getFormControl(i, 'title')">
                   </app-input-wrapper>
-                  <button
-                    mat-icon-button
-                    aria-label="Remove cost"
-                    (click)="removeCost(i)">
-                    <mat-icon>cancel</mat-icon>
-                  </button>
                 </div>
               </div>
               <div class="form-row">

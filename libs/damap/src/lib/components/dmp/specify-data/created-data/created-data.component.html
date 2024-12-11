@@ -20,11 +20,14 @@
   </section>
 
   <!-- TABLE -->
-  <app-dataset-table
-    *ngIf="datasets.controls.length"
-    [datasets]="datasets"
-    [tableHeaders]="tableHeaders"
-    (updateDataset)="update($event)"
-    (removeDataset)="remove($event)">
-  </app-dataset-table>
+  <div class="scrollable-table-wrapper">
+    <div class="scrollable-table-container" *ngIf="datasets.controls.length">
+      <app-dataset-table
+        [datasets]="datasets"
+        [tableHeaders]="tableHeaders"
+        (updateDataset)="update($event)"
+        (removeDataset)="remove($event)">
+      </app-dataset-table>
+    </div>
+  </div>
 </ng-container>

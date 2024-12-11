@@ -1,17 +1,31 @@
+.scrollable-table-container {
+  overflow-y: auto;
+  overflow-x: auto;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+app-dataset-table {
+  width: 100%;
+}
+
 .example-flex-container {
   display: flex;
-  gap: 20px;
+  gap: 15px;
   margin-top: 20px;
 }
 
-@media (max-width: 768px) {
-  app-dataset-table {
+@media (max-width: 860px) {
+  .example-flex-container {
+    flex-direction: column;
+  }
+
+  .example-button-container {
     width: 100%;
-    overflow-x: auto;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px), (max-width: 480px) {
   app-dataset-table {
     width: 100%;
     overflow-x: auto;

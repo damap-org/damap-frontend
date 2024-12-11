@@ -84,9 +84,11 @@ export class PeopleComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     setTimeout(() => {
       this.configSubscription = this.config$.subscribe(config => {
-        this.serviceConfig$ = config.personSearchServiceConfigs;
-        this.serviceConfigType = config.personSearchServiceConfigs[0];
-        this.cdr.detectChanges(); // Manually trigger change detection
+        setTimeout(() => {
+          this.serviceConfig$ = config.personSearchServiceConfigs;
+          this.serviceConfigType = config.personSearchServiceConfigs[0];
+          this.cdr.detectChanges();
+        });
       });
 
       const searchSubscription = this.searchTerms
@@ -96,7 +98,6 @@ export class PeopleComponent implements OnInit, OnDestroy {
             term,
             this.serviceConfigType.displayText,
           );
-          this.cdr.detectChanges(); // Trigger change detection after async update
         });
       this.subscriptions.push(searchSubscription);
     });

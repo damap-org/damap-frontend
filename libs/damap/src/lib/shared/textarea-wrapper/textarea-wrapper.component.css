@@ -26,3 +26,28 @@ mat-form-field {
 .cdk-overlay-container {
   z-index: 30;
 }
+
+mat-form-field mat-label {
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  display: block;
+  max-width: 100%;
+  line-height: normal;
+}
+
+@media (max-width: 960px) {
+  mat-form-field mat-label,
+  mat-form-field .mdc-floating-label,
+  textarea.mat-mdc-input-element,
+  mat-form-field .mdc-floating-label--float-above {
+    font-size: small !important;
+    line-height: normal !important;
+    margin-top: 20px !important;
+  }
+
+  .mat-mdc-option {
+    font-size: small;
+    line-height: normal;
+  }
+}

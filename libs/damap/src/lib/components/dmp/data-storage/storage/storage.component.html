@@ -54,6 +54,7 @@
                 }}</mat-label>
                 <mat-select multiple formControlName="datasets">
                   <mat-option
+                    panelClass="mat-option-text"
                     *ngFor="let dataset of datasets?.controls"
                     [value]="dataset.value.referenceHash">
                     {{ dataset.value.title }}

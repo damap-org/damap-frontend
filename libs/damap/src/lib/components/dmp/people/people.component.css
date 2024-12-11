@@ -129,3 +129,18 @@ mat-form-field {
 .manual-project-input-card {
   margin: 20px 5px;
 }
+
+@media (max-width: 1300px) {
+  mat-card {
+    width: 100%;
+  }
+
+  .mat-card-container {
+    width: 100%;
+  }
+
+  .search-and-service-container {
+    flex-direction: column;
+    gap: 0;
+  }
+}

@@ -65,7 +65,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
     this.lang = this.translate.currentLang.toUpperCase();
 
     // the breakpoint (1300px) here can be adjusted based on design requirements or device-specific considerations.
-    this.observer.observe(['(max-width: 1300px)']).subscribe(result => {
+    this.observer.observe(['(max-width: 480px)']).subscribe(result => {
       setTimeout(() => {
         this.isCollapsed = result.matches;
         this.cdr.detectChanges();
@@ -131,7 +131,6 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
       this.dataInfoService = dmpComponent.instructionStep$.subscribe(value => {
         this.greeting = this.replaceFirstname(this.name, value.greeting);
         this.summaryLine = value.summaryLine;
-        this.cdr.detectChanges();
       });
     } else if (
       componentInstance instanceof DashboardComponent ||

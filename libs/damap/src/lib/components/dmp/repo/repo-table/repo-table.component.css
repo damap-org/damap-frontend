@@ -34,14 +34,14 @@ td.mat-mdc-footer-cell:first-of-type {
 .repo-search-bar {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
 }
-
 div > div > button {
   margin: 0 1em;
 }
 
 .repo-table-card {
-  max-height: calc(100vh - 200px);
   overflow: hidden;
 }
 
@@ -51,13 +51,26 @@ div > div > button {
   padding-right: 10px;
 }
 
-@media (max-width: 768px) {
-  .repo-search-bar {
-    flex-direction: column;
-    gap: 10px;
-  }
+.repo-filter-container {
+  display: flex;
+  gap: 15px;
+}
 
+.reset-filter-button {
+  width: 100%;
+}
+
+@media (max-width: 860px) {
   .scrollable-repo-content {
     max-height: 300px;
+  }
+  .repo-filter-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .mat-card-container {
+    flex-direction: column;
+    gap: 10px;
   }
 }

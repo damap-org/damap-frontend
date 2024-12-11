@@ -8,28 +8,28 @@
       orientation="vertical"
       (selectionChange)="handleStepChange($event)">
       <mat-step label="{{ 'dmp.steps.project.label' | translate }}">
-        <ng-container *ngIf="selectedStep === 0 && projectComponent">
+        <ng-container *ngIf="selectedStep === 0">
           <app-project-instruction
             (selectionChange)="
-              projectComponent.onViewChange($event)
+              projectComponent?.onViewChange($event)
             "></app-project-instruction>
         </ng-container>
       </mat-step>
       <mat-step
         class="label-container"
         label="{{ 'dmp.steps.people.label' | translate }}">
-        <ng-container *ngIf="selectedStep === 1 && peopleComponent">
+        <ng-container *ngIf="selectedStep === 1">
           <app-people-instruction
             (selectionChange)="
-              peopleComponent.onViewChange($event)
+              peopleComponent?.onViewChange($event)
             "></app-people-instruction>
         </ng-container>
       </mat-step>
       <mat-step label="{{ 'dmp.steps.data.specify.label' | translate }}">
-        <ng-container *ngIf="selectedStep === 2 && specifyDataComponent">
+        <ng-container *ngIf="selectedStep === 2">
           <app-specify-data-instruction
             (selectionChange)="
-              specifyDataComponent.onViewChange($event)
+              specifyDataComponent?.onViewChange($event)
             "></app-specify-data-instruction>
         </ng-container>
       </mat-step>
@@ -43,20 +43,19 @@
         </ng-container>
       </mat-step>
       <mat-step label="{{ 'dmp.steps.legal.label' | translate }}">
-        <ng-container
-          *ngIf="selectedStep === 5 && legalEthicalAspectsComponent">
+        <ng-container *ngIf="selectedStep === 5">
           <app-legal-ethical-instruction
             (selectionChange)="
-              legalEthicalAspectsComponent.onViewChange($event)
+              legalEthicalAspectsComponent?.onViewChange($event)
             "></app-legal-ethical-instruction>
         </ng-container>
       </mat-step>
       <mat-step label="{{ 'dmp.steps.licensing.label' | translate }}">
       </mat-step>
       <mat-step label="{{ 'dmp.steps.repositories.label' | translate }}">
-        <ng-container *ngIf="selectedStep === 7 && repoComponent">
+        <ng-container *ngIf="selectedStep === 7">
           <app-repo-instruction
-            (selectionChange)="repoComponent.onViewChange($event)">
+            (selectionChange)="repoComponent?.onViewChange($event)">
           </app-repo-instruction>
         </ng-container>
       </mat-step>

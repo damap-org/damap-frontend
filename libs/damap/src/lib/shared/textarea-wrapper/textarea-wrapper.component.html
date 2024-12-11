@@ -1,4 +1,7 @@
-<mat-form-field [appearance]="appearance" class="mat-textarea-density">
+<mat-form-field
+  [appearance]="appearance"
+  class="mat-textarea-density"
+  floatLabel="auto">
   <mat-label
     >{{ label | translate }}
     <ng-container *ngFor="let set of labelDatasets; last as last">
