@@ -1,7 +1,104 @@
+<div *ngIf="selectedView === 'primaryView'">
+  <mat-label
+    class="label-title mat-title-large title-search"
+    id="example-radio-group-label"
+    >{{ "dmp.steps.people.general.search" | translate }}</mat-label
+  >
+
+  <!-- SEARCH -->
+  <div [formGroup]="dmpForm" class="mat-search-form-field">
+    <div class="search-container">
+      <div class="search-and-service-container">
+        <div class="app-person-search">
+          <app-person-search
+            [result]="
+              (searchResult$ | async)?.items ?? []
+                | contributorFilter: dmpForm.controls.contributors.value
+            "
+            (termToSearch)="searchContributor($event)"
+            (personToAdd)="addContributor($event)">
+          </app-person-search>
+        </div>
+        <div class="service-select-container">
+          <mat-form-field appearance="outline">
+            <mat-label>{{
+              "dmp.steps.people.search.service" | translate
+            }}</mat-label>
+            <mat-select
+              id="serviceSelect"
+              [(value)]="serviceConfigType"
+              (selectionChange)="onServiceConfigChange($event.value)">
+              <mat-option
+                *ngFor="let service of serviceConfig$ | keyvalue"
+                [value]="service.value">
+                {{ service.value.displayText | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <mat-label class="label-title mat-title-medium title-search">{{
+    (projectMembers?.length > 0
+      ? "dmp.steps.people.general.recommendations"
+      : "dmp.steps.people.nopeople"
+    ) | translate
+  }}</mat-label>
+
+  <!-- LIST OF PEOPLE -->
+  <div class="list-container" *ngIf="projectMembers?.length > 0">
+    <mat-card
+      appearance="raised"
+      *ngFor="
+        let member of projectMembers
+          | contributorFilter: dmpForm.controls.contributors.value
+      ">
+      <div class="mat-card-container">
+        <div class="mat-card-left">
+          <div>
+            <mat-icon class="mat-icon-style">person</mat-icon>
+            {{ member.firstName }} {{ member.lastName }}
+          </div>
+          <mat-icon class="mat-icon-style outline">mail</mat-icon>
+          {{ member.mbox }}
+        </div>
+        <div class="mat-card-right">
+          <button
+            mat-raised-button
+            *ngIf="member.universityId"
+            (click)="changeContactPerson(member)"
+            title="{{ 'dmp.steps.people.contact.add' | translate }}">
+            <mat-icon>contact_mail</mat-icon>
+          </button>
+          <button
+            mat-raised-button
+            (click)="addContributor(member)"
+            title="{{ 'dmp.steps.people.contributor.add' | translate }}">
+            <mat-icon>person_add</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="mat-card-container" *ngIf="member.roleInProject">
+        <div class="projectRoleTag">
+          {{ member.roleInProject }}
+        </div>
+        <div class="personIdentifier"></div>
+      </div>
+    </mat-card>
+  </div>
+</div>
+
+<div *ngIf="selectedView === 'secondaryView'">
+  <app-contributor-manual
+    (contactPerson)="changeContactPerson($event)"
+    (contributorToAdd)="addContributor($event)"></app-contributor-manual>
+</div>
+
 <mat-label
   *ngIf="contributors.length > 0"
-  class="label-title mat-title-large"
-  id="example-radio-group-label"
+  class="label-title mat-title-large contact-label"
   >{{ "dmp.steps.people.contact.title" | translate }}</mat-label
 >
 <div [formGroup]="dmpForm">
@@ -12,7 +109,7 @@
           *ngIf="contributor.value.contact"
           appearance="raised"
           class="card-selected-empty">
-          <mat-card-content>
+          <mat-card-content class="no-padding-top">
             <div class="mat-card-container">
               <div class="mat-card-left">
                 <div>
@@ -52,8 +149,8 @@
                 <button
                   mat-icon-button
                   (click)="changeContactPerson()"
-                  title="{{ 'dmp.steps.people.contact.person' | translate }}">
-                  <mat-icon>how_to_reg</mat-icon>
+                  title="{{ 'dmp.steps.people.contact.remove' | translate }}">
+                  <mat-icon>person_remove</mat-icon>
                 </button>
                 <button
                   mat-icon-button
@@ -73,7 +170,12 @@
             </div>
           </mat-card-content>
         </mat-card>
-        <div *ngIf="currentUpdateContributorIdx === i" [formGroup]="form">
+        <div
+          *ngIf="
+            currentUpdateContributorIdx === i &&
+            contributors.controls[i].value.contact
+          "
+          [formGroupName]="i">
           <div class="form-fields">
             <app-input-wrapper
               [label]="
@@ -112,7 +214,7 @@
   </ng-container>
 </div>
 
-<div *ngIf="contactContributor() === -1">
+<div *ngIf="contactContributor() === -1 && contributors.length !== 0">
   <mat-card appearance="raised" class="card-selected-empty">
     <mat-card-content>
       <mat-icon class="material-icon-primary outline">info</mat-icon>
@@ -121,8 +223,6 @@
     </mat-card-content>
   </mat-card>
 </div>
-
-<!-- CONTRIBUTORS -->
 
 <mat-label
   *ngIf="contributors.length > 0"
@@ -139,7 +239,7 @@
           *ngIf="!contributor.value.contact"
           appearance="raised"
           class="card-selected">
-          <mat-card-content>
+          <mat-card-content class="no-padding-top">
             <div class="mat-card-container">
               <div class="mat-card-left">
                 <div>
@@ -191,7 +291,9 @@
                 <button
                   mat-icon-button
                   (click)="triggerUpdateContributorDetails(i)"
-                  title="{{ 'dmp.steps.people.contact.edit' | translate }}">
+                  title="{{
+                    'dmp.steps.people.contact.editContributor' | translate
+                  }}">
                   <mat-icon>edit</mat-icon>
                 </button>
                 <button
@@ -206,7 +308,12 @@
             </div>
           </mat-card-content>
         </mat-card>
-        <div *ngIf="currentUpdateContributorIdx === i" [formGroup]="form">
+        <div
+          *ngIf="
+            currentUpdateContributorIdx === i &&
+            !contributors.controls[i].value.contact
+          "
+          [formGroupName]="i">
           <div class="form-fields">
             <app-input-wrapper
               [label]="
@@ -238,99 +345,4 @@
       </div>
     </div>
   </ng-container>
-</div>
-
-<div *ngIf="selectedView === 'primaryView'">
-  <mat-label
-    class="label-title mat-title-large title-search"
-    id="example-radio-group-label"
-    >{{ "dmp.steps.people.general.search" | translate }}</mat-label
-  >
-
-  <!-- SEARCH -->
-  <div [formGroup]="dmpForm" class="mat-search-form-field">
-    <div class="search-container">
-      <div class="search-and-service-container">
-        <div class="app-person-search">
-          <app-person-search
-            [result]="
-              (searchResult$ | async)?.items ?? []
-                | contributorFilter: dmpForm.controls.contributors.value
-            "
-            (termToSearch)="searchContributor($event)"
-            (personToAdd)="addContributor($event)">
-          </app-person-search>
-        </div>
-        <div class="service-select-container">
-          <mat-form-field appearance="outline">
-            <mat-label>{{
-              "dmp.steps.people.search.service" | translate
-            }}</mat-label>
-            <mat-select
-              id="serviceSelect"
-              [(value)]="serviceConfigType"
-              (selectionChange)="onServiceConfigChange($event.value)">
-              <mat-option
-                *ngFor="let service of serviceConfig$ | keyvalue"
-                [value]="service.value">
-                {{ service.value.displayText | translate }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- LIST OF PEOPLE -->
-  <div class="list-container" *ngIf="projectMembers?.length > 0; else empty">
-    <mat-card
-      appearance="raised"
-      *ngFor="
-        let member of projectMembers
-          | contributorFilter: dmpForm.controls.contributors.value
-      ">
-      <div class="mat-card-container">
-        <div class="mat-card-left">
-          <div>
-            <mat-icon class="mat-icon-style">person</mat-icon>
-            {{ member.firstName }} {{ member.lastName }}
-          </div>
-          <mat-icon class="mat-icon-style outline">mail</mat-icon>
-          {{ member.mbox }}
-        </div>
-        <div class="mat-card-right">
-          <button
-            mat-raised-button
-            *ngIf="member.universityId"
-            (click)="changeContactPerson(member)"
-            title="{{ 'dmp.steps.people.contact.add' | translate }}">
-            <mat-icon>contact_mail</mat-icon>
-          </button>
-          <button
-            mat-raised-button
-            (click)="addContributor(member)"
-            title="{{ 'dmp.steps.people.contributor.add' | translate }}">
-            <mat-icon>person_add</mat-icon>
-          </button>
-        </div>
-      </div>
-      <div class="mat-card-container" *ngIf="member.roleInProject">
-        <div class="projectRoleTag">
-          {{ member.roleInProject }}
-        </div>
-        <div class="personIdentifier"></div>
-      </div>
-    </mat-card>
-  </div>
-</div>
-
-<ng-template #empty>
-  {{ "dmp.steps.people.nopeople" | translate }}
-</ng-template>
-
-<div *ngIf="selectedView === 'secondaryView'">
-  <app-contributor-manual
-    (contactPerson)="changeContactPerson($event)"
-    (contributorToAdd)="addContributor($event)"></app-contributor-manual>
 </div>

@@ -42,6 +42,13 @@ mat-form-field {
   justify-content: flex-end;
   align-items: center;
   gap: 15px;
+  margin-top: -2em;
+}
+
+@media (max-width: 1700px) {
+  .mat-card-right {
+    margin-top: 0;
+  }
 }
 
 .search-container {
@@ -76,11 +83,16 @@ mat-form-field {
   flex: 1;
 }
 
+.no-padding-top {
+  padding-top: 0;
+}
+
 .form-buttons {
   display: flex;
   justify-content: flex-end;
   gap: 0.25em;
   margin-right: 0.5em;
+  margin-top: 1em;
 }
 
 .title-search {
@@ -143,12 +155,12 @@ mat-form-field {
     width: 100%;
   }
 
-  .mat-card-container {
-    width: 100%;
-  }
-
   .search-and-service-container {
     flex-direction: column;
     gap: 0;
   }
+}
+
+.contact-label {
+  margin-top: 1em;
 }

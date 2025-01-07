@@ -1,4 +1,4 @@
-<div class="form-column">
+<div class="form-column" style="margin-top: 20px">
   <mat-label
     class="label-title mat-title-large"
     id="example-radio-group-label"
@@ -32,8 +32,8 @@
       </div>
       <div class="button-row">
         <button
-          mat-fab
-          extended
+          class="action-button button-color-primary"
+          mat-raised-button
           [ngClass]="{
             'button-available': !form.invalid,
             'button-diable': form.invalid,
@@ -43,7 +43,6 @@
           title="{{ 'dmp.steps.people.contact.add' | translate }}">
           <mat-icon
             [ngClass]="{
-              'material-icon-primary': !form.invalid,
               'material-icon-on-secondary-container': form.invalid,
             }"
             >contact_mail</mat-icon
@@ -51,8 +50,8 @@
           {{ "dmp.steps.people.contact.add" | translate }}
         </button>
         <button
-          mat-fab
-          extended
+          class="action-button button-color-primary"
+          mat-raised-button
           [ngClass]="{
             'button-available': !form.invalid,
             'button-diable': form.invalid,
@@ -62,7 +61,6 @@
           title="{{ 'dmp.steps.people.contributor.add' | translate }}">
           <mat-icon
             [ngClass]="{
-              'material-icon-primary': !form.invalid,
               'material-icon-on-secondary-container': form.invalid,
             }"
             >person_add</mat-icon
