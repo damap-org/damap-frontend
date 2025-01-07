@@ -66,20 +66,11 @@
   }
 }
 
-::ng-deep .mat-mdc-option .mdc-list-item__primary-text {
-  white-space: normal;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  padding: 10px;
-  font-size: small !important;
-}
-
 .mdc-menu-surface {
   max-width: 100%;
 }
 
-::ng-deep .mat-mdc-option .mdc-list-item__primary-text {
-  font-size: x-small !important;
+.mat-mdc-option .mdc-list-item__primary-text {
   padding: 8px;
 }
 
