@@ -25,10 +25,15 @@ export class ConfigService {
       .then((config: Config) => {
         if (!config) {
           // eslint-disable-next-line no-console
-          console.error('Config is missing!');
+          console.warn('Config is missing!');
           return new Promise<boolean>(resolve => resolve(false));
         } else {
           this.config = config;
+          const appTitle = config.appTitle;
+          if (!appTitle) {
+            // eslint-disable-next-line no-console
+            console.warn('App title is missing in the config');
+          }
           this.configSubject.next(config);
           const authConfig: AuthConfig = {
             issuer: config.authUrl,
@@ -65,6 +70,7 @@ export class ConfigService {
         console.error(
           'Failed to load config - please make sure your backend is up and running!',
         );
+
         console.log('Backend: ' + environment.backendurl);
         console.error(error);
         /* eslint-disable no-console */
@@ -74,6 +80,10 @@ export class ConfigService {
 
   public getEnvironment() {
     return this.config.env;
+  }
+
+  public getAppTitle(): string {
+    return this.config?.appTitle || 'DAMAP Frontend';
   }
 
   public getConfig$(): Observable<Config> {

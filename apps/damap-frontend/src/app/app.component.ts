@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
+import { ConfigService } from './services/config.service';
 import { Title } from '@angular/platform-browser';
-import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +9,16 @@ import { environment } from '../environments/environment';
   styleUrls: [],
 })
 export class AppComponent implements OnInit {
-  constructor(private titleService: Title) {}
+  constructor(
+    private titleService: Title,
+    private configService: ConfigService,
+  ) {}
 
   ngOnInit(): void {
-    if (environment.title) {
-      this.titleService.setTitle(environment.title);
+    const appTitle = this.configService.getAppTitle();
+
+    if (appTitle) {
+      this.titleService.setTitle(appTitle);
     } else {
       this.titleService.setTitle('Damap Frontend');
     }

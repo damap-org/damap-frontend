@@ -6,6 +6,7 @@ export interface Config {
   readonly authScope: string;
   readonly authUser: string;
   readonly env: string;
+  readonly appTitle: string;
   readonly personSearchServiceConfigs: ServiceConfig[];
   readonly fitsServiceAvailable: boolean;
   readonly livePreviewAvailable: boolean;

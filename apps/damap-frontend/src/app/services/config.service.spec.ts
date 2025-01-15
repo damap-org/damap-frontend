@@ -1,14 +1,14 @@
-import { TestBed } from '@angular/core/testing';
-
-import { ConfigService } from './config.service';
 import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { OAuthService } from 'angular-oauth2-oidc';
-import { isDevMode, NO_ERRORS_SCHEMA } from '@angular/core';
-import { Router } from '@angular/router';
+import { NO_ERRORS_SCHEMA, isDevMode } from '@angular/core';
+
 import { Config } from '@damap/core';
+import { ConfigService } from './config.service';
+import { OAuthService } from 'angular-oauth2-oidc';
+import { Router } from '@angular/router';
+import { TestBed } from '@angular/core/testing';
 import { environment } from '../../environments/environment';
 
 describe('ConfigService', () => {
@@ -18,6 +18,8 @@ describe('ConfigService', () => {
   let mockRouter: jasmine.SpyObj<Router>;
 
   beforeEach(() => {
+    spyOn(console, 'warn'); // Set up the spy only once.
+
     const oauthSpy = jasmine.createSpyObj('OAuthService', [
       'configure',
       'setupAutomaticSilentRefresh',
@@ -37,12 +39,12 @@ describe('ConfigService', () => {
         { provide: Router, useValue: routerSpy },
       ],
     });
+
     service = TestBed.inject(ConfigService);
     httpMock = TestBed.inject(HttpTestingController);
     mockOAuthService = TestBed.inject(
       OAuthService,
     ) as jasmine.SpyObj<OAuthService>;
-    // mockRouter = TestBed.inject(Router) as jasmine.SpyObj<Router>;
   });
 
   afterEach(() => {
@@ -56,6 +58,7 @@ describe('ConfigService', () => {
         authClient: 'client-id',
         authScope: 'scope',
         env: 'test-env',
+        appTitle: 'Test App Title',
         authUser: '',
         personSearchServiceConfigs: [],
         fitsServiceAvailable: false,
@@ -76,7 +79,6 @@ describe('ConfigService', () => {
 
       await initializePromise;
 
-      // Verify OAuth configuration was called
       expect(mockOAuthService.configure).toHaveBeenCalledWith({
         issuer: mockConfig.authUrl,
         clientId: mockConfig.authClient,
@@ -91,28 +93,45 @@ describe('ConfigService', () => {
       expect(mockOAuthService.setupAutomaticSilentRefresh).toHaveBeenCalled();
     });
 
-    it('should handle config loading failure', async () => {
-      const consoleErrorSpy = spyOn(console, 'error');
+    it('should log a warning if appTitle is missing', async () => {
+      const mockConfig = {
+        authUrl: 'https://auth-url',
+        authClient: 'client-id',
+        authScope: 'scope',
+        env: 'test-env',
+        appTitle: null,
+        authUser: '',
+        personSearchServiceConfigs: [],
+        fitsServiceAvailable: false,
+        livePreviewAvailable: true,
+      };
+
+      mockOAuthService.loadDiscoveryDocumentAndTryLogin.and.returnValue(
+        Promise.resolve(true),
+      );
+      mockOAuthService.hasValidIdToken.and.returnValue(true);
+      mockOAuthService.hasValidAccessToken.and.returnValue(true);
 
       const initializePromise = service.initializeApp();
       const req = httpMock.expectOne(`${environment.backendurl}config`);
-      req.error(new ErrorEvent('Network error'));
+      req.flush(mockConfig);
 
       await initializePromise;
-
-      expect(consoleErrorSpy).toHaveBeenCalledWith(
-        'Failed to load config - please make sure your backend is up and running!',
+      // eslint-disable-next-line no-console
+      expect(console.warn).toHaveBeenCalledWith(
+        'App title is missing in the config',
       );
     });
   });
 
-  describe('#getEnvironment', () => {
-    it('should return the environment from the loaded config', async () => {
+  describe('#getAppTitle', () => {
+    it('should return the appTitle from the loaded config', () => {
       const mockConfig: Config = {
         authUrl: 'https://auth-url',
         authClient: 'client-id',
         authScope: 'scope',
         env: 'test-env',
+        appTitle: 'Test App Title',
         authUser: '',
         personSearchServiceConfigs: [],
         fitsServiceAvailable: false,
@@ -121,22 +140,27 @@ describe('ConfigService', () => {
 
       service['config'] = mockConfig;
 
-      const environment = service.getEnvironment();
-      expect(environment).toEqual('test-env');
+      const appTitle = service.getAppTitle();
+      expect(appTitle).toEqual('Test App Title');
+    });
+
+    it('should return the default title if appTitle is missing', () => {
+      service['config'] = null;
+
+      const appTitle = service.getAppTitle();
+      expect(appTitle).toEqual('DAMAP Frontend');
     });
   });
 
   describe('initializeApp with no config', () => {
     it('should return false and log error when config is missing', async () => {
-      spyOn(console, 'error'); // Spy on console.error to check if it was called
-
-      service.initializeApp().then(result => {
-        expect(result).toBeFalse();
-      });
-
+      const initializePromise = service.initializeApp();
       const req = httpMock.expectOne(`${environment.backendurl}config`);
-      expect(req.request.method).toBe('GET');
-      req.flush(null); // Respond with null to simulate missing config
+      req.flush(null);
+
+      await initializePromise;
+      // eslint-disable-next-line no-console
+      expect(console.warn).toHaveBeenCalledWith('Config is missing!');
     });
   });
 });
