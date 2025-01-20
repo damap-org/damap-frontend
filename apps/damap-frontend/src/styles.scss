@@ -86,6 +86,7 @@
   // mat3 provides colors for error states, but not for success or warning...
   // so it is set to predefined values here
   --success-container: #e9f5d2;
+  --success-icon-color: #{mat.get-theme-color($app-light-theme, tertiary, 70)};
   --on-success-container: black;
   --warning-bg: #fff4cb;
   --background-body: #f6f6f6;

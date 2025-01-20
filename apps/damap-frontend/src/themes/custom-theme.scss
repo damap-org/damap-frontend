@@ -162,6 +162,12 @@ html {
   background-color: var(--primary);
 }
 
+.material-icon-white-background-success {
+  --mat-icon-color: var(--primary);
+  background-color: white;
+  border-style: solid;
+}
+
 .material-icon-on-secondary-container {
   --mat-icon-color: var(--on-secondary-container);
 }

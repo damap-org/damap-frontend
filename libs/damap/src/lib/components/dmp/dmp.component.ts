@@ -39,13 +39,25 @@ import { Project } from '../../domain/project';
 import { ProjectComponent } from './project/project.component';
 import { RepoComponent } from './repo/repo.component';
 import { SpecifyDataComponent } from './specify-data/specify-data.component';
-import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Store } from '@ngrx/store';
+import {
+  StepperSelectionEvent,
+  STEPPER_GLOBAL_OPTIONS,
+} from '@angular/cdk/stepper';
+import { select, Store } from '@ngrx/store';
+import { Dmp } from '../../domain/dmp';
+import { selectForm } from '../../store/selectors/form.selectors';
+import { Completeness, SummaryService } from '../../services/summary.service';
 
 @Component({
   selector: 'app-dmp',
   templateUrl: './dmp.component.html',
   styleUrls: ['./dmp.component.css'],
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: { displayDefaultIndicatorType: false },
+    },
+  ],
 })
 export class DmpComponent implements OnInit, OnDestroy {
   config$: Observable<Config> = new Observable<Config>();
@@ -70,6 +82,11 @@ export class DmpComponent implements OnInit, OnDestroy {
   dmpForm: UntypedFormGroup;
 
   formChanged: boolean;
+
+  // Stepper icons
+  form$: Observable<Dmp>;
+  dmpFormVal: Dmp;
+  dataSource: Completeness[];
 
   // Steps
   projectStep: UntypedFormControl;
@@ -108,6 +125,14 @@ export class DmpComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
   ) {
     this.dmpForm = this.formService.dmpForm;
+
+    this.form$ = this.store.pipe(select(selectForm));
+    this.form$.subscribe(value => {
+      if (value) {
+        this.dmpFormVal = value;
+        this.dataSource = SummaryService.dmpSummary(value);
+      }
+    });
   }
 
   onStepChange(selectedStep: number) {
@@ -176,11 +201,13 @@ export class DmpComponent implements OnInit, OnDestroy {
   }
 
   get showStep() {
-    return (
-      (this.specifyDataStep.value.kind === DataKind.SPECIFY ||
-        this.specifyDataStep.value.reusedKind === DataKind.SPECIFY) &&
-      this.datasets.length
-    );
+    if (this.specifyDataStep) {
+      return (
+        (this.specifyDataStep.value.kind === DataKind.SPECIFY ||
+          this.specifyDataStep.value.reusedKind === DataKind.SPECIFY) &&
+        this.datasets.length
+      );
+    } else return false;
   }
 
   changeStep($event: StepperSelectionEvent) {
@@ -339,5 +366,119 @@ export class DmpComponent implements OnInit, OnDestroy {
   getInstruction(index: number) {
     this.infoInstruction = this.infoLabelService.getInfo(index);
     this.instructionStep$.next(this.infoInstruction);
+  }
+
+  completenessLabel(label: string) {
+    return this.dataSource?.find(value => value.step === label);
+  }
+
+  showEditIcon(index: number) {
+    if (index < 10) {
+      return (
+        this.dataSource[index]?.completeness > 0 &&
+        this.dataSource[index]?.completeness < 100
+      );
+    } else return true;
+  }
+
+  checkCompletenessForm() {
+    let statusCompleteness;
+    let statusEdit;
+    statusEdit = this.dataSource.find(step => step.completeness > 0);
+    statusCompleteness = this.dataSource.find(step => step.completeness < 100);
+    if (statusEdit && statusCompleteness) {
+      return 'editing';
+    } else if (statusEdit && !statusCompleteness) {
+      return 'completed';
+    } else return false;
+  }
+
+  iconsValidatorDone(index: number, icon: string): boolean {
+    if (
+      icon === 'check' &&
+      (index < 3 || this.showStep) &&
+      this.dataSource[index]?.completeness === 100
+    )
+      return true;
+    else if (
+      icon === 'edit' &&
+      (index < 3 || this.showStep) &&
+      index !== 10 &&
+      this.showEditIcon(index)
+    )
+      return true;
+    else if (icon === 'lock' && index >= 3 && !this.showStep && index !== 10)
+      return true;
+    else if (
+      icon === 'text_snippet' &&
+      index === 10 &&
+      this.stepper.selectedIndex !== index &&
+      this.checkCompletenessForm() === 'completed'
+    )
+      return true;
+    else return false;
+  }
+
+  iconsValidatorEdit(index: number, icon: string): boolean {
+    if (icon === 'lock' && index >= 3 && !this.showStep && index !== 10)
+      return true;
+    else if (
+      icon === 'edit' &&
+      (index < 3 || (index >= 3 && this.showStep && index !== 10))
+    )
+      return true;
+    else if (
+      icon === 'text_snippet' &&
+      index === 10 &&
+      (this.checkCompletenessForm() === false ||
+        this.checkCompletenessForm() === 'editing')
+    )
+      return true;
+    else return false;
+  }
+
+  iconsValidatorNumber(
+    index: number,
+    icon: string,
+    selectStep: number,
+    style: string,
+  ): boolean {
+    if (
+      icon === 'number' &&
+      (index < 3 || (index >= 3 && this.showStep && index != 10)) &&
+      selectStep !== index &&
+      !this.showEditIcon(index)
+    ) {
+      return true;
+    } else if (
+      icon === 'edit' &&
+      (index < 3 || (index >= 3 && this.showStep && index != 10)) &&
+      selectStep === index
+    ) {
+      return true;
+    } else if (
+      icon === 'text_snippet' &&
+      style == 'gray' &&
+      index === 10 &&
+      this.checkCompletenessForm() === false
+    )
+      return true;
+    else if (
+      icon === 'text_snippet' &&
+      style == 'success' &&
+      index === 10 &&
+      this.checkCompletenessForm() === 'editing'
+    )
+      return true;
+    else if (
+      icon === 'text_snippet' &&
+      style == 'success' &&
+      index === 10 &&
+      this.checkCompletenessForm() === 'completed'
+    )
+      return true;
+    else if (icon === 'lock' && index >= 3 && !this.showStep && index < 10)
+      return true;
+    else return false;
   }
 }

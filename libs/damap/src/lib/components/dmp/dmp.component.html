@@ -7,7 +7,106 @@
       [linear]="false"
       orientation="vertical"
       (selectionChange)="handleStepChange($event)">
-      <mat-step label="{{ 'dmp.steps.project.label' | translate }}">
+      <!-- The logic for the icons in the stepper  -->
+
+      <ng-template matStepperIcon="done" let-index="index">
+        <mat-icon
+          class="material-icon-white-background-primary custom-icon-step"
+          *ngIf="iconsValidatorDone(index, 'check')"
+          >check</mat-icon
+        >
+
+        <mat-icon
+          class="material-icon-white-background-success custom-icon-step outline"
+          *ngIf="iconsValidatorDone(index, 'edit')"
+          >edit</mat-icon
+        >
+        <mat-icon
+          class="custom-icon-step"
+          *ngIf="iconsValidatorDone(index, 'lock')"
+          >lock</mat-icon
+        >
+
+        <mat-icon
+          class="material-icon-white-background-primary custom-icon-step"
+          *ngIf="iconsValidatorDone(index, 'text_snippet')">
+          text_snippet
+        </mat-icon>
+      </ng-template>
+
+      <ng-template matStepperIcon="edit" let-index="index">
+        <mat-icon
+          class="material-icon-white-background-success custom-icon-step"
+          *ngIf="iconsValidatorEdit(index, 'text_snippet')">
+          text_snippet
+        </mat-icon>
+
+        <mat-icon
+          class="material-icon-white-background-primary custom-icon-step"
+          *ngIf="iconsValidatorEdit(index, 'edit')">
+          edit
+        </mat-icon>
+
+        <mat-icon
+          class="material-icon-white-background-primary custom-icon-step"
+          *ngIf="iconsValidatorEdit(index, 'lock')"
+          >lock</mat-icon
+        >
+      </ng-template>
+
+      <ng-template matStepperIcon="number" let-index="index">
+        <mat-icon
+          class="custom-icon-step number-step-icon"
+          *ngIf="iconsValidatorNumber(index, 'number', stepper.selectedIndex)">
+          {{ index + 1 }}
+        </mat-icon>
+
+        <mat-icon
+          class="material-icon-white-background-primary custom-icon-step"
+          *ngIf="iconsValidatorNumber(index, 'edit', stepper.selectedIndex)">
+          edit
+        </mat-icon>
+
+        <mat-icon
+          class="custom-icon-step"
+          *ngIf="
+            iconsValidatorNumber(
+              index,
+              'text_snippet',
+              stepper.selectedIndex,
+              'gray'
+            )
+          ">
+          text_snippet
+        </mat-icon>
+
+        <mat-icon
+          class="material-icon-white-background-success custom-icon-step"
+          *ngIf="
+            iconsValidatorNumber(
+              index,
+              'text_snippet',
+              stepper.selectedIndex,
+              'success'
+            )
+          ">
+          text_snippet
+        </mat-icon>
+
+        <mat-icon
+          class="custom-icon-step"
+          *ngIf="iconsValidatorNumber(index, 'lock', stepper.selectedIndex)"
+          >lock</mat-icon
+        >
+      </ng-template>
+
+      <!-- The steps  -->
+
+      <mat-step
+        label="{{ 'dmp.steps.project.label' | translate }}"
+        [completed]="
+          completenessLabel('dmp.steps.project.label')?.completeness > 0
+        ">
         <ng-container *ngIf="selectedStep === 0">
           <app-project-instruction
             (selectionChange)="
@@ -17,7 +116,10 @@
       </mat-step>
       <mat-step
         class="label-container"
-        label="{{ 'dmp.steps.people.label' | translate }}">
+        label="{{ 'dmp.steps.people.label' | translate }}"
+        [completed]="
+          completenessLabel('dmp.steps.people.label')?.completeness > 0
+        ">
         <ng-container *ngIf="selectedStep === 1">
           <app-people-instruction
             (selectionChange)="
@@ -25,7 +127,11 @@
             "></app-people-instruction>
         </ng-container>
       </mat-step>
-      <mat-step label="{{ 'dmp.steps.data.specify.label' | translate }}">
+      <mat-step
+        label="{{ 'dmp.steps.data.specify.label' | translate }}"
+        [completed]="
+          completenessLabel('dmp.steps.data.specify.label')?.completeness > 0
+        ">
         <ng-container *ngIf="selectedStep === 2">
           <app-specify-data-instruction
             (selectionChange)="
@@ -33,16 +139,28 @@
             "></app-specify-data-instruction>
         </ng-container>
       </mat-step>
-      <mat-step label="{{ 'dmp.steps.documentation.label' | translate }}">
+      <mat-step
+        label="{{ 'dmp.steps.documentation.label' | translate }}"
+        [completed]="
+          completenessLabel('dmp.steps.documentation.label')?.completeness > 0
+        ">
       </mat-step>
-      <mat-step label="{{ 'dmp.steps.storage.label' | translate }}">
+      <mat-step
+        label="{{ 'dmp.steps.storage.label' | translate }}"
+        [completed]="
+          completenessLabel('dmp.steps.storage.label')?.completeness > 0
+        ">
         <ng-container *ngIf="selectedStep === 4">
           <app-data-storage-instruction
             (selectionChange)="onViewChangeStorage($event)">
           </app-data-storage-instruction>
         </ng-container>
       </mat-step>
-      <mat-step label="{{ 'dmp.steps.legal.label' | translate }}">
+      <mat-step
+        label="{{ 'dmp.steps.legal.label' | translate }}"
+        [completed]="
+          completenessLabel('dmp.steps.legal.label')?.completeness > 0
+        ">
         <ng-container *ngIf="selectedStep === 5">
           <app-legal-ethical-instruction
             (selectionChange)="
@@ -50,19 +168,38 @@
             "></app-legal-ethical-instruction>
         </ng-container>
       </mat-step>
-      <mat-step label="{{ 'dmp.steps.licensing.label' | translate }}">
+      <mat-step
+        label="{{ 'dmp.steps.licensing.label' | translate }}"
+        [completed]="
+          completenessLabel('dmp.steps.licensing.label')?.completeness > 0
+        ">
       </mat-step>
-      <mat-step label="{{ 'dmp.steps.repositories.label' | translate }}">
+      <mat-step
+        label="{{ 'dmp.steps.repositories.label' | translate }}"
+        [completed]="
+          completenessLabel('dmp.steps.repositories.label')?.completeness > 0
+        ">
         <ng-container *ngIf="selectedStep === 7">
           <app-repo-instruction
             (selectionChange)="repoComponent?.onViewChange($event)">
           </app-repo-instruction>
         </ng-container>
       </mat-step>
-      <mat-step label="{{ 'dmp.steps.data.reuse.label' | translate }}">
+      <mat-step
+        label="{{ 'dmp.steps.data.reuse.label' | translate }}"
+        [completed]="
+          completenessLabel('dmp.steps.data.reuse.label')?.completeness > 0
+        ">
       </mat-step>
-      <mat-step label="{{ 'dmp.steps.costs.label' | translate }}"> </mat-step>
-      <mat-step label="{{ 'dmp.steps.end.label' | translate }}"> </mat-step>
+      <mat-step
+        label="{{ 'dmp.steps.costs.label' | translate }}"
+        [completed]="
+          completenessLabel('dmp.steps.costs.label')?.completeness > 0
+        "></mat-step>
+      <mat-step
+        label="{{ 'dmp.steps.end.label' | translate }}"
+        [completed]="checkCompletenessForm() === 'completed'">
+      </mat-step>
     </mat-vertical-stepper>
   </div>
 

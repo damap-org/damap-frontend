@@ -34,6 +34,21 @@
   box-sizing: border-box;
 }
 
+.custom-icon-step {
+  border-radius: 50%;
+  padding: 4px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.number-step-icon {
+  font: var(--body-typography);
+  font-size: 1rem;
+}
+
 .verticalStepper {
   width: 100%;
 }
@@ -50,9 +65,10 @@
 
 @media (max-width: 1300px) {
   ::ng-deep .mat-step-icon {
-    width: 24px;
-    height: 24px;
-    font-size: 0.875rem;
+    width: 20px !important;
+    height: 20px !important;
+    margin-right: 5px !important;
+    font-size: 0.8rem;
   }
 
   .label-container {
@@ -74,7 +90,7 @@
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 900px) {
   ::ng-deep .mat-step-icon {
     width: 18px !important;
     height: 18px !important;

@@ -28,6 +28,7 @@ import { SpecifyDataModule } from './specify-data/specify-data.module';
 import { SummaryModule } from './summary/summary.module';
 import { ToggleButtonsModule } from '../../widgets/toggle-buttons/toggle-buttons.module';
 import { VersionModule } from '../version/version.module';
+import { MatIconModule } from '@angular/material/icon';
 
 // required for AOT compilation
 export function HttpLoaderFactory(http: HttpBackend): MultiTranslateHttpLoader {
@@ -80,6 +81,7 @@ export function HttpLoaderFactory(http: HttpBackend): MultiTranslateHttpLoader {
     InfoCardComponent,
     // Materials
     MatStepperModule,
+    MatIconModule,
     DmpActionsModule,
   ],
   declarations: [DmpComponent],
