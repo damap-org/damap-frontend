@@ -40,18 +40,8 @@
       <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
       </button>
-      <!--
-      TODO: Re-enable editStorageTranslation when the database issue is resolved.
-      After updating a translation, an old audited version of the translation is still referenced
-      on the datasets. This causes the translation to be displayed incorrectly on the datasets.
-      See: https://github.com/tuwien-csd/damap-backend/issues/280
-      -->
       <mat-menu #menu="matMenu">
-        <button
-          mat-menu-item
-          (click)="editStorageTranslation(element.id)"
-          [disabled]="true"
-          matTooltip="Due to an issue with the database after editing a translation, this feature is currently disabled.">
+        <button mat-menu-item (click)="editStorageTranslation(element.id)">
           <mat-icon>edit</mat-icon>
           {{ "admin.table.action.edit" | translate }}
         </button>
