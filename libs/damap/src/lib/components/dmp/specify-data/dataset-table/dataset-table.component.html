@@ -1,7 +1,6 @@
 <div *ngIf="(datasets.value | datasetSource: sourceType).length">
   <app-step-intro>{{ tableIntro | translate }} </app-step-intro>
   <h2 *ngIf="tableHeading">{{ tableHeading | translate }}</h2>
-
   <table
     mat-table
     [dataSource]="datasets.value | datasetSource: sourceType"
@@ -13,7 +12,7 @@
         {{ "dmp.steps.data.specify.table.header.dataset" | translate }}
       </th>
       <td mat-cell *matCellDef="let dataset">
-        <div>{{ dataset.title }}</div>
+        <div>{{ dataset.title | limitString: 100 }}</div>
       </td>
     </ng-container>
 
@@ -23,10 +22,7 @@
       </th>
       <td mat-cell *matCellDef="let dataset">
         <div>
-          <ng-container *ngFor="let type of dataset.type; last as last">
-            {{ "enum.dataset.type." + type | translate }}
-            <ng-container *ngIf="!last">,</ng-container>
-          </ng-container>
+          {{ getDataType(dataset) | limitString: 50 }}
         </div>
       </td>
     </ng-container>
@@ -36,7 +32,7 @@
         {{ "dmp.steps.data.specify.table.header.fileFormat" | translate }}
       </th>
       <td mat-cell *matCellDef="let dataset">
-        <div>{{ dataset.fileFormat }}</div>
+        <div>{{ dataset.fileFormat | limitString: 50 }}</div>
       </td>
     </ng-container>
 
@@ -54,7 +50,7 @@
         {{ "dmp.steps.data.specify.table.header.description" | translate }}
       </th>
       <td mat-cell *matCellDef="let dataset">
-        <div>{{ dataset.description }}</div>
+        <div>{{ dataset.description | limitString: 50 }}</div>
       </td>
     </ng-container>
 
@@ -76,6 +72,9 @@
         }}</span>
       </th>
       <td mat-cell *matCellDef="let element" class="action-button-cell">
+        <button mat-icon-button (click)="openInformationDialog(element)">
+          <mat-icon class="material-icon-primary">visibility</mat-icon>
+        </button>
         <button mat-icon-button (click)="openDatasetDialog(element)">
           <mat-icon class="material-icon-primary">edit</mat-icon>
         </button>

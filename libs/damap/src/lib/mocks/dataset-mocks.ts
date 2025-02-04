@@ -33,6 +33,7 @@ export const openDatasetMock: Dataset = {
     identifier: 'XXXXX',
     type: IdentifierType.DOI,
   },
+  technicalResources: [],
 };
 
 export const closedDatasetMock: Dataset = {
@@ -62,6 +63,7 @@ export const closedDatasetMock: Dataset = {
     identifier: 'XXXXX',
     type: IdentifierType.DOI,
   },
+  technicalResources: [],
 };
 
 export const restrictedDatasetMock: Dataset = {
@@ -88,4 +90,5 @@ export const restrictedDatasetMock: Dataset = {
   retentionPeriod: null,
   source: DataSource.NEW,
   datasetId: null,
+  technicalResources: [],
 };

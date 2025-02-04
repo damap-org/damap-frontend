@@ -3,3 +3,16 @@
   flex-direction: column;
   width: 100%;
 }
+
+.resource-row {
+  display: flex;
+  align-items: center;
+}
+
+.resource-row app-textarea-wrapper {
+  flex: 1;
+}
+
+.resource-row button {
+  margin-left: 8px;
+}

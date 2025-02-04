@@ -2,11 +2,14 @@
   [appearance]="appearance"
   class="mat-textarea-density"
   floatLabel="auto">
-  <mat-label
+  <!-- inline style is a temporary solution for an issue where the * for required would be rendered after a line break -->
+  <!-- this will hopefully be fixed with the next angular version, lets pray -->
+  <mat-label style="display: inline-flex"
     >{{ label | translate }}
     <ng-container *ngFor="let set of labelDatasets; last as last">
       "{{ set.title }}"<span *ngIf="!last">, </span>.
     </ng-container>
+    <ng-container *ngIf="labelSuffix"> {{ labelSuffix }} </ng-container>
   </mat-label>
 
   <ng-template #standard>

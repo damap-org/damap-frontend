@@ -6,6 +6,8 @@ import { Dataset } from '../../../../domain/dataset';
 import { DatasetDialogComponent } from '../dataset-dialog/dataset-dialog.component';
 import { FILE_SIZES } from '../data-specs';
 import { MatDialog } from '@angular/material/dialog';
+import { DatasetInformationComponent } from '../dataset-information/dataset-information.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dataset-table',
@@ -29,7 +31,10 @@ export class DatasetTableComponent {
 
   readonly datasetSource: any = DataSource;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    private translate: TranslateService,
+  ) {}
 
   getSizeLabel(size: number): string {
     if (size === -1) {
@@ -55,9 +60,34 @@ export class DatasetTableComponent {
     });
   }
 
+  openInformationDialog(dataset: Dataset) {
+    const index = this.findFormArrayIndex(dataset);
+    const datasetGroup = this.datasets.at(index) as UntypedFormGroup;
+    const dialogRef = this.dialog.open(DatasetInformationComponent, {
+      width: '75%',
+      maxWidth: '800px',
+      data: { dataset: datasetGroup.getRawValue() },
+    });
+  }
+
   remove(dataset: Dataset): void {
     const index = this.findFormArrayIndex(dataset);
     this.removeDataset.emit(index);
+  }
+
+  getDataType(dataset: Dataset): string {
+    let type = '';
+    dataset.type.forEach((t, index) => {
+      this.translate
+        .get(`enum.dataset.type.${t}`)
+        .subscribe((translated: string) => {
+          type += translated;
+          if (index < dataset.type.length - 1) {
+            type += ', ';
+          }
+        });
+    });
+    return type;
   }
 
   private findFormArrayIndex(dataset: Dataset): number {

@@ -1,0 +1,52 @@
+<h1 mat-dialog-title>
+  {{ dataset.title }}
+</h1>
+
+<mat-dialog-content id="datasetDialog">
+  <div>
+    <div class="info-section">
+      <span class="label"
+        >{{ "dmp.steps.data.specify.dialog.type" | translate }}:</span
+      >
+      <span class="split-text">{{ getDataType(dataset) }}</span>
+    </div>
+
+    <div class="info-section">
+      <span class="label"
+        >{{ "dmp.steps.data.specify.dialog.fileFormat" | translate }}:</span
+      >
+      <span class="split-text">{{ dataset.fileFormat }}</span>
+    </div>
+
+    <div class="info-section">
+      <span class="label"
+        >{{ "dmp.steps.data.specify.dialog.size" | translate }}:
+      </span>
+      <span>{{ mapFileSize(dataset.size) }}</span>
+    </div>
+  </div>
+
+  <div class="description-section">
+    <span class="label"
+      >{{ "dmp.steps.data.specify.dialog.description" | translate }}:
+    </span>
+    <p class="split-text">{{ dataset.description }}</p>
+  </div>
+
+  <div class="technical-resources">
+    <div
+      class="resource-box"
+      *ngFor="let resource of dataset.technicalResources; let i = index">
+      <span class="resource-title">{{
+        "Technical Resource " + (i + 1) + ":"
+      }}</span>
+      <p class="split-text">{{ resource.name }}</p>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="onDialogClose()">
+    {{ "dmp.steps.data.specify.dialog.button.close" | translate }}
+  </button>
+</mat-dialog-actions>

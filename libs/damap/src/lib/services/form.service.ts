@@ -1,6 +1,8 @@
 import { compareContributors, Contributor } from '../domain/contributor';
 import {
+  FormArray,
   FormControl,
+  FormGroup,
   UntypedFormArray,
   UntypedFormBuilder,
   UntypedFormGroup,
@@ -341,12 +343,21 @@ export class FormService {
     dataset.startDate = this.getStartDate();
 
     const formGroup = this.mapDatasetToFormGroup(dataset);
+
     (this.form.get('datasets') as UntypedFormArray).push(formGroup);
   }
 
   public updateDatasetOfForm(index: number, update: Dataset) {
     const dataset = (this.form.get('datasets') as UntypedFormArray).at(index);
     dataset.patchValue(update);
+
+    const technicalResourceArray = dataset.get(
+      'technicalResources',
+    ) as FormArray;
+    technicalResourceArray.clear();
+    update.technicalResources?.forEach(resource => {
+      technicalResourceArray.push(this.createTechnicalResource(resource.name));
+    });
   }
 
   public removeDatasetFromForm(index: number) {
@@ -452,6 +463,21 @@ export class FormService {
       retentionPeriod: [10],
       source: [DataSource.NEW, Validators.required],
       datasetId: [null],
+      technicalResources: this.formBuilder.array([]),
+    });
+  }
+
+  public createTechnicalResource(name = ''): UntypedFormGroup {
+    return this.formBuilder.group({
+      name: [
+        name,
+        [
+          Validators.required,
+          notEmptyValidator(),
+          Validators.maxLength(this.TEXT_SHORT_LENGTH),
+        ],
+      ],
+      description: [''],
     });
   }
 
@@ -556,9 +582,18 @@ export class FormService {
     }
   }
 
-  private mapDatasetToFormGroup(dataset: Dataset): UntypedFormGroup {
+  public mapDatasetToFormGroup(dataset: Dataset): UntypedFormGroup {
     const formGroup = this.createDatasetFormGroup(dataset.title);
     formGroup.patchValue(dataset);
+
+    const technicalResourceArray = formGroup.get(
+      'technicalResources',
+    ) as FormArray;
+    technicalResourceArray.clear();
+    dataset.technicalResources?.forEach(resource => {
+      technicalResourceArray.push(this.createTechnicalResource(resource.name));
+    });
+
     return formGroup;
   }
 

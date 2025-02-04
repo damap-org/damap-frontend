@@ -29,4 +29,10 @@ export interface Dataset {
   retentionPeriod: number;
   source: DataSource;
   datasetId: Identifier;
+  technicalResources: TechnicalResource[];
+}
+
+export interface TechnicalResource {
+  name: string;
+  description: string;
 }

@@ -135,18 +135,22 @@
           "dialog": {
             "add": "Add dataset",
             "edit": "Edit dataset",
+            "view": "View dataset",
             "title": "Dataset title",
             "fileFormat": "File Format",
             "fileFormat.info": "Specify mime type (e.g. image/png) or file format (png)",
             "type": "Estimated type",
             "size": "Estimated size",
             "description": "Description",
+            "technicalResource": "Technical Resource",
             "source": "Source",
             "identifier": "Identifier",
             "button": {
+              "addTechnicalResource": "Add new technical resource",
               "add": "Add",
               "update": "Update",
-              "cancel": "Cancel"
+              "cancel": "Cancel",
+              "close": "Close"
             }
           },
           "doi": {

@@ -54,6 +54,35 @@
       [label]="'dmp.steps.data.specify.dialog.description' | translate"
       [control]="description"
       [maxLength]="4000"></app-textarea-wrapper>
+    <div
+      class="dialogRow"
+      *ngIf="dataset.controls.source.value === datasetSource.NEW">
+      <div formArrayName="technicalResources">
+        <hr />
+        <div
+          *ngFor="let resource of technicalResources.controls; let i = index"
+          [formGroupName]="i"
+          class="resource-row">
+          <app-textarea-wrapper
+            [label]="'dmp.steps.data.specify.dialog.technicalResource'"
+            [labelSuffix]="' ' + (i + 1)"
+            [control]="resource.get('name')"
+            [maxLength]="255"></app-textarea-wrapper>
+          <button mat-icon-button (click)="removeTechnicalResource(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+      <button
+        mat-raised-button
+        class="action-button button-color-primary"
+        (click)="addTechnicalResource()">
+        {{
+          "dmp.steps.data.specify.dialog.button.addTechnicalResource"
+            | translate
+        }}
+      </button>
+    </div>
   </div>
   <div
     class="dialogRow"

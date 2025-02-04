@@ -1,6 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import {
+  FormArray,
   FormControl,
+  FormGroup,
   UntypedFormControl,
   UntypedFormGroup,
 } from '@angular/forms';
@@ -14,7 +16,7 @@ import {
   mit,
 } from '../../../../widgets/license-wizard/license-wizard-list';
 
-import { Dataset } from '../../../../domain/dataset';
+import { Dataset, TechnicalResource } from '../../../../domain/dataset';
 import { DataSource } from '../../../../domain/enum/data-source.enum';
 import { Identifier } from '../../../../domain/identifier';
 import { DataType } from '../../../../domain/enum/data-type.enum';
@@ -44,11 +46,7 @@ export class DatasetDialogComponent {
     private formService: FormService,
     @Inject(MAT_DIALOG_DATA) public data: { dataset: Dataset; mode: string },
   ) {
-    this.dataset = this.formService.createDatasetFormGroup(
-      this.data.dataset.title,
-    );
-
-    this.dataset.patchValue(data.dataset);
+    this.dataset = this.formService.mapDatasetToFormGroup(this.data.dataset);
     this.mode = data.mode ?? this.mode;
     if (data.dataset.datasetId) {
       this.datasetId = { ...data.dataset.datasetId };
@@ -67,12 +65,25 @@ export class DatasetDialogComponent {
     return this.dataset.get('fileFormat') as FormControl<string>;
   }
 
+  get technicalResources(): FormArray {
+    return this.dataset.get('technicalResources') as FormArray;
+  }
+
+  addTechnicalResource(): void {
+    this.technicalResources.push(this.formService.createTechnicalResource());
+  }
+
+  removeTechnicalResource(index: number): void {
+    this.technicalResources.removeAt(index);
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   onDialogClose() {
     const dataset: Dataset = this.dataset.getRawValue();
+
     if (
       dataset.source == this.datasetSource.REUSED &&
       (this.datasetId.identifier != null || this.datasetId.type != null)
