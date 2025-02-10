@@ -7,17 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] -
 
+## [4.4.0] - 2025-02-10
+
 ### Added
 
 - Added "Principal Investigator" and "Project Coordinator" as new contributor roles [#374](https://github.com/tuwien-csd/damap-frontend/pull/374).
 - Added support for configuring the html title using the backend config [#416](https://github.com/tuwien-csd/damap-frontend/pull/416).
 - Added customizable banners to admin section [#404](https://github.com/tuwien-csd/damap-frontend/pull/404).
+- Added ethical issue report number input field to ethical section [#397](https://github.com/tuwien-csd/damap-frontend/pull/397).
 
 ### Changed
 
 - Reworked the contributor UI [#394](https://github.com/tuwien-csd/damap-frontend/pull/394).
 - Changed the default access rights of "other project members" to read only [#405](https://github.com/tuwien-csd/damap-frontend/pull/405).
 - Reenabled admin editing of internal storage translations, since a related backend bug was fixed [#417](https://github.com/tuwien-csd/damap-frontend/pull/417).
+- Stepper icon now showcase the states locked, empty, in progress and done [#418](https://github.com/tuwien-csd/damap-frontend/pull/418).
 
 ### Fixed
 
