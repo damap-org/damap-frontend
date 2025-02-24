@@ -164,6 +164,7 @@ export class PeopleComponent implements OnInit, OnDestroy {
         identifier: this.form.value.personId,
         type: IdentifierType.ORCID,
       },
+      roles: this.form.value.roles,
     };
 
     this.contributorToUpdate.emit({

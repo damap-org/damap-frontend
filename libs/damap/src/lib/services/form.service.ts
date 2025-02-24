@@ -5,6 +5,7 @@ import {
   FormGroup,
   UntypedFormArray,
   UntypedFormBuilder,
+  UntypedFormControl,
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
@@ -320,9 +321,8 @@ export class FormService {
   }
 
   public addContributorToForm(contributor: Contributor, contact = false) {
-    const contributorFormGroup = this.createContributorFormGroup();
-    contributorFormGroup.patchValue(contributor);
-    contributorFormGroup.patchValue({ contact });
+    contributor.contact = contact;
+    const contributorFormGroup = this.mapContributorToFormGroup(contributor);
     (this.form.get('contributors') as UntypedFormArray).push(
       contributorFormGroup,
     );
@@ -608,9 +608,9 @@ export class FormService {
       lastName: ['', Validators.maxLength(this.TEXT_SHORT_LENGTH)],
       mbox: ['', Validators.maxLength(this.TEXT_SHORT_LENGTH)],
       personId: [null],
-      role: [null],
       roleInProject: [''],
       universityId: [null],
+      roles: new UntypedFormControl([]),
     });
   }
 
@@ -618,7 +618,12 @@ export class FormService {
     contributor: Contributor,
   ): UntypedFormGroup {
     const formGroup = this.createContributorFormGroup();
-    formGroup.patchValue(contributor);
+
+    formGroup.patchValue({
+      ...contributor,
+      roles: contributor.roles || [],
+    });
+
     return formGroup;
   }
 

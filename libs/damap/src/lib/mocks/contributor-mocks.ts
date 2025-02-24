@@ -1,6 +1,6 @@
-import { IdentifierType } from '../domain/enum/identifier-type.enum';
 import { Contributor } from '../domain/contributor';
 import { ContributorRole } from '../domain/enum/contributor-role.enum';
+import { IdentifierType } from '../domain/enum/identifier-type.enum';
 
 export const mockContact: Contributor = {
   id: 77,
@@ -12,7 +12,7 @@ export const mockContact: Contributor = {
   affiliation: 'TU Wien',
   affiliationId: { identifier: 'XXX', type: IdentifierType.ROR },
   contact: true,
-  role: null,
+  roles: [],
   roleInProject: 'Project leader',
 };
 
@@ -26,7 +26,7 @@ export const mockContributor1: Contributor = {
   affiliation: 'TU Wien',
   affiliationId: { identifier: 'XXX', type: IdentifierType.ROR },
   contact: false,
-  role: ContributorRole.EDITOR,
+  roles: [ContributorRole.EDITOR, ContributorRole.DATA_CURATOR],
   roleInProject: 'Project manager',
 };
 
@@ -43,6 +43,6 @@ export const mockContributor2: Contributor = {
   affiliation: 'TU Wien',
   affiliationId: { identifier: 'XXX', type: IdentifierType.ROR },
   contact: false,
-  role: ContributorRole.PROJECT_MANAGER,
+  roles: [ContributorRole.PROJECT_MANAGER, ContributorRole.DATA_MANAGER],
   roleInProject: 'Project manager',
 };

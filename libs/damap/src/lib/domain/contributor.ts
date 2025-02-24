@@ -10,8 +10,8 @@ interface Contributor {
   readonly mbox: string;
   readonly affiliation: string;
   readonly affiliationId: Identifier;
+  roles: ContributorRole[];
   contact: boolean;
-  role: ContributorRole;
   roleInProject: string;
 }
 

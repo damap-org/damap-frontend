@@ -20,7 +20,7 @@
           </app-person-search>
         </div>
         <div class="service-select-container">
-          <mat-form-field appearance="outline">
+          <mat-form-field>
             <mat-label>{{
               "dmp.steps.people.search.service" | translate
             }}</mat-label>
@@ -146,7 +146,7 @@
                   <mat-label>{{
                     "dmp.steps.people.contributor.role" | translate
                   }}</mat-label>
-                  <mat-select formControlName="role">
+                  <mat-select formControlName="roles" multiple>
                     <mat-option
                       *ngFor="let role of roles | keyvalue"
                       [value]="role.key">
@@ -281,7 +281,7 @@
                   <mat-label>{{
                     "dmp.steps.people.contributor.role" | translate
                   }}</mat-label>
-                  <mat-select formControlName="role">
+                  <mat-select formControlName="roles" multiple>
                     <mat-option
                       *ngFor="let role of roles | keyvalue"
                       [value]="role.key">

@@ -13,7 +13,7 @@ export const mockAccess: Access = {
   affiliation: 'TU Wien',
   affiliationId: { identifier: 'XXX', type: IdentifierType.ROR },
   contact: true,
-  role: null,
+  roles: [],
   roleInProject: undefined,
   access: FunctionRole.EDITOR,
 };
