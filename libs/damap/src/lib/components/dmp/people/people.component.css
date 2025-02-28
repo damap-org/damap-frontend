@@ -103,6 +103,15 @@ mat-form-field {
   border: 2px solid var(--accent-color-lighter);
 }
 
+.white-background-panel {
+  background-color: var(--primary-lightest);
+}
+
+.contributor-mbox {
+  display: flex;
+  align-items: center;
+}
+
 @media (max-width: 768px) {
   .mat-card-container {
     flex-direction: column;

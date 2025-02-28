@@ -9,6 +9,7 @@ import { InfoMessageModule } from '../../../widgets/info-message/info-message.mo
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
 import { NgModule } from '@angular/core';
 import { OrcidModule } from '../../../widgets/orcid/orcid.module';
@@ -30,6 +31,7 @@ import { ToggleButtonsModule } from '../../../widgets/toggle-buttons/toggle-butt
     // Materials
     MatCardModule,
     MatSelectModule,
+    MatExpansionModule,
     MatButtonModule,
     MatDialogModule,
     MatCardModule,
@@ -52,6 +54,7 @@ import { ToggleButtonsModule } from '../../../widgets/toggle-buttons/toggle-butt
     // Materials
     MatCardModule,
     MatSelectModule,
+    MatExpansionModule,
     MatButtonModule,
     MatDialogModule,
   ],

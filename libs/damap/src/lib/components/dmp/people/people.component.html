@@ -40,54 +40,64 @@
     </div>
   </div>
 
-  <mat-label class="label-title mat-title-medium title-search">{{
-    (projectMembers?.length > 0
-      ? "dmp.steps.people.general.recommendations"
-      : "dmp.steps.people.nopeople"
-    ) | translate
-  }}</mat-label>
+  <mat-label
+    *ngIf="!projectMembers?.length"
+    class="label-title mat-title-medium title-search">
+    {{ "dmp.steps.people.nopeople" | translate }}
+  </mat-label>
 
-  <!-- LIST OF PEOPLE -->
-  <div class="list-container" *ngIf="projectMembers?.length > 0">
-    <mat-card
-      appearance="raised"
-      *ngFor="
-        let member of projectMembers
-          | contributorFilter: dmpForm.controls.contributors.value
-      ">
-      <div class="mat-card-container">
-        <div class="mat-card-left">
-          <div>
-            <mat-icon class="mat-icon-style">person</mat-icon>
-            {{ member.firstName }} {{ member.lastName }}
+  <mat-expansion-panel
+    *ngIf="projectMembers?.length > 0"
+    [expanded]="!isCollapsed"
+    (opened)="isCollapsed = false"
+    class="white-background-panel">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ "dmp.steps.people.general.recommendations" | translate }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="list-container">
+      <mat-card
+        appearance="raised"
+        *ngFor="
+          let member of projectMembers
+            | contributorFilter: dmpForm.controls.contributors.value
+        ">
+        <div class="mat-card-container">
+          <div class="mat-card-left">
+            <div>
+              <mat-icon class="mat-icon-style">person</mat-icon>
+              {{ member.firstName }} {{ member.lastName }}
+            </div>
+            <mat-icon class="mat-icon-style outline">mail</mat-icon>
+            {{ member.mbox }}
           </div>
-          <mat-icon class="mat-icon-style outline">mail</mat-icon>
-          {{ member.mbox }}
+          <div class="mat-card-right">
+            <button
+              mat-raised-button
+              *ngIf="member.universityId"
+              (click)="changeContactPerson(member)"
+              title="{{ 'dmp.steps.people.contact.add' | translate }}">
+              <mat-icon>contact_mail</mat-icon>
+            </button>
+            <button
+              mat-raised-button
+              (click)="addContributor(member)"
+              title="{{ 'dmp.steps.people.contributor.add' | translate }}">
+              <mat-icon class="person-icon">person_add</mat-icon>
+            </button>
+          </div>
         </div>
-        <div class="mat-card-right">
-          <button
-            mat-raised-button
-            *ngIf="member.universityId"
-            (click)="changeContactPerson(member)"
-            title="{{ 'dmp.steps.people.contact.add' | translate }}">
-            <mat-icon>contact_mail</mat-icon>
-          </button>
-          <button
-            mat-raised-button
-            (click)="addContributor(member)"
-            title="{{ 'dmp.steps.people.contributor.add' | translate }}">
-            <mat-icon>person_add</mat-icon>
-          </button>
+        <div class="mat-card-container" *ngIf="member.roleInProject">
+          <div class="projectRoleTag">
+            {{ member.roleInProject }}
+          </div>
+          <div class="personIdentifier"></div>
         </div>
-      </div>
-      <div class="mat-card-container" *ngIf="member.roleInProject">
-        <div class="projectRoleTag">
-          {{ member.roleInProject }}
-        </div>
-        <div class="personIdentifier"></div>
-      </div>
-    </mat-card>
-  </div>
+      </mat-card>
+    </div>
+  </mat-expansion-panel>
 </div>
 
 <div *ngIf="selectedView === 'secondaryView'">

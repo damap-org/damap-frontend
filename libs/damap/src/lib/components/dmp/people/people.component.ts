@@ -60,6 +60,7 @@ export class PeopleComponent implements OnInit, OnDestroy {
   searchResult$: Observable<SearchResult<Contributor>>;
   serviceConfig$: ServiceConfig[];
   serviceConfigType: ServiceConfig;
+  isCollapsed: boolean = false;
 
   currentUpdateContributorIdx: number = -1;
   form = new UntypedFormGroup({
@@ -125,11 +126,13 @@ export class PeopleComponent implements OnInit, OnDestroy {
   changeContactPerson(contact: Contributor): void {
     this.contactPerson.emit(contact);
     this.contactContributor();
+    this.isCollapsed = true;
   }
 
   addContributor(contributor: Contributor): void {
     this.contributorToAdd.emit(contributor);
     this.contactContributor();
+    this.isCollapsed = true;
   }
 
   triggerUpdateContributorDetails(idx: number) {
@@ -198,6 +201,9 @@ export class PeopleComponent implements OnInit, OnDestroy {
 
   searchContributor(term: string): void {
     this.searchTerms.next(term);
+    if (term.length > 0) {
+      this.isCollapsed = true;
+    }
   }
 
   get contributors(): UntypedFormArray {
@@ -218,6 +224,10 @@ export class PeopleComponent implements OnInit, OnDestroy {
 
   onViewChange(view: 'primaryView' | 'secondaryView'): void {
     this.selectedView = view;
+  }
+
+  toggleRecommendations(): void {
+    this.isCollapsed = !this.isCollapsed;
   }
 }
 
