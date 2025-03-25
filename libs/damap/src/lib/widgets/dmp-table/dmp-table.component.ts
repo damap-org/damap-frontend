@@ -81,10 +81,7 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
       }
     };
     this.dataSource.sort = this.sort;
-    setTimeout(() => {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    }, 250);
+    this.dataSource.paginator = this.paginator;
   }
 
   applyFilter(filterValue: string) {
