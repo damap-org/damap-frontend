@@ -36,6 +36,10 @@
     },
     "repositories": {
       "retention": "Set the time for how long your data should remain in the repository"
+    },
+    "dataset": {
+      "none": "Research data is all digital objects created in the course of academic work, for instance, measurements, surveys, observations, simulations, interviews, and software.<br>If you still believe you will not generate or reuse any data in your project, we recommend manually filling in the original DMP templates instead of using the DMP tool.<br>FWF: Please fill in the required administrative information in section I.1 and explain why the project will not produce or use data in section I.2 Data management responsibilities and resources. The rest of the template should be empty.<br>EU (Horizon Europe): Please fill in the required administrative information on pages 1-3 and explain why the project will not produce or use data in section 1 Data summary. If applicable, enter information in section 3 Other research outputs.",
+      "unknown": "This is a good time to think about your expectations. You should already have an idea of what kind of (digital) material you will be creating or analysing in your project, even if it is still vague and you don’t have specific details. If this is the case, click on “Specify datasets.” and describe the expected material as well as possible in this early stage. You can mention in the DMP (= your export document from the tool) that the data description is a broad estimation that will be updated in a later version of the DMP. If you come to the conclusion that you will not create or analyse any data, click on “No data will be created or analysed.” and follow the instructions there."
     }
   }
 }

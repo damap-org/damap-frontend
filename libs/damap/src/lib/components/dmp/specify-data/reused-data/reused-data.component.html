@@ -30,3 +30,14 @@
     (removeDataset)="remove($event)">
   </app-dataset-table>
 </ng-container>
+
+<ng-container *ngIf="reusedKind.value === dataKind.NONE">
+  <app-info-message>
+    <span [innerHTML]="'info.dataset.none' | translate"></span>
+  </app-info-message>
+</ng-container>
+<ng-container *ngIf="reusedKind.value === dataKind.UNKNOWN">
+  <app-info-message>
+    {{ "info.dataset.unknown" | translate }}
+  </app-info-message>
+</ng-container>

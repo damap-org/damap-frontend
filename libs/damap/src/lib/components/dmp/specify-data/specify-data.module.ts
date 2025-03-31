@@ -25,6 +25,7 @@ import { ToggleButtonsModule } from '../../../widgets/toggle-buttons/toggle-butt
 import { TranslateModule } from '@ngx-translate/core';
 import { DatasetInformationComponent } from './dataset-information/dataset-information.component';
 import { LimitStringPipe } from '../../../pipes/limit-string/limitString.pipe';
+import { InfoMessageModule } from '../../../widgets/info-message/info-message.module';
 
 @NgModule({
   imports: [
@@ -47,6 +48,7 @@ import { LimitStringPipe } from '../../../pipes/limit-string/limitString.pipe';
     MatChipsModule,
     MatTableModule,
     LimitStringPipe,
+    InfoMessageModule,
   ],
   declarations: [
     SpecifyDataComponent,
