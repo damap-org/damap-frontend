@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] -
 
+## [4.5.0] - 2025-04-01
+
+### Added
+
+- Added the option to add technical resources to produced datasets, which describe the hardware used to capture the dataset [#424](https://github.com/tuwien-csd/damap-frontend/pull/424).
+- Added a dataset info view button, where the whole dataset can be viewed outside of the size-limited table in a popup [#424](https://github.com/tuwien-csd/damap-frontend/pull/424).
+- Added info texts to "don't know" and "no data" options in the beginning of the specify research data step [#433](https://github.com/tuwien-csd/damap-frontend/pull/433).
+
+### Changed
+
+- Moved recommended contributors into an expansion panel, so they can be minimized, if needed [#430](https://github.com/tuwien-csd/damap-frontend/pull/430).
+- Visible entries in the dataset table are now limited in length, since the table was getting too crowded. [#424](https://github.com/tuwien-csd/damap-frontend/pull/424).
+
+### Fixed
+
+- Fixed a bug where the access to sensitive data textfield was too small [#425](https://github.com/tuwien-csd/damap-frontend/pull/425).
+- Fixed a bug where the paginator and sorting in the DMP table would sometimes not work [#431](https://github.com/tuwien-csd/damap-frontend/pull/431).
+
 ## [4.4.0] - 2025-02-10
 
 ### Added
