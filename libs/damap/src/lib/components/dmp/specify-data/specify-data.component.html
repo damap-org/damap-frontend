@@ -35,8 +35,10 @@
 
   <ng-container
     *ngIf="
-      specifyDataStep.value.kind === dataKind.SPECIFY ||
-      specifyDataStep.value['reusedKind'] === dataKind.SPECIFY
+      (selectedView === 'primaryView' &&
+        specifyDataStep.value.kind === dataKind.SPECIFY) ||
+      (selectedView === 'secondaryView' &&
+        specifyDataStep.value['reusedKind'] === dataKind.SPECIFY)
     ">
     <app-textarea-wrapper
       [label]="'dmp.steps.documentation.question.datageneration'"
