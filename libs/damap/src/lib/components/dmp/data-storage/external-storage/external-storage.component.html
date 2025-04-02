@@ -73,9 +73,20 @@
             </div>
           </div>
         </mat-card-content>
+        <mat-card-actions>
+          <mat-slide-toggle
+            [formControl]="getFormControl(i, 'isManagedInternally')">
+            {{
+              "dmp.steps.storage.external.question.isManagedInternally"
+                | translate
+            }}
+          </mat-slide-toggle>
+        </mat-card-actions>
       </mat-card>
     </ng-container>
-    <div *ngIf="externalStorageStep?.controls.length" class="storage-textarea">
+    <div
+      *ngIf="externalStorageStep?.controls.length && anyNonInternalStorage()"
+      class="storage-textarea">
       <app-textarea-wrapper
         [label]="'dmp.steps.storage.external.question.info'"
         [control]="externalStorageInfo">

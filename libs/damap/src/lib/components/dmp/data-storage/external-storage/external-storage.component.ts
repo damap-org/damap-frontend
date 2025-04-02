@@ -31,4 +31,15 @@ export class ExternalStorageComponent {
   removeExternalStorage(index: number) {
     this.externalStorageToRemove.emit(index);
   }
+
+  anyNonInternalStorage(): boolean {
+    let result = false;
+    for (let control of this.externalStorageStep.controls) {
+      if (!(control as UntypedFormGroup).controls.isManagedInternally.value) {
+        result = true;
+        break;
+      }
+    }
+    return result;
+  }
 }

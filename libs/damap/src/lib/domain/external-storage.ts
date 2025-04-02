@@ -5,4 +5,5 @@ export interface ExternalStorage extends Host {
   backupFrequency?: string;
   storageLocation?: string;
   backupLocation?: string;
+  isManagedInternally?: boolean;
 }

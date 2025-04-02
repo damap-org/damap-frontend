@@ -226,6 +226,7 @@
           "add": "Add other storage location",
           "remove": "Remove external storage",
           "question": {
+            "isManagedInternally": "Is this storage provided by a department or service unit of your institution?",
             "name": "Storage Name",
             "location": "Storage Location",
             "backup": {

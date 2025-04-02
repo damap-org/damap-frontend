@@ -670,6 +670,7 @@ export class FormService {
       backupLocation: ['', Validators.maxLength(this.TEXT_SHORT_LENGTH)],
       backupFrequency: ['', Validators.maxLength(this.TEXT_SHORT_LENGTH)],
       datasets: [[]],
+      isManagedInternally: [false],
     });
   }
 
@@ -685,6 +686,7 @@ export class FormService {
       backupLocation: externalStorage.backupLocation || null,
       backupFrequency: externalStorage.backupFrequency || null,
       datasets: externalStorage.datasets || [],
+      isManagedInternally: externalStorage.isManagedInternally || false,
     });
     return formGroup;
   }

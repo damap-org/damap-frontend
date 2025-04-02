@@ -18,6 +18,7 @@ import { StorageFilterPipe } from './storage/storage-filter.pipe';
 import { StorageInfoDialogComponent } from './storage-dialog/storage-info-dialog.component';
 import { ToggleButtonsModule } from '../../../widgets/toggle-buttons/toggle-buttons.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
 
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatDialogModule,
     MatButtonModule,
     MatFormFieldModule,
+    MatSlideToggle,
   ],
   declarations: [
     DataAccessComponent,
