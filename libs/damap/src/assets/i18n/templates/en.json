@@ -6,9 +6,13 @@
           "title": "Project title",
           "description": "Project description",
           "button": "Update project",
-          "acronym": "Update acronym",
+          "acronym": "Project acronym",
+          "funderID": "Funder",
+          "funderType": "Funder ID Type",
           "date": "Enter start and end date",
-          "datehint": "DD/MM/YYYY – DD/MM/YYYY"
+          "datehint": "DD/MM/YYYY – DD/MM/YYYY",
+          "grantID": "Grant ID",
+          "grantType": "Grant ID Type"
         },
         "manual.input": "Input project manually",
         "list": "Choose project from the project database",

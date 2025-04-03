@@ -8,6 +8,7 @@
   <input
     matInput
     [formControl]="control"
+    [matAutocomplete]="auto"
     [placeholder]="placeholder"
     [type]="type || 'text'"
     [required]="required"
@@ -18,6 +19,16 @@
   <mat-hint *ngIf="showLength" align="end"
     >{{ message.value.length }} / {{ maxLength }}</mat-hint
   >
+
+  <mat-autocomplete
+    #auto="matAutocomplete"
+    *ngIf="filteredOptions"
+    (optionSelected)="selectOption($event.option.value)">
+    <mat-option *ngFor="let option of filteredOptions" [value]="option">
+      {{ option }}
+    </mat-option>
+  </mat-autocomplete>
+
   <mat-error *ngIf="!control?.errors?.required && control?.errors?.empty">
     {{ "form.error.empty" | translate }}
   </mat-error>
@@ -29,19 +40,12 @@
       "form.error.maxlength"
         | translate: { value: control.errors.maxlength?.requiredLength }
     }}
-    <!-- "maxlength": { "requiredLength": 255, "actualLength": 273 } -->
   </mat-error>
   <mat-error *ngIf="control?.errors?.currency">
     {{ "form.error.pattern.currency" | translate }}
   </mat-error>
   <mat-error *ngIf="control?.errors?.orcid">
     {{ "form.error.orcid" | translate }}
-  </mat-error>
-  <mat-error *ngIf="control?.errors?.url">
-    {{ "form.error.url" | translate }}
-  </mat-error>
-  <mat-error *ngIf="control?.errors?.uri">
-    {{ "form.error.uri" | translate }}
   </mat-error>
 </mat-form-field>
 <!--{{control.errors | json}}-->

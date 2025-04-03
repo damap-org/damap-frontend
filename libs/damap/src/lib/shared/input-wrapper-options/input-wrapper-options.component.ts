@@ -1,13 +1,21 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { UntypedFormControl, Validators } from '@angular/forms';
+import { MatAutocomplete } from '@angular/material/autocomplete';
 import { MatFormFieldAppearance } from '@angular/material/form-field';
 
 @Component({
-  selector: 'app-input-wrapper [label] [control]',
-  templateUrl: './input-wrapper.component.html',
-  styleUrls: ['./input-wrapper.component.css'],
+  selector: 'app-input-wrapper-options',
+  templateUrl: './input-wrapper-options.component.html',
+  styleUrl: './input-wrapper-options.component.css',
 })
-export class InputWrapperComponent implements OnInit {
+export class InputWrapperOptionsComponent implements OnInit {
   @Input() label: string;
   @Input() control: UntypedFormControl;
   @Input() prefix: string;
@@ -17,8 +25,10 @@ export class InputWrapperComponent implements OnInit {
   @Input() maxLength = 255;
   @Input() info: string;
   @Input() showLength = true;
-  @Input() options: string[];
+  @Input() options: {};
   @Output() inputChange: EventEmitter<string> = new EventEmitter<string>();
+
+  @ViewChild('auto') auto: MatAutocomplete;
 
   required = false;
 
@@ -28,5 +38,14 @@ export class InputWrapperComponent implements OnInit {
 
   onInputChange(value: string): void {
     this.inputChange.emit(value);
+  }
+
+  get filteredOptions() {
+    return Object.keys(this.options); // Only returns options if they exist
+  }
+
+  selectOption(funder: string) {
+    this.control.setValue(this.options[funder]);
+    this.onInputChange(this.options[funder]);
   }
 }

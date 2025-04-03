@@ -3,12 +3,6 @@ import {
   MAT_DATE_FORMATS,
   MAT_DATE_LOCALE,
 } from '@angular/material/core';
-import {
-  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
-  MAT_MOMENT_DATE_FORMATS,
-  MatMomentDateModule,
-  MomentDateAdapter,
-} from '@angular/material-moment-adapter';
 
 import { CommonModule } from '@angular/common';
 import { ErrorMessageModule } from '../../../widgets/error-message/error-message.module';
@@ -33,6 +27,13 @@ import { ProjectListComponent } from './project-list/project-list.component';
 import { SharedModule } from '../../../shared/shared.module';
 import { ToggleButtonsModule } from '../../../widgets/toggle-buttons/toggle-buttons.module';
 import { TranslateModule } from '@ngx-translate/core';
+import {
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+  MAT_MOMENT_DATE_FORMATS,
+  MatMomentDateModule,
+  MomentDateAdapter,
+} from '@angular/material-moment-adapter';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   imports: [
@@ -54,6 +55,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatDatepickerModule,
     MatMomentDateModule,
     MatTabsModule,
+    MatSelectModule,
   ],
   declarations: [
     ProjectComponent,

@@ -21,7 +21,7 @@
                 class="dataset-title-text">
                 {{ truncate(dataset.value.title, 20) }}
               </p>
-              <mat-form-field appearance="fill" [formGroupName]="i">
+              <mat-form-field [formGroupName]="i">
                 <mat-label>{{
                   "dmp.steps.retentionPeriod.question.retentionPeriod"
                     | translate
