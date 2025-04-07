@@ -10,7 +10,7 @@
     [placeholder]="placeholder"
     [type]="type || 'text'"
     [required]="required"
-    [step]="type === 'number' ? 0.01 : null"
+    [step]="type === 'number' ? stepSize : null"
     [maxLength]="maxLength"
     (input)="onInputChange(message.value)"
     #message />
