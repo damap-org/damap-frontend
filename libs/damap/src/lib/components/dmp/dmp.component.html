@@ -298,7 +298,7 @@
       </ng-container>
     </ng-container>
     <ng-container *ngIf="selectedStep === 6">
-      <ng-container *ngIf="showStepIfNewDatasets; else noDatasets">
+      <ng-container *ngIf="showStepIfNewDatasets; else noNewDataset">
         <app-dmp-licenses
           [dmpForm]="dmpForm"
           [datasets]="datasets"></app-dmp-licenses>
@@ -308,7 +308,7 @@
       </ng-container>
     </ng-container>
     <ng-container *ngIf="selectedStep === 7">
-      <ng-container *ngIf="showStepIfNewDatasets; else noDatasets">
+      <ng-container *ngIf="showStepIfNewDatasets; else noNewDataset">
         <app-dmp-repo
           #repo
           [dmpForm]="dmpForm"
@@ -323,7 +323,7 @@
       </ng-container>
     </ng-container>
     <ng-container *ngIf="selectedStep === 8">
-      <ng-container *ngIf="showStep; else noDatasets">
+      <ng-container *ngIf="showStepIfNewDatasets; else noNewDataset">
         <app-dmp-reuse
           [reuseStep]="reuseStep"
           [datasets]="datasets"></app-dmp-reuse>
@@ -352,7 +352,15 @@
 </div>
 
 <ng-template #noDatasets>
-  {{ "dmp.nodatasets" | translate }}
+  <a href="javascript:void(0)" (click)="onNewDatasetClick()">
+    {{ "dmp.nodatasets" | translate }}
+  </a>
+</ng-template>
+
+<ng-template #noNewDataset>
+  <a href="javascript:void(0)" (click)="onNewDatasetClick()">
+    {{ "dmp.nonewdataset" | translate }}
+  </a>
 </ng-template>
 
 <app-actions

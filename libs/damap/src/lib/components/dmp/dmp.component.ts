@@ -136,6 +136,11 @@ export class DmpComponent implements OnInit, OnDestroy {
     });
   }
 
+  onNewDatasetClick() {
+    this.stepper.selectedIndex = 2;
+    this.cdr.detectChanges();
+  }
+
   onStepChange(selectedStep: number) {
     this.selectedStep = selectedStep;
   }

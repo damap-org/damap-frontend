@@ -467,7 +467,8 @@
         }
       }
     },
-    "nodatasets": "Please define datasets first.",
+    "nodatasets": "Please declare any new or existing dataset first.",
+    "nonewdataset": "Please declare a produced (i.e. new) dataset first.",
     "success": {
       "update": "DMP was updated!",
       "save": "DMP was saved!",
