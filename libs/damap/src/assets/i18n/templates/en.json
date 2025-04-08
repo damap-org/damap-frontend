@@ -2,12 +2,17 @@
   "dmp": {
     "steps": {
       "project": {
+        "success": "Updated project information!",
         "input": {
           "title": "Project title",
           "description": "Project description",
-          "button": "Update project",
-          "acronym": "Update acronym",
-          "date": "Enter start and end date",
+          "info": "Project information",
+          "button": {
+            "existing": "Update project info",
+            "new": "Add project"
+          },
+          "acronym": "Acronym",
+          "date": "Start and end date",
           "datehint": "DD/MM/YYYY – DD/MM/YYYY"
         },
         "manual.input": "Input project manually",

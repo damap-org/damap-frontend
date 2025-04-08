@@ -13,6 +13,7 @@ import {
 } from '@angular/forms';
 
 import { Project } from '../../../../domain/project';
+import { FeedbackService } from '../../../../services/feedback.service';
 
 @Component({
   selector: 'app-manual-project-input',
@@ -35,6 +36,8 @@ export class ManualProjectInputComponent implements OnChanges {
     acronym: new UntypedFormControl('', [Validators.maxLength(255)]),
   });
 
+  constructor(private feedbackService: FeedbackService) {}
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.project && !this.project?.universityId) {
       this.form.patchValue(this.project);
@@ -42,6 +45,9 @@ export class ManualProjectInputComponent implements OnChanges {
   }
 
   updateProject(): void {
+    if (this.project !== null) {
+      this.feedbackService.success('dmp.steps.project.success');
+    }
     const project = this.form.getRawValue();
     this.projectUpdate.emit(project);
   }

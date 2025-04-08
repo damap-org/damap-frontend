@@ -1,5 +1,5 @@
 <mat-label class="label-title mat-title-large" id="example-radio-group-label">{{
-  "dmp.steps.project.input.title" | translate
+  "dmp.steps.project.input.info" | translate
 }}</mat-label>
 <mat-card class="manual-project-input-card card-shadow">
   <mat-card-content>
@@ -9,7 +9,7 @@
           class="input-full"
           [control]="title"
           label="{{
-            'dmp.steps.project.input.button' | translate
+            'dmp.steps.project.input.title' | translate
           }}"></app-input-wrapper>
         <app-input-wrapper
           class="input-fill"
@@ -47,7 +47,11 @@
         mat-raised-button
         [disabled]="form.invalid"
         (click)="updateProject()">
-        {{ "dmp.steps.project.input.button" | translate }}
+        {{
+          project !== null
+            ? ("dmp.steps.project.input.button.existing" | translate)
+            : ("dmp.steps.project.input.button.new" | translate)
+        }}
       </button>
     </form>
   </mat-card-content>
