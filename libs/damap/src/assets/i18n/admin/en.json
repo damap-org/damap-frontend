@@ -87,7 +87,11 @@
           "update": "Edit",
           "add": "Add",
           "cancel": "Cancel"
-        }
+        },
+        "tooltip": {
+          "color": "Click to select a background color for the banner"
+        },
+        "preview": "Preview"
       }
     }
   }

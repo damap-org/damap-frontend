@@ -1,4 +1,4 @@
-import { compareContributors, Contributor } from '../domain/contributor';
+import { Contributor, compareContributors } from '../domain/contributor';
 import {
   FormArray,
   FormControl,
@@ -24,8 +24,8 @@ import { Storage } from '../domain/storage';
 import { ccBy } from '../widgets/license-wizard/license-wizard-list';
 import { currencyValidator } from '../validators/currency.validator';
 import { notEmptyValidator } from '../validators/not-empty.validator';
-import { urlValidator } from '../validators/url.validator';
 import { uriValidator } from '../validators/uri.validator';
+import { urlValidator } from '../validators/url.validator';
 
 @Injectable({
   providedIn: 'root',
@@ -33,6 +33,7 @@ import { uriValidator } from '../validators/uri.validator';
 export class FormService {
   private TEXT_MAX_LENGTH = 4000;
   private TEXT_SHORT_LENGTH = 255;
+  private readonly DEFAULT_BANNER_COLOR = '#E6F3FF';
   private readonly form: UntypedFormGroup;
   private readonly initialFormValue;
 
@@ -532,7 +533,7 @@ export class FormService {
       ],
       dismissible: [true],
       color: [
-        '',
+        this.DEFAULT_BANNER_COLOR,
         [
           Validators.required,
           Validators.maxLength(this.TEXT_SHORT_LENGTH),

@@ -54,6 +54,6 @@ export class BannerDialogComponent {
   }
 
   isDisabled(): boolean {
-    return this.title.invalid || this.description.invalid || this.color.invalid;
+    return !this.banner.valid || (!this.banner.dirty && this.mode === 'add');
   }
 }

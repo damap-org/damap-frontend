@@ -18,7 +18,9 @@
         id="backgroundColor"
         type="color"
         [formControl]="color"
-        class="color-picker-input" />
+        class="color-picker-input"
+        [matTooltip]="'admin.dialog.banner.tooltip.color' | translate"
+        matTooltipPosition="above" />
       <label for="backgroundColor" class="color-picker-label">
         {{ "admin.dialog.banner.captions.color" | translate }}
       </label>
