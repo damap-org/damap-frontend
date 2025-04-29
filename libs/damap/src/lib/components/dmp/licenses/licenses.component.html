@@ -54,7 +54,9 @@
               {{ "dmp.steps.licensing.warning.legalRestrictions" | translate }}
             </ng-container>
           </div>
-          <mat-card-content>
+        </ng-container>
+        <mat-card-content>
+          <ng-container *ngIf="dataset.value.dataAccess !== accessType.CLOSED">
             <div class="mat-card-container">
               <mat-form-field class="full-width">
                 <mat-label>{{
@@ -63,7 +65,7 @@
                 <mat-select formControlName="license">
                   <mat-option
                     *ngFor="let license of licenses"
-                    [value]="license.id | translate">
+                    [value]="license.id">
                     {{ license.name | translate }}
                   </mat-option>
                 </mat-select>
@@ -73,8 +75,8 @@
                   setLicenseSelectorResult($event, i)
                 "></app-license-wizard>
             </div>
-          </mat-card-content>
-        </ng-container>
+          </ng-container>
+        </mat-card-content>
 
         <mat-card-content
           class="card-content-estimation"

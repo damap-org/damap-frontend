@@ -548,6 +548,14 @@
       "library": "Library"
     },
     "license": {
+      "nolicense": {
+        "name": "No License",
+        "description": "This should be selected when no license is granted."
+      },
+      "custom": {
+        "name": "Custom License",
+        "description": "This should be selected when a custom license is granted."
+      },
       "agpl1": {
         "name": "Affero General Public License v1.0 only",
         "description": "The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure cooperation with the community in the case of network server software."

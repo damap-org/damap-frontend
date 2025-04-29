@@ -30,7 +30,6 @@ import { LicenseDetails } from '../../domain/license-details';
  compatibility - list of licenses (using code) which are compatible, some licenses came without this field
 
  ***/
-
 export const agpl1 = {
   id: 'AGPL1',
   name: 'license.wizard.license.agpl1.name',
@@ -578,6 +577,30 @@ export const pddl = {
   categories: ['public', 'data', 'public-domain'],
   labels: ['public'],
 };
+export const nolicense = {
+  id: 'NOLICENSE',
+  name: 'license.wizard.license.nolicense.name',
+  priority: null,
+  available: null,
+  url: null,
+  description: 'license.wizard.license.nolicense.description',
+  categories: [],
+  labels: null,
+  code: null,
+  compatibility: null,
+};
+export const custom = {
+  id: 'CUSTOM',
+  name: 'license.wizard.license.custom.name',
+  priority: null,
+  available: null,
+  url: null,
+  description: 'license.wizard.license.custom.description',
+  categories: [],
+  labels: null,
+  code: null,
+  compatibility: null,
+};
 
 export const LicenseDefinitions: LicenseDetails[] = [
   agpl1,
@@ -621,6 +644,8 @@ export const LicenseDefinitions: LicenseDetails[] = [
   odbl,
   odcBy,
   pddl,
+  nolicense,
+  custom,
 ];
 
 export const SoftwareLicenses: LicenseDetails[] = [
