@@ -15,6 +15,7 @@ import { Banner } from '../../domain/banner';
 import { BannerDialogComponent } from './banner-dialog/banner-dialog.component';
 import { DeleteStorageWarningDialogComponent } from '../../widgets/internal-storage-table/dialog/delete-storage-warning-dialog.component';
 import { DeleteBannerWarningDialogComponent } from './banner-dialog/delete-banner-warning-dialog.component';
+import { UserManagementTableComponent } from '../../widgets/user-management-table/user-management-table.component';
 import validator from 'validator';
 
 @Component({

@@ -12,16 +12,11 @@ import { MatTableModule } from '@angular/material/table';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { AdminComponent } from './admin.component';
-import { InternalStorageTableModule } from '../../widgets/internal-storage-table/internal-storage-table.module';
-import { InternalStorageDialogComponent } from './internal-storage-dialog/internal-storage-dialog.component';
+import { AccountComponent } from './account.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { InternalStoragaTranslationTableModule } from '../../widgets/internal-storage-translation-table/internal-storage-translation-table.module';
-import { InternalStorageTranslationDialogComponent } from './internal-storage-translation-dialog/internal-storage-translation-dialog.component';
-import { BannerDialogComponent } from './banner-dialog/banner-dialog.component';
-import { UserManagementTableModule } from '../../widgets/user-management-table/user-management-table.module';
+import { ApiKeyTableModule } from '../../widgets/api-key-table/api-key-table.module';
 
 @NgModule({
   imports: [
@@ -31,9 +26,8 @@ import { UserManagementTableModule } from '../../widgets/user-management-table/u
     DmpTableModule,
     ErrorMessageModule,
     ExportWarningModule,
-    InternalStorageTableModule,
-    InternalStoragaTranslationTableModule,
     ReactiveFormsModule,
+    ApiKeyTableModule,
     // Materials
     MatIconModule,
     MatButtonModule,
@@ -44,24 +38,17 @@ import { UserManagementTableModule } from '../../widgets/user-management-table/u
     MatSelectModule,
     SharedModule,
     MatCheckboxModule,
-    UserManagementTableModule,
   ],
-  declarations: [
-    AdminComponent,
-    InternalStorageDialogComponent,
-    InternalStorageTranslationDialogComponent,
-    BannerDialogComponent,
-  ],
+  declarations: [AccountComponent],
   exports: [
     CommonModule,
     TranslateModule,
     RouterModule,
     DmpTableModule,
     ErrorMessageModule,
-    AdminComponent,
+    AccountComponent,
     ExportWarningModule,
-    InternalStorageTableModule,
-    UserManagementTableModule,
+    ApiKeyTableModule,
 
     // Materials
     MatIconModule,
@@ -73,4 +60,4 @@ import { UserManagementTableModule } from '../../widgets/user-management-table/u
     MatSelectModule,
   ],
 })
-export class AdminModule {}
+export class AccountModule {}

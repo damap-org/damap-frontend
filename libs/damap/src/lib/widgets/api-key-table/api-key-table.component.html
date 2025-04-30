@@ -1,0 +1,63 @@
+<div class="api-key-container">
+  <h2>{{ "account.apikey.title" | translate }}</h2>
+  <app-info-message>
+    <span class="info-text">{{
+      "account.apikey.infoField.part1" | translate
+    }}</span>
+    <p class="info-text">{{ "account.apikey.infoField.part2" | translate }}</p>
+    <span class="info-text">{{
+      "account.apikey.infoField.part3" | translate
+    }}</span>
+    <code class="api-key-code">{{
+      "account.apikey.infoField.code" | translate
+    }}</code>
+  </app-info-message>
+
+  <div class="parent-div">
+    <app-input-wrapper
+      [label]="'account.apikey.new-label' | translate"
+      [control]="apiKeyName"></app-input-wrapper>
+  </div>
+
+  <div class="add-button-container">
+    <button
+      mat-raised-button
+      (click)="addApiKey()"
+      [disabled]="loading"
+      class="add-button button-color-primary">
+      <mat-icon>add</mat-icon>
+      {{ "account.apikey.add" | translate }}
+    </button>
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="refreshUserRoles()"
+      class="refresh-button button-color-primary">
+      <mat-icon>refresh</mat-icon>
+      {{ "account.apikey.refresh-roles" | translate }}
+    </button>
+  </div>
+
+  <hr />
+
+  <mat-card
+    *ngFor="let apiKey of apiKeys"
+    class="api-key-card mat-elevation-z2">
+    <div class="api-key-content">
+      <span class="api-key-text">{{ apiKey }}</span>
+      <button
+        mat-icon-button
+        color="warn"
+        aria-label="Delete API key"
+        (click)="removeApiKey(apiKey)"
+        [disabled]="loading">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </mat-card>
+
+  <div class="loading-spinner" *ngIf="loading">
+    <mat-spinner diameter="30"></mat-spinner>
+  </div>
+</div>

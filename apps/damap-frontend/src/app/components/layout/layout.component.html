@@ -84,6 +84,16 @@
             "layout.menu.admin" | translate
           }}</span>
         </a>
+        <a
+          mat-list-item
+          [routerLink]="'/account'"
+          routerLinkActive="active-icon material-icon-primary"
+          [routerLinkActiveOptions]="{ exact: true }">
+          <mat-icon class="menu-icon-size outline">person</mat-icon>
+          <span *ngIf="!isCollapsed" class="menu-icon-text">{{
+            "layout.menu.account" | translate
+          }}</span>
+        </a>
       </div>
       <mat-divider></mat-divider>
     </mat-nav-list>

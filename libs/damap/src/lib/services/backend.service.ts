@@ -29,6 +29,8 @@ import { SearchResult } from '../domain/search/search-result';
 import { TranslateService } from '@ngx-translate/core';
 import { Version } from '../domain/version';
 import { Banner } from '../domain/banner';
+import { ApiKeyDO } from '../domain/apikey';
+import { User, UserPage } from '../domain/user';
 
 @Injectable({
   providedIn: 'root',
@@ -450,6 +452,43 @@ export class BackendService {
 
   deleteAppBanner(): Observable<void> {
     return this.http.delete<void>(`${this.backendUrl}admin/banner`);
+  }
+
+  getApiKeys(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.backendUrl}account/api-keys`);
+  }
+
+  addApiKey(keyName: string): Observable<ApiKeyDO> {
+    return this.http.post<ApiKeyDO>(
+      `${this.backendUrl}account/api-keys?keyName=${keyName}`,
+      {},
+    );
+  }
+
+  removeApiKey(key: string): Observable<boolean> {
+    return this.http.delete<boolean>(
+      `${this.backendUrl}account/api-keys/${key}`,
+    );
+  }
+
+  getUserListPaginated(page: number, size: number): Observable<UserPage> {
+    return this.http.get<UserPage>(
+      `${this.backendUrl}account/users?page=${page}&size=${size}`,
+    );
+  }
+
+  resetApiKey(userId: string): Observable<boolean> {
+    return this.http.post<boolean>(
+      `${this.backendUrl}account/api-keys/reset-all?userId=${userId}`,
+      {},
+    );
+  }
+
+  refreshUserApiKeyRole(): Observable<void> {
+    return this.http.post<void>(
+      `${this.backendUrl}account/refresh-user-role`,
+      {},
+    );
   }
 
   private handleError(message = 'http.error.standard') {

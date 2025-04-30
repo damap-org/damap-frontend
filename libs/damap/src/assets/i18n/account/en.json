@@ -1,0 +1,17 @@
+{
+  "account": {
+    "apikey": {
+      "new-label": "New API Key Name:",
+      "add": "Add API Key",
+      "refresh-roles": "Refresh User Roles",
+      "title": "API Key",
+      "infoField": {
+        "part1": "You can create and manage multiple API keys for different use cases (e.g., testing, services, apps).",
+        "part2": "To update the roles or permissions associated with your API keys after a change, use the Refresh User Roles button.",
+        "part3": "To authenticate using an API key, include it in the request header as follows:",
+        "code": "Authorization: ApiKey XXXXXXXXXX"
+      }
+    },
+    "title": "Account Page"
+  }
+}

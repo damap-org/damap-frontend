@@ -89,6 +89,10 @@
           "cancel": "Cancel"
         }
       }
+    },
+    "user-management": {
+      "title": "User Management",
+      "reset-api-keys": "Reset API Keys"
     }
   }
 }

@@ -14,6 +14,8 @@ import { DmpInstructionsComponent } from './components/dmp-instructions/dmp-inst
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminModule } from './components/admin/admin.module';
 import { AdminGuard } from './guards/admin.guard';
+import { AccountComponent } from './components/account/account.component';
+import { AccountModule } from './components/account/account.module';
 
 export const DAMAP_ROUTES: Route[] = [
   { path: 'dashboard', component: DashboardComponent },
@@ -32,9 +34,10 @@ export const DAMAP_ROUTES: Route[] = [
   },
   { path: 'gdpr', component: GdprComponent },
   { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
+  { path: 'account', component: AccountComponent },
 ];
 
-const MODULES = [DashboardModule, PlansModule, AdminModule];
+const MODULES = [DashboardModule, PlansModule, AdminModule, AccountModule];
 
 @NgModule({
   imports: [

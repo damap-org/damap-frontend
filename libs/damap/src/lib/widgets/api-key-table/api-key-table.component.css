@@ -1,0 +1,41 @@
+.api-key-card {
+  margin-bottom: 12px;
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+}
+
+.api-key-text {
+  font-family: monospace;
+  font-size: 14px;
+  word-break: break-all;
+  flex: 1;
+  margin-right: 12px;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.api-key-input {
+  width: 50%;
+}
+
+.add-button-container {
+  display: flex;
+  gap: 10px;
+  width: 50%;
+}
+
+.add-button,
+.refresh-button {
+  flex: 1;
+}
+
+.parent-div {
+  width: 50%;
+}
