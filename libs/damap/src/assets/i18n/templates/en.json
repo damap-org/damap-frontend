@@ -450,18 +450,19 @@
           }
         },
         "storage": {
-          "nonestored": "No (produced) datasets to be stored.",
-          "nodata": "No data defined yet.",
-          "alldata": "All (produced) datasets are stored.",
+          "allinfo": "All information necessary provided.",
+          "nonestored": "No datasets will be stored, as no produced or reused datasets have been specified.",
+          "missingstorage": "Some data is not stored.",
           "missingexplanation": " Usage explanation is missing."
         },
         "licensing": {
           "complete": "All information necessary provided.",
-          "incomplete": "Some information is missing."
+          "incomplete": "Some information is missing.",
+          "noproduceddata": "No produced dataset has been specified."
         },
         "repositories": {
           "nodata": "No data to be deposited.",
-          "nodataspecified": "No data defined yet.",
+          "noproduceddata": "No produced dataset has been specified.",
           "deposited": {
             "incomplete": "Not all data deposited yet.",
             "complete": "All data are deposited."

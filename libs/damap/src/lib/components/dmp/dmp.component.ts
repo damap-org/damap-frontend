@@ -203,7 +203,7 @@ export class DmpComponent implements OnInit, OnDestroy {
 
   get showStepIfNewDatasets() {
     return (
-      this.specifyDataStep.value.kind === DataKind.SPECIFY &&
+      this.specifyDataStep?.value.kind === DataKind.SPECIFY &&
       this.datasets?.value.find(dataset => dataset.source == DataSource.NEW)
     );
   }
@@ -304,6 +304,7 @@ export class DmpComponent implements OnInit, OnDestroy {
 
   removeDataset(index: number) {
     this.formService.removeDatasetFromForm(index);
+    this.dataSource = SummaryService.dmpSummary(this.dmpForm.getRawValue());
   }
 
   addStorage(storage: InternalStorage) {
@@ -408,84 +409,96 @@ export class DmpComponent implements OnInit, OnDestroy {
       this.dataSource[index]?.completeness === 100
     )
       return true;
-    else if (
+    if (
       icon === 'edit' &&
       (index < 3 || this.showStep) &&
       index !== 10 &&
       this.showEditIcon(index)
     )
       return true;
-    else if (icon === 'lock' && index >= 3 && !this.showStep && index !== 10)
+    if (icon === 'lock' && index >= 3 && !this.showStep && index !== 10)
       return true;
-    else if (
+    if (
       icon === 'text_snippet' &&
       index === 10 &&
       this.stepper.selectedIndex !== index &&
       this.checkCompletenessForm() === 'completed'
     )
       return true;
-    else return false;
+    return false;
   }
 
   iconsValidatorEdit(index: number, icon: string): boolean {
     if (icon === 'lock' && index >= 3 && !this.showStep && index !== 10)
       return true;
-    else if (
+    if (
       icon === 'edit' &&
       (index < 3 || (index >= 3 && this.showStep && index !== 10))
     )
       return true;
-    else if (
+    if (
       icon === 'text_snippet' &&
       index === 10 &&
       (this.checkCompletenessForm() === false ||
         this.checkCompletenessForm() === 'editing')
     )
       return true;
-    else return false;
+    return false;
   }
 
   iconsValidatorNumber(
     index: number,
     icon: string,
     selectStep: number,
-    style: string,
+    style: string = '',
   ): boolean {
+    const isProjectPeopleDataSteps = index < 3;
+    const isDocumentationStorageLegalSteps = index >= 3 && index < 6;
+    const isLicensingRepoReuseSteps = index >= 6 && index < 9;
+    const isCostsStep = index === 9;
+    const isSummaryStep = index === 10;
+
+    const completeness = this.checkCompletenessForm();
+
     if (
       icon === 'number' &&
-      (index < 3 || (index >= 3 && this.showStep && index != 10)) &&
+      (isProjectPeopleDataSteps ||
+        ((isDocumentationStorageLegalSteps || isCostsStep) && this.showStep) ||
+        (isLicensingRepoReuseSteps && this.showStepIfNewDatasets)) &&
       selectStep !== index &&
       !this.showEditIcon(index)
-    ) {
+    )
       return true;
-    } else if (
+
+    if (
       icon === 'edit' &&
-      (index < 3 || (index >= 3 && this.showStep && index != 10)) &&
+      (isProjectPeopleDataSteps ||
+        (!isProjectPeopleDataSteps && !isSummaryStep && this.showStep)) &&
       selectStep === index
     ) {
       return true;
-    } else if (
+    }
+    if (
       icon === 'text_snippet' &&
       style == 'gray' &&
-      index === 10 &&
-      this.checkCompletenessForm() === false
+      isSummaryStep &&
+      completeness === false
     )
       return true;
-    else if (
+    if (
       icon === 'text_snippet' &&
       style == 'success' &&
-      index === 10 &&
-      this.checkCompletenessForm() === 'editing'
+      isSummaryStep &&
+      (completeness === 'editing' || completeness === 'completed')
     )
       return true;
-    else if (
-      icon === 'text_snippet' &&
-      style == 'success' &&
-      index === 10 &&
-      this.checkCompletenessForm() === 'completed'
+    if (
+      icon === 'lock' &&
+      (((isDocumentationStorageLegalSteps || isCostsStep) && !this.showStep) ||
+        (isLicensingRepoReuseSteps &&
+          !this.showStepIfNewDatasets &&
+          selectStep !== index))
     )
-      return true;
-    else if (icon === 'lock' && index >= 3 && !this.showStep && index < 10)
       return true;
     else return false;
   }

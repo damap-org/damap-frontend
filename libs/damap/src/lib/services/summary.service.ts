@@ -217,9 +217,9 @@ export class SummaryService {
       completeness: 0,
       status: [],
     };
-    const datasets = this.getDatasetsBySource(dmp.datasets, DataSource.NEW);
+    const datasets = dmp.datasets;
     if (datasets.length == 0) {
-      storageLevel.completeness = 100;
+      storageLevel.completeness = 0;
       storageLevel.status.push('dmp.steps.summary.storage.nonestored');
       return storageLevel;
     }
@@ -232,24 +232,30 @@ export class SummaryService {
         ...SummaryService.getAllHostDatasets(eStorage),
       ]),
     ];
+    let storedDatasetsCount = 0;
 
-    if (!storage.length && !eStorage.length && !storageDatasets.length) {
-      storageLevel.completeness = 0;
-      storageLevel.status.push('dmp.steps.summary.noinfo');
-    } else if (storageDatasets.length < datasets.length) {
-      storageLevel.completeness =
-        100 * (storageDatasets.length / datasets.length);
-      storageLevel.status.push('dmp.steps.summary.someinfo');
-    } else {
-      storageLevel.completeness = 100;
-      storageLevel.status.push('dmp.steps.summary.storage.alldata');
+    for (const dataset of datasets) {
+      if (storageDatasets.includes(dataset.referenceHash)) {
+        storedDatasetsCount++;
+      }
     }
-    if (eStorage.length && !dmp.externalStorageInfo) {
-      storageLevel.completeness =
-        storageLevel.completeness > 0 ? storageLevel.completeness * 0.5 : 0;
+    storageLevel.completeness = Math.max(
+      (storedDatasetsCount / datasets.length) * 100 - 25,
+      25,
+    );
+    if (storageLevel.completeness < 75) {
+      storageLevel.status.push('dmp.steps.summary.storage.missingstorage');
+    }
+
+    if (dmp.externalStorageInfo) {
+      storageLevel.completeness += 25;
+    } else {
       storageLevel.status.push('dmp.steps.summary.storage.missingexplanation');
     }
 
+    if (storageLevel.completeness == 100) {
+      storageLevel.status.push('dmp.steps.summary.storage.allinfo');
+    }
     return storageLevel;
   }
 
@@ -368,7 +374,10 @@ export class SummaryService {
       licensesLevel.completeness -= 30;
     }
 
-    if (licensesLevel.completeness < 100) {
+    if (newDatasets.length == 0) {
+      licensesLevel.completeness = 0;
+      licensesLevel.status.push('dmp.steps.summary.licensing.noproduceddata');
+    } else if (licensesLevel.completeness < 100) {
       licensesLevel.status.push('dmp.steps.summary.licensing.incomplete');
     } else {
       licensesLevel.status.push('dmp.steps.summary.licensing.complete');
@@ -386,9 +395,7 @@ export class SummaryService {
     const repoDatasets: string[] = [
       ...new Set([...this.getAllHostDatasets(dmp.repositories)]),
     ];
-    const newDatasets = dmp.datasets.filter(
-      d => d.source === DataSource.NEW && d.dataAccess === DataAccessType.OPEN,
-    );
+    const newDatasets = dmp.datasets.filter(d => d.source === DataSource.NEW);
     const undepositedDataset = newDatasets.find(
       d => !repoDatasets.includes(d.referenceHash),
     );
@@ -397,6 +404,11 @@ export class SummaryService {
       repositoriesLevel.completeness = 0;
       repositoriesLevel.status.push(
         'dmp.steps.summary.repositories.deposited.incomplete',
+      );
+    } else if (newDatasets.length == 0) {
+      repositoriesLevel.completeness = 0;
+      repositoriesLevel.status.push(
+        'dmp.steps.summary.repositories.noproduceddata',
       );
     } else {
       repositoriesLevel.completeness = 100;
