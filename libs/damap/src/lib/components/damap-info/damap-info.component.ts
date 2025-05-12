@@ -10,7 +10,6 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'damap-damap-info',
-  standalone: true,
   imports: [
     TranslateModule,
     RouterModule,
@@ -23,6 +22,7 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
   templateUrl: './damap-info.component.html',
   styleUrl: './damap-info.component.css',
+  standalone: true,
 })
 export class DamapInfoComponent {
   readonly panelOpenState = signal(true);

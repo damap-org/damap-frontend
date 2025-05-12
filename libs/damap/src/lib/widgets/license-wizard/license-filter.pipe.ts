@@ -3,6 +3,7 @@ import { LicenseDetails } from '../../domain/license-details';
 
 @Pipe({
   name: 'licenseFilter',
+  standalone: false,
 })
 export class LicenseFilterPipe implements PipeTransform {
   transform(data: LicenseDetails[], searchText: string) {

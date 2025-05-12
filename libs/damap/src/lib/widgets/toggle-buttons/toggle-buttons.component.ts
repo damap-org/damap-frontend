@@ -5,6 +5,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   selector: 'app-toggle-buttons',
   templateUrl: './toggle-buttons.component.html',
   styleUrls: ['./toggle-buttons.component.css'],
+  standalone: false,
 })
 export class ToggleButtonsComponent {
   @Input() selectedView: 'primaryView' | 'secondaryView' = 'primaryView';

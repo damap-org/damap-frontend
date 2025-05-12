@@ -9,6 +9,7 @@ import {
   selector: 'app-dmp-external-storage',
   templateUrl: './external-storage.component.html',
   styleUrls: ['./external-storage.component.css'],
+  standalone: false,
 })
 export class ExternalStorageComponent {
   @Input() externalStorageStep: UntypedFormArray;

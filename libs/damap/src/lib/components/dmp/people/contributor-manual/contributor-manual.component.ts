@@ -13,6 +13,7 @@ import { orcidValidator } from '../../../../validators/orcid.validator';
   selector: 'app-contributor-manual',
   templateUrl: './contributor-manual.component.html',
   styleUrls: ['./contributor-manual.component.css'],
+  standalone: false,
 })
 export class ContributorManualComponent {
   @Output() contactPerson = new EventEmitter<any>();

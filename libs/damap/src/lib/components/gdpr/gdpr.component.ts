@@ -8,10 +8,10 @@ import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
   selector: 'damap-gdpr',
-  standalone: true,
   imports: [CommonModule, TranslateModule, MatExpansionModule],
   templateUrl: './gdpr.component.html',
   styleUrls: ['./gdpr.component.css'],
+  standalone: true,
 })
 export class GdprComponent implements OnInit {
   gdpr$: Observable<Gdpr[]>;

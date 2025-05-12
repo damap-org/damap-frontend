@@ -6,6 +6,7 @@ import { Dataset } from '../../../../domain/dataset';
   selector: 'app-version-view-repositories',
   templateUrl: './version-view-repositories.component.html',
   styleUrls: [],
+  standalone: false,
 })
 export class VersionViewRepositoriesComponent {
   @Input() repositories: Repository[];

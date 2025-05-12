@@ -6,6 +6,7 @@ import { UntypedFormControl } from '@angular/forms';
   selector: 'app-search-field',
   templateUrl: './search-field.component.html',
   styleUrl: './search-field.component.css',
+  standalone: false,
 })
 export class SearchFieldComponent {
   @Input() label: string = '';

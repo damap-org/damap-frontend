@@ -16,6 +16,7 @@ import { Observable, of } from 'rxjs';
 
 @Pipe({
   name: 'translate',
+  standalone: false,
 })
 export class TranslatePipeMock implements PipeTransform {
   public name = 'translate';

@@ -4,6 +4,7 @@ import { InternalStorage } from '../../../../domain/internal-storage';
 
 @Pipe({
   name: 'storageFilter',
+  standalone: false,
 })
 export class StorageFilterPipe implements PipeTransform {
   transform(data: InternalStorage[], selected: Storage[]) {

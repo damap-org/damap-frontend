@@ -15,6 +15,7 @@ import { LicenseDefinitions } from '../../../widgets/license-wizard/license-wiza
   selector: 'app-dmp-licenses',
   templateUrl: './licenses.component.html',
   styleUrls: ['./licenses.component.css'],
+  standalone: false,
 })
 export class LicensesComponent {
   @Input() dmpForm: UntypedFormGroup;

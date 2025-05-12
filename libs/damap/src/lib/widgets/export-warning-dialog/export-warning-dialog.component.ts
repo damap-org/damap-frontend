@@ -8,6 +8,7 @@ import { UntypedFormGroup } from '@angular/forms';
   selector: 'damap-export-warning-dialog',
   templateUrl: './export-warning-dialog.html',
   styleUrls: ['./export-warning-dialog.css'],
+  standalone: false,
 })
 export class ExportWarningDialogComponent {
   @Input() dmpForm: UntypedFormGroup;

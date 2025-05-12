@@ -8,6 +8,7 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
   selector: 'app-data-deletion',
   templateUrl: './data-deletion.component.html',
   styleUrls: ['./data-deletion.component.css'],
+  standalone: false,
 })
 export class DataDeletionComponent {
   @Input() dataset: UntypedFormGroup;

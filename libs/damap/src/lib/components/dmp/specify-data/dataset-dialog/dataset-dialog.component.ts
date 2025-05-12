@@ -25,6 +25,7 @@ import { DataType } from '../../../../domain/enum/data-type.enum';
   selector: 'app-dataset-dialog',
   templateUrl: './dataset-dialog.component.html',
   styleUrls: ['./dataset-dialog.component.css'],
+  standalone: false,
 })
 export class DatasetDialogComponent {
   readonly FILE_TYPES = FILE_TYPES;

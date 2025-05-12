@@ -16,6 +16,7 @@ import { MatStepper } from '@angular/material/stepper';
   selector: 'app-dmp-summary',
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.css'],
+  standalone: false,
 })
 export class SummaryComponent implements OnInit {
   constructor(public store: Store<AppState>) {}

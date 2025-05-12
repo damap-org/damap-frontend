@@ -10,6 +10,7 @@ import {
   selector: 'app-repo-filter',
   templateUrl: './repo-filter.component.html',
   styleUrls: ['./repo-filter.component.css'],
+  standalone: false,
 })
 export class RepoFilterComponent {
   @Input() filters: { [key: string]: { id: string; label: string }[] };
@@ -40,6 +41,7 @@ export class RepoFilterComponent {
 @Component({
   selector: 'filter-dialog',
   templateUrl: './filter-dialog.html',
+  standalone: false,
 })
 export class FilterDialogComponent {
   readonly FILTER = REPO_FILTERS;

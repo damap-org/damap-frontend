@@ -3,6 +3,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'app-data-storage-instruction',
   templateUrl: './data-storage-instruction.component.html',
+  standalone: false,
 })
 export class DataStorageInstructionComponent implements OnInit {
   @Output() selectionChange = new EventEmitter<

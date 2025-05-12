@@ -8,6 +8,7 @@ import { Agreement } from '../../../../domain/enum/agreement.enum';
   selector: 'app-version-view-legal-ethical-aspects',
   templateUrl: './version-view-legal-ethical-aspects.component.html',
   styleUrls: [],
+  standalone: false,
 })
 export class VersionViewLegalEthicalAspectsComponent {
   @Input() dmp: Dmp;

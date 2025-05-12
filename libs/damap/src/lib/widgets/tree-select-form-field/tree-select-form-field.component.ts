@@ -102,6 +102,7 @@ export class TreeDatabase {
   templateUrl: './tree-select-form-field.component.html',
   styleUrls: ['./tree-select-form-field.component.css'],
   providers: [TreeDatabase],
+  standalone: false,
 })
 export class TreeSelectFormFieldComponent implements OnInit {
   /** Map from flat node to nested node. This helps us find the nested node to be modified */

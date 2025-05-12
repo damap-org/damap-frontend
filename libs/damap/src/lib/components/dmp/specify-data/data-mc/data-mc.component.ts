@@ -6,6 +6,7 @@ import { DataKind } from '../../../../domain/enum/data-kind.enum';
   selector: 'app-data-mc',
   templateUrl: './data-mc.component.html',
   styleUrls: ['./data-mc.component.css'],
+  standalone: false,
 })
 export class DataMcComponent {
   @Input() control: UntypedFormControl;

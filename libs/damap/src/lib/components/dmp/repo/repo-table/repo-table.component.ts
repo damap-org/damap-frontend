@@ -35,6 +35,7 @@ import { Repository } from '../../../../domain/repository';
       ),
     ]),
   ],
+  standalone: false,
 })
 export class RepoTableComponent implements OnChanges, AfterViewInit {
   @Input() selectedRepos: Repository[];

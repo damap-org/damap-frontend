@@ -8,7 +8,6 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-info-card',
-  standalone: true,
   imports: [
     CommonModule,
     MatCardModule,
@@ -18,6 +17,7 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
   templateUrl: './info-card.component.html',
   styleUrl: './info-card.component.css',
+  standalone: true,
 })
 export class InfoCardComponent implements OnInit, OnChanges {
   @Input() infoLabel: InfoBoxDetails = {};

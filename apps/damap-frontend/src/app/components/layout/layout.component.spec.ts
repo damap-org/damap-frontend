@@ -14,7 +14,10 @@ import { OAuthService } from 'angular-oauth2-oidc';
 import { TranslateTestingModule } from '@damap/core';
 import { of } from 'rxjs';
 
-@Component({ template: '' })
+@Component({
+  template: '',
+  standalone: false,
+})
 class DummyComponent {}
 
 describe('LayoutComponent', () => {

@@ -29,6 +29,7 @@ import { selectDmpSaving } from '../../../store/selectors/dmp.selectors';
   selector: 'app-actions',
   templateUrl: './dmp-actions.component.html',
   styleUrls: ['./dmp-actions.component.css'],
+  standalone: false,
 })
 export class DmpActionsComponent implements OnInit, OnDestroy {
   @Input() stepChanged$: Subject<any>;
@@ -179,6 +180,7 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
   selector: 'app-save-version-dialog',
   templateUrl: 'save-version-dialog.html',
   styleUrls: ['./dmp-actions.component.css'],
+  standalone: false,
 })
 export class SaveVersionDialogComponent {
   versionName = '';

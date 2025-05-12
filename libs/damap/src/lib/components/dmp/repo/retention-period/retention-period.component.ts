@@ -6,6 +6,7 @@ import { DataSource } from '../../../../domain/enum/data-source.enum';
   selector: 'app-retention-period',
   templateUrl: './retention-period.component.html',
   styleUrls: ['./retention-period.component.css'],
+  standalone: false,
 })
 export class RetentionPeriodComponent {
   @Input() dmpForm: UntypedFormGroup;

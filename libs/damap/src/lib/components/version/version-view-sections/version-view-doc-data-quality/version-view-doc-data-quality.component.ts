@@ -6,6 +6,7 @@ import { DataQualityType } from '../../../../domain/enum/data-quality-type.enum'
   selector: 'app-version-view-doc-data-quality',
   templateUrl: './version-view-doc-data-quality.component.html',
   styleUrls: [],
+  standalone: false,
 })
 export class VersionViewDocDataQualityComponent {
   @Input() dmp: Dmp;

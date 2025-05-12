@@ -9,6 +9,7 @@ import { UntypedFormControl } from '@angular/forms';
   selector: 'app-dmp-specify-data',
   templateUrl: './specify-data.component.html',
   styleUrls: ['./specify-data.component.css'],
+  standalone: false,
 })
 export class SpecifyDataComponent extends AbstractBaseDataComponent {
   @Input() fileUpload: { file: File; progress: number; finalized: boolean }[];

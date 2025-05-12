@@ -36,6 +36,7 @@ import { notEmptyValidator } from '../../../validators/not-empty.validator';
   selector: 'app-dmp-people',
   templateUrl: './people.component.html',
   styleUrls: ['./people.component.css'],
+  standalone: false,
 })
 export class PeopleComponent implements OnInit, OnDestroy {
   @ViewChild(PersonSearchComponent) personSearch: PersonSearchComponent;
@@ -234,6 +235,7 @@ export class PeopleComponent implements OnInit, OnDestroy {
 @Component({
   selector: 'app-confirm-deletion-dialog',
   templateUrl: 'confirm-deletion-dialog.html',
+  standalone: false,
 })
 export class ConfirmDeletionDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: Dataset[]) {}

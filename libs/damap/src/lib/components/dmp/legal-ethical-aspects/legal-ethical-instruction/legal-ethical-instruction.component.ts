@@ -3,6 +3,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 @Component({
   selector: 'app-legal-ethical-instruction',
   templateUrl: './legal-ethical-instruction.component.html',
+  standalone: false,
 })
 export class LegalEthicalInstructionComponent {
   @Output() selectionChange = new EventEmitter<

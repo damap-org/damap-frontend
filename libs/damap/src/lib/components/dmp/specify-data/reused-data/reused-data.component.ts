@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
   selector: 'app-reused-data',
   templateUrl: './reused-data.component.html',
   styleUrls: ['./reused-data.component.css'],
+  standalone: false,
 })
 export class ReusedDataComponent
   extends AbstractBaseDataComponent

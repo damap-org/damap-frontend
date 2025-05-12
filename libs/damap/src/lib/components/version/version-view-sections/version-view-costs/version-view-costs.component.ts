@@ -6,6 +6,7 @@ import { CostType } from '../../../../domain/enum/cost-type.enum';
   selector: 'app-version-view-costs',
   templateUrl: './version-view-costs.component.html',
   styleUrls: [],
+  standalone: false,
 })
 export class VersionViewCostsComponent {
   @Input() costs: Cost[];

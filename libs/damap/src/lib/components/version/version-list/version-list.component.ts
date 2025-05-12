@@ -15,6 +15,7 @@ import { Dmp } from '../../../domain/dmp';
   selector: 'app-version-list',
   templateUrl: './version-list.component.html',
   styleUrls: [],
+  standalone: false,
 })
 export class VersionListComponent implements OnInit {
   versions$: Observable<Version[]>;

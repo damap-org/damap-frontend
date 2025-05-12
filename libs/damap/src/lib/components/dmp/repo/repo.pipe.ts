@@ -4,6 +4,7 @@ import { Repository } from '../../../domain/repository';
 
 @Pipe({
   name: 'repo',
+  standalone: false,
 })
 export class RepoPipe implements PipeTransform {
   transform(

@@ -7,6 +7,7 @@ import { Title } from '@angular/platform-browser';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: [],
+  standalone: false,
 })
 export class AppComponent implements OnInit {
   constructor(

@@ -13,6 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
   selector: 'app-dataset-table',
   templateUrl: './dataset-table.component.html',
   styleUrls: ['./dataset-table.component.css'],
+  standalone: false,
 })
 export class DatasetTableComponent {
   readonly FILE_SIZES = FILE_SIZES;

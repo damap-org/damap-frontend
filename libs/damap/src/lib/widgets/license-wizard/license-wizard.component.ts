@@ -15,6 +15,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
   selector: 'app-license-wizard',
   templateUrl: './license-wizard.component.html',
   styleUrls: ['./license-wizard.component.css'],
+  standalone: false,
 })
 export class LicenseWizardComponent {
   @Output() selectedLicense = new EventEmitter<LicenseDetails>();
@@ -36,6 +37,7 @@ export class LicenseWizardComponent {
   selector: 'app-license-wizard-dialog',
   templateUrl: 'license-wizard-dialog.html',
   styleUrls: ['./license-wizard.component.css'],
+  standalone: false,
 })
 export class LicenseSelectorDialogComponent {
   licenseList: LicenseDetails[] = [...LicenseDefinitions];

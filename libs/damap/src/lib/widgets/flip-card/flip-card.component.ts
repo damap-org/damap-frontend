@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
   selector: 'app-flip-card',
   templateUrl: './flip-card.component.html',
   styleUrls: ['./flip-card.component.css'],
+  standalone: false,
 })
 export class FlipCardComponent {
   @Input() frontContent: string;

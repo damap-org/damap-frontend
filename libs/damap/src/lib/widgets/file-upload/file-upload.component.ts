@@ -4,6 +4,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   selector: 'app-file-upload',
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.css'],
+  standalone: false,
 })
 export class FileUploadComponent {
   @Input() fileUpload: { file: File; progress: number; finalized: boolean }[];

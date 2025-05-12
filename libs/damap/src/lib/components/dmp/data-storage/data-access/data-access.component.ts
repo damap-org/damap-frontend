@@ -6,6 +6,7 @@ import { AccessRight } from '../../../../domain/enum/access-right.enum';
   selector: 'app-data-access',
   templateUrl: './data-access.component.html',
   styleUrls: ['./data-access.component.css'],
+  standalone: false,
 })
 export class DataAccessComponent {
   @Input() dmpForm: UntypedFormGroup;

@@ -11,6 +11,7 @@ import { DataSource } from '../../../domain/enum/data-source.enum';
   selector: 'app-dmp-reuse',
   templateUrl: './reuse.component.html',
   styleUrls: ['./reuse.component.css'],
+  standalone: false,
 })
 export class ReuseComponent {
   @Input() reuseStep: UntypedFormGroup;

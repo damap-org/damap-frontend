@@ -4,5 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-env-banner',
   templateUrl: './env-banner.component.html',
   styleUrls: ['./env-banner.component.css'],
+  standalone: false,
 })
 export class EnvBannerComponent {}

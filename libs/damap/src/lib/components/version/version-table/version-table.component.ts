@@ -7,6 +7,7 @@ import { Dmp } from '../../../domain/dmp';
   selector: 'app-version-table',
   templateUrl: './version-table.component.html',
   styleUrls: ['./version-table.component.css'],
+  standalone: false,
 })
 export class VersionTableComponent {
   displayedColumns: string[] = ['version', 'name', 'date', 'editor'];

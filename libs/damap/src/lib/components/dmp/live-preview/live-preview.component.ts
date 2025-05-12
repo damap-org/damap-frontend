@@ -12,6 +12,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   selector: 'damap-live-preview',
   templateUrl: './live-preview.component.html',
   styleUrl: './live-preview.component.css',
+  standalone: false,
 })
 export class LivePreviewComponent implements OnInit {
   @Input() selectedTemplate = '';

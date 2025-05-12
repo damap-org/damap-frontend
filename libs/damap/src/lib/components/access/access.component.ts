@@ -18,7 +18,6 @@ import { InfoMessageModule } from '../../widgets/info-message/info-message.modul
 
 @Component({
   selector: 'damap-access',
-  standalone: true,
   imports: [
     CommonModule,
     TranslateModule,
@@ -31,6 +30,7 @@ import { InfoMessageModule } from '../../widgets/info-message/info-message.modul
   ],
   templateUrl: './access.component.html',
   styleUrls: ['./access.component.css'],
+  standalone: true,
 })
 export class AccessComponent implements OnInit {
   accesses$: Observable<Access[]>;

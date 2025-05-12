@@ -9,6 +9,7 @@ import { InternalStorageTranslation } from '../../../domain/internal-storage';
   selector: 'internal-storage-translation-dialog',
   templateUrl: './internal-storage-translation-dialog.component.html',
   styleUrl: './internal-storage-translation-dialog.component.css',
+  standalone: false,
 })
 export class InternalStorageTranslationDialogComponent {
   public mode = 'add';

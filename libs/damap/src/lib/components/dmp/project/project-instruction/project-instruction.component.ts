@@ -3,6 +3,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'app-project-instruction',
   templateUrl: './project-instruction.component.html',
+  standalone: false,
 })
 export class ProjectInstructionComponent implements OnInit {
   @Output() selectionChange = new EventEmitter<

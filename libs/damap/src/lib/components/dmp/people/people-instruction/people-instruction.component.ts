@@ -3,6 +3,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 @Component({
   selector: 'app-people-instruction',
   templateUrl: './people-instruction.component.html',
+  standalone: false,
 })
 export class PeopleInstructionComponent {
   @Output() selectionChange = new EventEmitter<

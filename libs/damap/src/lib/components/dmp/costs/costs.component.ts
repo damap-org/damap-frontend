@@ -11,6 +11,7 @@ import { CostType } from '../../../domain/enum/cost-type.enum';
   selector: 'app-dmp-costs',
   templateUrl: './costs.component.html',
   styleUrls: ['./costs.component.css'],
+  standalone: false,
 })
 export class CostsComponent {
   @Input() costsStep: UntypedFormGroup;

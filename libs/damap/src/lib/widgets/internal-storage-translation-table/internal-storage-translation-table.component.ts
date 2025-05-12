@@ -28,6 +28,7 @@ import { TranslateService } from '@ngx-translate/core';
   selector: 'damap-internal-storage-translation-table',
   templateUrl: './internal-storage-translation-table.component.html',
   styleUrls: ['./internal-storage-translation-table.component.css'],
+  standalone: false,
 })
 export class InternalStorageTranslationTableComponent
   implements AfterViewInit, OnChanges

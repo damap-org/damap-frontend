@@ -23,6 +23,7 @@ import { filter } from 'rxjs';
   selector: 'app-dmp-table',
   templateUrl: './dmp-table.component.html',
   styleUrls: ['./dmp-table.component.css'],
+  standalone: false,
 })
 export class DmpTableComponent implements OnChanges, AfterViewInit {
   @Input() dmps: DmpListItem[];

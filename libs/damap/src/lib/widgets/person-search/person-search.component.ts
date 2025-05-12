@@ -7,6 +7,7 @@ import { MatSelectionListChange } from '@angular/material/list';
   selector: 'app-person-search',
   templateUrl: './person-search.component.html',
   styleUrls: ['./person-search.component.css'],
+  standalone: false,
 })
 export class PersonSearchComponent {
   @Input() result: Contributor[] = [];

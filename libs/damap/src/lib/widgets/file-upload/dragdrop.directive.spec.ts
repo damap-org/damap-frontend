@@ -6,6 +6,7 @@ import { By } from '@angular/platform-browser';
 @Component({
   template: ` <div appDragdrop>Drag and drop div</div>
     <div>Standard div</div>`,
+  standalone: false,
 })
 class TestComponent {}
 

@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
   selector: 'app-information-component',
   templateUrl: './dataset-information.component.html',
   styleUrls: ['./dataset-information.component.css'],
+  standalone: false,
 })
 export class DatasetInformationComponent {
   dataset: Dataset;

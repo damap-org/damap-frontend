@@ -58,6 +58,7 @@ import { Completeness, SummaryService } from '../../services/summary.service';
       useValue: { displayDefaultIndicatorType: false },
     },
   ],
+  standalone: false,
 })
 export class DmpComponent implements OnInit, OnDestroy {
   config$: Observable<Config> = new Observable<Config>();

@@ -6,6 +6,7 @@ import { DataQualityType } from '../../../domain/enum/data-quality-type.enum';
   selector: 'app-dmp-doc-data-quality',
   templateUrl: './doc-data-quality.component.html',
   styleUrls: ['./doc-data-quality.component.css'],
+  standalone: false,
 })
 export class DocDataQualityComponent {
   @Input() docDataStep: UntypedFormGroup;

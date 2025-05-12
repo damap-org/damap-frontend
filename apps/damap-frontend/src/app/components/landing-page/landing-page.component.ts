@@ -7,7 +7,6 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-landing-page',
-  standalone: true,
   imports: [
     CommonModule,
     RouterLink,

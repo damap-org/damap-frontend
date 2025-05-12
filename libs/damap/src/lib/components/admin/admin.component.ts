@@ -21,6 +21,7 @@ import validator from 'validator';
   selector: 'damap-admin',
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css',
+  standalone: false,
 })
 export class AdminComponent implements OnInit {
   constructor(

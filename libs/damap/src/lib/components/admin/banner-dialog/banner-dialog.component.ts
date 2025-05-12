@@ -13,6 +13,7 @@ import { Banner } from '../../../domain/banner';
   selector: 'damap-banner-dialog',
   templateUrl: './banner-dialog.component.html',
   styleUrl: './banner-dialog.component.css',
+  standalone: false,
 })
 export class BannerDialogComponent {
   public mode = 'add';

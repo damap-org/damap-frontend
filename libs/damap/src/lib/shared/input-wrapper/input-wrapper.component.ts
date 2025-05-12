@@ -6,6 +6,7 @@ import { MatFormFieldAppearance } from '@angular/material/form-field';
   selector: 'app-input-wrapper [label] [control]',
   templateUrl: './input-wrapper.component.html',
   styleUrls: ['./input-wrapper.component.css'],
+  standalone: false,
 })
 export class InputWrapperComponent implements OnInit {
   @Input() label: string;

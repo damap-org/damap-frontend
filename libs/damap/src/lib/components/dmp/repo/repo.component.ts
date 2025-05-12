@@ -26,6 +26,7 @@ import { RepositoryDetails } from '../../../domain/repository-details';
   selector: 'app-dmp-repo',
   templateUrl: './repo.component.html',
   styleUrls: ['./repo.component.css'],
+  standalone: false,
 })
 export class RepoComponent implements OnInit {
   repositoriesLoaded$: Observable<LoadingState>;

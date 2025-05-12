@@ -6,7 +6,6 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'damap-delete-warning-dialog',
-  standalone: true,
   imports: [CommonModule, TranslateModule, MatDialogModule, MatButtonModule],
   template: `
     <h1 mat-dialog-title>{{ 'dialog.delete.title' | translate }}</h1>
@@ -22,6 +21,7 @@ import { TranslateModule } from '@ngx-translate/core';
       </button>
     </mat-dialog-actions>
   `,
+  standalone: true,
 })
 export class DeleteWarningDialogComponent {
   getDeleteContent(): string {

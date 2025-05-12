@@ -11,6 +11,7 @@ import { DataKind } from '../../../domain/enum/data-kind.enum';
   selector: 'app-version-view',
   templateUrl: './version-view.component.html',
   styleUrls: ['./version-view.component.css'],
+  standalone: false,
 })
 export class VersionViewComponent implements OnInit {
   @ViewChild(MatAccordion) accordion: MatAccordion;

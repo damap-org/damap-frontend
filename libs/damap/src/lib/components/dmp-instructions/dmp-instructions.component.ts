@@ -11,7 +11,6 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'damap-dmp-instructions',
-  standalone: true,
   imports: [
     TranslateModule,
     RouterModule,
@@ -26,6 +25,7 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
   templateUrl: './dmp-instructions.component.html',
   styleUrl: './dmp-instructions.component.css',
+  standalone: true,
 })
 export class DmpInstructionsComponent {
   readonly panelOpenState = signal(false);

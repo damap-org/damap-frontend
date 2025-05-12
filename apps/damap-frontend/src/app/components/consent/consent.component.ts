@@ -6,6 +6,7 @@ import { Consent } from '@damap/core';
   selector: 'app-consent',
   templateUrl: './consent.component.html',
   styleUrls: [],
+  standalone: false,
 })
 export class ConsentComponent {
   public lang = 'EN';

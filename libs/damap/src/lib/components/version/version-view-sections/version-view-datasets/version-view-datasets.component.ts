@@ -7,6 +7,7 @@ import { DataAccessType } from '../../../../domain/enum/data-access-type.enum';
   selector: 'app-version-view-datasets',
   templateUrl: './version-view-datasets.component.html',
   styleUrls: ['./version-view-datasets.component.css'],
+  standalone: false,
 })
 export class VersionViewDatasetsComponent {
   @Input() dataKind: DataKind;

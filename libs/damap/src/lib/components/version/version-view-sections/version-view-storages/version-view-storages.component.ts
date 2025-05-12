@@ -8,6 +8,7 @@ import { Host } from '../../../../domain/host';
   selector: 'app-version-view-storages',
   templateUrl: './version-view-storages.component.html',
   styleUrls: [],
+  standalone: false,
 })
 export class VersionViewStoragesComponent {
   @Input() storages: Storage[];

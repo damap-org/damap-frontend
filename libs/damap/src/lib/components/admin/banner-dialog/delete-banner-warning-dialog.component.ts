@@ -7,7 +7,6 @@ import { DeleteWarningDialogComponent } from '../../../widgets/delete-warning-di
 
 @Component({
   selector: 'damap-delete-banner-warning-dialog',
-  standalone: true,
   imports: [CommonModule, TranslateModule, MatDialogModule, MatButtonModule],
   template: `
     <h1 mat-dialog-title>{{ 'dialog.delete.title' | translate }}</h1>
@@ -23,6 +22,7 @@ import { DeleteWarningDialogComponent } from '../../../widgets/delete-warning-di
       </button>
     </mat-dialog-actions>
   `,
+  standalone: true,
 })
 export class DeleteBannerWarningDialogComponent extends DeleteWarningDialogComponent {
   override getDeleteContent(): string {

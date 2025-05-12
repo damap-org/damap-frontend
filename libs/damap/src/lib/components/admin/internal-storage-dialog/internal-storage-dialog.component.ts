@@ -13,6 +13,7 @@ import { FormService } from '../../../services/form.service';
   selector: 'damap-internal-storage-dialog',
   templateUrl: './internal-storage-dialog.component.html',
   styleUrl: './internal-storage-dialog.component.css',
+  standalone: false,
 })
 export class InternalStorageDialogComponent {
   public mode = 'add';

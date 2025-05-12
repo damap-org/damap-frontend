@@ -4,5 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-step-intro',
   templateUrl: './step-intro.component.html',
   styleUrls: ['./step-intro.component.css'],
+  standalone: false,
 })
 export class StepIntroComponent {}

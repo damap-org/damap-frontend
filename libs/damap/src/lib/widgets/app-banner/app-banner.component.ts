@@ -6,6 +6,7 @@ import { BackendService } from '../../services/backend.service';
   selector: 'app-banner',
   templateUrl: './app-banner.component.html',
   styleUrls: ['./app-banner.component.css'],
+  standalone: false,
 })
 export class AppBannerComponent implements OnInit {
   constructor(private backendService: BackendService) {}

@@ -23,6 +23,7 @@ import { Observable } from 'rxjs';
   selector: 'app-plan',
   templateUrl: './plans.component.html',
   styleUrls: ['./plans.component.css'],
+  standalone: false,
 })
 export class PlansComponent implements OnInit {
   dmps$: Observable<DmpListItem[]>;

@@ -25,6 +25,7 @@ import pkg from '../../../../../../package.json'; // eslint-disable-line
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.css'],
+  standalone: false,
 })
 export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('sidenav', { static: true }) sidenav!: MatSidenav;

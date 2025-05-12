@@ -26,6 +26,7 @@ import validator from 'validator';
   selector: 'damap-internal-storage-table',
   templateUrl: './internal-storage-table.component.html',
   styleUrls: ['./internal-storage-table.component.css'],
+  standalone: false,
 })
 export class InternalStorageTableComponent implements AfterViewInit, OnChanges {
   @Output() selectInternalStorage = new EventEmitter<number>();

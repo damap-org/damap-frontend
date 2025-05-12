@@ -13,6 +13,7 @@ import { SecurityMeasure } from '../../../domain/enum/security-measure.enum';
   selector: 'app-dmp-legal-ethical-aspects',
   templateUrl: './legal-ethical-aspects.component.html',
   styleUrls: ['./legal-ethical-aspects.component.css'],
+  standalone: false,
 })
 export class LegalEthicalAspectsComponent {
   @Input() dmpForm: UntypedFormGroup;

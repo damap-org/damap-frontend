@@ -9,7 +9,6 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'damap-person-card',
-  standalone: true,
   imports: [
     CommonModule,
     TranslateModule,
@@ -19,6 +18,7 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
   templateUrl: './person-card.component.html',
   styleUrls: [],
+  standalone: true,
 })
 export class PersonCardComponent {
   @Input() person: Contributor;

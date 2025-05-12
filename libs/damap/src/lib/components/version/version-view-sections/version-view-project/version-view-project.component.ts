@@ -5,6 +5,7 @@ import { Project } from '../../../../domain/project';
   selector: 'app-version-view-project',
   templateUrl: './version-view-project.component.html',
   styleUrls: [],
+  standalone: false,
 })
 export class VersionViewProjectComponent {
   @Input() project: Project;

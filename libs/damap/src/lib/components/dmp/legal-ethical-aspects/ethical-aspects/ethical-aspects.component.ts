@@ -5,6 +5,7 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
   selector: 'app-ethical-aspects',
   templateUrl: './ethical-aspects.component.html',
   styleUrls: ['./ethical-aspects.component.css'],
+  standalone: false,
 })
 export class EthicalAspectsComponent implements OnInit {
   @Input() legalEthicalStep: UntypedFormGroup;

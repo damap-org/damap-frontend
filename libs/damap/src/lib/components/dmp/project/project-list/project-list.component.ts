@@ -25,6 +25,7 @@ import { SearchResult } from '../../../../domain/search/search-result';
   selector: 'app-project-list',
   templateUrl: './project-list.component.html',
   styleUrls: ['./project-list.component.css'],
+  standalone: false,
 })
 export class ProjectListComponent implements OnInit, AfterViewInit {
   @Output() projectToSet = new EventEmitter<Project>();

@@ -3,6 +3,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 @Component({
   selector: 'app-repo-instruction',
   templateUrl: './repo-instruction.component.html',
+  standalone: false,
 })
 export class RepoInstructionComponent {
   @Output() selectionChange = new EventEmitter<

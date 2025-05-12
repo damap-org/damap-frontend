@@ -6,6 +6,7 @@ import { FormService } from '../../../../services/form.service';
   selector: 'app-version-view-reuse',
   templateUrl: './version-view-reuse.component.html',
   styleUrls: [],
+  standalone: false,
 })
 export class VersionViewReuseComponent {
   @Input() targetAudience: string;

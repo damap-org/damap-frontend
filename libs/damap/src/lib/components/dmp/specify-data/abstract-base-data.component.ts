@@ -8,6 +8,7 @@ import { DataKind } from '../../../domain/enum/data-kind.enum';
 @Component({
   selector: 'app-base-data',
   template: '',
+  standalone: false,
 })
 export abstract class AbstractBaseDataComponent {
   @Input() specifyDataStep: UntypedFormGroup;

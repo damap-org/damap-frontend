@@ -19,6 +19,7 @@ import { UntypedFormControl } from '@angular/forms';
   selector: 'app-created-data',
   templateUrl: './created-data.component.html',
   styleUrls: ['./created-data.component.css'],
+  standalone: false,
 })
 export class CreatedDataComponent
   extends AbstractBaseDataComponent

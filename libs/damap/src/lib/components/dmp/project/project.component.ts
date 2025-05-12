@@ -7,6 +7,7 @@ import { UntypedFormControl } from '@angular/forms';
   selector: 'app-dmp-project',
   templateUrl: './project.component.html',
   styleUrls: [],
+  standalone: false,
 })
 export class ProjectComponent {
   @Input() projectStep: UntypedFormControl;

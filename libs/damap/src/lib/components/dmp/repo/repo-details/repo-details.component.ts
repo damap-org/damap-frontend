@@ -5,6 +5,7 @@ import { RepositoryDetails } from '../../../../domain/repository-details';
   selector: 'app-repo-details',
   templateUrl: './repo-details.component.html',
   styleUrls: ['./repo-details.component.css'],
+  standalone: false,
 })
 export class RepoDetailsComponent {
   @Input() repo: RepositoryDetails;

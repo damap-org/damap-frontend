@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-dataset-dialog-upload',
   templateUrl: './dataset-dialog-upload.component.html',
+  standalone: false,
 })
 export class DatasetDialogUploadComponent {
   constructor(

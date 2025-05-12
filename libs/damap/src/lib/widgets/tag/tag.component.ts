@@ -4,6 +4,7 @@ import { Component, Input } from '@angular/core';
   selector: 'app-tag',
   templateUrl: './tag.component.html',
   styleUrls: ['./tag.component.css'],
+  standalone: false,
 })
 export class TagComponent {
   @Input() background = 'var(--blue-tag)';

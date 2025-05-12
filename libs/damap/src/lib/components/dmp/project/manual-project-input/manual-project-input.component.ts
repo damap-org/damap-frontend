@@ -18,6 +18,7 @@ import { Project } from '../../../../domain/project';
   selector: 'app-manual-project-input',
   templateUrl: './manual-project-input.component.html',
   styleUrls: ['./manual-project-input.component.css'],
+  standalone: false,
 })
 export class ManualProjectInputComponent implements OnChanges {
   @Input() project: Project;

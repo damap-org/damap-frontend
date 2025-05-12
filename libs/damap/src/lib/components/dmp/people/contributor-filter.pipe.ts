@@ -4,6 +4,7 @@ import { Contributor, compareContributors } from '../../../domain/contributor';
 
 @Pipe({
   name: 'contributorFilter',
+  standalone: false,
 })
 export class ContributorFilterPipe implements PipeTransform {
   transform(

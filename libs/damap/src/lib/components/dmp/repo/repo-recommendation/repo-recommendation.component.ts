@@ -7,6 +7,7 @@ import { RepositoryDetails } from '../../../../domain/repository-details';
   selector: 'app-repo-recommendation',
   templateUrl: './repo-recommendation.component.html',
   styleUrls: ['./repo-recommendation.component.css'],
+  standalone: false,
 })
 export class RepoRecommendationComponent {
   @Input() recommended: RepositoryDetails[];

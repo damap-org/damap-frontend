@@ -8,6 +8,7 @@ import {
 
 @Directive({
   selector: '[appDragdrop]',
+  standalone: false,
 })
 export class DragdropDirective {
   @HostBinding('class.fileover') fileOver: boolean;

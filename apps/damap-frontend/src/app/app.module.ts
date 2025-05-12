@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { NgModule, inject, provideAppInitializer } from '@angular/core';
 import { EnvBannerModule, AuthGuard } from '@damap/core';
 import { HttpBackend, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -72,13 +72,13 @@ export function HttpLoaderFactory(http: HttpBackend): MultiTranslateHttpLoader {
     ConsentModule,
   ],
   providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: (configService: ConfigService) => () =>
-        configService.initializeApp(),
-      multi: true,
-      deps: [ConfigService],
-    },
+    provideAppInitializer(() => {
+      const initializerFn = (
+        (configService: ConfigService) => () =>
+          configService.initializeApp()
+      )(inject(ConfigService));
+      return initializerFn();
+    }),
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: { appearance: 'outline' },
