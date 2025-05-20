@@ -42,6 +42,7 @@
         "search.service": "Search service",
         "general.search": "Find Contributors",
         "general.recommendations": "Recommended contributors:",
+        "general.addAll": "Add all contributors",
         "contributor": {
           "search": "Search contributor",
           "add": "Add as contributor",

@@ -173,3 +173,15 @@ mat-form-field {
 .contact-label {
   margin-top: 1em;
 }
+
+.add-all-container {
+  padding: 8px 16px;
+  display: flex;
+  justify-content: flex-end;
+  background-color: var(--primary-lightest);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.add-all-container button {
+  margin: 0;
+}

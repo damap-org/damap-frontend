@@ -47,7 +47,11 @@
   </mat-label>
 
   <mat-expansion-panel
-    *ngIf="projectMembers?.length > 0"
+    *ngIf="
+      projectMembers?.length > 0 &&
+      (projectMembers | contributorFilter: dmpForm.controls.contributors.value)
+        .length > 0
+    "
     [expanded]="!isCollapsed"
     (opened)="isCollapsed = false"
     class="white-background-panel">
@@ -56,6 +60,20 @@
         {{ "dmp.steps.people.general.recommendations" | translate }}
       </mat-panel-title>
     </mat-expansion-panel-header>
+
+    <div
+      class="add-all-container"
+      *ngIf="
+        (
+          projectMembers
+          | contributorFilter: dmpForm.controls.contributors.value
+        ).length > 0
+      ">
+      <button mat-button color="primary" (click)="addAllContributors()">
+        <mat-icon>group_add</mat-icon>
+        {{ "dmp.steps.people.general.addAll" | translate }}
+      </button>
+    </div>
 
     <div class="list-container">
       <mat-card
@@ -70,7 +88,7 @@
               <mat-icon class="mat-icon-style">person</mat-icon>
               {{ member.firstName }} {{ member.lastName }}
             </div>
-            <mat-icon class="mat-icon-style outline">mail</mat-icon>
+            <mat-icon class="mat-icon-style outline">mail_outline</mat-icon>
             {{ member.mbox }}
           </div>
           <div class="mat-card-right">
@@ -123,14 +141,16 @@
             <div class="mat-card-container">
               <div class="mat-card-left">
                 <div>
-                  <mat-icon class="mat-icon-style">person</mat-icon>
+                  <mat-icon class="mat-icon-style outline"
+                    >person_outline</mat-icon
+                  >
                   {{ contributor.value.firstName }}
                   {{ contributor.value.lastName }}
                   <span class="sr-only">{{
                     "dmp.steps.people.contact.person" | translate
                   }}</span>
                 </div>
-                <mat-icon class="mat-icon-style outline">mail</mat-icon>
+                <mat-icon class="mat-icon-style outline">mail_outline</mat-icon>
                 {{ contributor.value.mbox }}
                 <app-orcid
                   *ngIf="
@@ -224,7 +244,7 @@
   </ng-container>
 </div>
 
-<div *ngIf="contactContributor() === -1 && contributors.length !== 0">
+<div *ngIf="!doesContactExist() && contributors.length !== 0">
   <mat-card appearance="raised" class="card-selected-empty">
     <mat-card-content>
       <mat-icon class="material-icon-primary outline">info</mat-icon>
@@ -253,7 +273,9 @@
             <div class="mat-card-container">
               <div class="mat-card-left">
                 <div>
-                  <mat-icon class="mat-icon-style">person</mat-icon>
+                  <mat-icon class="mat-icon-style outline"
+                    >person_outline</mat-icon
+                  >
                   {{ contributor.value.firstName }}
                   {{ contributor.value.lastName }}
                   <mat-icon
@@ -265,7 +287,7 @@
                     "dmp.steps.people.contact.person" | translate
                   }}</span>
                 </div>
-                <mat-icon class="mat-icon-style outline">mail</mat-icon>
+                <mat-icon class="mat-icon-style outline">mail_outline</mat-icon>
                 {{ contributor.value.mbox }}
                 <app-orcid
                   *ngIf="
