@@ -1,12 +1,20 @@
 <mat-card
   appearance="outlined"
   *ngIf="isIntroShow"
-  class="info-box mat-icon-shadow custom-card">
-  <button (click)="closeIntro()" mat-icon-button class="close-button">
-    <mat-icon class="material-icon-primary close-icon" matSuffix>
-      close
-    </mat-icon>
-  </button>
+  [ngClass]="{
+    'info-box': true,
+    'mat-icon-shadow': true,
+    'custom-card': true,
+    collapsed: isCollapsed,
+  }"
+  (click)="isCollapsed ? toggleCollapse() : null">
+  <div class="card-controls">
+    <button (click)="closeIntro()" mat-icon-button class="close-button">
+      <mat-icon class="material-icon-primary close-icon" matSuffix>
+        close
+      </mat-icon>
+    </button>
+  </div>
   <mat-card-content class="mat-content">
     <div class="flex-row-container">
       <section>
@@ -29,5 +37,13 @@
         {{ instructions | translate }}
       </div>
     </div>
+    <button
+      (click)="toggleCollapse()"
+      mat-button
+      *ngIf="isCollapsed"
+      class="expand-collapse-btn">
+      <mat-icon class="material-icon-primary">keyboard_arrow_down</mat-icon>
+      <span>Show details</span>
+    </button>
   </mat-card-content>
 </mat-card>
