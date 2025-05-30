@@ -6,10 +6,11 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+
 import { Dataset } from '../../domain/dataset';
-import { UntypedFormControl } from '@angular/forms';
-import { doiValidator } from '../../validators/doi.validator';
 import { LoadingState } from '../../domain/enum/loading-state.enum';
+import { doiValidator } from '../../validators/doi.validator';
 
 @Component({
   selector: 'app-doi-search',
@@ -23,35 +24,43 @@ export class DoiSearchComponent implements OnChanges {
   @Output() termToSearch = new EventEmitter<string>();
   @Output() datasetToAdd = new EventEmitter<Dataset>();
 
-  doi = new UntypedFormControl('', {
-    validators: doiValidator(),
-    updateOn: 'blur',
+  form = new UntypedFormGroup({
+    doi: new UntypedFormControl('', {
+      validators: doiValidator(),
+      updateOn: 'change',
+    }),
   });
 
   readonly loadingState: any = LoadingState;
-  searchTerm: string = '';
+
+  constructor() {
+    this.form.get('doi').valueChanges.subscribe(value => {
+      if (value && !this.form.get('doi').touched) {
+        this.form.get('doi').markAsTouched();
+      }
+    });
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.loading) {
       if (this.loading === LoadingState.LOADED) {
-        this.doi.setValue('');
+        this.form.reset();
       }
       if (this.loading === LoadingState.LOADING) {
-        this.doi.disable();
+        this.form.disable();
       } else {
-        this.doi.enable();
+        this.form.enable();
       }
     }
   }
 
-  search(term: string) {
-    if (term.trim()) {
-      term = term.substring(term.indexOf('10.')).trim();
-      this.termToSearch.emit(term);
+  search() {
+    if (this.form.valid) {
+      this.termToSearch.emit(this.form.get('doi').value.trim());
     }
   }
 
   searchChange(searchInput: string) {
-    this.searchTerm = searchInput;
+    this.form.patchValue({ doi: searchInput });
   }
 }

@@ -1,20 +1,18 @@
-<form>
+<form [formGroup]="form">
   <div class="form-row">
     <app-search-field
       class="full-width"
       [label]="'dmp.steps.data.specify.doi.search'"
       [placeholder]="'10.5281/zenodo.3885730'"
-      [control]="doi"
+      [control]="form.get('doi')"
       [errorMessage]="'form.error.doi'"
       (searchChange)="searchChange($event)"></app-search-field>
     <button
       mat-raised-button
       class="button-color-primary"
       type="submit"
-      (click)="search(searchTerm)"
-      [disabled]="
-        !searchTerm || doi.invalid || loading === loadingState.LOADING
-      ">
+      (click)="search()"
+      [disabled]="form.invalid || loading === loadingState.LOADING">
       {{ "dmp.steps.data.specify.button.add.doi" | translate }}
     </button>
   </div>

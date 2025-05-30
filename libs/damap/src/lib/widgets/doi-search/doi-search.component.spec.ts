@@ -41,12 +41,13 @@ describe('DoiSearchComponent', () => {
   });
 
   it('should en-/disable the form control depending on the loading state', () => {
-    spyOn(component.doi, 'setValue');
-    spyOn(component.doi, 'enable');
-    spyOn(component.doi, 'disable');
+    const doiControl = component.form.get('doi');
+    spyOn(doiControl, 'setValue');
+    spyOn(doiControl, 'enable');
+    spyOn(doiControl, 'disable');
 
     component.loading = LoadingState.NOT_LOADED;
-    expect(component.doi.disabled).toBe(false);
+    expect(doiControl.disabled).toBe(false);
 
     component.loading = LoadingState.LOADING;
     component.ngOnChanges({
@@ -57,7 +58,7 @@ describe('DoiSearchComponent', () => {
       ),
     });
     expect(component.loading).toBe(LoadingState.LOADING);
-    expect(component.doi.disable).toHaveBeenCalledTimes(1);
+    expect(doiControl.disable).toHaveBeenCalledTimes(1);
 
     component.loading = LoadingState.LOADED;
     component.ngOnChanges({
@@ -67,15 +68,23 @@ describe('DoiSearchComponent', () => {
         false,
       ),
     });
-    expect(component.doi.setValue).toHaveBeenCalledTimes(1);
-    expect(component.doi.enable).toHaveBeenCalledTimes(1);
+    expect(doiControl.setValue).toHaveBeenCalledTimes(1);
+    expect(doiControl.enable).toHaveBeenCalledTimes(1);
   });
 
-  it('extract the correct doi search term and search for it', () => {
+  it('should emit search term when form is valid', () => {
     spyOn(component.termToSearch, 'emit');
-    const doi = ' doi: 10.12345/12345 ';
-    const searchTerm = '10.12345/12345';
-    component.search(doi);
-    expect(component.termToSearch.emit).toHaveBeenCalledOnceWith(searchTerm);
+    const doi = '10.12345/12345';
+    component.form.get('doi').setValue(doi);
+    component.search();
+    expect(component.termToSearch.emit).toHaveBeenCalledOnceWith(doi);
+  });
+
+  it('should not emit search term when form is invalid', () => {
+    spyOn(component.termToSearch, 'emit');
+    const invalidDoi = 'invalid-doi';
+    component.form.get('doi').setValue(invalidDoi);
+    component.search();
+    expect(component.termToSearch.emit).not.toHaveBeenCalled();
   });
 });
