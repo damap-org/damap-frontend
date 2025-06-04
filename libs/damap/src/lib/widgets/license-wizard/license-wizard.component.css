@@ -45,3 +45,9 @@
 .mat-mdc-dialog-container {
   width: 800px;
 }
+
+.narrow-margin {
+  margin-left: 1em;
+  margin-right: 1em;
+  width: calc(100% - 2em);
+}

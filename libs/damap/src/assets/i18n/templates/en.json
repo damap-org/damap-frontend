@@ -519,6 +519,7 @@
     }
   },
   "license.wizard": {
+    "legalWarning": "This is not legal advice. Please choose your license carefully.",
     "select": "Select license with license selector",
     "title": "Choose a License",
     "info": "More info",

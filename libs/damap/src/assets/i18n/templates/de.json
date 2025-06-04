@@ -11,5 +11,8 @@
         }
       }
     }
+  },
+  "license.wizard": {
+    "legalWarning": "Diese Software bietet keine Rechtsberatung. Bitte wählen Sie Ihre Lizenz sorgfältig aus."
   }
 }

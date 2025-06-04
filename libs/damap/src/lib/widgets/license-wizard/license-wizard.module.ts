@@ -16,6 +16,7 @@ import { NgModule } from '@angular/core';
 import { TooltipModule } from '../tooltip/tooltip.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../../shared/shared.module';
+import { InfoMessageModule } from '../info-message/info-message.module';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { SharedModule } from '../../shared/shared.module';
     MatCardModule,
     TooltipModule,
     MatInputModule,
+    InfoMessageModule,
   ],
   declarations: [
     LicenseWizardComponent,
