@@ -206,6 +206,15 @@ export class BackendService {
       .pipe(catchError(this.handleError('http.error.repositories.one')));
   }
 
+  updateOrcidContributorAffiliations(
+    contributor: Contributor,
+  ): Observable<Contributor> {
+    return this.http.post<Contributor>(
+      `${this.backendUrl}orcid/affiliation`,
+      contributor,
+    );
+  }
+
   loadServiceConfig(): Observable<Config> {
     const host = this.backendUrl;
     return this.http.get<Config>(`${host}config`);

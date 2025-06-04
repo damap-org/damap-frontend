@@ -10,14 +10,12 @@ import {
   ViewChild,
 } from '@angular/core';
 import {
-  FormControl,
-  FormGroup,
   UntypedFormArray,
   UntypedFormControl,
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { ServiceConfig } from '../../../domain/config-services';
@@ -31,6 +29,7 @@ import { PersonSearchComponent } from '../../../widgets/person-search/person-sea
 import { Config } from '../../../domain/config';
 import { orcidValidator } from '../../../validators/orcid.validator';
 import { notEmptyValidator } from '../../../validators/not-empty.validator';
+import { FeedbackService } from '../../../services/feedback.service';
 
 @Component({
   selector: 'app-dmp-people',
@@ -81,6 +80,7 @@ export class PeopleComponent implements OnInit, OnDestroy {
     private backendService: BackendService,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
+    private feedbackService: FeedbackService,
   ) {}
 
   ngOnInit(): void {
@@ -131,9 +131,28 @@ export class PeopleComponent implements OnInit, OnDestroy {
   }
 
   addContributor(contributor: Contributor): void {
-    this.contributorToAdd.emit(contributor);
-    this.contactContributor();
-    this.isCollapsed = true;
+    if (contributor.personId.type === IdentifierType.ORCID) {
+      this.backendService
+        .updateOrcidContributorAffiliations(contributor)
+        .subscribe(
+          value => {
+            Object.assign(contributor, value);
+            this.contributorToAdd.emit(contributor);
+            this.contactContributor();
+            this.isCollapsed = true;
+          },
+          error => {
+            this.feedbackService.error(
+              'Error updating ORCID affiliations',
+              error,
+            );
+          },
+        );
+    } else {
+      this.contributorToAdd.emit(contributor);
+      this.contactContributor();
+      this.isCollapsed = true;
+    }
   }
 
   triggerUpdateContributorDetails(idx: number) {
