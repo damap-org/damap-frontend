@@ -70,17 +70,3 @@ jobs:
         if: always()
         with:
           report_paths: "**/reports/unit/**/*.xml"
-
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.organization=tuwien-csd
-            -Dsonar.projectKey=tuwien-csd_damap-frontend
-            -Dsonar.sources=.
-            -Dsonar.sourceEncoding=UTF-8
-            -Dsonar.javascript.lcov.reportPaths=**/lcov.info
-            -Dsonar.coverage.exclusions=**/*.spec.ts,**/karma.conf.js,src/environments/*.ts,src/main.ts,src/test.ts,apps/damap-frontend-e2e/**/*.*
