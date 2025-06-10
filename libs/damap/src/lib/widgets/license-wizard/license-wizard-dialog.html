@@ -9,7 +9,7 @@
           <mat-icon>replay</mat-icon>
           {{'license.wizard.reset' | translate}}
         </button>
-        <h3>{{step.question | translate}}</h3>
+        <h4>{{step.question | translate}}</h4>
         <!-- Software: License Matrix -->
         <ng-container
           *ngIf="step.question === 'license.wizard.question.licenseInteropSoftware'">
@@ -39,9 +39,9 @@
         <div class="ls-answer-buttons">
           <ng-container *ngFor="let item of step.answers">
             <button
+              class="button-color-primary"
               mat-raised-button
-              (click)="setNextStep(i, item.next)"
-              color="primary">
+              (click)="setNextStep(i, item.next)">
               {{item.label | translate}}
             </button>
           </ng-container>
@@ -53,20 +53,18 @@
   <ng-container
     *ngIf="(licenseList | licenseFilter: '')?.length else noLicense">
     <div id="ls-search">
-      <mat-form-field>
-        <mat-label>{{'license.wizard.search' | translate}}</mat-label>
-        <input #searchBox type="search" matInput />
-        <mat-icon matSuffix>search</mat-icon>
-      </mat-form-field>
+      <app-search-field
+        [label]="'license.wizard.search'"
+        (searchChange)="searchChange($event)"></app-search-field>
     </div>
     <div class="ls-list">
       <mat-card
         appearance="raised"
         class="ls-item"
-        *ngFor="let license of (licenseList | licenseFilter:searchBox.value)">
+        *ngFor="let license of (licenseList | licenseFilter:searchTerm)">
         <mat-card-content>
           <div class="ls-item-header">
-            <h3 [mat-dialog-close]="license">{{license.name | translate}}</h3>
+            <h4 [mat-dialog-close]="license">{{license.name | translate}}</h4>
             <div>
               <a
                 href="{{license.url}}"

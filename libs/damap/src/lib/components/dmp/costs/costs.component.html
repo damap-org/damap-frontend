@@ -1,90 +1,111 @@
-<app-step-intro>{{ "dmp.steps.costs.intro" | translate }} </app-step-intro>
-<div [formGroup]="costsStep" class="flex-radio">
-  <label id="costsFormGroup">
-    {{ "dmp.steps.costs.question.exist.label" | translate }}
-  </label>
-  <mat-radio-group aria-labelledby="costsFormGroup" formControlName="exist">
-    <app-cris-tag [cris]="costsStep.value.existCris"></app-cris-tag>
-    <mat-radio-button [value]="false"
-      >{{ "dmp.steps.costs.question.exist.no" | translate }}
-    </mat-radio-button>
-    <mat-radio-button [value]="true"
-      >{{ "dmp.steps.costs.question.exist.yes" | translate }}
-    </mat-radio-button>
-  </mat-radio-group>
-</div>
-<ng-container *ngIf="costsStep.controls.exist.value">
-  <button mat-raised-button color="primary" (click)="addCost()">
-    <mat-icon>add_circle</mat-icon>
-    Add cost
-  </button>
-  <div [formGroup]="costsStep">
-    <mat-accordion formArrayName="list">
-      <mat-expansion-panel *ngFor="let item of list.controls; let i = index">
-        <mat-expansion-panel-header>
-          <mat-panel-title [class.form-error]="item.invalid">
-            {{ item.value.title }}
-          </mat-panel-title>
-          <mat-panel-description>
-            {{ item.value.value | currency: item.value.currencyCode }}
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div [formArrayName]="i">
-          <div class="form-row">
-            <div class="form-row-group">
-              <app-input-wrapper
-                [label]="'dmp.steps.costs.question.title'"
-                [control]="getFormControl(i, 'title')">
-              </app-input-wrapper>
-              <button
-                mat-icon-button
-                color="accent"
-                aria-label="Remove cost"
-                (click)="removeCost(i)">
-                <mat-icon>cancel</mat-icon>
-              </button>
+<mat-label class="label-title mat-title-large" id="example-radio-group-label">
+  {{ "dmp.steps.costs.rightLabel" | translate }}
+</mat-label>
+<mat-card class="data-management-costs-card card-shadow">
+  <mat-card-content>
+    <app-info-message>
+      {{ "dmp.steps.costs.infoBox.description" | translate }}
+      <a
+        class="info-link-custom"
+        [href]="'dmp.steps.costs.infoBox.links.0.url' | translate"
+        target="_blank">
+        {{ "dmp.steps.costs.infoBox.links.0.title" | translate }}
+      </a>
+      {{ "dmp.steps.costs.infoBox.links.0.text" | translate }}
+    </app-info-message>
+    <div [formGroup]="costsStep" class="flex-radio">
+      <label id="costsFormGroup">{{
+        "dmp.steps.costs.question.exist.label" | translate
+      }}</label>
+      <mat-radio-group aria-labelledby="costsFormGroup" formControlName="exist">
+        <app-cris-tag [cris]="costsStep.value.existCris"></app-cris-tag>
+        <mat-radio-button [value]="false">
+          {{ "dmp.steps.costs.question.exist.no" | translate }}
+        </mat-radio-button>
+        <mat-radio-button [value]="true">
+          {{ "dmp.steps.costs.question.exist.yes" | translate }}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <ng-container *ngIf="costsStep.controls.exist.value">
+      <button
+        mat-raised-button
+        class="button-color-primary add-cost-container"
+        (click)="addCost()">
+        <mat-icon>add_circle</mat-icon>
+        {{ "dmp.steps.costs.addButton" | translate }}
+      </button>
+      <div [formGroup]="costsStep" class="scrollable-cost-list">
+        <mat-accordion formArrayName="list">
+          <mat-expansion-panel
+            class="expansion-panel"
+            *ngFor="let item of list.controls; let i = index">
+            <button
+              mat-icon-button
+              aria-label="Remove cost"
+              (click)="removeCost(i)">
+              <mat-icon>cancel</mat-icon>
+            </button>
+            <mat-expansion-panel-header>
+              <mat-panel-title [class.form-error]="item.invalid">
+                {{ item.value.title }}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{ item.value.value | currency: item.value.currencyCode }}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div [formArrayName]="i" class="cost-form-container">
+              <div class="form-row">
+                <div class="form-row-group">
+                  <app-input-wrapper
+                    [label]="'dmp.steps.costs.question.title'"
+                    [control]="getFormControl(i, 'title')">
+                  </app-input-wrapper>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-row-group">
+                  <app-input-wrapper
+                    [label]="'dmp.steps.costs.question.value'"
+                    [prefix]="'€ &nbsp;'"
+                    [placeholder]="'1000.00'"
+                    [stepSize]="100"
+                    [type]="'number'"
+                    [control]="getFormControl(i, 'value')">
+                  </app-input-wrapper>
+                  <mat-form-field class="costType">
+                    <mat-label>{{
+                      "dmp.steps.costs.question.type" | translate
+                    }}</mat-label>
+                    <mat-select formControlName="type">
+                      <mat-option
+                        *ngFor="let type of costTypeObject | keyvalue"
+                        [value]="type.value">
+                        {{ translateEnumPrefix + type.value | translate }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <ng-container *ngIf="item.value.type === costType.OTHER">
+                    <app-input-wrapper
+                      [label]="'dmp.steps.costs.question.other'"
+                      [type]="'text'"
+                      [control]="getFormControl(i, 'customType')">
+                    </app-input-wrapper>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-row-group">
+                  <app-textarea-wrapper
+                    [label]="'dmp.steps.costs.question.description'"
+                    [control]="getFormControl(i, 'description')">
+                  </app-textarea-wrapper>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="form-row">
-            <div class="form-row-group">
-              <app-input-wrapper
-                [label]="'dmp.steps.costs.question.value'"
-                [prefix]="'€ &nbsp;'"
-                [placeholder]="'1000.00'"
-                [type]="'number'"
-                [control]="getFormControl(i, 'value')">
-              </app-input-wrapper>
-              <mat-form-field class="costType">
-                <mat-label>{{
-                  "dmp.steps.costs.question.type" | translate
-                }}</mat-label>
-                <mat-select formControlName="type">
-                  <mat-option
-                    *ngFor="let type of costTypeObject | keyvalue"
-                    [value]="type.value">
-                    {{ translateEnumPrefix + type.value | translate }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-              <ng-container *ngIf="item.value.type === costType.OTHER">
-                <app-input-wrapper
-                  [label]="'dmp.steps.costs.question.other'"
-                  [type]="'text'"
-                  [control]="getFormControl(i, 'customType')">
-                </app-input-wrapper>
-              </ng-container>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-row-group">
-              <app-textarea-wrapper
-                [label]="'dmp.steps.costs.question.description'"
-                [control]="getFormControl(i, 'description')">
-              </app-textarea-wrapper>
-            </div>
-          </div>
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion>
-  </div>
-</ng-container>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </ng-container>
+  </mat-card-content>
+</mat-card>

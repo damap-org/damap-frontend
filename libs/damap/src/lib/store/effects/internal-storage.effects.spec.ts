@@ -4,41 +4,45 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { BackendService } from '../../services/backend.service';
 import { of, throwError } from 'rxjs';
 import * as InternalStorageAction from '../actions/internal-storage.actions';
-import { mockInternalStorage } from '../../mocks/storage-mocks';
+import {
+  mockInternalStorage,
+  mockInternalStorageSearchResult,
+} from '../../mocks/storage-mocks';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Actions } from '@ngrx/effects';
 
 describe('InternalStorageEffects', () => {
-  let actions$;
-  let effects;
-  let backendService;
+  let actions$: Actions;
+  let effects: InternalStorageEffects;
+  let backendService: jasmine.SpyObj<BackendService>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         InternalStorageEffects,
         provideMockActions(() => actions$),
-        [
-          {
-            provide: BackendService,
-            useValue: jasmine.createSpyObj('BackendService', [
-              'getInternalStorages',
-            ]),
-          },
-        ],
+        {
+          provide: BackendService,
+          useValue: jasmine.createSpyObj('BackendService', [
+            'searchInternalStorage',
+          ]),
+        },
       ],
     });
     effects = TestBed.inject<InternalStorageEffects>(InternalStorageEffects);
-    backendService = TestBed.inject<BackendService>(BackendService);
+    backendService = TestBed.inject<BackendService>(
+      BackendService,
+    ) as jasmine.SpyObj<BackendService>;
   });
 
   it('should load and return internal storages', () => {
-    actions$ = of(InternalStorageAction.loadInternalStorages);
-    backendService.getInternalStorages.and.returnValue(
-      of([mockInternalStorage]),
+    actions$ = of(InternalStorageAction.loadInternalStorages());
+    backendService.searchInternalStorage.and.returnValue(
+      of(mockInternalStorageSearchResult), // Mock the response
     );
 
     effects.loadInternalStorages$.subscribe(action => {
-      expect(backendService.getInternalStorages).toHaveBeenCalledWith();
+      expect(backendService.searchInternalStorage).toHaveBeenCalled();
       expect(action).toEqual(
         InternalStorageAction.internalStoragesLoaded({
           internalStorages: [mockInternalStorage],
@@ -47,14 +51,14 @@ describe('InternalStorageEffects', () => {
     });
   });
 
-  it('should load internal storages and fail', () => {
-    actions$ = of(InternalStorageAction.loadInternalStorages);
-    backendService.getInternalStorages.and.returnValue(
+  it('should handle failure when loading internal storages', () => {
+    actions$ = of(InternalStorageAction.loadInternalStorages());
+    backendService.searchInternalStorage.and.returnValue(
       throwError(() => new HttpErrorResponse({})),
     );
 
     effects.loadInternalStorages$.subscribe(action => {
-      expect(backendService.getInternalStorages).toHaveBeenCalledWith();
+      expect(backendService.searchInternalStorage).toHaveBeenCalled();
       expect(action).toEqual(
         InternalStorageAction.failedToLoadInternalStorages(),
       );

@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { GdprComponent } from './gdpr.component';
 import { BackendService } from '../../services/backend.service';
+import { GdprComponent } from './gdpr.component';
 import { TranslateTestingModule } from '../../testing/translate-testing/translate-testing.module';
 
 describe('GdprComponent', () => {
@@ -9,9 +9,9 @@ describe('GdprComponent', () => {
   let fixture: ComponentFixture<GdprComponent>;
   let backendSpy;
 
-  beforeEach(async () => {
+  beforeEach(waitForAsync(() => {
     backendSpy = jasmine.createSpyObj('BackendService', ['getGdpr']);
-    await TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       imports: [GdprComponent, TranslateTestingModule],
       providers: [{ provide: BackendService, useValue: backendSpy }],
     }).compileComponents();
@@ -19,7 +19,7 @@ describe('GdprComponent', () => {
     fixture = TestBed.createComponent(GdprComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();

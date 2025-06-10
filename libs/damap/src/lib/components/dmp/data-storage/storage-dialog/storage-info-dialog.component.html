@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+<mat-dialog-content>
+  <p>{{ data.description }}</p>
+  <p>
+    <a href="{{ data.link }}" target="_blank" rel="noopener">
+      {{ "dmp.steps.storage.link" | translate }}
+    </a>
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">{{ "Cancel" | translate }}</button>
+</mat-dialog-actions>

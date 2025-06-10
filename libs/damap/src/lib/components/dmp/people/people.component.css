@@ -1,7 +1,7 @@
 .projectRoleTag {
   padding: 5px 7px;
   border-radius: 4px;
-  background: aliceblue;
+  background: var(--tertiary-color-very-light);
   font-size: 10pt;
 }
 
@@ -9,18 +9,167 @@
   position: relative;
   max-height: 300px;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .mat-search-form-field {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-top: 1.25rem;
-  gap: 1.25rem;
+  flex-direction: column;
+  width: 100%;
 }
 
 mat-form-field {
-  transform: translateY(0em) scale(0.95);
   width: 100%;
-  top: -0.4rem;
+}
+
+.mat-card-container {
+  margin: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.mat-card-left {
+  flex: 1;
+}
+
+.mat-card-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+  margin-top: -2em;
+}
+
+@media (max-width: 1700px) {
+  .mat-card-right {
+    margin-top: 0;
+  }
+}
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.search-and-service-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 15px;
+  width: 100%;
+  gap: 15px;
+}
+
+.service-select-container,
+.app-person-search {
+  flex: 1;
+  min-width: 100px;
+}
+
+.form-fields {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+  margin: 1em 0.5em -0.5em 0.5em;
+}
+
+.form-field {
+  flex: 1;
+}
+
+.no-padding-top {
+  padding-top: 0;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.25em;
+  margin-right: 0.5em;
+  margin-top: 1em;
+}
+
+.title-search {
+  margin-top: 20px;
+}
+
+.card-selected-empty {
+  border: 2px solid var(--accent-color-lighter);
+}
+
+.white-background-panel {
+  background-color: var(--primary-lightest);
+}
+
+.contributor-mbox {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .mat-card-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .mat-card-left,
+  .mat-card-right {
+    width: 100%;
+  }
+
+  .mat-card-right {
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .search-and-service-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.input-half {
+  flex: 0 0 50%;
+}
+
+.input-full {
+  flex: 1;
+}
+
+@media (max-width: 1650px) {
+  .input-half,
+  .input-full {
+    flex: 1;
+  }
+}
+
+.manual-project-input-card {
+  margin: 20px 5px;
+}
+
+@media (max-width: 1300px) {
+  mat-card {
+    width: 100%;
+  }
+
+  .search-and-service-container {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+.contact-label {
+  margin-top: 1em;
 }

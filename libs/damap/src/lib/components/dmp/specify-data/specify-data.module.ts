@@ -1,25 +1,31 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { SpecifyDataComponent } from './specify-data.component';
-import { FileUploadModule } from '../../../widgets/file-upload/file-upload.module';
-import { StepIntroModule } from '../../../widgets/step-intro/step-intro.module';
 import { ByteModule } from '../../../pipes/byte/byte.module';
-import { SharedModule } from '../../../shared/shared.module';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatSelectModule } from '@angular/material/select';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatTableModule } from '@angular/material/table';
-import { ReusedDataComponent } from './reused-data/reused-data.component';
+import { CommonModule } from '@angular/common';
 import { CreatedDataComponent } from './created-data/created-data.component';
-import { DoiSearchModule } from '../../../widgets/doi-search/doi-search.module';
-import { DatasetSourceModule } from '../../../pipes/dataset-source/dataset-source.module';
-import { DatasetDialogComponent } from './dataset-dialog/dataset-dialog.component';
-import { DatasetTableComponent } from './dataset-table/dataset-table.component';
 import { DataMcComponent } from './data-mc/data-mc.component';
+import { DatasetDialogComponent } from './dataset-dialog/dataset-dialog.component';
+import { DatasetDialogUploadComponent } from './dataset-dialog/dataset-dialog-upload.component';
+import { DatasetSourceModule } from '../../../pipes/dataset-source/dataset-source.module';
+import { DatasetTableComponent } from './dataset-table/dataset-table.component';
+import { DoiSearchModule } from '../../../widgets/doi-search/doi-search.module';
+import { FileUploadModule } from '../../../widgets/file-upload/file-upload.module';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ReusedDataComponent } from './reused-data/reused-data.component';
+import { SharedModule } from '../../../shared/shared.module';
+import { SpecifyDataComponent } from './specify-data.component';
+import { SpecifyDataInstructionComponent } from './specify-data-instruction/specify-data-instruction.component';
+import { StepIntroModule } from '../../../widgets/step-intro/step-intro.module';
+import { ToggleButtonsModule } from '../../../widgets/toggle-buttons/toggle-buttons.module';
+import { TranslateModule } from '@ngx-translate/core';
+import { DatasetInformationComponent } from './dataset-information/dataset-information.component';
+import { LimitStringPipe } from '../../../pipes/limit-string/limitString.pipe';
+import { InfoMessageModule } from '../../../widgets/info-message/info-message.module';
 
 @NgModule({
   imports: [
@@ -32,6 +38,7 @@ import { DataMcComponent } from './data-mc/data-mc.component';
     SharedModule,
     DatasetSourceModule,
     DoiSearchModule,
+    ToggleButtonsModule,
 
     // Materials
     MatDialogModule,
@@ -40,6 +47,8 @@ import { DataMcComponent } from './data-mc/data-mc.component';
     MatTabsModule,
     MatChipsModule,
     MatTableModule,
+    LimitStringPipe,
+    InfoMessageModule,
   ],
   declarations: [
     SpecifyDataComponent,
@@ -48,6 +57,9 @@ import { DataMcComponent } from './data-mc/data-mc.component';
     ReusedDataComponent,
     DatasetTableComponent,
     DataMcComponent,
+    DatasetDialogUploadComponent,
+    SpecifyDataInstructionComponent,
+    DatasetInformationComponent,
   ],
   exports: [
     CommonModule,
@@ -59,6 +71,10 @@ import { DataMcComponent } from './data-mc/data-mc.component';
     SharedModule,
     SpecifyDataComponent,
     DoiSearchModule,
+    ToggleButtonsModule,
+    SpecifyDataInstructionComponent,
+    DatasetDialogUploadComponent,
+    DatasetInformationComponent,
 
     // Materials
     MatDialogModule,

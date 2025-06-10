@@ -17,5 +17,9 @@ mat-form-field {
 }
 
 .button {
-  margin: 20px;
+  margin: 10px;
+}
+
+.button-group {
+  padding-top: 15px;
 }

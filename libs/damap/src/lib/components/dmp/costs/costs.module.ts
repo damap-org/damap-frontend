@@ -1,16 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
 import { CostsComponent } from './costs.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatIconModule } from '@angular/material/icon';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { SharedModule } from '../../../shared/shared.module';
-import { MatSelectModule } from '@angular/material/select';
-import { MatButtonModule } from '@angular/material/button';
 import { CrisTagModule } from '../../../widgets/cris-tag/cris-tag.module';
+import { InfoMessageModule } from '../../../widgets/info-message/info-message.module';
+import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../../../shared/shared.module';
 import { StepIntroModule } from '../../../widgets/step-intro/step-intro.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { StepIntroModule } from '../../../widgets/step-intro/step-intro.module';
     StepIntroModule,
     SharedModule,
     CrisTagModule,
+    InfoMessageModule,
 
     // Materials
     MatRadioModule,
@@ -37,6 +39,7 @@ import { StepIntroModule } from '../../../widgets/step-intro/step-intro.module';
     SharedModule,
     CrisTagModule,
     CostsComponent,
+    InfoMessageModule,
 
     // Materials
     MatRadioModule,

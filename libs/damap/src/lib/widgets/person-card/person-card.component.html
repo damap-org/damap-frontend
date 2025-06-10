@@ -1,4 +1,4 @@
-<mat-card appearance="raised" class="mat-mdc-selected">
+<mat-card appearance="raised" class="card-selected">
   <mat-card-content>
     <div class="mat-card-container">
       <div class="mat-card-left">
@@ -7,15 +7,14 @@
           {{ person.firstName }} {{ person.lastName }}
           <mat-icon
             *ngIf="person.contact"
-            class="mat-icon-contact"
-            color="primary">
+            class="mat-icon-contact button-color-primary">
             contact_mail
           </mat-icon>
           <span class="sr-only">{{
             "dmp.steps.people.contact.person" | translate
           }}</span>
         </div>
-        <mat-icon class="mat-icon-style">mail_outline</mat-icon>
+        <mat-icon class="mat-icon-style outline">mail</mat-icon>
         {{ person.mbox }}
         <app-orcid
           *ngIf="
@@ -24,6 +23,7 @@
           "
           [orcidId]="person.personId?.identifier"></app-orcid>
       </div>
+      <ng-content></ng-content>
     </div>
   </mat-card-content>
 </mat-card>

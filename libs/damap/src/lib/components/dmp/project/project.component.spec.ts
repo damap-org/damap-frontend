@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { BackendService } from '../../../services/backend.service';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -10,13 +10,14 @@ import { TranslateTestingModule } from '../../../testing/translate-testing/trans
 import { mockProject } from '../../../mocks/project-mocks';
 import { mockRecommendedProjectSearchResult } from '../../../mocks/search';
 import { of } from 'rxjs';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('ProjectComponent', () => {
   let component: ProjectComponent;
   let fixture: ComponentFixture<ProjectComponent>;
   let backendSpy;
 
-  beforeEach(async () => {
+  beforeEach(waitForAsync(() => {
     backendSpy = jasmine.createSpyObj('BackendService', [
       'getRecommendedProjects',
     ]);
@@ -25,13 +26,14 @@ describe('ProjectComponent', () => {
       of(mockRecommendedProjectSearchResult),
     );
 
-    await TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       imports: [
         TranslateTestingModule,
         MatIconModule,
         MatDialogModule,
         ReactiveFormsModule,
       ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [ProjectComponent, ProjectListComponent],
       providers: [{ provide: BackendService, useValue: backendSpy }],
     }).compileComponents();
@@ -39,7 +41,7 @@ describe('ProjectComponent', () => {
     fixture = TestBed.createComponent(ProjectComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();

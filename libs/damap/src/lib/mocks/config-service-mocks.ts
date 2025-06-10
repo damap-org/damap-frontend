@@ -14,5 +14,9 @@ export const configMockData: Config = {
   authScope: '',
   authUser: '',
   env: '',
+  appTitle: '',
   personSearchServiceConfigs: serviceConfigMockData,
+  fitsServiceAvailable: true,
+  livePreviewAvailable: true,
+  ethicalReportEnabled: true,
 };

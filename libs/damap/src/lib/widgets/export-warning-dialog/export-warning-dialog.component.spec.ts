@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler';
@@ -13,8 +13,8 @@ describe('ExportWarningDialogComponent', () => {
   let component: ExportWarningDialogComponent;
   let fixture: ComponentFixture<ExportWarningDialogComponent>;
   const fakeMatDialogRef = jasmine.createSpyObj(['close']);
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       imports: [
         TranslateTestingModule,
         MatSelectModule,
@@ -32,7 +32,7 @@ describe('ExportWarningDialogComponent', () => {
     fixture = TestBed.createComponent(ExportWarningDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();

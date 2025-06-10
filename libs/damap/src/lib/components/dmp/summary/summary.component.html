@@ -1,39 +1,50 @@
-<p translate>dmp.steps.summary.title</p>
-
-<table
-  mat-table
-  [dataSource]="dataSource"
-  class="mat-elevation-z8"
-  aria-label="DMP Summary">
-  <ng-container matColumnDef="step">
-    <th mat-header-cell *matHeaderCellDef>
-      {{ "dmp.steps.summary.table.header.step" | translate }}
-    </th>
-    <td mat-cell *matCellDef="let element">{{ element.step | translate }}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="completeness">
-    <th mat-header-cell *matHeaderCellDef>
-      {{ "dmp.steps.summary.table.header.completeness" | translate }}
-    </th>
-    <td mat-cell *matCellDef="let element">
-      <mat-progress-bar
-        mode="determinate"
-        [value]="element.completeness"></mat-progress-bar>
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="status">
-    <th mat-header-cell *matHeaderCellDef>
-      {{ "dmp.steps.summary.table.header.status" | translate }}
-    </th>
-    <td mat-cell *matCellDef="let element">
-      <ng-container *ngFor="let sentence of element.status">{{
-        sentence | translate
-      }}</ng-container>
-    </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="summaryTableHeaders"></tr>
-  <tr mat-row *matRowDef="let row; columns: summaryTableHeaders"></tr>
-</table>
+<mat-label class="label-title mat-title-large" id="example-radio-group-label">{{
+  "dmp.steps.summary.title" | translate
+}}</mat-label>
+<mat-card class="dmp-summary-card card-shadow">
+  <mat-card-content>
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      class="mat-elevation-z8"
+      aria-label="DMP Summary">
+      <ng-container matColumnDef="step">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "dmp.steps.summary.table.header.step" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element; let i = index">
+          <a
+            (click)="navigateToStep(i)"
+            matTooltip="Jump to section '{{ element.step | translate }}'"
+            aria-label="Link to jump to section '{{
+              element.step | translate
+            }}' and displays a tooltip when focused or hovered over"
+            >{{ element.step | translate }}</a
+          >
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="completeness">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "dmp.steps.summary.table.header.completeness" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-progress-bar
+            mode="determinate"
+            [value]="element.completeness"></mat-progress-bar>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "dmp.steps.summary.table.header.status" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <ng-container *ngFor="let sentence of element.status">{{
+            sentence | translate
+          }}</ng-container>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="summaryTableHeaders"></tr>
+      <tr mat-row *matRowDef="let row; columns: summaryTableHeaders"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>

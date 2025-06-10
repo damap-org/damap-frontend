@@ -1,13 +1,13 @@
 html,
 body {
   height: 100%;
+  background-color: var(--background-body);
 }
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  letter-spacing: 0.03rem;
-  font-weight: 300;
+  font: var(--body-typography);
+  font-size: 1rem;
 }
 
 .content {
@@ -26,12 +26,14 @@ body {
   border: 0;
 }
 
+// TODO: rename to .scale-50 for general purpose?
 .mat-icon-style {
-  font-size: smaller;
+  transform: scale(50%);
 }
 
 .material-icons.mat-icon {
   overflow: initial;
+  vertical-align: middle;
 }
 
 .mat-icon-contact {
@@ -49,47 +51,15 @@ body {
 .mat-card-left {
   flex-direction: column;
   flex-grow: 1;
-  /*width: 90%;*/
-}
-
-.mat-card-right {
-  /*float: right;*/
-}
-
-.mat-mdc-selected {
-  background-color: #f5f5f5 !important;
 }
 
 mat-card {
   margin: 5px;
 }
 
-.snack-error {
-  background-color: var(--error-bg);
-  color: black;
-  font-weight: bold;
-}
-
-.snack-success {
-  background-color: var(--success-bg);
-  color: black;
-  font-weight: bold;
-}
-
 .full-width {
   flex: 1;
   width: 100%;
-}
-
-.wrap-normal-label {
-  white-space: normal;
-  height: auto;
-}
-
-.mat-mdc-tooltip {
-  font-size: 0.75rem !important;
-  line-height: 1rem;
-  background: #2a2a2a;
 }
 
 .flex-radio {
@@ -132,10 +102,6 @@ mat-card {
   display: flex;
 }
 
-.form-error {
-  color: red;
-}
-
 .form-error::before {
   font-family: "Material Icons", sans-serif;
   content: "warning";
@@ -145,4 +111,109 @@ mat-card {
 /* Mat Tab styling */
 .mat-mdc-tab-header {
   padding: 1rem 0 !important;
+}
+
+.button-position-left {
+  margin-left: 5px;
+}
+
+.button-position {
+  margin: 5px;
+}
+
+.mat-step-header {
+  border-radius: 40px !important;
+}
+
+.mat-icon-shadow {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px !important;
+  border: 1px solid transparent !important;
+  box-shadow: 0px 0px 10px 5px rgba(246, 246, 246, 0.5) !important;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease !important;
+  will-change: transform;
+}
+
+.mat-icon-shadow:hover {
+  transform: scale(1.005) translateZ(0);
+  box-shadow: 0px 0px 15px 10px rgba(246, 246, 246, 1);
+}
+
+.card-shadow {
+  background-color: var(--primary-lightest) !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 8px !important;
+}
+
+.title-thin {
+  font-weight: 300 !important;
+  color: var(--step-intro-color) !important;
+}
+
+.label-title {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.zebra-table {
+  & tbody tr:not(.expanded-row):hover {
+    background: var(--secondary-container);
+    color: var(--on-secondary-container);
+  }
+
+  & tbody tr:not(.expanded-row):active {
+    background: var(--secondary-fixed-dim);
+  }
+
+  & tbody tr:nth-child(odd) {
+    background-color: var(--surface-container-low);
+  }
+
+  .mat-mdc-cell {
+    border-bottom: none;
+  }
+}
+/*
+  The following styles cause rendering issues in Chrome, particularly with
+  form field outlines not displaying correctly or causing layout glitches.
+  Therefore, these styles are commented out as a workaround.
+  Tested in Chrome Version Version 131.0.6778.140.
+
+  Uncomment and test thoroughly if you plan to modify these styles.
+
+  // .mat-mdc-form-field {
+  //   .mdc-notched-outline__leading,
+  //   .mdc-notched-outline__notch,
+  //   .mdc-notched-outline__trailing {
+  //     border-width: 1px !important;
+  //     border-color: var(--primary) !important;
+  //   }
+  // }
+
+  // .mat-mdc-form-field.mat-focused {
+  //   .mdc-notched-outline__leading,
+  //   .mdc-notched-outline__trailing {
+  //     border-width: 2px !important;
+  //     border-color: var(--primary) !important;
+  //   }
+
+  //   .mdc-notched-outline__notch {
+  //     border-right-width: 1px !important;
+  //     border-left-width: 1px !important;
+  //     border-bottom-width: 2px !important;
+  //     border-top-width: 2px !important;
+  //     border-color: var(--primary) !important;
+  //   }
+  // }
+*/
+
+// Angular material labels are bugged for the outline appearance of formfields
+// they dont reserve space above, so in combination with other components, the labels are cut off
+// this should offset the bug, and should be removed when the bug is fixed
+mat-dialog-content mat-form-field,
+mat-tab-body mat-form-field {
+  margin-top: 5px !important;
 }

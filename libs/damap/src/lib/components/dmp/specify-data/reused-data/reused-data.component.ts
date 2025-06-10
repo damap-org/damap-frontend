@@ -22,8 +22,9 @@ export class ReusedDataComponent
   loading: LoadingState = LoadingState.NOT_LOADED;
 
   result: Dataset;
+  duplicate = false;
 
-  readonly tableHeaders: string[] = ['dataset', 'pid', 'actions'];
+  readonly tableHeaders: string[] = ['dataset', 'source', 'actions'];
 
   constructor(
     private backendService: BackendService,
@@ -64,6 +65,21 @@ export class ReusedDataComponent
   }
 
   searchDataset(term: string): void {
+    this.duplicate = false;
+    this.result = undefined;
+
+    if (this.datasets) {
+      for (let i = 0; i < this.datasets.length; i++) {
+        if (
+          this.datasets.value.at(i).datasetId &&
+          this.datasets.value.at(i).datasetId.identifier === term
+        ) {
+          this.duplicate = true;
+          return;
+        }
+      }
+    }
+
     this.searchTerms.next(term);
   }
 

@@ -1,0 +1,94 @@
+{
+  "admin": {
+    "title": "Admin page",
+    "banner": "Banner",
+    "internal-storage": "Internal Storage",
+    "internal-storage-translations": "Translations for: ",
+    "internal-storage-translations-no-selected": "Translations",
+    "reset-selection": "Reset selection",
+    "translation-info": "In order to see the translations for a specific internal storage, please select the internal storage from the list in the actions menu, and the option 'Translations'.",
+    "banner-missing-info": "There is no banner currently set for the app.",
+    "table": {
+      "header": {
+        "url": "URL",
+        "storageLocation": "Storage Location",
+        "backupLocation": "Backup Location",
+        "active": "Active",
+        "action": "Actions",
+        "langugageCode": "Language Code",
+        "title": "Title",
+        "description": "Description",
+        "backupFrequency": "Backup Frequency"
+      },
+      "action": {
+        "delete": "Delete",
+        "deactivate": "Deactivate",
+        "activate": "Activate",
+        "edit": "Edit",
+        "translation": "Translations"
+      },
+      "empty": "No data available",
+      "no-selected": "No internal storage selected"
+    },
+    "create": {
+      "storage": "Add new internal storage",
+      "translation": "Add new translation",
+      "banner": "Add app banner"
+    },
+    "edit": {
+      "banner": "Edit app banner"
+    },
+    "delete": {
+      "banner": "Delete app banner"
+    },
+    "dialog": {
+      "internal-storage": {
+        "edit": "Edit internal storage",
+        "add": "Add internal storage",
+        "button": {
+          "cancel": "Cancel",
+          "add": "Add",
+          "update": "Update"
+        },
+        "captions": {
+          "url": "URL",
+          "storageLocation": "Storage Location",
+          "backupLocation": "Backup Location",
+          "active": "Internal storage is active?"
+        }
+      },
+      "internal-storage-translation": {
+        "edit": "Edit translation",
+        "add": "Add translation",
+        "button": {
+          "cancel": "Cancel",
+          "add": "Add",
+          "update": "Update"
+        },
+        "captions": {
+          "title": "Title",
+          "description": "Description",
+          "languageCode": "Language Code",
+          "backupFrequency": "Backup Frequency",
+          "eng": "English",
+          "deu": "German"
+        }
+      },
+      "banner": {
+        "edit": "Edit banner",
+        "add": "Create banner",
+        "captions": {
+          "title": "Title",
+          "description": "Description",
+          "color": "Background color",
+          "dismissible": "Dismissible"
+        },
+        "button": {
+          "update": "Edit",
+          "add": "Add",
+          "cancel": "Cancel"
+        }
+      }
+    }
+  }
+}

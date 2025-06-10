@@ -1,18 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { RepoRecommendationComponent } from './repo-recommendation.component';
 import { RepoPipe } from '../repo.pipe';
+import { RepoRecommendationComponent } from './repo-recommendation.component';
 import { mockDetailRepo } from '../../../../mocks/repository-mocks';
 
 describe('RepoRecommendationComponent', () => {
   let component: RepoRecommendationComponent;
   let fixture: ComponentFixture<RepoRecommendationComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       declarations: [RepoRecommendationComponent, RepoPipe],
     }).compileComponents();
-  });
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RepoRecommendationComponent);

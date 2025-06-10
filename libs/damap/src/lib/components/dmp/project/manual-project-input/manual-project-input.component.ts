@@ -6,17 +6,18 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { Project } from '../../../../domain/project';
 import {
   UntypedFormControl,
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 
+import { Project } from '../../../../domain/project';
+
 @Component({
   selector: 'app-manual-project-input',
   templateUrl: './manual-project-input.component.html',
-  styleUrls: [],
+  styleUrls: ['./manual-project-input.component.css'],
 })
 export class ManualProjectInputComponent implements OnChanges {
   @Input() project: Project;
@@ -31,6 +32,7 @@ export class ManualProjectInputComponent implements OnChanges {
     description: new UntypedFormControl(''),
     start: new UntypedFormControl(null),
     end: new UntypedFormControl(null),
+    acronym: new UntypedFormControl('', [Validators.maxLength(255)]),
   });
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -46,6 +48,10 @@ export class ManualProjectInputComponent implements OnChanges {
 
   get title(): UntypedFormControl {
     return this.form.get('title') as UntypedFormControl;
+  }
+
+  get acronym(): UntypedFormControl {
+    return this.form.get('acronym') as UntypedFormControl;
   }
 
   get description(): UntypedFormControl {

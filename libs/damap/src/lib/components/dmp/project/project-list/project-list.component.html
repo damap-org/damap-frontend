@@ -1,19 +1,18 @@
-<p *ngIf="!selectedProject" translate>dmp.steps.project.select</p>
+<mat-label
+  class="label-title mat-title-large"
+  *ngIf="!selectedProject"
+  id="example-radio-group-label"
+  >{{ "dmp.steps.project.list" | translate }}</mat-label
+>
 <ng-container *ngIf="!selectedProject">
-  <mat-form-field>
-    <mat-label translate>dmp.steps.project.search</mat-label>
-    <input
-      #searchBox
-      type="search"
-      matInput
-      (input)="search(searchBox.value)" />
-    <mat-icon matSuffix>search</mat-icon>
-  </mat-form-field>
+  <app-search-field
+    [label]="'dmp.steps.project.search' | translate"
+    (searchChange)="search($event)"></app-search-field>
   <div class="list-container" *ngIf="!selectedProject">
     <mat-selection-list
       hideSingleSelectionIndicator
       [multiple]="false"
-      style="overflow: scroll"
+      style="overflow: hidden"
       (selectionChange)="changeProject($event)">
       <mat-list-option
         *ngFor="let project of (searchResult$ | async)?.items ?? []"
@@ -29,7 +28,7 @@
           <mat-icon
             *ngIf="project.dmpExists"
             matTooltip="{{ 'dmp.steps.project.warning.dmp' | translate }}"
-            class="dmp-warning mat-list-option-right">
+            class="material-icon-warning mat-list-option-right">
             warning
           </mat-icon>
         </div>

@@ -1,33 +1,39 @@
 {
   "plans": {
-    "mydmps": "Meine DMPs",
+    "mydmps": "MEINE DMPs",
     "alldmps": "Alle DMPs",
-    "create.dmp": "Neuen DMP erstellen",
+    "create.dmp": "NEUEN DMP ERSTELLEN",
     "loading": {
       "load": "DMPs werden geladen...",
       "failed": "Deine DMPs konnten nicht geladen werden!"
+    },
+    "table": {
+      "header": {
+        "title": "Titel",
+        "version": "Version",
+        "version_tag": "Versionsnummer",
+        "version_name": "Versionsname",
+        "created": "Erstellt",
+        "modified": "Zuletzt geändert",
+        "contact": "Kontakt"
+      },
+      "actions": {
+        "edit": "Bearbeiten",
+        "access": "Zugriff bearbeiten",
+        "history": "Versionen ansehen",
+        "delete": "DMP löschen"
+      },
+      "expanded": {
+        "duration": "Projektdauer: {{value}}"
+      },
+      "export": {
+        "json": "Als JSON exportieren",
+        "doc": "Als Dokument exportieren"
+      },
+      "empty": "Keine DMPs gefunden",
+      "nodatafilter": "Keine Daten die dem Filter \"{{value}}\" entsprechen gefunden",
+      "search": "DMP suchen",
+      "nocontact": "Kein Kontakt vorhanden."
     }
-  },
-  "table": {
-    "header": {
-      "title": "Titel",
-      "created": "Erstellt",
-      "modified": "Zuletzt geändert",
-      "contact": "Kontakt",
-      "edit": "Ändern",
-      "history": "Versionen",
-      "delete": "Löschen"
-    },
-    "expanded": {
-      "duration": "Projektdauer: {{value}}"
-    },
-    "export": {
-      "json": "Als JSON exportieren",
-      "doc": "Als Dokument exportieren"
-    },
-    "empty": "Keine DMPs gefunden",
-    "nodatafilter": "Keine Daten die dem Filter \"{{value}}\" entsprechen gefunden",
-    "search": "DMP suchen",
-    "nocontact": "Kein Kontakt vorhanden."
   }
 }

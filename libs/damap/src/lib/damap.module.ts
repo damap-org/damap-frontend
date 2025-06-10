@@ -9,20 +9,32 @@ import { TranslateModule } from '@ngx-translate/core';
 import { DamapStoreModule } from './store/damap-store.module';
 import { APP_ENV } from './constants';
 import { GdprComponent } from './components/gdpr/gdpr.component';
+import { DamapInfoComponent } from './components/damap-info/damap-info.component';
+import { DmpInstructionsComponent } from './components/dmp-instructions/dmp-instructions.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { AdminModule } from './components/admin/admin.module';
+import { AdminGuard } from './guards/admin.guard';
 
 export const DAMAP_ROUTES: Route[] = [
-  { path: '', component: DashboardComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'plans', component: PlansComponent },
+  {
+    path: 'info',
+    children: [
+      { path: 'damap', component: DamapInfoComponent },
+      { path: 'how-to-create', component: DmpInstructionsComponent },
+    ],
+  },
   {
     path: 'dmp',
     loadChildren: () =>
       import('./components/dmp/dmp.module').then(m => m.DmpModule),
   },
   { path: 'gdpr', component: GdprComponent },
+  { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
 ];
 
-const MODULES = [DashboardModule, PlansModule];
+const MODULES = [DashboardModule, PlansModule, AdminModule];
 
 @NgModule({
   imports: [

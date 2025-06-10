@@ -1,5 +1,48 @@
-div {
+.step-container {
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .step-container {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .step-container {
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+
+  app-created-data,
+  app-reused-data,
+  app-textarea-wrapper {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  mat-form-field,
+  mat-select,
+  mat-input {
+    width: 100%;
+  }
+
+  .mat-card {
+    width: 100%;
+    margin: 0;
+    padding: 1rem;
+  }
+
+  .mat-card-title,
+  .mat-card-content {
+    font-size: 1rem;
+  }
+
+  button {
+    width: 100%;
+  }
 }

@@ -1,23 +1,28 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DmpComponent } from './dmp.component';
-import { provideMockStore } from '@ngrx/store/testing';
-import { ActivatedRoute } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
-import { BackendService } from '../../services/backend.service';
-import { FeedbackService } from '../../services/feedback.service';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ChangeDetectionStrategy, NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
-import { MatStepperModule } from '@angular/material/stepper';
-import { MatButtonModule } from '@angular/material/button';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { HarnessLoader } from '@angular/cdk/testing';
-import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import { MatStepperHarness } from '@angular/material/stepper/testing';
-import { TranslateTestingModule } from '../../testing/translate-testing/translate-testing.module';
-import { FormTestingModule } from '../../testing/form-testing/form-testing.module';
+import { Subject, of } from 'rxjs';
+
 import { AuthService } from '../../auth/auth.service';
+import { BackendService } from '../../services/backend.service';
+import { Config } from '../../domain/config';
+import { DmpComponent } from './dmp.component';
+import { FeedbackService } from '../../services/feedback.service';
+import { FormTestingModule } from '../../testing/form-testing/form-testing.module';
+import { HarnessLoader } from '@angular/cdk/testing';
+import { MatButtonModule } from '@angular/material/button';
+import { MatStepperHarness } from '@angular/material/stepper/testing';
+import { MatStepperModule } from '@angular/material/stepper';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { TranslateTestingModule } from '../../testing/translate-testing/translate-testing.module';
 import { completeDmp } from '../../mocks/dmp-mocks';
-import { of } from 'rxjs';
+import { configMockData } from '../../mocks/config-service-mocks';
 import { mockContributor1 } from '../../mocks/contributor-mocks';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('DmpComponent', () => {
   let component: DmpComponent;
@@ -25,6 +30,7 @@ describe('DmpComponent', () => {
   let loader: HarnessLoader;
   let authSpy;
   let backendSpy: jasmine.SpyObj<BackendService>;
+  let loadServiceConfigSpy;
   let feedbackSpy;
   const initialState = {
     damap: {
@@ -32,7 +38,7 @@ describe('DmpComponent', () => {
     },
   };
 
-  beforeEach(async () => {
+  beforeEach(waitForAsync(() => {
     authSpy = jasmine.createSpyObj('AuthService', ['getUsername', 'isAdmin']);
     authSpy.getUsername.and.returnValue('name');
     authSpy.isAdmin.and.returnValue(false);
@@ -40,10 +46,13 @@ describe('DmpComponent', () => {
     backendSpy = jasmine.createSpyObj(
       Object.getOwnPropertyNames(BackendService.prototype),
     );
+    loadServiceConfigSpy = backendSpy.loadServiceConfig.and.returnValue(
+      of(configMockData),
+    );
     backendSpy.getDmpById.and.returnValue(of(completeDmp));
     backendSpy.getProjectMembers.and.returnValue(of([mockContributor1]));
 
-    await TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
         MatStepperModule,
@@ -56,6 +65,7 @@ describe('DmpComponent', () => {
         FormTestingModule,
       ],
       declarations: [DmpComponent],
+      schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: AuthService, useValue: authSpy },
         provideMockStore({ initialState }),
@@ -69,27 +79,41 @@ describe('DmpComponent', () => {
         { provide: FeedbackService, useValue: feedbackSpy },
       ],
     }).compileComponents();
-  });
+  }));
 
-  beforeEach(() => {
+  beforeEach(async () => {
     fixture = TestBed.createComponent(DmpComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    component.config$ = new Subject<Config>();
+    await fixture.whenStable();
+
     loader = TestbedHarnessEnvironment.loader(fixture);
+    fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create', async () => {
     expect(component).toBeTruthy();
   });
 
-  it('should load all stepper harnesses and get steps of stepper', async () => {
+  describe('ngOnInit', () => {
+    it('should load service config and publish he result into config$ observable', () => {
+      fixture.detectChanges();
+      component.ngOnInit();
+      expect(loadServiceConfigSpy).toHaveBeenCalled();
+      component.config$.subscribe(config =>
+        expect(config).toEqual(configMockData),
+      );
+    });
+  });
+
+  it('should load all stepper harnesses and get steps of stepper', waitForAsync(async () => {
     const steppers = await loader.getAllHarnesses(MatStepperHarness);
     expect(steppers.length).toBe(1);
 
     const stepper = await loader.getHarness(MatStepperHarness);
     const steps = await stepper.getSteps();
     expect(steps.length).toEqual(11);
-  });
+  }));
 
   it('should reset form and dispatch store calls on destroy', () => {
     spyOn(component, 'ngOnDestroy');
@@ -99,6 +123,25 @@ describe('DmpComponent', () => {
     fixture.destroy();
 
     expect(storeSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should handle step change correctly', () => {
+    const event: StepperSelectionEvent = {
+      selectedIndex: 2,
+      previouslySelectedIndex: 1,
+      selectedStep: {} as any,
+      previouslySelectedStep: {} as any,
+    };
+
+    spyOn(component, 'changeStep');
+    spyOn(component, 'changeStepPosition');
+    spyOn(component, 'onStepChange');
+
+    component.handleStepChange(event);
+
+    expect(component.changeStep).toHaveBeenCalledWith(event);
+    expect(component.changeStepPosition).toHaveBeenCalledWith(event);
+    expect(component.onStepChange).toHaveBeenCalledWith(event.selectedIndex);
   });
 
   it('should test showStep', () => {

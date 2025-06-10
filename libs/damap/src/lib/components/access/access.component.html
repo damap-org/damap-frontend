@@ -7,7 +7,10 @@
       <mat-icon>chevron_left</mat-icon>
       {{ "access.button.plans" | translate }}
     </button>
-    <button mat-raised-button color="primary" [routerLink]="'/dmp/' + id">
+    <button
+      mat-raised-button
+      class="button-color-primary"
+      [routerLink]="'/dmp/' + id">
       {{ "versions.view.button.goto.latest" | translate }}
     </button>
   </div>
@@ -19,7 +22,6 @@
     <damap-person-card [person]="access">
       <div *ngIf="access.access !== accessType.OWNER; else owner">
         <mat-checkbox
-          color="primary"
           [checked]="access.access === accessType.EDITOR"
           (change)="editorToggle($event, access)">
           {{ "access.editor" | translate }}
@@ -27,7 +29,7 @@
       </div>
       <ng-template #owner>
         <div class="owner">
-          <mat-icon class="mat-icon-style" color="primary">star</mat-icon>
+          <mat-icon class="mat-icon-style material-icon-primary">star</mat-icon>
           {{ "access.owner" | translate }}
         </div>
       </ng-template>

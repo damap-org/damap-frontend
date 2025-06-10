@@ -34,7 +34,6 @@ import { TranslateModule } from '@ngx-translate/core';
 
   exports: [
     CommonModule,
-    TranslateModule,
     MatButtonModule,
     MatSelectModule,
     ExportWarningDialogComponent,

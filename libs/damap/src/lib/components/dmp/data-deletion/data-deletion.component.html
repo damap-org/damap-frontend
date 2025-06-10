@@ -1,16 +1,9 @@
 <div [formGroup]="dataset">
-  <div class="warning" *ngIf="dataset.value.delete">
-    <div class="warning-icon">
-      <mat-icon>error_outline</mat-icon>
-    </div>
-    {{ "dmp.steps.data.deletion.warning.published" | translate }}
-  </div>
   <div>
     <p>{{ "dmp.steps.data.deletion.question.label" | translate }}</p>
     <mat-slide-toggle
       (change)="setDateOfDeletion($event)"
       formControlName="delete"
-      color="primary"
       >{{
         "dmp.steps.data.deletion.question.delete" | translate
       }}</mat-slide-toggle
@@ -45,10 +38,10 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </div>
-    <app-input-wrapper
+    <app-textarea-wrapper
       [label]="'dmp.steps.data.deletion.question.reason'"
       [control]="reasonForDeletion"
       [maxLength]="4000">
-    </app-input-wrapper>
+    </app-textarea-wrapper>
   </div>
 </div>

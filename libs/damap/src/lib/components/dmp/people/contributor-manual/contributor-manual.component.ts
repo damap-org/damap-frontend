@@ -4,8 +4,9 @@ import {
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
-import { notEmptyValidator } from '../../../../validators/not-empty.validator';
+
 import { IdentifierType } from '../../../../domain/enum/identifier-type.enum';
+import { notEmptyValidator } from '../../../../validators/not-empty.validator';
 import { orcidValidator } from '../../../../validators/orcid.validator';
 
 @Component({

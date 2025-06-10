@@ -1,12 +1,5 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { MatTabGroup } from '@angular/material/tabs';
 import { Project } from '../../../domain/project';
 import { UntypedFormControl } from '@angular/forms';
 
@@ -17,15 +10,15 @@ import { UntypedFormControl } from '@angular/forms';
 })
 export class ProjectComponent {
   @Input() projectStep: UntypedFormControl;
-  @Output() project = new EventEmitter<any>();
+  @Output() project = new EventEmitter<Project>();
 
-  @ViewChild('tabGroup') tabGroup: MatTabGroup;
+  selectedView: 'primaryView' | 'secondaryView' = 'primaryView';
 
   changeProject(project: Project): void {
     this.project.emit(project);
   }
 
-  changeTab(index: number): void {
-    this.tabGroup.selectedIndex = index;
+  onViewChange(view: 'primaryView' | 'secondaryView'): void {
+    this.selectedView = view;
   }
 }

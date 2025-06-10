@@ -22,8 +22,8 @@ conflicts.
 
 `libs/damap` contains the core functionality of DAMAP and should not be modified in your personal project.
 
-The frontend only contains one config information, which is the address of the backend from where it will fetch the
-necessary config data. It is stored in [environment.ts](apps/damap-frontend/src/environments/environment.ts) (
+The frontend only contains very little config information, which is the address of the backend from where it will fetch the
+necessary config data and the title for the html title tag in index.html. It is stored in [environment.ts](apps/damap-frontend/src/environments/environment.ts) (
 and [environment.prod.ts](apps/damap-frontend/src/environments/environment.prod.ts) respectively)
 and can be changed. However, you should **NOT** change the keys (`production` and `backendurl`) as the library depends
 on them.

@@ -4,7 +4,10 @@
       <mat-icon>chevron_left</mat-icon>
       {{ "versions.view.button.versions" | translate }}
     </button>
-    <button mat-raised-button color="primary" [routerLink]="'/dmp/' + id">
+    <button
+      mat-raised-button
+      class="button-color-primary"
+      [routerLink]="'/dmp/' + id">
       {{ "versions.view.button.goto.latest" | translate }}
     </button>
   </div>

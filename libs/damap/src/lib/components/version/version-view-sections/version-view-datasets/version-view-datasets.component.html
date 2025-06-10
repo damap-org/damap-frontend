@@ -6,7 +6,7 @@
     <div>
       <span class="title">{{ dataset.title }}</span>
       <app-tag> {{ dataset.dataAccess | translate }}</app-tag>
-      <app-tag [background]="'palegoldenrod'">
+      <app-tag [background]="'var(--golden-tag)'">
         {{ dataset.source | translate }}</app-tag
       >
     </div>
@@ -98,7 +98,9 @@
       </ul>
     </div>
     <div *ngIf="dataset.datasetId">
-      <app-tag *ngIf="dataset.datasetId.type" [background]="'lavender'">
+      <app-tag
+        *ngIf="dataset.datasetId.type"
+        [background]="'var(--lavender-tag)'">
         {{ dataset.datasetId.type | translate }}</app-tag
       >
       {{ dataset.datasetId.identifier }}

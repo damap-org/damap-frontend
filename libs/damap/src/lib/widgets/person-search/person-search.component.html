@@ -1,19 +1,40 @@
 <form>
-  <mat-form-field>
-    <mat-label>{{ "dmp.steps.people.search" | translate }}</mat-label>
-    <input
-      #searchBox
-      type="search"
-      matInput
-      [matAutocomplete]="auto"
-      (input)="search(searchBox.value)" />
-    <mat-icon matSuffix>search</mat-icon>
-    <mat-autocomplete #auto="matAutocomplete" class="search-result">
-      <mat-option
+  <app-search-field
+    class="search-field"
+    [label]="'dmp.steps.people.search'"
+    (searchChange)="search($event)"></app-search-field>
+  <div class="result-list" *ngIf="currentSearchTerm && result.length > 0">
+    <mat-selection-list
+      hideSingleSelectionIndicator
+      [multiple]="false"
+      (selectionChange)="selectPerson($event)">
+      <mat-list-option
         *ngFor="let person of result"
-        (onSelectionChange)="selectPerson(person)">
-        {{ person.firstName }} {{ person.lastName }}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
+        [style]="'height: auto;'"
+        [selected]="false"
+        [value]="person">
+        <div class="list-option-container">
+          <div>
+            <div matListItemTitle class="person-detail-content">
+              <strong> {{ person.firstName }} {{ person.lastName }} </strong>
+            </div>
+            <div
+              matListItemLine
+              *ngIf="person.mbox"
+              class="person-detail-content">
+              <mat-icon class="outline" inline="true">mail</mat-icon>
+              {{ person.mbox }}
+            </div>
+            <div
+              matListItemLine
+              *ngIf="person.personId?.identifier"
+              class="person-detail-content">
+              <mat-icon inline="true">fingerprint</mat-icon>
+              {{ person.personId?.type }}: {{ person.personId.identifier }}
+            </div>
+          </div>
+        </div>
+      </mat-list-option>
+    </mat-selection-list>
+  </div>
 </form>

@@ -1,0 +1,71 @@
+<div class="action-buttons">
+  <button
+    mat-raised-button
+    class="button-color-primary"
+    [routerLink]="'/dashboard'">
+    <mat-icon class="outline">home</mat-icon>
+    {{ "Home" | translate }}
+  </button>
+</div>
+
+<div id="damap-info">
+  <mat-card class="info-card">
+    <mat-card-content>
+      <div>
+        <div>
+          <h2 mat-card-title translate>
+            <a
+              class="customLink"
+              [href]="'dashboard.tool.link' | translate"
+              target="_blank"
+              rel="noopener">
+              {{ "dashboard.tool.heading" | translate }}
+            </a>
+          </h2>
+          <ul class="mat-list">
+            <li class="mat-list-item">
+              {{ "dashboard.tool.bulletpoints.dmp.text" | translate }}
+              <a
+                [href]="'dashboard.tool.bulletpoints.dmp.sepg.link' | translate"
+                target="_blank">
+                {{ "dashboard.tool.bulletpoints.dmp.sepg.text" | translate }}</a
+              >
+            </li>
+            <li class="mat-list-item" translate>
+              dashboard.tool.bulletpoints.document
+            </li>
+            <li class="mat-list-item" translate>
+              dashboard.tool.bulletpoints.supports
+            </li>
+            <li class="mat-list-item" translate>
+              dashboard.tool.bulletpoints.benefits.text
+              <ul class="mat-sublist">
+                <li class="mat-list-item" translate>
+                  dashboard.tool.bulletpoints.benefits.one
+                </li>
+                <li class="mat-list-item" translate>
+                  dashboard.tool.bulletpoints.benefits.two
+                </li>
+                <li class="mat-list-item" translate>
+                  dashboard.tool.bulletpoints.benefits.three
+                </li>
+              </ul>
+            </li>
+            <li class="mat-list-item">
+              {{ "dashboard.tool.bulletpoints.madmp.prefix" | translate }}
+              <a
+                [href]="
+                  'dashboard.tool.bulletpoints.madmp.rda.link' | translate
+                "
+                target="_blank">
+                {{
+                  "dashboard.tool.bulletpoints.madmp.rda.text" | translate
+                }}</a
+              >{{ "dashboard.tool.bulletpoints.madmp.suffix" | translate }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

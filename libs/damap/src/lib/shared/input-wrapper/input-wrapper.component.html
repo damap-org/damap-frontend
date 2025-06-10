@@ -1,5 +1,8 @@
 <mat-form-field [appearance]="appearance">
-  <mat-label class="wrap-label">{{ label | translate }}</mat-label>
+  <mat-label>
+    {{ label | translate }}
+    <app-tooltip *ngIf="info?.length" [tooltip]="info"></app-tooltip>
+  </mat-label>
   <span matTextPrefix>{{ prefix }}</span>
   <input
     matInput
@@ -7,8 +10,9 @@
     [placeholder]="placeholder"
     [type]="type || 'text'"
     [required]="required"
-    [step]="type === 'number' ? 0.01 : null"
+    [step]="type === 'number' ? stepSize : null"
     [maxLength]="maxLength"
+    (input)="onInputChange(message.value)"
     #message />
   <mat-hint align="end">{{ message.value.length }} / {{ maxLength }}</mat-hint>
   <mat-error *ngIf="!control?.errors?.required && control?.errors?.empty">
@@ -29,6 +33,12 @@
   </mat-error>
   <mat-error *ngIf="control?.errors?.orcid">
     {{ "form.error.orcid" | translate }}
+  </mat-error>
+  <mat-error *ngIf="control?.errors?.url">
+    {{ "form.error.url" | translate }}
+  </mat-error>
+  <mat-error *ngIf="control?.errors?.uri">
+    {{ "form.error.uri" | translate }}
   </mat-error>
 </mat-form-field>
 <!--{{control.errors | json}}-->

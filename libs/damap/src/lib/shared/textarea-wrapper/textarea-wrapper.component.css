@@ -6,11 +6,48 @@ mat-form-field {
   width: 100%;
 }
 
-.custom-style ::ng-deep .mat-mdc-text-field-wrapper {
-  background-color: var(--main-color);
-  background-image: linear-gradient(
-    rgba(255, 255, 255, 0.9),
-    rgba(255, 255, 255, 0.9)
-  );
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+.no-resize {
+  resize: none;
+}
+
+.suggestions-label {
+  font-size: 14px;
+  color: var(--primary);
+  margin-left: 10px;
+}
+
+.close-button-dp {
+  background-color: var(--mdc-filled-text-field-container-color);
+  padding: 0%;
+  border-radius: 30%;
+  border: var(--primary);
+}
+
+.cdk-overlay-container {
+  z-index: 30;
+}
+
+mat-form-field mat-label {
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  display: block;
+  max-width: 100%;
+  line-height: normal;
+}
+
+@media (max-width: 960px) {
+  mat-form-field mat-label,
+  mat-form-field .mdc-floating-label,
+  textarea.mat-mdc-input-element,
+  mat-form-field .mdc-floating-label--float-above {
+    font-size: small !important;
+    line-height: normal !important;
+    margin-top: 20px !important;
+  }
+
+  .mat-mdc-option {
+    font-size: small;
+    line-height: normal;
+  }
 }

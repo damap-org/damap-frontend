@@ -1,6 +1,8 @@
-import { Contributor, compareContributors } from '../domain/contributor';
+import { compareContributors, Contributor } from '../domain/contributor';
 import {
+  FormArray,
   FormControl,
+  FormGroup,
   UntypedFormArray,
   UntypedFormBuilder,
   UntypedFormGroup,
@@ -22,6 +24,8 @@ import { Storage } from '../domain/storage';
 import { ccBy } from '../widgets/license-wizard/license-wizard-list';
 import { currencyValidator } from '../validators/currency.validator';
 import { notEmptyValidator } from '../validators/not-empty.validator';
+import { urlValidator } from '../validators/url.validator';
+import { uriValidator } from '../validators/uri.validator';
 
 @Injectable({
   providedIn: 'root',
@@ -114,6 +118,7 @@ export class FormService {
         ethicalIssuesCris: [null],
         committeeReviewed: [false],
         committeeReviewedCris: [null],
+        ethicalIssuesReport: ['', Validators.maxLength(this.TEXT_SHORT_LENGTH)],
       }),
       repositories: this.formBuilder.array([]),
       reuse: this.formBuilder.group({
@@ -173,6 +178,7 @@ export class FormService {
         ethicalIssuesCris: dmp.ethicalIssuesExistCris,
         committeeReviewed: dmp.committeeReviewed,
         committeeReviewedCris: dmp.committeeReviewedCris,
+        ethicalIssuesReport: dmp.ethicalIssuesReport,
       },
       reuse: {
         targetAudience: dmp.targetAudience,
@@ -238,7 +244,7 @@ export class FormService {
       reusedDataKind: formValue.data.reusedKind,
       dataQuality: formValue.documentation.dataQuality || [],
       documentation: formValue.documentation.documentation,
-      datasets: formValue.datasets,
+      datasets: formValue.datasets.map(this.setStartDateToNullWhenClosed),
       ethicalIssuesExist: formValue.legal.ethicalIssues,
       ethicalIssuesExistCris: formValue.legal.ethicalIssuesCris,
       externalStorage: formValue.externalStorage,
@@ -274,6 +280,7 @@ export class FormService {
       tools: formValue.reuse.tools,
       id: formValue.id,
       project: formValue.project,
+      ethicalIssuesReport: formValue.legal.ethicalIssuesReport,
     };
   }
 
@@ -324,16 +331,33 @@ export class FormService {
     (this.form.get('contributors') as UntypedFormArray).removeAt(index);
   }
 
+  public upadteContributorOfForm(index: number, contributor: Contributor) {
+    const contributor_ = (this.form.get('contributors') as UntypedFormArray).at(
+      index,
+    );
+
+    contributor_.patchValue(contributor);
+  }
+
   public addDatasetToForm(dataset: Dataset) {
     dataset.startDate = this.getStartDate();
 
     const formGroup = this.mapDatasetToFormGroup(dataset);
+
     (this.form.get('datasets') as UntypedFormArray).push(formGroup);
   }
 
   public updateDatasetOfForm(index: number, update: Dataset) {
     const dataset = (this.form.get('datasets') as UntypedFormArray).at(index);
     dataset.patchValue(update);
+
+    const technicalResourceArray = dataset.get(
+      'technicalResources',
+    ) as FormArray;
+    technicalResourceArray.clear();
+    update.technicalResources?.forEach(resource => {
+      technicalResourceArray.push(this.createTechnicalResource(resource.name));
+    });
   }
 
   public removeDatasetFromForm(index: number) {
@@ -343,9 +367,21 @@ export class FormService {
 
   public addStorageToForm(storage: InternalStorage) {
     const storageFormGroup = this.createStorageFormGroup();
+
+    if (storage.translations.length === 0) {
+      return;
+    }
+
+    const translation = storage.translations.find(
+      t => t.languageCode === 'eng',
+    );
+    const title: string = translation
+      ? translation.title
+      : storage.translations[0].title;
+
     storageFormGroup.patchValue({
       internalStorageId: storage.id,
-      title: storage.title,
+      title: title,
     });
     (this.form.get('storage') as UntypedFormArray).push(storageFormGroup);
   }
@@ -406,9 +442,10 @@ export class FormService {
           notEmptyValidator(),
         ],
       ],
-      license: [ccBy.id, Validators.maxLength(this.TEXT_SHORT_LENGTH)],
+      license: [null],
       startDate: [null],
       type: [[]],
+      fileFormat: [''],
       size: [null],
       description: [''],
       personalData: [false],
@@ -417,7 +454,7 @@ export class FormService {
       dataAccess: [DataAccessType.OPEN],
       referenceHash: ['', Validators.maxLength(this.TEXT_SHORT_LENGTH)],
       selectedProjectMembersAccess: [AccessRight.WRITE],
-      otherProjectMembersAccess: [AccessRight.WRITE],
+      otherProjectMembersAccess: [AccessRight.READ],
       publicAccess: [AccessRight.NONE],
       delete: [false],
       dateOfDeletion: [null],
@@ -426,6 +463,107 @@ export class FormService {
       retentionPeriod: [10],
       source: [DataSource.NEW, Validators.required],
       datasetId: [null],
+      technicalResources: this.formBuilder.array([]),
+    });
+  }
+
+  public createTechnicalResource(name = ''): UntypedFormGroup {
+    return this.formBuilder.group({
+      name: [
+        name,
+        [
+          Validators.required,
+          notEmptyValidator(),
+          Validators.maxLength(this.TEXT_SHORT_LENGTH),
+        ],
+      ],
+      description: [''],
+    });
+  }
+
+  public createInternalStorageFormGroup(): UntypedFormGroup {
+    return this.formBuilder.group({
+      id: [null, { disabled: true }],
+      url: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(this.TEXT_SHORT_LENGTH),
+          notEmptyValidator(),
+        ],
+      ],
+      storageLocation: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(this.TEXT_SHORT_LENGTH),
+          notEmptyValidator(),
+        ],
+      ],
+      backupLocation: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(this.TEXT_SHORT_LENGTH),
+          notEmptyValidator(),
+        ],
+      ],
+      active: [true],
+    });
+  }
+
+  public createBannerFormGroup(): UntypedFormGroup {
+    return this.formBuilder.group({
+      title: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(this.TEXT_SHORT_LENGTH),
+          notEmptyValidator(),
+        ],
+      ],
+      description: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(this.TEXT_SHORT_LENGTH),
+          notEmptyValidator(),
+        ],
+      ],
+      dismissible: [true],
+      color: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(this.TEXT_SHORT_LENGTH),
+          notEmptyValidator(),
+        ],
+      ],
+    });
+  }
+
+  public createInternalStorageTranslationFormGroup(): UntypedFormGroup {
+    return this.formBuilder.group({
+      id: [null, { disabled: true }],
+      storageId: [null, { disabled: true }],
+      title: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(this.TEXT_SHORT_LENGTH),
+          notEmptyValidator(),
+        ],
+      ],
+      languageCode: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(this.TEXT_SHORT_LENGTH),
+          notEmptyValidator(),
+        ],
+      ],
+      description: ['', [Validators.maxLength(this.TEXT_MAX_LENGTH)]],
+      backupFrequency: ['', [Validators.maxLength(this.TEXT_SHORT_LENGTH)]],
     });
   }
 
@@ -444,9 +582,18 @@ export class FormService {
     }
   }
 
-  private mapDatasetToFormGroup(dataset: Dataset): UntypedFormGroup {
+  public mapDatasetToFormGroup(dataset: Dataset): UntypedFormGroup {
     const formGroup = this.createDatasetFormGroup(dataset.title);
     formGroup.patchValue(dataset);
+
+    const technicalResourceArray = formGroup.get(
+      'technicalResources',
+    ) as FormArray;
+    technicalResourceArray.clear();
+    dataset.technicalResources?.forEach(resource => {
+      technicalResourceArray.push(this.createTechnicalResource(resource.name));
+    });
+
     return formGroup;
   }
 
@@ -649,5 +796,12 @@ export class FormService {
     } else {
       return null;
     }
+  }
+
+  private setStartDateToNullWhenClosed(dataset: Dataset): Dataset {
+    if (dataset.dataAccess === DataAccessType.CLOSED) {
+      dataset.startDate = null;
+    }
+    return dataset;
   }
 }

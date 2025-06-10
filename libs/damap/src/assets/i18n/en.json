@@ -28,11 +28,16 @@
       "title": "The file download has started.",
       "content": "Please note that you are not done yet. \n  The exported document may still require fine-tuning.",
       "button": "OK",
-      "type": "Choose type of export"
+      "type": "Choose type of export",
+      "cancel": "Cancel"
     },
     "delete": {
       "title": "Please note:",
-      "content": "You are about to delete this DMP. This action cannot be undone. Are you sure you want to proceed?",
+      "content": {
+        "dmp": "You are about to delete this DMP. This action cannot be undone. Are you sure you want to proceed?",
+        "storage": "You are about to delete this storage. This action cannot be undone. Are you sure you want to proceed?",
+        "storageTranslation": "You are about to delete this storage translation. This action cannot be undone. Are you sure you want to proceed?"
+      },
       "button": "Delete",
       "cancel": "Cancel"
     }

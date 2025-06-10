@@ -1,15 +1,177 @@
-.dmp-actions {
-  position: -webkit-sticky;
-  position: sticky;
-  bottom: 0;
-  z-index: 10;
-}
-
-:host {
+.dmp-container {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin: 20px;
+  padding-bottom: 80px;
 }
 
-.intro-step {
-  margin-top: 10px;
+.steps-container {
+  width: 35%;
+  padding-bottom: 20px;
+}
+
+.instructions-container {
+  flex: 1;
+  max-width: 300px;
+  padding: 20px;
+}
+
+.content-card {
+  width: 70%;
+}
+
+.label-container {
+  width: 100px;
+  white-space: normal;
+}
+
+.detailed-view-container {
+  flex: 2;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.custom-icon-step {
+  border-radius: 50%;
+  padding: 4px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.number-step-icon {
+  font: var(--body-typography);
+  font-size: 1rem;
+}
+
+.verticalStepper {
+  width: 100%;
+}
+::ng-deep .mat-vertical-content {
+  display: flex;
+  padding: 20px !important;
+}
+
+::ng-deep .mat-step-icon {
+  width: 26px;
+  height: 26px;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 1300px) {
+  ::ng-deep .mat-step-icon {
+    width: 20px !important;
+    height: 20px !important;
+    margin-right: 5px !important;
+    font-size: 0.8rem;
+  }
+
+  .label-container {
+    width: 100px;
+    white-space: normal;
+  }
+
+  .steps-container {
+    width: 35%;
+  }
+
+  .content-card {
+    width: 70%;
+  }
+
+  .verticalStepper {
+    width: 100%;
+    --mat-stepper-header-label-text-size: 12px;
+  }
+}
+
+@media (max-width: 900px) {
+  ::ng-deep .mat-step-icon {
+    width: 18px !important;
+    height: 18px !important;
+    margin-right: 5px !important;
+    font-size: 0.8rem;
+  }
+
+  .label-container {
+    width: 100px;
+    white-space: normal;
+  }
+
+  .steps-container {
+    width: 100%;
+  }
+
+  ::ng-deep .mat-step-header .mat-step-label {
+    white-space: normal;
+    font-size: 0.9rem;
+    max-width: 100%;
+  }
+
+  .content-card {
+    width: 70%;
+  }
+
+  .dmp-container {
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 100px;
+  }
+
+  .instructions-container {
+    max-width: none;
+    width: 100%;
+    padding: 10px;
+  }
+
+  .detailed-view-container {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .verticalStepper {
+    width: 100%;
+    --mat-stepper-header-selected-state-label-text-size: 11px;
+    --mat-stepper-header-label-text-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .label-container {
+    width: 100px;
+    white-space: normal;
+  }
+
+  .dmp-container {
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 5px;
+  }
+
+  .instructions-container,
+  .detailed-view-container {
+    width: 100%;
+    padding: 5px;
+  }
+
+  .content-card {
+    width: 70%;
+  }
+
+  .verticalStepper {
+    width: 80%;
+    --mat-stepper-header-label-text-size: 8px;
+  }
+
+  ::ng-deep .mat-vertical-content {
+    padding: 5px !important;
+    flex-direction: column;
+  }
 }

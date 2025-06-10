@@ -1,0 +1,33 @@
+<mat-card
+  appearance="outlined"
+  *ngIf="isIntroShow"
+  class="info-box mat-icon-shadow custom-card">
+  <button (click)="closeIntro()" mat-icon-button class="close-button">
+    <mat-icon class="material-icon-primary close-icon" matSuffix>
+      close
+    </mat-icon>
+  </button>
+  <mat-card-content class="mat-content">
+    <div class="flex-row-container">
+      <section>
+        <div
+          [ngClass]="{
+            'info-icon-background': icon === 'info',
+            'number-icon-background': icon > 0,
+          }">
+          <mat-icon
+            class="page-info-icon"
+            [ngClass]="{
+              'material-icon-primary outline': icon === 'info',
+              'material-icon-white-background-primary number-icon': icon > 0,
+            }">
+            {{ icon }}
+          </mat-icon>
+        </div>
+      </section>
+      <div class="info-box-container mat-title-medium">
+        {{ instructions | translate }}
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

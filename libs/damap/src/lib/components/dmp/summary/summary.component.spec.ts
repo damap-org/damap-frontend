@@ -1,15 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SummaryComponent } from './summary.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { provideMockStore } from '@ngrx/store/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {
   selectForm,
   selectFormContact,
 } from '../../../store/selectors/form.selectors';
+
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTableModule } from '@angular/material/table';
+import { SummaryComponent } from './summary.component';
+import { TranslateTestingModule } from '../../../testing/translate-testing/translate-testing.module';
 import { completeDmp } from '../../../mocks/dmp-mocks';
 import { mockContact } from '../../../mocks/contributor-mocks';
-import { TranslateTestingModule } from '../../../testing/translate-testing/translate-testing.module';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('SummaryComponent', () => {
   let component: SummaryComponent;
@@ -18,8 +19,8 @@ describe('SummaryComponent', () => {
     form: { dmp: null, changed: false },
   };
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       imports: [MatTableModule, MatProgressBarModule, TranslateTestingModule],
       declarations: [SummaryComponent],
       providers: [
@@ -32,7 +33,7 @@ describe('SummaryComponent', () => {
         }),
       ],
     }).compileComponents();
-  });
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SummaryComponent);

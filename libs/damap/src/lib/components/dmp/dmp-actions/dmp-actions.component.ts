@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { FormGroup, UntypedFormControl } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Observable, Subject, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription, filter, take } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import {
   createDmp,
@@ -9,14 +10,20 @@ import {
   saveDmpVersion,
   updateDmp,
 } from '../../../store/actions/dmp.actions';
+import {
+  selectForm,
+  selectFormChanged,
+} from '../../../store/selectors/form.selectors';
 
 import { AppState } from '../../../store/states/app.state';
+import { BackendService } from '../../../services/backend.service';
 import { ETemplateType } from '../../../domain/enum/export-template-type.enum';
 import { ExportWarningDialogComponent } from '../../../widgets/export-warning-dialog/export-warning-dialog.component';
-import { FormGroup } from '@angular/forms';
+import { FeedbackService } from '../../../services/feedback.service';
 import { FormService } from '../../../services/form.service';
+import { LivePreviewComponent } from '../live-preview/live-preview.component';
+import { Location } from '@angular/common';
 import { selectDmpSaving } from '../../../store/selectors/dmp.selectors';
-import { selectFormChanged } from '../../../store/selectors/form.selectors';
 
 @Component({
   selector: 'app-actions',
@@ -26,6 +33,7 @@ import { selectFormChanged } from '../../../store/selectors/form.selectors';
 export class DmpActionsComponent implements OnInit, OnDestroy {
   @Input() stepChanged$: Subject<any>;
   @Input() admin = false;
+  @Input() preview = false;
 
   dmpForm: FormGroup;
 
@@ -42,6 +50,9 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
     private formService: FormService,
     private dialog: MatDialog,
     private store: Store<AppState>,
+    private location: Location,
+    private backendService: BackendService,
+    private feedbackService: FeedbackService,
   ) {
     this.dmpForm = this.formService.dmpForm;
   }
@@ -72,6 +83,16 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
         this.store.dispatch(updateDmp({ dmp }));
       } else {
         this.store.dispatch(createDmp({ dmp }));
+        this.store
+          .select(selectForm)
+          .pipe(
+            filter(formState => !!formState?.id),
+            take(1),
+          )
+          .subscribe(formState => {
+            const newDmpId = formState?.id;
+            this.location.go(`/dmp/${newDmpId}`);
+          });
       }
     }
   }
@@ -82,13 +103,15 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(versionName => {
-      if (versionName) {
+      if (versionName && versionName.length <= 255) {
         this.store.dispatch(
           saveDmpVersion({
             dmp: this.formService.exportFormToDmp(),
             versionName,
           }),
         );
+      } else if (versionName.length > 255) {
+        this.feedbackService.error('Version name is too long');
       }
     });
   }
@@ -103,10 +126,10 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
       this.dmpForm.controls.project?.getRawValue()?.funderSupported ?? false;
     dialogRef.componentInstance.funderSupported = funderSupported;
 
-    dialogRef.beforeClosed().subscribe(result => {
-      if (result === undefined) {
-        return;
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'cancel' || result === undefined) {
       } else {
+        // Handle the actual export action
         const template = result;
         if (!funderSupported) {
           this.exportDmpType = template;
@@ -122,6 +145,34 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  previewEnabled(): boolean {
+    return this.dmpForm.value.id !== null;
+  }
+
+  showPreview(): void {
+    if (this.dmpForm.controls.project?.getRawValue()?.funderSupported) {
+      this.backendService
+        .getTemplateType(this.dmpForm.value.id)
+        .subscribe(response => {
+          const dialogRef = this.dialog.open(LivePreviewComponent, {
+            maxHeight: '90vh',
+            maxWidth: '70vw',
+            width: '70vw',
+            height: '90vh',
+          });
+
+          dialogRef.componentInstance.selectedTemplate = response;
+        });
+    } else {
+      const dialogRef = this.dialog.open(LivePreviewComponent, {
+        maxHeight: '90vh',
+        maxWidth: '70vw',
+        width: '70vw',
+        height: '90vh',
+      });
+    }
+  }
 }
 
 @Component({
@@ -131,10 +182,15 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
 })
 export class SaveVersionDialogComponent {
   versionName = '';
+  mockControl = new UntypedFormControl();
 
   constructor(public dialogRef: MatDialogRef<SaveVersionDialogComponent>) {}
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  readInput(input: string): void {
+    this.versionName = input;
   }
 }

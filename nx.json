@@ -1,6 +1,6 @@
 {
   "affected": {
-    "defaultBase": "master"
+    "defaultBase": "next"
   },
   "targetDefaults": {
     "build": {
@@ -33,6 +33,9 @@
       "unitTestRunner": "karma"
     },
     "@nrwl/angular:component": {
+      "style": "css"
+    },
+    "@nx/angular:component": {
       "style": "css"
     }
   },

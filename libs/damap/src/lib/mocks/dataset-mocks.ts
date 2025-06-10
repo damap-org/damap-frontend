@@ -19,6 +19,7 @@ export const openDatasetMock: Dataset = {
   startDate: null,
   title: 'Dataset 1',
   type: [DataType.ARCHIVED_DATA],
+  fileFormat: 'zip',
   selectedProjectMembersAccess: AccessRight.WRITE,
   otherProjectMembersAccess: AccessRight.READ,
   publicAccess: AccessRight.NONE,
@@ -32,6 +33,7 @@ export const openDatasetMock: Dataset = {
     identifier: 'XXXXX',
     type: IdentifierType.DOI,
   },
+  technicalResources: [],
 };
 
 export const closedDatasetMock: Dataset = {
@@ -47,6 +49,7 @@ export const closedDatasetMock: Dataset = {
   startDate: null,
   title: 'Dataset 1',
   type: [DataType.ARCHIVED_DATA],
+  fileFormat: 'zip',
   selectedProjectMembersAccess: AccessRight.WRITE,
   otherProjectMembersAccess: AccessRight.READ,
   publicAccess: AccessRight.NONE,
@@ -60,6 +63,7 @@ export const closedDatasetMock: Dataset = {
     identifier: 'XXXXX',
     type: IdentifierType.DOI,
   },
+  technicalResources: [],
 };
 
 export const restrictedDatasetMock: Dataset = {
@@ -75,6 +79,7 @@ export const restrictedDatasetMock: Dataset = {
   startDate: null,
   title: 'Dataset 1',
   type: [DataType.ARCHIVED_DATA],
+  fileFormat: 'zip',
   selectedProjectMembersAccess: AccessRight.WRITE,
   otherProjectMembersAccess: AccessRight.READ,
   publicAccess: AccessRight.NONE,
@@ -85,4 +90,5 @@ export const restrictedDatasetMock: Dataset = {
   retentionPeriod: null,
   source: DataSource.NEW,
   datasetId: null,
+  technicalResources: [],
 };

@@ -1,28 +1,28 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { AccessComponent } from './access.component';
-import { InfoMessageModule } from '../../widgets/info-message/info-message.module';
-import { MatButtonModule } from '@angular/material/button';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { EMPTY, of } from 'rxjs';
 import {
   MatCheckboxChange,
   MatCheckboxModule,
 } from '@angular/material/checkbox';
-import { MatIconModule } from '@angular/material/icon';
-import { PersonCardComponent } from '../../widgets/person-card/person-card.component';
+
+import { AccessComponent } from './access.component';
 import { BackendService } from '../../services/backend.service';
+import { InfoMessageModule } from '../../widgets/info-message/info-message.module';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { PersonCardComponent } from '../../widgets/person-card/person-card.component';
 import { TranslateTestingModule } from '../../testing/translate-testing/translate-testing.module';
-import { ActivatedRoute } from '@angular/router';
-import { mockAccess } from '../../mocks/access-mocks';
 import { completeDmp } from '../../mocks/dmp-mocks';
-import { EMPTY, of } from 'rxjs';
-import { RouterTestingModule } from '@angular/router/testing';
+import { mockAccess } from '../../mocks/access-mocks';
 
 describe('AccessComponent', () => {
   let component: AccessComponent;
   let fixture: ComponentFixture<AccessComponent>;
   let backendSpy;
 
-  beforeEach(async () => {
+  beforeEach(waitForAsync(() => {
     backendSpy = jasmine.createSpyObj('BackendService', [
       'getDmpById',
       'getAccess',
@@ -31,17 +31,19 @@ describe('AccessComponent', () => {
     ]);
     backendSpy.getDmpById.and.returnValue(of([completeDmp]));
     backendSpy.getAccess.and.returnValue(of([mockAccess]));
-    await TestBed.configureTestingModule({
+
+    TestBed.configureTestingModule({
       imports: [
         AccessComponent,
         TranslateTestingModule,
         PersonCardComponent,
         InfoMessageModule,
-        RouterTestingModule.withRoutes([]),
+        RouterModule.forRoot([]),
         MatButtonModule,
         MatCheckboxModule,
         MatIconModule,
       ],
+      schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: BackendService, useValue: backendSpy },
         {
@@ -56,7 +58,7 @@ describe('AccessComponent', () => {
     fixture = TestBed.createComponent(AccessComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();

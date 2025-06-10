@@ -18,6 +18,7 @@ import { LoadingState } from '../../domain/enum/loading-state.enum';
 })
 export class DoiSearchComponent implements OnChanges {
   @Input() result: Dataset = undefined;
+  @Input() duplicate: boolean = false;
   @Input() loading: LoadingState;
   @Output() termToSearch = new EventEmitter<string>();
   @Output() datasetToAdd = new EventEmitter<Dataset>();
@@ -28,6 +29,7 @@ export class DoiSearchComponent implements OnChanges {
   });
 
   readonly loadingState: any = LoadingState;
+  searchTerm: string = '';
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.loading) {
@@ -47,5 +49,9 @@ export class DoiSearchComponent implements OnChanges {
       term = term.substring(term.indexOf('10.')).trim();
       this.termToSearch.emit(term);
     }
+  }
+
+  searchChange(searchInput: string) {
+    this.searchTerm = searchInput;
   }
 }

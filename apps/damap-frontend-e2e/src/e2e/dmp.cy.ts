@@ -10,6 +10,8 @@ describe('dmp', () => {
   after(() => cy.logout());
 
   it('should create and autosave dmp', () => {
+    cy.intercept('PUT', '/api/dmps/*').as('updateDmp');
+    cy.intercept('POST', '/api/fits/examine').as('examineFile');
     // Create new dmp
     cy.get('div.button-row-left > button').last().click();
     // eslint-disable-next-line cypress/no-unnecessary-waiting
@@ -21,7 +23,7 @@ describe('dmp', () => {
     ).as('steps');
 
     // Create new project
-    cy.get('app-dmp-project mat-tab-group div.mat-tab-labels > div')
+    cy.get('app-dmp-project mat-tab-group div.mat-mdc-tab-labels > div')
       .last()
       .click();
     cy.get('app-dmp-project app-manual-project-input app-input-wrapper input')
@@ -43,18 +45,19 @@ describe('dmp', () => {
 
     // Add contributor via search
     cy.get('@steps').contains('People').click();
-    cy.get('app-person-search input').first().type('Test');
+    cy.get('app-person-search input').first().type('Test', { force: true });
     cy.get('.search-result mat-option').first().click();
 
     // Add new data
     cy.get('@steps').contains('Specify').click();
+    cy.wait('@updateDmp'); // Wait for DMP being saved. Otherwise, radio button might become unselected again.
     cy.get('app-created-data app-data-mc mat-radio-group').scrollIntoView();
-    cy.get('app-created-data app-data-mc mat-radio-group mat-radio-button')
+    cy.get('app-created-data app-data-mc mat-radio-group [type=radio]')
       .last()
       .click();
 
     // Use file upload
-    cy.get('app-created-data mat-tab-group div.mat-tab-labels > div')
+    cy.get('app-created-data mat-tab-group div.mat-mdc-tab-labels > div')
       .last()
       .click();
     cy.get('app-created-data app-file-upload .dropzone').scrollIntoView();
@@ -67,6 +70,7 @@ describe('dmp', () => {
       },
       { action: 'drag-drop' },
     );
+    cy.wait('@examineFile');
     cy.get('app-created-data app-dataset-table table tbody tr')
       .last()
       .contains('file.txt');
@@ -80,7 +84,7 @@ describe('dmp', () => {
     // Search for repository
     cy.get('@steps').contains('repositories').click();
     cy.get('app-dmp-repo h2').scrollIntoView();
-    cy.get('app-dmp-repo mat-tab-group div.mat-tab-labels > div')
+    cy.get('app-dmp-repo mat-tab-group div.mat-mdc-tab-labels > div')
       .last()
       .click();
     cy.get('app-dmp-repo app-repo-filter').first().click();
@@ -90,7 +94,7 @@ describe('dmp', () => {
     cy.get('mat-tree mat-tree-node > mat-checkbox')
       .contains('Education')
       .click();
-    cy.get('filter-dialog > div > button').last().click();
+    cy.get('filter-dialog > mat-dialog-actions > button').last().click();
     cy.get('app-dmp-repo app-tag').should('exist');
 
     // Go back to plans

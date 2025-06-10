@@ -1,5 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';
+import {
+  UntypedFormArray,
+  UntypedFormControl,
+  UntypedFormGroup,
+} from '@angular/forms';
 import { DataAccessType } from '../../../domain/enum/data-access-type.enum';
 import { DataSource } from '../../../domain/enum/data-source.enum';
 
@@ -26,5 +30,13 @@ export class ReuseComponent {
         item.dataAccess === DataAccessType.RESTRICTED &&
         item.source === DataSource.NEW,
     );
+  }
+
+  get targetAudience() {
+    return this.reuseStep.get('targetAudience') as UntypedFormControl;
+  }
+
+  get tools() {
+    return this.reuseStep.get('tools') as UntypedFormControl;
   }
 }

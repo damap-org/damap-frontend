@@ -53,6 +53,7 @@ export class RepoTableComponent implements OnChanges, AfterViewInit {
   readonly tableHeaders: string[] = ['expand', 'title', 'add'];
   expandedElement: string | null;
   dataSource = new MatTableDataSource<RepositoryDetails>();
+  input: string = '';
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -81,8 +82,8 @@ export class RepoTableComponent implements OnChanges, AfterViewInit {
   }
 
   // Table Search Filter
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
+  applyFilter(filterValue: string) {
+    this.input = filterValue;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {

@@ -1,13 +1,45 @@
-.wrap-label {
-  white-space: normal;
-  height: auto;
+.mat-card-container {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  gap: 16px;
 }
 
+.form-full-width,
 .full-width {
   width: 100%;
 }
 
-::ng-deep .mat-mdc-select-panel:not([class*="mat-elevation-z"]) {
-  transform: translate(2em, 2em) !important;
-  min-width: 100% !important;
+.title-thin {
+  font-weight: 400;
+}
+
+@media screen and (max-width: 768px) {
+  .responsive-card {
+    width: 100%;
+    padding: 8px;
+  }
+
+  .mat-title-medium {
+    font-size: 1.2rem;
+  }
+
+  .mat-card-container {
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+  }
+
+  button {
+    font-size: 1rem;
+  }
+
+  .form-full-width {
+    width: 100%;
+  }
+
+  .mat-card-container > * {
+    margin-bottom: 8px;
+  }
 }

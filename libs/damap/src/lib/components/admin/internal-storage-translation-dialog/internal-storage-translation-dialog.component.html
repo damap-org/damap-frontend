@@ -1,0 +1,76 @@
+<h1 mat-dialog-title>
+  <ng-container *ngIf="mode === 'edit'; else add">{{
+    "admin.dialog.internal-storage-translation.edit" | translate
+  }}</ng-container>
+  <ng-template #add>{{
+    "admin.dialog.internal-storage-translation.add" | translate
+  }}</ng-template>
+</h1>
+
+<mat-dialog-content id="datasetDialog">
+  <div [formGroup]="storageTranslation">
+    <hr />
+
+    <div class="dialogRow">
+      <mat-form-field>
+        <mat-label>{{
+          "admin.dialog.internal-storage-translation.captions.languageCode"
+            | translate
+        }}</mat-label>
+        <mat-select formControlName="languageCode" required>
+          <mat-option [value]="'eng'">
+            {{
+              "admin.dialog.internal-storage-translation.captions.eng"
+                | translate
+            }}
+          </mat-option>
+          <mat-option [value]="'deu'">
+            {{
+              "admin.dialog.internal-storage-translation.captions.deu"
+                | translate
+            }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <app-input-wrapper
+      [label]="
+        'admin.dialog.internal-storage-translation.captions.title' | translate
+      "
+      [control]="title"></app-input-wrapper>
+
+    <app-textarea-wrapper
+      [label]="
+        'admin.dialog.internal-storage-translation.captions.description'
+          | translate
+      "
+      [control]="description"
+      [maxLength]="4000"></app-textarea-wrapper>
+
+    <app-input-wrapper
+      [label]="
+        'admin.dialog.internal-storage-translation.captions.backupFrequency'
+          | translate
+      "
+      [control]="backupFrequency"></app-input-wrapper>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">
+    {{ "admin.dialog.internal-storage-translation.button.cancel" | translate }}
+  </button>
+  <button
+    (click)="onDialogClose()"
+    mat-raised-button
+    class="button-color-primary"
+    [disabled]="storageTranslation.invalid">
+    <ng-container *ngIf="mode === 'edit'">{{
+      "admin.dialog.internal-storage-translation.button.update" | translate
+    }}</ng-container>
+    <ng-container *ngIf="mode === 'add'">{{
+      "admin.dialog.internal-storage-translation.button.add" | translate
+    }}</ng-container>
+  </button>
+</mat-dialog-actions>

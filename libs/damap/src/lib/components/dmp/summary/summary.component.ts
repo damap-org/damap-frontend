@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Dmp } from '../../../domain/dmp';
 import { select, Store } from '@ngrx/store';
 import {
@@ -9,6 +9,8 @@ import { Observable } from 'rxjs';
 import { AppState } from '../../../store/states/app.state';
 import { Contributor } from '../../../domain/contributor';
 import { SummaryService } from '../../../services/summary.service';
+
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-dmp-summary',
@@ -23,6 +25,8 @@ export class SummaryComponent implements OnInit {
   dataSource;
   contact: Contributor;
 
+  @Input() stepper: MatStepper;
+
   readonly summaryTableHeaders: string[] = ['step', 'completeness', 'status'];
 
   ngOnInit(): void {
@@ -36,5 +40,9 @@ export class SummaryComponent implements OnInit {
         this.dataSource = SummaryService.dmpSummary(value);
       }
     });
+  }
+
+  navigateToStep(stepIndex: number): void {
+    this.stepper.selectedIndex = stepIndex;
   }
 }

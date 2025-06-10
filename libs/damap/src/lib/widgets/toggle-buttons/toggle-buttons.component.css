@@ -1,0 +1,39 @@
+.button-section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.button-section button {
+  max-width: 100%;
+  white-space: normal;
+  word-wrap: break-word;
+  padding: 10px 16px;
+  text-align: center;
+}
+
+@media (max-width: 960px) {
+  .button-section {
+    flex-direction: column;
+  }
+
+  .button-section button {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: x-small;
+    line-height: normal;
+  }
+}
+
+.mdc-button {
+  background-color: var(--primary-lightest);
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.mdc-button.active {
+  background-color: var(--primary);
+  color: var(--primary-lightest);
+  border-color: var(--primary);
+}

@@ -1,41 +1,37 @@
-<app-step-intro>{{ "dmp.steps.data.reuse.intro" | translate }} </app-step-intro>
-<div [formGroup]="reuseStep">
-  <mat-form-field class="full-width" appearance="fill">
-    <mat-label class="wrap-label"
-      >{{ "dmp.steps.data.reuse.question.targetAudience" | translate }}
-    </mat-label>
-    <input
-      type="text"
-      matInput
-      formControlName="targetAudience"
-      [matAutocomplete]="auto"
-      [maxLength]="4000" />
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let option of optionsTargetAudience" [value]="option">
-        {{ option }}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
+<mat-label class="label-title mat-title-large" id="example-radio-group-label">{{
+  "dmp.steps.data.reuse.rightLabel" | translate
+}}</mat-label>
+<mat-card class="data-reuse-card card-shadow">
+  <mat-card-content>
+    <div [formGroup]="reuseStep">
+      <app-textarea-wrapper
+        [label]="'dmp.steps.data.reuse.question.targetAudience'"
+        [control]="targetAudience"
+        [autocompleteOptions]="optionsTargetAudience">
+      </app-textarea-wrapper>
 
-  <mat-form-field class="full-width" appearance="fill">
-    <mat-label class="wrap-label"
-      >{{ "dmp.steps.data.reuse.question.tools" | translate }}
-    </mat-label>
-    <textarea matInput formControlName="tools" [maxLength]="4000"></textarea>
-  </mat-form-field>
+      <app-textarea-wrapper
+        [label]="'dmp.steps.data.reuse.question.tools'"
+        [control]="tools"
+        [maxLength]="4000">
+      </app-textarea-wrapper>
 
-  <ng-container *ngIf="restricted?.length > 0">
-    <mat-form-field class="full-width" appearance="fill">
-      <mat-label class="wrap-label">
-        {{ "dmp.steps.data.reuse.question.restrictedDataAccess" | translate }}
-        <span *ngFor="let set of restricted; last as last">
-          "{{ set.title }}"<span *ngIf="!last">, </span>.
-        </span>
-      </mat-label>
-      <textarea
-        matInput
-        formControlName="restrictedDataAccess"
-        [maxLength]="4000"></textarea>
-    </mat-form-field>
-  </ng-container>
-</div>
+      <ng-container *ngIf="restricted?.length > 0">
+        <mat-form-field class="full-width">
+          <mat-label>
+            {{
+              "dmp.steps.data.reuse.question.restrictedDataAccess" | translate
+            }}
+            <span *ngFor="let set of restricted; last as last">
+              "{{ set.title }}"<span *ngIf="!last">, </span>.
+            </span>
+          </mat-label>
+          <textarea
+            matInput
+            formControlName="restrictedDataAccess"
+            [maxLength]="4000"></textarea>
+        </mat-form-field>
+      </ng-container>
+    </div>
+  </mat-card-content>
+</mat-card>

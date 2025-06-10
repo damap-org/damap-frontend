@@ -1,0 +1,51 @@
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.top-right-button {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+}
+
+.select-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.expanded-select {
+  flex: 1;
+}
+
+.loading-icon {
+  animation: spin 1s linear infinite; /* Defines a continuous spin */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.no-preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.max-height-90 {
+  max-height: 90%;
+}

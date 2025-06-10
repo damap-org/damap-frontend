@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Store, select } from '@ngrx/store';
 import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';
-import { RepositoryDetails } from '../../../domain/repository-details';
-import { LoadingState } from '../../../domain/enum/loading-state.enum';
-import { Dataset } from '../../../domain/dataset';
-import { select, Store } from '@ngrx/store';
-import { AppState } from '../../../store/states/app.state';
-import { Observable } from 'rxjs';
+import {
+  loadAllRepositories,
+  loadRecommendedRepositories,
+  loadRepository,
+  setRepositoryFilter,
+} from '../../../store/actions/repository.actions';
 import {
   selectFilters,
   selectRecommendedRepositories,
@@ -13,13 +14,13 @@ import {
   selectRepositories,
   selectRepositoriesLoaded,
 } from '../../../store/selectors/repository.selectors';
-import {
-  loadAllRepositories,
-  loadRecommendedRepositories,
-  loadRepository,
-  setRepositoryFilter,
-} from '../../../store/actions/repository.actions';
+
+import { AppState } from '../../../store/states/app.state';
 import { DataSource } from '../../../domain/enum/data-source.enum';
+import { Dataset } from '../../../domain/dataset';
+import { LoadingState } from '../../../domain/enum/loading-state.enum';
+import { Observable } from 'rxjs';
+import { RepositoryDetails } from '../../../domain/repository-details';
 
 @Component({
   selector: 'app-dmp-repo',
@@ -44,6 +45,7 @@ export class RepoComponent implements OnInit {
   readonly datasetSource: any = DataSource;
 
   selectedTabIndex = 0;
+  selectedView: 'primaryView' | 'secondaryView' = 'primaryView';
 
   constructor(public store: Store<AppState>) {}
 
@@ -100,5 +102,9 @@ export class RepoComponent implements OnInit {
       result += i < datasets.length - 1 ? ', ' : '';
     }
     return result;
+  }
+
+  onViewChange(view: 'primaryView' | 'secondaryView'): void {
+    this.selectedView = view;
   }
 }

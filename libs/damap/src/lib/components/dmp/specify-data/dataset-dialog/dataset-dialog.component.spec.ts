@@ -1,33 +1,34 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { DatasetDialogComponent } from './dataset-dialog.component';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogModule,
-  MatDialogRef,
-} from '@angular/material/dialog';
-import { closedDatasetMock } from '../../../../mocks/dataset-mocks';
-import { FormService } from '../../../../services/form.service';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {
   FormsModule,
   ReactiveFormsModule,
   UntypedFormControl,
   UntypedFormGroup,
 } from '@angular/forms';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
+
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { DataSource } from '../../../../domain/enum/data-source.enum';
+import { DatasetDialogComponent } from './dataset-dialog.component';
+import { FormService } from '../../../../services/form.service';
+import { IdentifierType } from '../../../../domain/enum/identifier-type.enum';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { IdentifierType } from '../../../../domain/enum/identifier-type.enum';
 import { TranslateTestingModule } from '../../../../testing/translate-testing/translate-testing.module';
+import { closedDatasetMock } from '../../../../mocks/dataset-mocks';
 
 describe('DatasetDialogComponent', () => {
   let component: DatasetDialogComponent;
   let fixture: ComponentFixture<DatasetDialogComponent>;
   let formServiceStub: Partial<FormService>;
 
-  beforeEach(async () => {
+  beforeEach(waitForAsync(() => {
     formServiceStub = {
       createDatasetFormGroup(title: string): UntypedFormGroup {
         return new UntypedFormGroup({
@@ -42,7 +43,7 @@ describe('DatasetDialogComponent', () => {
         });
       },
     };
-    await TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       imports: [
         MatDialogModule,
         MatSelectModule,
@@ -53,6 +54,7 @@ describe('DatasetDialogComponent', () => {
         TranslateTestingModule,
         NoopAnimationsModule,
       ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [DatasetDialogComponent],
       providers: [
         { provide: MatDialogRef, useValue: { close: (value?: any) => value } },
@@ -63,7 +65,7 @@ describe('DatasetDialogComponent', () => {
         },
       ],
     }).compileComponents();
-  });
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DatasetDialogComponent);

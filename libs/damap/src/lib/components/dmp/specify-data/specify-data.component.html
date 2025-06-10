@@ -1,24 +1,27 @@
-<div>
-  <!-- CREATED DATASETS -->
-  <app-created-data
-    [specifyDataStep]="specifyDataStep"
-    [datasets]="datasets"
-    [fileUpload]="fileUpload"
-    (datasetToAdd)="add($event)"
-    (updateDataset)="update($event)"
-    (removeDataset)="remove($event)"
-    (fileToAnalyse)="analyseFile($event)"
-    (uploadToCancel)="cancelUpload($event)"></app-created-data>
-
-  <!-- REUSED DATASETS -->
-  <app-reused-data
-    [specifyDataStep]="specifyDataStep"
-    [datasets]="datasets"
-    (datasetToAdd)="add($event)"
-    (updateDataset)="update($event)"
-    (removeDataset)="remove($event)"></app-reused-data>
-
-  <!-- NO DATA -->
+<div class="step-container">
+  <div *ngIf="selectedView === 'primaryView'">
+    <app-created-data
+      *ngIf="selectedView === 'primaryView'"
+      [fitsServiceAvailable$]="fitsServiceAvailable$"
+      [specifyDataStep]="specifyDataStep"
+      [datasets]="datasets"
+      [fileUpload]="fileUpload"
+      [config$]="config$"
+      (datasetToAdd)="add($event)"
+      (updateDataset)="update($event)"
+      (removeDataset)="remove($event)"
+      (fileToAnalyse)="analyseFile($event)"
+      (uploadToCancel)="cancelUpload($event)">
+    </app-created-data>
+  </div>
+  <div *ngIf="selectedView === 'secondaryView'">
+    <app-reused-data
+      [specifyDataStep]="specifyDataStep"
+      [datasets]="datasets"
+      (datasetToAdd)="add($event)"
+      (updateDataset)="update($event)"
+      (removeDataset)="remove($event)"></app-reused-data>
+  </div>
   <ng-container
     *ngIf="
       specifyDataStep.value.kind === dataKind.NONE &&
@@ -30,14 +33,12 @@
     </app-textarea-wrapper>
   </ng-container>
 
-  <!-- DATA GENERATION -->
   <ng-container
     *ngIf="
       specifyDataStep.value.kind === dataKind.SPECIFY ||
       specifyDataStep.value['reusedKind'] === dataKind.SPECIFY
     ">
     <app-textarea-wrapper
-      [applyCustomStyle]="true"
       [label]="'dmp.steps.documentation.question.datageneration'"
       [control]="dataGeneration">
     </app-textarea-wrapper>

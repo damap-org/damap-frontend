@@ -1,7 +1,9 @@
 <form>
-  <mat-label id="example-radio-group-label">{{
-    questionLabel | translate
-  }}</mat-label>
+  <mat-label
+    class="label-title mat-title-large"
+    id="example-radio-group-label"
+    >{{ questionLabel | translate }}</mat-label
+  >
   <mat-radio-group aria-label="Select an option" [formControl]="control">
     <mat-radio-button [value]="dataKind.UNKNOWN">{{
       "dmp.steps.data.specify.answer.kind.unknown" | translate

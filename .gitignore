@@ -60,5 +60,4 @@ src/themes/*
 
 .angular
 
-
-.nx/cache
+.nx/

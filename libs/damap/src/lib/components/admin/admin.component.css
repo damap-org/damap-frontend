@@ -1,0 +1,14 @@
+.selected-storage {
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+div#content {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 50px;
+}
+
+.content-max-width {
+  max-width: 1440px;
+}

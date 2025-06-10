@@ -32,8 +32,3 @@ hr {
   margin-bottom: 1rem;
   opacity: 0.5;
 }
-
-::ng-deep .mat-mdc-select-panel:not([class*="mat-elevation-z"]) {
-  transform: translate(2em, 2em) !important;
-  min-width: 100% !important;
-}

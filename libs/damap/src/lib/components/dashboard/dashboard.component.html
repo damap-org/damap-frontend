@@ -1,80 +1,51 @@
-<div class="content">
-  <section>
-    <p translate>dashboard.welcome.message</p>
-    <div class="button-row-left">
-      <button
-        mat-raised-button
-        class="big-button"
-        routerLink="/plans"
-        color="primary">
-        {{ "plans.mydmps" | translate }}
-      </button>
-      <button
-        mat-raised-button
-        class="big-button"
-        routerLink="/dmp"
-        color="primary">
-        <mat-icon>add</mat-icon>
-        {{ "plans.create.dmp" | translate }}
-      </button>
-    </div>
-    <section>
-      <h2 translate>dashboard.dmp.heading</h2>
-      <p>
-        {{ "dashboard.dmp.text.prefix" | translate }}
-        <a [href]="'dashboard.dmp.text.dmp.link' | translate" target="_blank">
-          {{ "dashboard.dmp.text.dmp.text" | translate }}</a
-        >{{ "dashboard.dmp.text.middle" | translate }}
-        <a
-          [href]="'dashboard.dmp.text.fairprinciples.link' | translate"
-          target="_blank">
-          {{ "dashboard.dmp.text.fairprinciples.text" | translate }}</a
-        >{{ "dashboard.dmp.text.suffix" | translate }}
-      </p>
-    </section>
-    <section>
-      <h2 translate>dashboard.tool.heading</h2>
-      <ul>
-        <li>
-          {{ "dashboard.tool.bulletpoints.dmp.text" | translate }}
-          <a
-            [href]="'dashboard.tool.bulletpoints.dmp.sepg.link' | translate"
-            target="_blank">
-            {{ "dashboard.tool.bulletpoints.dmp.sepg.text" | translate }}</a
-          >
-        </li>
-        <li translate>dashboard.tool.bulletpoints.document</li>
-        <li translate>dashboard.tool.bulletpoints.supports</li>
-        <li translate>
-          dashboard.tool.bulletpoints.benefits.text
-          <ul>
-            <li translate>dashboard.tool.bulletpoints.benefits.one</li>
-            <li translate>dashboard.tool.bulletpoints.benefits.two</li>
-            <li translate>dashboard.tool.bulletpoints.benefits.three</li>
-          </ul>
-        </li>
-        <li>
-          {{ "dashboard.tool.bulletpoints.madmp.prefix" | translate }}
-          <a
-            [href]="'dashboard.tool.bulletpoints.madmp.rda.link' | translate"
-            target="_blank">
-            {{ "dashboard.tool.bulletpoints.madmp.rda.text" | translate }}</a
-          >{{ "dashboard.tool.bulletpoints.madmp.suffix" | translate }}
-        </li>
-      </ul>
-    </section>
-    <section>
-      <h2 translate>dashboard.instructions.heading</h2>
-      <ol>
-        <u><li translate>dashboard.instructions.steps.heading</li></u>
-        <p translate>dashboard.instructions.steps.body</p>
-        <u><li translate>dashboard.instructions.export.heading</li></u>
-        <p translate>dashboard.instructions.export.body</p>
-        <u><li translate>dashboard.instructions.finalise.heading</li></u>
-        <p translate>dashboard.instructions.finalise.body</p>
-        <u><li translate>dashboard.instructions.update.heading</li></u>
-        <p translate>dashboard.instructions.update.body</p>
-      </ol>
-    </section>
-  </section>
+<app-info-card></app-info-card>
+<div [class]="isSmallScreen ? 'flex-grid-small' : 'flex-grid-large'">
+  <div class="flex-grid-item">
+    <mat-card appearance="outlined" class="dashboard-card mat-icon-shadow">
+      <mat-card-content>
+        <div class="flip-card-container">
+          <app-flip-card
+            [navigateRoute]="'/plans'"
+            iconCard="list_alt"
+            frontContent="{{ 'plans.mydmps' | translate }}"
+            backContent="{{ 'plans.myDmpsDescription' | translate }}">
+          </app-flip-card>
+
+          <app-flip-card
+            [navigateRoute]="'/dmp'"
+            iconCard="add_circle"
+            frontContent="{{
+              'dashboard.instructions.create.heading' | translate
+            }}"
+            backContent="{{
+              'dashboard.instructions.create.description' | translate
+            }}">
+          </app-flip-card>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="flex-grid-item">
+    <mat-card appearance="outlined" class="dashboard-card mat-icon-shadow">
+      <mat-card-content>
+        <div class="flip-card-container">
+          <app-flip-card
+            [navigateRoute]="'info/how-to-create'"
+            frontContent="{{ 'dashboard.instructions.heading' | translate }}"
+            iconCard="contact_support"
+            backContent="{{
+              'dashboard.instructions.description' | translate
+            }}">
+          </app-flip-card>
+
+          <app-flip-card
+            [navigateRoute]="'info/damap'"
+            iconCard="info"
+            frontContent="{{ 'dashboard.tool.heading' | translate }}"
+            backContent="{{ 'dashboard.tool.description' | translate }}">
+          </app-flip-card>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

@@ -17,12 +17,14 @@ export class InternalStorageEffects {
       this.actions$.pipe(
         ofType(InternalStorageAction.loadInternalStorages),
         switchMap(_ =>
-          this.backendService.getInternalStorages().pipe(
-            map(internalStorages =>
-              InternalStorageAction.internalStoragesLoaded({
-                internalStorages,
-              }),
-            ),
+          this.backendService.searchInternalStorage({}).pipe(
+            map(internalStorages => {
+              // We now get at least any language translation, so we can display the title
+              const items = internalStorages.items;
+              return InternalStorageAction.internalStoragesLoaded({
+                internalStorages: items,
+              });
+            }),
             catchError(() =>
               of(InternalStorageAction.failedToLoadInternalStorages()),
             ),

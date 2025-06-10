@@ -1,28 +1,43 @@
-<h2 translate>dmp.steps.data.specify.table.heading.new</h2>
 <app-data-mc [control]="kind"></app-data-mc>
-
 <ng-container *ngIf="kind.value === dataKind.SPECIFY">
-  <mat-tab-group dynamicHeight>
-    <mat-tab label="{{ 'dmp.steps.data.specify.tab.manual' | translate }}">
-      <button mat-raised-button color="primary" (click)="openDatasetDialog()">
-        {{ "dmp.steps.data.specify.button.add.manual" | translate }}
-      </button>
-    </mat-tab>
-    <mat-tab label="{{ 'dmp.steps.data.specify.tab.upload' | translate }}">
-      <app-file-upload
-        [fileUpload]="fileUpload"
-        (fileToUpload)="analyseFile($event)"
-        (uploadToCancel)="cancelUpload($event)">
-      </app-file-upload>
-    </mat-tab>
-  </mat-tab-group>
+  <section>
+    <div class="example-button-column">
+      <div class="example-flex-container">
+        <div class="example-button-container">
+          <button mat-flat-button color="primary" (click)="openDatasetDialog()">
+            <mat-icon>edit</mat-icon>
+            {{ "dmp.steps.data.specify.button.add.manual" | translate }}
+          </button>
+        </div>
+        <div class="example-button-container" *ngIf="fitsServiceAvailable">
+          <button mat-flat-button color="accent" (click)="openUploadDialog()">
+            <mat-icon>cloud_upload</mat-icon>
+            {{ "dmp.steps.data.specify.tab.upload" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- TABLE -->
-  <app-dataset-table
-    *ngIf="datasets.controls.length"
-    [datasets]="datasets"
-    [tableHeaders]="tableHeaders"
-    (updateDataset)="update($event)"
-    (removeDataset)="remove($event)">
-  </app-dataset-table>
+  <div class="scrollable-table-wrapper">
+    <div class="scrollable-table-container" *ngIf="datasets.controls.length">
+      <app-dataset-table
+        [datasets]="datasets"
+        [tableHeaders]="tableHeaders"
+        (updateDataset)="update($event)"
+        (removeDataset)="remove($event)">
+      </app-dataset-table>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="kind.value === dataKind.NONE">
+  <app-info-message>
+    <span [innerHTML]="'info.dataset.none' | translate"></span>
+  </app-info-message>
+</ng-container>
+<ng-container *ngIf="kind.value === dataKind.UNKNOWN">
+  <app-info-message>
+    {{ "info.dataset.unknown" | translate }}
+  </app-info-message>
 </ng-container>

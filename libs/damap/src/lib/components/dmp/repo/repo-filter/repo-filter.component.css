@@ -1,6 +1,6 @@
 mat-panel-title:hover,
 mat-expansion-panel-header:hover {
-  color: var(--main-color);
+  color: var(--primary);
 }
 
 mat-expansion-panel > div {

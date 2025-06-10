@@ -1,0 +1,45 @@
+<div class="dialog-header">
+  <h1 mat-dialog-title>{{ "preview.title" | translate }}</h1>
+  <button mat-button mat-dialog-close class="top-right-button">
+    <mat-icon style="margin: 0">close</mat-icon>
+  </button>
+</div>
+
+<mat-dialog-content class="full-height max-height-90">
+  <div class="container full-height">
+    <p>
+      {{ "preview.info" | translate }}
+    </p>
+    <ng-container>
+      <div class="select-row">
+        <mat-form-field class="expanded-select" appearance="fill">
+          <mat-label>{{ "preview.templateSelection" | translate }}</mat-label>
+          <mat-select
+            [(value)]="selectedTemplate"
+            (selectionChange)="onTemplateChange($event)">
+            <mat-option
+              *ngFor="let id of dmpTemplate | keyvalue"
+              [value]="id.key">
+              {{ id.value | translate }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </ng-container>
+    <br />
+    <div *ngIf="pdfUrl" style="height: 80vh">
+      <iframe
+        [src]="pdfUrl"
+        width="100%"
+        height="100%"
+        title="preview"></iframe>
+    </div>
+    <div *ngIf="!pdfUrl && selectedTemplate.length !== 0" class="no-preview">
+      <mat-icon class="loading-icon">autorenew</mat-icon>
+      <p>{{ "preview.info" | translate }}</p>
+    </div>
+    <div *ngIf="!pdfUrl && selectedTemplate.length === 0" class="no-preview">
+      <p>{{ "preview.requestTemplateSelection" | translate }}</p>
+    </div>
+  </div>
+</mat-dialog-content>

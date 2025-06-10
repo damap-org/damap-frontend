@@ -1,19 +1,18 @@
 <div *ngIf="(datasets.value | datasetSource: sourceType).length">
   <app-step-intro>{{ tableIntro | translate }} </app-step-intro>
   <h2 *ngIf="tableHeading">{{ tableHeading | translate }}</h2>
-
   <table
     mat-table
     [dataSource]="datasets.value | datasetSource: sourceType"
     multiTemplateDataRows="true"
-    class="mat-elevation-z8"
+    class="mat-elevation-z8 zebra-table"
     aria-label="{{ tableHeading | translate }}">
     <ng-container matColumnDef="dataset">
       <th mat-header-cell *matHeaderCellDef>
         {{ "dmp.steps.data.specify.table.header.dataset" | translate }}
       </th>
       <td mat-cell *matCellDef="let dataset">
-        <div>{{ dataset.title }}</div>
+        <div>{{ dataset.title | limitString: 100 }}</div>
       </td>
     </ng-container>
 
@@ -23,11 +22,17 @@
       </th>
       <td mat-cell *matCellDef="let dataset">
         <div>
-          <ng-container *ngFor="let type of dataset.type; last as last">
-            {{ "enum.dataset.type." + type | translate }}
-            <ng-container *ngIf="!last">,</ng-container>
-          </ng-container>
+          {{ getDataType(dataset) | limitString: 50 }}
         </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fileFormat">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ "dmp.steps.data.specify.table.header.fileFormat" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let dataset">
+        <div>{{ dataset.fileFormat | limitString: 50 }}</div>
       </td>
     </ng-container>
 
@@ -36,7 +41,7 @@
         {{ "dmp.steps.data.specify.table.header.size" | translate }}
       </th>
       <td mat-cell *matCellDef="let dataset">
-        <div>{{ dataset.size | byte }}</div>
+        <div>{{ getSizeLabel(dataset.size) }}</div>
       </td>
     </ng-container>
 
@@ -45,13 +50,13 @@
         {{ "dmp.steps.data.specify.table.header.description" | translate }}
       </th>
       <td mat-cell *matCellDef="let dataset">
-        <div>{{ dataset.description }}</div>
+        <div>{{ dataset.description | limitString: 50 }}</div>
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="pid">
+    <ng-container matColumnDef="source">
       <th mat-header-cell *matHeaderCellDef>
-        {{ "dmp.steps.data.specify.table.header.pid" | translate }}
+        {{ "dmp.steps.data.specify.table.header.source" | translate }}
       </th>
       <td mat-cell *matCellDef="let dataset">
         <div>
@@ -66,12 +71,15 @@
           "dmp.steps.data.specify.table.header.actions" | translate
         }}</span>
       </th>
-      <td mat-cell *matCellDef="let element" [style]="'text-align: right'">
+      <td mat-cell *matCellDef="let element" class="action-button-cell">
+        <button mat-icon-button (click)="openInformationDialog(element)">
+          <mat-icon class="material-icon-primary">visibility</mat-icon>
+        </button>
         <button mat-icon-button (click)="openDatasetDialog(element)">
-          <mat-icon color="primary">edit</mat-icon>
+          <mat-icon class="material-icon-primary">edit</mat-icon>
         </button>
         <button mat-icon-button (click)="remove(element)">
-          <mat-icon color="primary">delete</mat-icon>
+          <mat-icon class="material-icon-primary">delete</mat-icon>
         </button>
       </td>
     </ng-container>

@@ -60,7 +60,10 @@
   <button mat-button (click)="onNoClick()">
     {{'dmp.dialog.button.cancel' | translate}}
   </button>
-  <button mat-raised-button color="primary" [mat-dialog-close]="filter">
+  <button
+    mat-raised-button
+    class="button-color-primary"
+    [mat-dialog-close]="filter">
     {{'dmp.steps.repositories.filter.find' | translate}}
   </button>
 </mat-dialog-actions>

@@ -2,7 +2,7 @@
   <div class="storage-grid">
     <button
       mat-raised-button
-      color="primary"
+      class="button-color-primary"
       (click)="addExternalStorage()"
       [style]="'margin: 5px; font-weight: normal'">
       {{ "dmp.steps.storage.external.add" | translate }}
@@ -11,6 +11,7 @@
   <div class="storage-selected">
     <ng-container>
       <mat-card
+        class="card-shadow"
         appearance="raised"
         *ngFor="let item of externalStorageStep?.controls; let i = index">
         <div class="storage-card-top">
@@ -18,9 +19,6 @@
             <mat-card-title [class.form-error]="item.invalid">
               {{ item.value.title }}
             </mat-card-title>
-            <mat-panel-description>
-              {{ item.value.backupLocation }}
-            </mat-panel-description>
           </mat-card-header>
         </div>
         <mat-card-content>
@@ -29,16 +27,13 @@
               <app-input-wrapper
                 [label]="'dmp.steps.storage.external.question.name'"
                 [control]="getFormControl(i, 'title')"></app-input-wrapper>
-              <button
-                mat-icon-button
-                color="primary"
-                aria-label="{{
-                  'dmp.steps.storage.external.remove' | translate
-                }}"
-                (click)="removeExternalStorage(i)">
-                <mat-icon>cancel</mat-icon>
-              </button>
             </div>
+            <button
+              mat-icon-button
+              aria-label="{{ 'dmp.steps.storage.external.remove' | translate }}"
+              (click)="removeExternalStorage(i)">
+              <mat-icon class="material-icon-primary">cancel</mat-icon>
+            </button>
           </div>
           <div class="form-row">
             <div class="storage-card-container">
@@ -80,14 +75,10 @@
         </mat-card-content>
       </mat-card>
     </ng-container>
-    <div
-      *ngIf="externalStorageStep?.controls.length"
-      class="storage-textarea"
-      [style]="'margin: 5px;'">
+    <div *ngIf="externalStorageStep?.controls.length" class="storage-textarea">
       <app-textarea-wrapper
         [label]="'dmp.steps.storage.external.question.info'"
-        [control]="externalStorageInfo"
-        [appearance]="'fill'">
+        [control]="externalStorageInfo">
       </app-textarea-wrapper>
     </div>
   </div>

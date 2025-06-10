@@ -12,16 +12,36 @@ export class AuthService {
     return claims['name'];
   }
 
+  getDisplayName(): string {
+    const claims = this.oAuthService.getIdentityClaims();
+    const {
+      name,
+      given_name: firstName,
+      family_name: lastName,
+      email,
+    } = claims;
+
+    const displayName =
+      name ||
+      (firstName && lastName ? `${firstName} ${lastName}` : null) ||
+      email ||
+      '';
+    return displayName;
+  }
+
   getUsername(): string {
     const claims = this.oAuthService.getIdentityClaims();
     return claims['preferred_username'];
   }
 
-  isAuthenticated(): boolean {
-    return (
+  isAuthenticated(route: string): boolean {
+    const isAuthenticated =
       this.oAuthService.hasValidIdToken() &&
-      this.oAuthService.hasValidAccessToken()
-    );
+      this.oAuthService.hasValidAccessToken();
+    if (!isAuthenticated) {
+      this.oAuthService.initLoginFlow(route);
+    }
+    return isAuthenticated;
   }
 
   isAdmin(): boolean {
@@ -32,5 +52,10 @@ export class AuthService {
 
   logout() {
     this.oAuthService.logOut();
+  }
+
+  logoutAndLogin(redirectUrl: string) {
+    this.oAuthService.logOut();
+    this.oAuthService.initLoginFlow(redirectUrl);
   }
 }

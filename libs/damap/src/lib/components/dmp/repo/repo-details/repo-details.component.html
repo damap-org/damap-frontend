@@ -1,26 +1,28 @@
-<p>{{ repo.description }}</p>
+<div class="repo-details-container">
+  <p>{{ repo.description }}</p>
 
-<div *ngIf="repo.contentTypes">
-  {{ "contenttypes" | translate }}:
-  <div class="content-types tag" *ngFor="let type of repo.contentTypes">
-    {{ type }}
+  <div *ngIf="repo.contentTypes">
+    {{ "contenttypes" | translate }}:
+    <div class="content-types tag" *ngFor="let type of repo.contentTypes">
+      {{ type }}
+    </div>
   </div>
-</div>
-<div *ngIf="repo.metadataStandards">
-  {{ "metadatastandards" | translate }}:
-  <div
-    class="metadata-standards tag"
-    *ngFor="let standard of repo.metadataStandards">
-    {{ standard }}
+  <div *ngIf="repo.metadataStandards">
+    {{ "metadatastandards" | translate }}:
+    <div
+      class="metadata-standards tag"
+      *ngFor="let standard of repo.metadataStandards">
+      {{ standard }}
+    </div>
   </div>
-</div>
-<div *ngIf="repo.repositoryLanguages">
-  {{ "languages" | translate }}:
-  <div class="lang tag" *ngFor="let lang of repo.repositoryLanguages">
-    {{ lang | uppercase }}
+  <div *ngIf="repo.repositoryLanguages">
+    {{ "languages" | translate }}:
+    <div class="lang tag" *ngFor="let lang of repo.repositoryLanguages">
+      {{ lang | uppercase }}
+    </div>
   </div>
-</div>
 
-<div *ngIf="repo.repositoryURL">
-  <a [href]="repo.repositoryURL" target="_blank">{{ repo.repositoryURL }}</a>
+  <div *ngIf="repo.repositoryURL">
+    <a [href]="repo.repositoryURL" target="_blank">{{ repo.repositoryURL }}</a>
+  </div>
 </div>

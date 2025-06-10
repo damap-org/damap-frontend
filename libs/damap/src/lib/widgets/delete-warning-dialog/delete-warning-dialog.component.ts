@@ -11,7 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
   template: `
     <h1 mat-dialog-title>{{ 'dialog.delete.title' | translate }}</h1>
     <mat-dialog-content>{{
-      'dialog.delete.content' | translate
+      getDeleteContent() | translate
     }}</mat-dialog-content>
     <mat-dialog-actions>
       <button mat-button [mat-dialog-close]="false">
@@ -23,4 +23,8 @@ import { TranslateModule } from '@ngx-translate/core';
     </mat-dialog-actions>
   `,
 })
-export class DeleteWarningDialogComponent {}
+export class DeleteWarningDialogComponent {
+  getDeleteContent(): string {
+    return 'dialog.delete.content.dmp';
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "admin": {
+    "title": "Admin Seite",
+    "internal-storage": "Interne Speicher",
+    "internal-storage-translations": "Übersetzungen für: ",
+    "internal-storage-translations-no-selected": "Übersetzungen",
+    "reset-selection": "Auswahl zurücksetzen",
+    "translation-info": "Um die Übersetzungen für einen bestimmten internen Speicher zu sehen, wählen Sie bitte den internen Speicher aus der Liste im Aktionsmenü und die Option 'Übersetzungen'.",
+    "table": {
+      "header": {
+        "url": "URL",
+        "storageLocation": "Speicher Location",
+        "backupLocation": "Backup Location",
+        "active": "Aktiv",
+        "action": "Aktionen",
+        "langugageCode": "Sprachcode",
+        "title": "Titel",
+        "description": "Beschreibung",
+        "backupFrequency": "Backup Häufigkeit"
+      },
+      "action": {
+        "delete": "Löschen",
+        "deactivate": "Deaktivieren",
+        "activate": "Aktivieren",
+        "edit": "Bearbeiten",
+        "translation": "Übersetzungen"
+      },
+      "empty": "Keine Daten verfügbar",
+      "no-selected": "Kein interner Speicher ausgewählt"
+    },
+    "create": {
+      "storage": "Neuen internen Speicher hinzufügen",
+      "translation": "Neue Übersetzung hinzufügen"
+    },
+    "dialog": {
+      "internal-storage": {
+        "edit": "Internen Speicher bearbeiten",
+        "add": "Internen Speicher hinzufügen",
+        "button": {
+          "cancel": "Abbrechen",
+          "add": "Hinzufügen",
+          "update": "Aktualisieren"
+        },
+        "captions": {
+          "url": "URL",
+          "storageLocation": "Speicher Location",
+          "backupLocation": "Backup Location",
+          "active": "Ist der interne Speicher aktiv?"
+        }
+      },
+      "internal-storage-translation": {
+        "edit": "Übersetzung bearbeiten",
+        "add": "Übersetzung hinzufügen",
+        "button": {
+          "cancel": "Abbrechen",
+          "add": "Hinzufügen",
+          "update": "Aktualisieren"
+        },
+        "captions": {
+          "title": "Titel",
+          "description": "Beschreibung",
+          "languageCode": "Sprachcode",
+          "backupFrequency": "Backup Häufigkeit",
+          "eng": "Englisch",
+          "deu": "Deutsch"
+        }
+      }
+    }
+  }
+}

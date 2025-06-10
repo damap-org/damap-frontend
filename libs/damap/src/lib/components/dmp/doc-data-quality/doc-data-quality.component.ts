@@ -9,6 +9,7 @@ import { DataQualityType } from '../../../domain/enum/data-quality-type.enum';
 })
 export class DocDataQualityComponent {
   @Input() docDataStep: UntypedFormGroup;
+
   optionsMetadata: string[] = [
     'We will be using the following domain specific metadata standards:…',
     'As there are no domain specific metadata standards applicable, we will provide a README file with an explanation of all values and terms used [at file level/at dataset level/at project level]',

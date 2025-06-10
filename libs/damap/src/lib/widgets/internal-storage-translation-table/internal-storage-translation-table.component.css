@@ -1,0 +1,17 @@
+.mat-column-title,
+.mat-column-description,
+.mat-column-backupFrequency {
+  max-width: 20vw;
+  word-wrap: break-word;
+  white-space: normal;
+  vertical-align: top;
+}
+
+.mat-column-languageCode,
+.mat-column-actions {
+  vertical-align: top;
+}
+
+.danger-icon-color {
+  color: var(--error-color);
+}

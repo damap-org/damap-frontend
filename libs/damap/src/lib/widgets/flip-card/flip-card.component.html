@@ -1,0 +1,16 @@
+<div
+  class="flip-card mat-shadow"
+  tabindex="0"
+  role="button"
+  (click)="navigateTo()"
+  (keypress)="onKeyPress($event)">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <div class="title mat-title-medium">{{ frontContent }}</div>
+      <mat-icon class="outline" *ngIf="iconCard">{{ iconCard }}</mat-icon>
+    </div>
+    <div class="flip-card-back">
+      <div class="description mat-body-medium">{{ backContent }}</div>
+    </div>
+  </div>
+</div>

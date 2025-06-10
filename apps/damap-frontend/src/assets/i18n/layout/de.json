@@ -4,6 +4,7 @@
     "menu": {
       "home": "Startseite",
       "plans": "DMPs",
+      "admin": "Admin",
       "mobile": {
         "open": "Seitennavigation öffnen",
         "close": "Seitennavigation schließen"

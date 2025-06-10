@@ -15,11 +15,13 @@ import { MatInputModule } from '@angular/material/input';
 import { NgModule } from '@angular/core';
 import { TooltipModule } from '../tooltip/tooltip.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     TranslateModule,
+    SharedModule,
 
     // Materials
     MatIconModule,
@@ -40,6 +42,7 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     TranslateModule,
     LicenseWizardComponent,
+    SharedModule,
 
     // Materials
     MatIconModule,

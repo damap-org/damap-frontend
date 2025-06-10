@@ -1,23 +1,31 @@
-<ng-container *ngIf="loaded === LoadingState.LOADED">
-  <mat-card appearance="raised" *ngFor="let repo of recommended">
-    <mat-card-header>
-      <mat-card-title>{{ repo.name }}</mat-card-title>
-    </mat-card-header>
-    <app-repo-details [repo]="repo"></app-repo-details>
-    <mat-card-actions align="end">
-      <button mat-raised-button (click)="addRepository(repo)" color="primary">
-        Use repository
-      </button>
-    </mat-card-actions>
-  </mat-card>
-</ng-container>
-<ng-container *ngIf="loaded === LoadingState.LOADING">
-  <p translate>dmp.steps.repositories.loading.load.recommended</p>
-  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-</ng-container>
-<ng-container *ngIf="loaded === LoadingState.FAILED">
-  <app-error-message
-    message="{{
-      'dmp.steps.repositories.loading.failed.recommended' | translate
-    }}"></app-error-message>
-</ng-container>
+<div class="scrollable-recommendation-content">
+  <ng-container *ngIf="loaded === LoadingState.LOADED">
+    <mat-card
+      appearance="raised"
+      *ngFor="let repo of recommended"
+      class="recommendation-card">
+      <mat-card-header>
+        <mat-card-title>{{ repo.name }}</mat-card-title>
+      </mat-card-header>
+      <app-repo-details [repo]="repo"></app-repo-details>
+      <mat-card-actions align="end">
+        <button
+          mat-raised-button
+          class="button-color-primary"
+          (click)="addRepository(repo)">
+          Use repository
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </ng-container>
+  <ng-container *ngIf="loaded === LoadingState.LOADING">
+    <p translate>dmp.steps.repositories.loading.load.recommended</p>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </ng-container>
+  <ng-container *ngIf="loaded === LoadingState.FAILED">
+    <app-error-message
+      message="{{
+        'dmp.steps.repositories.loading.failed.recommended' | translate
+      }}"></app-error-message>
+  </ng-container>
+</div>

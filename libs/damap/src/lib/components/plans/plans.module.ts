@@ -13,6 +13,7 @@ import { NgModule } from '@angular/core';
 import { PlansComponent } from './plans.component';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,6 @@ import { TranslateModule } from '@ngx-translate/core';
     DmpTableModule,
     ErrorMessageModule,
     ExportWarningModule,
-
     // Materials
     MatIconModule,
     MatButtonModule,
@@ -31,6 +31,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatTableModule,
     MatPaginatorModule,
     MatSelectModule,
+    InfoCardComponent,
   ],
   declarations: [PlansComponent],
   exports: [

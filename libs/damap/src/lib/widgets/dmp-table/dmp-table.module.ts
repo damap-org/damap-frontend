@@ -14,12 +14,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-
+import { SharedModule } from '../../shared/shared.module';
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     TranslateModule,
+    SharedModule,
 
     // Materials
     MatFormFieldModule,
@@ -33,13 +34,14 @@ import { TranslateModule } from '@ngx-translate/core';
     MatSortModule,
     MatMenuModule,
     MatTooltipModule,
+    MatPaginatorModule,
   ],
   declarations: [DmpTableComponent],
   exports: [
     CommonModule,
-    TranslateModule,
     RouterModule,
     DmpTableComponent,
+    SharedModule,
 
     // Materials
     MatFormFieldModule,

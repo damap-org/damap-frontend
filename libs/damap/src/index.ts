@@ -3,6 +3,7 @@ export * from './lib/damap.module';
 export * from './lib/testing/translate-testing/translate-testing.module';
 export * from './lib/widgets/env-banner/env-banner.module';
 export * from './lib/widgets/env-banner/env-banner.component';
+export * from './lib/components/dashboard';
 export * from './lib/components/dmp/dmp.module';
 
 export * from './lib/store/damap-store.module';
@@ -68,3 +69,5 @@ export * from './lib/domain/enum/funding-state.enum';
 export * from './lib/domain/enum/identifier-type.enum';
 export * from './lib/domain/enum/loading-state.enum';
 export * from './lib/domain/enum/security-measure.enum';
+
+export * from './lib/interceptors/auth.interceptor';

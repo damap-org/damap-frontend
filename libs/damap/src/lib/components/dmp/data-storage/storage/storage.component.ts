@@ -9,6 +9,8 @@ import {
 import { AppState } from '../../../../store/states/app.state';
 import { InternalStorage } from '../../../../domain/internal-storage';
 import { LoadingState } from '../../../../domain/enum/loading-state.enum';
+import { MatDialog } from '@angular/material/dialog';
+import { StorageInfoDialogComponent } from '../storage-dialog/storage-info-dialog.component';
 import { loadInternalStorages } from '../../../../store/actions/internal-storage.actions';
 
 @Component({
@@ -26,8 +28,12 @@ export class StorageComponent implements OnInit {
 
   internalStorages: InternalStorage[] = [];
   internalStoragesLoaded: LoadingState;
+  showAdditionalStorage: boolean = false;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(
+    private store: Store<AppState>,
+    private dialog: MatDialog,
+  ) {}
 
   ngOnInit() {
     this.store
@@ -48,8 +54,33 @@ export class StorageComponent implements OnInit {
   }
 
   private getInternalStorages() {
-    if (this.internalStoragesLoaded !== LoadingState.LOADED) {
-      this.store.dispatch(loadInternalStorages());
-    }
+    this.store.dispatch(loadInternalStorages());
+  }
+
+  get activeStorages() {
+    return this.internalStorages.filter(
+      storage => storage.active && storage.translations.length > 0,
+    );
+  }
+
+  public getStorageTitle(storage: InternalStorage) {
+    const translation = storage.translations.find(
+      t => t.languageCode === 'eng',
+    );
+    return translation ? translation.title : storage.translations[0].title;
+  }
+
+  openStorageInfo(storage: InternalStorage) {
+    const translation =
+      storage.translations.find(t => t.languageCode === 'eng') ||
+      storage.translations[0];
+    this.dialog.open(StorageInfoDialogComponent, {
+      width: '500px',
+      data: {
+        title: translation.title,
+        description: translation.description,
+        link: storage.url,
+      },
+    });
   }
 }

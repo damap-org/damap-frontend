@@ -1,0 +1,48 @@
+<h1 mat-dialog-title>
+  <ng-container *ngIf="mode === 'edit'; else add">{{
+    "admin.dialog.banner.edit" | translate
+  }}</ng-container>
+  <ng-template #add>{{ "admin.dialog.banner.add" | translate }}</ng-template>
+</h1>
+
+<mat-dialog-content id="datasetDialog">
+  <div [formGroup]="banner">
+    <app-input-wrapper
+      [label]="'admin.dialog.banner.captions.title' | translate"
+      [control]="title"></app-input-wrapper>
+    <app-input-wrapper
+      [label]="'admin.dialog.banner.captions.description' | translate"
+      [control]="description"></app-input-wrapper>
+    <div class="color-picker-wrapper">
+      <input
+        id="backgroundColor"
+        type="color"
+        [formControl]="color"
+        class="color-picker-input" />
+      <label for="backgroundColor" class="color-picker-label">
+        {{ "admin.dialog.banner.captions.color" | translate }}
+      </label>
+    </div>
+    <mat-checkbox formControlName="dismissible">
+      {{ "admin.dialog.banner.captions.dismissible" | translate }}
+    </mat-checkbox>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">
+    {{ "admin.dialog.banner.button.cancel" | translate }}
+  </button>
+  <button
+    (click)="onDialogClose()"
+    mat-raised-button
+    class="button-color-primary"
+    [disabled]="isDisabled()">
+    <ng-container *ngIf="mode === 'edit'">{{
+      "admin.dialog.banner.button.update" | translate
+    }}</ng-container>
+    <ng-container *ngIf="mode === 'add'">{{
+      "admin.dialog.banner.button.add" | translate
+    }}</ng-container>
+  </button>
+</mat-dialog-actions>

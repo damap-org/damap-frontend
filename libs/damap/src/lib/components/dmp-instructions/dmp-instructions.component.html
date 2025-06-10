@@ -1,0 +1,110 @@
+<div class="container">
+  <div class="action-buttons">
+    <button
+      mat-raised-button
+      class="button-color-primary"
+      [routerLink]="'/dashboard'">
+      <mat-icon class="outline">Home</mat-icon>
+      {{ "Home" | translate }}
+    </button>
+  </div>
+
+  <mat-card class="full-height-card">
+    <mat-card-header>
+      <mat-card-title>
+        <h3 translate class="card-title">dashboard.dmp.heading</h3>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="scrollable-content">
+      <p>
+        {{ "dashboard.dmp.text.prefix" | translate }}
+        <a [href]="'dashboard.dmp.text.dmp.link' | translate" target="_blank">
+          {{ "dashboard.dmp.text.dmp.text" | translate }}</a
+        >{{ "dashboard.dmp.text.middle" | translate }}
+        <a
+          [href]="'dashboard.dmp.text.fairprinciples.link' | translate"
+          target="_blank">
+          {{ "dashboard.dmp.text.fairprinciples.text" | translate }}</a
+        >{{ "dashboard.dmp.text.suffix" | translate }}
+      </p>
+
+      <mat-card-subtitle>
+        <h4 class="middle" translate>dashboard.instructions.heading</h4>
+      </mat-card-subtitle>
+
+      <mat-accordion>
+        <mat-expansion-panel
+          [expanded]="step() === 0"
+          (opened)="setStep(0)"
+          hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon class="list-icon material-icon-primary outline"
+                >list_alt</mat-icon
+              >
+              <h4 translate>dashboard.instructions.steps.heading</h4>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p translate>dashboard.instructions.steps.body</p>
+          <mat-action-row>
+            <button mat-button (click)="nextStep()">Next</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+        <mat-expansion-panel
+          [expanded]="step() === 1"
+          (opened)="setStep(1)"
+          hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon class="list-icon material-icon-primary outline"
+                >export_notes</mat-icon
+              >
+              <h4 translate>dashboard.instructions.export.heading</h4>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p translate>dashboard.instructions.export.body</p>
+          <mat-action-row>
+            <button mat-button (click)="prevStep()">Previous</button>
+            <button mat-button (click)="nextStep()">Next</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+        <mat-expansion-panel
+          [expanded]="step() === 2"
+          (opened)="setStep(2)"
+          hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon class="list-icon material-icon-primary outline"
+                >edit_document</mat-icon
+              >
+              <h4 translate>dashboard.instructions.finalise.heading</h4>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p translate>dashboard.instructions.finalise.body</p>
+          <mat-action-row>
+            <button mat-button (click)="prevStep()">Previous</button>
+            <button mat-button (click)="nextStep()">Next</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+        <mat-expansion-panel
+          [expanded]="step() === 3"
+          (opened)="setStep(3)"
+          hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon class="list-icon material-icon-primary outline"
+                >add_notes</mat-icon
+              >
+              <h4 translate>dashboard.instructions.update.heading</h4>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p translate>dashboard.instructions.update.body</p>
+          <mat-action-row>
+            <button mat-button (click)="prevStep()">Previous</button>
+            <button mat-button (click)="nextStep()">Next</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-card-content>
+  </mat-card>
+</div>

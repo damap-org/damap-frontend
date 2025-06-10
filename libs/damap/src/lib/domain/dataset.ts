@@ -9,6 +9,7 @@ export interface Dataset {
   readonly id: number;
   title: string;
   type: DataType[];
+  fileFormat: string;
   size: number;
   description: string;
   personalData: boolean;
@@ -28,4 +29,10 @@ export interface Dataset {
   retentionPeriod: number;
   source: DataSource;
   datasetId: Identifier;
+  technicalResources: TechnicalResource[];
+}
+
+export interface TechnicalResource {
+  name: string;
+  description: string;
 }

@@ -1,0 +1,26 @@
+.mat-search-form-field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.search-field {
+  width: 100%;
+}
+
+.result-list {
+  width: 100% !important;
+  border-radius: 4px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.list-option-container {
+  display: inline-block;
+  margin: 10px;
+}
+
+.person-detail-content {
+  white-space: normal !important;
+  word-break: break-all !important;
+}

@@ -5,25 +5,109 @@
 }
 
 .storage-selected {
-  flex-grow: 100;
+  flex-grow: 1;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.storage-textarea {
+  margin-top: 15px;
+  margin-left: 5px;
 }
 
 .storage-card-top {
   display: flex;
-  flex-grow: 100;
+  flex-grow: 1;
   justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+}
+
+@media (max-width: 960px) {
+  .storage-card-top {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .storage-card-top button[mat-icon-button] {
+    align-self: flex-start;
+    margin-left: auto;
+  }
 }
 
 .storage-grid {
   min-width: 300px;
   width: 30%;
+  margin-top: 15px;
   max-height: 400px;
-  overflow-y: scroll;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  margin-bottom: 20px;
 }
 
 .storage-card-container {
   display: flex;
   gap: 10px;
-  flex-grow: 100;
+  flex-grow: 1;
+  margin-bottom: 20px;
   align-items: baseline;
+}
+
+@media (max-width: 1024px) {
+  .tu-storage {
+    flex-direction: column;
+  }
+
+  .storage-grid,
+  .storage-selected {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .storage-card-container {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .storage-card-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 760px) {
+  .storage-grid {
+    width: 100%;
+    margin-top: 10px;
+    max-height: 200px;
+  }
+
+  .storage-textarea {
+    margin-top: 15px;
+    margin-left: 5px;
+  }
+
+  .storage-card-container,
+  .storage-card-top {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .storage-textarea {
+    width: 100%;
+    margin: 10px 0 0;
+  }
+
+  .storage-selected mat-card {
+    margin-bottom: 10px;
+  }
+
+  .button-color-primary {
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  .full-width {
+    width: 100%;
+  }
 }

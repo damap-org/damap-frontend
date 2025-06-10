@@ -8,14 +8,6 @@ tr.detail-row {
   height: 0;
 }
 
-tr.element-row:not(.expanded-row):hover {
-  background: whitesmoke;
-}
-
-tr.element-row:not(.expanded-row):active {
-  background: #efefef;
-}
-
 .element-row td {
   border-bottom-width: 0;
 }
@@ -41,8 +33,21 @@ tr.element-row:not(.expanded-row):active {
   display: flex;
 }
 
+.mat-column-dataset,
+.mat-column-source,
+.mat-column-fileFormat,
+.mat-column-description {
+  max-width: 20vw;
+  word-wrap: break-word;
+  white-space: normal;
+}
 /*th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
   width: 80%;
 }*/
 
 /* End Table Styles */
+
+.action-button-cell {
+  display: flex;
+  justify-content: flex-end;
+}

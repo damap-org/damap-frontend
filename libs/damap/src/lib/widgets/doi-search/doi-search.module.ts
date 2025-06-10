@@ -9,6 +9,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { ErrorMessageModule } from '../error-message/error-message.module';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [DoiSearchComponent],
@@ -18,6 +19,7 @@ import { ErrorMessageModule } from '../error-message/error-message.module';
     FormsModule,
     ReactiveFormsModule,
     ErrorMessageModule,
+    SharedModule,
 
     // Materials
     MatFormFieldModule,
@@ -33,6 +35,7 @@ import { ErrorMessageModule } from '../error-message/error-message.module';
     ReactiveFormsModule,
     DoiSearchComponent,
     ErrorMessageModule,
+    SharedModule,
 
     // Materials
     MatFormFieldModule,

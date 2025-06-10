@@ -3,7 +3,7 @@
   {{'dialog.export.content' | translate}}
   <div class="container">
     <ng-container>
-      <mat-form-field appearance="fill" *ngIf="!funderSupported">
+      <mat-form-field *ngIf="!funderSupported">
         <mat-label>{{ 'dialog.export.type' | translate }}</mat-label>
         <mat-select [(value)]="selectedTemplate">
           <mat-option
@@ -14,14 +14,20 @@
         </mat-select>
       </mat-form-field>
     </ng-container>
-    <button
-      class="button"
-      mat-button
-      [mat-dialog-close]="selectedTemplate"
-      [disabled]="!selectedTemplate && !funderSupported"
-      mat-raised-button
-      color="primary">
-      {{'dialog.export.button' | translate}}
-    </button>
+    <div class="button-group">
+      <button
+        class="button button-color-primary"
+        [mat-dialog-close]="selectedTemplate"
+        [disabled]="!selectedTemplate && !funderSupported"
+        mat-raised-button>
+        {{'dialog.export.button' | translate}}
+      </button>
+      <button
+        class="button button-color-primary"
+        mat-dialog-close="cancel"
+        mat-raised-button>
+        {{'dialog.export.cancel' | translate}}
+      </button>
+    </div>
   </div>
 </mat-dialog-content>

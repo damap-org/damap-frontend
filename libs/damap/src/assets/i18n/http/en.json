@@ -31,6 +31,11 @@
         "delete": "Failed to delete DMP. "
       },
       "storages": "Failed to load storages. ",
+      "storageErrors": {
+        "stillInUse": "Storage is used in at least one DMP and therefore cannot be deleted.",
+        "lastTranslation": "The last translation for a given storage cannot be deleted.",
+        "invalidUrl": "The provided URL is not valid."
+      },
       "versions": {
         "load": "Failed to load DMP versions. ",
         "save": "Failed to save DMP version. ",
@@ -42,6 +47,18 @@
         "load": "Failed to load access information. ",
         "save": "Failed to update access. ",
         "delete": "Failed to remove access. "
+      }
+    },
+    "success": {
+      "storage": {
+        "translations": {
+          "add": "Storage translation created successfully.",
+          "edit": "Storage translation updated successfully.",
+          "delete": "Storage translation deleted successfully."
+        },
+        "delete": "Storage deleted successfully.",
+        "add": "Storage created successfully.",
+        "edit": "Storage updated successfully."
       }
     }
   }

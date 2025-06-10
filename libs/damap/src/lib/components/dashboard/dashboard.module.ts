@@ -1,13 +1,16 @@
-import { NgModule } from '@angular/core';
-import { DashboardComponent } from './dashboard.component';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { DashboardComponent } from './dashboard.component';
+import { FlipCardComponent } from '../../widgets/flip-card/flip-card.component';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, FlipCardComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -15,6 +18,8 @@ import { MatIconModule } from '@angular/material/icon';
     // Materials
     MatButtonModule,
     MatIconModule,
+    MatCardModule,
+    InfoCardComponent,
   ],
   exports: [
     CommonModule,
@@ -23,6 +28,7 @@ import { MatIconModule } from '@angular/material/icon';
     // Materials
     MatButtonModule,
     MatIconModule,
+    MatCardModule,
   ],
 })
 export class DashboardModule {}

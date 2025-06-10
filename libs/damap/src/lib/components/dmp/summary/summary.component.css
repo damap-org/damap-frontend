@@ -13,3 +13,9 @@ td.mat-mdc-cell,
 td.mat-mdc-footer-cell {
   padding: 0 10px;
 }
+
+td a {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}

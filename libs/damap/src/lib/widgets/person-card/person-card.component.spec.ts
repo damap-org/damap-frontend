@@ -1,18 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { PersonCardComponent } from './person-card.component';
-import { TranslateTestingModule } from '../../testing/translate-testing/translate-testing.module';
-import { mockContributor1 } from '../../mocks/contributor-mocks';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { OrcidModule } from '../orcid/orcid.module';
+import { PersonCardComponent } from './person-card.component';
+import { TranslateTestingModule } from '../../testing/translate-testing/translate-testing.module';
+import { mockContributor1 } from '../../mocks/contributor-mocks';
 
 describe('PersonCardComponent', () => {
   let component: PersonCardComponent;
   let fixture: ComponentFixture<PersonCardComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       imports: [
         PersonCardComponent,
         TranslateTestingModule,
@@ -26,7 +26,7 @@ describe('PersonCardComponent', () => {
     component = fixture.componentInstance;
     component.person = mockContributor1;
     fixture.detectChanges();
-  });
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();

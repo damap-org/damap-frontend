@@ -12,11 +12,13 @@ describe('delete dmp', () => {
   it('should delete dmp', () => {
     cy.intercept('DELETE', '/api/dmps/*').as('deleteDmp');
     cy.get('app-dmp-table tr').first().get('td').last().click();
-    cy.get('mat-mdc-menu-content button')
+    cy.get('div.mat-mdc-menu-content button')
       .get('mat-icon')
       .contains('delete')
       .click();
-    cy.get('damap-delete-warning-dialog > div > button').last().click();
+    cy.get('damap-delete-warning-dialog > mat-dialog-actions > button')
+      .last()
+      .click();
     cy.wait('@deleteDmp');
   });
 });

@@ -5,15 +5,14 @@
     <span class="affiliation">({{ contributor.affiliation }})</span>
     <mat-icon
       *ngIf="contributor.contact"
-      class="mat-icon-contact"
-      color="primary">
+      class="mat-icon-contact button-color-primary">
       contact_mail
     </mat-icon>
     <span class="sr-only">{{
       "dmp.steps.people.contact.person" | translate
     }}</span>
   </div>
-  <mat-icon class="mat-icon-style">mail_outline</mat-icon>
+  <mat-icon class="mat-icon-style outline">mail</mat-icon>
   {{ contributor.mbox }}
   <app-orcid
     *ngIf="contributor.personId?.type === identifierType.ORCID"

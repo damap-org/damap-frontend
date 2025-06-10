@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./tag.component.css'],
 })
 export class TagComponent {
-  @Input() background = 'aliceblue';
+  @Input() background = 'var(--blue-tag)';
 }

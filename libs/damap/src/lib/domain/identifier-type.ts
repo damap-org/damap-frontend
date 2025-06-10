@@ -5,5 +5,8 @@ export const IdentifierTypeReusedData: Record<IdentifierType[0], string> = {
   [IdentifierType.HANDLE]: 'Handle',
   [IdentifierType.ARK]: 'ARK',
   [IdentifierType.URL]: 'URL',
+  [IdentifierType.HDL]: 'HDL',
+  [IdentifierType.PURL]: 'PURL',
+  [IdentifierType.URN]: 'URN',
   [IdentifierType.OTHER]: 'Other',
 };

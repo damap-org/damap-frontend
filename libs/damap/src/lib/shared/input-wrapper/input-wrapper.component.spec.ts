@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 
 import { InputWrapperComponent } from './input-wrapper.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateTestingModule } from '../../testing/translate-testing/translate-testing.module';
@@ -11,8 +11,8 @@ describe('InputFormFieldWrapperComponent', () => {
   let component: InputWrapperComponent;
   let fixture: ComponentFixture<InputWrapperComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       imports: [
         MatFormFieldModule,
         MatInputModule,
@@ -22,7 +22,7 @@ describe('InputFormFieldWrapperComponent', () => {
       ],
       declarations: [InputWrapperComponent],
     }).compileComponents();
-  });
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(InputWrapperComponent);

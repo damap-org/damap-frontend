@@ -1,7 +1,12 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Subject, Subscription } from 'rxjs';
-import { Store } from '@ngrx/store';
+import { BehaviorSubject, Observable, Subject, Subscription, take } from 'rxjs';
+import {
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import {
   UntypedFormArray,
   UntypedFormControl,
@@ -16,24 +21,57 @@ import {
 import { AppState } from '../../store/states/app.state';
 import { AuthService } from '../../auth/auth.service';
 import { BackendService } from '../../services/backend.service';
+import { Config } from '../../domain/config';
 import { Contributor } from '../../domain/contributor';
 import { DataKind } from '../../domain/enum/data-kind.enum';
 import { DataSource } from '../../domain/enum/data-source.enum';
 import { Dataset } from '../../domain/dataset';
 import { FormService } from '../../services/form.service';
 import { HttpEventType } from '@angular/common/http';
+import { InfoBoxDetails } from '../../domain/infoBox-details';
+import { InfoLabelService } from '../../services/infoLabel.service';
 import { InternalStorage } from '../../domain/internal-storage';
+import { LegalEthicalAspectsComponent } from './legal-ethical-aspects/legal-ethical-aspects.component';
 import { LoggerService } from '../../services/logger.service';
 import { MatStepper } from '@angular/material/stepper';
+import { PeopleComponent } from './people/people.component';
 import { Project } from '../../domain/project';
-import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import { ProjectComponent } from './project/project.component';
+import { RepoComponent } from './repo/repo.component';
+import { SpecifyDataComponent } from './specify-data/specify-data.component';
+import {
+  StepperSelectionEvent,
+  STEPPER_GLOBAL_OPTIONS,
+} from '@angular/cdk/stepper';
+import { select, Store } from '@ngrx/store';
+import { Dmp } from '../../domain/dmp';
+import { selectForm } from '../../store/selectors/form.selectors';
+import { Completeness, SummaryService } from '../../services/summary.service';
 
 @Component({
   selector: 'app-dmp',
   templateUrl: './dmp.component.html',
   styleUrls: ['./dmp.component.css'],
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: { displayDefaultIndicatorType: false },
+    },
+  ],
 })
 export class DmpComponent implements OnInit, OnDestroy {
+  config$: Observable<Config> = new Observable<Config>();
+  @ViewChild('projectComponent') projectComponent: ProjectComponent;
+  @ViewChild('peopleComponent') peopleComponent: PeopleComponent;
+  @ViewChild('specifyData') specifyDataComponent: SpecifyDataComponent;
+  @ViewChild('legalEthicalAspects')
+  legalEthicalAspectsComponent: LegalEthicalAspectsComponent;
+  @ViewChild('repo') repoComponent: RepoComponent;
+  livePreviewEnabled: boolean = true;
+  ethicalReportEnabled: boolean = true;
+
+  selectedViewStorage: 'primaryView' | 'secondaryView' = 'primaryView';
+
   get username(): string {
     return this.auth.getUsername();
   }
@@ -45,6 +83,11 @@ export class DmpComponent implements OnInit, OnDestroy {
   dmpForm: UntypedFormGroup;
 
   formChanged: boolean;
+
+  // Stepper icons
+  form$: Observable<Dmp>;
+  dmpFormVal: Dmp;
+  dataSource: Completeness[];
 
   // Steps
   projectStep: UntypedFormControl;
@@ -67,6 +110,10 @@ export class DmpComponent implements OnInit, OnDestroy {
   fileUpload: { file: File; progress: number; finalized: boolean }[] = [];
   fileUploadSubscription: Subscription[] = [];
 
+  instructionStep$ = new BehaviorSubject<any>('');
+  infoInstruction: InfoBoxDetails = {};
+  selectedStep: number = 0;
+
   constructor(
     private logger: LoggerService,
     private auth: AuthService,
@@ -75,34 +122,60 @@ export class DmpComponent implements OnInit, OnDestroy {
     private router: Router,
     private backendService: BackendService,
     public store: Store<AppState>,
+    private infoLabelService: InfoLabelService,
+    private cdr: ChangeDetectorRef,
   ) {
     this.dmpForm = this.formService.dmpForm;
+
+    this.form$ = this.store.pipe(select(selectForm));
+    this.form$.subscribe(value => {
+      if (value) {
+        this.dmpFormVal = value;
+        this.dataSource = SummaryService.dmpSummary(value);
+      }
+    });
+  }
+
+  onStepChange(selectedStep: number) {
+    this.selectedStep = selectedStep;
   }
 
   ngOnInit() {
-    this.getDmpById();
+    setTimeout(() => {
+      this.getInstruction(0);
+      this.config$ = this.backendService.loadServiceConfig();
+      this.config$.subscribe(config => {
+        this.livePreviewEnabled = config.livePreviewAvailable;
+        this.ethicalReportEnabled = config.ethicalReportEnabled;
+        this.cdr.detectChanges();
+      });
+      this.dmpForm.valueChanges.subscribe(() => this.cdr.detectChanges());
+      this.dmpForm.valueChanges.subscribe(value => {
+        this.logger.debug(value);
+        this.store.dispatch(formDiff({ newDmp: value }));
+      });
 
-    this.dmpForm.valueChanges.subscribe(value => {
-      this.logger.debug(value);
-      this.store.dispatch(formDiff({ newDmp: value }));
+      this.projectStep = this.dmpForm.get('project') as UntypedFormControl;
+      this.contributorStep = this.dmpForm.get(
+        'contributors',
+      ) as UntypedFormArray;
+      this.specifyDataStep = this.dmpForm.get('data') as UntypedFormGroup;
+      this.datasets = this.dmpForm.get('datasets') as UntypedFormArray;
+      this.docDataStep = this.dmpForm.get('documentation') as UntypedFormGroup;
+      this.legalEthicalStep = this.dmpForm.get('legal') as UntypedFormGroup;
+      this.storageStep = this.dmpForm.get('storage') as UntypedFormArray;
+      this.externalStorageStep = this.dmpForm.get(
+        'externalStorage',
+      ) as UntypedFormArray;
+      this.externalStorageInfo = this.dmpForm.get(
+        'externalStorageInfo',
+      ) as UntypedFormControl;
+      this.repoStep = this.dmpForm.get('repositories') as UntypedFormArray;
+      this.reuseStep = this.dmpForm.get('reuse') as UntypedFormGroup;
+      this.costsStep = this.dmpForm.get('costs') as UntypedFormGroup;
+
+      this.getDmpById();
     });
-
-    this.projectStep = this.dmpForm.get('project') as UntypedFormControl;
-    this.contributorStep = this.dmpForm.get('contributors') as UntypedFormArray;
-    this.specifyDataStep = this.dmpForm.get('data') as UntypedFormGroup;
-    this.datasets = this.dmpForm.get('datasets') as UntypedFormArray;
-    this.docDataStep = this.dmpForm.get('documentation') as UntypedFormGroup;
-    this.legalEthicalStep = this.dmpForm.get('legal') as UntypedFormGroup;
-    this.storageStep = this.dmpForm.get('storage') as UntypedFormArray;
-    this.externalStorageStep = this.dmpForm.get(
-      'externalStorage',
-    ) as UntypedFormArray;
-    this.externalStorageInfo = this.dmpForm.get(
-      'externalStorageInfo',
-    ) as UntypedFormControl;
-    this.repoStep = this.dmpForm.get('repositories') as UntypedFormArray;
-    this.reuseStep = this.dmpForm.get('reuse') as UntypedFormGroup;
-    this.costsStep = this.dmpForm.get('costs') as UntypedFormGroup;
   }
 
   changeStepPosition(event: StepperSelectionEvent) {
@@ -110,8 +183,8 @@ export class DmpComponent implements OnInit, OnDestroy {
     const stepElement = document.getElementById(stepId);
     if (stepElement) {
       stepElement.scrollIntoView({
-        block: 'start',
-        inline: 'nearest',
+        block: 'center',
+        inline: 'center',
         behavior: 'smooth',
       });
     }
@@ -130,14 +203,25 @@ export class DmpComponent implements OnInit, OnDestroy {
   }
 
   get showStep() {
-    return (
-      (this.specifyDataStep.value.kind === DataKind.SPECIFY ||
-        this.specifyDataStep.value.reusedKind === DataKind.SPECIFY) &&
-      this.datasets.length
-    );
+    if (this.specifyDataStep) {
+      return (
+        (this.specifyDataStep.value.kind === DataKind.SPECIFY ||
+          this.specifyDataStep.value.reusedKind === DataKind.SPECIFY) &&
+        this.datasets.length
+      );
+    } else return false;
   }
-  changeStep($event) {
+
+  changeStep($event: StepperSelectionEvent) {
     this.stepChanged$.next($event);
+    this.getInstruction($event.selectedIndex);
+    this.cdr.detectChanges();
+  }
+
+  handleStepChange(event: StepperSelectionEvent) {
+    this.changeStep(event);
+    this.changeStepPosition(event);
+    this.onStepChange(event.selectedIndex);
   }
 
   changeProject(project: Project) {
@@ -165,6 +249,10 @@ export class DmpComponent implements OnInit, OnDestroy {
 
   removeContributor(index: number) {
     this.formService.removeContributorFromForm(index);
+  }
+
+  updateContributorDetails(event: { idx: number; contributor: Contributor }) {
+    this.formService.upadteContributorOfForm(event.idx, event.contributor);
   }
 
   addDataset(dataset: Dataset) {
@@ -244,6 +332,10 @@ export class DmpComponent implements OnInit, OnDestroy {
     this.formService.removeCostFromForm(index);
   }
 
+  onViewChangeStorage(view: 'primaryView' | 'secondaryView'): void {
+    this.selectedViewStorage = view;
+  }
+
   private getDmpById() {
     const id = +this.route.snapshot.paramMap.get('id');
     if (!id) return;
@@ -256,6 +348,7 @@ export class DmpComponent implements OnInit, OnDestroy {
         if (dmp.project?.universityId) {
           this.getProjectMembers(dmp.project.universityId);
         }
+        this.cdr.detectChanges();
       } else {
         this.router.navigate(['plans']);
       }
@@ -270,5 +363,124 @@ export class DmpComponent implements OnInit, OnDestroy {
 
   private generateReferenceHash(): string {
     return this.username + (+new Date()).toString(36);
+  }
+
+  getInstruction(index: number) {
+    this.infoInstruction = this.infoLabelService.getInfo(index);
+    this.instructionStep$.next(this.infoInstruction);
+  }
+
+  completenessLabel(label: string) {
+    return this.dataSource?.find(value => value.step === label);
+  }
+
+  showEditIcon(index: number) {
+    if (index < 10) {
+      return (
+        this.dataSource[index]?.completeness > 0 &&
+        this.dataSource[index]?.completeness < 100
+      );
+    } else return true;
+  }
+
+  checkCompletenessForm() {
+    let statusCompleteness;
+    let statusEdit;
+    statusEdit = this.dataSource.find(step => step.completeness > 0);
+    statusCompleteness = this.dataSource.find(step => step.completeness < 100);
+    if (statusEdit && statusCompleteness) {
+      return 'editing';
+    } else if (statusEdit && !statusCompleteness) {
+      return 'completed';
+    } else return false;
+  }
+
+  iconsValidatorDone(index: number, icon: string): boolean {
+    if (
+      icon === 'check' &&
+      (index < 3 || this.showStep) &&
+      this.dataSource[index]?.completeness === 100
+    )
+      return true;
+    else if (
+      icon === 'edit' &&
+      (index < 3 || this.showStep) &&
+      index !== 10 &&
+      this.showEditIcon(index)
+    )
+      return true;
+    else if (icon === 'lock' && index >= 3 && !this.showStep && index !== 10)
+      return true;
+    else if (
+      icon === 'text_snippet' &&
+      index === 10 &&
+      this.stepper.selectedIndex !== index &&
+      this.checkCompletenessForm() === 'completed'
+    )
+      return true;
+    else return false;
+  }
+
+  iconsValidatorEdit(index: number, icon: string): boolean {
+    if (icon === 'lock' && index >= 3 && !this.showStep && index !== 10)
+      return true;
+    else if (
+      icon === 'edit' &&
+      (index < 3 || (index >= 3 && this.showStep && index !== 10))
+    )
+      return true;
+    else if (
+      icon === 'text_snippet' &&
+      index === 10 &&
+      (this.checkCompletenessForm() === false ||
+        this.checkCompletenessForm() === 'editing')
+    )
+      return true;
+    else return false;
+  }
+
+  iconsValidatorNumber(
+    index: number,
+    icon: string,
+    selectStep: number,
+    style: string,
+  ): boolean {
+    if (
+      icon === 'number' &&
+      (index < 3 || (index >= 3 && this.showStep && index != 10)) &&
+      selectStep !== index &&
+      !this.showEditIcon(index)
+    ) {
+      return true;
+    } else if (
+      icon === 'edit' &&
+      (index < 3 || (index >= 3 && this.showStep && index != 10)) &&
+      selectStep === index
+    ) {
+      return true;
+    } else if (
+      icon === 'text_snippet' &&
+      style == 'gray' &&
+      index === 10 &&
+      this.checkCompletenessForm() === false
+    )
+      return true;
+    else if (
+      icon === 'text_snippet' &&
+      style == 'success' &&
+      index === 10 &&
+      this.checkCompletenessForm() === 'editing'
+    )
+      return true;
+    else if (
+      icon === 'text_snippet' &&
+      style == 'success' &&
+      index === 10 &&
+      this.checkCompletenessForm() === 'completed'
+    )
+      return true;
+    else if (icon === 'lock' && index >= 3 && !this.showStep && index < 10)
+      return true;
+    else return false;
   }
 }

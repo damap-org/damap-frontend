@@ -1,0 +1,72 @@
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  <!-- Language Code Column -->
+  <ng-container matColumnDef="languageCode">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      {{ "admin.table.header.langugageCode" | translate }}
+    </th>
+    <td mat-cell *matCellDef="let element">{{ element.languageCode }}</td>
+  </ng-container>
+
+  <!-- Title Column -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      {{ "admin.table.header.title" | translate }}
+    </th>
+    <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+  </ng-container>
+
+  <!-- Description Column -->
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      {{ "admin.table.header.description" | translate }}
+    </th>
+    <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+  </ng-container>
+
+  <!-- Backup Frequency Column -->
+  <ng-container matColumnDef="backupFrequency">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      {{ "admin.table.header.backupFrequency" | translate }}
+    </th>
+    <td mat-cell *matCellDef="let element">{{ element.backupFrequency }}</td>
+  </ng-container>
+
+  <!-- Edit Column -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>
+      {{ "admin.table.header.action" | translate }}
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="editStorageTranslation(element.id)">
+          <mat-icon>edit</mat-icon>
+          {{ "admin.table.action.edit" | translate }}
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="deleteStorageTranslation(element.id)">
+          <mat-icon class="danger-icon-color">delete</mat-icon>
+          {{ "admin.table.action.delete" | translate }}
+        </button>
+      </mat-menu>
+    </td>
+  </ng-container>
+
+  <!-- Header and Row Definitions -->
+  <tr mat-header-row *matHeaderRowDef="tableHeaders"></tr>
+  <tr mat-row *matRowDef="let row; columns: tableHeaders"></tr>
+
+  <!-- No Data Row -->
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="2">
+      {{ "admin.table.no-selected" | translate }}
+    </td>
+  </tr>
+</table>
+
+<mat-paginator
+  [pageSize]="10"
+  [pageSizeOptions]="[10, 15, 20]"
+  showFirstLastButtons></mat-paginator>

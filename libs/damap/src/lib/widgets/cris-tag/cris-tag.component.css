@@ -2,7 +2,7 @@ div {
   margin-top: 5px;
   padding: 5px 7px;
   border-radius: 4px;
-  background: aliceblue;
+  background: var(--tertiary-color-very-light);
   font-size: 10pt;
   display: inline-block;
 }

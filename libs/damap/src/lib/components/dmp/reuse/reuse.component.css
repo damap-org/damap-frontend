@@ -1,8 +1,22 @@
-.wrap-label {
-  white-space: normal;
-  height: auto;
-}
-
 .full-width {
   width: 100%;
+}
+
+.close-button-container {
+  display: flex;
+  align-items: center;
+}
+
+.suggestions-label {
+  font-size: 14px;
+  color: var(--primary);
+  /* margin-right: 5px; */
+  margin-left: 10px;
+}
+
+.close-button-dp {
+  background-color: var(--mdc-filled-text-field-container-color);
+  padding: 0%;
+  border-radius: 30%;
+  border: var(--primary);
 }

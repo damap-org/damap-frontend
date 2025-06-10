@@ -2,8 +2,23 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  margin-bottom: 1em;
 }
 
 .color-icon {
-  color: #006699;
+  color: var(--primary);
+}
+
+.dataset-title-text {
+  font-weight: bold;
+  margin-top: -1em;
+  margin-bottom: 0.5em;
+  color: var(--primary);
+}
+
+.retention-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
+  margin-top: 2em;
 }

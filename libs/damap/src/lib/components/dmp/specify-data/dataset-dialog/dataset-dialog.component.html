@@ -31,6 +31,11 @@
         </mat-select>
       </mat-form-field>
     </div>
+    <app-input-wrapper
+      *ngIf="dataset.controls.source.value === datasetSource.NEW"
+      [label]="'dmp.steps.data.specify.dialog.fileFormat' | translate"
+      [info]="'dmp.steps.data.specify.dialog.fileFormat.info' | translate"
+      [control]="fileFormat"></app-input-wrapper>
     <div
       class="dialogRow"
       *ngIf="dataset.controls.source.value === datasetSource.NEW">
@@ -45,26 +50,43 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <app-input-wrapper
+    <app-textarea-wrapper
       [label]="'dmp.steps.data.specify.dialog.description' | translate"
       [control]="description"
-      [maxLength]="4000"></app-input-wrapper>
+      [maxLength]="4000"></app-textarea-wrapper>
+    <div
+      class="dialogRow"
+      *ngIf="dataset.controls.source.value === datasetSource.NEW">
+      <div formArrayName="technicalResources">
+        <hr />
+        <div
+          *ngFor="let resource of technicalResources.controls; let i = index"
+          [formGroupName]="i"
+          class="resource-row">
+          <app-textarea-wrapper
+            [label]="'dmp.steps.data.specify.dialog.technicalResource'"
+            [labelSuffix]="' ' + (i + 1)"
+            [control]="resource.get('name')"
+            [maxLength]="255"></app-textarea-wrapper>
+          <button mat-icon-button (click)="removeTechnicalResource(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+      <button
+        mat-raised-button
+        class="action-button button-color-primary"
+        (click)="addTechnicalResource()">
+        {{
+          "dmp.steps.data.specify.dialog.button.addTechnicalResource"
+            | translate
+        }}
+      </button>
+    </div>
   </div>
   <div
     class="dialogRow"
     *ngIf="dataset.controls.source.value === datasetSource.REUSED">
-    <mat-form-field>
-      <mat-label>{{
-        "dmp.steps.data.specify.dialog.identifier" | translate
-      }}</mat-label>
-      <mat-select [(ngModel)]="datasetId.type">
-        <mat-option
-          *ngFor="let id of identifierTypeReusedData | keyvalue: originalOrder"
-          [value]="id.key">
-          {{ id.key }}<br />
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
     <mat-form-field>
       <mat-label>{{
         "dmp.steps.data.specify.dialog.source" | translate
@@ -81,7 +103,7 @@
   <button
     (click)="onDialogClose()"
     mat-raised-button
-    color="primary"
+    class="button-color-primary"
     [disabled]="dataset.invalid">
     <ng-container *ngIf="mode === 'edit'">{{
       "dmp.steps.data.specify.dialog.button.update" | translate

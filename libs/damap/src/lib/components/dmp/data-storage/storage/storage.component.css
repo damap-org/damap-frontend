@@ -1,38 +1,81 @@
-:host {
-  margin: 1rem;
-}
-
 .tu-storage {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .storage-grid {
-  min-width: 300px;
-  width: 30%;
-  max-height: 400px;
-  overflow-y: scroll;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  overflow: hidden;
+}
+
+.storage-card,
+.selected-storage-card {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 20px;
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease;
+}
+
+.storage-card:hover,
+.selected-storage-card:hover {
+  transform: translateY(-2px);
+}
+
+.storage-avatar {
+  background-color: var(--primary-color-light);
+  color: var(--primary-lightest);
+  width: 30px;
+  height: 30px;
+}
+
+.storage-title {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.storage-link {
+  font-size: 0.8rem;
+  color: var(--primary-color);
+  text-decoration: underline;
 }
 
 .storage-selected {
-  flex-grow: 100;
-}
-
-.storage-grid > mat-card > mat-card-header {
-  cursor: pointer;
-}
-
-.storage-card:hover {
-  background-color: #f5f5f5;
-}
-
-.storage-card-top {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.mat-mdc-card-actions {
-  margin: 0;
-  padding: 0;
+.full-width {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .storage-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .storage-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mdc-menu-surface {
+  max-width: 100%;
+}
+
+.mat-mdc-option .mdc-list-item__primary-text {
+  padding: 8px;
+}
+
+.mdc-menu-surface {
+  width: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
 }

@@ -1,0 +1,24 @@
+.dialogRow {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.color-picker-wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.color-picker-label {
+  margin-right: 10px;
+}
+
+.color-picker-input {
+  height: 27px;
+  width: 27px;
+  border: none;
+  cursor: pointer;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}

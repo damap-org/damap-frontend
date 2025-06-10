@@ -5,7 +5,9 @@
         "input": {
           "title": "Projekt Titel",
           "description": "Projektbeschreibung",
-          "button": "Projekt updaten"
+          "button": "Projekt updaten",
+          "date": "Start und Enddatum",
+          "datehint": "TT/MM/JJJJ – TT/MM/JJJJ"
         }
       }
     }

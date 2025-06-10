@@ -1,7 +1,16 @@
 <mat-form-field
   [appearance]="appearance"
-  [class.custom-style]="applyCustomStyle">
-  <mat-label class="wrap-label">{{ label | translate }}</mat-label>
+  class="mat-textarea-density"
+  floatLabel="auto">
+  <!-- inline style is a temporary solution for an issue where the * for required would be rendered after a line break -->
+  <!-- this will hopefully be fixed with the next angular version, lets pray -->
+  <mat-label style="display: inline-flex"
+    >{{ label | translate }}
+    <ng-container *ngFor="let set of labelDatasets; last as last">
+      "{{ set.title }}"<span *ngIf="!last">, </span>.
+    </ng-container>
+    <ng-container *ngIf="labelSuffix"> {{ labelSuffix }} </ng-container>
+  </mat-label>
 
   <ng-template #standard>
     <textarea
@@ -11,16 +20,21 @@
       type="text"
       [required]="required"
       [maxLength]="maxLength"
-      rows="4"
-      #message>
+      cdkTextareaAutosize
+      cdkAutosizeMinRows="{{ minRows }}"
+      cdkAutosizeMaxRows="{{ maxRows }}"
+      class="no-resize"
+      #message
+      (click)="openAutocomplete()">
     </textarea>
-    <mat-hint align="end"
-      >{{ message.value.length }} / {{ maxLength }}</mat-hint
-    >
+    <mat-hint *ngIf="showLength" align="end"
+      >{{ message.value.length }} / {{ maxLength }}
+    </mat-hint>
   </ng-template>
 
   <!-- AUTOCOMPLETE -->
-  <ng-container *ngIf="autocompleteOptions?.length; else standard">
+  <ng-container
+    *ngIf="autocompleteOptions?.length && isAutocompleteOpen; else standard">
     <textarea
       matInput
       [formControl]="control"
@@ -28,13 +42,30 @@
       type="text"
       [matAutocomplete]="auto"
       [required]="required"
-      rows="4"
+      cdkTextareaAutosize
+      cdkAutosizeMinRows="{{ minRows }}"
+      cdkAutosizeMaxRows="{{ maxRows }}"
+      class="no-resize"
+      (input)="this.updateAutocompletePosition()"
       #message></textarea>
-    <mat-hint align="end"
+    <mat-hint *ngIf="showLength" align="end"
       >{{ message.value.length }} / {{ maxLength }}</mat-hint
     >
+    <span class="suggestion-label">
+      <span class="suggestions-label">Suggestions</span>
+      <button
+        *ngIf="isAutocompleteOpen"
+        (click)="closeAutocomplete()"
+        mat-icon-button
+        class="close-button-dp">
+        <mat-icon class="material-icon-primary">keyboard_arrow_up</mat-icon>
+      </button>
+    </span>
 
-    <mat-autocomplete #auto="matAutocomplete">
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="closeAutocomplete()"
+      (closed)="closeAutocomplete()">
       <mat-option
         *ngFor="let option of autocompleteOptions"
         value="{{ option | translate }}">

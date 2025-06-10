@@ -25,6 +25,7 @@ export const mockProject: Project = {
   description: '',
   dmpExists: true,
   funderSupported: true,
+  acronym: 'Acronym',
 };
 
 export const mockRecommendedProject: Project = {
@@ -50,6 +51,7 @@ export const mockRecommendedProject: Project = {
   description: '',
   dmpExists: true,
   funderSupported: false,
+  acronym: 'Acronym',
 };
 
 export const mockManualProject: Project = {
@@ -62,4 +64,5 @@ export const mockManualProject: Project = {
   description: '',
   dmpExists: undefined,
   funderSupported: false,
+  acronym: 'Acronym',
 };

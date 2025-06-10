@@ -1,15 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { DatasetTableComponent } from './dataset-table.component';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { TranslateTestingModule } from '../../../../testing/translate-testing/translate-testing.module';
-import { DatasetSourceModule } from '../../../../pipes/dataset-source/dataset-source.module';
 import {
   UntypedFormArray,
   UntypedFormControl,
   UntypedFormGroup,
 } from '@angular/forms';
+
+import { DatasetSourceModule } from '../../../../pipes/dataset-source/dataset-source.module';
+import { DatasetTableComponent } from './dataset-table.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateTestingModule } from '../../../../testing/translate-testing/translate-testing.module';
 import { of } from 'rxjs';
 
 describe('DatasetTableComponent', () => {
@@ -18,8 +18,8 @@ describe('DatasetTableComponent', () => {
   let formGroup1: UntypedFormGroup;
   let formGroup2: UntypedFormGroup;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       imports: [
         MatDialogModule,
         TranslateTestingModule,
@@ -28,7 +28,7 @@ describe('DatasetTableComponent', () => {
       ],
       declarations: [DatasetTableComponent],
     }).compileComponents();
-  });
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DatasetTableComponent);
@@ -49,7 +49,7 @@ describe('DatasetTableComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should open DatasetDialogComponent', async () => {
+  it('should open DatasetDialogComponent', waitForAsync(async () => {
     spyOn(component.updateDataset, 'emit');
     spyOn(component.dialog, 'open').and.returnValue({
       afterClosed: () => of(formGroup2.getRawValue()),
@@ -59,7 +59,7 @@ describe('DatasetTableComponent', () => {
       index: 1,
       update: formGroup2.getRawValue(),
     });
-  });
+  }));
 
   it('should remove dataset', () => {
     spyOn(component.removeDataset, 'emit');

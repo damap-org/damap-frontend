@@ -5,14 +5,20 @@
         "input": {
           "title": "Project title",
           "description": "Project description",
-          "button": "Update project"
+          "button": "Update project",
+          "acronym": "Update acronym",
+          "date": "Enter start and end date",
+          "datehint": "DD/MM/YYYY – DD/MM/YYYY"
         },
         "manual.input": "Input project manually",
         "list": "Choose project from the project database",
         "label": "Choose project",
+        "greeting": "Hi Firstname, let’s get started",
+        "summaryLine": "Begin creating your DMP by identifying your project.",
+        "instructions": "In this step, you choose a project from your institution’s project database (if integrated) or manually input your project.",
         "search": "Search project...",
         "select": "Please select the project you want to create a DMP for:",
-        "selected": "You selected",
+        "selected": "Selected project:",
         "warning.dmp": "A DMP already exists for this project",
         "noprojects": "No projects are assigned to you.",
         "loading": {
@@ -22,22 +28,37 @@
       },
       "people": {
         "label": "People involved in data management",
-        "intro": "This step helps you to provide information on involved persons and their particular roles regarding research data management within this project. Based on the information provided in the Project Database, we have already entered the name of the Project Leader and marked them as the Contact Person for questions related to data management and the DMP (icon with person and envelope). You can change the preset information if needed and add more contributors via the search (start typing the name) and manually. Provide a minimum of one Contact Person as well as a Data Manager (may be the same person).",
+        "rightLabel": "Identify data management contributors",
+        "greeting": "Welcome to Step 2, Firstname",
+        "summaryLine": "Identify team members in your project.",
+        "instructions": "In this step, you add individuals to the project and provide additional information about them, for example, their role in the project. To mark someone as the contact person click the person-with-envelope icon next to their role. You can change the existing information and add more contributors via the search (choose a search service and start typing the name). Please provide a minimum of one contact person as well as a data manager (it can be the same person).",
+        "intro": "In this step, you add people involved in the project and provide additional info about them, e.g., their role. In this example, the project leader’s info has already been added and marked as the contact person (note icon with person and envelope next to their name). You can add more contributors via the search field (ensure you select the appropriate database, e.g., ORCID), or manually via the “Add contributor manually button”. Please provide a minimum of one contact person as well as a data manager (it can be the same person).",
         "search": "Search for person...",
-        "search.service": "Search service field",
+        "search.service": "Search service",
+        "general.search": "Find Contributors",
+        "general.recommendations": "Recommended contributors:",
         "contributor": {
+          "search": "Search contributor",
           "add": "Add as contributor",
           "remove": "Remove from contributors",
           "role": "Role"
         },
         "contact": {
           "person": "Contact person",
+          "contributor": "Change to contributor",
           "add": "Set as contact",
-          "remove": "Remove as contact"
+          "remove": "Remove contact person",
+          "edit": "Edit contact person",
+          "editContributor": "Edit contributor",
+          "update": "Update",
+          "cancel": "Cancel",
+          "title": "Project contact",
+          "info": "Select a contact from the list of contributors using the button"
         },
         "manual.input": {
-          "show": "Show manual contributor input",
-          "hide": "Hide manual contributor input",
+          "show": "Add contributor manually",
+          "hide": "Input contributor manually",
+          "tooltip": "Use to add project contributor not found in database above",
           "question": {
             "firstname": "First name",
             "lastname": "Last name",
@@ -45,7 +66,7 @@
             "orcid": "ORCID ID"
           }
         },
-        "nopeople": "No project members available.",
+        "nopeople": "No recommended contributors available",
         "confirm.dialog": {
           "heading": "Remove contributor",
           "question": "Are you sure you want to remove this contributor?\n  They are responsible for the deletion of the following datasets:",
@@ -58,6 +79,9 @@
       "data": {
         "specify": {
           "label": "Specify research data",
+          "greeting": "Let’s talk about data, Firstname",
+          "summaryLine": "Describe your research data.",
+          "instructions": "In this step, you specify the datasets (i.e., groups of data with similar properties) you will produce or reuse in your project.",
           "intro": {
             "default": "Research data comes in all forms and sizes. The table below helps you to describe the data sets (i.e. groups of data with similar properties) you are expecting to create during the project.",
             "reused": "Research data comes in all forms and sizes. The table below helps you to describe the data sets (i.e. groups of data with similar properties) you are expecting to reuse during the project."
@@ -79,6 +103,7 @@
           "tab": {
             "manual": "Manually",
             "upload": "Upload sample data",
+            "cancel": "Cancel",
             "doi": "Enter DOI",
             "access": "Access rights",
             "storage": "Storage",
@@ -93,32 +118,39 @@
           "table": {
             "heading": {
               "default": "Data",
-              "reused": "Reused data",
+              "reused": "Existing data",
               "new": "New data"
             },
             "header": {
               "dataset": "Dataset",
               "datatype": "Datatype",
+              "fileFormat": "File Format",
               "size": "Size",
               "comment": "Comment",
               "actions": "Actions",
               "description": "Description",
-              "pid": "PID"
+              "source": "Source"
             }
           },
           "dialog": {
             "add": "Add dataset",
             "edit": "Edit dataset",
+            "view": "View dataset",
             "title": "Dataset title",
+            "fileFormat": "File Format",
+            "fileFormat.info": "Specify mime type (e.g. image/png) or file format (png)",
             "type": "Estimated type",
             "size": "Estimated size",
             "description": "Description",
+            "technicalResource": "Technical Resource",
             "source": "Source",
             "identifier": "Identifier",
             "button": {
+              "addTechnicalResource": "Add new technical resource",
               "add": "Add",
               "update": "Update",
-              "cancel": "Cancel"
+              "cancel": "Cancel",
+              "close": "Close"
             }
           },
           "doi": {
@@ -142,7 +174,11 @@
           }
         },
         "reuse": {
+          "rightLabel": "Data reuse planning",
           "label": "Reuse of data",
+          "greeting": "On to Step 9, Firstname",
+          "summaryLine": "Consider potential research uses and users of your data sets.",
+          "instructions": "This step helps you think about future research uses or users of your data and what potential users may require to access your data.",
           "intro": "This step helps you to think about foreseeable research uses or users of your data sets and what potential reusers require to access your data.",
           "question": {
             "targetAudience": "Who is the target audience and who could be interested in reusing the data and why?",
@@ -151,9 +187,6 @@
           }
         },
         "deletion": {
-          "warning": {
-            "published": "This dataset was chosen for publication. Are you sure it shall be deleted?"
-          },
           "question": {
             "label": "Does this dataset have to be deleted, e.g. for contractual, regulatory, or ethical reasons? If yes, please add an estimated date for the deletion, the reason for deletion, and a responsible person.",
             "delete": "Mark dataset for deletion",
@@ -165,6 +198,9 @@
       },
       "documentation": {
         "label": "Documentation and data quality",
+        "greeting": "Now onto Step 4, Firstname",
+        "summaryLine": "Outline how your data will be organised throughout the project.",
+        "instructions": "This step helps you to provide information on how data will be organised during the project, which data quality control measures will be used, what documentation will be prepared and made available to enable the reuse of data, and which metadata will be provided.",
         "intro": "This step helps you to provide information on how data will be organised during the project, which data quality control measures are used, what documentation will be prepared and made available to enable reuse of data, and which metadata will be provided.",
         "question": {
           "metadata": "Please indicate which metadata will be provided to help others identify, discover and reuse the data.",
@@ -176,8 +212,11 @@
         }
       },
       "storage": {
-        "label": "Storage and backup during the research process",
-        "intro": "Choose the best storage option for each dataset.",
+        "label": "Storage and Backup",
+        "greeting": "Step 5, Let’s elaborate on your storage, Firstname",
+        "summaryLine": "Define who can access and modify your data and describe your storage and backup strategies.",
+        "instructions": "This step helps you 1) document who is allowed to see or edit your data in the project phase and 2) find appropriate storage and backup solutions for your data.",
+        "intro": "Choose the best storage option for each dataset:",
         "link": "More information...",
         "question": {
           "datasets": "Select corresponding datasets"
@@ -199,6 +238,9 @@
       },
       "legal": {
         "label": "Legal and ethical aspects",
+        "greeting": "On to Step 6, you’re halfway there, Firstname!",
+        "summaryLine": "Address important legal and ethical dimensions of your project.",
+        "instructions": "This step helps you consider potential issues concerning personal data, intellectual property rights, and ownership and asks you for basic information on the handling of ethical issues within this project.",
         "intro": "This step helps you consider potential issues concerning personal data, intellectual property rights and ownership and asks you for basic information on the handling of ethical issues within this project.",
         "heading": "Legal aspects",
         "question": {
@@ -222,7 +264,7 @@
           "legalRestrictionsComment": "Please specify the legal restrictions:",
           "legalRestrictionsDocuments": "In which document(s) are these restrictions specified?",
           "otherLegalRestrictionsDocuments": "Please specify the other documents:",
-          "dataRightsAndAccessControl": "Who is the owner of the data and who controls access to the data?"
+          "dataRightsAndAccessControl": "List who will have the rights to control access over which dataset(s)."
         },
         "link": {
           "sensitiveData": "https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/legal-grounds-processing-data/sensitive-data/what-personal-data-considered-sensitive_en"
@@ -240,11 +282,16 @@
               "link": "https://www.tuwien.at/forschung/fti-support/responsible-research-practices/research-ethics-committee"
             },
             "suffix": ", or a similar body?"
-          }
+          },
+          "ethicalIssueReport": "Please provide the ethical issue report."
         }
       },
       "licensing": {
         "label": "Data access and licensing",
+        "rightLabel": "Access control and licensing overview",
+        "greeting": "Advancing to Step 7, Firstname",
+        "summaryLine": "Elaborate on future access to your data. ",
+        "instructions": "This step helps you to specify the access to your research output in the future: Which of your datasets will be published, which will be provided to interested persons on request only, and which need to be under lock and key, for contractual, regulatory, or ethical reasons? It also reminds you to choose a license for your open data that clearly describes the reuse conditions for potential users. To comply with the FAIR principles, metadata should be published, even if the data is closed or restricted.",
         "intro": "This step helps you to specify the access to your research output in the future: Which of your data sets will be published, which will be provided to interested persons on request only and which need to be under lock and key, for contractual, regulatory, or ethical reasons? It also reminds you to choose a license for your open data that clearly describes the reuse conditions for potential reusers. To comply with the FAIR principles, metadata should be published, even if the data are closed or restricted.",
         "hint": "Please indicate which datasets you plan to keep closed or publish. Select a license for the datasets you want to publish and estimate the release date.",
         "info": "Choose a license from the list or use the license selector to find an appropriate license.",
@@ -270,8 +317,11 @@
         "years": "Years"
       },
       "repositories": {
-        "label": "Specify repositories for publication and preservation",
-        "intro": "Repositories are used for sustainable data management beyond the lifetime of the project and to make data discoverable and reusable to others. If available, use a domain specific repository for your data. The search filter below may help you to find one.",
+        "label": "Repositories and preservation",
+        "greeting": "Step 8, Firstname",
+        "summaryLine": "Choose suitable repositories for your data.",
+        "instructions": "Repositories are used for sustainable data management beyond the lifetime of the project and to make data discoverable and reusable to others. If available, use a domain specific repository for your data. The search filter below may help you to find one.",
+        "intro": "Use repositories to sustainably manage your data after the project’s life and to make your data discoverable and reusable. If possible, use a domain specific repository for your data. The search filter below can help you to find one. You’ll also want to set the time for how long your data should remain in the repository. This retention period can be selected in the Set retention period for datasets section",
         "heading": "Repositories",
         "search": "Search repository",
         "add": "Add repository",
@@ -310,6 +360,21 @@
       },
       "costs": {
         "label": "Costs",
+        "rightLabel": "Data management costs",
+        "addButton": "Add cost",
+        "greeting": "Step 10, you’re almost there, Firstname!",
+        "summaryLine": "Estimate the costs for data management in this project. ",
+        "instructions": "In this step, you will provide information on the resources required to manage your data and a clear statement on how these costs will be covered.",
+        "infoBox": {
+          "description": "Researchers are encouraged to consider costs arising from data management activities. Data management costs are eligible for many funders and are thus relevant for the proposals. Please follow this",
+          "links": [
+            {
+              "url": "https://www.tuwien.at/en/research/rti-support/research-data/rdm-infos-tips/cost-calculation",
+              "title": "Data Management Costs Link",
+              "text": " to find out more about possible data management costs that may also be eligible for funding."
+            }
+          ]
+        },
         "intro": "In this step you are asked to provide a realistic estimation of necessary resources for data management and a clear statement on how these costs will be covered.",
         "question": {
           "exist": {
@@ -325,7 +390,10 @@
         }
       },
       "end": {
-        "label": "Summary"
+        "label": "Summary",
+        "greeting": "Finally, let’s review your work, Firstname",
+        "summaryLine": "Check if you covered everything.",
+        "instructions": "Below is a summary of the information you provided. To add more information, go to the previous step(s)."
       },
       "summary": {
         "title": "Summary of the information you provided:",
@@ -352,7 +420,8 @@
           "contributor": {
             "none": "No contributors selected yet.",
             "one": "One contributor selected.",
-            "multiple": "Contributors selected: "
+            "multiple": "Contributors selected: ",
+            "additional": "Additional contributors:"
           }
         },
         "data": {
@@ -415,10 +484,15 @@
     }
   },
   "button": {
+    "actions": "Actions",
     "save": "Save changes",
     "discard": "Discard changes",
     "version": "Save new version",
-    "export": "Export document"
+    "export": "Export document",
+    "preview": {
+      "tooltipDisabled": "Please save the DMP before being able to preview it.",
+      "content": "Show preview"
+    }
   },
   "form": {
     "error": {
@@ -427,7 +501,10 @@
       "maxlength": "Value must not exceed {{value}} characters.",
       "pattern.currency": "Invalid input, please use the following format: 1234.56",
       "orcid": "Invalid ORCID iD.",
-      "doi": "Invalid DOI. Must be formatted as 10.1234/56789 or https://doi.org/10.1234/56789 or doi:10.1234/56789"
+      "url": "Invalid URL. Must be formatted as https://example.com",
+      "uri": "Invalid URI",
+      "doi": "Invalid DOI. Must be formatted as 10.1234/56789 or https://doi.org/10.1234/56789 or doi:10.1234/56789",
+      "duplicateDoi": "DOI already added."
     },
     "changes": {
       "saved": "All changes have been saved.",
@@ -789,6 +866,8 @@
       "SPONSOR": "Sponsor",
       "SUPERVISOR": "Supervisor",
       "WORK_PACKAGE_LEADER": "Work Package Leader",
+      "PRINCIPAL_INVESTIGATOR": "Principal Investigator",
+      "PROJECT_COORDINATOR": "Project Coordinator",
       "OTHER": "Other"
     },
     "costs": {
@@ -797,7 +876,7 @@
       "FILE_BASED_STORAGE": "File-based Storage",
       "HARDWARE_AND_INFRASTRUCTURE": "Hardware and Infrastructure",
       "LEGAL_ADVICE": "Legal Advice",
-      "PERSONNEL": "Personnel",
+      "PERSONNEL": "Personnel (Data Steward)",
       "REPOSITORY": "Repository",
       "SOFTWARE_LICENSE": "Software License",
       "TRAINING": "Training",
@@ -861,6 +940,9 @@
       "DOI": "doi",
       "ARK": "ark",
       "URL": "url",
+      "HDL": "hdl",
+      "PURL": "purl",
+      "URN": "urn",
       "FUNDREF": "fundref",
       "ROR": "ror",
       "OTHER": "other"
@@ -884,5 +966,12 @@
   "fair": "FAIR",
   "contenttypes": "Content types",
   "metadatastandards": "Metadata standards",
-  "or": "or"
+  "or": "or",
+  "preview": {
+    "title": "Live Preview",
+    "info": "Only data that has been saved will be displayed in the preview, if you are missing recent changes please save your DMP first.",
+    "templateSelection": "Choose preview format",
+    "loading": "Loading",
+    "requestTemplateSelection": "Please select a template in the dropdown"
+  }
 }

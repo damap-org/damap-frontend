@@ -32,7 +32,8 @@ export class SummaryService {
         dmp.reusedDataKind !== DataKind.SPECIFY) ||
       !dmp.datasets.length
     ) {
-      let summary = [projectStep, peopleStep];
+      // Always display the data step, even if the data is not specified - necessary for the summary navigation
+      let summary = [projectStep, peopleStep, dataStep];
       return summary.concat(this.noDatasetsSummary());
     }
 

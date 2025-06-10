@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { VersionViewContributorsComponent } from './version-view-contributors.component';
 
@@ -6,11 +6,11 @@ describe('VersionViewContributorsComponent', () => {
   let component: VersionViewContributorsComponent;
   let fixture: ComponentFixture<VersionViewContributorsComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       declarations: [VersionViewContributorsComponent],
     }).compileComponents();
-  });
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(VersionViewContributorsComponent);

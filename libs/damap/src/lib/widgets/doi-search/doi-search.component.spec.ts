@@ -1,21 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA, SimpleChange } from '@angular/core';
 
 import { DoiSearchComponent } from './doi-search.component';
-import { TranslateTestingModule } from '../../testing/translate-testing/translate-testing.module';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { restrictedDatasetMock } from '../../mocks/dataset-mocks';
 import { LoadingState } from '../../domain/enum/loading-state.enum';
-import { SimpleChange } from '@angular/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateTestingModule } from '../../testing/translate-testing/translate-testing.module';
+import { restrictedDatasetMock } from '../../mocks/dataset-mocks';
 
 describe('DoiSearchComponent', () => {
   let component: DoiSearchComponent;
   let fixture: ComponentFixture<DoiSearchComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       imports: [
         TranslateTestingModule,
         MatFormFieldModule,
@@ -23,9 +23,10 @@ describe('DoiSearchComponent', () => {
         MatIconModule,
         NoopAnimationsModule,
       ],
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [DoiSearchComponent],
     }).compileComponents();
-  });
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DoiSearchComponent);

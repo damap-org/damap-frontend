@@ -1,4 +1,5 @@
 @use "node_modules/@angular/material/index" as mat;
+@use "sass:map";
 // Plus imports for other components in your app.
 // Depending on your layout you will want to include your own palettes or import an
 // Angular Material prebuilt theme of your choice.
@@ -8,36 +9,34 @@
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @include mat.core();
-@include mat.strong-focus-indicators();
+@include mat.strong-focus-indicators(
+  (
+    border-style: solid,
+    border-width: 2px,
+    border-radius: 40px,
+  )
+);
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
+// Define the palettes for your theme using the Material Design palettes available in custom-palettes.scss
+// (imported above). Information on how these colors should be used: https://m3.material.io/styles/color/roles
 
-$app-primary: mat.define-palette($custom-primary-color);
-$app-accent: mat.define-palette($custom-accent-color);
-/* You can also replace the lines above and use Angular Material colors instead: */
-//$app-primary: mat.define-palette(mat.$deep-purple-palette);
-//$app-accent: mat.define-palette(mat.$amber-palette);
+$_rest: (
+  secondary: map.get($_palettes, secondary),
+  neutral: map.get($_palettes, neutral),
+  neutral-variant: map.get($_palettes, neutral-variant),
+  error: map.get($_palettes, error),
+);
 
-// The warn palette is optional (defaults to red).
-$app-warn: mat.define-palette(mat.$red-palette);
+$app-primary: map.merge(map.get($_palettes, primary), $_rest);
+$app-accent: map.merge(map.get($_palettes, tertiary), $_rest);
+// You can also replace the lines above and use Angular Material colors instead:
+// Information on available pre-built palettes: https://material.angular.io/guide/theming#pre-defined-palettes
 
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as `color` or `typography`.
-$app-light-theme: mat.define-light-theme($app-primary, $app-accent, $app-warn);
-$app-dark-theme: mat.define-dark-theme($app-primary, $app-accent, $app-warn);
-
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include mat.all-component-themes($app-light-theme);
-@include mat.strong-focus-indicators-theme($app-light-theme);
-.dark-theme {
-  @include mat.all-component-colors($app-dark-theme);
-  @include mat.strong-focus-indicators-theme($app-dark-theme);
+@font-face {
+  font-family: Roboto;
+  src: url(../assets/fonts/Roboto/Roboto-Bold.ttf);
+  font-weight: 700;
 }
-
 @font-face {
   font-family: Roboto;
   src: url(../assets/fonts/Roboto/Roboto-Medium.ttf);
@@ -57,15 +56,55 @@ $app-dark-theme: mat.define-dark-theme($app-primary, $app-accent, $app-warn);
 @font-face {
   font-family: "Material Icons";
   font-style: normal;
-  src: url(../assets/icons/material/MaterialIcons-Regular.ttf)
+  src: url(../assets/icons/material/MaterialSymbolsOutlined.ttf)
     format("truetype");
+}
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as `color` or `typography`.
+$app-light-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: $app-primary,
+      tertiary: $app-accent,
+    ),
+    typography: (
+      brand-family: "Roboto",
+      plain-family: "Roboto",
+      regular-weight: 400,
+      medium-weight: 500,
+      bold-weight: 700,
+    ),
+  )
+);
+
+// Not used in damap - just here for completions sake
+$app-dark-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+      primary: $app-primary,
+      tertiary: $app-accent,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+// If you want to use dark theme in your app, include it here
+html {
+  @include mat.all-component-themes($app-light-theme);
+  @include mat.strong-focus-indicators-theme($app-light-theme);
+  @include mat.typography-hierarchy($app-light-theme);
 }
 
 .material-icons {
   font-family: "Material Icons";
   font-weight: normal;
   font-style: normal;
-  font-size: 24px; /* Preferred icon size */
+  font-size: 24px;
   display: inline-block;
   line-height: 1;
   text-transform: none;
@@ -84,4 +123,133 @@ $app-dark-theme: mat.define-dark-theme($app-primary, $app-accent, $app-warn);
 
   /* Support for IE. */
   font-feature-settings: "liga";
+
+  /* Set default icons to filled */
+  font-variation-settings: "FILL" 1;
+
+  &.outline {
+    font-variation-settings: "FILL" 0;
+  }
+  // https://developers.google.com/fonts/docs/material_icons#setup_method_2_self_hosting
+  &.md-18 {
+    font-size: 18px;
+  }
+  &.md-24 {
+    font-size: 24px;
+  }
+  &.md-36 {
+    font-size: 36px;
+  }
+  &.md-48 {
+    font-size: 48px;
+  }
+
+  &.md-light {
+    color: var(--primary-lightest);
+  }
+}
+
+// Custom css classes to overwrite color attributes of mat components
+// This is how mat3 recommends to change color - but it only works for primary, secondary,
+// tertiary and error, see https://material.angular.io/guide/theming#using-component-color-variants
+// All other classes overwrite variables inside the components directly
+.material-icon-primary {
+  @include mat.icon-color($app-light-theme, $color-variant: primary);
+}
+
+.material-icon-white-background-primary {
+  --mat-icon-color: white;
+  background-color: var(--primary);
+}
+
+.material-icon-white-background-success {
+  --mat-icon-color: var(--primary);
+  background-color: white;
+  border-style: solid;
+}
+
+.material-icon-on-secondary-container {
+  --mat-icon-color: var(--on-secondary-container);
+}
+
+.material-icon-white {
+  --mat-icon-color: white;
+}
+
+.material-icon-warning {
+  --mat-icon-color: darkorange;
+}
+
+.material-btn-text-primary-lightest {
+  --mdc-text-button-label-text-color: var(--primary-lightest);
+}
+
+.snack-error {
+  --mdc-snackbar-container-color: var(--error-container);
+  --mdc-snackbar-supporting-text-color: var(--on-error-container);
+  --mdc-snackbar-supporting-text-weight: bold;
+  --mat-snack-bar-button-color: var(--on-error-container);
+  --mdc-text-button-label-text-weight: bold;
+}
+
+.snack-success {
+  --mdc-snackbar-container-color: var(--success-container);
+  --mdc-snackbar-supporting-text-color: var(--on-success-container);
+  --mdc-snackbar-supporting-text-weight: bold;
+  --mat-snack-bar-button-color: var(--on-success-container);
+  --mdc-text-button-label-text-weight: bold;
+}
+
+// only works for mat-raised-button, since they are the most used button in the application by far
+.button-color-primary {
+  --mdc-protected-button-container-color: var(--primary);
+  --mdc-protected-button-label-text-color: var(--on-primary);
+}
+
+// only works for fab-button
+.fab-button-color-primary {
+  --mdc-fab-container-color: var(--primary);
+  --mat-fab-foreground-color: var(--on-primary);
+}
+
+.card-selected {
+  --mdc-elevated-card-container-color: var(--surface-container-low);
+}
+
+.form-error {
+  --mat-expansion-header-text-color: var(--error-color);
+}
+
+.mat-toolbar-row-grey {
+  background-color: var(--surface-container-low);
+}
+
+.mat-sidenav-divider-grey {
+  --mat-sidenav-container-divider-color: var(--outline-variant);
+}
+
+.mat-menu-secondary-container {
+  --mat-menu-container-color: var(--secondary-container);
+  --mat-menu-item-label-text-color: var(--on-secondary-container);
+}
+
+// custom component densities (density defines the size of material components)
+.mat-textarea-density {
+  @include mat.form-field-density(-1);
+  @include mat.input-density(-1);
+}
+@include mat.form-field-density(-4);
+@include mat.input-density(-4);
+@include mat.select-density(-4);
+
+@media (max-width: 860px) {
+  button.mat-mdc-button,
+  button.mat-mdc-raised-button,
+  button.mat-mdc-stroked-button,
+  button.mat-mdc-unelevated-button,
+  button.mat-mdc-fab,
+  button.mat-mdc-mini-fab {
+    font-size: small;
+    line-height: normal;
+  }
 }

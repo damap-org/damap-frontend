@@ -2,7 +2,7 @@
 
 # Create a first stage container to build the application, this container image will be dropped once
 # the runner is built
-FROM trion/ng-cli:17.1.2 AS deps
+FROM trion/ng-cli:18.0.3 AS deps
 
 # This Dockerfile uses labels from the label-schema namespace from http://label-schema.org/rc1/
 LABEL maintainer="clara.schuster@tuwien.ac.at" \
@@ -23,7 +23,7 @@ COPY . /app
 ENV PATH="$PATH:/app/node_modules/@angular/cli/bin/"
 
 # install and build the application on the builder container
-RUN npm install --ignore-scripts -g "nx@18.0.4"
+RUN npm install --ignore-scripts -g "nx@19.3.0"
 RUN npm ci --ignore-scripts
 RUN npx nx build damap-frontend
 

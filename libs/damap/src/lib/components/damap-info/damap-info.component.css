@@ -1,0 +1,21 @@
+h2 {
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.info-card {
+  padding: 20px;
+  margin: 20px;
+}
+
+.action-buttons {
+  padding-left: 16px;
+}
+
+.mat-list-item::marker {
+  color: var(--primary);
+}
+
+.customLink {
+  color: inherit;
+}

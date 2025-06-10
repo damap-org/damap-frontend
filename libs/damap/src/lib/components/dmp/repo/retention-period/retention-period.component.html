@@ -7,24 +7,36 @@
         </mat-panel-title>
         <mat-icon class="color-icon">edit_calendar</mat-icon>
       </mat-expansion-panel-header>
-      <ng-container *ngFor="let dataset of datasets.controls; index as i">
-        <ng-container *ngIf="dataset.value.source === datasetSource.NEW">
-          <div formArrayName="datasets">
-            {{ dataset.value.title }}
-            <mat-form-field appearance="fill" [formGroupName]="i">
-              <mat-label>{{
-                "dmp.steps.retentionPeriod.question.retentionPeriod" | translate
-              }}</mat-label>
-              <mat-select formControlName="retentionPeriod">
-                <mat-option *ngFor="let option of options" [value]="option">
-                  {{ option }}
-                  {{ "dmp.steps.retentionPeriod.years" | translate }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
+
+      <app-info-message>{{
+        "info.repositories.retention" | translate
+      }}</app-info-message>
+
+      <div class="retention-wrapper">
+        <ng-container *ngFor="let dataset of assignedDatasets; index as i">
+          <ng-container *ngIf="dataset.value.source === datasetSource.NEW">
+            <div formArrayName="datasets">
+              <p
+                matTooltip="{{ dataset.value.title }}"
+                class="dataset-title-text">
+                {{ truncate(dataset.value.title, 20) }}
+              </p>
+              <mat-form-field appearance="fill" [formGroupName]="i">
+                <mat-label>{{
+                  "dmp.steps.retentionPeriod.question.retentionPeriod"
+                    | translate
+                }}</mat-label>
+                <mat-select formControlName="retentionPeriod">
+                  <mat-option *ngFor="let option of options" [value]="option">
+                    {{ option }}
+                    {{ "dmp.steps.retentionPeriod.years" | translate }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </ng-container>
         </ng-container>
-      </ng-container>
+      </div>
     </mat-expansion-panel>
   </mat-accordion>
 </div>

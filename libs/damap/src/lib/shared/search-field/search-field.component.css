@@ -1,0 +1,7 @@
+.search-field {
+  width: inherit;
+}
+
+.focus-icon.mat-focused {
+  --mat-form-field-trailing-icon-color: var(--primary);
+}

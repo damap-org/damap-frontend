@@ -1,24 +1,26 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { DataAccessComponent } from './data-access.component';
-import { TranslateTestingModule } from '../../../../testing/translate-testing/translate-testing.module';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateTestingModule } from '../../../../testing/translate-testing/translate-testing.module';
 
 describe('DataAccessComponent', () => {
   let component: DataAccessComponent;
   let fixture: ComponentFixture<DataAccessComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       imports: [
         MatExpansionModule,
         NoopAnimationsModule,
         TranslateTestingModule,
       ],
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [DataAccessComponent],
     }).compileComponents();
-  });
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DataAccessComponent);

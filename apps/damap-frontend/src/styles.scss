@@ -1,17 +1,132 @@
 /* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat;
 @import "themes/custom-theme";
 
 /* Theme colors as CSS variables */
 :root {
-  --main-color: #{map-get($app-primary, 500)};
-  --main-color-contrast: #{map-get($app-primary, "500-contrast")};
-  --accent-color-lighter: #{map-get($app-primary, 400)};
-  --accent-color-darker: #{map-get($app-primary, 700)};
-  --secondary-color: #{map-get($app-accent, 500)};
-  --secondary-color-light: #{map-get($app-accent, 50)};
-  --step-intro-color: #9b9b9b;
-  --error-bg: #fad1d5;
-  --success-bg: #e9f5d2;
-  --info-bg: #c4d8e2;
+  --primary: #{mat.get-theme-color($app-light-theme, primary)};
+  --on-primary: #{mat.get-theme-color($app-light-theme, on-primary)};
+  --primary-lightest: #{mat.get-theme-color($app-light-theme, primary, 100)};
+  --primary-lightest-shadow: #{mat.get-theme-color(
+      $app-light-theme,
+      primary,
+      95
+    )};
+  --accent-color-lighter: #{mat.get-theme-color($app-light-theme, primary, 60)};
+  --accent-color-very-light: #{mat.get-theme-color(
+      $app-light-theme,
+      primary,
+      98
+    )};
+  --secondary: #{mat.get-theme-color($app-light-theme, secondary)};
+  --secondary-container: #{mat.get-theme-color(
+      $app-light-theme,
+      secondary-container
+    )};
+  --on-secondary-container: #{mat.get-theme-color(
+      $app-light-theme,
+      on-secondary-container
+    )};
+  --secondary-fixed-dim: #{mat.get-theme-color(
+      $app-light-theme,
+      secondary-fixed-dim
+    )};
+  --tertiary: #{mat.get-theme-color($app-light-theme, tertiary)};
+  --tertiary-container: #{mat.get-theme-color(
+      $app-light-theme,
+      tertiary-container
+    )};
+  --tertiary-color-very-light: #{mat.get-theme-color(
+      $app-light-theme,
+      tertiary,
+      98
+    )};
+
+  --on-surface: #{mat.get-theme-color($app-light-theme, on-surface)};
+  --surface-container-low: #{mat.get-theme-color(
+      $app-light-theme,
+      surface-container-low
+    )};
+  --surface-container-lowest: #{mat.get-theme-color(
+      $app-light-theme,
+      surface-container-lowest
+    )};
+  --surface-container-high: #{mat.get-theme-color(
+      $app-light-theme,
+      surface-container-high
+    )};
+  --outline-variant: #{mat.get-theme-color($app-light-theme, outline-variant)};
+
+  --error-color: #{mat.get-theme-color($app-light-theme, error)};
+  --error-container: #{mat.get-theme-color($app-light-theme, error-container)};
+  --on-error-container: #{mat.get-theme-color(
+      $app-light-theme,
+      on-error-container
+    )};
+
+  --footer-color: #{mat.get-theme-color($app-light-theme, inverse-surface)};
+  --on-footer-color: #{mat.get-theme-color($app-light-theme, inverse-on-surface)};
+  --user-navbar-color: #{mat.get-theme-color($app-light-theme, neutral, 25)};
+  --neutral-color-medium-light: #{mat.get-theme-color(
+      $app-light-theme,
+      neutral,
+      70
+    )};
+  --step-intro-color: #{mat.get-theme-color(
+      $app-light-theme,
+      neutral-variant,
+      60
+    )};
+  --landing-page-info-bar-color: #{mat.get-theme-color(
+      $app-light-theme,
+      neutral,
+      40
+    )};
+
+  // mat3 provides colors for error states, but not for success or warning...
+  // so it is set to predefined values here
+  --success-container: #e9f5d2;
+  --success-icon-color: #{mat.get-theme-color($app-light-theme, tertiary, 70)};
+  --on-success-container: black;
   --warning-bg: #fff4cb;
+  --background-body: #f6f6f6;
+  // some values can not be generated from themes - they can be hardcoded here
+  --blue-tag: aliceblue;
+  --green-tag: #d1eee1;
+  --golden-tag: palegoldenrod;
+  --lavender-tag: lavender;
+
+  --body-typography: #{mat.get-theme-typography(
+      $app-light-theme,
+      body-medium,
+      font
+    )};
+
+  --body-large-typography: #{mat.get-theme-typography(
+      $app-light-theme,
+      body-large,
+      font
+    )};
+
+  --title-medium-typography: #{mat.get-theme-typography(
+      $app-light-theme,
+      title-medium,
+      font
+    )};
+
+  --title-large: #{mat.get-theme-typography($app-light-theme, title-large, font)};
+
+  --body-large: #{mat.get-theme-typography($app-light-theme, body-large, font)};
+
+  --display-large: #{mat.get-theme-typography(
+      $app-light-theme,
+      display-large,
+      font
+    )};
+
+  --display-medium: #{mat.get-theme-typography(
+      $app-light-theme,
+      display-medium,
+      font
+    )};
 }
