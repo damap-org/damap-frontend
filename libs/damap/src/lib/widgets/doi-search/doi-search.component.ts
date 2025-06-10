@@ -6,7 +6,11 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import {
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 
 import { Dataset } from '../../domain/dataset';
 import { LoadingState } from '../../domain/enum/loading-state.enum';
@@ -26,7 +30,7 @@ export class DoiSearchComponent implements OnChanges {
 
   form = new UntypedFormGroup({
     doi: new UntypedFormControl('', {
-      validators: doiValidator(),
+      validators: [Validators.required, doiValidator()],
       updateOn: 'change',
     }),
   });
