@@ -1,19 +1,16 @@
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=tuwien-csd_damap-frontend&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=tuwien-csd_damap-frontend)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=tuwien-csd_damap-frontend&metric=coverage)](https://sonarcloud.io/summary/new_code?id=tuwien-csd_damap-frontend)
-
 # DAMAP
 
 ## Introduction
 
 DAMAP is a tool that is currently being developed by TU Wien and TU Graz as part of the
 [FAIR Data Austria](https://forschungsdaten.at/fda/) project.
-It is based on the idea of machine actionable data management plans (maDMPs) and aims to facilitate the
+It is based on the idea of machine-actionable data management plans (maDMPs) and aims to facilitate the
 creation of data management plans (DMPs) for researchers.
 The tool aims to be closely integrated into the institutional environment, collecting information from
 various established systems, in order to perceive project information, research data and personnel data
 from existing systems.
 This saves DMP authors from having to enter the same data several times.
-Finally DAMAP delivers both a DMP that can be read and edited as a Word document, and an maDMP whose
+Finally, DAMAP delivers both a DMP that can be read and edited as a Word document, and an maDMP where
 information can be used at machine level. The current content of DAMAP is based on
 [Science Europe’s Practical Guide to the International Alignment of Research Data Management](https://www.tuwien.at/fileadmin/Assets/forschung/Zentrum_Forschungsdatenmanagement/pdf-Sammlung/se_rdm_practical_guide_extended_final_2021.pdf)
 and is compatible with
@@ -28,7 +25,7 @@ refer to the [damap-backend](https://github.com/tuwien-csd/damap-backend) projec
 
 ## DamapFrontend
 
-This repository contains the source code for the frontend of DAMAP and need to be run
+This repository contains the source code for the frontend of DAMAP and needs to be run
 with [damap-backend](https://github.com/tuwien-csd/damap-backend).
 The project is based on [Angular](https://angular.io/) and uses [NX](https://nx.dev/) as a build system.
 
