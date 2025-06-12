@@ -1,3 +1,0 @@
-@Library('ops-jenkins-library@next') _
-
-csdPipeline()
