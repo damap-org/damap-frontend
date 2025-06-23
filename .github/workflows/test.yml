@@ -39,25 +39,13 @@ jobs:
         if: ${{ env.is-master-branch == 'true' || env.is-next-branch == 'true' }}
         run: npm run ci:lint
 
-      - name: PR - Lint affected
-        if: ${{ env.is-pull-request == 'true' }}
-        run: npm run affected:lint
-
       - name: Merge - Build all projects
         if: ${{ env.is-master-branch == 'true' || env.is-next-branch == 'true' }}
         run: npm run ci:build
 
-      - name: PR - Build affected
-        if: ${{ env.is-pull-request == 'true' }}
-        run: npm run affected:build
-
       - name: Merge - Test all projects
         if: ${{ env.is-master-branch == 'true' || env.is-next-branch == 'true' }}
         run: npm run ci:test
-
-      - name: PR - Test affected
-        if: ${{ env.is-pull-request == 'true' }}
-        run: npm run affected:test
 
       - name: Publish Linting Report
         uses: mikepenz/action-junit-report@v4

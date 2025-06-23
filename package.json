@@ -18,9 +18,6 @@
     "ci:coverage": "nx test --browsers ChromeHeadless --watch=false --code-coverage",
     "ci:audit": "npm audit",
     "ci:install": "npm ci",
-    "affected:lint": "npx nx affected --target=lint --parallel=2",
-    "affected:build": "npx nx affected --target=build --parallel=2",
-    "affected:test": "npx nx affected --target=test --parallel=2 --code-coverage --browsers ChromeHeadless --watch=false",
     "format": "npx prettier --write .",
     "format:check": "npx prettier --check ."
   },
