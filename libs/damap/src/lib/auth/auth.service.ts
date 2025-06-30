@@ -53,4 +53,9 @@ export class AuthService {
   logout() {
     this.oAuthService.logOut();
   }
+
+  getId(): string {
+    const claims = this.oAuthService.getIdentityClaims();
+    return claims['personID'];
+  }
 }

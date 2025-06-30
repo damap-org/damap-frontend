@@ -1,38 +1,51 @@
 <div id="access-wrapper">
-  <div *ngIf="dmp$ | async as dmp">
-    <h2>{{ dmp.project?.title || "DMP ID: " + dmp.id }}</h2>
-  </div>
-  <div class="action-buttons">
-    <button mat-raised-button [routerLink]="'/plans'">
-      <mat-icon>chevron_left</mat-icon>
-      {{ "access.button.plans" | translate }}
-    </button>
-    <button
-      mat-raised-button
-      class="button-color-primary"
-      [routerLink]="'/dmp/' + id">
-      {{ "versions.view.button.goto.latest" | translate }}
-    </button>
-  </div>
-  <app-info-message
-    >{{ "access.list" | translate
-    }}{{ "access.info" | translate }}</app-info-message
-  >
-  <div class="access-list" *ngFor="let access of accesses$ | async">
-    <damap-person-card [person]="access">
-      <div *ngIf="access.access !== accessType.OWNER; else owner">
-        <mat-checkbox
-          [checked]="access.access === accessType.EDITOR"
-          (change)="editorToggle($event, access)">
-          {{ "access.editor" | translate }}
-        </mat-checkbox>
-      </div>
-      <ng-template #owner>
-        <div class="owner">
-          <mat-icon class="mat-icon-style material-icon-primary">star</mat-icon>
-          {{ "access.owner" | translate }}
+  <div *ngIf="isOwner$ | async; else noOwner">
+    <div *ngIf="dmp$ | async as dmp">
+      <h2>{{ dmp.project?.title || "DMP ID: " + dmp.id }}</h2>
+    </div>
+    <div class="action-buttons">
+      <button mat-raised-button [routerLink]="'/plans'">
+        <mat-icon>chevron_left</mat-icon>
+        {{ "access.button.plans" | translate }}
+      </button>
+      <button
+        mat-raised-button
+        class="button-color-primary"
+        [routerLink]="'/dmp/' + id">
+        {{ "versions.view.button.goto.latest" | translate }}
+      </button>
+    </div>
+    <app-info-message
+      >{{ "access.list" | translate
+      }}{{ "access.info" | translate }}</app-info-message
+    >
+    <div class="access-list" *ngFor="let access of accesses$ | async">
+      <damap-person-card [person]="access">
+        <div *ngIf="access.universityId !== this.userId; else user">
+          <mat-radio-group
+            class="radio-buttons"
+            [(ngModel)]="access.access"
+            (change)="toggleAccess($event, access)">
+            <mat-radio-button *ngFor="let role of roles" [value]="role">
+              <span class="role-text">{{ role }}</span>
+              <app-tooltip
+                [tooltip]="'access.' + role.toLocaleLowerCase()"></app-tooltip>
+            </mat-radio-button>
+          </mat-radio-group>
         </div>
-      </ng-template>
-    </damap-person-card>
+        <ng-template #user>
+          <div class="user">
+            <mat-icon class="mat-icon-style material-icon-primary"
+              >star</mat-icon
+            >
+            {{ access.access }}
+          </div>
+        </ng-template>
+      </damap-person-card>
+    </div>
   </div>
+
+  <ng-template #noOwner>
+    <app-info-message>{{ "access.noOwner" | translate }}</app-info-message>
+  </ng-template>
 </div>

@@ -17,6 +17,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   ],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.css',
+  standalone: true,
 })
 export class LandingPageComponent implements OnInit {
   constructor(private translate: TranslateService) {}

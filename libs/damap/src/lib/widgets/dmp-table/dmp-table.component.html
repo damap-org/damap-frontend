@@ -109,7 +109,10 @@
           #menu="matMenu"
           xPosition="before"
           class="mat-menu-secondary-container">
-          <button mat-menu-item routerLink="/dmp/{{ element.id }}/access">
+          <button
+            mat-menu-item
+            *ngIf="element.accessType === FUNCTION_ROLES.OWNER || admin"
+            routerLink="/dmp/{{ element.id }}/access">
             <mat-icon>admin_panel_settings</mat-icon>
             {{ "plans.table.actions.access" | translate }}
           </button>

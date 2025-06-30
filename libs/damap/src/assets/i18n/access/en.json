@@ -3,9 +3,11 @@
     "button": {
       "plans": "Go back to DMP overview"
     },
-    "editor": "Editor",
-    "owner": "Owner",
-    "list": "Only contributors can be assigned editing rights for a DMP. ",
-    "info": "Please note that simultaneous editing of a DMP can lead to data loss as changes may overwrite each other. Please make sure that you are the only one editing the dmp at the moment."
+    "no_rights": "Default setting. The user will not be able to see or interact with the DMP.",
+    "editor": "Editor rights grant the user permissions to see the DMP and make changes to it. There are no restrictions on the kind of changes this user can make, bar deleting the DMP. The user can not however, assign viewing or editing permissions.",
+    "owner": "Owners can view, write, delete and assign permissions for DMPs. They are also capable of creating new owners - handle with care, new owners can remove old ones.",
+    "list": "Only contributors in your universities database can be assigned editing rights for a DMP. ",
+    "info": "Please note that simultaneous editing of a DMP can lead to data loss as changes may overwrite each other. Please make sure that you are the only one editing the dmp at the moment.",
+    "noOwner": "Only owners of the DMP are allowed to change access rights."
   }
 }

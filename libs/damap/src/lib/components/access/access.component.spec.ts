@@ -16,6 +16,7 @@ import { PersonCardComponent } from '../../widgets/person-card/person-card.compo
 import { TranslateTestingModule } from '../../testing/translate-testing/translate-testing.module';
 import { completeDmp } from '../../mocks/dmp-mocks';
 import { mockAccess } from '../../mocks/access-mocks';
+import { MatRadioChange } from '@angular/material/radio';
 
 describe('AccessComponent', () => {
   let component: AccessComponent;
@@ -66,17 +67,19 @@ describe('AccessComponent', () => {
 
   it('should create editor', () => {
     backendSpy.createAccess.and.returnValue(of(mockAccess));
-    const $event = new MatCheckboxChange();
-    $event.checked = true;
-    component.editorToggle($event, mockAccess);
+    const $event = {
+      value: mockAccess,
+    } as MatRadioChange;
+    component.toggleAccess($event, mockAccess);
     expect(backendSpy.createAccess).toHaveBeenCalledTimes(1);
   });
 
   it('should delete editor', () => {
     backendSpy.deleteAccess.and.returnValue(EMPTY);
-    const $event = new MatCheckboxChange();
-    $event.checked = false;
-    component.editorToggle($event, mockAccess);
+    const $event = {
+      value: mockAccess,
+    } as MatRadioChange;
+    component.toggleAccess($event, mockAccess);
     expect(backendSpy.deleteAccess).toHaveBeenCalledOnceWith(mockAccess.id);
   });
 });

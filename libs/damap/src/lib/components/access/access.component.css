@@ -11,6 +11,15 @@
   margin-right: 1rem;
 }
 
-.owner mat-icon {
+.user mat-icon {
   margin-right: -0.5rem;
+}
+
+.radio-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.role-text {
+  margin-right: 2px;
 }
