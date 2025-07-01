@@ -453,7 +453,7 @@
           "allinfo": "All information necessary provided.",
           "nonestored": "No datasets will be stored, as no produced or reused datasets have been specified.",
           "missingstorage": "Some data is not stored.",
-          "missingexplanation": " Usage explanation is missing."
+          "missingexplanation": "Explanation for using external storage is missing."
         },
         "licensing": {
           "complete": "All information necessary provided.",

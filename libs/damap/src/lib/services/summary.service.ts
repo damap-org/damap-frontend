@@ -240,17 +240,23 @@ export class SummaryService {
       }
     }
     storageLevel.completeness = Math.max(
-      (storedDatasetsCount / datasets.length) * 100 - 25,
+      (storedDatasetsCount / datasets.length) * 100,
       25,
     );
-    if (storageLevel.completeness < 75) {
+    if (storageLevel.completeness < 100) {
       storageLevel.status.push('dmp.steps.summary.storage.missingstorage');
     }
 
-    if (dmp.externalStorageInfo) {
-      storageLevel.completeness += 25;
-    } else {
-      storageLevel.status.push('dmp.steps.summary.storage.missingexplanation');
+    if (dmp.externalStorage.length > 0 && !dmp.externalStorageInfo) {
+      const isExternallyManaged = dmp.externalStorage.some(
+        storage => !storage.isManagedInternally,
+      );
+      if (isExternallyManaged) {
+        storageLevel.completeness -= 25;
+        storageLevel.status.push(
+          'dmp.steps.summary.storage.missingexplanation',
+        );
+      }
     }
 
     if (storageLevel.completeness == 100) {
