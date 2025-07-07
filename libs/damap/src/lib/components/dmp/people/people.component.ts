@@ -92,7 +92,6 @@ export class PeopleComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this.serviceConfig$ = config.personSearchServiceConfigs;
           this.serviceConfigType = config.personSearchServiceConfigs[0];
-          this.cdr.detectChanges();
         });
       });
 
@@ -127,10 +126,33 @@ export class PeopleComponent implements OnInit, OnDestroy {
   }
 
   changeContactPerson(contact: Contributor): void {
-    this.contactPerson.emit(contact);
+    // fetch accurate affiliation information from ORCID
+    // this should probably be done in the backend, with newly added contributors only
+    // since the affiliation is not displayed in the frontend anyways
+    if (contact.personId.type === IdentifierType.ORCID) {
+      this.backendService
+        .updateOrcidContributorAffiliations(contact)
+        .subscribe(
+          value => {
+            Object.assign(contact, value);
+            this.contactPerson.emit(contact);
+          },
+          error => {
+            this.feedbackService.error(
+              'Error updating ORCID affiliations',
+              error,
+            );
+          },
+        );
+    } else {
+      this.contactPerson.emit(contact);
+    }
   }
 
   addContributor(contributor: Contributor): void {
+    // fetch accurate affiliation information from ORCID
+    // this should probably be done in the backend, with newly added contributors only
+    // since the affiliation is not displayed in the frontend anyways
     if (contributor.personId.type === IdentifierType.ORCID) {
       this.backendService
         .updateOrcidContributorAffiliations(contributor)
@@ -138,8 +160,6 @@ export class PeopleComponent implements OnInit, OnDestroy {
           value => {
             Object.assign(contributor, value);
             this.contributorToAdd.emit(contributor);
-            this.contactContributor();
-            this.isCollapsed = true;
           },
           error => {
             this.feedbackService.error(
@@ -150,7 +170,6 @@ export class PeopleComponent implements OnInit, OnDestroy {
         );
     } else {
       this.contributorToAdd.emit(contributor);
-      this.cdr.detectChanges();
     }
   }
 
@@ -251,7 +270,6 @@ export class PeopleComponent implements OnInit, OnDestroy {
     if (remainingMembers.length === 0) {
       this.isCollapsed = true;
     }
-    this.cdr.detectChanges();
   }
 
   doesContactExist(): boolean {
