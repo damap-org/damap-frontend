@@ -126,51 +126,11 @@ export class PeopleComponent implements OnInit, OnDestroy {
   }
 
   changeContactPerson(contact: Contributor): void {
-    // fetch accurate affiliation information from ORCID
-    // this should probably be done in the backend, with newly added contributors only
-    // since the affiliation is not displayed in the frontend anyways
-    if (contact.personId.type === IdentifierType.ORCID) {
-      this.backendService
-        .updateOrcidContributorAffiliations(contact)
-        .subscribe(
-          value => {
-            Object.assign(contact, value);
-            this.contactPerson.emit(contact);
-          },
-          error => {
-            this.feedbackService.error(
-              'Error updating ORCID affiliations',
-              error,
-            );
-          },
-        );
-    } else {
-      this.contactPerson.emit(contact);
-    }
+    this.contactPerson.emit(contact);
   }
 
   addContributor(contributor: Contributor): void {
-    // fetch accurate affiliation information from ORCID
-    // this should probably be done in the backend, with newly added contributors only
-    // since the affiliation is not displayed in the frontend anyways
-    if (contributor.personId.type === IdentifierType.ORCID) {
-      this.backendService
-        .updateOrcidContributorAffiliations(contributor)
-        .subscribe(
-          value => {
-            Object.assign(contributor, value);
-            this.contributorToAdd.emit(contributor);
-          },
-          error => {
-            this.feedbackService.error(
-              'Error updating ORCID affiliations',
-              error,
-            );
-          },
-        );
-    } else {
-      this.contributorToAdd.emit(contributor);
-    }
+    this.contributorToAdd.emit(contributor);
   }
 
   triggerUpdateContributorDetails(idx: number) {
