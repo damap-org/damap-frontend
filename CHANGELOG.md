@@ -7,6 +7,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] -
 
+## [4.6.0] - 2025-07-08
+
+### Added
+
+- Added data transfer agreement to options of legal restrictions in step 6 [#440](https://github.com/tuwien-csd/damap-frontend/pull/440)
+- Added no license / custom license options for license selector [#449](https://github.com/tuwien-csd/damap-frontend/pull/449)
+- Added legal disclaimer text to license selector [#467](https://github.com/tuwien-csd/damap-frontend/pull/467)
+- Added option for owners to create new owners in access sections - editors are now barred from the access section [#475](https://github.com/tuwien-csd/damap-frontend/pull/475)
+
+### Changed
+
+- Changed the step size of the cost input from 0.01 to 100.00 [#439](https://github.com/tuwien-csd/damap-frontend/pull/439)
+- Made banner input validation in admin panel more user friendly [#447](https://github.com/tuwien-csd/damap-frontend/pull/447)
+- Added differentiation between missing datasets and missing produced datasets messages in stepper [#441](https://github.com/tuwien-csd/damap-frontend/pull/441)
+- Added support for allowing contributors to have multiple roles assigned [#426](https://github.com/tuwien-csd/damap-frontend/pull/426)
+- Made dataset search more user friendly by improving validation and error displays [#465](https://github.com/tuwien-csd/damap-frontend/pull/465)
+- Update angular to version 19.2 [#454](https://github.com/tuwien-csd/damap-frontend/pull/454)
+- Add option to designate external storages as managed internally by you or your institution - this is then marked as institutional storage when exporting [#443](https://github.com/tuwien-csd/damap-frontend/pull/443)
+- Made add manual project more user-friendly by updating verbiage [#442](https://github.com/tuwien-csd/damap-frontend/pull/442)
+- Recommended contributors panel now stays open when adding contributors and hides when there are no more recommended persons [#444](https://github.com/tuwien-csd/damap-frontend/pull/444)
+
+### Removed
+
+- Removed SonarCloud from CI pipeline since it didnt work properly [#468](https://github.com/tuwien-csd/damap-frontend/pull/468)
+- Cleaned up pipeline by removing linter, since it primarily threw false positives [#443](https://github.com/tuwien-csd/damap-frontend/pull/443)
+
+### Fixed
+
+- Added missing license selector for restricted datasets [#449](https://github.com/tuwien-csd/damap-frontend/pull/449)
+- Fixed a bug where wrong input fields where displayed when no data / i dont know was selected [#436](https://github.com/tuwien-csd/damap-frontend/pull/436)
+- - Fixed small bugs in the stepper and in the last summary step [#459](https://github.com/tuwien-csd/damap-frontend/pull/459)
+
 ## [4.5.0] - 2025-04-01
 
 ### Added
