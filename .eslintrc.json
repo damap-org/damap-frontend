@@ -1,20 +1,25 @@
 {
   "root": true,
-  "ignorePatterns": ["**/*"],
+  "ignorePatterns": [
+    "**/coverage/**/*",
+    "**/dist/**/*",
+    "**/node_modules/**/*",
+    "**/tmp/**/*",
+    "**/*.js",
+    "!**/cypress.config.js"
+  ],
   "overrides": [
     {
       "files": ["*.ts"],
       "parserOptions": {
-        "createDefaultProgram": true,
-        "project": "./tsconfig.*?.json"
+        "createDefaultProgram": true
       },
       "extends": [
         "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates",
-        "prettier"
+        "plugin:@angular-eslint/template/process-inline-templates"
       ],
+      "plugins": ["@angular-eslint"],
       "rules": {
-        "no-console": "error",
         "@angular-eslint/directive-selector": [
           "error",
           {
@@ -38,25 +43,6 @@
       "files": ["*.html"],
       "extends": ["plugin:@angular-eslint/template/recommended"],
       "rules": {}
-    },
-    {
-      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "rules": {
-        "@nrwl/nx/enforce-module-boundaries": [
-          "error",
-          {
-            "enforceBuildableLibDependency": true,
-            "allow": [],
-            "depConstraints": [
-              {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": ["*"]
-              }
-            ]
-          }
-        ]
-      }
     }
-  ],
-  "plugins": ["@typescript-eslint", "@nrwl/nx", "@angular-eslint"]
+  ]
 }

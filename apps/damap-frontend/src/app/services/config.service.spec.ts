@@ -15,7 +15,6 @@ describe('ConfigService', () => {
   let service: ConfigService;
   let httpMock: HttpTestingController;
   let mockOAuthService: jasmine.SpyObj<OAuthService>;
-  let mockRouter: jasmine.SpyObj<Router>;
 
   beforeEach(() => {
     spyOn(console, 'warn'); // Set up the spy only once.

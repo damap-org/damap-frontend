@@ -1,16 +1,14 @@
 {
-  "extends": ["plugin:cypress/recommended", "../../.eslintrc.json"],
+  "extends": ["plugin:cypress/recommended"],
   "ignorePatterns": ["!**/*"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "cypress"],
   "overrides": [
     {
-      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "rules": {}
-    },
-    {
-      "files": ["src/plugins/index.js"],
+      "files": ["*.ts"],
       "rules": {
-        "@typescript-eslint/no-var-requires": "off",
-        "no-undef": "off"
+        "@typescript-eslint/no-namespace": "off",
+        "@typescript-eslint/no-unused-vars": "off"
       }
     }
   ]

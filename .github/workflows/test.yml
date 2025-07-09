@@ -29,15 +29,8 @@ jobs:
       - name: Install dependencies
         run: npm run ci:install
 
-      - uses: nrwl/nx-set-shas@v3
-        with:
-          main-branch-name: "master"
-      - run: npm run report
       - run: npm run format:check
-
-      - name: Merge - Lint all projects
-        if: ${{ env.is-master-branch == 'true' || env.is-next-branch == 'true' }}
-        run: npm run ci:lint
+      - run: npm run ci:lint
 
       - name: Merge - Build all projects
         if: ${{ env.is-master-branch == 'true' || env.is-next-branch == 'true' }}
@@ -47,13 +40,7 @@ jobs:
         if: ${{ env.is-master-branch == 'true' || env.is-next-branch == 'true' }}
         run: npm run ci:test
 
-      - name: Publish Linting Report
-        uses: mikepenz/action-junit-report@v4
-        if: always() # always run even if the previous step fails
-        with:
-          report_paths: "**/reports/lint/**/*.xml"
-
-      - name: Publish Test Report
+      - name: Publish Test Reportnpm run f
         uses: mikepenz/action-junit-report@v4
         if: always()
         with:

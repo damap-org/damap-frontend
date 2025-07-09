@@ -3,7 +3,7 @@
 // Plus imports for other components in your app.
 // Depending on your layout you will want to include your own palettes or import an
 // Angular Material prebuilt theme of your choice.
-@import "apps/damap-frontend/src/themes/custom-palettes";
+@use "apps/damap-frontend/src/themes/custom-palettes" as palettes;
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
@@ -22,14 +22,14 @@
 // (imported above). Information on how these colors should be used: https://m3.material.io/styles/color/roles
 
 $_rest: (
-  secondary: map.get($_palettes, secondary),
-  neutral: map.get($_palettes, neutral),
-  neutral-variant: map.get($_palettes, neutral-variant),
-  error: map.get($_palettes, error),
+  secondary: map.get(palettes.$palettes, secondary),
+  neutral: map.get(palettes.$palettes, neutral),
+  neutral-variant: map.get(palettes.$palettes, neutral-variant),
+  error: map.get(palettes.$palettes, error),
 );
 
-$app-primary: map.merge(map.get($_palettes, primary), $_rest);
-$app-accent: map.merge(map.get($_palettes, tertiary), $_rest);
+$app-primary: map.merge(map.get(palettes.$palettes, primary), $_rest);
+$app-accent: map.merge(map.get(palettes.$palettes, tertiary), $_rest);
 // You can also replace the lines above and use Angular Material colors instead:
 // Information on available pre-built palettes: https://material.angular.io/guide/theming#pre-defined-palettes
 

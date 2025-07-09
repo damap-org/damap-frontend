@@ -1,5 +1,12 @@
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 
 import { AbstractBaseDataComponent } from './abstract-base-data.component';
 import { Config } from '../../../domain/config';
@@ -11,7 +18,10 @@ import { UntypedFormControl } from '@angular/forms';
   styleUrls: ['./specify-data.component.css'],
   standalone: false,
 })
-export class SpecifyDataComponent extends AbstractBaseDataComponent {
+export class SpecifyDataComponent
+  extends AbstractBaseDataComponent
+  implements OnInit, OnDestroy
+{
   @Input() fileUpload: { file: File; progress: number; finalized: boolean }[];
   @Input() config$: Observable<Config>;
 

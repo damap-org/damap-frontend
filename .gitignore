@@ -60,4 +60,6 @@ src/themes/*
 
 .angular
 
+# ESLint cache
+.eslintcache
 .nx/

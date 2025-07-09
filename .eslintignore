@@ -1,0 +1,10 @@
+coverage/
+**/coverage/
+dist/
+**/dist/
+node_modules/
+**/node_modules/
+tmp/
+**/tmp/
+**/*.js
+!cypress.config.js

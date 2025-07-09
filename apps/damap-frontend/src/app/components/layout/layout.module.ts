@@ -1,3 +1,4 @@
+import { AppBannerModule } from '../../../../../../libs/damap/src/lib/widgets/app-banner/app-banner.module';
 import { CommonModule } from '@angular/common';
 import { EnvBannerModule } from '@damap/core';
 import { LayoutComponent } from './layout.component';
@@ -11,8 +12,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { AppBannerModule } from '../../../../../../libs/damap/src/lib/widgets/app-banner/app-banner.module';
 
 @NgModule({
   imports: [

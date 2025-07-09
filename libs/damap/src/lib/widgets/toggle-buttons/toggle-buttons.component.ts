@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-toggle-buttons',
@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./toggle-buttons.component.css'],
   standalone: false,
 })
-export class ToggleButtonsComponent {
+export class ToggleButtonsComponent implements OnInit {
   @Input() selectedView: 'primaryView' | 'secondaryView' = 'primaryView';
   @Input() primaryLabel: string;
   @Input() secondaryLabel: string;

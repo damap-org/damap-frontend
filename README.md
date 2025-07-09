@@ -27,21 +27,20 @@ refer to the [damap-backend](https://github.com/tuwien-csd/damap-backend) projec
 
 This repository contains the source code for the frontend of DAMAP and needs to be run
 with [damap-backend](https://github.com/tuwien-csd/damap-backend).
-The project is based on [Angular](https://angular.io/) and uses [NX](https://nx.dev/) as a build system.
+The project is based on [Angular](https://angular.io/) and uses the standard Angular CLI as a build system.
 
 ### Development server
 
-Run `nx serve damap-frontend` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload
+Run `ng serve damap-frontend` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload
 if you change any of the source files.
 
 ### Build
 
-Run `nx build damap-frontend` to build the project. The build artifacts will be stored in the `dist/` directory. Use
-the `--prod` flag for a production build.
+Run `ng build damap-frontend` to build the project. The build artifacts will be stored in the `dist/` directory. For a production build, use `--configuration=production`.
 
 ### Running unit tests
 
-Run `nx test damap` to execute the unit tests for the library and `nx test damap-frontend` for the application.
+Run `ng test damap` to execute the unit tests for the library and `ng test damap-frontend` for the application.
 
 ### Run the project with docker
 

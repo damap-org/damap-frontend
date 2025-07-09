@@ -9,11 +9,11 @@ import {
   ViewChild,
 } from '@angular/core';
 import { AuthService, DashboardComponent } from '@damap/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { Subscription, filter } from 'rxjs';
 
 import { AdminComponent } from '../../../../../../libs/damap/src/lib/components/admin/admin.component'; // eslint-disable-line
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { ConfigService } from '../../services/config.service';
 import { DmpComponent } from '../../../../../../libs/damap/src/lib/components/dmp/dmp.component'; // eslint-disable-line
 import { MatSidenav } from '@angular/material/sidenav';
