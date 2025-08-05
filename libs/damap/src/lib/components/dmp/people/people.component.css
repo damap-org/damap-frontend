@@ -66,10 +66,14 @@ mat-form-field {
   gap: 15px;
 }
 
-.service-select-container,
+.service-select-container {
+  flex: 1;
+  min-width: 175px;
+}
+
 .app-person-search {
   flex: 1;
-  min-width: 100px;
+  min-width: 200px;
 }
 
 .form-fields {
@@ -159,7 +163,7 @@ mat-form-field {
   margin: 20px 5px;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1050px) {
   mat-card {
     width: 100%;
   }
