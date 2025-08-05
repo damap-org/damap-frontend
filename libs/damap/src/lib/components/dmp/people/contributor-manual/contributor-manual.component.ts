@@ -25,14 +25,17 @@ export class ContributorManualComponent {
     firstName: new UntypedFormControl('', [
       notEmptyValidator(),
       Validators.maxLength(4000),
+      Validators.required,
     ]),
     lastName: new UntypedFormControl('', [
       notEmptyValidator(),
       Validators.maxLength(4000),
+      Validators.required,
     ]),
     mbox: new UntypedFormControl('', [
       notEmptyValidator(),
       Validators.maxLength(4000),
+      Validators.required,
     ]),
     personId: new UntypedFormGroup({
       type: new UntypedFormControl(IdentifierType.ORCID),
