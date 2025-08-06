@@ -40,7 +40,7 @@
         "intro": "In this step, you add people involved in the project and provide additional info about them, e.g., their role. In this example, the project leader’s info has already been added and marked as the contact person (note icon with person and envelope next to their name). You can add more contributors via the search field (ensure you select the appropriate database, e.g., ORCID), or manually via the “Add contributor manually button”. Please provide a minimum of one contact person as well as a data manager (it can be the same person).",
         "search": "Search for person...",
         "search.service": "Search service",
-        "general.search": "Find Contributors",
+        "general.search": "Find Contributors:",
         "general.recommendations": "Recommended contributors:",
         "general.addAll": "Add all contributors",
         "contributor": {
