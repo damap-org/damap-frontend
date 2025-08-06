@@ -66,14 +66,10 @@ mat-form-field {
   gap: 15px;
 }
 
-.service-select-container {
-  flex: 1;
-  min-width: 175px;
-}
-
+.service-select-container,
 .app-person-search {
   flex: 1;
-  min-width: 200px;
+  min-width: 100px;
 }
 
 .form-fields {
@@ -131,11 +127,6 @@ mat-form-field {
     justify-content: space-between;
     margin-top: 10px;
   }
-
-  .search-and-service-container {
-    flex-direction: column;
-    gap: 20px;
-  }
 }
 
 .form-row {
@@ -163,11 +154,25 @@ mat-form-field {
   margin: 20px 5px;
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 1100px) {
   mat-card {
     width: 100%;
   }
 
+  .search-and-service-container {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .search-and-service-container {
+    flex-direction: row;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
   .search-and-service-container {
     flex-direction: column;
     gap: 0;
