@@ -203,7 +203,7 @@ export class BackendService {
       .get<
         SearchResult<Contributor>
       >(`${this.backendUrl}persons?q=${searchTerm}&searchService=${serviceType}`)
-      .pipe(catchError(this.handleError('http.error.repositories.one')));
+      .pipe(catchError(this.handleError('http.error.person.search')));
   }
 
   updateOrcidContributorAffiliations(
@@ -232,19 +232,13 @@ export class BackendService {
   getRepositories(): Observable<RepositoryDetails[]> {
     return this.http
       .get<RepositoryDetails[]>(this.repositoryBackendUrl)
-      .pipe(
-        retry(3),
-        catchError(this.handleError('http.error.repositories.all')),
-      );
+      .pipe(retry(3), catchError(this.handleError()));
   }
 
   getRecommendedRepositories(): Observable<RepositoryDetails[]> {
     return this.http
       .get<RepositoryDetails[]>(`${this.repositoryBackendUrl}/recommended`)
-      .pipe(
-        retry(3),
-        catchError(this.handleError('http.error.repositories.recommended')),
-      );
+      .pipe(retry(3), catchError(this.handleError()));
   }
 
   getRepositoryById(
@@ -255,7 +249,7 @@ export class BackendService {
       .pipe(
         map(repo => ({ id, changes: repo })),
         retry(3),
-        catchError(this.handleError('http.error.repositories.one')),
+        catchError(this.handleError()),
       );
   }
 
@@ -272,7 +266,7 @@ export class BackendService {
       .get<RepositoryDetails[]>(`${this.repositoryBackendUrl}/search`, {
         params,
       })
-      .pipe(catchError(this.handleError('http.error.repositories.search')));
+      .pipe(catchError(this.handleError()));
   }
 
   analyseFileData(file: FormData): Observable<HttpEvent<any>> {
@@ -281,13 +275,13 @@ export class BackendService {
         reportProgress: true,
         observe: 'events',
       })
-      .pipe(catchError(this.handleError('http.error.fileanalysis')));
+      .pipe(catchError(this.handleError()));
   }
 
   searchDataset(term: string): Observable<Dataset> {
     return this.http
       .get<Dataset>(`${this.backendUrl}openaire?doi=${term}`)
-      .pipe(retry(3), catchError(this.handleError('http.error.openaire')));
+      .pipe(retry(3), catchError(this.handleError()));
   }
 
   exportDmpTemplate(dmpId: number, template: number): void {
@@ -548,7 +542,23 @@ export class BackendService {
 
   private handleError(message = 'http.error.standard') {
     message = this.translate.instant(message);
-    return (error: HttpErrorResponse) => {
+    return async (error: HttpErrorResponse) => {
+      console.log(error);
+      let errorPayload = error.error;
+      if (
+        error.error instanceof Blob &&
+        error.error.type === 'application/json'
+      ) {
+        await error.error.text().then(payload => {
+          errorPayload = JSON.parse(payload);
+        });
+      }
+      console.log(
+        'An error occured: ' +
+          errorPayload.details +
+          '\nCustom error code: ' +
+          errorPayload.errorCode,
+      );
       if (error.status === 0) {
         this.translate.instant('http.error.0');
       } else if (error.status === 404) {
@@ -557,6 +567,15 @@ export class BackendService {
         message += this.translate.instant('http.error.500');
       } else if (error.status === 503) {
         message += this.translate.instant('http.error.503');
+      }
+
+      // Error handling in the backend is not consistent yet
+      // Currently, all endpoints that talk with external API's return custom error codes
+      // All other endpoints are using the http codes
+      if (errorPayload.errorCode) {
+        message = this.translate.instant(
+          'http.error.errorCodes.' + errorPayload.errorCode,
+        );
       }
       this.feedbackService.error(message);
       throw new HttpErrorResponse({ statusText: message });
