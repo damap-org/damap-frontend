@@ -56,7 +56,7 @@
       },
       "export": {
         "heading": "Export the DMP draft as a document.",
-        "body": "Depending on the funder of your project, the exported DMP will either reflect the funder’s DMP template (FWF) or the DMP recommendations by Science Europe. This happens automatically for imported projects."
+        "body": "Depending on the funder of your project, the exported DMP will either reflect the funder’s DMP template (FWF, Horizon Europe) or the DMP recommendations by Science Europe. This happens automatically for imported projects."
       },
       "finalise": {
         "heading": "Finalise your DMP in a text editor.",
