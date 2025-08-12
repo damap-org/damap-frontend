@@ -40,6 +40,7 @@ export class PersonSearchComponent {
     if (person) {
       this.personToAdd.emit(person);
       this.searchField.control.setValue('');
+      this.currentSearchTerm = '';
     }
   }
 }
