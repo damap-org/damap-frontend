@@ -364,7 +364,7 @@ export class DmpComponent implements OnInit, OnDestroy {
 
   private getProjectMembers(projectId: number) {
     this.backendService.getProjectMembers(projectId).subscribe(members => {
-      this.projectMembers = members;
+      this.projectMembers = members ? members : [];
     });
   }
 
