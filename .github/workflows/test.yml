@@ -40,7 +40,7 @@ jobs:
         if: ${{ env.is-master-branch == 'true' || env.is-next-branch == 'true' }}
         run: npm run ci:test
 
-      - name: Publish Test Reportnpm run f
+      - name: Publish Test Report
         uses: mikepenz/action-junit-report@v4
         if: always()
         with:
