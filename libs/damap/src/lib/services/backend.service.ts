@@ -461,6 +461,28 @@ export class BackendService {
     return this.http.delete<void>(`${this.backendUrl}admin/banner`);
   }
 
+  getAuthJWT(accessToken: string): Observable<{ token: string }> {
+    const body = { token: accessToken };
+    return this.http.post<{ token: string }>(
+      `${this.backendUrl}auth/jwt`,
+      body,
+      {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      },
+    );
+  }
+
+  refreshJWT(old_jwt: string): Observable<{ token: string }> {
+    const body = { token: old_jwt };
+    return this.http.post<{ token: string }>(
+      `${this.backendUrl}auth/refresh`,
+      body,
+      {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      },
+    );
+  }
+
   private handleError(message = 'http.error.standard') {
     message = this.translate.instant(message);
     return (error: HttpErrorResponse) => {

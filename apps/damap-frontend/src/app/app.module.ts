@@ -1,6 +1,10 @@
 import { NgModule, inject, provideAppInitializer } from '@angular/core';
 import { EnvBannerModule, AuthGuard } from '@damap/core';
-import { HttpBackend, HttpClientModule } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpBackend,
+  HttpClientModule,
+} from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { APP_ROUTES } from './app.routes';
@@ -19,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { environment } from '../environments/environment';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { TokenInterceptor } from '../../../../libs/damap/src/lib/interceptors/token.interceptor';
 
 // required for AOT compilation
 export function HttpLoaderFactory(http: HttpBackend): MultiTranslateHttpLoader {
@@ -49,7 +54,7 @@ export function HttpLoaderFactory(http: HttpBackend): MultiTranslateHttpLoader {
     OAuthModule.forRoot({
       resourceServer: {
         allowedUrls: [environment.backendurl],
-        sendAccessToken: true,
+        sendAccessToken: false,
       },
     }),
 
@@ -82,6 +87,11 @@ export function HttpLoaderFactory(http: HttpBackend): MultiTranslateHttpLoader {
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: { appearance: 'outline' },
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
     },
     AuthGuard,
     ConsentGuard,

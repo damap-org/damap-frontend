@@ -11,4 +11,10 @@ export interface Config {
   readonly fitsServiceAvailable: boolean;
   readonly livePreviewAvailable: boolean;
   readonly ethicalReportEnabled: boolean;
+
+  readonly dummySecret: string;
+  readonly issuer: string;
+  readonly loginUrl: string;
+  readonly tokenEndpoint: string;
+  readonly responseType: string;
 }

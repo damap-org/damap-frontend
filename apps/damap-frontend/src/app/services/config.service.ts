@@ -2,8 +2,8 @@ import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { BehaviorSubject, Observable, lastValueFrom } from 'rxjs';
 import { Injectable, isDevMode } from '@angular/core';
 
-import { Config } from '@damap/core';
 import { FeedbackService } from '@damap/core';
+import { BackendService, Config } from '@damap/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
@@ -21,6 +21,7 @@ export class ConfigService {
     private http: HttpClient,
     private oauthService: OAuthService,
     private router: Router,
+    private backendService: BackendService,
     private feedbackService: FeedbackService,
   ) {}
 
@@ -43,34 +44,103 @@ export class ConfigService {
             console.warn('App title is missing in the config');
           }
           this.configSubject.next(config);
-          const authConfig: AuthConfig = {
-            issuer: config.authUrl,
-            clientId: config.authClient,
-            redirectUri: window.location.origin,
-            logoutUrl: window.location.origin,
-            oidc: true,
-            scope: config.authScope,
-            // useSilentRefresh: true,
-            responseType: 'code',
-            showDebugInformation: isDevMode(),
-            // sessionChecksEnabled: true,
-          };
-          this.oauthService.configure(authConfig);
-          this.oauthService.setupAutomaticSilentRefresh();
-          return this.oauthService
-            .loadDiscoveryDocumentAndTryLogin()
-            .then(() => {
+
+          if (config.env === 'PROD') {
+            const manualAuthConfig: AuthConfig = {
+              issuer: config.issuer,
+              loginUrl: config.loginUrl,
+              tokenEndpoint: config.tokenEndpoint,
+              clientId: config.authClient,
+              dummyClientSecret: config.dummySecret,
+              redirectUri: window.location.origin,
+              responseType: config.responseType,
+              scope: config.authScope,
+              useHttpBasicAuth: true,
+              oidc: true,
+              showDebugInformation: isDevMode(),
+            };
+            this.oauthService.configure(manualAuthConfig);
+            this.oauthService.setupAutomaticSilentRefresh();
+            return this.oauthService.tryLogin().then(() => {
               if (
                 this.oauthService.hasValidIdToken() &&
                 this.oauthService.hasValidAccessToken()
               ) {
-                const url = decodeURIComponent(this.oauthService.state);
-                if (url !== '') {
-                  return this.router.navigateByUrl(url);
-                }
+                this.backendService
+                  .getAuthJWT(this.oauthService.getAccessToken())
+                  .subscribe(
+                    response => {
+                      localStorage.setItem(
+                        'damap_session_token',
+                        response.token,
+                      );
+                      this.oauthService.logOut(true);
+                      const url = decodeURIComponent(
+                        this.oauthService.state || '',
+                      );
+                      if (url && url !== 'null') {
+                        this.router.navigateByUrl(url);
+                      }
+                      return new Promise<boolean>(resolve => resolve(true));
+                    },
+                    error => {
+                      console.error('Failed to get JWT from backend', error);
+                      return new Promise<boolean>(resolve => resolve(true));
+                    },
+                  );
               }
               return new Promise<boolean>(resolve => resolve(true));
             });
+          } else if (config.env === 'DEV') {
+            this.configSubject.next(config);
+            const authConfig: AuthConfig = {
+              issuer: config.authUrl,
+              clientId: config.authClient,
+              redirectUri: window.location.origin,
+              logoutUrl: window.location.origin,
+              oidc: true,
+              scope: config.authScope,
+              responseType: 'code',
+              showDebugInformation: isDevMode(),
+            };
+            this.oauthService.configure(authConfig);
+            this.oauthService.setupAutomaticSilentRefresh();
+            return this.oauthService
+              .loadDiscoveryDocumentAndTryLogin()
+              .then(() => {
+                if (
+                  this.oauthService.hasValidIdToken() &&
+                  this.oauthService.hasValidAccessToken()
+                ) {
+                  this.backendService
+                    .getAuthJWT(this.oauthService.getIdToken())
+                    .subscribe(
+                      response => {
+                        localStorage.setItem(
+                          'damap_session_token',
+                          response.token,
+                        );
+                        this.oauthService.logOut(true);
+                        const url = decodeURIComponent(
+                          this.oauthService.state || '',
+                        );
+                        if (url && url !== 'null') {
+                          this.router.navigateByUrl(url);
+                        }
+                        return new Promise<boolean>(resolve => resolve(true));
+                      },
+                      error => {
+                        console.error('Failed to get JWT from backend', error);
+                        return new Promise<boolean>(resolve => resolve(true));
+                      },
+                    );
+                }
+                return new Promise<boolean>(resolve => resolve(true));
+              });
+          } else {
+            console.error(`Unknown environment: ${config.env}`);
+            return new Promise<boolean>(resolve => resolve(false));
+          }
         }
       })
       .catch(error => {

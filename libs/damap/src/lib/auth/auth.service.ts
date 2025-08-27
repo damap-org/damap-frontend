@@ -1,61 +1,100 @@
 import { Injectable } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private oAuthService: OAuthService) {}
+  constructor(
+    private oAuthService: OAuthService,
+    private router: Router,
+  ) {}
 
   getName(): string {
-    const claims = this.oAuthService.getIdentityClaims();
-    return claims['name'];
+    return this.getUsername();
   }
 
   getDisplayName(): string {
-    const claims = this.oAuthService.getIdentityClaims();
-    const {
-      name,
-      given_name: firstName,
-      family_name: lastName,
-      email,
-    } = claims;
+    const claims = this.getClaimsFromJWT();
+    if (!claims) {
+      return '';
+    }
+    const { upn, email } = claims;
 
-    const displayName =
-      name ||
-      (firstName && lastName ? `${firstName} ${lastName}` : null) ||
-      email ||
-      '';
+    const displayName = upn || email || '';
     return displayName;
   }
 
   getUsername(): string {
-    const claims = this.oAuthService.getIdentityClaims();
-    return claims['preferred_username'];
+    const claims = this.getClaimsFromJWT();
+    if (!claims) {
+      return '';
+    }
+    return claims['upn'];
   }
 
   isAuthenticated(route: string): boolean {
-    const isAuthenticated =
-      this.oAuthService.hasValidIdToken() &&
-      this.oAuthService.hasValidAccessToken();
+    let isAuthenticated = !!localStorage.getItem('damap_session_token');
+    // Check if token is expired
+    const claims = this.getClaimsFromJWT();
+    if (claims) {
+      const exp = claims['exp'];
+      const now = Math.floor(Date.now() / 1000);
+
+      const REFRESH_LEEWAY_SECONDS = 3 * 60 * 60; // 3 hours
+
+      if (exp + REFRESH_LEEWAY_SECONDS < now) {
+        localStorage.removeItem('damap_session_token');
+        isAuthenticated = false;
+      }
+    }
+
+    // If not authenticated, start the login flow
     if (!isAuthenticated) {
       this.oAuthService.initLoginFlow(route);
     }
     return isAuthenticated;
   }
 
+  isExpiredToken(): boolean {
+    const claims = this.getClaimsFromJWT();
+    if (!claims) {
+      return true;
+    }
+    const exp = claims['exp'];
+    const now = Math.floor(Date.now() / 1000);
+    return exp < now;
+  }
+
   isAdmin(): boolean {
-    const parts: string[] = this.oAuthService.getAccessToken().split('.');
-    const tokenBody: any = JSON.parse('' + window.atob(parts[1]));
-    return tokenBody.realm_access?.roles?.includes('Damap Admin');
+    const claims = this.getClaimsFromJWT();
+    if (!claims) {
+      return false;
+    }
+    return claims['groups']?.includes('Damap Admin');
   }
 
   logout() {
-    this.oAuthService.logOut();
+    localStorage.removeItem('damap_session_token');
+    // Navigate to start page, remove anything after first /
+    this.router.navigateByUrl('/');
   }
 
   getId(): string {
-    const claims = this.oAuthService.getIdentityClaims();
-    return claims['personID'];
+    const claims = this.getClaimsFromJWT();
+    if (!claims) {
+      return '';
+    }
+    return claims['sub'];
+  }
+
+  getClaimsFromJWT(): any {
+    const jwtToken = localStorage.getItem('damap_session_token');
+    if (!jwtToken) {
+      return null;
+    }
+    const claims = JSON.parse(atob(jwtToken.split('.')[1]));
+    return claims;
   }
 }
