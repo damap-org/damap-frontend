@@ -100,7 +100,7 @@ export class PeopleComponent implements OnInit, OnDestroy {
         .subscribe((term: string) => {
           this.searchResult$ = this.backendService.getPersonSearchResult(
             term,
-            this.serviceConfigType.displayText,
+            this.serviceConfigType.queryValue,
           );
         });
       this.subscriptions.push(searchSubscription);
