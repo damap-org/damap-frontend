@@ -18,6 +18,7 @@
         </div>
         <div class="double-items fadeInLeft">
           <button
+            *ngIf="(backendDown$ | async) === false"
             mat-raised-button
             class="pulse-button button-color-primary"
             routerLink="/dashboard">

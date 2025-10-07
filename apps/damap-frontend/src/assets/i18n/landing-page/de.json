@@ -1,6 +1,9 @@
 {
   "landing-page": {
     "title": "DAMAP - ein Tool für machine-actionable DMPs",
-    "start": "Jetzt starten"
+    "start": "Jetzt starten",
+    "servers-down-retrying": "Verbindung zu unseren Servern konnte nicht hergestellt werden. Versuch wird wiederholt...",
+    "servers-down": "Unsere Server scheinen momentan nicht erreichbar zu sein. Versuchen Sie es bitte später noch einmal.",
+    "servers-up": "Verbindung zu unseren Servern wurde wiederhergestellt."
   }
 }

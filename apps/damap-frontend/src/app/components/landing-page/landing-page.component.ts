@@ -4,6 +4,8 @@ import { RouterLink } from '@angular/router';
 import { MatAnchor, MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Observable } from 'rxjs';
+import { ConfigService } from '../../services/config.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -20,10 +22,16 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   standalone: true,
 })
 export class LandingPageComponent implements OnInit {
-  constructor(private translate: TranslateService) {}
+  public backendDown$: Observable<boolean>;
+
+  constructor(
+    private translate: TranslateService,
+    private configService: ConfigService,
+  ) {}
 
   ngOnInit(): void {
     const browserLang = this.translate.getBrowserLang();
     this.translate.use(browserLang?.match(/en|de/) ? browserLang : 'en');
+    this.backendDown$ = this.configService.isBackendDown();
   }
 }

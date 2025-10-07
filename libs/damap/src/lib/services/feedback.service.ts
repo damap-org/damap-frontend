@@ -13,10 +13,10 @@ export class FeedbackService {
     protected loggerService: LoggerService,
   ) {}
 
-  error(message: string, error?: Error) {
+  error(message: string, error?: Error, timeInMs: number = 4500) {
     this.translate.get(message).subscribe(translation =>
       this._snackBar.open(translation, 'x', {
-        duration: 4500,
+        duration: timeInMs,
         horizontalPosition: 'center',
         verticalPosition: 'top',
         panelClass: 'snack-error',

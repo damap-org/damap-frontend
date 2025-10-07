@@ -1,6 +1,9 @@
 {
   "landing-page": {
     "title": "DAMAP - a tool for machine actionable DMPs",
-    "start": "Start now"
+    "start": "Start now",
+    "servers-down-retrying": "Failed to establish connection to our servers. Retrying...",
+    "servers-down": "Our servers seem to be down at the moment. Please try again later.",
+    "servers-up": "Connection to our servers has been re-established."
   }
 }
