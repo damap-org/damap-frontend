@@ -28,10 +28,7 @@
       </mat-radio-group>
     </div>
     <ng-container *ngIf="costsStep.controls.exist.value">
-      <button
-        mat-raised-button
-        class="button-color-primary add-cost-container"
-        (click)="addCost()">
+      <button mat-flat-button class="add-cost-container" (click)="addCost()">
         <mat-icon>add_circle</mat-icon>
         {{ "dmp.steps.costs.addButton" | translate }}
       </button>

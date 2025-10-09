@@ -18,8 +18,11 @@ import { ConfigService } from '../../services/config.service';
 import { DmpComponent } from '../../../../../../libs/damap/src/lib/components/dmp/dmp.component'; // eslint-disable-line
 import { MatSidenav } from '@angular/material/sidenav';
 import { PlansComponent } from '../../../../../../libs/damap/src/lib/components/plans/plans.component'; // eslint-disable-line
+import { SafeUrl } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import pkg from '../../../../../../package.json'; // eslint-disable-line
+import { ImageThemeService } from '../../services/image-theme.service';
+import { IMAGE_KEYS } from '../../../../../../libs/damap/src/lib/domain/image-keys';
 
 @Component({
   selector: 'app-layout',
@@ -32,6 +35,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('outlet') outlet: RouterOutlet | null;
 
   private routerEventsSubscription: Subscription;
+  public logoUrl: SafeUrl;
   public title = 'Data Management Plan';
   public version: string = pkg.version;
   public name: string;
@@ -52,11 +56,13 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
     private auth: AuthService,
     private translate: TranslateService,
     private configService: ConfigService,
+    private imageThemeService: ImageThemeService,
     private observer: BreakpointObserver,
     private router: Router,
     private cdr: ChangeDetectorRef,
   ) {
     this.env = this.configService.getEnvironment();
+    this.logoUrl = this.imageThemeService.getImage(IMAGE_KEYS.LOGO);
   }
 
   ngOnInit(): void {
@@ -167,5 +173,10 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       return str;
     }
+  }
+
+  isDefaultLogo(logoUrl: SafeUrl): boolean {
+    const urlString = logoUrl?.toString() || '';
+    return urlString.includes('assets/logo.svg');
   }
 }

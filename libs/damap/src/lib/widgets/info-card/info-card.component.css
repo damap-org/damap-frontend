@@ -12,7 +12,7 @@
   z-index: 1;
   background: transparent;
   border: none;
-  color: var(--neutral-color-medium-light);
+  color: var(--custom-neutral-color-medium-light);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,7 +20,7 @@
 
 .close-icon {
   transform: scale(1);
-  color: var(--neutral-color-medium-light);
+  color: var(--custom-neutral-color-medium-light);
   transition: transform 0.2s ease-in-out;
 }
 
@@ -34,7 +34,7 @@
   position: relative;
   width: 40px;
   height: 40px;
-  background-color: var(--surface-container-low);
+  background-color: var(--custom-surface-container-low);
   border-radius: 50%;
 }
 
@@ -49,7 +49,7 @@
   position: relative;
   width: 50px;
   height: 50px;
-  background-color: var(--primary-lightest-shadow);
+  background-color: var(--mdc-theme-primary-container);
   border-radius: 50%;
 }
 
@@ -68,7 +68,7 @@
   flex-wrap: wrap;
   width: 100%;
   font-weight: 300;
-  color: var(--user-navbar-color);
+  color: var(--custom-user-navbar-color);
   padding: 16px 16px;
 }
 

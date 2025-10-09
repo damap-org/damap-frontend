@@ -1,6 +1,5 @@
 .background {
-  background: url("../../../assets/landing-page-background.png");
-  background-color: var(--accent-color-very-light);
+  background-color: var(--custom-accent-color-very-light);
   background-repeat: no-repeat;
   background-position: right top;
   height: 100%;
@@ -22,13 +21,13 @@
   margin-top: 15px;
   padding-right: 15px;
   padding-left: 15px;
-  height: 60px;
-  width: 300px;
+  max-height: 150px;
+  max-width: 400px;
 }
 
 .info-bar-typography {
   font: var(--body-large);
-  color: var(--landing-page-info-bar-color);
+  color: var(--custom-landing-page-info-bar-color);
 }
 
 .info-bar {
@@ -74,7 +73,7 @@
 
 .title-typography {
   font: var(--display-large);
-  color: var(--on-surface);
+  color: var(--mdc-theme-on-surface);
   font-weight: bold;
   margin-bottom: var(--body-large);
 }
@@ -88,9 +87,7 @@
 .play-video-btn {
   margin-left: 10px;
   margin-right: 10px;
-  background-color: aliceblue;
-  border-color: var(--primary);
-  border: 2px solid var(--primary);
+  border-width: 2px !important;
 
   .mat-icon {
     transform: scale(1.5);
@@ -100,7 +97,7 @@
 @media (max-width: 1600px) {
   .title-typography {
     font: var(--display-medium);
-    color: var(--on-surface);
+    color: var(--mdc-theme-on-surface);
     font-weight: bold;
     margin-bottom: var(--body-large);
   }
@@ -128,11 +125,6 @@
     font-weight: bold;
   }
 
-  .logo {
-    width: 400px;
-    height: 80px;
-  }
-
   .info-bar-typography {
     font: var(--title-large);
   }
@@ -141,14 +133,14 @@
 @media (max-width: 570px) {
   .info-bar-typography {
     font: var(--body-medium);
-    color: var(--on-surface);
+    color: var(--mdc-theme-on-surface);
     font-weight: bold;
     margin-bottom: var(--body-large);
   }
 
   .title-typography {
     font: var(--display-medium);
-    color: var(--on-surface);
+    color: var(--mdc-theme-on-surface);
     font-weight: bold;
   }
 }
@@ -189,15 +181,18 @@
 @keyframes pulse {
   0% {
     transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(90, 153, 212, 0.7);
+    box-shadow: 0 0 0 0
+      color-mix(in srgb, var(--mdc-theme-primary) 70%, transparent);
   }
   70% {
     transform: scale(1.05);
-    box-shadow: 0 0 0 20px rgba(90, 153, 212, 0);
+    box-shadow: 0 0 0 20px
+      color-mix(in srgb, var(--mdc-theme-primary) 0%, transparent);
   }
   100% {
     transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(90, 153, 212, 0);
+    box-shadow: 0 0 0 0
+      color-mix(in srgb, var(--mdc-theme-primary) 0%, transparent);
   }
 }
 

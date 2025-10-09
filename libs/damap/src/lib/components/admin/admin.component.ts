@@ -28,6 +28,7 @@ export class AdminComponent implements OnInit {
     private backendService: BackendService,
     private dialog: MatDialog,
     private feedbackService: FeedbackService,
+    private router: Router,
   ) {}
 
   showOnlyActive = true;
@@ -235,5 +236,9 @@ export class AdminComponent implements OnInit {
 
   refreshPage() {
     window.location.reload();
+  }
+
+  navigateTo(path: string) {
+    this.router.navigate([path]);
   }
 }

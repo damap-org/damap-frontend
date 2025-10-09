@@ -1,6 +1,7 @@
 import { Contributor, compareContributors } from '../domain/contributor';
 import {
   FormArray,
+  FormBuilder,
   FormControl,
   FormGroup,
   UntypedFormArray,
@@ -9,6 +10,15 @@ import {
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
+
+export interface Colors {
+  primary: string | null;
+  secondary: string | null;
+  tertiary: string | null;
+  primaryContainer: string | null;
+  secondaryContainer: string | null;
+  tertiaryContainer: string | null;
+}
 
 import { AccessRight } from '../domain/enum/access-right.enum';
 import { Cost } from '../domain/cost';
@@ -38,7 +48,10 @@ export class FormService {
   private readonly form: UntypedFormGroup;
   private readonly initialFormValue;
 
-  constructor(private formBuilder: UntypedFormBuilder) {
+  constructor(
+    private formBuilder: UntypedFormBuilder,
+    private fb: FormBuilder,
+  ) {
     this.form = this.createDmpForm();
     this.initialFormValue = this.form.getRawValue();
   }
@@ -565,6 +578,46 @@ export class FormService {
       ],
       description: ['', [Validators.maxLength(this.TEXT_MAX_LENGTH)]],
       backupFrequency: ['', [Validators.maxLength(this.TEXT_SHORT_LENGTH)]],
+    });
+  }
+
+  public createColorsFormGroup(
+    initialColors: Colors,
+    savedColors: Colors,
+    advancedMode: boolean,
+  ): FormGroup {
+    return this.fb.group({
+      primary: [initialColors.primary],
+      secondary: [
+        {
+          value: initialColors.secondary,
+          disabled: initialColors.secondary === null,
+        },
+      ],
+      tertiary: [
+        {
+          value: initialColors.tertiary,
+          disabled: initialColors.tertiary === null,
+        },
+      ],
+      primaryContainer: [
+        {
+          value: initialColors.primaryContainer,
+          disabled: initialColors.primaryContainer === null || !advancedMode,
+        },
+      ],
+      secondaryContainer: [
+        {
+          value: initialColors.secondaryContainer,
+          disabled: initialColors.secondaryContainer === null || !advancedMode,
+        },
+      ],
+      tertiaryContainer: [
+        {
+          value: initialColors.tertiaryContainer,
+          disabled: initialColors.tertiaryContainer === null || !advancedMode,
+        },
+      ],
     });
   }
 

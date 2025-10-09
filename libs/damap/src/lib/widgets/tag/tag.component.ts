@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
   standalone: false,
 })
 export class TagComponent {
-  @Input() background = 'var(--blue-tag)';
+  @Input() background = 'var(--custom-blue-tag)';
 }

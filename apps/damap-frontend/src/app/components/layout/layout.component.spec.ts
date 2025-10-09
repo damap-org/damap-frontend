@@ -2,6 +2,7 @@ import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { By } from '@angular/platform-browser';
@@ -13,6 +14,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { AuthService, TranslateTestingModule } from '@damap/core';
 import { of } from 'rxjs';
+import { ImageThemeService } from '../../services/image-theme.service';
 
 @Component({
   template: '',
@@ -100,6 +102,14 @@ describe('LayoutComponent', () => {
         { provide: BreakpointObserver, useValue: breakpointObserverSpy },
         { provide: Router, useValue: mockRouter },
         { provide: RouterOutlet, useValue: mockRouterOutlet },
+        {
+          provide: ImageThemeService,
+          useValue: {
+            getImage: jasmine
+              .createSpy('getImage')
+              .and.returnValue('mock-logo-url'),
+          },
+        },
       ],
     }).compileComponents();
     breakpointObserver = TestBed.inject(BreakpointObserver);

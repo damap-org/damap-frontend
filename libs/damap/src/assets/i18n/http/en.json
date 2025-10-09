@@ -47,6 +47,13 @@
         "load": "Failed to load access information. ",
         "save": "Failed to update access. ",
         "delete": "Failed to remove access. "
+      },
+      "admin": {
+        "recommended-repositories": {
+          "load": "Failed to load recommended repositories.",
+          "save": "Failed to create recommended repository.",
+          "delete": "Failed to delete recommended repository."
+        }
       }
     },
     "success": {
@@ -59,6 +66,11 @@
         "delete": "Storage deleted successfully.",
         "add": "Storage created successfully.",
         "edit": "Storage updated successfully."
+      },
+      "admin": {
+        "recommended-repositories": {
+          "delete": "Repository deleted successfully."
+        }
       }
     }
   }

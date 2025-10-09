@@ -1,17 +1,21 @@
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { BehaviorSubject, Observable, lastValueFrom } from 'rxjs';
-import { Injectable, isDevMode } from '@angular/core';
+import { inject, Injectable, isDevMode } from '@angular/core';
 
 import { Config } from '@damap/core';
 import { FeedbackService } from '@damap/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
-
+import { ColorThemeService } from './color-theme.service';
+import { ImageThemeService } from './image-theme.service';
 @Injectable({
   providedIn: 'root',
 })
 export class ConfigService {
+  private colorThemeService = inject(ColorThemeService);
+  private imageThemeService = inject(ImageThemeService);
+
   private config: Config;
   private configSubject = new BehaviorSubject<Config | null>(null);
   private backendDown$ = new BehaviorSubject<boolean>(true);
@@ -36,7 +40,10 @@ export class ConfigService {
           console.warn('Config is missing!');
           return new Promise<boolean>(resolve => resolve(false));
         } else {
+          console.log(config);
           this.config = config;
+          this.colorThemeService.applyTheming(config);
+          this.imageThemeService.applyTheming(config);
           const appTitle = config.appTitle;
           if (!appTitle) {
             // eslint-disable-next-line no-console
@@ -64,7 +71,7 @@ export class ConfigService {
                 this.oauthService.hasValidIdToken() &&
                 this.oauthService.hasValidAccessToken()
               ) {
-                const url = decodeURIComponent(this.oauthService.state);
+                const url = decodeURIComponent(this.oauthService.state!);
                 if (url !== '') {
                   return this.router.navigateByUrl(url);
                 }
@@ -138,11 +145,15 @@ export class ConfigService {
     return this.config?.adminRoleName || null;
   }
 
+  public getConfig(): Config {
+    return this.config;
+  }
+
   private async loadConfig(): Promise<Config> {
     const host = environment.backendurl;
     const config$ = this.http.get<Config>(`${host}config`);
-    const config = await lastValueFrom(config$);
-    this.configSubject.next(config);
-    return config;
+    let rawConfig = await lastValueFrom(config$);
+    this.configSubject.next(rawConfig);
+    return rawConfig;
   }
 }

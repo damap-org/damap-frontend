@@ -16,16 +16,13 @@
     </ng-container>
     <div class="button-group">
       <button
-        class="button button-color-primary"
+        class="button"
         [mat-dialog-close]="selectedTemplate"
         [disabled]="!selectedTemplate && !funderSupported"
-        mat-raised-button>
+        mat-flat-button>
         {{'dialog.export.button' | translate}}
       </button>
-      <button
-        class="button button-color-primary"
-        mat-dialog-close="cancel"
-        mat-raised-button>
+      <button class="button" mat-dialog-close="cancel" mat-flat-button>
         {{'dialog.export.cancel' | translate}}
       </button>
     </div>

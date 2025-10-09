@@ -33,7 +33,10 @@ export * from './lib/services/feedback.service';
 
 // Models
 export * from './lib/domain/access';
+export * from './lib/domain/backend-image';
 export * from './lib/domain/config';
+export * from './lib/domain/color-theme';
+export * from './lib/domain/image-keys';
 export * from './lib/domain/consent';
 export * from './lib/domain/contributor';
 export * from './lib/domain/cost';
@@ -49,6 +52,7 @@ export * from './lib/domain/license-details';
 export * from './lib/domain/project';
 export * from './lib/domain/repository';
 export * from './lib/domain/repository-details';
+export * from './lib/domain/recommended-repository';
 export * from './lib/domain/search/pagination';
 export * from './lib/domain/search/search';
 export * from './lib/domain/search/search-result';

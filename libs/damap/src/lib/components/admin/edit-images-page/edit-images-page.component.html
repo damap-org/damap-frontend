@@ -1,0 +1,114 @@
+<div class="admin-images-page">
+  <section class="header-section">
+    <button mat-icon-button (click)="navigateBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2 class="mat-h2 mat-title">
+      {{ "admin.images.title" | translate }}
+    </h2>
+  </section>
+
+  <div class="current-and-upload">
+    <section>
+      <mat-card class="flex-card">
+        <mat-card-header>
+          <mat-card-title>
+            {{ "admin.images.current.title" | translate }}
+          </mat-card-title>
+        </mat-card-header>
+        <div class="current-grid">
+          @for (
+            image of themeImages();
+            track image.key;
+            let isLast = $last;
+            let isEven = $even
+          ) {
+            <mat-card
+              class="image-card"
+              [class.centered]="isLast && isEven"
+              (click)="selectImageKey(image.key)">
+              <div class="image-name">
+                {{ image.label }}
+              </div>
+              <div class="image-preview-container">
+                <img
+                  [src]="image.defaultUrl"
+                  [alt]="image.label"
+                  class="image-preview" />
+              </div>
+              <div class="delete-button-container">
+                <button
+                  mat-button
+                  (click)="deleteImage(image.key)"
+                  [disabled]="!image.isCustom">
+                  <mat-icon>delete</mat-icon>
+                  <span translate>admin.images.actions.delete</span>
+                </button>
+              </div>
+            </mat-card>
+          }
+        </div>
+      </mat-card>
+    </section>
+
+    <section>
+      <mat-card class="flex-card">
+        <mat-card-header>
+          <mat-card-title>
+            {{ "admin.images.upload.title" | translate }}
+          </mat-card-title>
+        </mat-card-header>
+        <mat-form-field class="form-field">
+          <mat-label>{{
+            "admin.images.upload.image-type" | translate
+          }}</mat-label>
+          <mat-select [(ngModel)]="selectedImageKey">
+            @for (imageType of themeImages(); track imageType.key) {
+              <mat-option [value]="imageType.key">
+                {{ imageType.label }}
+              </mat-option>
+            }
+          </mat-select>
+          <mat-hint>{{ getImageRecommendation(selectedImageKey()) }}</mat-hint>
+        </mat-form-field>
+        <div
+          class="file-upload-area"
+          [class.drag-over]="isDragOver()"
+          (dragover)="onDragOver($event)"
+          (dragleave)="onDragLeave($event)"
+          (drop)="onDrop($event)">
+          <input
+            type="file"
+            #fileInput
+            [accept]="acceptAttribute"
+            (change)="onFileSelected($event)"
+            class="hidden-file-input" />
+
+          <div class="upload-content" (click)="fileInput.click()">
+            <mat-icon>cloud_upload</mat-icon>
+            <p>{{ "admin.images.upload.drag-drop" | translate }}</p>
+            <p class="file-types">
+              {{ "admin.images.upload.file-types" | translate }}
+            </p>
+            <p class="file-size">
+              {{ "admin.images.upload.max-size" | translate }}
+            </p>
+          </div>
+        </div>
+        @if (selectedFile(); as file) {
+          <div class="inserted-file-card">
+            <mat-icon>description</mat-icon>
+            <span>{{ file.name }} ({{ formatFileSize(file.size) }})</span>
+            <button mat-icon-button (click)="clearSelectedFile()">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+          <button mat-button (click)="uploadImage()">
+            <mat-icon>upload</mat-icon>
+            <span>{{ "admin.images.upload.button" | translate }}</span>
+          </button>
+        }
+      </mat-card>
+    </section>
+  </div>
+</div>

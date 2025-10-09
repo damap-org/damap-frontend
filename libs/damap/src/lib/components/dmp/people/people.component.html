@@ -94,16 +94,20 @@
           <div class="mat-card-right">
             <button
               mat-raised-button
+              class="white-button"
               *ngIf="member.universityId"
               (click)="changeContactPerson(member)"
               title="{{ 'dmp.steps.people.contact.add' | translate }}">
-              <mat-icon>contact_mail</mat-icon>
+              <mat-icon class="material-icon-primary">contact_mail</mat-icon>
             </button>
             <button
               mat-raised-button
+              class="white-button"
               (click)="addContributor(member)"
               title="{{ 'dmp.steps.people.contributor.add' | translate }}">
-              <mat-icon class="person-icon">person_add</mat-icon>
+              <mat-icon class="person-icon material-icon-primary"
+                >person_add</mat-icon
+              >
             </button>
           </div>
         </div>
@@ -223,15 +227,15 @@
               <mat-icon>contact_mail</mat-icon>
             </button>
             <button
-              class="button-position button-color-primary"
-              mat-raised-button
+              class="button-position"
+              mat-flat-button
               [disabled]="form.invalid"
               (click)="updateContributorDetails(i)">
               {{ "dmp.steps.people.contact.update" | translate }}
             </button>
             <button
-              class="button-position button-color-primary"
-              mat-raised-button
+              class="button-position"
+              mat-flat-button
               (click)="cancelUpdateContributorDetails()">
               {{ "dmp.steps.people.contact.cancel" | translate }}
             </button>
@@ -356,15 +360,15 @@
           </div>
           <div class="form-buttons">
             <button
-              class="button-position button-color-primary"
-              mat-raised-button
+              class="button-position"
+              mat-flat-button
               [disabled]="form.invalid"
               (click)="updateContributorDetails(i)">
               {{ "dmp.steps.people.contact.update" | translate }}
             </button>
             <button
-              class="button-position button-color-primary"
-              mat-raised-button
+              class="button-position"
+              mat-flat-button
               (click)="cancelUpdateContributorDetails()">
               {{ "dmp.steps.people.contact.cancel" | translate }}
             </button>

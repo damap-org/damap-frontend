@@ -1,7 +1,9 @@
-<div class="background">
+<div
+  class="background"
+  [style.background-image]="backgroundUrl ? 'url(' + backgroundUrl + ')' : ''">
   <div class="container">
     <div class="logo-info-bar fadeInTop">
-      <img class="logo" src="assets/logo-cropped.svg" alt="Logo" />
+      <img class="logo" [src]="logoUrl" alt="Logo" />
       <!--
       For now commented out, until we have some info we can display here
           -->
@@ -19,7 +21,7 @@
         <div class="double-items fadeInLeft">
           <button
             *ngIf="(backendDown$ | async) === false"
-            mat-raised-button
+            mat-flat-button
             class="pulse-button button-color-primary"
             routerLink="/dashboard">
             <mat-icon>play_arrow</mat-icon>
@@ -27,8 +29,8 @@
           </button>
 
           <a
-            mat-raised-button
-            class="play-video-btn"
+            mat-button
+            class="empty-button-with-border play-video-btn"
             href="https://www.youtube.com/watch?v=IxQzqy26ZO4"
             target="_blank"
             rel="noopener noreferrer">
@@ -40,10 +42,7 @@
         </div>
       </div>
       <div class="landing-page-graphic-container fadeInTop">
-        <img
-          class="landing-page-graphic"
-          src="../../../assets/landing-page-graphic.png"
-          alt="Thumb" />
+        <img class="landing-page-graphic" [src]="graphicUrl" alt="Thumb" />
       </div>
     </div>
   </div>

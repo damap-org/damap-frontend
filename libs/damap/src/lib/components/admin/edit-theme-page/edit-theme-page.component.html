@@ -1,0 +1,135 @@
+<div class="admin-theme-page">
+  <section class="header-section">
+    <button mat-icon-button (click)="navigateBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2 class="mat-h2 mat-title">
+      {{ "admin.color-theme.title" | translate }}
+    </h2>
+  </section>
+
+  <section class="actions-section">
+    <mat-checkbox
+      (change)="exactColorModeSignal.set($event.checked)"
+      [checked]="exactColorModeSignal()"
+      >{{ "admin.color-theme.exact-colors" | translate }}</mat-checkbox
+    >
+    <mat-checkbox
+      (change)="advancedModeSignal.set($event.checked)"
+      [checked]="advancedModeSignal()"
+      >{{ "admin.color-theme.advanced" | translate }}</mat-checkbox
+    >
+    <button mat-flat-button (click)="onSave()">
+      {{ "admin.color-theme.buttons.save" | translate }}
+    </button>
+  </section>
+
+  <div class="section-spacer"></div>
+
+  <section class="color-picker-section">
+    <h2 class="mat-h2 mat-title">
+      {{ "admin.color-theme.colorPicker.title" | translate }}
+    </h2>
+    <form [formGroup]="colorsForm">
+      <div>
+        <app-color-picker
+          [controlName]="'primary'"
+          [control]="colorsForm.get('primary')!"
+          [colorTitle]="'admin.color-theme.colors.primary' | translate"
+          [canDisable]="false"></app-color-picker>
+
+        <app-color-picker
+          [control]="colorsForm.get('secondary')!"
+          [colorTitle]="'admin.color-theme.colors.secondary' | translate"
+          [controlName]="'secondary'"
+          (changedEnableStatus)="
+            onColorEnabledChange($event)
+          "></app-color-picker>
+
+        <app-color-picker
+          [control]="colorsForm.get('tertiary')!"
+          [colorTitle]="'admin.color-theme.colors.tertiary' | translate"
+          [controlName]="'tertiary'"
+          (changedEnableStatus)="
+            onColorEnabledChange($event)
+          "></app-color-picker>
+      </div>
+      @if (advancedModeSignal()) {
+        <div>
+          <app-color-picker
+            [controlName]="'primaryContainer'"
+            [control]="colorsForm.get('primaryContainer')!"
+            [colorTitle]="
+              'admin.color-theme.colors.primary-container' | translate
+            "
+            (changedEnableStatus)="
+              onColorEnabledChange($event)
+            "></app-color-picker>
+
+          <app-color-picker
+            [controlName]="'secondaryContainer'"
+            [control]="colorsForm.get('secondaryContainer')!"
+            [colorTitle]="
+              'admin.color-theme.colors.secondary-container' | translate
+            "
+            (changedEnableStatus)="
+              onColorEnabledChange($event)
+            "></app-color-picker>
+
+          <app-color-picker
+            [controlName]="'tertiaryContainer'"
+            [control]="colorsForm.get('tertiaryContainer')!"
+            [colorTitle]="
+              'admin.color-theme.colors.tertiary-container' | translate
+            "
+            (changedEnableStatus)="
+              onColorEnabledChange($event)
+            "></app-color-picker>
+        </div>
+      }
+    </form>
+  </section>
+
+  <section class="color-preview-section">
+    <h2 class="mat-h2 mat-title">
+      {{ "admin.color-theme.colorPreview.title" | translate }}
+    </h2>
+    <div class="color-preview-grid">
+      <div class="color-group">
+        <h3>{{ "admin.color-theme.colorPreview.primary" | translate }}</h3>
+        <div class="color-swatch color-swatch-primary">
+          <span>--mdc-theme-primary</span>
+        </div>
+        @if (advancedModeSignal()) {
+          <div class="color-swatch color-swatch-primary-container">
+            <span>--mdc-theme-primary-container</span>
+          </div>
+        }
+      </div>
+
+      <div class="color-group">
+        <h3>{{ "admin.color-theme.colorPreview.secondary" | translate }}</h3>
+        <div class="color-swatch color-swatch-secondary">
+          <span>--mdc-theme-secondary</span>
+        </div>
+        @if (advancedModeSignal()) {
+          <div class="color-swatch color-swatch-secondary-container">
+            <span>--mdc-theme-secondary-container</span>
+          </div>
+        }
+      </div>
+
+      <div class="color-group">
+        <h3>{{ "admin.color-theme.colorPreview.tertiary" | translate }}</h3>
+        <div class="color-swatch color-swatch-tertiary">
+          <span>--mdc-theme-tertiary</span>
+        </div>
+        @if (advancedModeSignal()) {
+          <div class="color-swatch color-swatch-tertiary-container">
+            <span>--mdc-theme-tertiary-container</span>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,4 +1,6 @@
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatInput } from '@angular/material/input';
 import { DashboardComponent } from './dashboard.component';
 import { FlipCardComponent } from '../../widgets/flip-card/flip-card.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,6 +22,8 @@ import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
     MatIconModule,
     MatCardModule,
     InfoCardComponent,
+    FormsModule,
+    MatInput,
   ],
   exports: [
     CommonModule,

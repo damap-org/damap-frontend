@@ -5,10 +5,15 @@ import {
   HttpHeaders,
   HttpParams,
 } from '@angular/common/http';
+import {
+  InternalStorage,
+  InternalStorageTranslation,
+} from '../domain/internal-storage';
 import { catchError, map, retry, shareReplay } from 'rxjs/operators';
 
 import { APP_ENV } from '../constants';
 import { Access } from '../domain/access';
+import { Banner } from '../domain/banner';
 import { Config } from '../domain/config';
 import { Consent } from '../domain/consent';
 import { Contributor } from '../domain/contributor';
@@ -18,17 +23,14 @@ import { DmpListItem } from '../domain/dmp-list-item';
 import { FeedbackService } from './feedback.service';
 import { Gdpr } from '../domain/gdpr';
 import { Injectable } from '@angular/core';
-import {
-  InternalStorage,
-  InternalStorageTranslation,
-} from '../domain/internal-storage';
 import { Observable } from 'rxjs';
 import { Project } from '../domain/project';
+import { RecommendedRepository } from '../domain/recommended-repository';
+import { Repository } from '../domain/repository';
 import { RepositoryDetails } from '../domain/repository-details';
 import { SearchResult } from '../domain/search/search-result';
 import { TranslateService } from '@ngx-translate/core';
 import { Version } from '../domain/version';
-import { Banner } from '../domain/banner';
 
 @Injectable({
   providedIn: 'root',
@@ -459,6 +461,70 @@ export class BackendService {
 
   deleteAppBanner(): Observable<void> {
     return this.http.delete<void>(`${this.backendUrl}admin/banner`);
+  }
+
+  getAdminRecommendedRepositories(): Observable<RecommendedRepository[]> {
+    return this.http
+      .get<
+        RecommendedRepository[]
+      >(`${this.backendUrl}admin/recommended-repositories`)
+      .pipe(
+        retry(3),
+        catchError(
+          this.handleError('http.error.admin.recommended-repositories.load'),
+        ),
+      );
+  }
+
+  createAdminRecommendedRepository(
+    repository: RecommendedRepository,
+  ): Observable<RecommendedRepository> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+    return this.http
+      .post<RecommendedRepository>(
+        `${this.backendUrl}admin/recommended-repositories`,
+        repository,
+        httpOptions,
+      )
+      .pipe(
+        retry(3),
+        catchError(
+          this.handleError('http.error.admin.recommended-repositories.save'),
+        ),
+      );
+  }
+
+  deleteAdminRecommendedRepository(id: number): Observable<void> {
+    return this.http
+      .delete<void>(`${this.backendUrl}admin/recommended-repositories/${id}`)
+      .pipe(
+        retry(3),
+        catchError(
+          this.handleError('http.error.admin.recommended-repositories.delete'),
+        ),
+      );
+  }
+
+  uploadImageTheme(imageKey: string, file: FormData): Observable<any> {
+    return this.http
+      .put(`${this.backendUrl}admin/image-theme`, file)
+      .pipe(
+        retry(3),
+        catchError(this.handleError('http.error.admin.image.upload')),
+      );
+  }
+
+  deleteImageTheme(imageKey: string): Observable<any> {
+    return this.http
+      .delete(`${this.backendUrl}admin/image-theme?imageKey=${imageKey}`)
+      .pipe(
+        retry(3),
+        catchError(this.handleError('http.error.admin.image.delete')),
+      );
   }
 
   private handleError(message = 'http.error.standard') {

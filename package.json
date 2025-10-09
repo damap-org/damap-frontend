@@ -39,6 +39,7 @@
     "@angular/platform-browser": "19.2.18",
     "@angular/platform-browser-dynamic": "^19.2.18",
     "@angular/router": "19.2.18",
+    "@material/material-color-utilities": "^0.3.0",
     "@ngrx/component-store": "19.0.0",
     "@ngrx/effects": "19.0.0",
     "@ngrx/entity": "19.0.0",

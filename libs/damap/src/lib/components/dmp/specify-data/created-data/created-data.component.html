@@ -4,13 +4,13 @@
     <div class="example-button-column">
       <div class="example-flex-container">
         <div class="example-button-container">
-          <button mat-flat-button color="primary" (click)="openDatasetDialog()">
+          <button mat-flat-button (click)="openDatasetDialog()">
             <mat-icon>edit</mat-icon>
             {{ "dmp.steps.data.specify.button.add.manual" | translate }}
           </button>
         </div>
         <div class="example-button-container" *ngIf="fitsServiceAvailable">
-          <button mat-flat-button color="accent" (click)="openUploadDialog()">
+          <button mat-flat-button (click)="openUploadDialog()">
             <mat-icon>cloud_upload</mat-icon>
             {{ "dmp.steps.data.specify.tab.upload" | translate }}
           </button>

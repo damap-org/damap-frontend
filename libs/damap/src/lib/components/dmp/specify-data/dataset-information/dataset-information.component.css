@@ -3,14 +3,14 @@
 }
 
 .description-section {
-  background: var(--surface-container-low);
+  background: var(--custom-surface-container-low);
   padding: 8px;
 }
 
 .info-section {
   display: flex;
   justify-content: space-between;
-  background: var(--surface-container-low);
+  background: var(--custom-surface-container-low);
   padding: 8px;
   border-radius: 4px;
   margin-bottom: 8px;
@@ -22,7 +22,7 @@
 }
 
 .resource-box {
-  background: var(--surface-container-low);
+  background: var(--custom-surface-container-low);
   padding: 8px;
   border-radius: 4px;
   margin-top: 8px;

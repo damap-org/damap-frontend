@@ -9,10 +9,7 @@
       </mat-card-header>
       <app-repo-details [repo]="repo"></app-repo-details>
       <mat-card-actions align="end">
-        <button
-          mat-raised-button
-          class="button-color-primary"
-          (click)="addRepository(repo)">
+        <button mat-flat-button (click)="addRepository(repo)">
           Use repository
         </button>
       </mat-card-actions>

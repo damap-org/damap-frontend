@@ -12,7 +12,7 @@ mat-form-field {
 
 .suggestions-label {
   font-size: 14px;
-  color: var(--primary);
+  color: var(--mdc-theme-primary);
   margin-left: 10px;
 }
 
@@ -20,7 +20,7 @@ mat-form-field {
   background-color: var(--mdc-filled-text-field-container-color);
   padding: 0%;
   border-radius: 30%;
-  border: var(--primary);
+  border: var(--mdc-theme-primary);
 }
 
 .cdk-overlay-container {

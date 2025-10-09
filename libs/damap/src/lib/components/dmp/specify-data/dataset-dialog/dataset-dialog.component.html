@@ -104,8 +104,8 @@
         </div>
       </div>
       <button
-        mat-raised-button
-        class="action-button button-color-primary"
+        mat-flat-button
+        class="action-button"
         (click)="addTechnicalResource()">
         {{
           "dmp.steps.data.specify.dialog.button.addTechnicalResource"
@@ -122,8 +122,7 @@
   </button>
   <button
     (click)="onDialogClose()"
-    mat-raised-button
-    class="button-color-primary"
+    mat-flat-button
     [disabled]="dataset.invalid">
     <ng-container *ngIf="mode === 'edit'">{{
       "dmp.steps.data.specify.dialog.button.update" | translate

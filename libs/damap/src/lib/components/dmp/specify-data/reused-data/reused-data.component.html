@@ -5,10 +5,7 @@
 </app-data-mc>
 
 <ng-container *ngIf="reusedKind.value === dataKind.SPECIFY">
-  <button
-    class="button-position button-color-primary"
-    mat-raised-button
-    (click)="openDatasetDialog()">
+  <button class="button-position" mat-flat-button (click)="openDatasetDialog()">
     {{ "dmp.steps.data.specify.button.add.manual" | translate }}
   </button>
   <p translate>or</p>

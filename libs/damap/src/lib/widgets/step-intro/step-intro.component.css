@@ -1,6 +1,6 @@
 div {
   margin: 1rem 0rem;
-  color: var(--step-intro-color);
+  color: var(--custom-step-intro-color);
   font-weight: bolder;
   font-size: 0.9rem;
 }

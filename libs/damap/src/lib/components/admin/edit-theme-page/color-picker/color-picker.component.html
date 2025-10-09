@@ -1,0 +1,26 @@
+<div class="color-picker" [class.disabled]="isDisabled">
+  <div class="picker-controls" (click)="onPickerControlsClick($event)">
+    @if (canDisable) {
+      <mat-checkbox
+        [checked]="!isDisabled"
+        (change)="onToggleEnabled($event.checked)"
+        [aria-label]="'Enable ' + colorTitle + ' color'"
+        >Enable</mat-checkbox
+      >
+    }
+    <label class="picker-label" [for]="colorTitle + '-input'">{{
+      colorTitle
+    }}</label>
+    <input
+      #colorInput
+      [id]="colorTitle + '-input'"
+      type="color"
+      [formControl]="control"
+      [attr.aria-disabled]="isDisabled" />
+  </div>
+  @if (isDisabled && canDisable) {
+    <small class="helper-text">
+      {{ "admin.color-theme.colorPicker.helper-text" | translate }}
+    </small>
+  }
+</div>

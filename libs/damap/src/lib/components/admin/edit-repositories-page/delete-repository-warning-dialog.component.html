@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>
+  {{ "admin.repositories.delete-dialog.title" | translate }}
+</h1>
+<mat-dialog-content>
+  <p>{{ getDeleteContent() | translate }}</p>
+  <div class="repository-info">
+    <p>
+      <strong>{{ "admin.repositories.delete-dialog.name" | translate }}</strong
+      >:
+      {{ data.repository.name || data.repository.repositoryId }}
+    </p>
+    <p>
+      <strong>{{
+        "admin.repositories.delete-dialog.repositoryId" | translate
+      }}</strong
+      >:
+      {{ data.repository.repositoryId }}
+    </p>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">
+    {{ "admin.repositories.delete-dialog.cancel" | translate }}
+  </button>
+  <button mat-raised-button color="warn" (click)="onConfirm()">
+    {{ "admin.repositories.delete-dialog.confirm" | translate }}
+  </button>
+</mat-dialog-actions>
