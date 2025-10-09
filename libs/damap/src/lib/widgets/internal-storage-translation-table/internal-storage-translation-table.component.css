@@ -13,5 +13,5 @@
 }
 
 .danger-icon-color {
-  color: var(--error-color);
+  color: var(--custom-error-color);
 }

@@ -1,6 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UntypedFormArray, UntypedFormBuilder } from '@angular/forms';
+import {
+  UntypedFormArray,
+  UntypedFormBuilder,
+  FormBuilder,
+} from '@angular/forms';
 import { Contributor } from '../domain/contributor';
 import { mockContributor1, mockContributor2 } from '../mocks/contributor-mocks';
 import { completeDmp, noDataDmp } from '../mocks/dmp-mocks';
@@ -11,7 +15,9 @@ describe('FormService', () => {
   let formbuilder: UntypedFormBuilder;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ providers: [UntypedFormBuilder] });
+    TestBed.configureTestingModule({
+      providers: [UntypedFormBuilder, FormBuilder],
+    });
     service = TestBed.inject(FormService);
     formbuilder = TestBed.inject(UntypedFormBuilder);
   });

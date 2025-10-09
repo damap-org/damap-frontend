@@ -1,0 +1,31 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { TranslateModule } from '@ngx-translate/core';
+import { DeleteWarningDialogComponent } from '../../../widgets/delete-warning-dialog/delete-warning-dialog.component';
+
+@Component({
+  selector: 'damap-delete-image-warning-dialog',
+  imports: [CommonModule, TranslateModule, MatDialogModule, MatButtonModule],
+  template: `
+    <h1 mat-dialog-title>{{ 'dialog.delete.title' | translate }}</h1>
+    <mat-dialog-content>{{
+      getDeleteContent() | translate
+    }}</mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="false">
+        {{ 'admin.images.dialog.cancel' | translate }}
+      </button>
+      <button mat-button [mat-dialog-close]="true">
+        {{ 'admin.images.dialog.delete' | translate }}
+      </button>
+    </mat-dialog-actions>
+  `,
+  standalone: true,
+})
+export class DeleteImageWarningDialogComponent extends DeleteWarningDialogComponent {
+  override getDeleteContent(): string {
+    return 'admin.images.dialog.warning';
+  }
+}

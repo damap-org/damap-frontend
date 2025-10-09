@@ -82,11 +82,7 @@
   <button mat-button (click)="onNoClick()">
     {{ "admin.dialog.internal-storage.button.cancel" | translate }}
   </button>
-  <button
-    (click)="onDialogClose()"
-    mat-raised-button
-    class="button-color-primary"
-    [disabled]="isDisabled()">
+  <button (click)="onDialogClose()" mat-flat-button [disabled]="isDisabled()">
     <ng-container *ngIf="mode === 'edit'">{{
       "admin.dialog.internal-storage.button.update" | translate
     }}</ng-container>

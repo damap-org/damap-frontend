@@ -21,10 +21,6 @@
     padding: 8px;
   }
 
-  .mat-title-medium {
-    font-size: 1.2rem;
-  }
-
   .mat-card-container {
     flex-direction: column;
     width: 100%;

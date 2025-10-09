@@ -1,4 +1,6 @@
 import { ServiceConfig } from './config-services';
+import { ColorTheme } from './color-theme';
+import { BackendImage } from './backend-image';
 
 export interface Config {
   readonly issuer: string;
@@ -18,4 +20,7 @@ export interface Config {
   readonly fitsServiceAvailable: boolean;
   readonly livePreviewAvailable: boolean;
   readonly ethicalReportEnabled: boolean;
+  readonly images: BackendImage[];
+  readonly colorTheme: ColorTheme;
+  readonly institutionMode?: boolean;
 }

@@ -25,15 +25,3 @@
     line-height: normal;
   }
 }
-
-.mdc-button {
-  background-color: var(--primary-lightest);
-  color: var(--primary);
-  border: 1px solid var(--primary);
-}
-
-.mdc-button.active {
-  background-color: var(--primary);
-  color: var(--primary-lightest);
-  border-color: var(--primary);
-}

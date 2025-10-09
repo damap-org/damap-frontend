@@ -26,7 +26,6 @@
             id="damap-logo"
             class="mat-focus-indicator"
             [routerLink]="'/dashboard'">
-            {{ "title" | translate }}
             <span *ngIf="!isCollapsed">{{ "title" | translate }}</span>
           </a>
         </div>
@@ -40,7 +39,7 @@
       <div class="languageElement-desktop">
         <button
           mat-button
-          class="mm-navbar-button material-btn-text-primary-lightest"
+          class="h-full material-btn-text-primary-lightest"
           [matMenuTriggerFor]="language">
           {{ lang }}
         </button>
@@ -156,7 +155,12 @@
             [href]="'layout.logo.link' | translate"
             target="_blank"
             rel="noopener">
-            <img src="assets/logo.svg" alt="Logo" height="150px" width="auto" />
+            <img
+              [src]="logoUrl"
+              alt="Logo"
+              [class]="
+                isDefaultLogo(logoUrl) ? 'header-logo-default' : 'header-logo'
+              " />
           </a>
         </div>
       </mat-toolbar-row>

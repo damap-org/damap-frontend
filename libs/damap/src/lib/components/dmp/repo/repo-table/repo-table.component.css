@@ -7,11 +7,11 @@ tr.detail-row {
 }
 
 tr.element-row:not(.expanded-row):hover {
-  background: var(--surface-container-low);
+  background: var(--custom-surface-container-low);
 }
 
 tr.element-row:not(.expanded-row):active {
-  background: var(--surface-container-high);
+  background: var(--custom-surface-container-high);
 }
 
 .element-row td {
@@ -54,10 +54,6 @@ div > div > button {
 .repo-filter-container {
   display: flex;
   gap: 15px;
-}
-
-.reset-filter-button {
-  width: 100%;
 }
 
 @media (max-width: 860px) {

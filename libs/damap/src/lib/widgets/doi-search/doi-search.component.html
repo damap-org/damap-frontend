@@ -8,8 +8,7 @@
       [errorMessage]="'form.error.doi'"
       (searchChange)="searchChange($event)"></app-search-field>
     <button
-      mat-raised-button
-      class="button-color-primary"
+      mat-flat-button
       type="submit"
       (click)="search()"
       [disabled]="form.invalid || loading === loadingState.LOADING">

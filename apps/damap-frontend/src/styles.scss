@@ -4,97 +4,91 @@
 
 /* Theme colors as CSS variables */
 :root {
-  --primary: #{mat.get-theme-color($app-light-theme, primary)};
-  --on-primary: #{mat.get-theme-color($app-light-theme, on-primary)};
-  --primary-lightest: #{mat.get-theme-color($app-light-theme, primary, 100)};
-  --primary-lightest-shadow: #{mat.get-theme-color(
+  /*
+  These tokens are defined by us and used explicitly using var().
+  They are not used by Angular Material. They are also overriden by the custom-theme service.
+  If possible, we should use the Angular Material tokens instead of defining/using our own.
+  */
+  --custom-user-navbar-color: #{mat.get-theme-color(
+      $app-light-theme,
+      neutral,
+      25
+    )};
+  --custom-background-body: #f6f6f6;
+  --custom-surface-container-low: #{mat.get-theme-color(
+      $app-light-theme,
+      surface-container-low
+    )};
+  --custom-primary-lightest: #{mat.get-theme-color(
+      $app-light-theme,
+      primary,
+      100
+    )};
+  --custom-primary-lightest-shadow: #{mat.get-theme-color(
       $app-light-theme,
       primary,
       95
     )};
-  --accent-color-lighter: #{mat.get-theme-color($app-light-theme, primary, 60)};
-  --accent-color-very-light: #{mat.get-theme-color(
+  --custom-accent-color-lighter: #{mat.get-theme-color(
+      $app-light-theme,
+      primary,
+      60
+    )};
+  --custom-accent-color-very-light: #{mat.get-theme-color(
       $app-light-theme,
       primary,
       98
     )};
-  --secondary: #{mat.get-theme-color($app-light-theme, secondary)};
-  --secondary-container: #{mat.get-theme-color(
-      $app-light-theme,
-      secondary-container
-    )};
-  --on-secondary-container: #{mat.get-theme-color(
-      $app-light-theme,
-      on-secondary-container
-    )};
-  --secondary-fixed-dim: #{mat.get-theme-color(
+  --custom-secondary-fixed-dim: #{mat.get-theme-color(
       $app-light-theme,
       secondary-fixed-dim
     )};
-  --tertiary: #{mat.get-theme-color($app-light-theme, tertiary)};
-  --tertiary-container: #{mat.get-theme-color(
-      $app-light-theme,
-      tertiary-container
-    )};
-  --tertiary-color-very-light: #{mat.get-theme-color(
+  --custom-tertiary-color-very-light: #{mat.get-theme-color(
       $app-light-theme,
       tertiary,
       98
     )};
-
-  --on-surface: #{mat.get-theme-color($app-light-theme, on-surface)};
-  --surface-container-low: #{mat.get-theme-color(
-      $app-light-theme,
-      surface-container-low
-    )};
-  --surface-container-lowest: #{mat.get-theme-color(
-      $app-light-theme,
-      surface-container-lowest
-    )};
-  --surface-container-high: #{mat.get-theme-color(
+  --custom-surface-container-high: #{mat.get-theme-color(
       $app-light-theme,
       surface-container-high
     )};
-  --outline-variant: #{mat.get-theme-color($app-light-theme, outline-variant)};
-
-  --error-color: #{mat.get-theme-color($app-light-theme, error)};
-  --error-container: #{mat.get-theme-color($app-light-theme, error-container)};
-  --on-error-container: #{mat.get-theme-color(
+  --custom-error-color: #{mat.get-theme-color($app-light-theme, error)};
+  --custom-error-container: #{mat.get-theme-color(
+      $app-light-theme,
+      error-container
+    )};
+  --custom-on-error-container: #{mat.get-theme-color(
       $app-light-theme,
       on-error-container
     )};
-
-  --footer-color: #{mat.get-theme-color($app-light-theme, inverse-surface)};
-  --on-footer-color: #{mat.get-theme-color($app-light-theme, inverse-on-surface)};
-  --user-navbar-color: #{mat.get-theme-color($app-light-theme, neutral, 25)};
-  --neutral-color-medium-light: #{mat.get-theme-color(
+  --custom-neutral-color-medium-light: #{mat.get-theme-color(
       $app-light-theme,
       neutral,
       70
     )};
-  --step-intro-color: #{mat.get-theme-color(
+  --custom-step-intro-color: #{mat.get-theme-color(
       $app-light-theme,
       neutral-variant,
       60
     )};
-  --landing-page-info-bar-color: #{mat.get-theme-color(
+  --custom-landing-page-info-bar-color: #{mat.get-theme-color(
       $app-light-theme,
       neutral,
       40
     )};
 
-  // mat3 provides colors for error states, but not for success or warning...
-  // so it is set to predefined values here
-  --success-container: #e9f5d2;
-  --success-icon-color: #{mat.get-theme-color($app-light-theme, tertiary, 70)};
-  --on-success-container: black;
-  --warning-bg: #fff4cb;
-  --background-body: #f6f6f6;
-  // some values can not be generated from themes - they can be hardcoded here
-  --blue-tag: aliceblue;
-  --green-tag: #d1eee1;
-  --golden-tag: palegoldenrod;
-  --lavender-tag: lavender;
+  --custom-success-container: #e9f5d2;
+  --custom-success-icon-color: #{mat.get-theme-color(
+      $app-light-theme,
+      tertiary,
+      70
+    )};
+  --custom-on-success-container: black;
+  --custom-warning-bg: #fff4cb;
+  --custom-blue-tag: aliceblue;
+  --custom-green-tag: #d1eee1;
+  --custom-golden-tag: palegoldenrod;
+  --custom-lavender-tag: lavender;
 
   --body-typography: #{mat.get-theme-typography(
       $app-light-theme,
@@ -129,4 +123,12 @@
       display-medium,
       font
     )};
+}
+
+.w-full {
+  width: 100% !important;
+}
+
+.h-full {
+  height: 100% !important;
 }

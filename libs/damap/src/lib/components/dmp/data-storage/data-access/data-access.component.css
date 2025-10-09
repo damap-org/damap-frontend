@@ -25,7 +25,7 @@
 }
 
 .mat-expansion-panel {
-  outline: 1px solid var(--primary);
+  outline: 1px solid var(--mdc-theme-primary);
 }
 
 .mat-panel-title {

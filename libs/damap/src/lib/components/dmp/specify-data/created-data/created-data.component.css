@@ -31,3 +31,8 @@ app-dataset-table {
     overflow-x: auto;
   }
 }
+
+.button-color-primary {
+  background-color: var(--mdc-theme-primary);
+  color: var(--mdc-theme-on-primary);
+}

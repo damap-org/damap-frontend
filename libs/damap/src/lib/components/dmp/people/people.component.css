@@ -1,7 +1,8 @@
 .projectRoleTag {
   padding: 5px 7px;
   border-radius: 4px;
-  background: var(--tertiary-color-very-light);
+  background: var(--mdc-theme-tertiary-container);
+  color: var(--mdc-theme-on-tertiary-container);
   font-size: 10pt;
 }
 
@@ -100,11 +101,11 @@ mat-form-field {
 }
 
 .card-selected-empty {
-  border: 2px solid var(--accent-color-lighter);
+  border: 2px solid var(--custom-accent-color-lighter);
 }
 
 .white-background-panel {
-  background-color: var(--primary-lightest);
+  background-color: var(--custom-primary-lightest);
 }
 
 .contributor-mbox {
@@ -178,10 +179,15 @@ mat-form-field {
   padding: 8px 16px;
   display: flex;
   justify-content: flex-end;
-  background-color: var(--primary-lightest);
+  background-color: var(--custom-primary-lightest);
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .add-all-container button {
   margin: 0;
+}
+
+.white-button {
+  --mdc-protected-button-container-color: var(--custom-primary-lightest);
+  --mdc-protected-button-label-text-color: var(--mdc-theme-primary);
 }

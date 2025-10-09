@@ -6,9 +6,11 @@ import { NO_ERRORS_SCHEMA, isDevMode } from '@angular/core';
 
 import { Config, FeedbackService } from '@damap/core';
 import { ConfigService } from './config.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Router } from '@angular/router';
 import { TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 import { environment } from '../../environments/environment';
 
 describe('ConfigService', () => {
@@ -40,7 +42,9 @@ describe('ConfigService', () => {
   };
 
   beforeEach(() => {
-    spyOn(console, 'warn'); // Set up the spy only once.
+    spyOn(console, 'warn');
+    spyOn(console, 'error');
+    spyOn(console, 'log');
 
     const oauthSpy = jasmine.createSpyObj('OAuthService', [
       'configure',
@@ -53,7 +57,11 @@ describe('ConfigService', () => {
     const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
 
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [
+        HttpClientTestingModule,
+        TranslateModule.forRoot(),
+        MatSnackBarModule,
+      ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         ConfigService,
@@ -152,13 +160,21 @@ describe('ConfigService', () => {
 
   describe('initializeApp with no config', () => {
     it('should return false and log error when config is missing', async () => {
+      mockOAuthService.loadDiscoveryDocumentAndTryLogin.and.returnValue(
+        Promise.resolve(true),
+      );
+      mockOAuthService.hasValidIdToken.and.returnValue(true);
+      mockOAuthService.hasValidAccessToken.and.returnValue(true);
+
       const initializePromise = service.initializeApp();
       const req = httpMock.expectOne(`${environment.backendurl}config`);
-      req.flush(null);
+      req.error(new ErrorEvent('Network error'));
 
       await initializePromise;
       // eslint-disable-next-line no-console
-      expect(console.warn).toHaveBeenCalledWith('Config is missing!');
+      expect(console.error).toHaveBeenCalledWith(
+        'Failed to load config - please make sure your backend is up and running!',
+      );
     });
   });
 });

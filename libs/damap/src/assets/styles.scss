@@ -1,7 +1,7 @@
 html,
 body {
   height: 100%;
-  background-color: var(--background-body);
+  background-color: var(--custom-background-body);
 }
 
 body {
@@ -143,14 +143,14 @@ mat-card {
 }
 
 .card-shadow {
-  background-color: var(--primary-lightest) !important;
+  background-color: var(--custom-primary-lightest) !important;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
   border-radius: 8px !important;
 }
 
 .title-thin {
   font-weight: 300 !important;
-  color: var(--step-intro-color) !important;
+  color: var(--custom-step-intro-color) !important;
 }
 
 .label-title {
@@ -160,16 +160,16 @@ mat-card {
 
 .zebra-table {
   & tbody tr:not(.expanded-row):hover {
-    background: var(--secondary-container);
-    color: var(--on-secondary-container);
+    background: var(--mdc-theme-secondary-container);
+    color: var(--mdc-theme-on-secondary-container);
   }
 
   & tbody tr:not(.expanded-row):active {
-    background: var(--secondary-fixed-dim);
+    background: var(--custom-secondary-fixed-dim);
   }
 
   & tbody tr:nth-child(odd) {
-    background-color: var(--surface-container-low);
+    background-color: var(--custom-surface-container-low);
   }
 
   .mat-mdc-cell {
@@ -189,7 +189,7 @@ mat-card {
   //   .mdc-notched-outline__notch,
   //   .mdc-notched-outline__trailing {
   //     border-width: 1px !important;
-  //     border-color: var(--primary) !important;
+  //     border-color: var(--mdc-theme-primary) !important;
   //   }
   // }
 
@@ -197,7 +197,7 @@ mat-card {
   //   .mdc-notched-outline__leading,
   //   .mdc-notched-outline__trailing {
   //     border-width: 2px !important;
-  //     border-color: var(--primary) !important;
+  //     border-color: var(--mdc-theme-primary) !important;
   //   }
 
   //   .mdc-notched-outline__notch {
@@ -205,7 +205,7 @@ mat-card {
   //     border-left-width: 1px !important;
   //     border-bottom-width: 2px !important;
   //     border-top-width: 2px !important;
-  //     border-color: var(--primary) !important;
+  //     border-color: var(--mdc-theme-primary) !important;
   //   }
   // }
 */

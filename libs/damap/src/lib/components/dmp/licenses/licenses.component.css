@@ -1,5 +1,5 @@
 .warning {
-  background-color: var(--warning-bg);
+  background-color: var(--custom-warning-bg);
   border-radius: 4px;
   padding: 0.75rem;
   display: flex;

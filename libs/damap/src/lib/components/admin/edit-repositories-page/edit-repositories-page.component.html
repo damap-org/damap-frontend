@@ -1,0 +1,51 @@
+<div class="admin-repositories-page">
+  <section class="header-section">
+    <button mat-icon-button (click)="navigateBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2 class="mat-h2 mat-title">
+      {{ "admin.repositories.title" | translate }}
+    </h2>
+  </section>
+
+  <div class="search-and-current">
+    <section>
+      <app-repo-table
+        [repositories]="allRepositories()"
+        [selectedRepos]="repositories()"
+        [loaded]="loadingState()"
+        (repositoryToAdd)="addRepository($event)"
+        (repositoryDetails)="getRepositoryDetails($event)">
+      </app-repo-table>
+    </section>
+
+    <section>
+      <mat-card class="flex-card">
+        <mat-card-header>
+          <mat-card-title>
+            {{ "admin.repositories.current" | translate }}
+          </mat-card-title>
+        </mat-card-header>
+        @for (repository of repositories(); track repository.id) {
+          <mat-card class="repository-card">
+            <div>
+              <div class="repository-name">
+                {{ repository.name || repository.repositoryId }}
+              </div>
+              <div class="repository-id">
+                {{ repository.repositoryId }}
+              </div>
+            </div>
+            <button mat-icon-button (click)="deleteRepository(repository)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-card>
+        } @empty {
+          <div class="empty-state">
+            {{ "admin.repositories.empty" | translate }}
+          </div>
+        }
+      </mat-card>
+    </section>
+  </div>
+</div>

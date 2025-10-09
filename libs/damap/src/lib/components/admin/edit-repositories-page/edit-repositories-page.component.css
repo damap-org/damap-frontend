@@ -1,0 +1,67 @@
+.admin-repositories-page {
+  padding: 20px;
+}
+
+.header-section {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin-bottom: 32px;
+  button {
+    margin-right: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.search-and-current {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  > section {
+    flex: 1;
+  }
+}
+
+@media (max-width: 1200px) {
+  .search-and-current {
+    flex-direction: column;
+  }
+}
+
+.flex-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  padding-bottom: 16px;
+  background-color: var(--mdc-theme-surface);
+}
+
+.repository-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+  padding: 8px 16px;
+}
+
+.repository-name {
+  font-weight: var(--mat-sys-title-small-weight);
+  padding-bottom: 5px;
+}
+
+.repository-id {
+  font-size: var(--mat-sys-body-medium-size);
+  color: var(--mdc-theme-on-surface-variant);
+  font-family: monospace;
+}
+
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

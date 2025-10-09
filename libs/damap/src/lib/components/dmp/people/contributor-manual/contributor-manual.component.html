@@ -32,12 +32,8 @@
       </div>
       <div class="button-row">
         <button
-          class="action-button button-color-primary"
-          mat-raised-button
-          [ngClass]="{
-            'button-available': !form.invalid,
-            'button-diable': form.invalid,
-          }"
+          class="action-button"
+          mat-flat-button
           [disabled]="form.invalid"
           (click)="changeContactPerson()"
           title="{{ 'dmp.steps.people.contact.add' | translate }}">
@@ -50,12 +46,8 @@
           {{ "dmp.steps.people.contact.add" | translate }}
         </button>
         <button
-          class="action-button button-color-primary"
-          mat-raised-button
-          [ngClass]="{
-            'button-available': !form.invalid,
-            'button-diable': form.invalid,
-          }"
+          class="action-button"
+          mat-flat-button
           [disabled]="form.invalid"
           (click)="addContributor()"
           title="{{ 'dmp.steps.people.contributor.add' | translate }}">
@@ -71,8 +63,3 @@
     </mat-card-content>
   </mat-card>
 </div>
-
-<!-- [ngClass]="{
-  'material-icon-primary': !form.invalid,
-  'material-icon-on-secondary-container': form.invalid,
-}" -->

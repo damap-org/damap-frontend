@@ -2,10 +2,7 @@
   <h1 translate>admin.title</h1>
   <hr />
   <h2 translate>admin.internal-storage</h2>
-  <button
-    class="button-position button-color-primary"
-    mat-raised-button
-    (click)="openStorageDialog()">
+  <button class="button-position" mat-flat-button (click)="openStorageDialog()">
     <mat-icon>add</mat-icon>
     {{ "admin.create.storage" | translate }}
   </button>
@@ -29,15 +26,15 @@
   </div>
   <div *ngIf="selectedInternalStorageId !== null">
     <button
-      class="button-position button-color-primary"
-      mat-raised-button
+      class="button-position"
+      mat-flat-button
       (click)="openTranslationDialog()">
       <mat-icon>add</mat-icon>
       {{ "admin.create.translation" | translate }}
     </button>
     <button
-      class="button-position button-color-primary"
-      mat-raised-button
+      class="button-position"
+      mat-flat-button
       (click)="resetStorageSelection()">
       {{ "admin.reset-selection" | translate }}
     </button>
@@ -51,8 +48,8 @@
   <h2 translate>admin.banner</h2>
   <div *ngIf="!appBanner">
     <button
-      class="button-position button-color-primary"
-      mat-raised-button
+      class="button-position"
+      mat-flat-button
       (click)="openBannerDialog('add')">
       <mat-icon>add</mat-icon>
       {{ "admin.create.banner" | translate }}
@@ -61,16 +58,13 @@
   </div>
   <div *ngIf="appBanner">
     <button
-      class="button-position button-color-primary"
-      mat-raised-button
+      class="button-position"
+      mat-flat-button
       (click)="openBannerDialog('edit')">
       <mat-icon>edit</mat-icon>
       {{ "admin.edit.banner" | translate }}
     </button>
-    <button
-      class="button-position button-color-primary"
-      mat-raised-button
-      (click)="deleteBanner()">
+    <button class="button-position" mat-flat-button (click)="deleteBanner()">
       <mat-icon>delete</mat-icon>
       {{ "admin.delete.banner" | translate }}
     </button>
@@ -91,4 +85,31 @@
       <p>Dismissible: {{ appBanner.dismissible }}</p>
     </div>
   </div>
+  <hr />
+  <h2 translate>admin.theme</h2>
+  <button
+    class="button-position"
+    mat-flat-button
+    (click)="navigateTo('/admin/theme')">
+    <mat-icon>edit</mat-icon>
+    {{ "admin.edit.theme" | translate }}
+  </button>
+  <hr />
+  <h2 translate>admin.image</h2>
+  <button
+    class="button-position"
+    mat-flat-button
+    (click)="navigateTo('/admin/images')">
+    <mat-icon>edit</mat-icon>
+    {{ "admin.edit.images" | translate }}
+  </button>
+  <hr />
+  <h2 translate>admin.recommended-repositories</h2>
+  <button
+    class="button-position"
+    mat-flat-button
+    (click)="navigateTo('/admin/repositories')">
+    <mat-icon>edit</mat-icon>
+    {{ "admin.edit.repositories" | translate }}
+  </button>
 </div>

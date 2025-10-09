@@ -24,7 +24,7 @@
   bottom: 0;
   left: 0;
   z-index: 10;
-  background-color: var(--surface-container-high);
+  background-color: var(--custom-surface-container-high);
   display: flex;
   justify-content: end;
   align-items: center;
@@ -47,7 +47,7 @@
   }
 
   .mobile-panel {
-    background-color: var(--surface-container-high);
+    background-color: var(--custom-surface-container-high);
   }
 
   .mobile-accordion {
@@ -55,7 +55,7 @@
     position: sticky;
     bottom: 0;
     z-index: 10;
-    background-color: var(--surface-container-high);
+    background-color: var(--custom-surface-container-high);
     border-radius: 16px;
   }
 

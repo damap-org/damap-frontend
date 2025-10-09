@@ -1,4 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
+import { SafeUrl } from '@angular/platform-browser';
+import { ImageThemeService } from 'apps/damap-frontend/src/app/services/image-theme.service';
+import { IMAGE_KEYS } from '../../domain/image-keys';
 
 @Component({
   selector: 'app-orcid',
@@ -6,6 +9,13 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./orcid.component.css'],
   standalone: false,
 })
-export class OrcidComponent {
+export class OrcidComponent implements OnInit {
+  private readonly imageThemeService = inject(ImageThemeService);
   @Input() orcidId: string;
+
+  logoUrl: SafeUrl;
+
+  ngOnInit() {
+    this.logoUrl = this.imageThemeService.getImage(IMAGE_KEYS.ORCID_ID);
+  }
 }

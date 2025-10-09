@@ -90,6 +90,7 @@ import { TreeSelectFormFieldModule } from '../../../widgets/tree-select-form-fie
     RepoComponent,
     RepoInstructionComponent,
     SharedModule,
+    RepoTableComponent,
 
     // Materials
     MatCardModule,

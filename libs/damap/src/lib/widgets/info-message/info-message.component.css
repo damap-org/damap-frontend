@@ -4,8 +4,8 @@
   padding: 1rem;
   align-items: flex-start;
   border-radius: 5px;
-  color: var(--on-secondary-container);
-  background-color: var(--secondary-container);
+  color: var(--mdc-theme-on-secondary-container);
+  background-color: var(--mdc-theme-secondary-container);
 }
 
 .mat-icon {

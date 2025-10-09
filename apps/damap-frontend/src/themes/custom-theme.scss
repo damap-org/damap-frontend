@@ -30,8 +30,20 @@ $_rest: (
 
 $app-primary: map.merge(map.get(palettes.$palettes, primary), $_rest);
 $app-accent: map.merge(map.get(palettes.$palettes, tertiary), $_rest);
-// You can also replace the lines above and use Angular Material colors instead:
-// Information on available pre-built palettes: https://material.angular.io/guide/theming#pre-defined-palettes
+
+/*
+The theming of this application is managed in the custom-theme.
+This theme remains here for backward compatibility with styles.scss static variables.
+*/
+$app-light-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: $app-primary,
+      tertiary: $app-accent,
+    ),
+  )
+);
 
 @font-face {
   font-family: Roboto;
@@ -61,44 +73,38 @@ $app-accent: map.merge(map.get(palettes.$palettes, tertiary), $_rest);
     format("truetype");
 }
 
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as `color` or `typography`.
-$app-light-theme: mat.define-theme(
-  (
-    color: (
-      theme-type: light,
-      primary: $app-primary,
-      tertiary: $app-accent,
-    ),
-    typography: (
-      brand-family: "Roboto",
-      plain-family: "Roboto",
-      regular-weight: 400,
-      medium-weight: 500,
-      bold-weight: 700,
-    ),
-  )
-);
-
-// Not used in damap - just here for completions sake
-$app-dark-theme: mat.define-theme(
-  (
-    color: (
-      theme-type: dark,
-      primary: $app-primary,
-      tertiary: $app-accent,
-    ),
-  )
-);
-
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-// If you want to use dark theme in your app, include it here
+// Angular Material v19 theming approach
 html {
-  @include mat.all-component-themes($app-light-theme);
-  @include mat.strong-focus-indicators-theme($app-light-theme);
-  @include mat.typography-hierarchy($app-light-theme);
+  color-scheme: light dark;
+  @include mat.theme(
+    (
+      color: (
+        theme-type: light,
+        primary: $app-primary,
+        tertiary: $app-accent,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+  .mat-h2,
+  .mat-title {
+    font-weight: 400;
+  }
+
+  @include mat.slide-toggle-overrides(
+    (
+      selected-focus-track-color: var(--mdc-theme-primary),
+      selected-pressed-track-color: var(--mdc-theme-primary),
+      selected-hover-handle-color:
+        color-mix(in srgb, var(--mdc-theme-primary) 30%, white),
+      selected-focus-handle-color:
+        color-mix(in srgb, var(--mdc-theme-primary) 30%, white),
+      selected-focus-state-layer-color: var(--mdc-theme-primary),
+      selected-pressed-handle-color:
+        color-mix(in srgb, var(--mdc-theme-primary) 60%, white),
+    )
+  );
 }
 
 .material-icons {
@@ -146,7 +152,7 @@ html {
   }
 
   &.md-light {
-    color: var(--primary-lightest);
+    color: var(--custom-primary-lightest);
   }
 }
 
@@ -154,27 +160,28 @@ html {
 // This is how mat3 recommends to change color - but it only works for primary, secondary,
 // tertiary and error, see https://material.angular.io/guide/theming#using-component-color-variants
 // All other classes overwrite variables inside the components directly
-.material-icon-primary {
-  @include mat.icon-color($app-light-theme, $color-variant: primary);
-}
 
 .material-icon-white-background-primary {
-  --mat-icon-color: white;
-  background-color: var(--primary);
+  --mat-icon-color: var(--mdc-theme-on-primary);
+  background-color: var(--mdc-theme-primary);
 }
 
 .material-icon-white-background-success {
-  --mat-icon-color: var(--primary);
+  --mat-icon-color: var(--mdc-theme-primary);
   background-color: white;
-  border-style: solid;
+  border: 2px solid var(--mdc-theme-primary);
+}
+
+.material-icon-primary-background-none {
+  --mat-icon-color: var(--mdc-theme-primary);
 }
 
 .material-icon-on-secondary-container {
-  --mat-icon-color: var(--on-secondary-container);
+  --mat-icon-color: var(--mdc-theme-on-secondary-container);
 }
 
 .material-icon-white {
-  --mat-icon-color: white;
+  --mat-icon-color: var(--mdc-theme-on-primary);
 }
 
 .material-icon-warning {
@@ -182,47 +189,39 @@ html {
 }
 
 .material-btn-text-primary-lightest {
-  --mdc-text-button-label-text-color: var(--primary-lightest);
+  --mdc-text-button-label-text-color: var(--custom-primary-lightest);
 }
 
 .snack-error {
-  --mdc-snackbar-container-color: var(--error-container);
-  --mdc-snackbar-supporting-text-color: var(--on-error-container);
+  --mdc-snackbar-container-color: var(--custom-error-container);
+  --mdc-snackbar-supporting-text-color: var(--custom-on-error-container);
   --mdc-snackbar-supporting-text-weight: bold;
-  --mat-snack-bar-button-color: var(--on-error-container);
+  --mat-snack-bar-button-color: var(--custom-on-error-container);
   --mdc-text-button-label-text-weight: bold;
 }
 
 .snack-success {
-  --mdc-snackbar-container-color: var(--success-container);
-  --mdc-snackbar-supporting-text-color: var(--on-success-container);
+  --mdc-snackbar-container-color: var(--custom-success-container);
+  --mdc-snackbar-supporting-text-color: var(--custom-on-success-container);
   --mdc-snackbar-supporting-text-weight: bold;
-  --mat-snack-bar-button-color: var(--on-success-container);
+  --mat-snack-bar-button-color: var(--custom-on-success-container);
   --mdc-text-button-label-text-weight: bold;
 }
 
-// only works for mat-raised-button, since they are the most used button in the application by far
-.button-color-primary {
-  --mdc-protected-button-container-color: var(--primary);
-  --mdc-protected-button-label-text-color: var(--on-primary);
-}
-
-// only works for fab-button
-.fab-button-color-primary {
-  --mdc-fab-container-color: var(--primary);
-  --mat-fab-foreground-color: var(--on-primary);
+.material-icon-primary {
+  color: var(--mdc-theme-primary);
 }
 
 .card-selected {
-  --mdc-elevated-card-container-color: var(--surface-container-low);
+  --mdc-elevated-card-container-color: var(--custom-surface-container-low);
 }
 
 .form-error {
-  --mat-expansion-header-text-color: var(--error-color);
+  --mat-expansion-header-text-color: var(--custom-error-color);
 }
 
 .mat-toolbar-row-grey {
-  background-color: var(--surface-container-low);
+  background-color: var(--custom-surface-container-low);
 }
 
 .mat-sidenav-divider-grey {
@@ -253,4 +252,9 @@ html {
     font-size: small;
     line-height: normal;
   }
+}
+
+// used with mat-raised-button
+.empty-button-with-border {
+  border: 1px solid var(--mdc-theme-primary) !important;
 }
