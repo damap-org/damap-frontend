@@ -39,9 +39,9 @@
       </div>
       <app-textarea-wrapper
         [control]="description"
-        label="{{
-          'dmp.steps.project.input.description' | translate
-        }}"></app-textarea-wrapper>
+        [label]="'dmp.steps.project.input.short.description'"
+        [longLabel]="'dmp.steps.project.input.long.description'">
+      </app-textarea-wrapper>
       <button
         class="button-position-left"
         mat-flat-button

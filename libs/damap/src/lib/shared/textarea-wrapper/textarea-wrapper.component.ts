@@ -13,6 +13,7 @@ import { Dataset } from '../../domain/dataset';
 })
 export class TextareaWrapperComponent implements OnInit {
   @Input() label: string;
+  @Input() longLabel: string;
   @Input() labelSuffix: string;
   @Input() labelDatasets: Dataset[];
   @Input() control: UntypedFormControl;

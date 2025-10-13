@@ -1,6 +1,8 @@
+<div class="question-long-hint">{{ longLabel | translate }}</div>
 <mat-form-field
   [appearance]="appearance"
   class="mat-textarea-density"
+  subscriptSizing="dynamic"
   floatLabel="auto">
   <!-- inline style is a temporary solution for an issue where the * for required would be rendered after a line break -->
   <!-- this will hopefully be fixed with the next angular version, lets pray -->
@@ -31,7 +33,6 @@
       >{{ message.value.length }} / {{ maxLength }}
     </mat-hint>
   </ng-template>
-
   <!-- AUTOCOMPLETE -->
   <ng-container
     *ngIf="autocompleteOptions?.length && isAutocompleteOpen; else standard">
@@ -73,7 +74,6 @@
       </mat-option>
     </mat-autocomplete>
   </ng-container>
-
   <!-- ERROR -->
   <mat-error *ngIf="!control?.errors?.required && control?.errors?.empty">
     {{ "form.error.empty" | translate }}
