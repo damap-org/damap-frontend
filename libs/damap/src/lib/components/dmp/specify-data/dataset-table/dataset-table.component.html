@@ -54,6 +54,15 @@
       </td>
     </ng-container>
 
+    <ng-container matColumnDef="license">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ "dmp.steps.data.specify.table.header.license" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let dataset">
+        <div>{{ getLicenseName(dataset.license) | translate }}</div>
+      </td>
+    </ng-container>
+
     <ng-container matColumnDef="source">
       <th mat-header-cell *matHeaderCellDef>
         {{ "dmp.steps.data.specify.table.header.source" | translate }}

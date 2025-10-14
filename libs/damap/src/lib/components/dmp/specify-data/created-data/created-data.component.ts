@@ -42,6 +42,7 @@ export class CreatedDataComponent
     'fileFormat',
     'size',
     'description',
+    'license',
     'actions',
   ];
 

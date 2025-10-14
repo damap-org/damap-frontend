@@ -8,6 +8,7 @@ import { FILE_SIZES } from '../data-specs';
 import { MatDialog } from '@angular/material/dialog';
 import { DatasetInformationComponent } from '../dataset-information/dataset-information.component';
 import { TranslateService } from '@ngx-translate/core';
+import { LicenseDefinitions } from '../../../../widgets/license-wizard/license-wizard-list';
 
 @Component({
   selector: 'app-dataset-table',
@@ -89,6 +90,17 @@ export class DatasetTableComponent {
         });
     });
     return type;
+  }
+
+  getLicenseName(licenseId: string): string {
+    if (!licenseId) {
+      return '';
+    }
+    const license = LicenseDefinitions.find(l => l.id === licenseId);
+    if (!license) {
+      return '';
+    }
+    return license.name;
   }
 
   private findFormArrayIndex(dataset: Dataset): number {

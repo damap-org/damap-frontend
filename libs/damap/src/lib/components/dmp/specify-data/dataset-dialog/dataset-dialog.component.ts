@@ -2,7 +2,6 @@ import { Component, Inject } from '@angular/core';
 import {
   FormArray,
   FormControl,
-  FormGroup,
   UntypedFormControl,
   UntypedFormGroup,
 } from '@angular/forms';
@@ -14,9 +13,10 @@ import { IdentifierTypeReusedData } from '../../../../domain/identifier-type';
 import {
   ccBy,
   mit,
+  LicenseDefinitions,
 } from '../../../../widgets/license-wizard/license-wizard-list';
 
-import { Dataset, TechnicalResource } from '../../../../domain/dataset';
+import { Dataset } from '../../../../domain/dataset';
 import { DataSource } from '../../../../domain/enum/data-source.enum';
 import { Identifier } from '../../../../domain/identifier';
 import { DataType } from '../../../../domain/enum/data-type.enum';
@@ -31,6 +31,7 @@ export class DatasetDialogComponent {
   readonly FILE_TYPES = FILE_TYPES;
   readonly FILE_SIZES = FILE_SIZES;
   readonly datasetSource: any = DataSource;
+  readonly licenses = LicenseDefinitions;
   identifierTypeReusedData: any = IdentifierTypeReusedData;
 
   mode = 'add';
@@ -70,12 +71,22 @@ export class DatasetDialogComponent {
     return this.dataset.get('technicalResources') as FormArray;
   }
 
+  get license(): UntypedFormControl {
+    return this.dataset.get('license') as UntypedFormControl;
+  }
+
   addTechnicalResource(): void {
     this.technicalResources.push(this.formService.createTechnicalResource());
   }
 
   removeTechnicalResource(index: number): void {
     this.technicalResources.removeAt(index);
+  }
+
+  setLicenseSelectorResult(event: any) {
+    if (event) {
+      this.license.setValue(event.id);
+    }
   }
 
   onNoClick(): void {

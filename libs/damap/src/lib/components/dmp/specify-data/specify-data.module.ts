@@ -1,5 +1,6 @@
 import { ByteModule } from '../../../pipes/byte/byte.module';
 import { CommonModule } from '@angular/common';
+import { LicenseWizardModule } from '../../../widgets/license-wizard/license-wizard.module';
 import { CreatedDataComponent } from './created-data/created-data.component';
 import { DataMcComponent } from './data-mc/data-mc.component';
 import { DatasetDialogComponent } from './dataset-dialog/dataset-dialog.component';
@@ -49,6 +50,7 @@ import { InfoMessageModule } from '../../../widgets/info-message/info-message.mo
     MatTableModule,
     LimitStringPipe,
     InfoMessageModule,
+    LicenseWizardModule,
   ],
   declarations: [
     SpecifyDataComponent,
