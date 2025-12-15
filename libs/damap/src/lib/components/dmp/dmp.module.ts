@@ -52,13 +52,6 @@ export function HttpLoaderFactory(http: HttpBackend): MultiTranslateHttpLoader {
     MatButtonToggleModule,
     TranslateModule.forChild({
       defaultLanguage: 'en',
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpBackend],
-      },
-      isolate: true,
-      extend: true,
     }),
     VersionModule,
     AccessComponent,
