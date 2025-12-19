@@ -706,9 +706,6 @@
     "version-save.dialog.message": "Please enter a version name",
     "version-save.dialog.title": "Save new version",
     "file-upload.button.choose": "Choose File",
-    "file-upload.dropzone.hint": "Drag and drop files here",
-    "tree-select-form-field.filter.label": "Filter selection",
-    "tree-select-form-field.options.label": "Select options",
-    "tree-select-form-field.toggle.aria": "Toggle {{value}}"
+    "file-upload.dropzone.hint": "Drag and drop files here"
   }
 }
