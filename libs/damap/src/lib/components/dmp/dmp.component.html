@@ -340,10 +340,6 @@
           (costToAdd)="addCost()"
           (costToRemove)="removeCost($event)">
         </app-dmp-costs>
-
-        <div *ngIf="costsStep.invalid" class="error-message">
-          {{ "dmp.steps.costs.error" | translate }}
-        </div>
       </ng-container>
     </ng-container>
     <ng-container *ngIf="selectedStep === 10">

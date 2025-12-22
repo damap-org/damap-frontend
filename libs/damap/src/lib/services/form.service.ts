@@ -714,7 +714,7 @@ export class FormService {
   private createCostFormGroup(): UntypedFormGroup {
     return this.formBuilder.group({
       id: new FormControl<number>({ value: null, disabled: true }),
-      title: new FormControl<string>('New cost', {
+      title: new FormControl<string>('Cost Name', {
         validators: [
           Validators.required,
           Validators.maxLength(this.TEXT_SHORT_LENGTH),
