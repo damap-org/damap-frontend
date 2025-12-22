@@ -40,12 +40,6 @@
           <mat-expansion-panel
             class="expansion-panel"
             *ngFor="let item of list.controls; let i = index">
-            <button
-              mat-icon-button
-              aria-label="Remove cost"
-              (click)="removeCost(i)">
-              <mat-icon>cancel</mat-icon>
-            </button>
             <mat-expansion-panel-header>
               <mat-panel-title [class.form-error]="item.invalid">
                 {{ item.value.title }}
@@ -53,6 +47,13 @@
               <mat-panel-description>
                 {{ item.value.value | currency: item.value.currencyCode }}
               </mat-panel-description>
+              <button
+                mat-icon-button
+                class="remove-button"
+                aria-label="Remove cost"
+                (click)="removeCost(i)">
+                <mat-icon>cancel</mat-icon>
+              </button>
             </mat-expansion-panel-header>
             <div [formArrayName]="i" class="cost-form-container">
               <div class="form-row">
