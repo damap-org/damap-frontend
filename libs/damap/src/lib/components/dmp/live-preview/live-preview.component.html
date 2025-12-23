@@ -12,11 +12,12 @@
     </p>
     <ng-container>
       <div class="select-row">
-        <mat-form-field class="expanded-select" appearance="fill">
+        <mat-form-field class="expanded-select">
           <mat-label>{{ "preview.templateSelection" | translate }}</mat-label>
           <mat-select
             [(value)]="selectedTemplate"
-            (selectionChange)="onTemplateChange($event)">
+            (selectionChange)="onTemplateChange($event)"
+            [placeholder]="'preview.requestTemplateSelection' | translate">
             <mat-option
               *ngFor="let id of dmpTemplate | keyvalue"
               [value]="id.key">
@@ -37,9 +38,6 @@
     <div *ngIf="!pdfUrl && selectedTemplate.length !== 0" class="no-preview">
       <mat-icon class="loading-icon">autorenew</mat-icon>
       <p>{{ "preview.info" | translate }}</p>
-    </div>
-    <div *ngIf="!pdfUrl && selectedTemplate.length === 0" class="no-preview">
-      <p>{{ "preview.requestTemplateSelection" | translate }}</p>
     </div>
   </div>
 </mat-dialog-content>
