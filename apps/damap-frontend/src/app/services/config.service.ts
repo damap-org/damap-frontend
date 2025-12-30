@@ -117,10 +117,6 @@ export class ConfigService {
     return this.config?.appTitle || 'DAMAP Frontend';
   }
 
-  public getUserRolesClaimPath(): string {
-    return this.config?.userRolesClaimPath || null;
-  }
-
   public getUserIdClaim(): string {
     return this.config?.userIdClaim || null;
   }
@@ -139,6 +135,10 @@ export class ConfigService {
 
   public getEmailClaim(): string {
     return this.config?.emailClaim || null;
+  }
+
+  public getUserRolesClaimPath(): string {
+    return this.config?.userRolesClaimPath || null;
   }
 
   public getAdminRoleName(): string {

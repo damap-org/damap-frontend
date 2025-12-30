@@ -6,7 +6,7 @@
           <mat-icon class="mat-icon-style">person</mat-icon>
           {{ person.firstName }} {{ person.lastName }}
           <mat-icon
-            *ngIf="person.contact"
+            *ngIf="contact"
             class="mat-icon-contact button-color-primary">
             contact_mail
           </mat-icon>
@@ -18,10 +18,9 @@
         {{ person.mbox }}
         <app-orcid
           *ngIf="
-            person.personId?.identifier &&
-            person.personId?.type === identifierType.ORCID
+            personId?.identifier && personId?.type === identifierType.ORCID
           "
-          [orcidId]="person.personId?.identifier"></app-orcid>
+          [orcidId]="personId?.identifier"></app-orcid>
       </div>
       <ng-content></ng-content>
     </div>

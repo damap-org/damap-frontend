@@ -5,7 +5,7 @@ import { IdentifierType } from '../domain/enum/identifier-type.enum';
 export const mockAccess: Access = {
   id: 100,
   dmpId: 100,
-  universityId: '12345',
+  identifier: '12345',
   personId: null,
   firstName: 'Max',
   lastName: 'Mustermann',
@@ -15,5 +15,5 @@ export const mockAccess: Access = {
   contact: true,
   roles: [],
   roleInProject: undefined,
-  access: FunctionRole.EDITOR,
+  role: FunctionRole.EDITOR,
 };

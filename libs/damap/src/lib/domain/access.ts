@@ -1,9 +1,21 @@
 import { FunctionRole } from './enum/function-role.enum';
-import { Contributor } from './contributor';
 
-export interface Access extends Contributor {
+export interface Access {
+  id: number;
   dmpId: number;
-  access: FunctionRole;
+  role: FunctionRole;
   start?: Date;
   until?: Date;
+  readonly identifier: string;
+  readonly firstName: string;
+  readonly lastName: string;
+  readonly mbox: string;
+}
+
+export interface UserDo {
+  identifier: string;
+  name: string;
+  firstName: string;
+  lastName: string;
+  email: string;
 }

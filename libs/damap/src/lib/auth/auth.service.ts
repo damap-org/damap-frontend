@@ -48,6 +48,12 @@ export class AuthService {
     for (const pathSeg of pathSegments) {
       roles = roles?.[pathSeg];
     }
+
+    // If a user has no roles, the IDP may not even return an empty array for the roles claim
+    if (!roles || !Array.isArray(roles)) {
+      return false;
+    }
+
     return roles.includes(this.configService.getAdminRoleName());
   }
 

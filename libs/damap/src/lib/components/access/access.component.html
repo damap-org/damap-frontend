@@ -16,12 +16,45 @@
       >{{ "access.list" | translate
       }}{{ "access.info" | translate }}</app-info-message
     >
+    <app-search-field
+      style="width: 100%; display: block; margin-top: 1rem"
+      label="access.search.label"
+      [control]="userSearchControl"
+      [autocomplete]="auto">
+    </app-search-field>
+
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="addNewAccess($event)">
+      <mat-option *ngFor="let user of searchResult$ | async" [value]="user">
+        <div class="list-option-container">
+          <div class="person-detail-content">
+            <strong>{{ user.firstName }} {{ user.lastName }}</strong>
+          </div>
+          <div class="person-detail-content" *ngIf="user.email">
+            <mat-icon
+              class="outline"
+              inline="true"
+              style="
+                vertical-align: middle;
+                font-size: 1rem;
+                width: 1rem;
+                height: 1rem;
+                margin-right: 4px;
+              "
+              >mail</mat-icon
+            >
+            {{ user.email }}
+          </div>
+        </div>
+      </mat-option>
+    </mat-autocomplete>
     <div class="access-list" *ngFor="let access of accesses$ | async">
       <damap-person-card [person]="access">
-        <div *ngIf="access.universityId !== this.userId; else user">
+        <div *ngIf="access.identifier !== this.userId; else user">
           <mat-radio-group
             class="radio-buttons"
-            [(ngModel)]="access.access"
+            [(ngModel)]="access.role"
             (change)="toggleAccess($event, access)">
             <mat-radio-button *ngFor="let role of roles" [value]="role">
               <span class="role-text">{{ role }}</span>
@@ -35,7 +68,7 @@
             <mat-icon class="mat-icon-style material-icon-primary"
               >star</mat-icon
             >
-            {{ access.access }}
+            {{ access.role }}
           </div>
         </ng-template>
       </damap-person-card>

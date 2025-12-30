@@ -39,6 +39,20 @@ describe('ConfigService', () => {
     fitsServiceAvailable: false,
     livePreviewAvailable: true,
     ethicalReportEnabled: true,
+    images: [
+      {
+        id: 1,
+        imageKey: 'logo',
+        filesize: 150,
+        mimeType: 'png',
+        data: '1100010001',
+      },
+    ],
+    colorTheme: {
+      id: 1,
+      exactColors: true,
+      colors: null,
+    },
   };
 
   beforeEach(() => {
