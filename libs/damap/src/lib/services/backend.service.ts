@@ -10,9 +10,8 @@ import {
   InternalStorageTranslation,
 } from '../domain/internal-storage';
 import { catchError, map, retry, shareReplay } from 'rxjs/operators';
-
 import { APP_ENV } from '../constants';
-import { Access } from '../domain/access';
+import { Access, UserDo } from '../domain/access';
 import { Banner } from '../domain/banner';
 import { Config } from '../domain/config';
 import { Consent } from '../domain/consent';
@@ -26,7 +25,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Project } from '../domain/project';
 import { RecommendedRepository } from '../domain/recommended-repository';
-import { Repository } from '../domain/repository';
 import { RepositoryDetails } from '../domain/repository-details';
 import { SearchResult } from '../domain/search/search-result';
 import { TranslateService } from '@ngx-translate/core';
@@ -461,6 +459,12 @@ export class BackendService {
 
   deleteAppBanner(): Observable<void> {
     return this.http.delete<void>(`${this.backendUrl}admin/banner`);
+  }
+
+  searchAccessUsers(searchTerm: string): Observable<UserDo[]> {
+    return this.http
+      .get<UserDo[]>(`${this.backendUrl}access/user-search?q=${searchTerm}`)
+      .pipe(catchError(this.handleError('http.error.access.users.search')));
   }
 
   getAdminRecommendedRepositories(): Observable<RecommendedRepository[]> {

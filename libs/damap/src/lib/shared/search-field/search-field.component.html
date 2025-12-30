@@ -4,6 +4,7 @@
   <input
     type="search"
     matInput
+    [matAutocomplete]="autocomplete"
     placeholder="{{ placeholder }}"
     [formControl]="control"
     (input)="onSearchChange(input.value)"

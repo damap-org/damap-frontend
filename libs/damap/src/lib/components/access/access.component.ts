@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Access } from '../../domain/access';
+import { Access, UserDo } from '../../domain/access';
 import { BackendService } from '../../services/backend.service';
 import { FunctionRole } from '../../domain/enum/function-role.enum';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { PersonCardComponent } from '../../widgets/person-card/person-card.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -13,14 +13,31 @@ import { Dmp } from '../../domain/dmp';
 import { MatButtonModule } from '@angular/material/button';
 import { InfoMessageModule } from '../../widgets/info-message/info-message.module';
 import { AuthService } from '../../auth/auth.service';
-import { map } from 'rxjs/operators';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  switchMap,
+  tap,
+} from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 import {
   MatRadioButton,
   MatRadioChange,
   MatRadioGroup,
 } from '@angular/material/radio';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TooltipModule } from '../../widgets/tooltip/tooltip.module';
+import { MatFormField, MatInputModule } from '@angular/material/input';
+import {
+  MatAutocomplete,
+  MatAutocompleteTrigger,
+  MatOption,
+  MatAutocompleteSelectedEvent,
+  MatAutocompleteModule,
+} from '@angular/material/autocomplete';
+import { SearchFieldComponent } from '../../shared/search-field/search-field.component';
+import { SharedModule } from '../../shared/shared.module';
 
 @Component({
   selector: 'damap-access',
@@ -37,19 +54,28 @@ import { TooltipModule } from '../../widgets/tooltip/tooltip.module';
     MatRadioButton,
     FormsModule,
     TooltipModule,
+    MatAutocomplete,
+    MatOption,
+    ReactiveFormsModule,
+    MatInputModule,
+    SharedModule,
   ],
   templateUrl: './access.component.html',
   styleUrls: ['./access.component.css'],
   standalone: true,
 })
 export class AccessComponent implements OnInit {
-  accesses$: Observable<Access[]>;
+  private accessesSubject = new BehaviorSubject<Access[]>([]);
+  accesses$ = this.accessesSubject.asObservable();
   isOwner$: Observable<boolean>;
   dmp$: Observable<Dmp>;
   id: number;
   protected readonly FunctionRole = FunctionRole;
   roles = Object.values(FunctionRole);
   userId: string;
+
+  userSearchControl = new FormControl('');
+  searchResult$: Observable<UserDo[]>;
 
   constructor(
     private route: ActivatedRoute,
@@ -72,24 +98,43 @@ export class AccessComponent implements OnInit {
     this.isOwner$ = this.accesses$.pipe(
       map(accesses =>
         accesses
-          .filter(access => access.universityId === this.userId)
-          .some(access => access.access === FunctionRole.OWNER),
+          .filter(access => access.identifier === this.userId)
+          .some(access => access.role === FunctionRole.OWNER),
       ),
+    );
+
+    this.searchResult$ = this.userSearchControl.valueChanges.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap((term: string) => {
+        if (term) {
+          return this.backendService.searchAccessUsers(term).pipe(
+            map(users => {
+              const currentList = this.accessesSubject.getValue();
+              return users.filter(
+                user =>
+                  !currentList.some(
+                    existing => existing.identifier === user.identifier,
+                  ),
+              );
+            }),
+          );
+        }
+        return of([]);
+      }),
     );
   }
 
   private getAccess(id: number) {
-    this.accesses$ = this.backendService.getAccess(id).pipe(
-      map(accesses => {
-        return accesses.map(access => {
-          // Frontend extension to deal with no access entities, since the backend doesnt have a no rights field
-          if (access.access === null || access.access === undefined) {
-            access.access = FunctionRole.NO_RIGHTS;
-          }
-          return access;
-        });
-      }),
-    );
+    this.backendService.getAccess(id).subscribe(accesses => {
+      const formattedAccesses = accesses.map(access => {
+        if (access.role === null || access.role === undefined) {
+          access.role = FunctionRole.NO_RIGHTS;
+        }
+        return access;
+      });
+      this.accessesSubject.next(formattedAccesses);
+    });
   }
 
   toggleAccess($event: MatRadioChange, access: Access): void {
@@ -98,10 +143,31 @@ export class AccessComponent implements OnInit {
       this.backendService.deleteAccess(access.id).subscribe();
     } else {
       access.dmpId = this.id;
-      access.access = $event.value;
+      access.role = $event.value;
       this.backendService
         .createAccess(access)
         .subscribe({ next: response => (access.id = response.id) });
     }
+  }
+
+  addNewAccess(event: MatAutocompleteSelectedEvent): void {
+    const user: UserDo = event.option.value;
+    this.userSearchControl.setValue('');
+
+    let firstName = user.firstName;
+    let lastName = user.lastName;
+
+    const newAccess: Access = {
+      id: 0,
+      dmpId: this.id,
+      identifier: user.identifier,
+      firstName: firstName,
+      lastName: lastName,
+      mbox: user.email,
+      role: FunctionRole.NO_RIGHTS,
+    };
+
+    const currentList = this.accessesSubject.getValue();
+    this.accessesSubject.next([...currentList, newAccess]);
   }
 }

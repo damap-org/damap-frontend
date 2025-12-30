@@ -23,3 +23,21 @@
 .role-text {
   margin-right: 2px;
 }
+
+.list-option-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4px 0;
+  line-height: 1.4;
+}
+
+.person-detail-content {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.person-detail-content strong {
+  font-weight: 500;
+}
