@@ -39,8 +39,11 @@ describe('DmpComponent', () => {
   };
 
   beforeEach(waitForAsync(() => {
-    authSpy = jasmine.createSpyObj('AuthService', ['getUsername', 'isAdmin']);
-    authSpy.getUsername.and.returnValue('name');
+    authSpy = jasmine.createSpyObj('AuthService', [
+      'getDisplayName',
+      'isAdmin',
+    ]);
+    authSpy.getDisplayName.and.returnValue('name');
     authSpy.isAdmin.and.returnValue(false);
     feedbackSpy = jasmine.createSpyObj('FeedbackService', ['error', 'success']);
     backendSpy = jasmine.createSpyObj(

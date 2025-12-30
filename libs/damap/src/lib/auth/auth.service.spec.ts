@@ -71,13 +71,11 @@ describe('AuthService', () => {
     expect(service.getDisplayName()).toEqual('John Doe');
   });
 
-  it('should return name and username', () => {
+  it('should return name', () => {
     spy.getIdentityClaims.and.returnValue({
       name: 'name',
-      preferred_username: 'username',
     });
-    expect(service.getUsername()).toEqual('username');
-    expect(service.getName()).toEqual('name');
+    expect(service.getDisplayName()).toEqual('name');
   });
 
   it('should check if is admin', () => {

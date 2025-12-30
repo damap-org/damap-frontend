@@ -44,14 +44,14 @@ export class ConfigService {
           }
           this.configSubject.next(config);
           const authConfig: AuthConfig = {
-            issuer: config.authUrl,
-            clientId: config.authClient,
+            issuer: config.issuer,
+            clientId: config.clientID,
             redirectUri: window.location.origin,
             logoutUrl: window.location.origin,
+            responseType: config.responseType,
             oidc: true,
-            scope: config.authScope,
+            scope: config.scope,
             // useSilentRefresh: true,
-            responseType: 'code',
             showDebugInformation: isDevMode(),
             // sessionChecksEnabled: true,
           };
@@ -110,8 +110,28 @@ export class ConfigService {
     return this.config?.appTitle || 'DAMAP Frontend';
   }
 
-  public getConfig$(): Observable<Config> {
-    return this.configSubject.asObservable();
+  public getUserRolesClaim(): string {
+    return this.config?.userRolesClaim || null;
+  }
+
+  public getUserIdClaim(): string {
+    return this.config?.userIdClaim || null;
+  }
+
+  public getNameClaim(): string {
+    return this.config?.nameClaim || null;
+  }
+
+  public getGivenNameClaim(): string {
+    return this.config?.givenNameClaim || null;
+  }
+
+  public getFamilyNameClaim(): string {
+    return this.config?.familyNameClaim || null;
+  }
+
+  public getEmailClaim(): string {
+    return this.config?.emailClaim || null;
   }
 
   private async loadConfig(): Promise<Config> {

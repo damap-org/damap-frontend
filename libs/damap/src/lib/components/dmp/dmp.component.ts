@@ -73,8 +73,8 @@ export class DmpComponent implements OnInit, OnDestroy {
 
   selectedViewStorage: 'primaryView' | 'secondaryView' = 'primaryView';
 
-  get username(): string {
-    return this.auth.getUsername();
+  get displayName(): string {
+    return this.auth.getDisplayName();
   }
   get admin(): boolean {
     return this.auth.isAdmin();
@@ -369,7 +369,7 @@ export class DmpComponent implements OnInit, OnDestroy {
   }
 
   private generateReferenceHash(): string {
-    return this.username + (+new Date()).toString(36);
+    return this.displayName + (+new Date()).toString(36);
   }
 
   getInstruction(index: number) {
