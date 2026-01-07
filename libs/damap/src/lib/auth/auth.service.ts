@@ -42,11 +42,13 @@ export class AuthService {
   isAdmin(): boolean {
     const parts: string[] = this.oAuthService.getAccessToken().split('.');
     const tokenBody: any = JSON.parse('' + window.atob(parts[1]));
-    return tokenBody.realm_access?.roles?.includes('Damap Admin');
-
-    // TODO: Use this when roles claim is sent (or not if the role stays in realm_access)
-    // const claims = this.oAuthService.getIdentityClaims();
-    // return claims[this.configService.getUserRolesClaim()].includes("DAMAP Admin");
+    const rolesPath: string = this.configService.getUserRolesClaimPath();
+    const pathSegments: string[] = rolesPath.split("/");
+    let roles = tokenBody;
+    for (const pathSeg of pathSegments) {
+      roles = roles?.[pathSeg];
+    }
+    return roles.includes(this.configService.getAdminRoleName());
   }
 
   logout() {

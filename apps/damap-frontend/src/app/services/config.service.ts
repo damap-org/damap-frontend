@@ -110,8 +110,8 @@ export class ConfigService {
     return this.config?.appTitle || 'DAMAP Frontend';
   }
 
-  public getUserRolesClaim(): string {
-    return this.config?.userRolesClaim || null;
+  public getUserRolesClaimPath(): string {
+    return this.config?.userRolesClaimPath || null;
   }
 
   public getUserIdClaim(): string {
@@ -132,6 +132,10 @@ export class ConfigService {
 
   public getEmailClaim(): string {
     return this.config?.emailClaim || null;
+  }
+
+  public getAdminRoleName(): string {
+    return  this.config?.adminRoleName || null;
   }
 
   private async loadConfig(): Promise<Config> {
