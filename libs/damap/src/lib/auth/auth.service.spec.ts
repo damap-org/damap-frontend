@@ -80,7 +80,7 @@ describe('AuthService', () => {
 
   it('should check if is admin', () => {
     spy.getAccessToken.and.returnValue(
-      '.' + window.btoa('{ "realm_access": { "roles": [ "Damap Admin" ] }}'),
+      '.' + window.btoa('{ "roles": [ "damap-super-admin" ] }'),
     );
     expect(service.isAdmin()).toBeTrue();
 
@@ -113,7 +113,7 @@ describe('AuthService', () => {
 
   it('should check if user is admin', () => {
     spy.getAccessToken.and.returnValue(
-      '.' + window.btoa('{ "realm_access": { "roles": [ "Damap Admin" ] }}'),
+      '.' + window.btoa('{ "roles": [ "damap-super-admin" ] }'),
     );
     expect(service.isAdmin()).toBeTrue();
 

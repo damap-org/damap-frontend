@@ -4,7 +4,7 @@ import {
 } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA, isDevMode } from '@angular/core';
 
-import { Config } from '@damap/core';
+import { Config, FeedbackService } from "@damap/core";
 import { ConfigService } from './config.service';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Router } from '@angular/router';
@@ -15,6 +15,26 @@ describe('ConfigService', () => {
   let service: ConfigService;
   let httpMock: HttpTestingController;
   let mockOAuthService: jasmine.SpyObj<OAuthService>;
+  const mockFeedbackService = jasmine.createSpyObj('FeedbackService', ['error', 'success',]);
+  let mockConfig: Config = {
+    issuer: 'https://issuer',
+    clientID: 'client-id',
+    scope: 'scope',
+    userRolesClaimPath: 'roles',
+    userIdClaim: 'sub',
+    nameClaim: 'name',
+    givenNameClaim: 'given_name',
+    familyNameClaim: 'family_name',
+    emailClaim: 'email',
+    adminRoleName: 'damap-super-admin',
+    responseType: 'code',
+    env: 'test-env',
+    appTitle: 'Test App Title',
+    personSearchServiceConfigs: [],
+    fitsServiceAvailable: false,
+    livePreviewAvailable: true,
+    ethicalReportEnabled: true,
+  };
 
   beforeEach(() => {
     spyOn(console, 'warn'); // Set up the spy only once.
@@ -36,6 +56,7 @@ describe('ConfigService', () => {
         ConfigService,
         { provide: OAuthService, useValue: oauthSpy },
         { provide: Router, useValue: routerSpy },
+        { provide: FeedbackService, useValue: mockFeedbackService },
       ],
     });
 
@@ -52,18 +73,6 @@ describe('ConfigService', () => {
 
   describe('#initializeApp', () => {
     it('should load config and set up OAuthService correctly', async () => {
-      const mockConfig: Config = {
-        authUrl: 'https://auth-url',
-        authClient: 'client-id',
-        authScope: 'scope',
-        env: 'test-env',
-        appTitle: 'Test App Title',
-        authUser: '',
-        personSearchServiceConfigs: [],
-        fitsServiceAvailable: false,
-        livePreviewAvailable: true,
-        ethicalReportEnabled: true,
-      };
 
       mockOAuthService.loadDiscoveryDocumentAndTryLogin.and.returnValue(
         Promise.resolve(true),
@@ -80,12 +89,12 @@ describe('ConfigService', () => {
       await initializePromise;
 
       expect(mockOAuthService.configure).toHaveBeenCalledWith({
-        issuer: mockConfig.authUrl,
-        clientId: mockConfig.authClient,
+        issuer: mockConfig.issuer,
+        clientId: mockConfig.clientID,
         redirectUri: window.location.origin,
         logoutUrl: window.location.origin,
         oidc: true,
-        scope: mockConfig.authScope,
+        scope: mockConfig.scope,
         responseType: 'code',
         showDebugInformation: isDevMode(),
       });
@@ -95,12 +104,11 @@ describe('ConfigService', () => {
 
     it('should log a warning if appTitle is missing', async () => {
       const mockConfig = {
-        authUrl: 'https://auth-url',
-        authClient: 'client-id',
-        authScope: 'scope',
+        issuer: 'https://issuer',
+        clientID: 'client-id',
+        scope: 'scope',
         env: 'test-env',
         appTitle: null,
-        authUser: '',
         personSearchServiceConfigs: [],
         fitsServiceAvailable: false,
         livePreviewAvailable: true,
@@ -126,18 +134,6 @@ describe('ConfigService', () => {
 
   describe('#getAppTitle', () => {
     it('should return the appTitle from the loaded config', () => {
-      const mockConfig: Config = {
-        authUrl: 'https://auth-url',
-        authClient: 'client-id',
-        authScope: 'scope',
-        env: 'test-env',
-        appTitle: 'Test App Title',
-        authUser: '',
-        personSearchServiceConfigs: [],
-        fitsServiceAvailable: false,
-        livePreviewAvailable: true,
-        ethicalReportEnabled: true,
-      };
 
       service['config'] = mockConfig;
 
