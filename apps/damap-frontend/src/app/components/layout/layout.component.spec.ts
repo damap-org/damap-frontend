@@ -11,7 +11,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { AuthService, TranslateTestingModule } from "@damap/core";
+import { AuthService, TranslateTestingModule } from '@damap/core';
 import { of } from 'rxjs';
 
 @Component({
@@ -57,7 +57,7 @@ describe('LayoutComponent', () => {
 
     const authServiceSpy = jasmine.createSpyObj('AuthService', [
       'isAdmin',
-      'getDisplayName'
+      'getDisplayName',
     ]);
     authServiceSpy.isAdmin.and.returnValue(true);
     authServiceSpy.getDisplayName.and.returnValue('John Doe');
@@ -68,7 +68,7 @@ describe('LayoutComponent', () => {
       'getFamilyNameClaim',
       'getNameClaim',
       'getEmailClaim',
-      'getUserRolesClaimPath'
+      'getUserRolesClaimPath',
     ]);
     configSpy.getEnvironment.and.returnValue('DEV');
     configSpy.getGivenNameClaim.and.returnValue('given_name');

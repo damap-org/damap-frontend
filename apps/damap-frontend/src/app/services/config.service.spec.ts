@@ -4,7 +4,7 @@ import {
 } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA, isDevMode } from '@angular/core';
 
-import { Config, FeedbackService } from "@damap/core";
+import { Config, FeedbackService } from '@damap/core';
 import { ConfigService } from './config.service';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Router } from '@angular/router';
@@ -15,7 +15,10 @@ describe('ConfigService', () => {
   let service: ConfigService;
   let httpMock: HttpTestingController;
   let mockOAuthService: jasmine.SpyObj<OAuthService>;
-  const mockFeedbackService = jasmine.createSpyObj('FeedbackService', ['error', 'success',]);
+  const mockFeedbackService = jasmine.createSpyObj('FeedbackService', [
+    'error',
+    'success',
+  ]);
   let mockConfig: Config = {
     issuer: 'https://issuer',
     clientID: 'client-id',
@@ -73,7 +76,6 @@ describe('ConfigService', () => {
 
   describe('#initializeApp', () => {
     it('should load config and set up OAuthService correctly', async () => {
-
       mockOAuthService.loadDiscoveryDocumentAndTryLogin.and.returnValue(
         Promise.resolve(true),
       );
@@ -134,7 +136,6 @@ describe('ConfigService', () => {
 
   describe('#getAppTitle', () => {
     it('should return the appTitle from the loaded config', () => {
-
       service['config'] = mockConfig;
 
       const appTitle = service.getAppTitle();

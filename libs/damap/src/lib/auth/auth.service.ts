@@ -43,7 +43,7 @@ export class AuthService {
     const parts: string[] = this.oAuthService.getAccessToken().split('.');
     const tokenBody: any = JSON.parse('' + window.atob(parts[1]));
     const rolesPath: string = this.configService.getUserRolesClaimPath();
-    const pathSegments: string[] = rolesPath.split("/");
+    const pathSegments: string[] = rolesPath.split('/');
     let roles = tokenBody;
     for (const pathSeg of pathSegments) {
       roles = roles?.[pathSeg];

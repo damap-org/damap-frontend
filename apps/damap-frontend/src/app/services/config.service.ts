@@ -135,7 +135,7 @@ export class ConfigService {
   }
 
   public getAdminRoleName(): string {
-    return  this.config?.adminRoleName || null;
+    return this.config?.adminRoleName || null;
   }
 
   private async loadConfig(): Promise<Config> {
