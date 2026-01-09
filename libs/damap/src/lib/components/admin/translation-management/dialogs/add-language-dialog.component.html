@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>
+  {{ "admin.appTranslations.addLanguage" | translate }}
+</h2>
+<div mat-dialog-content class="dialog-content">
+  <p class="hint">
+    {{ "admin.appTranslations.addLanguageHint" | translate }}
+  </p>
+  <mat-form-field appearance="outline" class="input-full">
+    <mat-label>{{
+      "admin.appTranslations.languageCode" | translate
+    }}</mat-label>
+    <input
+      matInput
+      maxlength="2"
+      autocomplete="off"
+      [formControl]="form.controls.language" />
+    <mat-hint>{{
+      "admin.appTranslations.languageCodeHint" | translate
+    }}</mat-hint>
+    <mat-error *ngIf="form.controls.language.hasError('required')">
+      {{ "admin.appTranslations.languageCodeRequired" | translate }}
+    </mat-error>
+    <mat-error *ngIf="form.controls.language.hasError('pattern')">
+      {{ "admin.appTranslations.languageCodePattern" | translate }}
+    </mat-error>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">
+    {{ "admin.appTranslations.cancel" | translate }}
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    class="button-color-primary"
+    (click)="submit()"
+    [disabled]="form.invalid">
+    {{ "admin.appTranslations.add" | translate }}
+  </button>
+</div>
