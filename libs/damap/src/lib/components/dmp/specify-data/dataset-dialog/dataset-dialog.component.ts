@@ -103,7 +103,7 @@ export class DatasetDialogComponent {
       dataset.datasetId = this.datasetId;
     }
 
-    if (dataset.license === null) {
+    if (dataset.license === null && dataset.source == this.datasetSource.NEW) {
       if (
         dataset.type.includes(DataType.SOURCE_CODE) &&
         dataset.type.length === 1

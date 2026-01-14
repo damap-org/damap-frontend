@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Dataset } from '../../../../domain/dataset';
+import { DataSource } from '../../../../domain/enum/data-source.enum';
 import { DatasetDialogComponent } from '../dataset-dialog/dataset-dialog.component';
 import { FILE_SIZES } from '../data-specs';
 import { TranslateService } from '@ngx-translate/core';
@@ -14,11 +15,13 @@ import { TranslateService } from '@ngx-translate/core';
 export class DatasetInformationComponent {
   dataset: Dataset;
   readonly FILE_SIZES = FILE_SIZES;
+  readonly datasetSource = DataSource;
 
   constructor(
     public dialogRef: MatDialogRef<DatasetDialogComponent>,
     private translate: TranslateService,
-    @Inject(MAT_DIALOG_DATA) public data: { dataset: Dataset },
+    @Inject(MAT_DIALOG_DATA)
+    public data: { dataset: Dataset; sourceType: DataSource },
   ) {
     this.dataset = data.dataset;
   }

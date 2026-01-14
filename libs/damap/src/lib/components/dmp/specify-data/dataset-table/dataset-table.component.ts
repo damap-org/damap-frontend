@@ -8,7 +8,6 @@ import { FILE_SIZES } from '../data-specs';
 import { MatDialog } from '@angular/material/dialog';
 import { DatasetInformationComponent } from '../dataset-information/dataset-information.component';
 import { TranslateService } from '@ngx-translate/core';
-import { LicenseDefinitions } from '../../../../widgets/license-wizard/license-wizard-list';
 
 @Component({
   selector: 'app-dataset-table',
@@ -68,7 +67,10 @@ export class DatasetTableComponent {
     const dialogRef = this.dialog.open(DatasetInformationComponent, {
       width: '75%',
       maxWidth: '800px',
-      data: { dataset: datasetGroup.getRawValue() },
+      data: {
+        dataset: datasetGroup.getRawValue(),
+        sourceType: this.sourceType,
+      },
     });
   }
 
@@ -91,18 +93,6 @@ export class DatasetTableComponent {
     });
     return type;
   }
-
-  getLicenseName(licenseId: string): string {
-    if (!licenseId) {
-      return '';
-    }
-    const license = LicenseDefinitions.find(l => l.id === licenseId);
-    if (!license) {
-      return '';
-    }
-    return license.name;
-  }
-
   private findFormArrayIndex(dataset: Dataset): number {
     return this.datasets.value.findIndex(d =>
       d.id ? d.id === dataset.id : d.referenceHash === dataset.referenceHash,

@@ -4,25 +4,34 @@
 
 <mat-dialog-content id="datasetDialog">
   <div>
-    <div class="info-section">
+    <div class="info-section" *ngIf="data.sourceType === datasetSource.NEW">
       <span class="label"
         >{{ "dmp.steps.data.specify.dialog.type" | translate }}:</span
       >
       <span class="split-text">{{ getDataType(dataset) }}</span>
     </div>
 
-    <div class="info-section">
+    <div class="info-section" *ngIf="data.sourceType === datasetSource.NEW">
       <span class="label"
         >{{ "dmp.steps.data.specify.dialog.fileFormat" | translate }}:</span
       >
       <span class="split-text">{{ dataset.fileFormat }}</span>
     </div>
 
-    <div class="info-section">
+    <div class="info-section" *ngIf="data.sourceType === datasetSource.NEW">
       <span class="label"
         >{{ "dmp.steps.data.specify.dialog.size" | translate }}:
       </span>
       <span>{{ mapFileSize(dataset.size) }}</span>
+    </div>
+
+    <div class="info-section" *ngIf="data.sourceType === datasetSource.REUSED">
+      <span class="label"
+        >{{ "dmp.steps.data.specify.dialog.source" | translate }}:
+      </span>
+      <span class="split-text"
+        >{{ dataset.datasetId?.type }} {{ dataset.datasetId?.identifier }}</span
+      >
     </div>
   </div>
 

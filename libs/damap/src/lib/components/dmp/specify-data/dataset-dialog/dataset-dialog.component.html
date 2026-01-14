@@ -88,7 +88,7 @@
       *ngIf="dataset.controls.source.value === datasetSource.REUSED">
       <mat-form-field class="full-width">
         <mat-label>{{
-          "dmp.steps.licensing.question.license" | translate
+          "dmp.steps.licensing.question.license.existing" | translate
         }}</mat-label>
         <mat-select formControlName="license">
           <mat-option *ngFor="let license of licenses" [value]="license.id">
