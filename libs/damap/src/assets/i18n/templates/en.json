@@ -151,6 +151,7 @@
             "description": "Description",
             "technicalResource": "Technical Resource",
             "source": "Source",
+            "license": "License",
             "identifier": "Identifier",
             "button": {
               "addTechnicalResource": "Add new technical resource",
