@@ -4,6 +4,13 @@
   width: 100%;
 }
 
+.dialogRowLicense {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 15px;
+}
+
 .resource-row {
   display: flex;
   align-items: center;

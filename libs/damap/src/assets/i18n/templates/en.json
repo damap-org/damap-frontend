@@ -135,7 +135,8 @@
               "comment": "Comment",
               "actions": "Actions",
               "description": "Description",
-              "source": "Source"
+              "source": "Source",
+              "license": "License"
             }
           },
           "dialog": {
@@ -150,6 +151,7 @@
             "description": "Description",
             "technicalResource": "Technical Resource",
             "source": "Source",
+            "license": "License",
             "identifier": "Identifier",
             "button": {
               "addTechnicalResource": "Add new technical resource",
@@ -304,7 +306,10 @@
         "info": "Choose a license from the list or use the license selector to find an appropriate license.",
         "question": {
           "dataAccess": "Data Access",
-          "license": "Planned license",
+          "license": {
+            "reused": "Planned license",
+            "existing": "License"
+          },
           "startDate": "Estimated publication date",
           "hint": "The release date was set to the project end date. Feel free to modify it.",
           "restrictedAccessInfo": "The following dataset(s) will have access restrictions, explain why and clearly describe the access conditions:",

@@ -67,7 +67,10 @@ export class DatasetTableComponent {
     const dialogRef = this.dialog.open(DatasetInformationComponent, {
       width: '75%',
       maxWidth: '800px',
-      data: { dataset: datasetGroup.getRawValue() },
+      data: {
+        dataset: datasetGroup.getRawValue(),
+        sourceType: this.sourceType,
+      },
     });
   }
 
@@ -90,7 +93,6 @@ export class DatasetTableComponent {
     });
     return type;
   }
-
   private findFormArrayIndex(dataset: Dataset): number {
     return this.datasets.value.findIndex(d =>
       d.id ? d.id === dataset.id : d.referenceHash === dataset.referenceHash,

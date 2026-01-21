@@ -25,7 +25,7 @@ export class ReusedDataComponent
   result: Dataset;
   duplicate = false;
 
-  readonly tableHeaders: string[] = ['dataset', 'source', 'actions'];
+  readonly tableHeaders: string[] = ['dataset', 'license', 'source', 'actions'];
 
   constructor(
     private backendService: BackendService,
