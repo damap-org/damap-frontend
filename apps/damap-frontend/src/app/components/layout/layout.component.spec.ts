@@ -11,7 +11,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { TranslateTestingModule } from '@damap/core';
+import { AuthService, TranslateTestingModule } from '@damap/core';
 import { of } from 'rxjs';
 
 @Component({
@@ -55,8 +55,27 @@ describe('LayoutComponent', () => {
     oauthSpy.getIdentityClaims.and.returnValue({ name: 'name' });
     oauthSpy.getAccessToken.and.returnValue(mockToken);
 
-    const configSpy = jasmine.createSpyObj('ConfigService', ['getEnvironment']);
+    const authServiceSpy = jasmine.createSpyObj('AuthService', [
+      'isAdmin',
+      'getDisplayName',
+    ]);
+    authServiceSpy.isAdmin.and.returnValue(true);
+    authServiceSpy.getDisplayName.and.returnValue('John Doe');
+
+    const configSpy = jasmine.createSpyObj('ConfigService', [
+      'getEnvironment',
+      'getGivenNameClaim',
+      'getFamilyNameClaim',
+      'getNameClaim',
+      'getEmailClaim',
+      'getUserRolesClaimPath',
+    ]);
     configSpy.getEnvironment.and.returnValue('DEV');
+    configSpy.getGivenNameClaim.and.returnValue('given_name');
+    configSpy.getFamilyNameClaim.and.returnValue('family_name');
+    configSpy.getNameClaim.and.returnValue('name');
+    configSpy.getEmailClaim.and.returnValue('email');
+    configSpy.getUserRolesClaimPath.and.returnValue('roles');
 
     const breakpointObserverSpy = jasmine.createSpyObj('BreakpointObserver', [
       'observe',
@@ -76,6 +95,7 @@ describe('LayoutComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: OAuthService, useValue: oauthSpy },
+        { provide: AuthService, useValue: authServiceSpy },
         { provide: ConfigService, useValue: configSpy },
         { provide: BreakpointObserver, useValue: breakpointObserverSpy },
         { provide: Router, useValue: mockRouter },

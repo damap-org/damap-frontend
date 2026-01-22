@@ -1,37 +1,32 @@
 import { Injectable } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
+import { ConfigService } from '../../../../../apps/damap-frontend/src/app/services/config.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private oAuthService: OAuthService) {}
-
-  getName(): string {
-    const claims = this.oAuthService.getIdentityClaims();
-    return claims['name'];
-  }
+  constructor(
+    private oAuthService: OAuthService,
+    private configService: ConfigService,
+  ) {}
 
   getDisplayName(): string {
     const claims = this.oAuthService.getIdentityClaims();
-    const {
-      name,
-      given_name: firstName,
-      family_name: lastName,
-      email,
-    } = claims;
+    let given_name = claims[this.configService.getGivenNameClaim()];
+    let family_name = claims[this.configService.getFamilyNameClaim()];
 
-    const displayName =
-      name ||
-      (firstName && lastName ? `${firstName} ${lastName}` : null) ||
-      email ||
-      '';
-    return displayName;
+    return (
+      claims[this.configService.getNameClaim()] ||
+      (given_name && family_name ? `${given_name} ${family_name}` : null) ||
+      claims[this.configService.getEmailClaim()] ||
+      ''
+    );
   }
 
-  getUsername(): string {
+  getId(): string {
     const claims = this.oAuthService.getIdentityClaims();
-    return claims['preferred_username'];
+    return claims[this.configService.getUserIdClaim()];
   }
 
   isAuthenticated(route: string): boolean {
@@ -47,15 +42,16 @@ export class AuthService {
   isAdmin(): boolean {
     const parts: string[] = this.oAuthService.getAccessToken().split('.');
     const tokenBody: any = JSON.parse('' + window.atob(parts[1]));
-    return tokenBody.realm_access?.roles?.includes('Damap Admin');
+    const rolesPath: string = this.configService.getUserRolesClaimPath();
+    const pathSegments: string[] = rolesPath.split('/');
+    let roles = tokenBody;
+    for (const pathSeg of pathSegments) {
+      roles = roles?.[pathSeg];
+    }
+    return roles.includes(this.configService.getAdminRoleName());
   }
 
   logout() {
     this.oAuthService.logOut();
-  }
-
-  getId(): string {
-    const claims = this.oAuthService.getIdentityClaims();
-    return claims['personID'];
   }
 }

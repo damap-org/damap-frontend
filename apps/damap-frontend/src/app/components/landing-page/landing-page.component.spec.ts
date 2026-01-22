@@ -2,17 +2,28 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ActivatedRoute } from '@angular/router';
 import { LandingPageComponent } from './landing-page.component';
-import { TranslateTestingModule } from '@damap/core';
+import { AuthService, TranslateTestingModule } from '@damap/core';
 import { of } from 'rxjs';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { ConfigService } from '../../services/config.service';
 
 describe('LandingPageComponent', () => {
   let component: LandingPageComponent;
   let fixture: ComponentFixture<LandingPageComponent>;
 
   beforeEach(async () => {
+    const configServiceSpy = jasmine.createSpyObj('ConfigService', [
+      'isBackendDown',
+    ]);
+    configServiceSpy.isBackendDown.and.returnValue(false);
+
     await TestBed.configureTestingModule({
       imports: [LandingPageComponent, TranslateTestingModule],
       providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        { provide: ConfigService, useValue: configServiceSpy },
         {
           provide: ActivatedRoute,
           useValue: {
