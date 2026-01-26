@@ -38,6 +38,9 @@ export function HttpLoaderFactory(http: HttpBackend): MultiTranslateHttpLoader {
     '/assets/damap-core/i18n/templates/',
     '/assets/damap-core/i18n/help/',
     '/assets/damap-core/i18n/info/',
+    '/assets/i18n/access/',
+    '/assets/i18n/help/',
+    '/assets/i18n/info/',
     '/assets/i18n/',
   ]);
 }

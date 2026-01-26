@@ -1,3 +1,20 @@
+<div style="border: 2px solid red; padding: 20px; margin: 20px; background: #fff3cd;">
+  <h2>Translation Access Test - All Translation Files</h2>
+  <p><strong>From layout (app):</strong> {{ 'title' | translate }}</p>
+  <p><strong>From templates (libs):</strong> {{ 'dmp.steps.project.success' | translate }}</p>
+  <p><strong>From http (libs):</strong> {{ 'http.error.standard' | translate }}</p>
+  <p><strong>From plans (libs):</strong> {{ 'plans.mydmps' | translate }}</p>
+  <p><strong>From info (libs):</strong> <span [innerHTML]="'info.dataset.none' | translate"></span></p>
+  <p><strong>From help (libs):</strong> {{ 'help.legal.sensitiveDataSecurity' | translate }}</p>
+  <p><strong>From gdpr (libs):</strong> {{ 'gdpr.title' | translate }}</p>
+  <p><strong>From en.json base (libs):</strong> {{ 'yes' | translate }}</p>
+  <p><strong>From access (libs):</strong> {{ 'access.button.plans' | translate }}</p>
+  <p><strong>From landing-page (app):</strong> {{ 'landing-page.title' | translate }}</p>
+  <p><strong>From consent (app):</strong> {{ 'heading' | translate }}</p>
+  <p><strong>From admin (libs):</strong> {{ 'admin.title' | translate }}</p>
+  <p><strong>From dashboard (libs):</strong> {{ 'dashboard.welcome.message' | translate }}</p>
+</div>
+
 <app-info-card [infoLabel]="infoInstruction"></app-info-card>
 <div class="dmp-container">
   <div class="steps-container">
