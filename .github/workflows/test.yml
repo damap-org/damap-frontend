@@ -1,5 +1,9 @@
 name: test
 
+permissions:
+  contents: read
+  checks: write
+
 env:
   is-master-branch: ${{ github.ref == 'refs/heads/master' }}
   is-next-branch: ${{ github.ref == 'refs/heads/next' }}
