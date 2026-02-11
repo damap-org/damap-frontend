@@ -18,7 +18,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  continuous-integration:
     runs-on: ubuntu-latest
 
     steps:
