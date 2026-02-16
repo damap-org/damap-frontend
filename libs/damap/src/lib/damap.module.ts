@@ -20,6 +20,7 @@ import { PlansModule } from './components/plans/plans.module';
 import { TranslateModule } from '@ngx-translate/core';
 
 export const DAMAP_ROUTES: Route[] = [
+  { path: '', component: DashboardComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'plans', component: PlansComponent },
   {

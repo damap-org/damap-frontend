@@ -8,10 +8,6 @@ import { environment } from '../environments/environment';
 export const APP_ROUTES: Routes = [
   {
     path: '',
-    component: LandingPageComponent,
-  },
-  {
-    path: '',
     component: LayoutComponent,
     canActivate: [AuthGuard, ConsentGuard],
     children: [
