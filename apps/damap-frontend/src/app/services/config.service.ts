@@ -71,6 +71,14 @@ export class ConfigService {
                 this.oauthService.hasValidIdToken() &&
                 this.oauthService.hasValidAccessToken()
               ) {
+                // reload config after logging in to get the tenant specific customization
+                // TODO: refactor later and make it cleaner
+                this.loadConfig().then(config=> {
+                  this.config = config;
+                  this.colorThemeService.applyTheming(config);
+                  this.imageThemeService.applyTheming(config);
+                  this.configSubject.next(config);
+                });
                 const url = decodeURIComponent(this.oauthService.state!);
                 if (url !== '') {
                   return this.router.navigateByUrl(url);
