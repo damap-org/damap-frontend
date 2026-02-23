@@ -162,6 +162,8 @@ export class BackendService {
       .get<SearchResult<Project>>(`${this.projectBackendUrl}/recommended`)
       .pipe(
         retry(3),
+        // errorkey is left in for backwards compatibility
+        // remove when the complete error handling rework is done
         catchError(this.handleError('http.error.projects')),
         shareReplay(1),
       );
@@ -181,6 +183,8 @@ export class BackendService {
       })
       .pipe(
         retry(3),
+        // errorkey is left in for backwards compatibility
+        // remove when the complete error handling rework is done
         catchError(this.handleError('http.error.projects')),
         shareReplay(1),
       );
@@ -191,6 +195,8 @@ export class BackendService {
       .get<Contributor[]>(`${this.projectBackendUrl}/${projectId}/staff`)
       .pipe(
         retry(3),
+        // errorkey is left in for backwards compatibility
+        // remove when the complete error handling rework is done
         catchError(this.handleError('http.error.projectmembers')),
       );
   }
@@ -199,11 +205,15 @@ export class BackendService {
     searchTerm: string,
     serviceType: string,
   ): Observable<SearchResult<Contributor>> {
-    return this.http
-      .get<
-        SearchResult<Contributor>
-      >(`${this.backendUrl}persons?q=${searchTerm}&searchService=${serviceType}`)
-      .pipe(catchError(this.handleError('http.error.person.search')));
+    return (
+      this.http
+        .get<SearchResult<Contributor>>(
+          `${this.backendUrl}persons?q=${searchTerm}&searchService=${serviceType}`,
+        )
+        // errorkey is left in for backwards compatibility
+        // remove when the complete error handling rework is done
+        .pipe(catchError(this.handleError('http.error.person.search')))
+    );
   }
 
   updateOrcidContributorAffiliations(
@@ -557,16 +567,17 @@ export class BackendService {
       // Currently, all endpoints that talk with external API's return custom error codes
       // All other endpoints are using the http codes
       let errorPayload = error.error;
-      if (errorPayload.errorCode) { // means we are using the new system
+      if (errorPayload.errorCode) {
+        // means we are using the new system
         message = this.translate.instant(
           'http.error.errorCodes.' + errorPayload.errorCode,
         );
         console.log(error);
         console.log(
           'An error occured: ' +
-          errorPayload.details +
-          '\nCustom error code: ' +
-          errorPayload.errorCode,
+            errorPayload.details +
+            '\nCustom error code: ' +
+            errorPayload.errorCode,
         );
       } else {
         console.log(error);
