@@ -1,0 +1,247 @@
+.admin-templates-page {
+  padding: 20px;
+}
+
+.header-section {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin-bottom: 32px;
+  button & {
+    margin-right: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.current-and-upload {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  width: 100%;
+  align-items: stretch;
+  > section:first-child {
+    flex: 1.8;
+  }
+  > section:last-child {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    > .flex-card {
+      height: 100%;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .current-and-upload {
+    flex-direction: column;
+  }
+}
+
+.current-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 0 8px 8px 8px;
+}
+
+.current-grid .centered {
+  grid-column: 1 / span 3;
+  margin: 0 auto;
+  justify-self: center;
+}
+
+.flex-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  padding-bottom: 16px;
+}
+
+.template-card {
+  background-color: var(--mdc-theme-surface);
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.template-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.template-name {
+  font-weight: var(--mat-sys-title-small-weight);
+  text-align: center;
+  margin-top: 15px;
+}
+
+.template-preview-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.template-preview {
+  flex: 1;
+  max-height: 180px;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.delete-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.form-field {
+  width: 90%;
+  margin: auto;
+}
+
+.file-upload-area {
+  width: 90%;
+  margin: auto;
+  border: 2px dashed var(--mdc-theme-outline);
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  background-color: var(--mdc-theme-surface-container-low);
+  flex: 1;
+}
+
+.file-upload-area:hover {
+  border-color: var(--mdc-theme-primary);
+  color: var(--mdc-theme-primary);
+
+  .upload-content p {
+    color: var(--mdc-theme-primary);
+  }
+
+  .upload-content mat-icon {
+    color: var(--mdc-theme-primary);
+  }
+}
+
+.file-upload-area.drag-over {
+  border-color: var(--mdc-theme-primary);
+  background-color: var(--mdc-theme-primary-container);
+  transform: scale(1.02);
+}
+
+.upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 100%;
+}
+
+.upload-content mat-icon {
+  font-size: var(--mat-sys-display-medium-size);
+  width: var(--mat-sys-display-medium-size);
+  height: var(--mat-sys-display-medium-size);
+  color: var(--mdc-theme-on-surface-variant);
+}
+
+.upload-content p {
+  margin: 0;
+  color: var(--mdc-theme-on-surface-variant);
+}
+
+.upload-content .file-types {
+  font-weight: var(--mat-sys-label-large-weight);
+  color: var(--mdc-theme-on-surface);
+}
+
+.upload-content .file-size {
+  font-size: var(--mat-sys-label-small-size);
+  color: var(--mdc-theme-outline);
+}
+
+.inserted-file-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--mdc-theme-outline-variant);
+  border-radius: 8px;
+  width: 85%;
+  margin: auto;
+  padding: 8px 16px;
+  background-color: var(--mdc-theme-surface);
+}
+
+.inserted-file-card mat-icon {
+  color: var(--mdc-theme-tertiary);
+  margin-right: 10px;
+}
+
+.inserted-file-card > button > mat-icon {
+  transform: translateY(-5px);
+}
+
+.hidden-file-input {
+  display: none;
+}
+
+.template-type-icon {
+  font-size: 80px !important;
+  width: 80px !important;
+  height: 80px !important;
+  color: var(--mdc-theme-outline);
+}
+
+.template-type-icon.active-blue {
+  color: #2b579a;
+}
+
+.inactive-card {
+  opacity: 0.7;
+}
+
+.template-actions {
+  flex-direction: column !important;
+  gap: 8px;
+  padding-bottom: 15px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.category-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 90%;
+}
+
+.label-small {
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--mdc-theme-on-surface-variant);
+}
+
+.file-text-truncate {
+  font-size: 0.8rem;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.upload-save-btn {
+  width: 85%;
+  margin-bottom: 20px !important;
+}

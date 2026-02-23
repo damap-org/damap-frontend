@@ -22,5 +22,6 @@ export interface Config {
   readonly ethicalReportEnabled: boolean;
   readonly images: BackendImage[];
   readonly colorTheme: ColorTheme;
-  readonly multitenancyEnabled: boolean;
+  readonly institutionMode?: boolean;
+  readonly templates: any[];
 }

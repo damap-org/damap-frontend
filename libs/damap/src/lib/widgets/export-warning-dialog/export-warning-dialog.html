@@ -7,9 +7,9 @@
         <mat-label>{{ 'dialog.export.type' | translate }}</mat-label>
         <mat-select [(value)]="selectedTemplate">
           <mat-option
-            *ngFor="let id of dmpTemplate | keyvalue"
-            [value]="id.key">
-            {{id.value | translate}}<br />
+            *ngFor="let template of activeTemplates()"
+            [value]="template.id">
+            {{ template.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>

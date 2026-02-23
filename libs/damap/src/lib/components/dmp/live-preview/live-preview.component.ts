@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, computed, inject, Input, OnInit } from '@angular/core';
 import { ExportWarningDialogComponent } from '../../../widgets/export-warning-dialog/export-warning-dialog.component';
 import { MatDialogRef } from '@angular/material/dialog';
 import { BackendService } from '../../../services/backend.service';
@@ -7,6 +7,7 @@ import { FormGroup } from '@angular/forms';
 import { FormService } from '../../../services/form.service';
 import { ETemplateType } from '../../../domain/enum/export-template-type.enum';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ConfigService } from '../../../../../../../apps/damap-frontend/src/app/services/config.service';
 
 @Component({
   selector: 'damap-live-preview',
@@ -15,11 +16,16 @@ import { DomSanitizer } from '@angular/platform-browser';
   standalone: false,
 })
 export class LivePreviewComponent implements OnInit {
-  @Input() selectedTemplate = '';
+  @Input() selectedTemplate: number | null = null;
 
   dmpForm: FormGroup;
-  dmpTemplate: any = ETemplateType;
   pdfUrl: any = null;
+
+  private configService = inject(ConfigService);
+
+  readonly activeTemplates = computed(() =>
+    this.configService.getActiveTemplates(),
+  );
 
   constructor(
     public dialogRef: MatDialogRef<ExportWarningDialogComponent>,

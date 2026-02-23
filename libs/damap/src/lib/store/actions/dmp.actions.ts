@@ -49,5 +49,5 @@ export const exportDmp = createAction(
 
 export const exportDmpTemplate = createAction(
   '[Dmps] Export dmp with template',
-  props<{ dmp: Dmp; dmpTemplateType: ETemplateType }>(),
+  props<{ dmp: Dmp; dmpTemplateType: number }>(),
 );
