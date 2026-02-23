@@ -17,7 +17,10 @@
         "OPENAIRE_NOT_AVAILABLE": "The OpenAire dataset service is currently unavailable. Please try again later. ",
         "OPENAIRE_UNEXPECTED_ERROR": "The OpenAire dataset service is currently unavailable due to an unexpected error. Please try again later. ",
         "GOTENBERG_NOT_AVAILABLE": "The PDF export service is currently unavailable. Please try again later. ",
-        "GOTENBERG_UNEXPECTED_ERROR": "The PDF export service is currently unavailable due to an unexpected error. Please try again later. "
+        "GOTENBERG_UNEXPECTED_ERROR": "The PDF export service is currently unavailable due to an unexpected error. Please try again later. ",
+        "PURE_NOT_FOUND": "A person or project you searched for with PURE couldn't be found. ",
+        "PURE_NOT_AVAILABLE": "The Pure person and project service is currently unavailable. Please try again later. ",
+        "PURE_UNEXPECTED_ERROR": "The Pure person and project service is currently unavailable due to an unexpected error. Please try again later. "
       },
       "standard": "Failed to load resource. ",
       "0": "Service can not be reached, please retry later. If the issue persists contact [insert contact for technical issue].",
