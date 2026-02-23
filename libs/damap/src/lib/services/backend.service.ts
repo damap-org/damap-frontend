@@ -543,22 +543,6 @@ export class BackendService {
   private handleError(message = 'http.error.standard') {
     message = this.translate.instant(message);
     return async (error: HttpErrorResponse) => {
-      console.log(error);
-      let errorPayload = error.error;
-      if (
-        error.error instanceof Blob &&
-        error.error.type === 'application/json'
-      ) {
-        await error.error.text().then(payload => {
-          errorPayload = JSON.parse(payload);
-        });
-      }
-      console.log(
-        'An error occured: ' +
-          errorPayload.details +
-          '\nCustom error code: ' +
-          errorPayload.errorCode,
-      );
       if (error.status === 0) {
         this.translate.instant('http.error.0');
       } else if (error.status === 404) {
@@ -572,10 +556,20 @@ export class BackendService {
       // Error handling in the backend is not consistent yet
       // Currently, all endpoints that talk with external API's return custom error codes
       // All other endpoints are using the http codes
-      if (errorPayload.errorCode) {
+      let errorPayload = error.error;
+      if (errorPayload.errorCode) { // means we are using the new system
         message = this.translate.instant(
           'http.error.errorCodes.' + errorPayload.errorCode,
         );
+        console.log(error);
+        console.log(
+          'An error occured: ' +
+          errorPayload.details +
+          '\nCustom error code: ' +
+          errorPayload.errorCode,
+        );
+      } else {
+        console.log(error);
       }
       this.feedbackService.error(message);
       throw new HttpErrorResponse({ statusText: message });
