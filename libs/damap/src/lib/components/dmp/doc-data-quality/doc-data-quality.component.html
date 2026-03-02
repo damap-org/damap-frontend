@@ -32,26 +32,27 @@
           [control]="documentation">
         </app-textarea-wrapper>
 
-        <mat-hint>{{
-          "dmp.steps.documentation.question.long.dataQuality" | translate
-        }}</mat-hint>
-        <mat-form-field class="full-width" [formGroup]="docDataStep">
-          <mat-label
-            >{{
-              "dmp.steps.documentation.question.short.dataQuality" | translate
-            }}
-          </mat-label>
-          <mat-select formControlName="dataQuality" multiple #matSelect>
-            <mat-option
-              *ngFor="
-                let option of dataQualityOptions | keyvalue: originalOrder
-              "
-              [value]="option.key">
-              {{ translateDataQualityPrefixEnum + option.value | translate }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
+        <div class="data-quality-question">
+          <mat-hint>{{
+            "dmp.steps.documentation.question.long.dataQuality" | translate
+          }}</mat-hint>
+          <mat-form-field class="full-width" [formGroup]="docDataStep">
+            <mat-label
+              >{{
+                "dmp.steps.documentation.question.short.dataQuality" | translate
+              }}
+            </mat-label>
+            <mat-select formControlName="dataQuality" multiple #matSelect>
+              <mat-option
+                *ngFor="
+                  let option of dataQualityOptions | keyvalue: originalOrder
+                "
+                [value]="option.key">
+                {{ translateDataQualityPrefixEnum + option.value | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
         <app-textarea-wrapper
           *ngIf="isOtherDataQualitySelected"
           [maxLength]="4000"

@@ -3,7 +3,7 @@
   flex-direction: column;
   box-sizing: border-box;
   width: 100%;
-  gap: 16px;
+  gap: 14px;
 }
 
 .form-full-width,
@@ -38,4 +38,10 @@
   .mat-card-container > * {
     margin-bottom: 8px;
   }
+}
+
+.data-quality-question {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

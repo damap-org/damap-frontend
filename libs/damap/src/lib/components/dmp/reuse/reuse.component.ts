@@ -40,4 +40,8 @@ export class ReuseComponent {
   get tools() {
     return this.reuseStep.get('tools') as UntypedFormControl;
   }
+
+  get restrictedDataAccess(): UntypedFormControl {
+    return this.reuseStep.get('restrictedDataAccess') as UntypedFormControl;
+  }
 }

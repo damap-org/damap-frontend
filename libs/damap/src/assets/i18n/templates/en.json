@@ -203,14 +203,15 @@
           "instructions": "This step helps you think about future research uses or users of your data and what potential users may require to access your data.",
           "intro": "This step helps you to think about foreseeable research uses or users of your data sets and what potential reusers require to access your data.",
           "question": {
-            "restrictedDataAccess": "For the following datasets restricted access was selected, explain how others will get access to the data:",
             "long": {
               "targetAudience": "Who is the target audience and who could be interested in reusing the data and why?",
-              "tools": "Indicate whether potential users need specific tools or software to access and (re-)use the data:"
+              "tools": "Indicate whether potential users need specific tools or software to access and (re-)use the data:",
+              "restrictedDataAccess": "For the following datasets restricted access was selected, explain how others will get access to the data:"
             },
             "short": {
               "targetAudience": "Target audience",
-              "tools": "Specific tools"
+              "tools": "Specific tools",
+              "restrictedDataAccess": "Explanation access to restricted data"
             }
           }
         },
