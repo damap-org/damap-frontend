@@ -9,9 +9,9 @@ export interface TranslationEntry {
 
 export interface TranslationUpdatePayload {
   id: number;
-  key?: string;
-  language?: string;
+  key: string;
+  language: string;
   defaultValue?: string;
   value?: string | null;
-  active?: boolean;
+  active: boolean;
 }

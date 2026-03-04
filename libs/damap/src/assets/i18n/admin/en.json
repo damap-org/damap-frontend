@@ -104,7 +104,8 @@
       "banner": "Edit app banner",
       "theme": "Edit app theme",
       "images": "Edit app images",
-      "repositories": "Edit recommended repositories"
+      "repositories": "Edit recommended repositories",
+      "translations": "Edit app translations"
     },
     "color-theme": {
       "title": "Update application theme",

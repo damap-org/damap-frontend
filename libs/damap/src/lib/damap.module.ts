@@ -14,6 +14,7 @@ import { DmpInstructionsComponent } from './components/dmp-instructions/dmp-inst
 import { EditImagesPageComponent } from './components/admin/edit-images-page/edit-images-page.component';
 import { EditRepositoriesPageComponent } from './components/admin/edit-repositories-page/edit-repositories-page.component';
 import { EditThemePageComponent } from './components/admin/edit-theme-page/edit-theme-page.component';
+import { EditTranslationsPageComponent } from './components/admin/edit-translations-page/edit-translations-page.component';
 import { GdprComponent } from './components/gdpr/gdpr.component';
 import { PlansComponent } from './components/plans/plans.component';
 import { PlansModule } from './components/plans/plans.module';
@@ -49,6 +50,11 @@ export const DAMAP_ROUTES: Route[] = [
   {
     path: 'admin/repositories',
     component: EditRepositoriesPageComponent,
+    canActivate: [AdminGuard],
+  },
+  {
+    path: 'admin/translations',
+    component: EditTranslationsPageComponent,
     canActivate: [AdminGuard],
   },
 ];

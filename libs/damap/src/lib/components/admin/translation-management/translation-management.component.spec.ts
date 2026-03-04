@@ -19,6 +19,7 @@ describe('TranslationManagementComponent', () => {
   let fixture: ComponentFixture<TranslationManagementComponent>;
 
   const backendServiceMock = jasmine.createSpyObj('BackendService', [
+    'getLanguages',
     'getTranslations',
     'updateTranslation',
     'createLanguage',
@@ -54,6 +55,7 @@ describe('TranslationManagementComponent', () => {
   ];
 
   beforeEach(async () => {
+    backendServiceMock.getLanguages.and.returnValue(of(['en']));
     backendServiceMock.getTranslations.and.returnValue(of(sampleTranslations));
     await TestBed.configureTestingModule({
       declarations: [TranslationManagementComponent],
@@ -85,7 +87,7 @@ describe('TranslationManagementComponent', () => {
   });
 
   it('filters custom values', () => {
-    component.onStatusFilterChange('custom');
+    component.statusFilterControl.setValue('custom');
     expect(component.filteredTranslations.length).toBe(1);
     expect(component.filteredTranslations[0].value).toBeTruthy();
   });

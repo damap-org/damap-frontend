@@ -454,7 +454,7 @@ export class BackendService {
     options?: { silent?: boolean },
   ): Observable<TranslationEntry[]> {
     const request = this.http
-      .get<TranslationEntry[]>(`${this.backendUrl}translations/${language}`)
+      .get<TranslationEntry[]>(`${this.backendUrl}languages/${language}`)
       .pipe(retry(3));
 
     if (options?.silent) {
@@ -470,7 +470,10 @@ export class BackendService {
     translation: TranslationUpdatePayload,
   ): Observable<TranslationEntry> {
     return this.http
-      .patch<TranslationEntry>(`${this.backendUrl}translations`, translation)
+      .patch<TranslationEntry>(
+        `${this.backendUrl}languages/${translation.language}/translations/${encodeURIComponent(translation.key)}`,
+        { value: translation.value, active: translation.active },
+      )
       .pipe(
         retry(3),
         catchError(this.handleError('http.error.translations.update')),
@@ -482,7 +485,7 @@ export class BackendService {
     options?: { silent?: boolean },
   ): Observable<void> {
     const request = this.http
-      .post<void>(`${this.backendUrl}translations/language/${language}`, {})
+      .post<void>(`${this.backendUrl}languages`, { language })
       .pipe(retry(3));
 
     if (options?.silent) {
@@ -496,9 +499,16 @@ export class BackendService {
     );
   }
 
+  getLanguages(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.backendUrl}languages`).pipe(
+      retry(3),
+      catchError(() => of(['en'])),
+    );
+  }
+
   deleteLanguage(language: string): Observable<void> {
     return this.http
-      .delete<void>(`${this.backendUrl}translations/language/${language}`)
+      .delete<void>(`${this.backendUrl}languages/${language}`)
       .pipe(
         retry(3),
         catchError(this.handleError('http.error.translations.language.delete')),

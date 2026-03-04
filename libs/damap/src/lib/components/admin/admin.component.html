@@ -2,7 +2,13 @@
   <h1 translate>admin.title</h1>
   <hr />
   <h2 translate>admin.appTranslations.title</h2>
-  <damap-translation-management></damap-translation-management>
+  <button
+    class="button-position"
+    mat-flat-button
+    (click)="navigateTo('/admin/translations')">
+    <mat-icon>edit</mat-icon>
+    {{ "admin.edit.translations" | translate }}
+  </button>
   <hr />
   <h2 translate>admin.internal-storage</h2>
   <button class="button-position" mat-flat-button (click)="openStorageDialog()">

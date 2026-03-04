@@ -101,6 +101,7 @@ import { TranslationManagementComponent } from './translation-management/transla
     MatDialogModule,
     MatFormFieldModule,
     MatTooltipModule,
+    TranslationManagementComponent,
   ],
 })
 export class AdminModule {}
