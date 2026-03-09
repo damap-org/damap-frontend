@@ -40,31 +40,6 @@ describe('CreatedDataComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('ngOnInit', () => {
-    it('should load service config and set FITS service availability flag', () => {
-      component.ngOnInit();
-      expect(component.fitsServiceAvailable).toEqual(
-        configMockData.fitsServiceAvailable,
-      );
-    });
-  });
-
-  it('file upload not available if no FITS service available', () => {
-    component.fitsServiceAvailable = false;
-    const element = fixture.debugElement.query(
-      By.directive(FileUploadComponent),
-    );
-    expect(element).toBeNull();
-  });
-
-  it('file upload available if FITS service available', () => {
-    component.fitsServiceAvailable = true;
-    const element = fixture.debugElement.query(
-      By.directive(FileUploadComponent),
-    );
-    expect(element).toBeDefined();
-  });
-
   it('should emit file to analyse', () => {
     spyOn(component.fileToAnalyse, 'emit');
     const file = new File([], 'test.txt');

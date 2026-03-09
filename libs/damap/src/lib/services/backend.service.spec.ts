@@ -210,7 +210,9 @@ describe('BackendService', () => {
       }
     });
 
-    const req = httpTestingController.expectOne(`${backendUrl}fits/examine`);
+    const req = httpTestingController.expectOne(
+      `${backendUrl}file-analysis/examine`,
+    );
     expect(req.request.method).toEqual('POST');
     req.event({ type: HttpEventType.UploadProgress, loaded: 7, total: 10 });
     req.event({

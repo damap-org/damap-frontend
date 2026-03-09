@@ -37,7 +37,6 @@ describe('ConfigService', () => {
     appTitle: 'Test App Title',
     personSearchServiceConfigs: [],
     projectSearchServiceConfig: null,
-    fitsServiceAvailable: false,
     livePreviewAvailable: true,
     ethicalReportEnabled: true,
     multitenancyEnabled: false,
@@ -142,7 +141,6 @@ describe('ConfigService', () => {
         env: 'test-env',
         appTitle: null,
         personSearchServiceConfigs: [],
-        fitsServiceAvailable: false,
         livePreviewAvailable: true,
       };
 

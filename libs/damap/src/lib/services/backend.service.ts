@@ -281,7 +281,7 @@ export class BackendService {
 
   analyseFileData(file: FormData): Observable<HttpEvent<any>> {
     return this.http
-      .post(`${this.backendUrl}fits/examine`, file, {
+      .post(`${this.backendUrl}file-analysis/examine`, file, {
         reportProgress: true,
         observe: 'events',
       })
