@@ -44,8 +44,12 @@
           {{ lang }}
         </button>
         <mat-menu #language="matMenu">
-          <button mat-menu-item (click)="useLanguage('en')">EN</button>
-          <button mat-menu-item (click)="useLanguage('de')">DE</button>
+          <button
+            mat-menu-item
+            *ngFor="let language of availableLanguages"
+            (click)="useLanguage(language)">
+            {{ language.toUpperCase() }}
+          </button>
         </mat-menu>
       </div>
     </div>
