@@ -29,7 +29,9 @@ export * from './lib/store/actions/internal-storage.actions';
 export * from './lib/guards/auth.guard';
 export * from './lib/auth/auth.service';
 export * from './lib/services/backend.service';
+export * from './lib/services/backend-translate-loader';
 export * from './lib/services/feedback.service';
+export * from './lib/services/translation-loader.service';
 
 // Models
 export * from './lib/domain/access';

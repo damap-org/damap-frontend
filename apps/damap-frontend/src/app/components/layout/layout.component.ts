@@ -1,5 +1,3 @@
-import * as layoutTemplate from '../../../assets/i18n/layout/en.json';
-
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -8,7 +6,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { AuthService, DashboardComponent } from '@damap/core';
+import { AuthService, BackendService, DashboardComponent } from '@damap/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { Subscription, filter } from 'rxjs';
 
@@ -40,9 +38,9 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   public version: string = pkg.version;
   public name: string;
   public lang = 'en';
+  public availableLanguages: string[] = ['en'];
   public isSmallScreen: boolean = false;
   public isCollapsed: boolean = false;
-  public templateDataLayout = layoutTemplate;
   public icon = 'info';
   private dataInfoService: Subscription | null;
   public greeting: string;
@@ -55,6 +53,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private auth: AuthService,
     private translate: TranslateService,
+    private backendService: BackendService,
     private configService: ConfigService,
     private imageThemeService: ImageThemeService,
     private observer: BreakpointObserver,
@@ -67,9 +66,26 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     this.name = this.auth.getDisplayName();
-    const browserLang = this.translate.getBrowserLang();
-    this.translate.use(browserLang?.match(/en|de/) ? browserLang : 'en');
-    this.lang = this.translate.currentLang.toUpperCase();
+    this.backendService.getAllLanguages().subscribe({
+      next: langs => {
+        this.availableLanguages = langs.length ? langs : ['en'];
+        const savedLang = localStorage.getItem('lang');
+        const browserLang = (
+          this.translate.getBrowserLang() ?? 'en'
+        ).toLowerCase();
+        const preferred = savedLang ?? browserLang;
+        const selected = this.availableLanguages.includes(preferred)
+          ? preferred
+          : this.availableLanguages[0];
+        this.translate.use(selected);
+        this.lang = selected.toUpperCase();
+      },
+      error: () => {
+        const browserLang = this.translate.getBrowserLang();
+        this.translate.use(browserLang?.match(/en/) ? browserLang : 'en');
+        this.lang = this.translate.currentLang.toUpperCase();
+      },
+    });
 
     // the breakpoint (1300px) here can be adjusted based on design requirements or device-specific considerations.
     this.observer.observe(['(max-width: 480px)']).subscribe(result => {
@@ -105,6 +121,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   useLanguage(language: string): void {
     this.lang = language.toUpperCase();
     this.translate.use(language);
+    localStorage.setItem('lang', language);
   }
 
   public logout(): void {
@@ -146,19 +163,19 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
     ) {
       // Dashboard or router not yet initialized
       this.greeting =
-        this.templateDataLayout.layout.menu.greeting +
+        this.translate.instant('layout.menu.greeting') +
         ' ' +
         this.name +
         ' ' +
-        this.templateDataLayout.layout.menu.titleDashboard;
+        this.translate.instant('layout.menu.titleDashboard');
       this.summaryLine = 'layout.menu.section';
     } else if (componentInstance instanceof AdminComponent) {
       this.greeting =
-        this.templateDataLayout.layout.menu.greeting +
+        this.translate.instant('layout.menu.greeting') +
         ' ' +
         this.name +
         ' ' +
-        this.templateDataLayout.layout.menu.titleDashboard;
+        this.translate.instant('layout.menu.titleDashboard');
       this.summaryLine = 'layout.menu.adminSection';
     }
   }
