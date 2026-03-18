@@ -6,28 +6,17 @@ from collections import defaultdict
 from pathlib import Path
 
 def custom_value_match(old_val, new_val):
-    """
-    Returns True if the values should be considered a match, False otherwise.
-    You can test your different formatting strategies here!
-    """
-    # Example Strategy 1: Ignore case and strip trailing spaces
-    # clean_old = old_val.lower().strip()
-    # clean_new = new_val.lower().strip()
-    # return clean_old == clean_new
-
-    # Example Strategy 2: Remove all punctuation and spaces (extreme)
-    # clean_old = re.sub(r'\W+', '', old_val.lower())
-    # clean_new = re.sub(r'\W+', '', new_val.lower())
-    # return clean_old == clean_new
-
-    # Default fallback: return False until you write your logic
     mod_old = old_val[:1].lower() + old_val[1:]
     mod_new = new_val[:1].lower() + new_val[1:]
 
     if mod_old == mod_new:
         return True
 
-    return mod_old == mod_new
+    if old_val.strip() == new_val.strip():
+        return True
+
+    # ADD STRATEGY TO AVOID "
+    return False
 # ==========================================
 
 
@@ -69,7 +58,7 @@ def create_mapping_csv():
     old_data = merge_old_translations(base_project_folder)
 
     if not new_json_path.exists():
-        print(f"❌ Error: Could not find {new_json_path}")
+        print(f"Error: Could not find {new_json_path}")
         return
 
     with open(new_json_path, 'r', encoding='utf-8') as f:
@@ -136,8 +125,6 @@ def create_mapping_csv():
             if suggestion:
                 suggestion_val = new_data.get(suggestion, "")
             elif new_key and new_key not in ["COULD_NOT_BE_AUTO_REPLACE", "MISSING_IN_NEW_JSON"]:
-                # If we auto-matched it, let's show what text it matched with just in case
-                # your custom_value_match was doing some heavy formatting changes.
                 suggestion_val = new_data.get(new_key, "")
 
             clean_val = val.replace('\n', '\\n').replace('\r', '')
@@ -148,7 +135,7 @@ def create_mapping_csv():
 
             writer.writerow([old_key, new_key, clean_val, suggestion, clean_suggestion_val])
 
-    print(f"\n✅ Mapping complete! Check out {output_csv_path}")
+    print(f"\nMapping complete! Check out {output_csv_path}")
 
 if __name__ == "__main__":
     create_mapping_csv()
