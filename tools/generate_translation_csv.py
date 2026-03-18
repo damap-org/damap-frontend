@@ -24,6 +24,9 @@ def custom_value_match(old_val, new_val):
     mod_old = old_val[:1].lower() + old_val[1:]
     mod_new = new_val[:1].lower() + new_val[1:]
 
+    if mod_old == mod_new:
+        return True
+
     return mod_old == mod_new
 # ==========================================
 
@@ -88,7 +91,7 @@ def create_mapping_csv():
 
     with open(output_csv_path, 'w', newline='', encoding='utf-8') as csvfile:
         writer = csv.writer(csvfile)
-        writer.writerow(['Old Key', 'New Key', 'Value', 'Suggested Key'])
+        writer.writerow(['Old Key', 'New Key', 'Value', 'Suggested Key', 'Suggested Key Value'])
 
         for old_key, val in old_data.items():
             if not isinstance(val, str):
@@ -96,6 +99,7 @@ def create_mapping_csv():
 
             possible_new_keys = []
             suggestion = ""
+            duplicate_count = 0
 
             # 1. FAST EXACT MATCH (Dictionary Lookup)
             if val in new_val_to_keys:
@@ -110,6 +114,9 @@ def create_mapping_csv():
 
             # 3. ASSIGN THE KEY BASED ON WHAT WE FOUND
             if possible_new_keys:
+                for k in possible_new_keys:
+                  if new_data[k] == val:
+                    duplicate_count += 1
                 if old_key in possible_new_keys:
                     new_key = old_key
                 elif len(old_val_to_keys[val]) == 1 and len(possible_new_keys) == 1:
@@ -125,8 +132,21 @@ def create_mapping_csv():
             else:
                 new_key = "MISSING_IN_NEW_JSON"
 
+            suggestion_val = ""
+            if suggestion:
+                suggestion_val = new_data.get(suggestion, "")
+            elif new_key and new_key not in ["COULD_NOT_BE_AUTO_REPLACE", "MISSING_IN_NEW_JSON"]:
+                # If we auto-matched it, let's show what text it matched with just in case
+                # your custom_value_match was doing some heavy formatting changes.
+                suggestion_val = new_data.get(new_key, "")
+
             clean_val = val.replace('\n', '\\n').replace('\r', '')
-            writer.writerow([old_key, new_key, clean_val, suggestion])
+            clean_suggestion_val = suggestion_val.replace('\n', '\\n').replace('\r', '')
+
+            if duplicate_count > 1:
+                clean_suggestion_val += "(" + str(duplicate_count) + ")"
+
+            writer.writerow([old_key, new_key, clean_val, suggestion, clean_suggestion_val])
 
     print(f"\n✅ Mapping complete! Check out {output_csv_path}")
 
