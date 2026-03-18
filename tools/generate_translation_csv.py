@@ -77,8 +77,10 @@ def create_mapping_csv():
             if val in new_val_to_keys:
                 possible_new_keys = new_val_to_keys[val]
 
+                if old_key in possible_new_keys:
+                    new_key = old_key
                 # 1-to-1 match
-                if len(old_val_to_keys[val]) == 1 and len(possible_new_keys) == 1:
+                elif len(old_val_to_keys[val]) == 1 and len(possible_new_keys) == 1:
                     new_key = possible_new_keys[0]
                 else:
                     new_key = "COULD_NOT_BE_AUTO_REPLACE"
