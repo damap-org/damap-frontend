@@ -1,8 +1,32 @@
 import json
 import csv
 import difflib
+import re
 from collections import defaultdict
 from pathlib import Path
+
+def custom_value_match(old_val, new_val):
+    """
+    Returns True if the values should be considered a match, False otherwise.
+    You can test your different formatting strategies here!
+    """
+    # Example Strategy 1: Ignore case and strip trailing spaces
+    # clean_old = old_val.lower().strip()
+    # clean_new = new_val.lower().strip()
+    # return clean_old == clean_new
+
+    # Example Strategy 2: Remove all punctuation and spaces (extreme)
+    # clean_old = re.sub(r'\W+', '', old_val.lower())
+    # clean_new = re.sub(r'\W+', '', new_val.lower())
+    # return clean_old == clean_new
+
+    # Default fallback: return False until you write your logic
+    mod_old = old_val[:1].lower() + old_val[1:]
+    mod_new = new_val[:1].lower() + new_val[1:]
+
+    return mod_old == mod_new
+# ==========================================
+
 
 def flatten_json(y):
     out = {}
@@ -45,7 +69,6 @@ def create_mapping_csv():
         print(f"❌ Error: Could not find {new_json_path}")
         return
 
-    # THE FIX: Load the JSON, then step inside the "en" key before flattening
     with open(new_json_path, 'r', encoding='utf-8') as f:
         raw_new_json = json.load(f)
         if "en" in raw_new_json:
@@ -71,27 +94,34 @@ def create_mapping_csv():
             if not isinstance(val, str):
                 continue
 
-            new_key = ""
+            possible_new_keys = []
             suggestion = ""
 
+            # 1. FAST EXACT MATCH (Dictionary Lookup)
             if val in new_val_to_keys:
                 possible_new_keys = new_val_to_keys[val]
 
+            # 2. CUSTOM FALLBACK MATCH
+            else:
+                for candidate_new_val, keys in new_val_to_keys.items():
+                    # This calls your skeleton function!
+                    if custom_value_match(val, candidate_new_val):
+                        possible_new_keys.extend(keys)
+
+            # 3. ASSIGN THE KEY BASED ON WHAT WE FOUND
+            if possible_new_keys:
                 if old_key in possible_new_keys:
                     new_key = old_key
-                # 1-to-1 match
                 elif len(old_val_to_keys[val]) == 1 and len(possible_new_keys) == 1:
                     new_key = possible_new_keys[0]
                 else:
                     new_key = "COULD_NOT_BE_AUTO_REPLACE"
-
                     highest_ratio = 0.0
                     for candidate in possible_new_keys:
                         ratio = difflib.SequenceMatcher(None, old_key, candidate).ratio()
                         if ratio > highest_ratio:
                             highest_ratio = ratio
                             suggestion = candidate
-
             else:
                 new_key = "MISSING_IN_NEW_JSON"
 
