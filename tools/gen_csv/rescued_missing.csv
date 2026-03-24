@@ -1,0 +1,19 @@
+Old Key,New Key,Value
+admin.edit.images,admin.edit.images,Edit images
+admin.edit.repositories,admin.edit.repositories,Edit recommended repositories
+admin.edit.theme,admin.edit.theme,Edit app theme
+admin.repositories.delete-dialog.title,admin.repositories.delete-dialog.title,Delete Repository
+dashboard.dmp.heading,dashboard.dmp.heading,What is a DMP?
+dmp.error.load,dmp.error.load,DMPs were not loaded.
+dmp.nodatasets,dmp.nodatasets,Please declare any new or existing dataset first.
+dmp.nonewdataset,dmp.nonewdataset,Please declare a produced (i.e. new) dataset first.
+dmp.steps.data.reuse.question.tools,dmp.steps.data.reuse.question.long.tools,Indicate whether potential users need specific tools or software to access and (re-)use the data:
+dmp.steps.documentation.question.metadata,dmp.steps.documentation.question.long.metadata,"Please indicate which metadata will be provided to help others identify, discover and reuse the data:"
+dmp.steps.legal.question.dataRightsAndAccessControl,dmp.steps.legal.question.long.dataRightsAndAccessControl,List who will have the rights to control access over which dataset(s):
+dmp.steps.storage.external.question.info,dmp.steps.storage.external.question.long.info,Please explain why institutional storage will not be used:
+enum.accessright.NONE,enum.accessright.NONE,no access
+enum.accessright.READ,enum.accessright.READ,reading only
+enum.accessright.WRITE,enum.accessright.WRITE,writing
+enum.agreement.CONFIDENTIALITY_AGREEMENT,enum.agreement.CONFIDENTIALITY_AGREEMENT,confidentiality agreement
+enum.agreement.CONSORTIUM_AGREEMENT,enum.agreement.CONSORTIUM_AGREEMENT,consortium agreement
+
