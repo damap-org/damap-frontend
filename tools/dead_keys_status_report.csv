@@ -1,0 +1,110 @@
+Dead Old Key,Migration Status,Actual English Text
+admin.table.action.activate,MISSING_IN_NEW_JSON,Activate
+admin.table.action.deactivate,MISSING_IN_NEW_JSON,Deactivate
+admin.dialog.banner.preview,MISSING_IN_NEW_JSON,Preview
+dashboard.welcome.message,MISSING_IN_NEW_JSON,"Welcome to DAMAP, a service that helps you to create the Data Management Plan (DMP) for your project."
+dmp.steps.costs.greeting,MISSING_IN_NEW_JSON,"Step 10, you’re almost there, Firstname!"
+dmp.steps.costs.instructions,dmp.steps.costs.instruction,"In this step, you will provide information on the resources required to manage your data and a clear statement on how these costs will be covered."
+dmp.steps.costs.intro,MISSING_IN_NEW_JSON,In this step you are asked to provide a realistic estimation of necessary resources for data management and a clear statement on how these costs will be covered.
+dmp.steps.costs.summaryLine,MISSING_IN_NEW_JSON,Estimate the costs for data management in this project. 
+dmp.steps.data.access.heading,MISSING_IN_NEW_JSON,Planned access rights for all datasets
+dmp.steps.data.reuse.greeting,MISSING_IN_NEW_JSON,"On to Step 9, Firstname"
+dmp.steps.data.reuse.instructions,dmp.steps.data.reuse.instructions,This step helps you think about future research uses or users of your data and what potential users may require to access your data.
+dmp.steps.data.reuse.intro,MISSING_IN_NEW_JSON,This step helps you to think about foreseeable research uses or users of your data sets and what potential reusers require to access your data.
+dmp.steps.data.reuse.summaryLine,MISSING_IN_NEW_JSON,Consider potential research uses and users of your data sets.
+dmp.steps.data.specify.dialog.identifier,MISSING_IN_NEW_JSON,Identifier
+dmp.steps.data.specify.dialog.view,MISSING_IN_NEW_JSON,View dataset
+dmp.steps.data.specify.greeting,MISSING_IN_NEW_JSON,"Let’s talk about data, Firstname"
+dmp.steps.data.specify.instructions,dmp.steps.data.specify.instructions,"In this step, you specify the datasets (i.e., groups of data with similar properties) you will produce or reuse in your project."
+dmp.steps.data.specify.question.datasets,MISSING_IN_NEW_JSON,Create names for your datasets
+dmp.steps.data.specify.summaryLine,MISSING_IN_NEW_JSON,Describe your research data.
+dmp.steps.data.specify.tab.doi,MISSING_IN_NEW_JSON,Enter DOI
+dmp.steps.data.specify.tab.introStorage,MISSING_IN_NEW_JSON,This step helps you to document who is allowed to see or edit your data in the project phase and to find good storage and backup solutions for your data.
+dmp.steps.data.specify.tab.manual,MISSING_IN_NEW_JSON,Manually
+dmp.steps.data.specify.table.header.comment,MISSING_IN_NEW_JSON,Comment
+dmp.steps.data.specify.table.heading.default,COULD_NOT_BE_AUTO_REPLACE,Data
+dmp.steps.documentation.greeting,MISSING_IN_NEW_JSON,"Now onto Step 4, Firstname"
+dmp.steps.documentation.instructions,dmp.steps.documentation.instructions,"This step helps you to provide information on how data will be organised during the project, which data quality control measures will be used, what documentation will be prepared and made available to enable the reuse of data, and which metadata will be provided."
+dmp.steps.documentation.intro,MISSING_IN_NEW_JSON,"This step helps you to provide information on how data will be organised during the project, which data quality control measures are used, what documentation will be prepared and made available to enable reuse of data, and which metadata will be provided."
+dmp.steps.documentation.summaryLine,MISSING_IN_NEW_JSON,Outline how your data will be organised throughout the project.
+dmp.steps.end.greeting,MISSING_IN_NEW_JSON,"Finally, let’s review your work, Firstname"
+dmp.steps.end.instructions,dmp.steps.end.instructions,"Below is a summary of the information you provided. To add more information, go to the previous step(s)."
+dmp.steps.end.summaryLine,MISSING_IN_NEW_JSON,Check if you covered everything.
+dmp.steps.legal.greeting,MISSING_IN_NEW_JSON,"On to Step 6, you’re halfway there, Firstname!"
+dmp.steps.legal.instructions,dmp.steps.legal.instructions,"This step helps you consider potential issues concerning personal data, intellectual property rights, and ownership and asks you for basic information on the handling of ethical issues within this project."
+dmp.steps.legal.intro,MISSING_IN_NEW_JSON,"This step helps you consider potential issues concerning personal data, intellectual property rights and ownership and asks you for basic information on the handling of ethical issues within this project."
+dmp.steps.legal.summaryLine,MISSING_IN_NEW_JSON,Address important legal and ethical dimensions of your project.
+dmp.steps.licensing.greeting,MISSING_IN_NEW_JSON,"Advancing to Step 7, Firstname"
+dmp.steps.licensing.hint,MISSING_IN_NEW_JSON,Please indicate which datasets you plan to keep closed or publish. Select a license for the datasets you want to publish and estimate the release date.
+dmp.steps.licensing.instructions,dmp.steps.licensing.instructions,"This step helps you to specify the access to your research output in the future: Which of your datasets will be published, which will be provided to interested persons on request only, and which need to be under lock and key, for contractual, regulatory, or ethical reasons? It also reminds you to choose a license for your open data that clearly describes the reuse conditions for potential users. To comply with the FAIR principles, metadata should be published, even if the data is closed or restricted."
+dmp.steps.licensing.intro,MISSING_IN_NEW_JSON,"This step helps you to specify the access to your research output in the future: Which of your data sets will be published, which will be provided to interested persons on request only and which need to be under lock and key, for contractual, regulatory, or ethical reasons? It also reminds you to choose a license for your open data that clearly describes the reuse conditions for potential reusers. To comply with the FAIR principles, metadata should be published, even if the data are closed or restricted."
+dmp.steps.licensing.question.hint,MISSING_IN_NEW_JSON,The release date was set to the project end date. Feel free to modify it.
+dmp.steps.licensing.summaryLine,MISSING_IN_NEW_JSON,Elaborate on future access to your data. 
+dmp.steps.people.contact.contributor,MISSING_IN_NEW_JSON,Change to contributor
+dmp.steps.people.greeting,MISSING_IN_NEW_JSON,"Welcome to Step 2, Firstname"
+dmp.steps.people.instructions,dmp.steps.people.instructions,"In this step, you add individuals to the project and provide additional information about them, for example, their role in the project. To mark someone as the contact person click the person-with-envelope icon next to their role. You can change the existing information and add more contributors via the search (choose a search service and start typing the name). Please provide a minimum of one contact person as well as a data manager (it can be the same person)."
+dmp.steps.people.intro,MISSING_IN_NEW_JSON,"In this step, you add people involved in the project and provide additional info about them, e.g., their role. In this example, the project leader’s info has already been added and marked as the contact person (note icon with person and envelope next to their name). You can add more contributors via the search field (ensure you select the appropriate database, e.g., ORCID), or manually via the “Add contributor manually button”. Please provide a minimum of one contact person as well as a data manager (it can be the same person)."
+dmp.steps.people.manual.input.show,MISSING_IN_NEW_JSON,Add contributor manually
+dmp.steps.people.manual.input.tooltip,MISSING_IN_NEW_JSON,Use to add project contributor not found in database above
+dmp.steps.people.rightLabel,MISSING_IN_NEW_JSON,Identify data management contributors
+dmp.steps.people.summaryLine,MISSING_IN_NEW_JSON,Identify team members in your project.
+dmp.steps.project.greeting,MISSING_IN_NEW_JSON,"Hi Firstname, let’s get started"
+dmp.steps.project.instructions,dmp.steps.project.instructions,"In this step, you choose a project from your institution’s project database (if integrated) or manually input your project."
+dmp.steps.project.loading.failed,MISSING_IN_NEW_JSON,Projects could not be loaded.
+dmp.steps.project.loading.load,MISSING_IN_NEW_JSON,Load projects...
+dmp.steps.project.noprojects,MISSING_IN_NEW_JSON,No projects are assigned to you.
+dmp.steps.project.summaryLine,MISSING_IN_NEW_JSON,Begin creating your DMP by identifying your project.
+dmp.steps.repositories.filter.search,MISSING_IN_NEW_JSON,Search Filter
+dmp.steps.repositories.greeting,MISSING_IN_NEW_JSON,"Step 8, Firstname"
+dmp.steps.repositories.instructions,dmp.steps.repositories.instructions,"Repositories are used for sustainable data management beyond the lifetime of the project and to make data discoverable and reusable to others. If available, use a domain specific repository for your data. The search filter below may help you to find one."
+dmp.steps.repositories.intro,MISSING_IN_NEW_JSON,"Use repositories to sustainably manage your data after the project’s life and to make your data discoverable and reusable. If possible, use a domain specific repository for your data. The search filter below can help you to find one. You’ll also want to set the time for how long your data should remain in the repository. This retention period can be selected in the Set retention period for datasets section"
+dmp.steps.repositories.question.date,MISSING_IN_NEW_JSON,Available until
+dmp.steps.repositories.remove,MISSING_IN_NEW_JSON,Remove repository
+dmp.steps.repositories.search,MISSING_IN_NEW_JSON,Search repository
+dmp.steps.repositories.summaryLine,MISSING_IN_NEW_JSON,Choose suitable repositories for your data.
+dmp.steps.storage.greeting,MISSING_IN_NEW_JSON,"Step 5, Let’s elaborate on your storage, Firstname"
+dmp.steps.storage.instructions,dmp.steps.storage.instructions,This step helps you 1) document who is allowed to see or edit your data in the project phase and 2) find appropriate storage and backup solutions for your data.
+dmp.steps.storage.summaryLine,MISSING_IN_NEW_JSON,Define who can access and modify your data and describe your storage and backup strategies.
+dmp.steps.summary.data.specify.datasets.none.none,MISSING_IN_NEW_JSON,No research data specified.
+dmp.steps.summary.data.specify.datasets.reused,MISSING_IN_NEW_JSON,Reused datasets: 
+dmp.steps.summary.data.specify.datasets.unknown.reused,MISSING_IN_NEW_JSON,Not yet known if data will be reused.
+dmp.steps.summary.project.selected,MISSING_IN_NEW_JSON,Project: {{project}}.
+dmp.steps.summary.repositories.missingexplanation,MISSING_IN_NEW_JSON,Explanation for datasets with restricted/closed access missing.
+dmp.steps.summary.repositories.nodata,MISSING_IN_NEW_JSON,No data to be deposited.
+dmp.steps.summary.someinfo,MISSING_IN_NEW_JSON,Some information provided.
+enum.datakind.NONE,MISSING_IN_NEW_JSON,none
+enum.datakind.SPECIFY,MISSING_IN_NEW_JSON,specify
+enum.datakind.UNKNOWN,MISSING_IN_NEW_JSON,unknown
+enum.exportDmpTemplatetype.FWF,MISSING_IN_NEW_JSON,FWF
+enum.exportDmpTemplatetype.HORIZON_EUROPE,MISSING_IN_NEW_JSON,Horizon Europe
+enum.exportDmpTemplatetype.SCIENCE_EUROPE,MISSING_IN_NEW_JSON,Science Europe
+enum.functionrole.ADMIN,MISSING_IN_NEW_JSON,ADMIN
+enum.functionrole.EDITOR,MISSING_IN_NEW_JSON,EDITOR
+enum.functionrole.GUEST,MISSING_IN_NEW_JSON,GUEST
+enum.functionrole.OWNER,MISSING_IN_NEW_JSON,OWNER
+enum.functionrole.SUPPORT,MISSING_IN_NEW_JSON,SUPPORT
+enum.fundingstate.APPLIED,MISSING_IN_NEW_JSON,applied
+enum.fundingstate.GRANTED,MISSING_IN_NEW_JSON,granted
+enum.fundingstate.PLANNED,MISSING_IN_NEW_JSON,planned
+enum.fundingstate.REJECTED,MISSING_IN_NEW_JSON,rejected
+enum.fundingstate.UNSPECIFIED,MISSING_IN_NEW_JSON,unspecified
+enum.identifier.ARK,MISSING_IN_NEW_JSON,ark
+enum.identifier.DOI,MISSING_IN_NEW_JSON,doi
+enum.identifier.FUNDREF,MISSING_IN_NEW_JSON,fundref
+enum.identifier.HANDLE,MISSING_IN_NEW_JSON,handle
+enum.identifier.HDL,MISSING_IN_NEW_JSON,hdl
+enum.identifier.ISNI,MISSING_IN_NEW_JSON,isni
+enum.identifier.OPENID,MISSING_IN_NEW_JSON,openid
+enum.identifier.ORCID,MISSING_IN_NEW_JSON,orcid
+enum.identifier.OTHER,MISSING_IN_NEW_JSON,other
+enum.identifier.PURL,MISSING_IN_NEW_JSON,purl
+enum.identifier.ROR,MISSING_IN_NEW_JSON,ror
+enum.identifier.URL,MISSING_IN_NEW_JSON,url
+enum.identifier.URN,MISSING_IN_NEW_JSON,urn
+http.error.person.search,MISSING_IN_NEW_JSON,Failed to find person. 
+info.project.funder,MISSING_IN_NEW_JSON,"If your project is missing, please contact [mail@address.example]. You can add project information manually, however you will have to select a funder template when exporting as funder information is not available."
+layout.menu.infoDashboard,MISSING_IN_NEW_JSON,You can create a new DMP by clicking the 'Create New DMP' button
+layout.menu.mobile.open,MISSING_IN_NEW_JSON,Open page navigation
+license.wizard.question.ownIPR,MISSING_IN_NEW_JSON,Do you own copyright and similar rights in your dataset and all its constitutive parts?
+plans.table.expanded.duration,MISSING_IN_NEW_JSON,Project duration: {{value}}
+preview.loading,MISSING_IN_NEW_JSON,Loading
