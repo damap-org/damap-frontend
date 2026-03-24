@@ -1,0 +1,938 @@
+Old Key,New Key,Value,Suggested Key,Suggested Key Value
+title,MISSING_IN_NEW_JSON,DAMAP,,
+layout.menu.home,sidebar.navigation.home,Home,,Home
+layout.menu.plans,sidebar.navigation.dmps,DMPs,,DMPs
+layout.menu.admin,sidebar.navigation.admin,Admin,,Admin
+layout.menu.greeting,MISSING_IN_NEW_JSON,Hi,,
+layout.menu.titleDashboard,admin.dashboard.title, let's get started!,, let's get started!
+layout.menu.section,dashboard.home.section-intro,"Welcome to DAMAP, a service that helps you create a Data Management Plan (DMP) for your project.",,"Welcome to DAMAP, a service that helps you create a Data Management Plan (DMP) for your project."
+layout.menu.adminSection,admin.dashboard.section-intro,Welcome to the DAMAP Admin section.,,Welcome to the DAMAP Admin section.
+layout.menu.mobile.open,MISSING_IN_NEW_JSON,Open page navigation,,
+layout.menu.mobile.close,sidebar.header.button.hint,Close page navigation,,Close page navigation
+layout.menu.infoDashboard,MISSING_IN_NEW_JSON,You can create a new DMP by clicking the 'Create New DMP' button,,
+layout.logout,MISSING_IN_NEW_JSON,Logout,,
+layout.version,COULD_NOT_BE_AUTO_REPLACE,Version,sidebar.footer.version,Version(3)
+layout.logo.text,MISSING_IN_NEW_JSON,Go back to main page,,
+layout.logo.link,COULD_NOT_BE_AUTO_REPLACE,https://www.damap.org,info.how-to-create.tool.link,https://www.damap.org
+layout.dataprotection.text,sidebar.footer.data-protection-declaration,Data Protection Declaration,,Data Protection Declaration
+layout.dataprotection.link,COULD_NOT_BE_AUTO_REPLACE,#,sidebar.footer.data-protection-declaration.link,#(3)
+layout.impressum.text,sidebar.footer.impressum,Impressum,,Impressum
+layout.impressum.link,COULD_NOT_BE_AUTO_REPLACE,#,sidebar.footer.impressum.link,#(3)
+layout.termsandconditions.text,sidebar.footer.terms-and-conditions,Terms and Conditions,,Terms and Conditions
+layout.termsandconditions.link,COULD_NOT_BE_AUTO_REPLACE,#,sidebar.footer.terms-and-conditions.link,#(3)
+layout.icon.dataAlert,sidebar.footer.collapsed.hint,Expand the menu to access legal information,,Expand the menu to access legal information
+layout.gdpr,sidebar.footer.gdpr-info,GDPR Info,,GDPR Info
+env.title,MISSING_IN_NEW_JSON,Test environment,,
+env.text,MISSING_IN_NEW_JSON,This application instance is for development and testing purposes only. Content may be deleted at any point in time without prior notification.,,
+heading,consent-popup.title,Data Protection Declaration of Consent DAMAP,,Data Protection Declaration of Consent DAMAP
+information.text,consent-popup.personalData.processingAgreement,I agree that the following personal data will be processed within the framework of the DAMAP tool:,,I agree that the following personal data will be processed within the framework of the DAMAP tool:
+information.purpose.registration.label,consent-popup.personalData.registrationLabel,for registration,,for registration
+information.purpose.registration.name,consent-popup.personalData.fullName,first and last name,,first and last name
+information.purpose.registration.mail,COULD_NOT_BE_AUTO_REPLACE,e-mail address,consent-popup.personalData.email,e-mail address(2)
+information.purpose.registration.id,consent-popup.personalData.institutionalId,institutional-ID (if available),,institutional-ID (if available)
+duration,consent-popup.dataRetention.duration,"Personal data that is collected for registration is generally only stored for the duration of the service made available, unless a longer retention period is mandated by statutory regulations.",,"Personal data that is collected for registration is generally only stored for the duration of the service made available, unless a longer retention period is mandated by statutory regulations."
+agreement,consent-popup.agreement.gdprNotice,"I hereby declare that I have been informed about the information obligations (right to information / correction / deletion, etc.) according to article 12 - 21 DSGVO and have taken note of them.",,"I hereby declare that I have been informed about the information obligations (right to information / correction / deletion, etc.) according to article 12 - 21 DSGVO and have taken note of them."
+withdrawal,consent-popup.withdrawal.notice,I hereby declare that this declaration of consent is made on a voluntary basis. I may informally withdraw my consent at any time with effect for the future without any adverse consequences.,,I hereby declare that this declaration of consent is made on a voluntary basis. I may informally withdraw my consent at any time with effect for the future without any adverse consequences.
+accept,consent-popup.button.accept,Accept,,Accept
+landing-page.title,landing.title,DAMAP - a tool for machine actionable DMPs,,DAMAP - a tool for machine actionable DMPs
+landing-page.start,landing.start,Start now,,Start now
+landing-page.servers-down-retrying,landing.servers-down-retrying,Failed to establish connection to our servers. Retrying...,,Failed to establish connection to our servers. Retrying...
+landing-page.servers-down,landing.servers-down,Our servers seem to be down at the moment. Please try again later.,,Our servers seem to be down at the moment. Please try again later.
+landing-page.servers-up,landing.servers-up,Connection to our servers has been re-established.,,Connection to our servers has been re-established.
+yes,MISSING_IN_NEW_JSON,Yes,,
+no,MISSING_IN_NEW_JSON,No,,
+fair,MISSING_IN_NEW_JSON,FAIR,,
+treeselect.filter,MISSING_IN_NEW_JSON,Filter selection,,
+treeselect.toggle,MISSING_IN_NEW_JSON,Toggle {{value}},,
+treeselect.options,MISSING_IN_NEW_JSON,Select options,,
+languages,MISSING_IN_NEW_JSON,Languages,,
+dmp.success.update,dmp.success.update,DMP was updated!,,DMP was updated!
+dmp.success.save,dmp.success.save,DMP was saved!,,DMP was saved!
+dmp.success.version.save,dmp.success.version.save,Version was saved!,,Version was saved!
+dmp.error.load,MISSING_IN_NEW_JSON,DMPs were not loaded.,,
+dmp.error.save,dmp.save.error,DMP was not updated.,,DMP was not updated.
+dialog.export.title,export-dialog.title,The file download has started.,,The file download has started.
+dialog.export.content,export-dialog.message,Please note that you are not done yet. \n  The exported document may still require fine-tuning.,,Please note that you are not done yet. \n  The exported document may still require fine-tuning.
+dialog.export.button,export-dialog.button.ok,OK,,OK
+dialog.export.type,export-dialog.field.type,Choose type of export,,Choose type of export
+dialog.export.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,delete.dialog.button.cancel,Cancel(11)
+dialog.delete.title,delete.dialog.title,Please note:,,Please note:
+dialog.delete.content.dmp,delete.dialog.message.dmp,You are about to delete this DMP. This action cannot be undone. Are you sure you want to proceed?,,You are about to delete this DMP. This action cannot be undone. Are you sure you want to proceed?
+dialog.delete.content.storage,delete.dialog.message.storage,You are about to delete this storage. This action cannot be undone. Are you sure you want to proceed?,,You are about to delete this storage. This action cannot be undone. Are you sure you want to proceed?
+dialog.delete.content.storageTranslation,delete.dialog.message.storageTranslation,You are about to delete this storage translation. This action cannot be undone. Are you sure you want to proceed?,,You are about to delete this storage translation. This action cannot be undone. Are you sure you want to proceed?
+dialog.delete.button,COULD_NOT_BE_AUTO_REPLACE,Delete,admin.images.dialog.delete,Delete(5)
+dialog.delete.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,delete.dialog.button.cancel,Cancel(11)
+access.button.plans,access.button.plans,Go back to DMP overview,,Go back to DMP overview
+access.search.label,access.search.label,Search Users,,Search Users
+access.no_rights,access.no_rights,Default setting. The user will not be able to see or interact with the DMP.,,Default setting. The user will not be able to see or interact with the DMP.
+access.editor,access.editor,"Editor rights grant the user permissions to see the DMP and make changes to it. There are no restrictions on the kind of changes this user can make, bar deleting the DMP. The user can not however, assign viewing or editing permissions.",,"Editor rights grant the user permissions to see the DMP and make changes to it. There are no restrictions on the kind of changes this user can make, bar deleting the DMP. The user can not however, assign viewing or editing permissions."
+access.owner,access.owner,"Owners can view, write, delete and assign permissions for DMPs. They are also capable of creating new owners - handle with care, new owners can remove old ones.",,"Owners can view, write, delete and assign permissions for DMPs. They are also capable of creating new owners - handle with care, new owners can remove old ones."
+access.list,access.list,Only users that have already logged in once can be assigned editing rights for a DMP. ,,Only users that have already logged in once can be assigned editing rights for a DMP.
+access.info,access.info,Please note that simultaneous editing of a DMP can lead to data loss as changes may overwrite each other. Please make sure that you are the only one editing the dmp at the moment.,,Please note that simultaneous editing of a DMP can lead to data loss as changes may overwrite each other. Please make sure that you are the only one editing the dmp at the moment.
+access.noOwner,access.noOwner,Only owners of the DMP are allowed to change access rights.,,Only owners of the DMP are allowed to change access rights.
+plans.mydmps,dashboard.cards.my-dmps.front-side,MY DMPs,,MY DMPs
+plans.myDmpsDescription,dashboard.cards.my-dmps.back-side,"View and manage your existing Data Management Plans (DMPs) in one place. Keep track of their status, updates, and versions.",,"View and manage your existing Data Management Plans (DMPs) in one place. Keep track of their status, updates, and versions."
+plans.alldmps,plans.alldmps,All DMPs,,All DMPs
+plans.create.dmp,plans.create.dmp,CREATE NEW DMP,,CREATE NEW DMP(2)
+plans.loading.load,plans.loading.load,Load DMPs...,,Load DMPs...
+plans.loading.failed,plans.loading.failed,Your DMPs could not be loaded!,,Your DMPs could not be loaded!
+plans.table.header.title,plans.table.header.title,Title,,Title(5)
+plans.table.header.version,plans.table.header.version,Version,,Version(3)
+plans.table.header.version_tag,plans.table.header.version_tag,version tag,,version tag
+plans.table.header.version_name,plans.table.header.version_name,version name,,version name
+plans.table.header.created,plans.table.header.created,Created,,Created
+plans.table.header.modified,plans.table.header.modified,Last modified,,Last modified
+plans.table.header.contact,plans.table.header.contact,Contact,,Contact
+plans.table.actions.edit,plans.table.actions.edit,Edit,,Edit(3)
+plans.table.actions.access,plans.table.actions.access,Edit access,,Edit access
+plans.table.actions.history,plans.table.actions.history,View versions,,View versions
+plans.table.actions.delete,plans.table.actions.delete,Delete DMP,,Delete DMP
+plans.table.expanded.duration,MISSING_IN_NEW_JSON,Project duration: {{value}},,
+plans.table.export.json,plans.table.export.json,Export as JSON,,Export as JSON
+plans.table.export.doc,plans.table.export.doc,Export as document,,Export as document
+plans.table.empty,plans.table.empty,No DMPs found,,No DMPs found
+plans.table.nodatafilter,plans.table.nodatafilter,"No data matching the filter ""{{value}}""",,"No data matching the filter ""{{value}}""(2)"
+plans.table.search,plans.table.search,Search DMP,,Search DMP
+plans.table.nocontact,plans.table.nocontact,No contact defined.,,No contact defined.
+admin.title,admin.pageTitle,Admin page,,Admin page
+admin.banner,admin.banner.sectionTitle,Banner,,Banner
+admin.theme,admin.theme.sectionTitle,Color-Theme,,Color-Theme
+admin.image,admin.images.sectionTitle,Images,,Images
+admin.recommended-repositories,admin.recommended-repositories.sectionTitle,Recommended Repositories,,Recommended Repositories
+admin.internal-storage,admin.internalStorage.sectionTitle,Internal Storage,,Internal Storage
+admin.internal-storage-translations,admin.internalStorage.translation.sectionTitle,Translations for: ,,Translations for:
+admin.internal-storage-translations-no-selected,COULD_NOT_BE_AUTO_REPLACE,Translations,admin.internalStorage.table.action.translation,Translations
+admin.reset-selection,admin.internalStorage.selection.reset,Reset selection,,Reset selection
+admin.translation-info,admin.internalStorage.translation.info,"In order to see the translations for a specific internal storage, please select the internal storage from the list in the actions menu, and the option 'Translations'.",,"In order to see the translations for a specific internal storage, please select the internal storage from the list in the actions menu, and the option 'Translations'."
+admin.banner-missing-info,admin.banner.state.missing,There is no banner currently set for the app.,,There is no banner currently set for the app.
+admin.images.title,admin.images.title,Manage Application Images,,Manage Application Images
+admin.images.current.title,admin.images.current.title,Current images in use,,Current images in use
+admin.images.upload.title,admin.images.upload.title,Upload new image,,Upload new image
+admin.images.upload.image-type,admin.images.upload.image-type,Image Type,,Image Type
+admin.images.upload.drag-drop,admin.images.upload.drag-drop,Click to select or drag and drop,,Click to select or drag and drop
+admin.images.upload.file-types,admin.images.upload.file-types,"PNG, SVG, JPEG, JPG, GIF, WebP",,"PNG, SVG, JPEG, JPG, GIF, WebP"
+admin.images.upload.max-size,admin.images.upload.max-size,Max size: 5MB,,Max size: 5MB
+admin.images.upload.button,admin.images.upload.button,Upload Image,,Upload Image
+admin.images.upload.success,admin.images.upload.success,Image uploaded successfully,,Image uploaded successfully
+admin.images.upload.error,admin.images.upload.error,Failed to upload image,,Failed to upload image
+admin.images.upload.invalid-file-type,admin.images.upload.invalid-file-type,Invalid file type. Only {{allowedTypes}} files are allowed.,,Invalid file type. Only {{allowedTypes}} files are allowed.
+admin.images.upload.file-size-too-large,admin.images.upload.file.size-too-large,File size too large. Maximum size is {{maxSize}}.,,File size too large. Maximum size is {{maxSize}}.
+admin.images.dialog.cancel,admin.images.dialog.cancel,Cancel,,Cancel(11)
+admin.images.dialog.delete,admin.images.dialog.delete,Delete,,Delete(5)
+admin.images.dialog.warning,admin.images.dialog.warning,You are about to delete a custom image. This operation cannot be undone. Are you sure you want to proceed?,,You are about to delete a custom image. This operation cannot be undone. Are you sure you want to proceed?
+admin.images.actions.delete,admin.images.actions.delete,Delete,,Delete(5)
+admin.table.header.url,COULD_NOT_BE_AUTO_REPLACE,URL,admin.internalStorage.table.header.url,URL(3)
+admin.table.header.storageLocation,COULD_NOT_BE_AUTO_REPLACE,Storage Location,admin.internalStorage.table.header.storageLocation,Storage Location(3)
+admin.table.header.backupLocation,COULD_NOT_BE_AUTO_REPLACE,Backup Location,admin.internalStorage.table.header.backupLocation,Backup Location(3)
+admin.table.header.active,admin.internalStorage.table.header.active,Active,,Active
+admin.table.header.action,COULD_NOT_BE_AUTO_REPLACE,Actions,admin.internalStorage.table.header.actions,Actions(2)
+admin.table.header.langugageCode,COULD_NOT_BE_AUTO_REPLACE,Language Code,admin.internalStorage.translation.table.header.languageCode,Language Code(2)
+admin.table.header.title,COULD_NOT_BE_AUTO_REPLACE,Title,plans.table.header.title,Title(5)
+admin.table.header.description,COULD_NOT_BE_AUTO_REPLACE,Description,admin.internalStorage.table.header.description,Description(6)
+admin.table.header.backupFrequency,COULD_NOT_BE_AUTO_REPLACE,Backup Frequency,admin.internalStorage.table.header.backupFrequency,Backup Frequency(3)
+admin.table.action.delete,COULD_NOT_BE_AUTO_REPLACE,Delete,admin.images.actions.delete,Delete(5)
+admin.table.action.deactivate,MISSING_IN_NEW_JSON,Deactivate,,
+admin.table.action.activate,MISSING_IN_NEW_JSON,Activate,,
+admin.table.action.edit,COULD_NOT_BE_AUTO_REPLACE,Edit,plans.table.actions.edit,Edit(3)
+admin.table.action.translation,COULD_NOT_BE_AUTO_REPLACE,Translations,admin.internalStorage.table.action.translation,Translations
+admin.table.empty,admin.internalStorage.table.state.empty,No data available,,No data available
+admin.table.no-selected,admin.internalStorage.table.state.noneSelected,No internal storage selected,,No internal storage selected
+admin.create.storage,admin.internalStorage.action.create,Add new internal storage,,Add new internal storage
+admin.create.translation,admin.internalStorage.translation.action.create,Add new translation,,Add new translation
+admin.create.banner,admin.banner.action.create,Add app banner,,Add app banner
+admin.edit.banner,admin.banner.action.edit,Edit app banner,,Edit app banner
+admin.edit.theme,MISSING_IN_NEW_JSON,Edit app theme,,
+admin.edit.images,MISSING_IN_NEW_JSON,Edit app images,,
+admin.edit.repositories,MISSING_IN_NEW_JSON,Edit recommended repositories,,
+admin.color-theme.title,admin.theme.title,Update application theme,,Update application theme
+admin.color-theme.exact-colors,admin.theme.exact-colors,Exact Colors,,Exact Colors
+admin.color-theme.advanced,admin.theme.advanced,Advanced,,Advanced
+admin.color-theme.colors.primary,admin.theme.colors.primary,Primary,,Primary
+admin.color-theme.colors.secondary,admin.theme.colors.secondary,Secondary,,Secondary
+admin.color-theme.colors.tertiary,admin.theme.colors.tertiary,Tertiary,,Tertiary
+admin.color-theme.colors.primary-container,admin.theme.colors.primary-container,Primary Container,,Primary Container
+admin.color-theme.colors.secondary-container,admin.theme.colors.secondary-container,Secondary Container,,Secondary Container
+admin.color-theme.colors.tertiary-container,admin.theme.colors.tertiary-container,Tertiary Container,,Tertiary Container
+admin.color-theme.buttons.save,COULD_NOT_BE_AUTO_REPLACE,Save,admin.theme.buttons.save,Save(3)
+admin.color-theme.colorPicker.title,admin.theme.color-picker.title,Color Picker,,Color Picker
+admin.color-theme.colorPicker.helper-text,admin.theme.color-picker.helper-text,Uses the primary color to generate this one,,Uses the primary color to generate this one
+admin.color-theme.colorPreview.title,admin.theme.color-preview.title,Color Preview,,Color Preview
+admin.color-theme.colorPreview.primary,admin.theme.color-preview.primary,Primary Colors,,Primary Colors
+admin.color-theme.colorPreview.secondary,admin.theme.color-preview.secondary,Secondary Colors,,Secondary Colors
+admin.color-theme.colorPreview.tertiary,admin.theme.color-preview.tertiary,Tertiary Colors,,Tertiary Colors
+admin.color-theme.popup.success,admin.theme.popup.success,Color theme saved successfully,,Color theme saved successfully
+admin.color-theme.popup.error,admin.theme.popup.error,Failed to save color theme,,Failed to save color theme
+admin.delete.banner,admin.banner.action.delete,Delete app banner,,Delete app banner
+admin.dialog.internal-storage.edit,admin.internalStorage.dialog.title.edit,Edit internal storage,,Edit internal storage
+admin.dialog.internal-storage.add,admin.internalStorage.dialog.title.create,Add internal storage,,Add internal storage
+admin.dialog.internal-storage.button.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,admin.internalStorage.translation.dialog.button.cancel,Cancel(11)
+admin.dialog.internal-storage.button.add,COULD_NOT_BE_AUTO_REPLACE,Add,admin.internalStorage.translation.dialog.button.add,Add(4)
+admin.dialog.internal-storage.button.update,COULD_NOT_BE_AUTO_REPLACE,Update,admin.internalStorage.translation.dialog.button.update,Update(3)
+admin.dialog.internal-storage.captions.url,COULD_NOT_BE_AUTO_REPLACE,URL,admin.internalStorage.dialog.field.url,URL(3)
+admin.dialog.internal-storage.captions.storageLocation,COULD_NOT_BE_AUTO_REPLACE,Storage Location,admin.internalStorage.dialog.field.storageLocation,Storage Location(3)
+admin.dialog.internal-storage.captions.backupLocation,COULD_NOT_BE_AUTO_REPLACE,Backup Location,admin.internalStorage.dialog.field.backupLocation,Backup Location(3)
+admin.dialog.internal-storage.captions.active,admin.internalStorage.dialog.field.active,Internal storage is active?,,Internal storage is active?
+admin.dialog.internal-storage-translation.edit,admin.internalStorage.translation.dialog.title.edit,Edit translation,,Edit translation
+admin.dialog.internal-storage-translation.add,admin.internalStorage.translation.dialog.title.create,Add translation,,Add translation
+admin.dialog.internal-storage-translation.button.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,admin.internalStorage.translation.dialog.button.cancel,Cancel(11)
+admin.dialog.internal-storage-translation.button.add,COULD_NOT_BE_AUTO_REPLACE,Add,admin.internalStorage.translation.dialog.button.add,Add(4)
+admin.dialog.internal-storage-translation.button.update,COULD_NOT_BE_AUTO_REPLACE,Update,admin.internalStorage.translation.dialog.button.update,Update(3)
+admin.dialog.internal-storage-translation.captions.title,COULD_NOT_BE_AUTO_REPLACE,Title,admin.internalStorage.translation.dialog.field.title,Title(5)
+admin.dialog.internal-storage-translation.captions.description,COULD_NOT_BE_AUTO_REPLACE,Description,admin.internalStorage.translation.dialog.field.description,Description(6)
+admin.dialog.internal-storage-translation.captions.languageCode,COULD_NOT_BE_AUTO_REPLACE,Language Code,admin.internalStorage.translation.dialog.field.languageCode,Language Code(2)
+admin.dialog.internal-storage-translation.captions.backupFrequency,COULD_NOT_BE_AUTO_REPLACE,Backup Frequency,admin.internalStorage.translation.dialog.field.backupFrequency,Backup Frequency(3)
+admin.dialog.internal-storage-translation.captions.eng,admin.internalStorage.translation.dialog.field.eng,English,,English
+admin.dialog.internal-storage-translation.captions.deu,admin.internalStorage.translation.dialog.field.deu,German,,German
+admin.dialog.banner.edit,admin.banner.dialog.title.edit,Edit banner,,Edit banner
+admin.dialog.banner.add,admin.banner.dialog.title.create,Create banner,,Create banner
+admin.dialog.banner.captions.title,COULD_NOT_BE_AUTO_REPLACE,Title,admin.banner.dialog.field.title,Title(5)
+admin.dialog.banner.captions.description,COULD_NOT_BE_AUTO_REPLACE,Description,admin.banner.dialog.field.description,Description(6)
+admin.dialog.banner.captions.color,admin.banner.dialog.field.backgroundColor,Background color,,Background color
+admin.dialog.banner.captions.dismissible,admin.banner.dialog.field.dismissible,Dismissible,,Dismissible
+admin.dialog.banner.button.update,COULD_NOT_BE_AUTO_REPLACE,Edit,admin.banner.dialog.button.update,Edit(3)
+admin.dialog.banner.button.add,COULD_NOT_BE_AUTO_REPLACE,Add,admin.banner.dialog.button.add,Add(4)
+admin.dialog.banner.button.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,admin.banner.dialog.button.cancel,Cancel(11)
+admin.dialog.banner.tooltip.color,admin.banner.dialog.help.backgroundColor,Click to select a background color for the banner,,Click to select a background color for the banner
+admin.dialog.banner.preview,MISSING_IN_NEW_JSON,Preview,,
+admin.repositories.title,admin.recommended-repositories.title,Manage Recommended Repositories,,Manage Recommended Repositories
+admin.repositories.current,COULD_NOT_BE_AUTO_REPLACE,Current Recommended Repositories,admin.recommended-repositories.current,Current Recommended Repositories(2)
+admin.repositories.empty,admin.recommended-repositories.empty,No recommended repositories configured. Add some repositories to get started.,,No recommended repositories configured. Add some repositories to get started.
+admin.repositories.delete-dialog.title,MISSING_IN_NEW_JSON,Delete Repository,,
+admin.repositories.delete-dialog.message,admin.recommended-repositories.delete-dialog.message,Are you sure you want to delete this recommended repository?,,Are you sure you want to delete this recommended repository?
+admin.repositories.delete-dialog.repositoryId,admin.recommended-repositories.delete-dialog.repositoryId,Repository ID,,Repository ID
+admin.repositories.delete-dialog.name,COULD_NOT_BE_AUTO_REPLACE,Name,admin.recommended-repositories.delete-dialog.name,Name(3)
+admin.repositories.delete-dialog.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,admin.recommended-repositories.delete-dialog.cancel,Cancel(11)
+admin.repositories.delete-dialog.confirm,COULD_NOT_BE_AUTO_REPLACE,Delete,admin.recommended-repositories.delete-dialog.confirm,Delete(5)
+info.project.funder,MISSING_IN_NEW_JSON,"If your project is missing, please contact [mail@address.example]. You can add project information manually, however you will have to select a funder template when exporting as funder information is not available.",,
+info.ethical.humanParticipants.prefix,dmp.steps.legal.info.humanParticipants.prefix,"An informed consent for participation (in addition to an informed consent to data processing) is required. For more information, see an ",,"An informed consent for participation (in addition to an informed consent to data processing) is required. For more information, see an "
+info.ethical.humanParticipants.researchEthicsCoordination.text,dmp.steps.legal.info.humanParticipants.researchEthicsCoordination.text,Example Informed Consent Guide,,Example Informed Consent Guide
+info.ethical.humanParticipants.researchEthicsCoordination.link,dmp.steps.legal.info.humanParticipants.researchEthicsCoordination.link,https://www.tuwien.at/fileadmin/Assets/forschung/Forschungsethik/Guidance_Document_Informed_Consent.pdf,,https://www.tuwien.at/fileadmin/Assets/forschung/Forschungsethik/Guidance_Document_Informed_Consent.pdf
+info.ethical.humanParticipants.middle,dmp.steps.legal.info.humanParticipants.middle, or consult your institution's ,, or consult your institution's
+info.ethical.humanParticipants.researchEthics.text,dmp.steps.legal.info.humanParticipants.researchEthics.text,center for responsible research practices,,center for responsible research practices
+info.ethical.humanParticipants.researchEthics.link,dmp.steps.legal.info.humanParticipants.researchEthics.link,https://www.tuwien.at/forschung/fti-support/responsible-research-practices,,https://www.tuwien.at/forschung/fti-support/responsible-research-practices
+info.ethical.ethicalIssues.text,dmp.steps.legal.info.ethicalIssues.text,Your research plan may require ethical review. Inform yourself by consulting your ,,Your research plan may require ethical review. Inform yourself by consulting your
+info.ethical.ethicalIssues.researchEthics.text,dmp.steps.legal.info.ethicalIssues.researchEthics.text,institution's code of conduct,,institution's code of conduct
+info.ethical.ethicalIssues.researchEthics.link,dmp.steps.legal.info.ethicalIssues.researchEthics.link,https://www.tuwien.at/index.php?eID=dms&s=4&path=Richtlinien%20und%20Verordnungen/Code%20of%20Conduct%20fuer%20wissenschaftliches%20Arbeiten.pdf,,https://www.tuwien.at/index.php?eID=dms&s=4&path=Richtlinien%20und%20Verordnungen/Code%20of%20Conduct%20fuer%20wissenschaftliches%20Arbeiten.pdf
+info.ethical.committeeReviewed.prefix,dmp.steps.legal.info.committeeReviewed.prefix,Please note that you must address (potential) ethical issues in separate documents according to the requirements of the relevant funding body. The DMP only serves to help identify some ethical issues.\nPlease contact your ,,Please note that you must address (potential) ethical issues in separate documents according to the requirements of the relevant funding body. The DMP only serves to help identify some ethical issues.\nPlease contact your
+info.ethical.committeeReviewed.mail.text,dmp.steps.legal.info.committeeReviewed.mail.text,institution's Ethic's Committee,,institution's Ethic's Committee
+info.ethical.committeeReviewed.mail.link,COULD_NOT_BE_AUTO_REPLACE,https://www.tuwien.at/forschung/fti-support/responsible-research-practices/research-ethics-committee,dmp.steps.legal.info.committeeReviewed.mail.link,https://www.tuwien.at/forschung/fti-support/responsible-research-practices/research-ethics-committee(2)
+info.ethical.committeeReviewed.suffix,dmp.steps.legal.info.committeeReviewed.suffix, for additional information and support. You must do so if your planned research involves any human participation.,, for additional information and support. You must do so if your planned research involves any human participation.
+info.cris,info.cris,Option currently selected in the CRIS system: {{value}}.,,Option currently selected in the CRIS system: {{value}}.
+info.documentation.metadata,dmp.steps.documentation.info.metadata,"In archives, metadata is used to create consistent and structured descriptions of resources and their characteristics. Metadata is independent and can either be stored together with the resources it describes or separately. Metadata plays a key role in the future of your stored research data: it contains important information which for example enables you and others to search for and find your data.\nA metadata set consists mainly of descriptive categories, the so-called elements and their values. To facilitate communication with other systems, predefined standards are used for the elements and controlled vocabularies for the values.",,"In archives, metadata is used to create consistent and structured descriptions of resources and their characteristics. Metadata is independent and can either be stored together with the resources it describes or separately. Metadata plays a key role in the future of your stored research data: it contains important information which for example enables you and others to search for and find your data.\nA metadata set consists mainly of descriptive categories, the so-called elements and their values. To facilitate communication with other systems, predefined standards are used for the elements and controlled vocabularies for the values."
+info.repositories.retention,dmp.steps.repositories.info.retention,Set the time for how long your data should remain in the repository,,Set the time for how long your data should remain in the repository
+info.dataset.none,dmp.steps.data.specify.info.none,"Research data is all digital objects created in the course of academic work, for instance, measurements, surveys, observations, simulations, interviews, and software.<br>If you still believe you will not generate or reuse any data in your project, we recommend manually filling in the original DMP templates instead of using the DMP tool.<br>FWF: Please fill in the required administrative information in section I.1 and explain why the project will not produce or use data in section I.2 Data management responsibilities and resources. The rest of the template should be empty.<br>EU (Horizon Europe): Please fill in the required administrative information on pages 1-3 and explain why the project will not produce or use data in section 1 Data summary. If applicable, enter information in section 3 Other research outputs.",,"Research data is all digital objects created in the course of academic work, for instance, measurements, surveys, observations, simulations, interviews, and software.<br>If you still believe you will not generate or reuse any data in your project, we recommend manually filling in the original DMP templates instead of using the DMP tool.<br>FWF: Please fill in the required administrative information in section I.1 and explain why the project will not produce or use data in section I.2 Data management responsibilities and resources. The rest of the template should be empty.<br>EU (Horizon Europe): Please fill in the required administrative information on pages 1-3 and explain why the project will not produce or use data in section 1 Data summary. If applicable, enter information in section 3 Other research outputs."
+info.dataset.unknown,MISSING_IN_NEW_JSON,"This is a good time to think about your expectations. You should already have an idea of what kind of (digital) material you will be creating or analysing in your project, even if it is still vague and you don’t have specific details. If this is the case, click on “Specify datasets.” and describe the expected material as well as possible in this early stage. You can mention in the DMP (= your export document from the tool) that the data description is a broad estimation that will be updated in a later version of the DMP. If you come to the conclusion that you will not create or analyse any data, click on “No data will be created or analysed.” and follow the instructions there.",,
+dashboard.welcome.message,MISSING_IN_NEW_JSON,"Welcome to DAMAP, a service that helps you to create the Data Management Plan (DMP) for your project.",,
+dashboard.dmp.heading,MISSING_IN_NEW_JSON,What is a DMP?,,
+dashboard.dmp.text.prefix,info.how-to-create.dmp.text.prefix,A ,,A
+dashboard.dmp.text.dmp.text,info.how-to-create.dmp.text.dmp.text,DMP,,DMP
+dashboard.dmp.text.dmp.link,info.how-to-create.dmp.text.dmp.link,https://www.tuwien.at/index.php?id=2819&L=1,,https://www.tuwien.at/index.php?id=2819&L=1
+dashboard.dmp.text.middle,info.how-to-create.dmp.text.middle," is a structured document that keeps record of what research data is created and what happens to that data during and after a project. It helps with planning the research process, managing your data in accordance with the ",," is a structured document that keeps record of what research data is created and what happens to that data during and after a project. It helps with planning the research process, managing your data in accordance with the "
+dashboard.dmp.text.fairprinciples.text,info.how-to-create.dmp.text.fairprinciples.text,FAIR Principles,,FAIR Principles
+dashboard.dmp.text.fairprinciples.link,info.how-to-create.dmp.text.fairprinciples.link,https://www.go-fair.org/fair-principles/,,https://www.go-fair.org/fair-principles/
+dashboard.dmp.text.suffix,info.how-to-create.dmp.text.suffix,", and defining rights and responsibilities in a research project involving several researchers or institutions.",,", and defining rights and responsibilities in a research project involving several researchers or institutions."
+dashboard.tool.heading,COULD_NOT_BE_AUTO_REPLACE,About DAMAP,info.how-to-create.tool.heading,About DAMAP(2)
+dashboard.tool.link,COULD_NOT_BE_AUTO_REPLACE,https://www.damap.org,info.how-to-create.tool.link,https://www.damap.org
+dashboard.tool.description,COULD_NOT_BE_AUTO_REPLACE,"DAMAP guides you through creating a DMP using pre-filled information and customizable templates. It aligns with Science Europe guidelines and national funder requirements, saving you time and effort.",info.how-to-create.tool.description,"DAMAP guides you through creating a DMP using pre-filled information and customizable templates. It aligns with Science Europe guidelines and national funder requirements, saving you time and effort.(2)"
+dashboard.tool.bulletpoints.dmp.text,info.about.bulletpoints.dmp.text,Guides you step by step through the different sections of a DMP following the ,,Guides you step by step through the different sections of a DMP following the
+dashboard.tool.bulletpoints.dmp.sepg.text,info.about.bulletpoints.dmp.sepg.text,Science Europe Practical Guide,,Science Europe Practical Guide
+dashboard.tool.bulletpoints.dmp.sepg.link,info.about.bulletpoints.dmp.sepg.link,https://www.scienceeurope.org/our-resources/practical-guide-to-the-international-alignment-of-research-data-management,,https://www.scienceeurope.org/our-resources/practical-guide-to-the-international-alignment-of-research-data-management
+dashboard.tool.bulletpoints.document,info.about.bulletpoints.document,Exports a pre-filled DMP as a document that you can customize and use for submission to European and national funders,,Exports a pre-filled DMP as a document that you can customize and use for submission to European and national funders
+dashboard.tool.bulletpoints.supports,info.about.bulletpoints.supports,Delivers DMPs for FWF and Horizon Europe projects in the funder-specific formats,,Delivers DMPs for FWF and Horizon Europe projects in the funder-specific formats
+dashboard.tool.bulletpoints.benefits.text,info.about.bulletpoints.benefits.text,Saves you work by,,Saves you work by
+dashboard.tool.bulletpoints.benefits.one,info.about.bulletpoints.benefits.one,Pre-filling content with detailed information from your CRIS application and other systems,,Pre-filling content with detailed information from your CRIS application and other systems
+dashboard.tool.bulletpoints.benefits.two,info.about.bulletpoints.benefits.two,"Providing wizards, guidance, and item lists to choose from",,"Providing wizards, guidance, and item lists to choose from"
+dashboard.tool.bulletpoints.benefits.three,info.about.bulletpoints.benefits.three,Suggesting answers that you can either comply with or adjust to your needs,,Suggesting answers that you can either comply with or adjust to your needs
+dashboard.tool.bulletpoints.madmp.prefix,info.about.bulletpoints.madmp.prefix,Is compatible with the,,Is compatible with the
+dashboard.tool.bulletpoints.madmp.rda.text,info.about.bulletpoints.madmp.rda.text,RDA recommendation on machine actionable DMPs,,RDA recommendation on machine actionable DMPs
+dashboard.tool.bulletpoints.madmp.rda.link,info.about.bulletpoints.madmp.rda.link,https://doi.org/10.15497/rda00039,,https://doi.org/10.15497/rda00039
+dashboard.tool.bulletpoints.madmp.suffix,info.about.bulletpoints.madmp.suffix,.,,.
+dashboard.instructions.heading,dashboard.cards.how-to-create.front-side,HOW TO CREATE A DMP,,HOW TO CREATE A DMP
+dashboard.instructions.description,COULD_NOT_BE_AUTO_REPLACE,"Learn how to create a DMP step-by-step, including exporting drafts, editing, and updating your DMP according to funder requirements.",info.how-to-create.instructions.description,"Learn how to create a DMP step-by-step, including exporting drafts, editing, and updating your DMP according to funder requirements.(2)"
+dashboard.instructions.steps.heading,info.how-to-create.instructions.steps.heading,Follow the tool through steps 1-10 to provide the required information.,,Follow the tool through steps 1-10 to provide the required information.
+dashboard.instructions.steps.body,info.how-to-create.instructions.steps.body,"You do not have to do all steps in one go, simply save the status and continue later. You can always go back and jump between steps. You may even invite colleagues from your institution to add information. If you wish, you can version your DMP.",,"You do not have to do all steps in one go, simply save the status and continue later. You can always go back and jump between steps. You may even invite colleagues from your institution to add information. If you wish, you can version your DMP."
+dashboard.instructions.export.heading,info.how-to-create.instructions.export.heading,Export the DMP draft as a document.,,Export the DMP draft as a document.
+dashboard.instructions.export.body,info.how-to-create.instructions.export.body,"Depending on the funder of your project, the exported DMP will either reflect the funder’s DMP template (FWF, Horizon Europe) or the DMP recommendations by Science Europe. This happens automatically for imported projects.",,"Depending on the funder of your project, the exported DMP will either reflect the funder’s DMP template (FWF, Horizon Europe) or the DMP recommendations by Science Europe. This happens automatically for imported projects."
+dashboard.instructions.finalise.heading,info.how-to-create.instructions.finalise.heading,Finalise your DMP in a text editor.,,Finalise your DMP in a text editor.
+dashboard.instructions.finalise.body,info.how-to-create.instructions.finalise.body,"The exported DMP is an automatically created draft that you still need to add the finishing touches to. If you have a choice, we recommend editing in Word. Check the content carefully and complete any missing information, including the DMP version details on the cover sheet. Once ready, you can save your DMP as a PDF and provide it to the funder. Please note that you do not need to transfer your changes back into the DMP tool, as the created DMP document will be the basis for subsequent versions, not the tool.",,"The exported DMP is an automatically created draft that you still need to add the finishing touches to. If you have a choice, we recommend editing in Word. Check the content carefully and complete any missing information, including the DMP version details on the cover sheet. Once ready, you can save your DMP as a PDF and provide it to the funder. Please note that you do not need to transfer your changes back into the DMP tool, as the created DMP document will be the basis for subsequent versions, not the tool."
+dashboard.instructions.update.heading,info.how-to-create.instructions.update.heading,Regularly update your DMP.,,Regularly update your DMP.
+dashboard.instructions.update.body,info.how-to-create.instructions.update.body,"A DMP is a living document and it is recommended to keep it up to date – for yourself, the project team, and the funder. The funders usually ask for updates at certain milestones and at the end of the project. Any changes can easily be done within the document, you do not need the tool for updates. Nevertheless, if you wish to add or change details and create a new version in the DMP tool, for example to update the machine-actionable information, remember to carefully check and complete the exported DMP as described above.",,"A DMP is a living document and it is recommended to keep it up to date – for yourself, the project team, and the funder. The funders usually ask for updates at certain milestones and at the end of the project. Any changes can easily be done within the document, you do not need the tool for updates. Nevertheless, if you wish to add or change details and create a new version in the DMP tool, for example to update the machine-actionable information, remember to carefully check and complete the exported DMP as described above."
+dashboard.instructions.create.heading,COULD_NOT_BE_AUTO_REPLACE,CREATE NEW DMP,dashboard.cards.create-new-dmp.front-side,CREATE NEW DMP(2)
+dashboard.instructions.create.description,dashboard.cards.create-new-dmp.back-side,"  Start creating a new DMP by following guided steps. Save your progress, invite colleagues, and export the DMP as a document for submission.",,"Start creating a new DMP by following guided steps. Save your progress, invite colleagues, and export the DMP as a document for submission."
+gdpr.title,gdpr.title,GDPR,,GDPR
+gdpr.info,gdpr.info,"This is the complete list of your personal data that we collect and that is necessary for the application to run. It is comprised of data entries used to manage your access to your DMPs, as well as entries made when you are referenced as Contributor an a DMP.",,"This is the complete list of your personal data that we collect and that is necessary for the application to run. It is comprised of data entries used to manage your access to your DMPs, as well as entries made when you are referenced as Contributor an a DMP."
+http.error.standard,http.error.standard,Failed to load resource. ,,Failed to load resource.
+http.error.0,http.error.0,"Service can not be reached, please retry later. If the issue persists contact [insert contact for technical issue].",,"Service can not be reached, please retry later. If the issue persists contact [insert contact for technical issue]."
+http.error.404,http.error.404,The requested resource could not be found.,,The requested resource could not be found.
+http.error.500,http.error.500,"An error occurred, please contact [insert contact for technical issue].",,"An error occurred, please contact [insert contact for technical issue]."
+http.error.503,http.error.503,"Service is currently unavailable, please retry later.",,"Service is currently unavailable, please retry later."
+http.error.consent.edit,http.error.consent.edit,Failed to update consent preferences.,,Failed to update consent preferences.
+http.error.consent.one,http.error.consent.one,Failed to retrieve consent preferences.,,Failed to retrieve consent preferences.
+http.error.fileanalysis,http.error.fileanalysis,Failed to analyse file. ,,Failed to analyse file.
+http.error.repositories.search,http.error.repositories.search,Failed to search repositories. ,,Failed to search repositories.
+http.error.repositories.recommended,http.error.repositories.recommended,Failed to load recommended repositories. ,,Failed to load recommended repositories.
+http.error.repositories.one,http.error.repositories.one,Failed to load repository details. ,,Failed to load repository details.
+http.error.repositories.all,http.error.repositories.all,Failed to load repositories. ,,Failed to load repositories.
+http.error.person.search,MISSING_IN_NEW_JSON,Failed to find person. ,,
+http.error.projects,http.error.projects,Failed to load projects. ,,Failed to load projects.
+http.error.projectmembers,http.error.projectmembers,Failed to load project members. ,,Failed to load project members.
+http.error.plans.load.all,http.error.plans.load.all,Failed to load all DMPs. ,,Failed to load all DMPs.
+http.error.plans.load.yours,http.error.plans.load.yours,Failed to load your DMPs. ,,Failed to load your DMPs.
+http.error.plans.load.one,http.error.plans.load.one,Failed to load DMPs. ,,Failed to load DMPs.
+http.error.plans.save,http.error.plans.save,Failed to save DMP. ,,Failed to save DMP.
+http.error.plans.update,http.error.plans.update,Failed to update DMP. ,,Failed to update DMP.
+http.error.plans.delete,http.error.plans.delete,Failed to delete DMP. ,,Failed to delete DMP.
+http.error.storages,http.error.storages,Failed to load storages. ,,Failed to load storages.
+http.error.storageErrors.stillInUse,http.error.storageErrors.stillInUse,Storage is used in at least one DMP and therefore cannot be deleted.,,Storage is used in at least one DMP and therefore cannot be deleted.
+http.error.storageErrors.lastTranslation,http.error.storageErrors.lastTranslation,The last translation for a given storage cannot be deleted.,,The last translation for a given storage cannot be deleted.
+http.error.storageErrors.invalidUrl,http.error.storageErrors.invalidUrl,The provided URL is not valid.,,The provided URL is not valid.
+http.error.versions.load,http.error.versions.load,Failed to load DMP versions. ,,Failed to load DMP versions.
+http.error.versions.save,http.error.versions.save,Failed to save DMP version. ,,Failed to save DMP version.
+http.error.versions.revision,http.error.versions.revision,Failed to load DMP revision. ,,Failed to load DMP revision.
+http.error.openaire,http.error.openaire,"Failed to get dataset information from OpenAIRE, please retry later.",,"Failed to get dataset information from OpenAIRE, please retry later."
+http.error.document,http.error.document,An unexpected error occurred while generating your document. If the issue persists contact [insert contact for technical issue].,,An unexpected error occurred while generating your document. If the issue persists contact [insert contact for technical issue].
+http.error.access.load,http.error.access.load,Failed to load access information. ,,Failed to load access information.
+http.error.access.save,http.error.access.save,Failed to update access. ,,Failed to update access.
+http.error.access.delete,http.error.access.delete,Failed to remove access. ,,Failed to remove access.
+http.error.admin.recommended-repositories.load,http.error.recommended-repositories.load,Failed to load recommended repositories.,,Failed to load recommended repositories.
+http.error.admin.recommended-repositories.save,http.error.recommended-repositories.save,Failed to create recommended repository.,,Failed to create recommended repository.
+http.error.admin.recommended-repositories.delete,http.error.recommended-repositories.delete,Failed to delete recommended repository.,,Failed to delete recommended repository.
+http.success.storage.translations.add,http.success.storage.translations.add,Storage translation created successfully.,,Storage translation created successfully.
+http.success.storage.translations.edit,http.success.storage.translations.edit,Storage translation updated successfully.,,Storage translation updated successfully.
+http.success.storage.translations.delete,http.success.storage.translations.delete,Storage translation deleted successfully.,,Storage translation deleted successfully.
+http.success.storage.delete,http.success.storage.delete,Storage deleted successfully.,,Storage deleted successfully.
+http.success.storage.add,http.success.storage.add,Storage created successfully.,,Storage created successfully.
+http.success.storage.edit,http.success.storage.edit,Storage updated successfully.,,Storage updated successfully.
+http.success.admin.recommended-repositories.delete,http.success.recommended-repositories.delete,Repository deleted successfully.,,Repository deleted successfully.
+dmp.steps.project.success,dmp.steps.project.success,Updated project information!,,Updated project information!
+dmp.steps.project.input.title,dmp.steps.project.input.title,Project title,,Project title
+dmp.steps.project.input.description,dmp.steps.project.input.short.description,Project description,,Project description
+dmp.steps.project.input.info,dmp.steps.project.input.info,Project information,,Project information
+dmp.steps.project.input.button.existing,dmp.steps.project.input.button.existing,Update project info,,Update project info
+dmp.steps.project.input.button.new,dmp.steps.project.input.button.new,Add project,,Add project
+dmp.steps.project.input.acronym,dmp.steps.project.input.acronym,Acronym,,Acronym
+dmp.steps.project.input.date,dmp.steps.project.input.date,Start and end date,,Start and end date
+dmp.steps.project.input.datehint,dmp.steps.project.input.datehint,DD/MM/YYYY – DD/MM/YYYY,,DD/MM/YYYY – DD/MM/YYYY
+dmp.steps.project.manual.input,dmp.steps.project.view.button.manual,Input project manually,,Input project manually
+dmp.steps.project.list,dmp.steps.project.list,Choose project from the project database,,Choose project from the project database
+dmp.steps.project.label,dmp.steps.project.view.button.choose,Choose project,,Choose project
+dmp.steps.project.greeting,MISSING_IN_NEW_JSON,"Hi Firstname, let’s get started",,
+dmp.steps.project.summaryLine,MISSING_IN_NEW_JSON,Begin creating your DMP by identifying your project.,,
+dmp.steps.project.instructions,dmp.steps.project.instructions,"In this step, you choose a project from your institution’s project database (if integrated) or manually input your project.",,"In this step, you choose a project from your institution’s project database (if integrated) or manually input your project."
+dmp.steps.project.search,dmp.steps.project.search,Search project...,,Search project...
+dmp.steps.project.select,dmp.steps.project.select,Please select the project you want to create a DMP for:,,Please select the project you want to create a DMP for:
+dmp.steps.project.selected,dmp.steps.project.selected,Selected project:,,Selected project:
+dmp.steps.project.warning.dmp,dmp.steps.project.warning.dmp,A DMP already exists for this project,,A DMP already exists for this project
+dmp.steps.project.noprojects,MISSING_IN_NEW_JSON,No projects are assigned to you.,,
+dmp.steps.project.loading.load,MISSING_IN_NEW_JSON,Load projects...,,
+dmp.steps.project.loading.failed,MISSING_IN_NEW_JSON,Projects could not be loaded.,,
+dmp.steps.people.label,dmp.steps.people.label,People involved in data management,,People involved in data management
+dmp.steps.people.rightLabel,MISSING_IN_NEW_JSON,Identify data management contributors,,
+dmp.steps.people.greeting,MISSING_IN_NEW_JSON,"Welcome to Step 2, Firstname",,
+dmp.steps.people.summaryLine,MISSING_IN_NEW_JSON,Identify team members in your project.,,
+dmp.steps.people.instructions,dmp.steps.people.instructions,"In this step, you add individuals to the project and provide additional information about them, for example, their role in the project. To mark someone as the contact person click the person-with-envelope icon next to their role. You can change the existing information and add more contributors via the search (choose a search service and start typing the name). Please provide a minimum of one contact person as well as a data manager (it can be the same person).",,"In this step, you add individuals to the project and provide additional information about them, for example, their role in the project. To mark someone as the contact person click the person-with-envelope icon next to their role. You can change the existing information and add more contributors via the search (choose a search service and start typing the name). Please provide a minimum of one contact person as well as a data manager (it can be the same person)."
+dmp.steps.people.intro,MISSING_IN_NEW_JSON,"In this step, you add people involved in the project and provide additional info about them, e.g., their role. In this example, the project leader’s info has already been added and marked as the contact person (note icon with person and envelope next to their name). You can add more contributors via the search field (ensure you select the appropriate database, e.g., ORCID), or manually via the “Add contributor manually button”. Please provide a minimum of one contact person as well as a data manager (it can be the same person).",,
+dmp.steps.people.search,dmp.steps.people.search,Search for person...,,Search for person...
+dmp.steps.people.search.service,dmp.steps.people.search.service,Search service,,Search service
+dmp.steps.people.general.search,dmp.steps.people.general.search,Find Contributors:,,Find Contributors:
+dmp.steps.people.general.recommendations,dmp.steps.people.general.recommendations,Recommended contributors:,,Recommended contributors:
+dmp.steps.people.general.addAll,dmp.steps.people.general.addAll,Add all contributors,,Add all contributors
+dmp.steps.people.contributor.search,dmp.steps.people.view.button.searchContributor,Search contributor,,Search contributor
+dmp.steps.people.contributor.add,dmp.steps.people.contributor.add,Add as contributor,,Add as contributor
+dmp.steps.people.contributor.remove,dmp.steps.people.contributor.remove,Remove from contributors,,Remove from contributors
+dmp.steps.people.contributor.role,dmp.steps.people.contributor.role,Role,,Role
+dmp.steps.people.contact.person,dmp.steps.people.contact.person,Contact person,,Contact person
+dmp.steps.people.contact.contributor,MISSING_IN_NEW_JSON,Change to contributor,,
+dmp.steps.people.contact.add,dmp.steps.people.contact.add,Set as contact,,Set as contact
+dmp.steps.people.contact.remove,dmp.steps.people.contact.remove,Remove contact person,,Remove contact person
+dmp.steps.people.contact.edit,dmp.steps.people.contact.edit,Edit contact person,,Edit contact person
+dmp.steps.people.contact.editContributor,dmp.steps.people.contact.editContributor,Edit contributor,,Edit contributor
+dmp.steps.people.contact.update,dmp.steps.people.contact.update,Update,,Update(3)
+dmp.steps.people.contact.cancel,dmp.steps.people.contact.cancel,Cancel,,Cancel(11)
+dmp.steps.people.contact.title,dmp.steps.people.contact.title,Project contact,,Project contact
+dmp.steps.people.contact.info,dmp.steps.people.contact.info,Select a contact from the list of contributors using the button,,Select a contact from the list of contributors using the button
+dmp.steps.people.manual.input.show,MISSING_IN_NEW_JSON,Add contributor manually,,
+dmp.steps.people.manual.input.hide,dmp.steps.people.view.button.manualContributor,Input contributor manually,,Input contributor manually
+dmp.steps.people.manual.input.tooltip,MISSING_IN_NEW_JSON,Use to add project contributor not found in database above,,
+dmp.steps.people.manual.input.question.firstname,dmp.steps.people.manual.input.question.firstname,First name,,First name
+dmp.steps.people.manual.input.question.lastname,dmp.steps.people.manual.input.question.lastname,Last name,,Last name
+dmp.steps.people.manual.input.question.mbox,dmp.steps.people.manual.input.question.mbox,e-mail address,,e-mail address(2)
+dmp.steps.people.manual.input.question.orcid,dmp.steps.people.manual.input.question.orcid,ORCID ID,,ORCID ID
+dmp.steps.people.nopeople,dmp.steps.people.nopeople,No recommended contributors available,,No recommended contributors available
+dmp.steps.people.confirm.dialog.heading,dmp.steps.people.delete.dialog.heading,Remove contributor,,Remove contributor
+dmp.steps.people.confirm.dialog.question,dmp.steps.people.delete.dialog.question,Are you sure you want to remove this contributor?\n  They are responsible for the deletion of the following datasets:,,Are you sure you want to remove this contributor?\n  They are responsible for the deletion of the following datasets:
+dmp.steps.people.confirm.dialog.button.confirm,dmp.steps.people.delete.dialog.button.confirm,Confirm,,Confirm
+dmp.steps.people.confirm.dialog.button.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,dmp.steps.people.delete.dialog.button.cancel,Cancel(11)
+dmp.steps.data.specify.label,dmp.steps.data.specify.label,Specify research data,,Specify research data
+dmp.steps.data.specify.greeting,MISSING_IN_NEW_JSON,"Let’s talk about data, Firstname",,
+dmp.steps.data.specify.summaryLine,MISSING_IN_NEW_JSON,Describe your research data.,,
+dmp.steps.data.specify.instructions,dmp.steps.data.specify.instructions,"In this step, you specify the datasets (i.e., groups of data with similar properties) you will produce or reuse in your project.",,"In this step, you specify the datasets (i.e., groups of data with similar properties) you will produce or reuse in your project."
+dmp.steps.data.specify.intro.default,dmp.steps.data.specify.intro.default,Research data comes in all forms and sizes. The table below helps you to describe the data sets (i.e. groups of data with similar properties) you are expecting to create during the project.,,Research data comes in all forms and sizes. The table below helps you to describe the data sets (i.e. groups of data with similar properties) you are expecting to create during the project.
+dmp.steps.data.specify.intro.reused,dmp.steps.data.specify.intro.reused,Research data comes in all forms and sizes. The table below helps you to describe the data sets (i.e. groups of data with similar properties) you are expecting to reuse during the project.,,Research data comes in all forms and sizes. The table below helps you to describe the data sets (i.e. groups of data with similar properties) you are expecting to reuse during the project.
+dmp.steps.data.specify.question.kind,dmp.steps.data.specify.question.kind,What kinds of research data will you create?,,What kinds of research data will you create?
+dmp.steps.data.specify.question.datasets,MISSING_IN_NEW_JSON,Create names for your datasets,,
+dmp.steps.data.specify.question.nodata,dmp.steps.data.specify.question.long.noData,Please explain why you won't create or analyse any research data.,,Please explain why you won't create or analyse any research data.
+dmp.steps.data.specify.question.reused,dmp.steps.data.specify.question.reused,What kinds of research data will you reuse?,,What kinds of research data will you reuse?
+dmp.steps.data.specify.answer.kind.unknown,dmp.steps.data.specify.answer.unknownYet,I don't know yet.,,I don't know yet.
+dmp.steps.data.specify.answer.kind.none,dmp.steps.data.specify.answer.none,No data will be created or analysed.,,No data will be created or analysed.
+dmp.steps.data.specify.answer.kind.reuse.none,COULD_NOT_BE_AUTO_REPLACE,No data will be reused.,dmp.steps.summary.data.specify.datasets.none.reused,No data will be reused.
+dmp.steps.data.specify.answer.kind.specify,dmp.steps.data.specify.answer.defineDatasets,Specify datasets.,,Specify datasets.
+dmp.steps.data.specify.tab.manual,MISSING_IN_NEW_JSON,Manually,,
+dmp.steps.data.specify.tab.upload,dmp.steps.data.specify.button.upload,Upload sample data,,Upload sample data
+dmp.steps.data.specify.tab.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,dmp.steps.data.specify.dialog.button.cancel,Cancel(11)
+dmp.steps.data.specify.tab.doi,MISSING_IN_NEW_JSON,Enter DOI,,
+dmp.steps.data.specify.tab.access,dmp.steps.storage.view.button.access,Access rights,,Access rights
+dmp.steps.data.specify.tab.storage,COULD_NOT_BE_AUTO_REPLACE,Storage,dmp.steps.storage.view.button.storage,Storage(2)
+dmp.steps.data.specify.tab.introStorage,MISSING_IN_NEW_JSON,This step helps you to document who is allowed to see or edit your data in the project phase and to find good storage and backup solutions for your data.,,
+dmp.steps.data.specify.button.add.manual,dmp.steps.data.specify.button.addManual,Add dataset manually,,Add dataset manually
+dmp.steps.data.specify.button.add.doi,COULD_NOT_BE_AUTO_REPLACE,Add dataset,dmp.steps.data.specify.button.addFromDoi,Add dataset(2)
+dmp.steps.data.specify.table.heading.default,COULD_NOT_BE_AUTO_REPLACE,Data,license-wizard.answer.data,Data
+dmp.steps.data.specify.table.heading.reused,dmp.steps.data.specify.view.button.reused,Existing data,,Existing data
+dmp.steps.data.specify.table.heading.new,dmp.steps.data.specify.view.button.new,New data,,New data
+dmp.steps.data.specify.table.header.dataset,dmp.steps.data.specify.table.header.dataset,Dataset,,Dataset(2)
+dmp.steps.data.specify.table.header.datatype,dmp.steps.data.specify.table.header.datatype,Datatype,,Datatype
+dmp.steps.data.specify.table.header.fileFormat,dmp.steps.data.specify.table.header.fileFormat,File Format,,File Format(2)
+dmp.steps.data.specify.table.header.size,dmp.steps.data.specify.table.header.size,Size,,Size(2)
+dmp.steps.data.specify.table.header.comment,MISSING_IN_NEW_JSON,Comment,,
+dmp.steps.data.specify.table.header.actions,dmp.steps.data.specify.table.header.actions,Actions,,Actions(2)
+dmp.steps.data.specify.table.header.description,dmp.steps.data.specify.table.header.description,Description,,Description(6)
+dmp.steps.data.specify.table.header.source,dmp.steps.data.specify.table.header.source,Source,,Source(2)
+dmp.steps.data.specify.table.header.license,dmp.steps.data.specify.table.header.license,License,,License(3)
+dmp.steps.data.specify.dialog.add,COULD_NOT_BE_AUTO_REPLACE,Add dataset,dmp.steps.data.specify.dialog.title.create,Add dataset(2)
+dmp.steps.data.specify.dialog.edit,dmp.steps.data.specify.dialog.edit,Edit dataset,,Edit dataset
+dmp.steps.data.specify.dialog.view,MISSING_IN_NEW_JSON,View dataset,,
+dmp.steps.data.specify.dialog.title,dmp.steps.data.specify.dialog.field.title,Dataset title,,Dataset title
+dmp.steps.data.specify.dialog.fileFormat,dmp.steps.data.specify.dialog.fileFormat,File Format,,File Format(2)
+dmp.steps.data.specify.dialog.fileFormat.info,dmp.steps.data.specify.dialog.fileFormat.info,Specify mime type (e.g. image/png) or file format (png),,Specify mime type (e.g. image/png) or file format (png)
+dmp.steps.data.specify.dialog.type,dmp.steps.data.specify.dialog.type,Estimated type,,Estimated type
+dmp.steps.data.specify.dialog.size,dmp.steps.data.specify.dialog.size,Estimated size,,Estimated size
+dmp.steps.data.specify.dialog.description,dmp.steps.data.specify.dialog.description,Description,,Description(6)
+dmp.steps.data.specify.dialog.technicalResource,dmp.steps.data.specify.dialog.technicalResource,Technical Resource,,Technical Resource
+dmp.steps.data.specify.dialog.source,dmp.steps.data.specify.dialog.source,Source,,Source(2)
+dmp.steps.data.specify.dialog.license,COULD_NOT_BE_AUTO_REPLACE,License,dmp.steps.data.specify.table.header.license,License(3)
+dmp.steps.data.specify.dialog.identifier,MISSING_IN_NEW_JSON,Identifier,,
+dmp.steps.data.specify.dialog.button.addTechnicalResource,dmp.steps.data.specify.dialog.button.addTechnicalResource,Add new technical resource,,Add new technical resource
+dmp.steps.data.specify.dialog.button.add,dmp.steps.data.specify.dialog.button.add,Add,,Add(4)
+dmp.steps.data.specify.dialog.button.update,dmp.steps.data.specify.dialog.button.update,Update,,Update(3)
+dmp.steps.data.specify.dialog.button.cancel,dmp.steps.data.specify.dialog.button.cancel,Cancel,,Cancel(11)
+dmp.steps.data.specify.dialog.button.close,dmp.steps.data.specify.dialog.button.close,Close,,Close
+dmp.steps.data.specify.doi.search,dmp.steps.data.specify.doi.search,Enter DOI...,,Enter DOI...
+dmp.steps.data.specify.doi.not.found,dmp.steps.data.specify.doi.notFound,No dataset found.,,No dataset found.
+dmp.steps.data.access.heading,MISSING_IN_NEW_JSON,Planned access rights for all datasets,,
+dmp.steps.data.access.question.dataset,dmp.steps.data.access.question.dataset,Dataset,,Dataset(2)
+dmp.steps.data.access.question.selected,dmp.steps.data.access.question.selected,for selected project members,,for selected project members
+dmp.steps.data.access.question.other,dmp.steps.data.access.question.other,for other project members,,for other project members
+dmp.steps.data.access.question.public,dmp.steps.data.access.question.public,public,,public
+dmp.steps.data.access.question.right,dmp.steps.data.access.question.right,Access right,,Access right
+dmp.steps.data.access.aria.selected,dmp.steps.data.access.aria.selected,Access right for selected project members for dataset {{dataset}},,Access right for selected project members for dataset {{dataset}}
+dmp.steps.data.access.aria.other,dmp.steps.data.access.aria.other,Access right for other project members for dataset {{dataset}},,Access right for other project members for dataset {{dataset}}
+dmp.steps.data.access.aria.public,dmp.steps.data.access.aria.public,Access right for the public for dataset  {{dataset}},,Access right for the public for dataset  {{dataset}}
+dmp.steps.data.reuse.rightLabel,dmp.steps.data.reuse.sectionTitle,Data reuse planning,,Data reuse planning
+dmp.steps.data.reuse.label,dmp.steps.data.reuse.label,Reuse of data,,Reuse of data
+dmp.steps.data.reuse.greeting,MISSING_IN_NEW_JSON,"On to Step 9, Firstname",,
+dmp.steps.data.reuse.summaryLine,MISSING_IN_NEW_JSON,Consider potential research uses and users of your data sets.,,
+dmp.steps.data.reuse.instructions,dmp.steps.data.reuse.instructions,This step helps you think about future research uses or users of your data and what potential users may require to access your data.,,This step helps you think about future research uses or users of your data and what potential users may require to access your data.
+dmp.steps.data.reuse.intro,MISSING_IN_NEW_JSON,This step helps you to think about foreseeable research uses or users of your data sets and what potential reusers require to access your data.,,
+dmp.steps.data.reuse.question.targetAudience,dmp.steps.data.reuse.question.long.targetAudience,Who is the target audience and who could be interested in reusing the data and why?,,Who is the target audience and who could be interested in reusing the data and why?
+dmp.steps.data.reuse.question.tools,MISSING_IN_NEW_JSON,Indicate whether potential users need specific tools or software to access and (re-)use the data.,,
+dmp.steps.data.reuse.question.restrictedDataAccess,dmp.steps.data.reuse.question.restrictedDataAccess,"For the following datasets restricted access was selected, explain how others will get access to the data:",,"For the following datasets restricted access was selected, explain how others will get access to the data:"
+dmp.steps.data.deletion.question.label,dmp.steps.data.deletion.question.label,"Does this dataset have to be deleted, e.g. for contractual, regulatory, or ethical reasons? If yes, please add an estimated date for the deletion, the reason for deletion, and a responsible person.",,"Does this dataset have to be deleted, e.g. for contractual, regulatory, or ethical reasons? If yes, please add an estimated date for the deletion, the reason for deletion, and a responsible person."
+dmp.steps.data.deletion.question.delete,dmp.steps.data.deletion.question.delete,Mark dataset for deletion,,Mark dataset for deletion
+dmp.steps.data.deletion.question.date,dmp.steps.data.deletion.question.date,Date of deletion,,Date of deletion(2)
+dmp.steps.data.deletion.question.reason,dmp.steps.data.deletion.question.reason,Reason for deletion,,Reason for deletion(2)
+dmp.steps.data.deletion.question.person,dmp.steps.data.deletion.question.person,Person responsible for deletion,,Person responsible for deletion(2)
+dmp.steps.documentation.label,dmp.steps.documentation.label,Documentation and data quality,,Documentation and data quality(2)
+dmp.steps.documentation.greeting,MISSING_IN_NEW_JSON,"Now onto Step 4, Firstname",,
+dmp.steps.documentation.summaryLine,MISSING_IN_NEW_JSON,Outline how your data will be organised throughout the project.,,
+dmp.steps.documentation.instructions,dmp.steps.documentation.instructions,"This step helps you to provide information on how data will be organised during the project, which data quality control measures will be used, what documentation will be prepared and made available to enable the reuse of data, and which metadata will be provided.",,"This step helps you to provide information on how data will be organised during the project, which data quality control measures will be used, what documentation will be prepared and made available to enable the reuse of data, and which metadata will be provided."
+dmp.steps.documentation.intro,MISSING_IN_NEW_JSON,"This step helps you to provide information on how data will be organised during the project, which data quality control measures are used, what documentation will be prepared and made available to enable reuse of data, and which metadata will be provided.",,
+dmp.steps.documentation.question.metadata,MISSING_IN_NEW_JSON,"Please indicate which metadata will be provided to help others identify, discover and reuse the data.",,
+dmp.steps.documentation.question.datageneration,dmp.steps.data.specify.question.long.dataGeneration,How will the research data be generated or reused and which methods and software will be used?,,How will the research data be generated or reused and which methods and software will be used?
+dmp.steps.documentation.question.structure,dmp.steps.documentation.question.long.structure,How will you structure the data and handle versioning?,,How will you structure the data and handle versioning?
+dmp.steps.documentation.question.documentation,dmp.steps.documentation.question.long.documentation,How will you provide documentation needed to validate data analysis and facilitate data reuse?,,How will you provide documentation needed to validate data analysis and facilitate data reuse?
+dmp.steps.documentation.question.dataQuality,dmp.steps.documentation.question.long.dataQuality,How will the consistency and quality of data collection be controlled?,,How will the consistency and quality of data collection be controlled?
+dmp.steps.documentation.question.otherDataQuality,COULD_NOT_BE_AUTO_REPLACE,Please specify what other measures are taken:,dmp.steps.documentation.question.long.otherDataQuality,Please specify what other measures are taken:
+dmp.steps.storage.label,dmp.steps.storage.label,Storage and Backup,,Storage and Backup
+dmp.steps.storage.greeting,MISSING_IN_NEW_JSON,"Step 5, Let’s elaborate on your storage, Firstname",,
+dmp.steps.storage.summaryLine,MISSING_IN_NEW_JSON,Define who can access and modify your data and describe your storage and backup strategies.,,
+dmp.steps.storage.instructions,dmp.steps.storage.instructions,This step helps you 1) document who is allowed to see or edit your data in the project phase and 2) find appropriate storage and backup solutions for your data.,,This step helps you 1) document who is allowed to see or edit your data in the project phase and 2) find appropriate storage and backup solutions for your data.
+dmp.steps.storage.intro,dmp.steps.storage.intro,Choose the best storage option for each dataset:,,Choose the best storage option for each dataset:
+dmp.steps.storage.link,dmp.steps.storage.link,More information...,,More information...
+dmp.steps.storage.question.datasets,dmp.steps.storage.question.datasets,Select corresponding datasets,,Select corresponding datasets
+dmp.steps.storage.remove,dmp.steps.storage.remove,Remove storage,,Remove storage
+dmp.steps.storage.external.add,dmp.steps.storage.external.add,Add other storage location,,Add other storage location
+dmp.steps.storage.external.remove,dmp.steps.storage.external.remove,Remove external storage,,Remove external storage
+dmp.steps.storage.external.question.isManagedInternally,dmp.steps.storage.external.question.isManagedInternally,Is this storage provided by a department or service unit of your institution?,,Is this storage provided by a department or service unit of your institution?
+dmp.steps.storage.external.question.name,dmp.steps.storage.external.question.name,Storage Name,,Storage Name
+dmp.steps.storage.external.question.location,dmp.steps.storage.external.question.location,Storage Location,,Storage Location(3)
+dmp.steps.storage.external.question.backup.location,dmp.steps.storage.external.question.backup.location,Backup Location,,Backup Location(3)
+dmp.steps.storage.external.question.backup.frequency,dmp.steps.storage.external.question.backup.frequency,Backup Frequency,,Backup Frequency(3)
+dmp.steps.storage.external.question.info,MISSING_IN_NEW_JSON,Please explain why institutional storage will not be used,,
+dmp.steps.legal.label,dmp.steps.legal.label,Legal and ethical aspects,,Legal and ethical aspects(2)
+dmp.steps.legal.greeting,MISSING_IN_NEW_JSON,"On to Step 6, you’re halfway there, Firstname!",,
+dmp.steps.legal.summaryLine,MISSING_IN_NEW_JSON,Address important legal and ethical dimensions of your project.,,
+dmp.steps.legal.instructions,dmp.steps.legal.instructions,"This step helps you consider potential issues concerning personal data, intellectual property rights, and ownership and asks you for basic information on the handling of ethical issues within this project.",,"This step helps you consider potential issues concerning personal data, intellectual property rights, and ownership and asks you for basic information on the handling of ethical issues within this project."
+dmp.steps.legal.intro,MISSING_IN_NEW_JSON,"This step helps you consider potential issues concerning personal data, intellectual property rights and ownership and asks you for basic information on the handling of ethical issues within this project.",,
+dmp.steps.legal.heading,dmp.steps.legal.view.button.legal,Legal aspects,,Legal aspects
+dmp.steps.legal.question.sensitiveData.prefix,dmp.steps.legal.question.sensitiveData.prefix,"Is your data or part of it sensitive, for example",,"Is your data or part of it sensitive, for example"
+dmp.steps.legal.question.sensitiveData.link,dmp.steps.legal.question.sensitiveData.link,sensitive personal data,,sensitive personal data
+dmp.steps.legal.question.sensitiveData.suffix,dmp.steps.legal.question.sensitiveData.suffix,", politically sensitive information, or trade secrets?",,", politically sensitive information, or trade secrets?"
+dmp.steps.legal.question.dataset.sensitiveData,dmp.steps.legal.question.dataset.sensitiveData,Please select the datasets containing sensitive data,,Please select the datasets containing sensitive data
+dmp.steps.legal.question.dataset.personalData,dmp.steps.legal.question.dataset.personalData,Please select the datasets containing personal data,,Please select the datasets containing personal data
+dmp.steps.legal.question.dataset.legalRestrictions,dmp.steps.legal.question.dataset.legalRestrictions,Please select the datasets concerned:,,Please select the datasets concerned:
+dmp.steps.legal.question.personalData,dmp.steps.legal.question.personalData,Will personal data be collected/used as part of the project?,,Will personal data be collected/used as part of the project?
+dmp.steps.legal.question.sensitiveDataSecurity,dmp.steps.legal.question.sensitiveDataSecurity,What kind of additional security measures will be taken to ensure that stored and transferred sensitive data is safe?,,What kind of additional security measures will be taken to ensure that stored and transferred sensitive data is safe?
+dmp.steps.legal.question.otherDataSecurityMeasures,COULD_NOT_BE_AUTO_REPLACE,Please specify what other measures are taken:,dmp.steps.documentation.question.long.otherDataQuality,Please specify what other measures are taken:
+dmp.steps.legal.question.sensitiveDataAccess,dmp.steps.legal.question.long.sensitiveDataAccess,Who will be authorised to access sensitive data?,,Who will be authorised to access sensitive data?
+dmp.steps.legal.question.personalDataCompliance,dmp.steps.legal.question.personalDataCompliance,How will compliance with data protection be ensured?,,How will compliance with data protection be ensured?
+dmp.steps.legal.question.otherPersonalDataCompliance,COULD_NOT_BE_AUTO_REPLACE,Please specify what other measures are taken:,dmp.steps.documentation.question.long.otherDataQuality,Please specify what other measures are taken:
+dmp.steps.legal.question.legalRestrictions,dmp.steps.legal.question.legalRestrictions,Are there any other legal restrictions on how data is processed or shared?,,Are there any other legal restrictions on how data is processed or shared?
+dmp.steps.legal.question.legalRestrictionsComment,dmp.steps.legal.question.long.legalRestrictionsComment,Please specify the legal restrictions:,,Please specify the legal restrictions:
+dmp.steps.legal.question.legalRestrictionsDocuments,dmp.steps.legal.question.legalRestrictionsDocuments,In which document(s) are these restrictions specified?,,In which document(s) are these restrictions specified?
+dmp.steps.legal.question.otherLegalRestrictionsDocuments,dmp.steps.legal.question.long.otherLegalRestrictionsDocuments,Please specify the other documents:,,Please specify the other documents:
+dmp.steps.legal.question.dataRightsAndAccessControl,MISSING_IN_NEW_JSON,List who will have the rights to control access over which dataset(s).,,
+dmp.steps.legal.link.sensitiveData,dmp.steps.legal.link.sensitiveData,https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/legal-grounds-processing-data/sensitive-data/what-personal-data-considered-sensitive_en,,https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/legal-grounds-processing-data/sensitive-data/what-personal-data-considered-sensitive_en
+dmp.steps.ethical.heading,dmp.steps.legal.view.button.ethical,Ethical aspects,,Ethical aspects
+dmp.steps.ethical.question.humanParticipants,dmp.steps.legal.question.humanParticipants,Will you involve human participants in the project and thereby collect or process their personal data?,,Will you involve human participants in the project and thereby collect or process their personal data?
+dmp.steps.ethical.question.ethicalIssues,dmp.steps.legal.question.ethicalIssues,"Beyond the use of personal data, are there any other ethical issues associated with your research?",,"Beyond the use of personal data, are there any other ethical issues associated with your research?"
+dmp.steps.ethical.question.committeeReviewed.prefix,dmp.steps.legal.question.committeeReviewed.prefix,"Was your research plan reviewed by an ethics committee, the ",,"Was your research plan reviewed by an ethics committee, the "
+dmp.steps.ethical.question.committeeReviewed.researchCommittee.text,dmp.steps.legal.question.committeeReviewed.researchCommittee.text,Ethics Committee of your institution,,Ethics Committee of your institution
+dmp.steps.ethical.question.committeeReviewed.researchCommittee.link,COULD_NOT_BE_AUTO_REPLACE,https://www.tuwien.at/forschung/fti-support/responsible-research-practices/research-ethics-committee,dmp.steps.legal.question.committeeReviewed.researchCommittee.link,https://www.tuwien.at/forschung/fti-support/responsible-research-practices/research-ethics-committee(2)
+dmp.steps.ethical.question.committeeReviewed.suffix,dmp.steps.legal.question.committeeReviewed.suffix,", or a similar body?",,", or a similar body?"
+dmp.steps.ethical.question.ethicalIssueReport,dmp.steps.legal.question.ethicalIssueReport,Please provide the ethical issue report.,,Please provide the ethical issue report.
+dmp.steps.licensing.label,dmp.steps.licensing.label,Data access and licensing,,Data access and licensing
+dmp.steps.licensing.rightLabel,dmp.steps.licensing.sectionTitle,Access control and licensing overview,,Access control and licensing overview
+dmp.steps.licensing.greeting,MISSING_IN_NEW_JSON,"Advancing to Step 7, Firstname",,
+dmp.steps.licensing.summaryLine,MISSING_IN_NEW_JSON,Elaborate on future access to your data. ,,
+dmp.steps.licensing.instructions,dmp.steps.licensing.instructions,"This step helps you to specify the access to your research output in the future: Which of your datasets will be published, which will be provided to interested persons on request only, and which need to be under lock and key, for contractual, regulatory, or ethical reasons? It also reminds you to choose a license for your open data that clearly describes the reuse conditions for potential users. To comply with the FAIR principles, metadata should be published, even if the data is closed or restricted.",,"This step helps you to specify the access to your research output in the future: Which of your datasets will be published, which will be provided to interested persons on request only, and which need to be under lock and key, for contractual, regulatory, or ethical reasons? It also reminds you to choose a license for your open data that clearly describes the reuse conditions for potential users. To comply with the FAIR principles, metadata should be published, even if the data is closed or restricted."
+dmp.steps.licensing.intro,MISSING_IN_NEW_JSON,"This step helps you to specify the access to your research output in the future: Which of your data sets will be published, which will be provided to interested persons on request only and which need to be under lock and key, for contractual, regulatory, or ethical reasons? It also reminds you to choose a license for your open data that clearly describes the reuse conditions for potential reusers. To comply with the FAIR principles, metadata should be published, even if the data are closed or restricted.",,
+dmp.steps.licensing.hint,MISSING_IN_NEW_JSON,Please indicate which datasets you plan to keep closed or publish. Select a license for the datasets you want to publish and estimate the release date.,,
+dmp.steps.licensing.info,dmp.steps.licensing.info,Choose a license from the list or use the license selector to find an appropriate license.,,Choose a license from the list or use the license selector to find an appropriate license.
+dmp.steps.licensing.question.dataAccess,dmp.steps.licensing.question.dataAccess,Data Access,,Data Access
+dmp.steps.licensing.question.license.reused,dmp.steps.licensing.question.license.reused,Planned license,,Planned license
+dmp.steps.licensing.question.license.existing,dmp.steps.licensing.question.license.existing,License,,License(3)
+dmp.steps.licensing.question.startDate,dmp.steps.licensing.question.startDate,Estimated publication date,,Estimated publication date
+dmp.steps.licensing.question.hint,MISSING_IN_NEW_JSON,The release date was set to the project end date. Feel free to modify it.,,
+dmp.steps.licensing.question.restrictedAccessInfo,dmp.steps.licensing.question.long.restrictedAccessInfo,"The following dataset(s) will have access restrictions, explain why and clearly describe the access conditions:",,"The following dataset(s) will have access restrictions, explain why and clearly describe the access conditions:"
+dmp.steps.licensing.question.closedAccessInfo,dmp.steps.licensing.question.long.closedAccessInfo,Explain why the data will not be accessible (closed access):,,Explain why the data will not be accessible (closed access):
+dmp.steps.licensing.warning.personalData,dmp.steps.licensing.warning.personalData,"You indicated in step 6 that this dataset contains sensitive personal data. Do you really want to publish the dataset open, without restrictions?",,"You indicated in step 6 that this dataset contains sensitive personal data. Do you really want to publish the dataset open, without restrictions?"
+dmp.steps.licensing.warning.pseudonymisation,dmp.steps.licensing.warning.pseudonymisation,Have you considered anonymisation/pseudonymisation?,,Have you considered anonymisation/pseudonymisation?
+dmp.steps.licensing.warning.legalRestrictions,dmp.steps.licensing.warning.legalRestrictions,You indicated in step 6 that this dataset is subject to legal restrictions. Do you really want to publish the dataset without restrictions?,,You indicated in step 6 that this dataset is subject to legal restrictions. Do you really want to publish the dataset without restrictions?
+dmp.steps.retentionPeriod.title,dmp.steps.retentionPeriod.title,Set retention period for datasets,,Set retention period for datasets
+dmp.steps.retentionPeriod.question.retentionPeriod,dmp.steps.retentionPeriod.question.retentionPeriod,Retention Period,,Retention Period
+dmp.steps.retentionPeriod.years,dmp.steps.retentionPeriod.years,Years,,Years
+dmp.steps.repositories.label,dmp.steps.repositories.label,Repositories and preservation,,Repositories and preservation
+dmp.steps.repositories.greeting,MISSING_IN_NEW_JSON,"Step 8, Firstname",,
+dmp.steps.repositories.summaryLine,MISSING_IN_NEW_JSON,Choose suitable repositories for your data.,,
+dmp.steps.repositories.instructions,dmp.steps.repositories.instructions,"Repositories are used for sustainable data management beyond the lifetime of the project and to make data discoverable and reusable to others. If available, use a domain specific repository for your data. The search filter below may help you to find one.",,"Repositories are used for sustainable data management beyond the lifetime of the project and to make data discoverable and reusable to others. If available, use a domain specific repository for your data. The search filter below may help you to find one."
+dmp.steps.repositories.intro,MISSING_IN_NEW_JSON,"Use repositories to sustainably manage your data after the project’s life and to make your data discoverable and reusable. If possible, use a domain specific repository for your data. The search filter below can help you to find one. You’ll also want to set the time for how long your data should remain in the repository. This retention period can be selected in the Set retention period for datasets section",,
+dmp.steps.repositories.heading,dmp.steps.repositories.heading,Repositories,,Repositories(2)
+dmp.steps.repositories.search,MISSING_IN_NEW_JSON,Search repository,,
+dmp.steps.repositories.add,dmp.steps.repositories.add,Add repository,,Add repository
+dmp.steps.repositories.use,dmp.steps.repositories.use,Use repository,,Use repository
+dmp.steps.repositories.remove,MISSING_IN_NEW_JSON,Remove repository,,
+dmp.steps.repositories.selected,dmp.steps.repositories.selected,You selected:,,You selected:
+dmp.steps.repositories.question.datasets,dmp.steps.repositories.question.datasets,Dataset(s) for deposit,,Dataset(s) for deposit
+dmp.steps.repositories.question.date,MISSING_IN_NEW_JSON,Available until,,
+dmp.steps.repositories.warning.deletion,dmp.steps.repositories.warning.deletion,The following datasets were marked for deletion: {{value}}. Are you sure they shall be preserved in a repository?,,The following datasets were marked for deletion: {{value}}. Are you sure they shall be preserved in a repository?
+dmp.steps.repositories.loading.load.all,dmp.steps.repositories.loading.load.all,Load repositories...,,Load repositories...
+dmp.steps.repositories.loading.load.recommended,dmp.steps.repositories.loading.load.recommended,Load recommended repositories...,,Load recommended repositories...
+dmp.steps.repositories.loading.failed.all,dmp.steps.repositories.loading.failed.all,Recommended repositories could not be loaded.,,Recommended repositories could not be loaded.(2)
+dmp.steps.repositories.loading.failed.recommended,dmp.steps.repositories.loading.failed.recommended,Recommended repositories could not be loaded.,,Recommended repositories could not be loaded.(2)
+dmp.steps.repositories.filter,dmp.steps.repositories.filter,Filter repositories,,Filter repositories
+dmp.steps.repositories.filter.search,MISSING_IN_NEW_JSON,Search Filter,,
+dmp.steps.repositories.filter.find,dmp.steps.repositories.filter.find,Find repositories,,Find repositories
+dmp.steps.repositories.filter.reset,dmp.steps.repositories.filter.reset,Reset filter,,Reset filter
+dmp.steps.repositories.filters,dmp.steps.repositories.filters,Filters,,Filters
+dmp.steps.repositories.table.header.title,dmp.steps.repositories.table.header.title,Title,,Title(5)
+dmp.steps.repositories.nodatafilter,dmp.steps.repositories.nodatafilter,"No data matching the filter ""{{value}}""",,"No data matching the filter ""{{value}}""(2)"
+dmp.steps.repositories.norepositories,dmp.steps.repositories.norepositories,No repositories found.,,No repositories found.
+dmp.steps.repositories.recommended,dmp.steps.repositories.recommended,Recommended,,Recommended
+dmp.steps.repositories.recommended.none,dmp.steps.repositories.recommended.none,No further recommended repositories.,,No further recommended repositories.
+dmp.steps.repositories.find,dmp.steps.repositories.find,Find repository,,Find repository
+dmp.steps.repositories.find.other,dmp.steps.repositories.find.other,Find other repository,,Find other repository
+dmp.steps.costs.label,dmp.steps.costs.label,Costs,,Costs(2)
+dmp.steps.costs.rightLabel,dmp.steps.costs.sectionTitle,Data management costs,,Data management costs
+dmp.steps.costs.addButton,dmp.steps.costs.addButton,Add cost,,Add cost
+dmp.steps.costs.greeting,MISSING_IN_NEW_JSON,"Step 10, you’re almost there, Firstname!",,
+dmp.steps.costs.summaryLine,MISSING_IN_NEW_JSON,Estimate the costs for data management in this project. ,,
+dmp.steps.costs.instructions,dmp.steps.costs.instruction,"In this step, you will provide information on the resources required to manage your data and a clear statement on how these costs will be covered.",,"In this step, you will provide information on the resources required to manage your data and a clear statement on how these costs will be covered."
+dmp.steps.costs.infoBox.description,dmp.steps.costs.infoBox.description,Researchers are encouraged to consider costs arising from data management activities. Data management costs are eligible for many funders and are thus relevant for the proposals. Please follow this,,Researchers are encouraged to consider costs arising from data management activities. Data management costs are eligible for many funders and are thus relevant for the proposals. Please follow this
+dmp.steps.costs.intro,MISSING_IN_NEW_JSON,In this step you are asked to provide a realistic estimation of necessary resources for data management and a clear statement on how these costs will be covered.,,
+dmp.steps.costs.question.exist.label,dmp.steps.costs.question.exist.label,Select the statement which best describes the situation in your project with respect to costs of data management.,,Select the statement which best describes the situation in your project with respect to costs of data management.
+dmp.steps.costs.question.exist.no,dmp.steps.costs.question.exist.no,There are no costs dedicated to data management.,,There are no costs dedicated to data management.
+dmp.steps.costs.question.exist.yes,dmp.steps.costs.question.exist.yes,"As outlined below, there are costs dedicated to data management.",,"As outlined below, there are costs dedicated to data management."
+dmp.steps.costs.question.title,COULD_NOT_BE_AUTO_REPLACE,Name,dmp.steps.costs.question.name,Name(3)
+dmp.steps.costs.question.value,dmp.steps.costs.question.value,Estimated cost,,Estimated cost
+dmp.steps.costs.question.type,dmp.steps.costs.question.type,Cost Type,,Cost Type
+dmp.steps.costs.question.other,dmp.steps.costs.question.specifyType,Please specify the cost type,,Please specify the cost type
+dmp.steps.costs.question.description,dmp.steps.costs.question.description,Description (optional),,Description (optional)
+dmp.steps.end.label,dmp.steps.end.label,Summary,,Summary
+dmp.steps.end.greeting,MISSING_IN_NEW_JSON,"Finally, let’s review your work, Firstname",,
+dmp.steps.end.summaryLine,MISSING_IN_NEW_JSON,Check if you covered everything.,,
+dmp.steps.end.instructions,dmp.steps.end.instructions,"Below is a summary of the information you provided. To add more information, go to the previous step(s).",,"Below is a summary of the information you provided. To add more information, go to the previous step(s)."
+dmp.steps.summary.title,dmp.steps.summary.title,Summary of the information you provided:,,Summary of the information you provided:
+dmp.steps.summary.table.header.step,dmp.steps.summary.table.header.step,Step,,Step
+dmp.steps.summary.table.header.completeness,dmp.steps.summary.table.header.completeness,Completeness,,Completeness
+dmp.steps.summary.table.header.status,dmp.steps.summary.table.header.status,Status,,Status
+dmp.steps.summary.nodatasets,dmp.steps.summary.nodatasets,No datasets defined,,No datasets defined
+dmp.steps.summary.notspecified,dmp.steps.summary.notspecified,Not specified yet.,,Not specified yet.
+dmp.steps.summary.partially,dmp.steps.summary.partially,Partially filled out.,,Partially filled out.
+dmp.steps.summary.noinfo,dmp.steps.summary.noinfo,No information provided.,,No information provided.
+dmp.steps.summary.someinfo,MISSING_IN_NEW_JSON,Some information provided.,,
+dmp.steps.summary.allinfo,dmp.steps.summary.allinfo,All information necessary provided.,,All information necessary provided.(3)
+dmp.steps.summary.project.none,dmp.steps.summary.project.none,No project selected yet.,,No project selected yet.
+dmp.steps.summary.project.selected,MISSING_IN_NEW_JSON,Project: {{project}}.,,
+dmp.steps.summary.people.contact.set,dmp.steps.summary.people.contact.set,Contact person set. ,,Contact person set.
+dmp.steps.summary.people.contact.missing,dmp.steps.summary.people.contact.missing,Contact person is missing. ,,Contact person is missing.
+dmp.steps.summary.people.contributor.none,dmp.steps.summary.people.contributor.none,No contributors selected yet.,,No contributors selected yet.
+dmp.steps.summary.people.contributor.one,dmp.steps.summary.people.contributor.one,One contributor selected.,,One contributor selected.
+dmp.steps.summary.people.contributor.multiple,dmp.steps.summary.people.contributor.multiple,Contributors selected: ,,Contributors selected:
+dmp.steps.summary.people.contributor.additional,dmp.steps.summary.people.contributor.additional,Additional contributors:,,Additional contributors:
+dmp.steps.summary.data.specify.datasets.produced,dmp.steps.summary.data.specify.datasets.produced,Produced datasets: ,,Produced datasets:
+dmp.steps.summary.data.specify.datasets.reused,MISSING_IN_NEW_JSON,Reused datasets: ,,
+dmp.steps.summary.data.specify.datasets.unknown.produced,dmp.steps.summary.data.specify.datasets.unknown.produced,Not yet known if data will be produced.,,Not yet known if data will be produced.
+dmp.steps.summary.data.specify.datasets.unknown.reused,MISSING_IN_NEW_JSON,Not yet known if data will be reused.,,
+dmp.steps.summary.data.specify.datasets.none.produced,dmp.steps.summary.data.specify.datasets.none.produced,No data will be produced.,,No data will be produced.
+dmp.steps.summary.data.specify.datasets.none.reused,dmp.steps.summary.data.specify.datasets.none.reused,No data will be reused.,,No data will be reused.
+dmp.steps.summary.data.specify.datasets.none.none,MISSING_IN_NEW_JSON,No research data specified.,,
+dmp.steps.summary.data.specify.datasets.missingexplanation,dmp.steps.summary.data.specify.datasets.missingexplanation,Explanation is missing.,,Explanation is missing.
+dmp.steps.summary.data.specify.datasets.datageneration,dmp.steps.summary.data.specify.datasets.datageneration,Data generation/reuse info missing.,,Data generation/reuse info missing.
+dmp.steps.summary.storage.allinfo,dmp.steps.summary.storage.allinfo,All information necessary provided.,,All information necessary provided.(3)
+dmp.steps.summary.storage.nonestored,dmp.steps.summary.storage.nonestored,"No datasets will be stored, as no produced or reused datasets have been specified.",,"No datasets will be stored, as no produced or reused datasets have been specified."
+dmp.steps.summary.storage.missingstorage,dmp.steps.summary.storage.missingstorage,Some datasets do not have storages assigned.,,Some datasets do not have storages assigned.
+dmp.steps.summary.storage.missingexplanation,dmp.steps.summary.storage.missingexplanation, Explanation for using external storage is missing.,, Explanation for using external storage is missing.
+dmp.steps.summary.licensing.complete,dmp.steps.summary.licensing.complete,All information necessary provided.,,All information necessary provided.(3)
+dmp.steps.summary.licensing.incomplete,dmp.steps.summary.licensing.incomplete,Some information is missing.,,Some information is missing.
+dmp.steps.summary.licensing.noproduceddata,dmp.steps.summary.licensing.noproduceddata,No produced dataset has been specified.,,No produced dataset has been specified.(2)
+dmp.steps.summary.repositories.nodata,MISSING_IN_NEW_JSON,No data to be deposited.,,
+dmp.steps.summary.repositories.noproduceddata,dmp.steps.summary.repositories.noproduceddata,No produced dataset has been specified.,,No produced dataset has been specified.(2)
+dmp.steps.summary.repositories.deposited.incomplete,dmp.steps.summary.repositories.deposited.incomplete,Not all data deposited yet.,,Not all data deposited yet.
+dmp.steps.summary.repositories.deposited.complete,dmp.steps.summary.repositories.deposited.complete,All data are deposited.,,All data are deposited.
+dmp.steps.summary.repositories.missingexplanation,MISSING_IN_NEW_JSON,Explanation for datasets with restricted/closed access missing.,,
+dmp.steps.summary.costs.none,dmp.steps.summary.costs.none,There are no costs.,,There are no costs.
+dmp.nodatasets,MISSING_IN_NEW_JSON,Please declare any new or existing dataset first.,,
+dmp.nonewdataset,MISSING_IN_NEW_JSON,Please declare a produced (i.e. new) dataset first.,,
+dmp.dialog.title,COULD_NOT_BE_AUTO_REPLACE,Save new version,version-save.dialog.title,Save new version
+dmp.dialog.description,version-save.dialog.message,Please enter a version name,,Please enter a version name
+dmp.dialog.label,version-save.dialog.field.versionName.label,Version name,,Version name
+dmp.dialog.button.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,delete.dialog.button.cancel,Cancel(11)
+dmp.dialog.button.save,COULD_NOT_BE_AUTO_REPLACE,Save,version-save.dialog.button.save,Save(3)
+button.actions,COULD_NOT_BE_AUTO_REPLACE,Actions,admin.internalStorage.table.header.actions,Actions(2)
+button.save,actions-bar.buttons.save,Save changes,,Save changes
+button.discard,actions-bar.buttons.discard,Discard changes,,Discard changes
+button.version,COULD_NOT_BE_AUTO_REPLACE,Save new version,version-save.dialog.title,Save new version
+button.export,actions-bar.buttons.export,Export document,,Export document
+button.preview.tooltipDisabled,actions-bar.buttons.preview.hintWhenDisabled,Please save the DMP before being able to preview it.,,Please save the DMP before being able to preview it.
+button.preview.content,actions-bar.buttons.preview.label,Show preview,,Show preview
+form.error.required,validation.error.required,Please provide a value.,,Please provide a value.
+form.error.empty,validation.error.invalidValue,Please provide a valid value.,,Please provide a valid value.
+form.error.maxlength,validation.error.maxLength,Value must not exceed {{value}} characters.,,Value must not exceed {{value}} characters.
+form.error.pattern.currency,validation.error.currencyFormat,"Invalid input, please use the following format: 1234.56",,"Invalid input, please use the following format: 1234.56"
+form.error.orcid,validation.error.orcid,Invalid ORCID iD.,,Invalid ORCID iD.
+form.error.url,validation.error.url,Invalid URL. Must be formatted as https://example.com,,Invalid URL. Must be formatted as https://example.com
+form.error.uri,validation.error.uri,Invalid URI,,Invalid URI
+form.error.doi,validation.error.doi,Invalid DOI. Must be formatted as 10.1234/56789 or https://doi.org/10.1234/56789 or doi:10.1234/56789,,Invalid DOI. Must be formatted as 10.1234/56789 or https://doi.org/10.1234/56789 or doi:10.1234/56789
+form.error.duplicateDoi,validation.error.doiDuplicate,DOI already added.,,DOI already added.
+form.changes.saved,actions-bar.status.saved,All changes have been saved.,,All changes have been saved.
+form.changes.unsaved,actions-bar.status.unsaved,You have unsaved changes.,,You have unsaved changes.
+upload.file.choose,file-upload.button.choose,Choose File,,Choose File
+upload.file.dragdrop,file-upload.dropzone.hint,Drag and drop files here,,Drag and drop files here
+license.wizard.legalWarning,license-wizard.legalWarning,This is not legal advice. Please choose your license carefully.,,This is not legal advice. Please choose your license carefully.
+license.wizard.select,license-wizard.select,Select license with license selector,,Select license with license selector
+license.wizard.title,license-wizard.title,Choose a License,,Choose a License
+license.wizard.info,license-wizard.info,More info,,More info
+license.wizard.none.found,license-wizard.none.found,No license found,,No license found
+license.wizard.question.root,license-wizard.question.root,What do you want to deposit?,,What do you want to deposit?
+license.wizard.question.data,license-wizard.question.data,Is your data within the scope of copyright and related rights?,,Is your data within the scope of copyright and related rights?
+license.wizard.question.ownIPR,MISSING_IN_NEW_JSON,Do you own copyright and similar rights in your dataset and all its constitutive parts?,,
+license.wizard.question.ensureLicensing,license-wizard.question.ensureLicensing,Are all the elements of your dataset licensed under a public license or in the Public Domain?,,Are all the elements of your dataset licensed under a public license or in the Public Domain?
+license.wizard.question.cantLicense,license-wizard.question.cantLicense,You need additional permission before you can deposit the data!,,You need additional permission before you can deposit the data!
+license.wizard.question.licenseInteropData,license-wizard.question.licenseInteropData,Choose licenses present in your dataset:,,Choose licenses present in your dataset:
+license.wizard.question.allowDerivativeWorks,license-wizard.question.allowDerivativeWorks,Do you allow others to make derivative works?,,Do you allow others to make derivative works?
+license.wizard.question.shareAlike,license-wizard.question.shareAlike,Do you require others to share derivative works based on your data under a compatible license?,,Do you require others to share derivative works based on your data under a compatible license?
+license.wizard.question.commercialUse,license-wizard.question.commercialUse,Do you allow others to make commercial use of you data?,,Do you allow others to make commercial use of you data?
+license.wizard.question.decideAttributes,license-wizard.question.decideAttributes,Do you want others to attribute your data to you?,,Do you want others to attribute your data to you?
+license.wizard.question.software,license-wizard.question.software,Is your code based on existing software or is it your original work?,,Is your code based on existing software or is it your original work?
+license.wizard.question.licenseInteropSoftware,license-wizard.question.licenseInteropSoftware,Select licenses in your code:,,Select licenses in your code:
+license.wizard.question.copyleft,license-wizard.question.copyleft,Do you require others who modify your code to release it under a compatible licence?,,Do you require others who modify your code to release it under a compatible licence?
+license.wizard.question.strongCopyleft,license-wizard.question.strongCopyleft,Is your code used directly as an executable or are you licensing a library (your code will be linked)?,,Is your code used directly as an executable or are you licensing a library (your code will be linked)?
+license.wizard.answer.data,COULD_NOT_BE_AUTO_REPLACE,Data,license-wizard.answer.data,Data
+license.wizard.answer.software,license-wizard.answer.software,Software,,Software
+license.wizard.answer.next,license-wizard.answer.next,Next,,Next
+license.wizard.answer.licenseInteropSoftware,license-wizard.answer.licenseInteropSoftware,Based on existing software,,Based on existing software
+license.wizard.answer.copyleft,license-wizard.answer.copyleft,My own code,,My own code
+license.wizard.answer.executable,license-wizard.answer.executable,Executable,,Executable
+license.wizard.answer.library,license-wizard.answer.library,Library,,Library
+license.wizard.license.nolicense.name,license-wizard.license.nolicense.name,No License,,No License
+license.wizard.license.nolicense.description,license-wizard.license.nolicense.description,This should be selected when no license is granted.,,This should be selected when no license is granted.
+license.wizard.license.custom.name,license-wizard.license.custom.name,Custom License,,Custom License
+license.wizard.license.custom.description,license-wizard.license.custom.description,This should be selected when a custom license is granted.,,This should be selected when a custom license is granted.
+license.wizard.license.agpl1.name,license-wizard.license.agpl1.name,Affero General Public License v1.0 only,,Affero General Public License v1.0 only
+license.wizard.license.agpl1.description,license-wizard.license.agpl1.description,"The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure cooperation with the community in the case of network server software.",,"The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure cooperation with the community in the case of network server software."
+license.wizard.license.agpl1plus.name,license-wizard.license.agpl1plus.name,Affero General Public License v1.0 or later,,Affero General Public License v1.0 or later
+license.wizard.license.agpl1plus.description,license-wizard.license.agpl1plus.description,"The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure cooperation with the community in the case of network server software. Allows content under this ""any later version"" grant to be redistributed under the GPL-3.0-or-later.",,"The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure cooperation with the community in the case of network server software. Allows content under this ""any later version"" grant to be redistributed under the GPL-3.0-or-later."
+license.wizard.license.agpl3.name,COULD_NOT_BE_AUTO_REPLACE,GNU Affero General Public License v3.0 or later,license-wizard.license.agpl3.name,GNU Affero General Public License v3.0 or later(2)
+license.wizard.license.agpl3.description,license-wizard.license.agpl3.description,"The AGPL license differs from the other GNU licenses in that it was built for network software. You can distribute modified versions if you keep track of the changes and the date you made them. As per usual with GNU licenses, you must license derivatives under AGPL. It provides the same restrictions and freedoms as the GPLv3 but with an additional clause which makes it so that source code must be distributed along with web publication. Since web sites and services are never distributed in the traditional sense, the AGPL is the GPL of the web.",,"The AGPL license differs from the other GNU licenses in that it was built for network software. You can distribute modified versions if you keep track of the changes and the date you made them. As per usual with GNU licenses, you must license derivatives under AGPL. It provides the same restrictions and freedoms as the GPLv3 but with an additional clause which makes it so that source code must be distributed along with web publication. Since web sites and services are never distributed in the traditional sense, the AGPL is the GPL of the web."
+license.wizard.license.agpl3plus.name,COULD_NOT_BE_AUTO_REPLACE,GNU Affero General Public License v3.0 or later,license-wizard.license.agpl3plus.name,GNU Affero General Public License v3.0 or later(2)
+license.wizard.license.agpl3plus.description,license-wizard.license.agpl3plus.description,"The AGPL license differs from the other GNU licenses in that it was built for network software. You can distribute modified versions if you keep track of the changes and the date you made them. As per usual with GNU licenses, you must license derivatives under AGPL. It provides the same restrictions and freedoms as the GPLv3 but with an additional clause which makes it so that source code must be distributed along with web publication. Since web sites and services are never distributed in the traditional sense, the AGPL is the GPL of the web. This license identifier refers to the choice to use code under AGPL-3.0-or-later (i.e., AGPL-3.0 or some later version), as distinguished from use of code under AGPL-3.0-only",,"The AGPL license differs from the other GNU licenses in that it was built for network software. You can distribute modified versions if you keep track of the changes and the date you made them. As per usual with GNU licenses, you must license derivatives under AGPL. It provides the same restrictions and freedoms as the GPLv3 but with an additional clause which makes it so that source code must be distributed along with web publication. Since web sites and services are never distributed in the traditional sense, the AGPL is the GPL of the web. This license identifier refers to the choice to use code under AGPL-3.0-or-later (i.e., AGPL-3.0 or some later version), as distinguished from use of code under AGPL-3.0-only"
+license.wizard.license.apache1.name,license-wizard.license.apache1.name,Apache License 1.0,,Apache License 1.0
+license.wizard.license.apache1.description,license-wizard.license.apache1.description,This is the original Apache License which applies only to very old versions of Apache packages. Consider using a newer license. It allows you much freedom with the software.,,This is the original Apache License which applies only to very old versions of Apache packages. Consider using a newer license. It allows you much freedom with the software.
+license.wizard.license.apache1_1.name,license-wizard.license.apache1_1.name,Apache License 1.1,,Apache License 1.1
+license.wizard.license.apache1_1.description,license-wizard.license.apache1_1.description,This license allows you much freedom with the software and differs only slightly from version 1.0. Consider using a newer version.,,This license allows you much freedom with the software and differs only slightly from version 1.0. Consider using a newer version.
+license.wizard.license.apache2.name,license-wizard.license.apache2.name,Apache License 2,,Apache License 2
+license.wizard.license.apache2.description,license-wizard.license.apache2.description,"A license that allows you much freedom with the software, including an explicit right to a patent. ""State changes"" means that you have to include a notice in each file you modified. ",,"A license that allows you much freedom with the software, including an explicit right to a patent. ""State changes"" means that you have to include a notice in each file you modified. "
+license.wizard.license.artistic1.name,license-wizard.license.artistic1.name,Artistic License 1.0,,Artistic License 1.0
+license.wizard.license.artistic1.description,COULD_NOT_BE_AUTO_REPLACE,"NOTE: This license has been superseded by the Artistic License, Version 2.0. This is a license for software packages with the intent of giving the original copyright holder some measure of control over his software while still remaining open source. It is flexible and allows you to distribute or sell modified versions as long as you fulfill one of various conditions. Look at section 4 in the full text for a better explanation.",license-wizard.license.artistic1.description,"NOTE: This license has been superseded by the Artistic License, Version 2.0. This is a license for software packages with the intent of giving the original copyright holder some measure of control over his software while still remaining open source. It is flexible and allows you to distribute or sell modified versions as long as you fulfill one of various conditions. Look at section 4 in the full text for a better explanation.(2)"
+license.wizard.license.artistic1Perl.name,license-wizard.license.artistic1Perl.name,Artistic License 1.0 (Perl),,Artistic License 1.0 (Perl)
+license.wizard.license.artistic1Perl.description,COULD_NOT_BE_AUTO_REPLACE,"NOTE: This license has been superseded by the Artistic License, Version 2.0. This is a license for software packages with the intent of giving the original copyright holder some measure of control over his software while still remaining open source. It is flexible and allows you to distribute or sell modified versions as long as you fulfill one of various conditions. Look at section 4 in the full text for a better explanation.",license-wizard.license.artistic1Perl.description,"NOTE: This license has been superseded by the Artistic License, Version 2.0. This is a license for software packages with the intent of giving the original copyright holder some measure of control over his software while still remaining open source. It is flexible and allows you to distribute or sell modified versions as long as you fulfill one of various conditions. Look at section 4 in the full text for a better explanation.(2)"
+license.wizard.license.artistic2.name,license-wizard.license.artistic2.name,Artistic License 2.0,,Artistic License 2.0
+license.wizard.license.artistic2.description,license-wizard.license.artistic2.description,This is a license for software packages with the intent of giving the original copyright holder some measure of control over his software while still remaining open source. It is flexible and allows you to distribute or sell modified versions as long as you fulfill one of various conditions. Look at section 4 in the full text for a better explanation.,,This is a license for software packages with the intent of giving the original copyright holder some measure of control over his software while still remaining open source. It is flexible and allows you to distribute or sell modified versions as long as you fulfill one of various conditions. Look at section 4 in the full text for a better explanation.
+license.wizard.license.bsd2c.name,license-wizard.license.bsd2c.name,"BSD 2-Clause ""Simplified"" License",,"BSD 2-Clause ""Simplified"" License"
+license.wizard.license.bsd2c.description,license-wizard.license.bsd2c.description,The BSD 2-clause license allows you almost unlimited freedom with the software so long as you include the BSD copyright notice in it.,,The BSD 2-clause license allows you almost unlimited freedom with the software so long as you include the BSD copyright notice in it.
+license.wizard.license.bsd3c.name,license-wizard.license.bsd3c.name,"BSD 3-Clause ""New"" or ""Revised"" License",,"BSD 3-Clause ""New"" or ""Revised"" License"
+license.wizard.license.bsd3c.description,license-wizard.license.bsd3c.description,"The BSD 3-clause license allows you almost unlimited freedom with the software so long as you include the BSD copyright notice in it. ""Use trademark"" in this case means you cannot use the names of the original company or its members to endorse derived products.",,"The BSD 3-clause license allows you almost unlimited freedom with the software so long as you include the BSD copyright notice in it. ""Use trademark"" in this case means you cannot use the names of the original company or its members to endorse derived products."
+license.wizard.license.ccBy.name,license-wizard.license.ccBy.name,Creative Commons Attribution 4.0 International,,Creative Commons Attribution 4.0 International
+license.wizard.license.ccBy.description,license-wizard.license.ccBy.description,This is the standard creative commons license that gives others maximum freedom to do what they want with your work.,,This is the standard creative commons license that gives others maximum freedom to do what they want with your work.
+license.wizard.license.ccByNc.name,license-wizard.license.ccByNc.name,Creative Commons Attribution Non Commercial 4.0 International,,Creative Commons Attribution Non Commercial 4.0 International
+license.wizard.license.ccByNc.description,license-wizard.license.ccByNc.description,A creative commons license that bans commercial use.,,A creative commons license that bans commercial use.
+license.wizard.license.ccByNcNd.name,license-wizard.license.ccByNcNd.name,Creative Commons Attribution Non Commercial No Derivatives 4.0 International,,Creative Commons Attribution Non Commercial No Derivatives 4.0 International
+license.wizard.license.ccByNcNd.description,license-wizard.license.ccByNcNd.description,The most restrictive creative commons license. This only allows people to download and share your work for no commercial gain and for no other purposes.,,The most restrictive creative commons license. This only allows people to download and share your work for no commercial gain and for no other purposes.
+license.wizard.license.ccByNcSa.name,license-wizard.license.ccByNcSa.name,Creative Commons Attribution Non Commercial Share Alike 4.0 International,,Creative Commons Attribution Non Commercial Share Alike 4.0 International
+license.wizard.license.ccByNcSa.description,license-wizard.license.ccByNcSa.description,A creative commons license that bans commercial use and requires you to release any modified works under this license.,,A creative commons license that bans commercial use and requires you to release any modified works under this license.
+license.wizard.license.ccByNd.name,license-wizard.license.ccByNd.name,Creative Commons Attribution No Derivatives 4.0 International,,Creative Commons Attribution No Derivatives 4.0 International
+license.wizard.license.ccByNd.description,license-wizard.license.ccByNd.description,The no derivatives creative commons license is straightforward; you can take a work released under this license and re-distribute it but you cannot change it.,,The no derivatives creative commons license is straightforward; you can take a work released under this license and re-distribute it but you cannot change it.
+license.wizard.license.ccBySa.name,license-wizard.license.ccBySa.name,Creative Commons Attribution Share Alike 4.0 International,,Creative Commons Attribution Share Alike 4.0 International
+license.wizard.license.ccBySa.description,license-wizard.license.ccBySa.description,"This creative commons license is very similar to the regular Attribution license, but requires you to release all derivative works under this same license.",,"This creative commons license is very similar to the regular Attribution license, but requires you to release all derivative works under this same license."
+license.wizard.license.ccPublicDomain.name,license-wizard.license.ccPublicDomain.name,Public Domain Mark,,Public Domain Mark
+license.wizard.license.ccPublicDomain.description,license-wizard.license.ccPublicDomain.description,"The work identified as being free of known restrictions under copyright law, including all related and neighboring rights.",,"The work identified as being free of known restrictions under copyright law, including all related and neighboring rights."
+license.wizard.license.ccZero.name,license-wizard.license.ccZero.name,Creative Commons Zero v1.0 Universal,,Creative Commons Zero v1.0 Universal
+license.wizard.license.ccZero.description,license-wizard.license.ccZero.description,"CC Zero enables scientists, educators, artists and other creators and owners of copyright- or database-protected content to waive those interests in their works and thereby place them as completely as possible in the public domain, so that others may freely build upon, enhance and reuse the works for any purposes without restriction under copyright or database law.",,"CC Zero enables scientists, educators, artists and other creators and owners of copyright- or database-protected content to waive those interests in their works and thereby place them as completely as possible in the public domain, so that others may freely build upon, enhance and reuse the works for any purposes without restriction under copyright or database law."
+license.wizard.license.cddl1.name,license-wizard.license.cddl1.name,Common Development and Distribution License 1.0,,Common Development and Distribution License 1.0
+license.wizard.license.cddl1.description,license-wizard.license.cddl1.description,"This is a very permissive and popular license made by Sun Microsystems that also includes explicit patent grants. It is relatively simplistic in its conditions, requiring only a small amount of documentation for redistribution (applying to source as well as modified code).",,"This is a very permissive and popular license made by Sun Microsystems that also includes explicit patent grants. It is relatively simplistic in its conditions, requiring only a small amount of documentation for redistribution (applying to source as well as modified code)."
+license.wizard.license.cddl1_1.name,license-wizard.license.cddl1_1.name,Common Development and Distribution License 1.1,,Common Development and Distribution License 1.1
+license.wizard.license.cddl1_1.description,license-wizard.license.cddl1_1.description,"Oracle version of 1.0. This is a very permissive and popular license made by Sun Microsystems that also includes explicit patent grants. It is relatively simplistic in its conditions, requiring only a small amount of documentation for redistribution (applying to source as well as modified code).",,"Oracle version of 1.0. This is a very permissive and popular license made by Sun Microsystems that also includes explicit patent grants. It is relatively simplistic in its conditions, requiring only a small amount of documentation for redistribution (applying to source as well as modified code)."
+license.wizard.license.epl1.name,license-wizard.license.epl1.name,Eclipse Public License 1.0,,Eclipse Public License 1.0
+license.wizard.license.epl1.description,COULD_NOT_BE_AUTO_REPLACE,"This license, made and used by the Eclipse Foundation, isn’t all too stringent and gives both copyright and explicit patent rights. Check the full text of the license to see how liability is accorded.",license-wizard.license.epl1.description,"This license, made and used by the Eclipse Foundation, isn’t all too stringent and gives both copyright and explicit patent rights. Check the full text of the license to see how liability is accorded.(2)"
+license.wizard.license.epl2.name,license-wizard.license.epl2.name,Eclipse Public License 2.0,,Eclipse Public License 2.0
+license.wizard.license.epl2.description,COULD_NOT_BE_AUTO_REPLACE,"This license, made and used by the Eclipse Foundation, isn’t all too stringent and gives both copyright and explicit patent rights. Check the full text of the license to see how liability is accorded.",license-wizard.license.epl2.description,"This license, made and used by the Eclipse Foundation, isn’t all too stringent and gives both copyright and explicit patent rights. Check the full text of the license to see how liability is accorded.(2)"
+license.wizard.license.gpl2.name,license-wizard.license.gpl2.name,GNU General Public License v2.0 only,,GNU General Public License v2.0 only
+license.wizard.license.gpl2.description,license-wizard.license.gpl2.description,Standard GNU GPL version 2 but without support for later versions i.e. you cannot relicense under GPL 3.,,Standard GNU GPL version 2 but without support for later versions i.e. you cannot relicense under GPL 3.
+license.wizard.license.gpl2plus.name,license-wizard.license.gpl2plus.name,GNU General Public License v2.0 or later,,GNU General Public License v2.0 or later
+license.wizard.license.gpl2plus.description,license-wizard.license.gpl2plus.description,"You may copy, distribute and modify the software as long as you track changes/dates of in source files and keep all modifications under GPL. You can distribute your application using a GPL library commercially, but you must also disclose the source code.",,"You may copy, distribute and modify the software as long as you track changes/dates of in source files and keep all modifications under GPL. You can distribute your application using a GPL library commercially, but you must also disclose the source code."
+license.wizard.license.gpl3.name,license-wizard.license.gpl3.name,GNU General Public License v3.0 only,,GNU General Public License v3.0 only
+license.wizard.license.gpl3.description,COULD_NOT_BE_AUTO_REPLACE,"You may copy, distribute and modify the software as long as you track changes/dates of in source files and keep modifications under GPL. You can distribute your application using a GPL library commercially, but you must also provide the source code. GPL 3 tries to close some loopholes in GPL 2.",license-wizard.license.gpl3.description,"You may copy, distribute and modify the software as long as you track changes/dates of in source files and keep modifications under GPL. You can distribute your application using a GPL library commercially, but you must also provide the source code. GPL 3 tries to close some loopholes in GPL 2.(2)"
+license.wizard.license.gpl3plus.name,license-wizard.license.gpl3plus.name,GNU General Public License v3.0 or later,,GNU General Public License v3.0 or later
+license.wizard.license.gpl3plus.description,COULD_NOT_BE_AUTO_REPLACE,"You may copy, distribute and modify the software as long as you track changes/dates of in source files and keep modifications under GPL. You can distribute your application using a GPL library commercially, but you must also provide the source code. GPL 3 tries to close some loopholes in GPL 2.",license-wizard.license.gpl3plus.description,"You may copy, distribute and modify the software as long as you track changes/dates of in source files and keep modifications under GPL. You can distribute your application using a GPL library commercially, but you must also provide the source code. GPL 3 tries to close some loopholes in GPL 2.(2)"
+license.wizard.license.lgpl2.name,license-wizard.license.lgpl2.name,GNU Library General Public License v2 only,,GNU Library General Public License v2 only
+license.wizard.license.lgpl2.description,license-wizard.license.lgpl2.description,Standard GNU LGPL version 2.0 but without support for later versions i.e. you cannot relicense under LGPL 3.,,Standard GNU LGPL version 2.0 but without support for later versions i.e. you cannot relicense under LGPL 3.
+license.wizard.license.lgpl2plus.name,license-wizard.license.lgpl2plus.name,GNU Library General Public License v2 or later,,GNU Library General Public License v2 or later
+license.wizard.license.lgpl2plus.description,license-wizard.license.lgpl2plus.description,"You may copy, distribute and modify the software provided that modifications are described inside the modified files and licensed for free under LGPL-2.0. Derivatives or non-separate (statically-linked) works of the software must be licensed under LGPL, but separate, parent projects don't have to be.",,"You may copy, distribute and modify the software provided that modifications are described inside the modified files and licensed for free under LGPL-2.0. Derivatives or non-separate (statically-linked) works of the software must be licensed under LGPL, but separate, parent projects don't have to be."
+license.wizard.license.lgpl2_1.name,license-wizard.license.lgpl2_1.name,GNU Lesser General Public License v2.1 only,,GNU Lesser General Public License v2.1 only
+license.wizard.license.lgpl2_1.description,license-wizard.license.lgpl2_1.description,Standard GNU LGPL version 2.1 but without support for later versions i.e. you cannot relicense under LGPL 3.,,Standard GNU LGPL version 2.1 but without support for later versions i.e. you cannot relicense under LGPL 3.
+license.wizard.license.lgpl2_1plus.name,license-wizard.license.lgpl2_1plus.name,GNU Lesser General Public License v2.1 or later,,GNU Lesser General Public License v2.1 or later
+license.wizard.license.lgpl2_1plus.description,license-wizard.license.lgpl2_1plus.description,"You may copy, distribute and modify the software provided that modifications are described inside the modified files and licensed for free under LGPL-2.1. Derivatives or non-separate (statically-linked) works of the software must be licensed under LGPL, but separate, parent projects don't have to be.",,"You may copy, distribute and modify the software provided that modifications are described inside the modified files and licensed for free under LGPL-2.1. Derivatives or non-separate (statically-linked) works of the software must be licensed under LGPL, but separate, parent projects don't have to be."
+license.wizard.license.lgpl3.name,license-wizard.license.lgpl3.name,GNU Lesser General Public License v3.0 only,,GNU Lesser General Public License v3.0 only
+license.wizard.license.lgpl3.description,COULD_NOT_BE_AUTO_REPLACE,"You may copy, distribute and modify the software provided that modifications are described inside the modified files and licensed for free under LGPL-2.1.  Derivatives or non-separate (statically-linked) works of the software must be licensed under LGPL, but separate, parent projects don't have to be. LGPL 3 tries to close some loopholes in LGPL 2.1.",license-wizard.license.lgpl3.description,"You may copy, distribute and modify the software provided that modifications are described inside the modified files and licensed for free under LGPL-2.1.  Derivatives or non-separate (statically-linked) works of the software must be licensed under LGPL, but separate, parent projects don't have to be. LGPL 3 tries to close some loopholes in LGPL 2.1.(2)"
+license.wizard.license.lgpl3plus.name,license-wizard.license.lgpl3plus.name,GNU Lesser General Public License v3.0 or later,,GNU Lesser General Public License v3.0 or later
+license.wizard.license.lgpl3plus.description,COULD_NOT_BE_AUTO_REPLACE,"You may copy, distribute and modify the software provided that modifications are described inside the modified files and licensed for free under LGPL-2.1.  Derivatives or non-separate (statically-linked) works of the software must be licensed under LGPL, but separate, parent projects don't have to be. LGPL 3 tries to close some loopholes in LGPL 2.1.",license-wizard.license.lgpl3plus.description,"You may copy, distribute and modify the software provided that modifications are described inside the modified files and licensed for free under LGPL-2.1.  Derivatives or non-separate (statically-linked) works of the software must be licensed under LGPL, but separate, parent projects don't have to be. LGPL 3 tries to close some loopholes in LGPL 2.1.(2)"
+license.wizard.license.mit.name,license-wizard.license.mit.name,MIT License,,MIT License
+license.wizard.license.mit.description,license-wizard.license.mit.description,"A short, permissive software license. Basically, you can do whatever you want as long as you include the original copyright and license.",,"A short, permissive software license. Basically, you can do whatever you want as long as you include the original copyright and license."
+license.wizard.license.mpl1.name,license-wizard.license.mpl1.name,Mozilla Public License 1.0,,Mozilla Public License 1.0
+license.wizard.license.mpl1.description,license-wizard.license.mpl1.description,This license has been superseded by 1.1. It is a lenient license used by the Mozilla Corporation that allows you a variety of explicit freedoms with the software so long as you keep modifications under this license and distribute the original source code alongside executables. It is a good midway license; it isn’t very strict and has only straightforward requirements.,,This license has been superseded by 1.1. It is a lenient license used by the Mozilla Corporation that allows you a variety of explicit freedoms with the software so long as you keep modifications under this license and distribute the original source code alongside executables. It is a good midway license; it isn’t very strict and has only straightforward requirements.
+license.wizard.license.mpl1_1.name,license-wizard.license.mpl1_1.name,Mozilla Public License 1.1,,Mozilla Public License 1.1
+license.wizard.license.mpl1_1.description,license-wizard.license.mpl1_1.description,This license has been superseded by 2.0. It is a lenient license used by the Mozilla Corporation that allows you a variety of explicit freedoms with the software so long as you keep modifications under this license and distribute the original source code alongside executables. It is a good midway license; it isn’t very strict and has only straightforward requirements.,,This license has been superseded by 2.0. It is a lenient license used by the Mozilla Corporation that allows you a variety of explicit freedoms with the software so long as you keep modifications under this license and distribute the original source code alongside executables. It is a good midway license; it isn’t very strict and has only straightforward requirements.
+license.wizard.license.mpl2.name,license-wizard.license.mpl2.name,Mozilla Public License 2.0,,Mozilla Public License 2.0
+license.wizard.license.mpl2.description,license-wizard.license.mpl2.description,This is a lenient license used by the Mozilla Corporation that allows you a variety of explicit freedoms with the software so long as you keep modifications under this license and distribute the original source code alongside executables. It is a good midway license; it isn’t very strict and has only straightforward requirements.,,This is a lenient license used by the Mozilla Corporation that allows you a variety of explicit freedoms with the software so long as you keep modifications under this license and distribute the original source code alongside executables. It is a good midway license; it isn’t very strict and has only straightforward requirements.
+license.wizard.license.odbl.name,license-wizard.license.odbl.name,Open Data Commons Open Database License v1.0,,Open Data Commons Open Database License v1.0
+license.wizard.license.odbl.description,license-wizard.license.odbl.description,A copyleft license used by OpenStreetMap and others with very specific terms designed for databases.,,A copyleft license used by OpenStreetMap and others with very specific terms designed for databases.
+license.wizard.license.odcBy.name,license-wizard.license.odcBy.name,Open Data Commons Attribution License v1.0,,Open Data Commons Attribution License v1.0
+license.wizard.license.odcBy.description,license-wizard.license.odcBy.description,"The Open Data Commons Attribution License is a license agreement intended to allow users to freely share, modify, and use this Database subject only to the attribution requirements set out in Section 4 of the license text.",,"The Open Data Commons Attribution License is a license agreement intended to allow users to freely share, modify, and use this Database subject only to the attribution requirements set out in Section 4 of the license text."
+license.wizard.license.pddl.name,license-wizard.license.pddl.name,Open Data Commons Public Domain Dedication and License,,Open Data Commons Public Domain Dedication and License
+license.wizard.license.pddl.description,license-wizard.license.pddl.description,"This license is meant to be an international, database-specific equivalent of the public domain. You cannot relicense or sublicense any database under this license because, like the public domain, after dedication you no longer own any rights to the database.",,"This license is meant to be an international, database-specific equivalent of the public domain. You cannot relicense or sublicense any database under this license because, like the public domain, after dedication you no longer own any rights to the database."
+license.wizard.search,license-wizard.search,Search license...,,Search license...
+license.wizard.reset,license-wizard.reset,Reset form,,Reset form
+versions.versionId,COULD_NOT_BE_AUTO_REPLACE,Version,dmp.versions.versionId,Version(3)
+versions.versionName,COULD_NOT_BE_AUTO_REPLACE,Name,dmp.versions.versionName,Name(3)
+versions.versionDate,dmp.versions.versionDate,Date,,Date
+versions.editor,COULD_NOT_BE_AUTO_REPLACE,Editor,dmp.versions.editor,Editor
+versions.list.no.data,dmp.versions.list.no.data,No versions available.,,No versions available.
+versions.view.button.goto.latest,dmp.versions.view.button.goto.latest,Go to living document,,Go to living document
+versions.view.button.versions,dmp.versions.view.button.versions,Go back to version overview,,Go back to version overview
+versions.view.button.expand,dmp.versions.view.button.expand,Expand all,,Expand all
+versions.view.button.collapse,dmp.versions.view.button.collapse,Collapse all,,Collapse all
+versions.view.project.heading,dmp.versions.view.project.heading,Project,,Project
+versions.view.contributors.heading,dmp.versions.view.contributors.heading,People involved,,People involved
+versions.view.datasets.heading,COULD_NOT_BE_AUTO_REPLACE,Datasets,dmp.versions.view.datasets.heading,Datasets(3)
+versions.view.datasets.size,COULD_NOT_BE_AUTO_REPLACE,Size,dmp.versions.view.datasets.size,Size(2)
+versions.view.datasets.description,COULD_NOT_BE_AUTO_REPLACE,Description,dmp.versions.view.datasets.description,Description(6)
+versions.view.datasets.license,COULD_NOT_BE_AUTO_REPLACE,License,dmp.versions.view.datasets.license,License(3)
+versions.view.datasets.retention.period,dmp.versions.view.datasets.retention.period,Retention period,,Retention period
+versions.view.datasets.data.none,dmp.versions.view.datasets.data.none,Why no data will be created or analysed,,Why no data will be created or analysed
+versions.view.datasets.data.unknown,dmp.versions.view.datasets.data.unknown,Not yet known if data will be created or analysed.,,Not yet known if data will be created or analysed.
+versions.view.datasets.restrictions.label,COULD_NOT_BE_AUTO_REPLACE,Restrictions,dmp.versions.view.datasets.restrictions.label,Restrictions(2)
+versions.view.datasets.restrictions.sensitive,dmp.versions.view.datasets.restrictions.sensitive,Contains sensitive data,,Contains sensitive data
+versions.view.datasets.restrictions.personal,dmp.versions.view.datasets.restrictions.personal,Contains personal data,,Contains personal data
+versions.view.datasets.restrictions.legal,dmp.versions.view.datasets.restrictions.legal,Legal restrictions on data processing or sharing,,Legal restrictions on data processing or sharing
+versions.view.datasets.data.access.label,dmp.versions.view.datasets.data.access.label,Data access,,Data access
+versions.view.datasets.data.access.public,dmp.versions.view.datasets.data.access.public,Public,,Public
+versions.view.datasets.data.access.selected,dmp.versions.view.datasets.data.access.selected,For selected project members,,For selected project members
+versions.view.datasets.data.access.other,dmp.versions.view.datasets.data.access.other,For other project members,,For other project members
+versions.view.datasets.deletion.date,COULD_NOT_BE_AUTO_REPLACE,Date of deletion,dmp.versions.view.datasets.deletion.date,Date of deletion(2)
+versions.view.datasets.deletion.reason,COULD_NOT_BE_AUTO_REPLACE,Reason for deletion,dmp.versions.view.datasets.deletion.reason,Reason for deletion(2)
+versions.view.datasets.deletion.person,COULD_NOT_BE_AUTO_REPLACE,Person responsible for deletion,dmp.versions.view.datasets.deletion.person,Person responsible for deletion(2)
+versions.view.documentation.heading,COULD_NOT_BE_AUTO_REPLACE,Documentation and data quality,dmp.versions.view.documentation.heading,Documentation and data quality(2)
+versions.view.documentation.data.generation,dmp.versions.view.documentation.data.generation,Research data generation/reuse and methods and software used,,Research data generation/reuse and methods and software used
+versions.view.documentation.structure,dmp.versions.view.documentation.structure,Data structure and versioning,,Data structure and versioning
+versions.view.documentation.documentation,dmp.versions.view.documentation.documentation,Documentation for data analysis and reuse,,Documentation for data analysis and reuse
+versions.view.documentation.metadata,dmp.versions.view.documentation.metadata,Metadata that will be provided,,Metadata that will be provided
+versions.view.documentation.data.quality,dmp.versions.view.documentation.data.quality,Control of data consistency and quality,,Control of data consistency and quality
+versions.view.legal.heading,COULD_NOT_BE_AUTO_REPLACE,Legal and ethical aspects,dmp.versions.view.legal.heading,Legal and ethical aspects(2)
+versions.view.legal.sensitive.data.present,dmp.versions.view.legal.sensitive.data.present,Data or part of it is sensitive,,Data or part of it is sensitive
+versions.view.legal.sensitive.data.security,dmp.versions.view.legal.sensitive.data.security,Security measures to ensure data safety,,Security measures to ensure data safety
+versions.view.legal.sensitive.data.other.security,dmp.versions.view.legal.sensitive.data.other.security,Other security measures,,Other security measures
+versions.view.legal.sensitive.data.access,dmp.versions.view.legal.sensitive.data.access,Authorised to access sensitive data,,Authorised to access sensitive data
+versions.view.legal.personal.data.present,dmp.versions.view.legal.personal.data.present,Personal data will be collected/used,,Personal data will be collected/used
+versions.view.legal.personal.data.compliance,dmp.versions.view.legal.personal.data.compliance,Compliance with data protection will be ensured by,,Compliance with data protection will be ensured by
+versions.view.legal.personal.data.other.compliance,COULD_NOT_BE_AUTO_REPLACE,Other measures,dmp.versions.view.legal.personal.data.other.compliance,Other measures(2)
+versions.view.legal.restrictions.present,dmp.versions.view.legal.restrictions.present,There are legal restrictions on data processing/sharing,,There are legal restrictions on data processing/sharing
+versions.view.legal.restrictions.comment,COULD_NOT_BE_AUTO_REPLACE,Restrictions,dmp.versions.view.legal.restrictions.comment,Restrictions(2)
+versions.view.legal.restrictions.documents,dmp.versions.view.legal.restrictions.documents,Documents specifying restrictions,,Documents specifying restrictions
+versions.view.legal.restrictions.other.documents,COULD_NOT_BE_AUTO_REPLACE,Other documents,dmp.versions.view.legal.restrictions.other.documents,Other documents(2)
+versions.view.legal.restrictions.data.rights.access,dmp.versions.view.legal.restrictions.data.rights.access,Rights and control over access to produced data,,Rights and control over access to produced data
+versions.view.ethical.human.participants,dmp.versions.view.ethical.human.participants,Human participants are involved,,Human participants are involved
+versions.view.ethical.issues,dmp.versions.view.ethical.issues,Other ethical issues are associated with the research,,Other ethical issues are associated with the research
+versions.view.ethical.committee.reviewed,dmp.versions.view.ethical.committee.reviewed,Research plan was reviewed by an ethics committee,,Research plan was reviewed by an ethics committee
+versions.view.storage.heading,COULD_NOT_BE_AUTO_REPLACE,Storage,dmp.versions.view.storage.heading,Storage(2)
+versions.view.storage.datasets,COULD_NOT_BE_AUTO_REPLACE,Datasets,dmp.versions.view.storage.datasets,Datasets(3)
+versions.view.storage.url,COULD_NOT_BE_AUTO_REPLACE,URL,dmp.versions.view.storage.url,URL(3)
+versions.view.storage.location,dmp.versions.view.storage.location,Storage location,,Storage location
+versions.view.storage.backup.location,dmp.versions.view.storage.backup.location,Backup location,,Backup location
+versions.view.storage.backup.frequency,dmp.versions.view.storage.backup.frequency,Backup frequency,,Backup frequency
+versions.view.reuse.heading,dmp.versions.view.reuse.heading,Reuse,,Reuse
+versions.view.reuse.target.audience,COULD_NOT_BE_AUTO_REPLACE,Target audience,dmp.versions.view.reuse.target.audience,Target audience(2)
+versions.view.reuse.tools,dmp.versions.view.reuse.tools,Tools or software needed to access data,,Tools or software needed to access data
+versions.view.reuse.restricted.data.access,dmp.versions.view.reuse.restricted.data.access,Restricted data access,,Restricted data access
+versions.view.reuse.access.info.restricted,dmp.versions.view.reuse.access.info.restricted,Why some datasets have access restrictions,,Why some datasets have access restrictions
+versions.view.reuse.access.info.closed,dmp.versions.view.reuse.access.info.closed,Why some datasets are closed and not accessible,,Why some datasets are closed and not accessible
+versions.view.repositories.heading,COULD_NOT_BE_AUTO_REPLACE,Repositories,dmp.versions.view.repositories.heading,Repositories(2)
+versions.view.repositories.datasets,COULD_NOT_BE_AUTO_REPLACE,Datasets,dmp.versions.view.repositories.datasets,Datasets(3)
+versions.view.costs.heading,COULD_NOT_BE_AUTO_REPLACE,Costs,dmp.versions.view.costs.heading,Costs(2)
+enum.accessright.READ,MISSING_IN_NEW_JSON,reading only,,
+enum.accessright.WRITE,MISSING_IN_NEW_JSON,writing,,
+enum.accessright.NONE,MISSING_IN_NEW_JSON,no access,,
+enum.agreement.CONSORTIUM_AGREEMENT,MISSING_IN_NEW_JSON,consortium agreement,,
+enum.agreement.DATA_PROCESSING_AGREEMENT,MISSING_IN_NEW_JSON,data processing agreement,,
+enum.agreement.DATA_TRANSFER_AGREEMENT,MISSING_IN_NEW_JSON,data transfer agreement,,
+enum.agreement.JOINT_CONTROL_AGREEMENT,MISSING_IN_NEW_JSON,joint control agreement,,
+enum.agreement.CONFIDENTIALITY_AGREEMENT,MISSING_IN_NEW_JSON,confidentiality agreement,,
+enum.agreement.OTHER,MISSING_IN_NEW_JSON,other,,
+enum.compliance.INFORMED_CONSENT,MISSING_IN_NEW_JSON,by gaining informed consent for processing personal data ,,
+enum.compliance.ANONYMISATION,MISSING_IN_NEW_JSON,by anonymisation of personal data for preservation and/or sharing (truly anonymous data are no longer considered personal data) ,,
+enum.compliance.PSEUDONYMISATION,MISSING_IN_NEW_JSON,by pseudonymisation of personal data (the main difference with anonymisation is that pseudonymisation is reversible) ,,
+enum.compliance.ENCRYPTION,MISSING_IN_NEW_JSON,"by encryption of personal data (the encryption key must be stored separately from the data, for instance by a trusted third party) ",,
+enum.compliance.OTHER,COULD_NOT_BE_AUTO_REPLACE,other measures,dmp.versions.view.legal.personal.data.other.compliance,Other measures
+enum.contributor.role.DATA_COLLECTOR,MISSING_IN_NEW_JSON,Data Collector,,
+enum.contributor.role.DATA_CURATOR,MISSING_IN_NEW_JSON,Data Curator,,
+enum.contributor.role.DATA_MANAGER,MISSING_IN_NEW_JSON,Data Manager,,
+enum.contributor.role.DISTRIBUTOR,MISSING_IN_NEW_JSON,Distributor,,
+enum.contributor.role.EDITOR,COULD_NOT_BE_AUTO_REPLACE,Editor,dmp.versions.editor,Editor
+enum.contributor.role.HOSTING_INSTITUTION,MISSING_IN_NEW_JSON,Hosting Institution,,
+enum.contributor.role.PRODUCER,MISSING_IN_NEW_JSON,Producer,,
+enum.contributor.role.PROJECT_LEADER,MISSING_IN_NEW_JSON,Project Leader,,
+enum.contributor.role.PROJECT_MANAGER,MISSING_IN_NEW_JSON,Project Manager,,
+enum.contributor.role.PROJECT_MEMBER,MISSING_IN_NEW_JSON,Project Member,,
+enum.contributor.role.REGISTRATION_AGENCY,MISSING_IN_NEW_JSON,Registration Agency,,
+enum.contributor.role.REGISTRATION_AUTHORITY,MISSING_IN_NEW_JSON,Registration Authority,,
+enum.contributor.role.RELATED_PERSON,MISSING_IN_NEW_JSON,Related Person,,
+enum.contributor.role.RESEARCHER,MISSING_IN_NEW_JSON,Researcher,,
+enum.contributor.role.RESEARCH_GROUP,MISSING_IN_NEW_JSON,Research Group,,
+enum.contributor.role.RIGHTS_HOLDER,MISSING_IN_NEW_JSON,Rights Holder,,
+enum.contributor.role.SPONSOR,MISSING_IN_NEW_JSON,Sponsor,,
+enum.contributor.role.SUPERVISOR,MISSING_IN_NEW_JSON,Supervisor,,
+enum.contributor.role.WORK_PACKAGE_LEADER,MISSING_IN_NEW_JSON,Work Package Leader,,
+enum.contributor.role.PRINCIPAL_INVESTIGATOR,MISSING_IN_NEW_JSON,Principal Investigator,,
+enum.contributor.role.PROJECT_COORDINATOR,MISSING_IN_NEW_JSON,Project Coordinator,,
+enum.contributor.role.OTHER,MISSING_IN_NEW_JSON,Other,,
+enum.costs.DATA_ACQUISITION,MISSING_IN_NEW_JSON,Data Acquisition,,
+enum.costs.DATABASE,MISSING_IN_NEW_JSON,Database,,
+enum.costs.FILE_BASED_STORAGE,MISSING_IN_NEW_JSON,File-based Storage,,
+enum.costs.HARDWARE_AND_INFRASTRUCTURE,MISSING_IN_NEW_JSON,Hardware and Infrastructure,,
+enum.costs.LEGAL_ADVICE,MISSING_IN_NEW_JSON,Legal Advice,,
+enum.costs.PERSONNEL,MISSING_IN_NEW_JSON,Personnel (Data Steward),,
+enum.costs.REPOSITORY,MISSING_IN_NEW_JSON,Repository,,
+enum.costs.SOFTWARE_LICENSE,MISSING_IN_NEW_JSON,Software License,,
+enum.costs.TRAINING,MISSING_IN_NEW_JSON,Training,,
+enum.costs.OTHER,MISSING_IN_NEW_JSON,Other,,
+enum.dataaccess.OPEN,MISSING_IN_NEW_JSON,Open,,
+enum.dataaccess.RESTRICTED,MISSING_IN_NEW_JSON,Restricted,,
+enum.dataaccess.CLOSED,MISSING_IN_NEW_JSON,Closed,,
+enum.datakind.UNKNOWN,MISSING_IN_NEW_JSON,unknown,,
+enum.datakind.NONE,MISSING_IN_NEW_JSON,none,,
+enum.datakind.SPECIFY,MISSING_IN_NEW_JSON,specify,,
+enum.dataquality.CALIBRATION,MISSING_IN_NEW_JSON,calibration,,
+enum.dataquality.REPEATED_SAMPLES_OR_MEASUREMENTS,MISSING_IN_NEW_JSON,repeated samples or measurements,,
+enum.dataquality.STANDARDISED_DATA_CAPTURE,MISSING_IN_NEW_JSON,standardised data capture,,
+enum.dataquality.DATA_ENTRY_VALIDATION,MISSING_IN_NEW_JSON,data entry validation,,
+enum.dataquality.PEER_REVIEW_OF_DATA,MISSING_IN_NEW_JSON,peer review of data,,
+enum.dataquality.REPRESENTATION_WITH_CONTROLLED_VOCABULARIES,MISSING_IN_NEW_JSON,representation with controlled vocabularies,,
+enum.dataquality.OTHERS,MISSING_IN_NEW_JSON,others,,
+enum.dataset.type.STANDARD_OFFICE_DOCUMENTS,MISSING_IN_NEW_JSON,STANDARD OFFICE DOCUMENTS,,
+enum.dataset.type.STRUCTURED_TEXT,MISSING_IN_NEW_JSON,STRUCTURED TEXT,,
+enum.dataset.type.IMAGES,MISSING_IN_NEW_JSON,IMAGES,,
+enum.dataset.type.AUDIOVISUAL_DATA,MISSING_IN_NEW_JSON,AUDIOVISUAL DATA,,
+enum.dataset.type.RAW_DATA,MISSING_IN_NEW_JSON,RAW DATA,,
+enum.dataset.type.NETWORKBASED_DATA,MISSING_IN_NEW_JSON,NETWORKBASED DATA,,
+enum.dataset.type.DATABASES,MISSING_IN_NEW_JSON,DATABASES,,
+enum.dataset.type.STRUCTURED_GRAPHICS,MISSING_IN_NEW_JSON,STRUCTURED GRAPHICS,,
+enum.dataset.type.SCIENTIFIC_STATISTICAL_DATA,MISSING_IN_NEW_JSON,SCIENTIFIC STATISTICAL DATA,,
+enum.dataset.type.PLAIN_TEXT,MISSING_IN_NEW_JSON,PLAIN TEXT,,
+enum.dataset.type.ARCHIVED_DATA,MISSING_IN_NEW_JSON,ARCHIVED DATA,,
+enum.dataset.type.SOFTWARE_APPLICATIONS,MISSING_IN_NEW_JSON,SOFTWARE APPLICATIONS,,
+enum.dataset.type.SOURCE_CODE,MISSING_IN_NEW_JSON,SOURCE CODE,,
+enum.dataset.type.CONFIGURATION_DATA,MISSING_IN_NEW_JSON,CONFIGURATION DATA,,
+enum.dataset.type.OTHER,MISSING_IN_NEW_JSON,OTHER,,
+enum.functionrole.ADMIN,MISSING_IN_NEW_JSON,ADMIN,,
+enum.functionrole.EDITOR,MISSING_IN_NEW_JSON,EDITOR,,
+enum.functionrole.GUEST,MISSING_IN_NEW_JSON,GUEST,,
+enum.functionrole.OWNER,MISSING_IN_NEW_JSON,OWNER,,
+enum.functionrole.SUPPORT,MISSING_IN_NEW_JSON,SUPPORT,,
+enum.fundingstate.PLANNED,MISSING_IN_NEW_JSON,planned,,
+enum.fundingstate.APPLIED,MISSING_IN_NEW_JSON,applied,,
+enum.fundingstate.GRANTED,MISSING_IN_NEW_JSON,granted,,
+enum.fundingstate.REJECTED,MISSING_IN_NEW_JSON,rejected,,
+enum.fundingstate.UNSPECIFIED,MISSING_IN_NEW_JSON,unspecified,,
+enum.identifier.ORCID,MISSING_IN_NEW_JSON,orcid,,
+enum.identifier.ISNI,MISSING_IN_NEW_JSON,isni,,
+enum.identifier.OPENID,MISSING_IN_NEW_JSON,openid,,
+enum.identifier.HANDLE,MISSING_IN_NEW_JSON,handle,,
+enum.identifier.DOI,MISSING_IN_NEW_JSON,doi,,
+enum.identifier.ARK,MISSING_IN_NEW_JSON,ark,,
+enum.identifier.URL,MISSING_IN_NEW_JSON,url,,
+enum.identifier.HDL,MISSING_IN_NEW_JSON,hdl,,
+enum.identifier.PURL,MISSING_IN_NEW_JSON,purl,,
+enum.identifier.URN,MISSING_IN_NEW_JSON,urn,,
+enum.identifier.FUNDREF,MISSING_IN_NEW_JSON,fundref,,
+enum.identifier.ROR,MISSING_IN_NEW_JSON,ror,,
+enum.identifier.OTHER,MISSING_IN_NEW_JSON,other,,
+enum.securitymeasure.INDIVIDUAL_LOGIN,MISSING_IN_NEW_JSON,individual log-in and password,,
+enum.securitymeasure.ADDITIONAL_LOGIN,MISSING_IN_NEW_JSON,additional log-in for specific applications,,
+enum.securitymeasure.AUTOMATIC_LOCKING_OF_CLIENTS,MISSING_IN_NEW_JSON,automatic locking of clients (timeout),,
+enum.securitymeasure.ENCRYPTION_OF_SYSTEMS,MISSING_IN_NEW_JSON,encryption of systems,,
+enum.securitymeasure.LOCKED_STORAGE,MISSING_IN_NEW_JSON,keep printouts of sensitive data in locked storage,,
+enum.securitymeasure.OTHER,COULD_NOT_BE_AUTO_REPLACE,other measures,dmp.steps.documentation.question.short.otherDataQuality,Other measures
+enum.exportDmpTemplatetype.FWF,MISSING_IN_NEW_JSON,FWF,,
+enum.exportDmpTemplatetype.SCIENCE_EUROPE,MISSING_IN_NEW_JSON,Science Europe,,
+enum.exportDmpTemplatetype.HORIZON_EUROPE,MISSING_IN_NEW_JSON,Horizon Europe,,
+contenttypes,dmp.steps.repositories.contenttypes,Content types,,Content types
+metadatastandards,dmp.steps.repositories.metadatastandards,Metadata standards,,Metadata standards
+or,MISSING_IN_NEW_JSON,or,,
+preview.title,preview.title,Live Preview,,Live Preview
+preview.info,preview.info,"Only data that has been saved will be displayed in the preview, if you are missing recent changes please save your DMP first.",,"Only data that has been saved will be displayed in the preview, if you are missing recent changes please save your DMP first."
+preview.templateSelection,preview.templateSelection,Choose preview format,,Choose preview format
+preview.loading,MISSING_IN_NEW_JSON,Loading,,
+preview.requestTemplateSelection,preview.requestTemplateSelection,Please select a template in the dropdown,,Please select a template in the dropdown
+help.legal.sensitiveDataSecurity,dmp.steps.legal.help.sensitiveDataSecurity,"Referring to physical security, network security, and security of computer systems and files.",,"Referring to physical security, network security, and security of computer systems and files."
+help.legal.personalDataCompliance,dmp.steps.legal.help.personalDataCompliance,Make sure you follow your institutions guidance on informed consent.,,Make sure you follow your institutions guidance on informed consent.
+help.ethical.humanParticipants,dmp.steps.legal.help.humanParticipants,"The participation may include activities such as interviews, prototype testing, observations, surveys, etc.",,"The participation may include activities such as interviews, prototype testing, observations, surveys, etc."
+help.ethical.ethicalIssues,dmp.steps.legal.help.ethicalIssues,"For example: Your research involves human embryos, foetuses, cells or tissues, animals, activities that may adversely affect the environment or the health and safety of involved persons, artificial intelligence, activities outside the EU, or there are dual use or misuse aspects that must be addressed.",,"For example: Your research involves human embryos, foetuses, cells or tissues, animals, activities that may adversely affect the environment or the health and safety of involved persons, artificial intelligence, activities outside the EU, or there are dual use or misuse aspects that must be addressed."

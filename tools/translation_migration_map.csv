@@ -55,21 +55,21 @@ dialog.export.title,export-dialog.title,The file download has started.,,The file
 dialog.export.content,export-dialog.message,Please note that you are not done yet. \n  The exported document may still require fine-tuning.,,Please note that you are not done yet. \n  The exported document may still require fine-tuning.
 dialog.export.button,export-dialog.button.ok,OK,,OK
 dialog.export.type,export-dialog.field.type,Choose type of export,,Choose type of export
-dialog.export.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,delete.dialog.button.cancel,Cancel(9)
+dialog.export.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,delete.dialog.button.cancel,Cancel(11)
 dialog.delete.title,delete.dialog.title,Please note:,,Please note:
 dialog.delete.content.dmp,delete.dialog.message.dmp,You are about to delete this DMP. This action cannot be undone. Are you sure you want to proceed?,,You are about to delete this DMP. This action cannot be undone. Are you sure you want to proceed?
 dialog.delete.content.storage,delete.dialog.message.storage,You are about to delete this storage. This action cannot be undone. Are you sure you want to proceed?,,You are about to delete this storage. This action cannot be undone. Are you sure you want to proceed?
 dialog.delete.content.storageTranslation,delete.dialog.message.storageTranslation,You are about to delete this storage translation. This action cannot be undone. Are you sure you want to proceed?,,You are about to delete this storage translation. This action cannot be undone. Are you sure you want to proceed?
-dialog.delete.button,COULD_NOT_BE_AUTO_REPLACE,Delete,delete.dialog.button.delete,Delete(2)
-dialog.delete.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,delete.dialog.button.cancel,Cancel(9)
-access.button.plans,dmp-access-page.button.backToOverview,Go back to DMP overview,,Go back to DMP overview
-access.search.label,MISSING_IN_NEW_JSON,Search Users,,
-access.no_rights,MISSING_IN_NEW_JSON,Default setting. The user will not be able to see or interact with the DMP.,,
-access.editor,MISSING_IN_NEW_JSON,"Editor rights grant the user permissions to see the DMP and make changes to it. There are no restrictions on the kind of changes this user can make, bar deleting the DMP. The user can not however, assign viewing or editing permissions.",,
-access.owner,MISSING_IN_NEW_JSON,"Owners can view, write, delete and assign permissions for DMPs. They are also capable of creating new owners - handle with care, new owners can remove old ones.",,
-access.list,MISSING_IN_NEW_JSON,Only users that have already logged in once can be assigned editing rights for a DMP. ,,
-access.info,dmp-access-page.warning.simultaneousEditing,Please note that simultaneous editing of a DMP can lead to data loss as changes may overwrite each other. Please make sure that you are the only one editing the dmp at the moment.,,Please note that simultaneous editing of a DMP can lead to data loss as changes may overwrite each other. Please make sure that you are the only one editing the dmp at the moment.
-access.noOwner,dmp-access-page.warning.onlyOwnersCanEdit,Only owners of the DMP are allowed to change access rights.,,Only owners of the DMP are allowed to change access rights.
+dialog.delete.button,COULD_NOT_BE_AUTO_REPLACE,Delete,admin.images.dialog.delete,Delete(5)
+dialog.delete.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,delete.dialog.button.cancel,Cancel(11)
+access.button.plans,access.button.plans,Go back to DMP overview,,Go back to DMP overview
+access.search.label,access.search.label,Search Users,,Search Users
+access.no_rights,access.no_rights,Default setting. The user will not be able to see or interact with the DMP.,,Default setting. The user will not be able to see or interact with the DMP.
+access.editor,access.editor,"Editor rights grant the user permissions to see the DMP and make changes to it. There are no restrictions on the kind of changes this user can make, bar deleting the DMP. The user can not however, assign viewing or editing permissions.",,"Editor rights grant the user permissions to see the DMP and make changes to it. There are no restrictions on the kind of changes this user can make, bar deleting the DMP. The user can not however, assign viewing or editing permissions."
+access.owner,access.owner,"Owners can view, write, delete and assign permissions for DMPs. They are also capable of creating new owners - handle with care, new owners can remove old ones.",,"Owners can view, write, delete and assign permissions for DMPs. They are also capable of creating new owners - handle with care, new owners can remove old ones."
+access.list,access.list,Only users that have already logged in once can be assigned editing rights for a DMP. ,,Only users that have already logged in once can be assigned editing rights for a DMP. 
+access.info,access.info,Please note that simultaneous editing of a DMP can lead to data loss as changes may overwrite each other. Please make sure that you are the only one editing the dmp at the moment.,,Please note that simultaneous editing of a DMP can lead to data loss as changes may overwrite each other. Please make sure that you are the only one editing the dmp at the moment.
+access.noOwner,access.noOwner,Only owners of the DMP are allowed to change access rights.,,Only owners of the DMP are allowed to change access rights.
 plans.mydmps,dashboard.cards.my-dmps.front-side,MY DMPs,,MY DMPs
 plans.myDmpsDescription,dashboard.cards.my-dmps.back-side,"View and manage your existing Data Management Plans (DMPs) in one place. Keep track of their status, updates, and versions.",,"View and manage your existing Data Management Plans (DMPs) in one place. Keep track of their status, updates, and versions."
 plans.alldmps,plans.alldmps,All DMPs,,All DMPs
@@ -96,31 +96,31 @@ plans.table.search,plans.table.search,Search DMP,,Search DMP
 plans.table.nocontact,plans.table.nocontact,No contact defined.,,No contact defined.
 admin.title,admin.pageTitle,Admin page,,Admin page
 admin.banner,admin.banner.sectionTitle,Banner,,Banner
-admin.theme,MISSING_IN_NEW_JSON,Color-Theme,,
-admin.image,MISSING_IN_NEW_JSON,Images,,
-admin.recommended-repositories,MISSING_IN_NEW_JSON,Recommended Repositories,,
+admin.theme,admin.theme.sectionTitle,Color-Theme,,Color-Theme
+admin.image,admin.images.sectionTitle,Images,,Images
+admin.recommended-repositories,admin.recommended-repositories.sectionTitle,Recommended Repositories,,Recommended Repositories
 admin.internal-storage,admin.internalStorage.sectionTitle,Internal Storage,,Internal Storage
 admin.internal-storage-translations,admin.internalStorage.translation.sectionTitle,Translations for: ,,Translations for: 
 admin.internal-storage-translations-no-selected,COULD_NOT_BE_AUTO_REPLACE,Translations,admin.internalStorage.table.action.translation,Translations
 admin.reset-selection,admin.internalStorage.selection.reset,Reset selection,,Reset selection
 admin.translation-info,admin.internalStorage.translation.info,"In order to see the translations for a specific internal storage, please select the internal storage from the list in the actions menu, and the option 'Translations'.",,"In order to see the translations for a specific internal storage, please select the internal storage from the list in the actions menu, and the option 'Translations'."
 admin.banner-missing-info,admin.banner.state.missing,There is no banner currently set for the app.,,There is no banner currently set for the app.
-admin.images.title,MISSING_IN_NEW_JSON,Manage Application Images,,
-admin.images.current.title,MISSING_IN_NEW_JSON,Current images in use,,
-admin.images.upload.title,MISSING_IN_NEW_JSON,Upload new image,,
-admin.images.upload.image-type,MISSING_IN_NEW_JSON,Image Type,,
-admin.images.upload.drag-drop,MISSING_IN_NEW_JSON,Click to select or drag and drop,,
-admin.images.upload.file-types,MISSING_IN_NEW_JSON,"PNG, SVG, JPEG, JPG, GIF, WebP",,
-admin.images.upload.max-size,MISSING_IN_NEW_JSON,Max size: 5MB,,
-admin.images.upload.button,MISSING_IN_NEW_JSON,Upload Image,,
-admin.images.upload.success,MISSING_IN_NEW_JSON,Image uploaded successfully,,
-admin.images.upload.error,MISSING_IN_NEW_JSON,Failed to upload image,,
-admin.images.upload.invalid-file-type,MISSING_IN_NEW_JSON,Invalid file type. Only {{allowedTypes}} files are allowed.,,
-admin.images.upload.file-size-too-large,MISSING_IN_NEW_JSON,File size too large. Maximum size is {{maxSize}}.,,
-admin.images.dialog.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,admin.banner.dialog.button.cancel,Cancel(9)
-admin.images.dialog.delete,COULD_NOT_BE_AUTO_REPLACE,Delete,delete.dialog.button.delete,Delete(2)
-admin.images.dialog.warning,MISSING_IN_NEW_JSON,You are about to delete a custom image. This operation cannot be undone. Are you sure you want to proceed?,,
-admin.images.actions.delete,COULD_NOT_BE_AUTO_REPLACE,Delete,admin.internalStorage.table.action.delete,Delete(2)
+admin.images.title,admin.images.title,Manage Application Images,,Manage Application Images
+admin.images.current.title,admin.images.current.title,Current images in use,,Current images in use
+admin.images.upload.title,admin.images.upload.title,Upload new image,,Upload new image
+admin.images.upload.image-type,admin.images.upload.image-type,Image Type,,Image Type
+admin.images.upload.drag-drop,admin.images.upload.drag-drop,Click to select or drag and drop,,Click to select or drag and drop
+admin.images.upload.file-types,admin.images.upload.file-types,"PNG, SVG, JPEG, JPG, GIF, WebP",,"PNG, SVG, JPEG, JPG, GIF, WebP"
+admin.images.upload.max-size,admin.images.upload.max-size,Max size: 5MB,,Max size: 5MB
+admin.images.upload.button,admin.images.upload.button,Upload Image,,Upload Image
+admin.images.upload.success,admin.images.upload.success,Image uploaded successfully,,Image uploaded successfully
+admin.images.upload.error,admin.images.upload.error,Failed to upload image,,Failed to upload image
+admin.images.upload.invalid-file-type,admin.images.upload.invalid-file-type,Invalid file type. Only {{allowedTypes}} files are allowed.,,Invalid file type. Only {{allowedTypes}} files are allowed.
+admin.images.upload.file-size-too-large,admin.images.upload.file.size-too-large,File size too large. Maximum size is {{maxSize}}.,,File size too large. Maximum size is {{maxSize}}.
+admin.images.dialog.cancel,admin.images.dialog.cancel,Cancel,,Cancel(11)
+admin.images.dialog.delete,admin.images.dialog.delete,Delete,,Delete(5)
+admin.images.dialog.warning,admin.images.dialog.warning,You are about to delete a custom image. This operation cannot be undone. Are you sure you want to proceed?,,You are about to delete a custom image. This operation cannot be undone. Are you sure you want to proceed?
+admin.images.actions.delete,admin.images.actions.delete,Delete,,Delete(5)
 admin.table.header.url,COULD_NOT_BE_AUTO_REPLACE,URL,admin.internalStorage.table.header.url,URL(3)
 admin.table.header.storageLocation,COULD_NOT_BE_AUTO_REPLACE,Storage Location,admin.internalStorage.table.header.storageLocation,Storage Location(3)
 admin.table.header.backupLocation,COULD_NOT_BE_AUTO_REPLACE,Backup Location,admin.internalStorage.table.header.backupLocation,Backup Location(3)
@@ -130,7 +130,7 @@ admin.table.header.langugageCode,COULD_NOT_BE_AUTO_REPLACE,Language Code,admin.i
 admin.table.header.title,COULD_NOT_BE_AUTO_REPLACE,Title,plans.table.header.title,Title(5)
 admin.table.header.description,COULD_NOT_BE_AUTO_REPLACE,Description,admin.internalStorage.table.header.description,Description(6)
 admin.table.header.backupFrequency,COULD_NOT_BE_AUTO_REPLACE,Backup Frequency,admin.internalStorage.table.header.backupFrequency,Backup Frequency(3)
-admin.table.action.delete,COULD_NOT_BE_AUTO_REPLACE,Delete,admin.internalStorage.table.action.delete,Delete(2)
+admin.table.action.delete,COULD_NOT_BE_AUTO_REPLACE,Delete,admin.images.actions.delete,Delete(5)
 admin.table.action.deactivate,MISSING_IN_NEW_JSON,Deactivate,,
 admin.table.action.activate,MISSING_IN_NEW_JSON,Activate,,
 admin.table.action.edit,COULD_NOT_BE_AUTO_REPLACE,Edit,plans.table.actions.edit,Edit(3)
@@ -144,28 +144,28 @@ admin.edit.banner,admin.banner.action.edit,Edit app banner,,Edit app banner
 admin.edit.theme,MISSING_IN_NEW_JSON,Edit app theme,,
 admin.edit.images,MISSING_IN_NEW_JSON,Edit app images,,
 admin.edit.repositories,MISSING_IN_NEW_JSON,Edit recommended repositories,,
-admin.color-theme.title,MISSING_IN_NEW_JSON,Update application theme,,
-admin.color-theme.exact-colors,MISSING_IN_NEW_JSON,Exact Colors,,
-admin.color-theme.advanced,MISSING_IN_NEW_JSON,Advanced,,
-admin.color-theme.colors.primary,MISSING_IN_NEW_JSON,Primary,,
-admin.color-theme.colors.secondary,MISSING_IN_NEW_JSON,Secondary,,
-admin.color-theme.colors.tertiary,MISSING_IN_NEW_JSON,Tertiary,,
-admin.color-theme.colors.primary-container,MISSING_IN_NEW_JSON,Primary Container,,
-admin.color-theme.colors.secondary-container,MISSING_IN_NEW_JSON,Secondary Container,,
-admin.color-theme.colors.tertiary-container,MISSING_IN_NEW_JSON,Tertiary Container,,
-admin.color-theme.buttons.save,COULD_NOT_BE_AUTO_REPLACE,Save,admin.appTranslations.save,Save(2)
-admin.color-theme.colorPicker.title,MISSING_IN_NEW_JSON,Color Picker,,
-admin.color-theme.colorPicker.helper-text,MISSING_IN_NEW_JSON,Uses the primary color to generate this one,,
-admin.color-theme.colorPreview.title,MISSING_IN_NEW_JSON,Color Preview,,
-admin.color-theme.colorPreview.primary,MISSING_IN_NEW_JSON,Primary Colors,,
-admin.color-theme.colorPreview.secondary,MISSING_IN_NEW_JSON,Secondary Colors,,
-admin.color-theme.colorPreview.tertiary,MISSING_IN_NEW_JSON,Tertiary Colors,,
-admin.color-theme.popup.success,MISSING_IN_NEW_JSON,Color theme saved successfully,,
-admin.color-theme.popup.error,MISSING_IN_NEW_JSON,Failed to save color theme,,
+admin.color-theme.title,admin.theme.title,Update application theme,,Update application theme
+admin.color-theme.exact-colors,admin.theme.exact-colors,Exact Colors,,Exact Colors
+admin.color-theme.advanced,admin.theme.advanced,Advanced,,Advanced
+admin.color-theme.colors.primary,admin.theme.colors.primary,Primary,,Primary
+admin.color-theme.colors.secondary,admin.theme.colors.secondary,Secondary,,Secondary
+admin.color-theme.colors.tertiary,admin.theme.colors.tertiary,Tertiary,,Tertiary
+admin.color-theme.colors.primary-container,admin.theme.colors.primary-container,Primary Container,,Primary Container
+admin.color-theme.colors.secondary-container,admin.theme.colors.secondary-container,Secondary Container,,Secondary Container
+admin.color-theme.colors.tertiary-container,admin.theme.colors.tertiary-container,Tertiary Container,,Tertiary Container
+admin.color-theme.buttons.save,COULD_NOT_BE_AUTO_REPLACE,Save,admin.theme.buttons.save,Save(3)
+admin.color-theme.colorPicker.title,admin.theme.color-picker.title,Color Picker,,Color Picker
+admin.color-theme.colorPicker.helper-text,admin.theme.color-picker.helper-text,Uses the primary color to generate this one,,Uses the primary color to generate this one
+admin.color-theme.colorPreview.title,admin.theme.color-preview.title,Color Preview,,Color Preview
+admin.color-theme.colorPreview.primary,admin.theme.color-preview.primary,Primary Colors,,Primary Colors
+admin.color-theme.colorPreview.secondary,admin.theme.color-preview.secondary,Secondary Colors,,Secondary Colors
+admin.color-theme.colorPreview.tertiary,admin.theme.color-preview.tertiary,Tertiary Colors,,Tertiary Colors
+admin.color-theme.popup.success,admin.theme.popup.success,Color theme saved successfully,,Color theme saved successfully
+admin.color-theme.popup.error,admin.theme.popup.error,Failed to save color theme,,Failed to save color theme
 admin.delete.banner,admin.banner.action.delete,Delete app banner,,Delete app banner
 admin.dialog.internal-storage.edit,admin.internalStorage.dialog.title.edit,Edit internal storage,,Edit internal storage
 admin.dialog.internal-storage.add,admin.internalStorage.dialog.title.create,Add internal storage,,Add internal storage
-admin.dialog.internal-storage.button.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,admin.internalStorage.translation.dialog.button.cancel,Cancel(9)
+admin.dialog.internal-storage.button.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,admin.internalStorage.translation.dialog.button.cancel,Cancel(11)
 admin.dialog.internal-storage.button.add,COULD_NOT_BE_AUTO_REPLACE,Add,admin.internalStorage.translation.dialog.button.add,Add(4)
 admin.dialog.internal-storage.button.update,COULD_NOT_BE_AUTO_REPLACE,Update,admin.internalStorage.translation.dialog.button.update,Update(3)
 admin.dialog.internal-storage.captions.url,COULD_NOT_BE_AUTO_REPLACE,URL,admin.internalStorage.dialog.field.url,URL(3)
@@ -174,7 +174,7 @@ admin.dialog.internal-storage.captions.backupLocation,COULD_NOT_BE_AUTO_REPLACE,
 admin.dialog.internal-storage.captions.active,admin.internalStorage.dialog.field.active,Internal storage is active?,,Internal storage is active?
 admin.dialog.internal-storage-translation.edit,admin.internalStorage.translation.dialog.title.edit,Edit translation,,Edit translation
 admin.dialog.internal-storage-translation.add,admin.internalStorage.translation.dialog.title.create,Add translation,,Add translation
-admin.dialog.internal-storage-translation.button.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,admin.internalStorage.translation.dialog.button.cancel,Cancel(9)
+admin.dialog.internal-storage-translation.button.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,admin.internalStorage.translation.dialog.button.cancel,Cancel(11)
 admin.dialog.internal-storage-translation.button.add,COULD_NOT_BE_AUTO_REPLACE,Add,admin.internalStorage.translation.dialog.button.add,Add(4)
 admin.dialog.internal-storage-translation.button.update,COULD_NOT_BE_AUTO_REPLACE,Update,admin.internalStorage.translation.dialog.button.update,Update(3)
 admin.dialog.internal-storage-translation.captions.title,COULD_NOT_BE_AUTO_REPLACE,Title,admin.internalStorage.translation.dialog.field.title,Title(5)
@@ -191,18 +191,18 @@ admin.dialog.banner.captions.color,admin.banner.dialog.field.backgroundColor,Bac
 admin.dialog.banner.captions.dismissible,admin.banner.dialog.field.dismissible,Dismissible,,Dismissible
 admin.dialog.banner.button.update,COULD_NOT_BE_AUTO_REPLACE,Edit,admin.banner.dialog.button.update,Edit(3)
 admin.dialog.banner.button.add,COULD_NOT_BE_AUTO_REPLACE,Add,admin.banner.dialog.button.add,Add(4)
-admin.dialog.banner.button.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,admin.banner.dialog.button.cancel,Cancel(9)
+admin.dialog.banner.button.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,admin.banner.dialog.button.cancel,Cancel(11)
 admin.dialog.banner.tooltip.color,admin.banner.dialog.help.backgroundColor,Click to select a background color for the banner,,Click to select a background color for the banner
 admin.dialog.banner.preview,MISSING_IN_NEW_JSON,Preview,,
-admin.repositories.title,MISSING_IN_NEW_JSON,Manage Recommended Repositories,,
-admin.repositories.current,MISSING_IN_NEW_JSON,Current Recommended Repositories,,
-admin.repositories.empty,MISSING_IN_NEW_JSON,No recommended repositories configured. Add some repositories to get started.,,
+admin.repositories.title,admin.recommended-repositories.title,Manage Recommended Repositories,,Manage Recommended Repositories
+admin.repositories.current,COULD_NOT_BE_AUTO_REPLACE,Current Recommended Repositories,admin.recommended-repositories.current,Current Recommended Repositories(2)
+admin.repositories.empty,admin.recommended-repositories.empty,No recommended repositories configured. Add some repositories to get started.,,No recommended repositories configured. Add some repositories to get started.
 admin.repositories.delete-dialog.title,MISSING_IN_NEW_JSON,Delete Repository,,
-admin.repositories.delete-dialog.message,MISSING_IN_NEW_JSON,Are you sure you want to delete this recommended repository?,,
-admin.repositories.delete-dialog.repositoryId,MISSING_IN_NEW_JSON,Repository ID,,
-admin.repositories.delete-dialog.name,COULD_NOT_BE_AUTO_REPLACE,Name,dmp.steps.costs.question.name,Name(2)
-admin.repositories.delete-dialog.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,dmp.steps.people.delete.dialog.button.cancel,Cancel(9)
-admin.repositories.delete-dialog.confirm,COULD_NOT_BE_AUTO_REPLACE,Delete,admin.internalStorage.table.action.delete,Delete(2)
+admin.repositories.delete-dialog.message,admin.recommended-repositories.delete-dialog.message,Are you sure you want to delete this recommended repository?,,Are you sure you want to delete this recommended repository?
+admin.repositories.delete-dialog.repositoryId,admin.recommended-repositories.delete-dialog.repositoryId,Repository ID,,Repository ID
+admin.repositories.delete-dialog.name,COULD_NOT_BE_AUTO_REPLACE,Name,admin.recommended-repositories.delete-dialog.name,Name(3)
+admin.repositories.delete-dialog.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,admin.recommended-repositories.delete-dialog.cancel,Cancel(11)
+admin.repositories.delete-dialog.confirm,COULD_NOT_BE_AUTO_REPLACE,Delete,admin.recommended-repositories.delete-dialog.confirm,Delete(5)
 info.project.funder,MISSING_IN_NEW_JSON,"If your project is missing, please contact [mail@address.example]. You can add project information manually, however you will have to select a funder template when exporting as funder information is not available.",,
 info.ethical.humanParticipants.prefix,dmp.steps.legal.info.humanParticipants.prefix,"An informed consent for participation (in addition to an informed consent to data processing) is required. For more information, see an ",,"An informed consent for participation (in addition to an informed consent to data processing) is required. For more information, see an "
 info.ethical.humanParticipants.researchEthicsCoordination.text,dmp.steps.legal.info.humanParticipants.researchEthicsCoordination.text,Example Informed Consent Guide,,Example Informed Consent Guide
@@ -294,16 +294,16 @@ http.error.document,http.error.document,An unexpected error occurred while gener
 http.error.access.load,http.error.access.load,Failed to load access information. ,,Failed to load access information. 
 http.error.access.save,http.error.access.save,Failed to update access. ,,Failed to update access. 
 http.error.access.delete,http.error.access.delete,Failed to remove access. ,,Failed to remove access. 
-http.error.admin.recommended-repositories.load,http.error.repositories.recommended,Failed to load recommended repositories.,,Failed to load recommended repositories. 
-http.error.admin.recommended-repositories.save,MISSING_IN_NEW_JSON,Failed to create recommended repository.,,
-http.error.admin.recommended-repositories.delete,MISSING_IN_NEW_JSON,Failed to delete recommended repository.,,
+http.error.admin.recommended-repositories.load,http.error.recommended-repositories.load,Failed to load recommended repositories.,,Failed to load recommended repositories.
+http.error.admin.recommended-repositories.save,http.error.recommended-repositories.save,Failed to create recommended repository.,,Failed to create recommended repository.
+http.error.admin.recommended-repositories.delete,http.error.recommended-repositories.delete,Failed to delete recommended repository.,,Failed to delete recommended repository.
 http.success.storage.translations.add,http.success.storage.translations.add,Storage translation created successfully.,,Storage translation created successfully.
 http.success.storage.translations.edit,http.success.storage.translations.edit,Storage translation updated successfully.,,Storage translation updated successfully.
 http.success.storage.translations.delete,http.success.storage.translations.delete,Storage translation deleted successfully.,,Storage translation deleted successfully.
 http.success.storage.delete,http.success.storage.delete,Storage deleted successfully.,,Storage deleted successfully.
 http.success.storage.add,http.success.storage.add,Storage created successfully.,,Storage created successfully.
 http.success.storage.edit,http.success.storage.edit,Storage updated successfully.,,Storage updated successfully.
-http.success.admin.recommended-repositories.delete,MISSING_IN_NEW_JSON,Repository deleted successfully.,,
+http.success.admin.recommended-repositories.delete,http.success.recommended-repositories.delete,Repository deleted successfully.,,Repository deleted successfully.
 dmp.steps.project.success,dmp.steps.project.success,Updated project information!,,Updated project information!
 dmp.steps.project.input.title,dmp.steps.project.input.title,Project title,,Project title
 dmp.steps.project.input.description,dmp.steps.project.input.short.description,Project description,,Project description
@@ -348,7 +348,7 @@ dmp.steps.people.contact.remove,dmp.steps.people.contact.remove,Remove contact p
 dmp.steps.people.contact.edit,dmp.steps.people.contact.edit,Edit contact person,,Edit contact person
 dmp.steps.people.contact.editContributor,dmp.steps.people.contact.editContributor,Edit contributor,,Edit contributor
 dmp.steps.people.contact.update,dmp.steps.people.contact.update,Update,,Update(3)
-dmp.steps.people.contact.cancel,dmp.steps.people.contact.cancel,Cancel,,Cancel(9)
+dmp.steps.people.contact.cancel,dmp.steps.people.contact.cancel,Cancel,,Cancel(11)
 dmp.steps.people.contact.title,dmp.steps.people.contact.title,Project contact,,Project contact
 dmp.steps.people.contact.info,dmp.steps.people.contact.info,Select a contact from the list of contributors using the button,,Select a contact from the list of contributors using the button
 dmp.steps.people.manual.input.show,MISSING_IN_NEW_JSON,Add contributor manually,,
@@ -362,7 +362,7 @@ dmp.steps.people.nopeople,dmp.steps.people.nopeople,No recommended contributors 
 dmp.steps.people.confirm.dialog.heading,dmp.steps.people.delete.dialog.heading,Remove contributor,,Remove contributor
 dmp.steps.people.confirm.dialog.question,dmp.steps.people.delete.dialog.question,Are you sure you want to remove this contributor?\n  They are responsible for the deletion of the following datasets:,,Are you sure you want to remove this contributor?\n  They are responsible for the deletion of the following datasets:
 dmp.steps.people.confirm.dialog.button.confirm,dmp.steps.people.delete.dialog.button.confirm,Confirm,,Confirm
-dmp.steps.people.confirm.dialog.button.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,dmp.steps.people.delete.dialog.button.cancel,Cancel(9)
+dmp.steps.people.confirm.dialog.button.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,dmp.steps.people.delete.dialog.button.cancel,Cancel(11)
 dmp.steps.data.specify.label,dmp.steps.data.specify.label,Specify research data,,Specify research data
 dmp.steps.data.specify.greeting,MISSING_IN_NEW_JSON,"Let’s talk about data, Firstname",,
 dmp.steps.data.specify.summaryLine,MISSING_IN_NEW_JSON,Describe your research data.,,
@@ -379,7 +379,7 @@ dmp.steps.data.specify.answer.kind.reuse.none,COULD_NOT_BE_AUTO_REPLACE,No data 
 dmp.steps.data.specify.answer.kind.specify,dmp.steps.data.specify.answer.defineDatasets,Specify datasets.,,Specify datasets.
 dmp.steps.data.specify.tab.manual,MISSING_IN_NEW_JSON,Manually,,
 dmp.steps.data.specify.tab.upload,dmp.steps.data.specify.button.upload,Upload sample data,,Upload sample data
-dmp.steps.data.specify.tab.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,dmp.steps.data.specify.dialog.button.cancel,Cancel(9)
+dmp.steps.data.specify.tab.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,dmp.steps.data.specify.dialog.button.cancel,Cancel(11)
 dmp.steps.data.specify.tab.doi,MISSING_IN_NEW_JSON,Enter DOI,,
 dmp.steps.data.specify.tab.access,dmp.steps.storage.view.button.access,Access rights,,Access rights
 dmp.steps.data.specify.tab.storage,COULD_NOT_BE_AUTO_REPLACE,Storage,dmp.steps.storage.view.button.storage,Storage(2)
@@ -414,7 +414,7 @@ dmp.steps.data.specify.dialog.identifier,MISSING_IN_NEW_JSON,Identifier,,
 dmp.steps.data.specify.dialog.button.addTechnicalResource,dmp.steps.data.specify.dialog.button.addTechnicalResource,Add new technical resource,,Add new technical resource
 dmp.steps.data.specify.dialog.button.add,dmp.steps.data.specify.dialog.button.add,Add,,Add(4)
 dmp.steps.data.specify.dialog.button.update,dmp.steps.data.specify.dialog.button.update,Update,,Update(3)
-dmp.steps.data.specify.dialog.button.cancel,dmp.steps.data.specify.dialog.button.cancel,Cancel,,Cancel(9)
+dmp.steps.data.specify.dialog.button.cancel,dmp.steps.data.specify.dialog.button.cancel,Cancel,,Cancel(11)
 dmp.steps.data.specify.dialog.button.close,dmp.steps.data.specify.dialog.button.close,Close,,Close
 dmp.steps.data.specify.doi.search,dmp.steps.data.specify.doi.search,Enter DOI...,,Enter DOI...
 dmp.steps.data.specify.doi.not.found,dmp.steps.data.specify.doi.notFound,No dataset found.,,No dataset found.
@@ -562,7 +562,7 @@ dmp.steps.costs.intro,MISSING_IN_NEW_JSON,In this step you are asked to provide 
 dmp.steps.costs.question.exist.label,dmp.steps.costs.question.exist.label,Select the statement which best describes the situation in your project with respect to costs of data management.,,Select the statement which best describes the situation in your project with respect to costs of data management.
 dmp.steps.costs.question.exist.no,dmp.steps.costs.question.exist.no,There are no costs dedicated to data management.,,There are no costs dedicated to data management.
 dmp.steps.costs.question.exist.yes,dmp.steps.costs.question.exist.yes,"As outlined below, there are costs dedicated to data management.",,"As outlined below, there are costs dedicated to data management."
-dmp.steps.costs.question.title,COULD_NOT_BE_AUTO_REPLACE,Name,dmp.steps.costs.question.name,Name(2)
+dmp.steps.costs.question.title,COULD_NOT_BE_AUTO_REPLACE,Name,dmp.steps.costs.question.name,Name(3)
 dmp.steps.costs.question.value,dmp.steps.costs.question.value,Estimated cost,,Estimated cost
 dmp.steps.costs.question.type,dmp.steps.costs.question.type,Cost Type,,Cost Type
 dmp.steps.costs.question.other,dmp.steps.costs.question.specifyType,Please specify the cost type,,Please specify the cost type
@@ -616,8 +616,8 @@ dmp.nonewdataset,MISSING_IN_NEW_JSON,Please declare a produced (i.e. new) datase
 dmp.dialog.title,COULD_NOT_BE_AUTO_REPLACE,Save new version,version-save.dialog.title,Save new version
 dmp.dialog.description,version-save.dialog.message,Please enter a version name,,Please enter a version name
 dmp.dialog.label,version-save.dialog.field.versionName.label,Version name,,Version name
-dmp.dialog.button.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,delete.dialog.button.cancel,Cancel(9)
-dmp.dialog.button.save,COULD_NOT_BE_AUTO_REPLACE,Save,version-save.dialog.button.save,Save(2)
+dmp.dialog.button.cancel,COULD_NOT_BE_AUTO_REPLACE,Cancel,delete.dialog.button.cancel,Cancel(11)
+dmp.dialog.button.save,COULD_NOT_BE_AUTO_REPLACE,Save,version-save.dialog.button.save,Save(3)
 button.actions,COULD_NOT_BE_AUTO_REPLACE,Actions,admin.internalStorage.table.header.actions,Actions(2)
 button.save,actions-bar.buttons.save,Save changes,,Save changes
 button.discard,actions-bar.buttons.discard,Discard changes,,Discard changes
@@ -753,7 +753,7 @@ license.wizard.license.pddl.description,license-wizard.license.pddl.description,
 license.wizard.search,license-wizard.search,Search license...,,Search license...
 license.wizard.reset,license-wizard.reset,Reset form,,Reset form
 versions.versionId,COULD_NOT_BE_AUTO_REPLACE,Version,dmp.versions.versionId,Version(3)
-versions.versionName,COULD_NOT_BE_AUTO_REPLACE,Name,dmp.versions.versionName,Name(2)
+versions.versionName,COULD_NOT_BE_AUTO_REPLACE,Name,dmp.versions.versionName,Name(3)
 versions.versionDate,dmp.versions.versionDate,Date,,Date
 versions.editor,COULD_NOT_BE_AUTO_REPLACE,Editor,dmp.versions.editor,Editor
 versions.list.no.data,dmp.versions.list.no.data,No versions available.,,No versions available.
