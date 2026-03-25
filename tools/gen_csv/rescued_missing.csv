@@ -16,4 +16,87 @@ enum.accessright.READ,enum.accessright.READ,reading only
 enum.accessright.WRITE,enum.accessright.WRITE,writing
 enum.agreement.CONFIDENTIALITY_AGREEMENT,enum.agreement.CONFIDENTIALITY_AGREEMENT,confidentiality agreement
 enum.agreement.CONSORTIUM_AGREEMENT,enum.agreement.CONSORTIUM_AGREEMENT,consortium agreement
-
+enum.agreement.DATA_PROCESSING_AGREEMENT,enum.agreement.DATA_PROCESSING_AGREEMENT,data processing agreement
+enum.agreement.DATA_TRANSFER_AGREEMENT,enum.agreement.DATA_TRANSFER_AGREEMENT,data transfer agreement
+enum.agreement.JOINT_CONTROL_AGREEMENT,enum.agreement.JOINT_CONTROL_AGREEMENT,joint control agreement
+enum.agreement.OTHER,enum.agreement.OTHER,other
+enum.compliance.ANONYMISATION,enum.compliance.ANONYMISATION,by anonymisation of personal data for preservation and/or sharing (truly anonymous data are no longer considered personal data)
+enum.compliance.ENCRYPTION,enum.compliance.ENCRYPTION,"by encryption of personal data (the encryption key must be stored separately from the data, for instance by a trusted third party) "
+enum.compliance.INFORMED_CONSENT,enum.compliance.INFORMED_CONSENT,by gaining informed consent for processing personal data
+enum.compliance.PSEUDONYMISATION,enum.compliance.PSEUDONYMISATION,by pseudonymisation of personal data (the main difference with anonymisation is that pseudonymisation is reversible)
+enum.contributor.role.DATA_COLLECTOR,enum.contributor.role.DATA_COLLECTOR,Data Collector
+enum.contributor.role.DATA_CURATOR,enum.contributor.role.DATA_CURATOR,Data Curator
+enum.contributor.role.DATA_MANAGER,enum.contributor.role.DATA_MANAGER,Data Manager
+enum.contributor.role.DISTRIBUTOR,enum.contributor.role.DISTRIBUTOR,Distributor
+enum.contributor.role.HOSTING_INSTITUTION,enum.contributor.role.HOSTING_INSTITUTION,Hosting Institution
+enum.contributor.role.OTHER,enum.contributor.role.OTHER,Other
+enum.contributor.role.PRINCIPAL_INVESTIGATOR,enum.contributor.role.PRINCIPAL_INVESTIGATOR,Principal Investigator
+enum.contributor.role.PRODUCER,enum.contributor.role.PRODUCER,Producer
+enum.contributor.role.PROJECT_COORDINATOR,enum.contributor.role.PROJECT_COORDINATOR,Project Coordinator
+enum.contributor.role.PROJECT_LEADER,enum.contributor.role.PROJECT_LEADER,Project Leader
+enum.contributor.role.PROJECT_MANAGER,enum.contributor.role.PROJECT_MANAGER,Project Manager
+enum.contributor.role.PROJECT_MEMBER,enum.contributor.role.PROJECT_MEMBER,Project Member
+enum.contributor.role.REGISTRATION_AGENCY,enum.contributor.role.REGISTRATION_AGENCY,Registration Agency
+enum.contributor.role.REGISTRATION_AUTHORITY,enum.contributor.role.REGISTRATION_AUTHORITY,Registration Authority
+enum.contributor.role.RELATED_PERSON,enum.contributor.role.RELATED_PERSON,Related Person
+enum.contributor.role.RESEARCHER,enum.contributor.role.RESEARCHER,Researcher
+enum.contributor.role.RESEARCH_GROUP,enum.contributor.role.RESEARCH_GROUP,Research Group
+enum.contributor.role.RIGHTS_HOLDER,enum.contributor.role.RIGHTS_HOLDER,Rights Holder
+enum.contributor.role.SPONSOR,enum.contributor.role.SPONSOR,Sponsor
+enum.contributor.role.SUPERVISOR,enum.contributor.role.SUPERVISOR,Supervisor
+enum.contributor.role.WORK_PACKAGE_LEADER,enum.contributor.role.WORK_PACKAGE_LEADER,Work Package Leader
+enum.costs.DATABASE,enum.costs.DATABASE,Database
+enum.costs.DATA_ACQUISITION,enum.costs.DATA_ACQUISITION,Data Acquisition
+enum.costs.FILE_BASED_STORAGE,enum.costs.FILE_BASED_STORAGE,File-based Storage
+enum.costs.HARDWARE_AND_INFRASTRUCTURE,enum.costs.HARDWARE_AND_INFRASTRUCTURE,Hardware and Infrastructure
+enum.costs.LEGAL_ADVICE,enum.costs.LEGAL_ADVICE,Legal Advice
+enum.costs.OTHER,enum.costs.OTHER,Other
+enum.costs.PERSONNEL,enum.costs.PERSONNEL,Personnel (Data Steward)
+enum.costs.REPOSITORY,enum.costs.REPOSITORY,Repository
+enum.costs.SOFTWARE_LICENSE,enum.costs.SOFTWARE_LICENSE,Software License
+enum.costs.TRAINING,enum.costs.TRAINING,Training
+enum.dataaccess.CLOSED,enum.dataaccess.CLOSED,Closed
+enum.dataaccess.OPEN,enum.dataaccess.OPEN,Open
+enum.dataaccess.RESTRICTED,enum.dataaccess.RESTRICTED,Restricted
+enum.dataquality.CALIBRATION,enum.dataquality.CALIBRATION,calibration
+enum.dataquality.DATA_ENTRY_VALIDATION,enum.dataquality.DATA_ENTRY_VALIDATION,data entry validation
+enum.dataquality.OTHERS,enum.dataquality.OTHERS,others
+enum.dataquality.PEER_REVIEW_OF_DATA,enum.dataquality.PEER_REVIEW_OF_DATA,peer review of data
+enum.dataquality.REPEATED_SAMPLES_OR_MEASUREMENTS,enum.dataquality.REPEATED_SAMPLES_OR_MEASUREMENTS,repeated samples or measurements
+enum.dataquality.REPRESENTATION_WITH_CONTROLLED_VOCABULARIES,enum.dataquality.REPRESENTATION_WITH_CONTROLLED_VOCABULARIES,representation with controlled vocabularies
+enum.dataquality.STANDARDISED_DATA_CAPTURE,enum.dataquality.STANDARDISED_DATA_CAPTURE,standardised data capture
+enum.dataset.type.ARCHIVED_DATA,enum.dataset.type.ARCHIVED_DATA,ARCHIVED DATA
+enum.dataset.type.AUDIOVISUAL_DATA,enum.dataset.type.AUDIOVISUAL_DATA,AUDIOVISUAL DATA
+enum.dataset.type.CONFIGURATION_DATA,enum.dataset.type.CONFIGURATION_DATA,CONFIGURATION DATA
+enum.dataset.type.DATABASES,enum.dataset.type.DATABASES,DATABASES
+enum.dataset.type.IMAGES,enum.dataset.type.IMAGES,IMAGES
+enum.dataset.type.NETWORKBASED_DATA,enum.dataset.type.NETWORKBASED_DATA,NETWORKBASED DATA
+enum.dataset.type.OTHER,enum.dataset.type.OTHER,OTHER
+enum.dataset.type.PLAIN_TEXT,enum.dataset.type.PLAIN_TEXT,PLAIN TEXT
+enum.dataset.type.RAW_DATA,enum.dataset.type.RAW_DATA,RAW DATA
+enum.dataset.type.SCIENTIFIC_STATISTICAL_DATA,enum.dataset.type.SCIENTIFIC_STATISTICAL_DATA,SCIENTIFIC STATISTICAL DATA
+enum.dataset.type.SOFTWARE_APPLICATIONS,enum.dataset.type.SOFTWARE_APPLICATIONS,SOFTWARE APPLICATIONS
+enum.dataset.type.SOURCE_CODE,enum.dataset.type.SOURCE_CODE,SOURCE CODE
+enum.dataset.type.STANDARD_OFFICE_DOCUMENTS,enum.dataset.type.STANDARD_OFFICE_DOCUMENTS,STANDARD OFFICE DOCUMENTS
+enum.dataset.type.STRUCTURED_GRAPHICS,enum.dataset.type.STRUCTURED_GRAPHICS,STRUCTURED GRAPHICS
+enum.dataset.type.STRUCTURED_TEXT,enum.dataset.type.STRUCTURED_TEXT,STRUCTURED TEXT
+enum.securitymeasure.ADDITIONAL_LOGIN,enum.securitymeasure.ADDITIONAL_LOGIN,additional log-in for specific applications
+enum.securitymeasure.AUTOMATIC_LOCKING_OF_CLIENTS,enum.securitymeasure.AUTOMATIC_LOCKING_OF_CLIENTS,automatic locking of clients (timeout)
+enum.securitymeasure.ENCRYPTION_OF_SYSTEMS,enum.securitymeasure.ENCRYPTION_OF_SYSTEMS,encryption of systems
+enum.securitymeasure.INDIVIDUAL_LOGIN,enum.securitymeasure.INDIVIDUAL_LOGIN,individual log-in and password
+enum.securitymeasure.LOCKED_STORAGE,enum.securitymeasure.LOCKED_STORAGE,keep printouts of sensitive data in locked storage
+env.text,env.text,This application instance is for development and testing purposes only. Content may be deleted at any point in time without prior notification.
+env.title,environment-banner.title,Test Environment
+fair,fair,FAIR
+info.dataset.unknown,info.dataset.unknown,"This is a good time to think about your expectations. You should already have an idea of what kind of (digital) material you will be creating or analysing in your project, even if it is still vague and you don’t have specific details. If this is the case, click on “Specify datasets.” and describe the expected material as well as possible in this early stage. You can mention in the DMP (= your export document from the tool) that the data description is a broad estimation that will be updated in a later version of the DMP. If you come to the conclusion that you will not create or analyse any data, click on “No data will be created or analysed.” and follow the instructions there."
+languages,languages,Languages
+layout.logo.text,layout.logo.text,Go back to main page
+layout.logout,layout.logout,Logout
+layout.menu.greeting,layout.menu.greeting,Hi
+no,no,No
+or,or,or
+title,title,DAMAP
+treeselect.filter,treeselect.filter,Filter selection
+treeselect.options,treeselect.options,Select options
+treeselect.toggle,treeselect.toggle,Toggle {{value}}
+yes,yes,Yes
