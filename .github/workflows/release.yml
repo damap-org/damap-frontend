@@ -40,7 +40,7 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ github.repository }}
           # git tag: v1.2.3, output: 1.2.3
           tags: |
-            type=raw,value=5.0.0-rc1
+            type=raw,value=5.0.0-rc.1
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
