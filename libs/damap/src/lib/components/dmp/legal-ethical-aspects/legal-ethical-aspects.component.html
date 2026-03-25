@@ -87,13 +87,19 @@
                 <ng-container *ngIf="isOtherMeasureSelected">
                   <app-textarea-wrapper
                     [label]="
-                      'dmp.steps.legal.question.otherDataSecurityMeasures'
+                      'dmp.steps.legal.question.short.otherDataSecurityMeasures'
+                    "
+                    [longLabel]="
+                      'dmp.steps.legal.question.long.otherDataSecurityMeasures'
                     "
                     [control]="otherDataSecurityMeasures"
                     [maxLength]="4000"></app-textarea-wrapper>
                 </ng-container>
                 <app-textarea-wrapper
-                  [label]="'dmp.steps.legal.question.sensitiveDataAccess'"
+                  [label]="'dmp.steps.legal.question.short.sensitiveDataAccess'"
+                  [longLabel]="
+                    'dmp.steps.legal.question.long.sensitiveDataAccess'
+                  "
                   [control]="sensitiveDataAccess"
                   [maxLength]="4000"
                   appearance="fill"></app-textarea-wrapper>
@@ -173,7 +179,10 @@
                 <ng-container *ngIf="isOtherSelected">
                   <app-textarea-wrapper
                     [label]="
-                      'dmp.steps.legal.question.otherPersonalDataCompliance'
+                      'dmp.steps.legal.question.short.otherPersonalDataCompliance'
+                    "
+                    [longLabel]="
+                      'dmp.steps.legal.question.long.otherPersonalDataCompliance'
                     "
                     [control]="otherPersonalDataCompliance"
                     [maxLength]="4000"></app-textarea-wrapper>
@@ -209,7 +218,12 @@
               </div>
               <div>
                 <app-textarea-wrapper
-                  [label]="'dmp.steps.legal.question.legalRestrictionsComment'"
+                  [label]="
+                    'dmp.steps.legal.question.short.legalRestrictionsComment'
+                  "
+                  [longLabel]="
+                    'dmp.steps.legal.question.long.legalRestrictionsComment'
+                  "
                   [control]="legalRestrictionsComment"
                   [maxLength]="4000"></app-textarea-wrapper>
               </div>
@@ -235,7 +249,10 @@
               <ng-container *ngIf="isOtherDocumentSelected">
                 <app-textarea-wrapper
                   [label]="
-                    'dmp.steps.legal.question.otherLegalRestrictionsDocuments'
+                    'dmp.steps.legal.question.short.otherLegalRestrictionsDocuments'
+                  "
+                  [longLabel]="
+                    'dmp.steps.legal.question.long.otherLegalRestrictionsDocuments'
                   "
                   [maxLength]="4000"
                   [control]="
@@ -247,7 +264,12 @@
           </div>
 
           <app-textarea-wrapper
-            [label]="'dmp.steps.legal.question.dataRightsAndAccessControl'"
+            [label]="
+              'dmp.steps.legal.question.short.dataRightsAndAccessControl'
+            "
+            [longLabel]="
+              'dmp.steps.legal.question.long.dataRightsAndAccessControl'
+            "
             [maxLength]="4000"
             [control]="dataRightsAndAccessControl"></app-textarea-wrapper>
         </div>

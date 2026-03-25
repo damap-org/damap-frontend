@@ -10,14 +10,16 @@
     <mat-card-content>
       <div class="mat-card-container">
         <app-textarea-wrapper
-          [label]="'dmp.steps.documentation.question.structure'"
+          [label]="'dmp.steps.documentation.question.short.structure'"
+          [longLabel]="'dmp.steps.documentation.question.long.structure'"
           [control]="structure"
           [autocompleteOptions]="optionsStructureAndVersioning">
         </app-textarea-wrapper>
 
         <div class="form-field-hint">
           <app-textarea-wrapper
-            [label]="'dmp.steps.documentation.question.metadata'"
+            [label]="'dmp.steps.documentation.question.short.metadata'"
+            [longLabel]="'dmp.steps.documentation.question.long.metadata'"
             [control]="metadata"
             [autocompleteOptions]="optionsMetadata">
           </app-textarea-wrapper>
@@ -25,29 +27,37 @@
         </div>
 
         <app-textarea-wrapper
-          [label]="'dmp.steps.documentation.question.documentation'"
+          [label]="'dmp.steps.documentation.question.short.documentation'"
+          [longLabel]="'dmp.steps.documentation.question.long.documentation'"
           [control]="documentation">
         </app-textarea-wrapper>
 
-        <mat-form-field class="full-width" [formGroup]="docDataStep">
-          <mat-label
-            >{{ "dmp.steps.documentation.question.dataQuality" | translate }}
-          </mat-label>
-          <mat-select formControlName="dataQuality" multiple #matSelect>
-            <mat-option
-              *ngFor="
-                let option of dataQualityOptions | keyvalue: originalOrder
-              "
-              [value]="option.key">
-              {{ translateDataQualityPrefixEnum + option.value | translate }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
+        <div class="data-quality-question">
+          <mat-hint>{{
+            "dmp.steps.documentation.question.long.dataQuality" | translate
+          }}</mat-hint>
+          <mat-form-field class="full-width" [formGroup]="docDataStep">
+            <mat-label
+              >{{
+                "dmp.steps.documentation.question.short.dataQuality" | translate
+              }}
+            </mat-label>
+            <mat-select formControlName="dataQuality" multiple #matSelect>
+              <mat-option
+                *ngFor="
+                  let option of dataQualityOptions | keyvalue: originalOrder
+                "
+                [value]="option.key">
+                {{ translateDataQualityPrefixEnum + option.value | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
         <app-textarea-wrapper
           *ngIf="isOtherDataQualitySelected"
           [maxLength]="4000"
-          [label]="'dmp.steps.documentation.question.otherDataQuality'"
+          [label]="'dmp.steps.documentation.question.short.otherDataQuality'"
+          [longLabel]="'dmp.steps.documentation.question.long.otherDataQuality'"
           [control]="otherDataQuality"></app-textarea-wrapper>
       </div>
     </mat-card-content>

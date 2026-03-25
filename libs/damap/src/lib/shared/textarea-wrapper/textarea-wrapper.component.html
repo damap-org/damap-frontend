@@ -1,16 +1,18 @@
+<div class="question-long-hint">
+  {{ longLabel | translate }}
+  <ng-container *ngFor="let set of labelDatasets; last as last">
+    "{{ set.title }}"<span *ngIf="!last">, </span> <span *ngIf="last">.</span>
+  </ng-container>
+  <ng-container *ngIf="labelSuffix"> {{ labelSuffix }} </ng-container>
+</div>
 <mat-form-field
   [appearance]="appearance"
   class="mat-textarea-density"
+  subscriptSizing="dynamic"
   floatLabel="auto">
   <!-- inline style is a temporary solution for an issue where the * for required would be rendered after a line break -->
   <!-- this will hopefully be fixed with the next angular version, lets pray -->
-  <mat-label style="display: inline-flex"
-    >{{ label | translate }}
-    <ng-container *ngFor="let set of labelDatasets; last as last">
-      "{{ set.title }}"<span *ngIf="!last">, </span>.
-    </ng-container>
-    <ng-container *ngIf="labelSuffix"> {{ labelSuffix }} </ng-container>
-  </mat-label>
+  <mat-label style="display: inline-flex">{{ label | translate }} </mat-label>
 
   <ng-template #standard>
     <textarea
@@ -31,7 +33,6 @@
       >{{ message.value.length }} / {{ maxLength }}
     </mat-hint>
   </ng-template>
-
   <!-- AUTOCOMPLETE -->
   <ng-container
     *ngIf="autocompleteOptions?.length && isAutocompleteOpen; else standard">
@@ -73,7 +74,6 @@
       </mat-option>
     </mat-autocomplete>
   </ng-container>
-
   <!-- ERROR -->
   <mat-error *ngIf="!control?.errors?.required && control?.errors?.empty">
     {{ "form.error.empty" | translate }}

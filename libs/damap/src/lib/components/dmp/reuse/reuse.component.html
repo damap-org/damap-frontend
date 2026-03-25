@@ -5,32 +5,29 @@
   <mat-card-content>
     <div [formGroup]="reuseStep">
       <app-textarea-wrapper
-        [label]="'dmp.steps.data.reuse.question.targetAudience'"
+        [label]="'dmp.steps.data.reuse.question.short.targetAudience'"
+        [longLabel]="'dmp.steps.data.reuse.question.long.targetAudience'"
         [control]="targetAudience"
         [autocompleteOptions]="optionsTargetAudience">
       </app-textarea-wrapper>
 
       <app-textarea-wrapper
-        [label]="'dmp.steps.data.reuse.question.tools'"
+        [label]="'dmp.steps.data.reuse.question.short.tools'"
+        [longLabel]="'dmp.steps.data.reuse.question.long.tools'"
         [control]="tools"
         [maxLength]="4000">
       </app-textarea-wrapper>
 
       <ng-container *ngIf="restricted?.length > 0">
-        <mat-form-field class="full-width">
-          <mat-label>
-            {{
-              "dmp.steps.data.reuse.question.restrictedDataAccess" | translate
-            }}
-            <span *ngFor="let set of restricted; last as last">
-              "{{ set.title }}"<span *ngIf="!last">, </span>.
-            </span>
-          </mat-label>
-          <textarea
-            matInput
-            formControlName="restrictedDataAccess"
-            [maxLength]="4000"></textarea>
-        </mat-form-field>
+        <app-textarea-wrapper
+          [label]="'dmp.steps.data.reuse.question.short.restrictedDataAccess'"
+          [longLabel]="
+            'dmp.steps.data.reuse.question.long.restrictedDataAccess'
+          "
+          [labelDatasets]="restricted"
+          [control]="restrictedDataAccess"
+          [maxLength]="4000">
+        </app-textarea-wrapper>
       </ng-container>
     </div>
   </mat-card-content>

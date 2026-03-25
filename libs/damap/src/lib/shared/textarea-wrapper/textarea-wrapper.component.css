@@ -4,6 +4,7 @@
 
 mat-form-field {
   width: 100%;
+  padding-bottom: 20px;
 }
 
 .no-resize {
@@ -34,6 +35,11 @@ mat-form-field mat-label {
   display: block;
   max-width: 100%;
   line-height: normal;
+}
+
+.question-long-hint {
+  padding-top: 5px;
+  padding-bottom: 10px;
 }
 
 @media (max-width: 960px) {

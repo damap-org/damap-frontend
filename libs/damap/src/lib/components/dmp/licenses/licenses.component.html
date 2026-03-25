@@ -81,7 +81,7 @@
         <mat-card-content
           class="card-content-estimation"
           *ngIf="dataset.value.dataAccess !== accessType.CLOSED">
-          <mat-form-field>
+          <mat-form-field style="min-width: 300px">
             <mat-label>{{
               "dmp.steps.licensing.question.startDate" | translate
             }}</mat-label>
@@ -89,6 +89,7 @@
               matInput
               formControlName="startDate"
               [matDatepicker]="picker" />
+
             <mat-datepicker-toggle
               matSuffix
               [for]="picker"></mat-datepicker-toggle>
@@ -107,11 +108,12 @@
     </mat-card>
   </ng-container>
 </div>
-<div [style.margin.px]="'5'">
+<div class="summary-container">
   <div [formGroup]="dmpForm">
     <ng-container *ngIf="restricted?.length > 0">
       <app-textarea-wrapper
-        [label]="'dmp.steps.licensing.question.restrictedAccessInfo'"
+        [label]="'dmp.steps.licensing.question.short.restrictedAccessInfo'"
+        [longLabel]="'dmp.steps.licensing.question.long.restrictedAccessInfo'"
         [labelDatasets]="restricted"
         [control]="restrictedAccessInfo"
         [maxLength]="4000">
@@ -120,7 +122,8 @@
 
     <ng-container *ngIf="closed?.length > 0">
       <app-textarea-wrapper
-        [label]="'dmp.steps.licensing.question.closedAccessInfo'"
+        [label]="'dmp.steps.licensing.question.short.closedAccessInfo'"
+        [longLabel]="'dmp.steps.licensing.question.long.closedAccessInfo'"
         [labelDatasets]="closed"
         [control]="closedAccessInfo"
         [maxLength]="4000">
