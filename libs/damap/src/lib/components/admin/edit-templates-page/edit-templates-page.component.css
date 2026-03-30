@@ -22,7 +22,7 @@
   width: 100%;
   align-items: stretch;
   > section:first-child {
-    flex: 1.8;
+    flex: 1;
   }
   > section:last-child {
     flex: 1;
@@ -43,7 +43,7 @@
 .current-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 5px;
   padding: 0 8px 8px 8px;
 }
 
@@ -69,6 +69,8 @@
     box-shadow 0.2s ease;
   padding-left: 24px;
   padding-right: 24px;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .template-card:hover {

@@ -72,7 +72,6 @@ export class EditTemplatesPageComponent {
     const payload = new FormData();
     payload.append('file', file);
     payload.append('name', this.templateName());
-    payload.append('category', 'SCIENCE_EUROPE');
 
     this.backendService.uploadExportTemplate(payload).subscribe({
       next: () => {
@@ -101,7 +100,7 @@ export class EditTemplatesPageComponent {
 
     this.updateLocalActiveStatus(template.id, newState);
 
-    this.backendService.toggleExportTemplate(template.id).subscribe({
+    this.backendService.toggleExportTemplateActive(template.id).subscribe({
       next: () => {
         this.configService
           .refreshConfig()

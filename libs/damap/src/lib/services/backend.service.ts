@@ -292,7 +292,7 @@ export class BackendService {
 
   exportDmpTemplate(dmpId: number, template: number): void {
     this.http
-      .get(`${this.backendUrl}document/${dmpId}?template=${template}`, {
+      .get(`${this.backendUrl}document/${dmpId}/export?template=${template}`, {
         responseType: 'blob',
         observe: 'response',
       })
@@ -315,7 +315,7 @@ export class BackendService {
 
   getDmpDocument(id: number): void {
     this.http
-      .get(`${this.backendUrl}document/${id}`, {
+      .get(`${this.backendUrl}document/${id}/export`, {
         responseType: 'blob',
         observe: 'response',
       })
@@ -531,17 +531,13 @@ export class BackendService {
       );
   }
 
-  getExportTemplates(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.backendUrl}admin/export-templates`);
-  }
-
   uploadExportTemplate(payload: FormData): Observable<any> {
     return this.http.post(`${this.backendUrl}admin/export-templates`, payload);
   }
 
-  toggleExportTemplate(id: number): Observable<any> {
-    return this.http.put(
-      `${this.backendUrl}admin/export-templates/${id}/toggle`,
+  toggleExportTemplateActive(id: number): Observable<any> {
+    return this.http.patch(
+      `${this.backendUrl}admin/export-templates/${id}/toggle-active`,
       {},
     );
   }
