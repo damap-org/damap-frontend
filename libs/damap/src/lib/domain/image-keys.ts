@@ -45,6 +45,7 @@ export interface ThemeImageDefinition {
   defaultUrl: string;
   recommendation: string;
   isCustom?: boolean;
+  multitenancyLocked?: boolean;
 }
 
 export const THEME_IMAGE_DEFINITIONS: ThemeImageDefinition[] = [
@@ -53,18 +54,21 @@ export const THEME_IMAGE_DEFINITIONS: ThemeImageDefinition[] = [
     label: 'Landing Page Background',
     defaultUrl: 'assets/landing-page-background.png',
     recommendation: 'Recommended size: 1200px x 700px',
+    multitenancyLocked: true,
   },
   {
     key: IMAGE_KEYS.LANDING_PAGE_GRAPHIC,
     label: 'Landing Page Graphic',
     defaultUrl: 'assets/landing-page-graphic.png',
     recommendation: 'Recommended size: 2530px x 2159px',
+    multitenancyLocked: true,
   },
   {
     key: IMAGE_KEYS.LANDING_PAGE_LOGO,
     label: 'Landing Page Logo',
     defaultUrl: 'assets/landing-page-logo.svg',
     recommendation: 'Scales proportionally up to aspect ratio: 2.67:1',
+    multitenancyLocked: true,
   },
   {
     key: IMAGE_KEYS.LOGO,
@@ -72,17 +76,20 @@ export const THEME_IMAGE_DEFINITIONS: ThemeImageDefinition[] = [
     defaultUrl: 'assets/logo.svg',
     recommendation:
       'Recommended aspect ratio: Around 1.41:1 (A4 paper landscape)',
+    multitenancyLocked: false,
   },
   {
     key: IMAGE_KEYS.ORCID_ID,
     label: 'ORCID ID',
     defaultUrl: 'assets/ORCIDiD_iconvector.svg',
     recommendation: 'Recommended aspect ratio: 1:1',
+    multitenancyLocked: false,
   },
   {
     key: IMAGE_KEYS.FAVICON,
     label: 'Favicon',
     defaultUrl: 'favicon.ico',
     recommendation: 'Recommended aspect ratio: 1:1',
+    multitenancyLocked: false,
   },
 ];
