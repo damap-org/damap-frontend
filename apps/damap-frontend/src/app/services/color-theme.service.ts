@@ -69,9 +69,11 @@ export class ColorThemeService {
   private applyMaterial3Tokens(colors: Colors, exactMode: boolean): void {
     // 1. Generate Base Palette & Scheme
     const palette = CorePalette.fromColors({
-      primary: argbFromHex(colors.primary || '#6200ee'),
+      primary: argbFromHex(colors.primary || '#006699'),
       secondary: colors.secondary ? argbFromHex(colors.secondary) : undefined,
-      tertiary: colors.tertiary ? argbFromHex(colors.tertiary) : undefined,
+      tertiary: colors.tertiary
+        ? argbFromHex(colors.tertiary || '#373737')
+        : undefined,
     });
     const scheme = Scheme.lightFromCorePalette(palette);
 

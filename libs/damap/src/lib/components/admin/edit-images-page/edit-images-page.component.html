@@ -17,16 +17,8 @@
           </mat-card-title>
         </mat-card-header>
         <div class="current-grid">
-          @for (
-            image of themeImages();
-            track image.key;
-            let isLast = $last;
-            let isEven = $even
-          ) {
-            <mat-card
-              class="image-card"
-              [class.centered]="isLast && isEven"
-              (click)="selectImageKey(image.key)">
+          @for (image of themeImages(); track image.key) {
+            <mat-card class="image-card" (click)="selectImageKey(image.key)">
               <div class="image-name">
                 {{ image.label }}
               </div>

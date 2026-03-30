@@ -24,7 +24,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { environment } from '../../../../../../../apps/damap-frontend/src/environments/environment';
 import { ConfigService } from '../../../../../../../apps/damap-frontend/src/app/services/config.service';
 import {
   ImageKey,
@@ -74,7 +73,9 @@ export class EditImagesPageComponent {
     const config = this.configService.getConfig();
     const backendImages = config?.images || [];
 
-    return THEME_IMAGE_DEFINITIONS.map(imageDef => {
+    return THEME_IMAGE_DEFINITIONS.filter(
+      imageDef => !(imageDef.multitenancyLocked && config.multitenancyEnabled),
+    ).map(imageDef => {
       const backendImg = backendImages.find(
         beImg => beImg.imageKey === imageDef.key,
       );
@@ -90,7 +91,7 @@ export class EditImagesPageComponent {
   });
 
   readonly selectedFile = signal<File | null>(null);
-  readonly selectedImageKey = signal(THEME_IMAGE_DEFINITIONS[0].key);
+  readonly selectedImageKey = signal(this.themeImages()[0].key);
   readonly isDragOver = signal(false);
   readonly acceptAttribute = getAcceptAttribute();
 
@@ -135,7 +136,7 @@ export class EditImagesPageComponent {
       .subscribe({
         next: () => {
           this.feedbackService.success('admin.images.upload.success');
-          this.selectedImageKey.set(THEME_IMAGE_DEFINITIONS[0].key);
+          this.selectedImageKey.set(this.themeImages()[0].key);
           window.location.reload();
         },
         error: error => {
