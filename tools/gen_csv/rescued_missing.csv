@@ -100,3 +100,5 @@ treeselect.filter,treeselect.filter,Filter selection
 treeselect.options,treeselect.options,Select options
 treeselect.toggle,treeselect.toggle,Toggle {{value}}
 yes,yes,Yes
+admin.repositories.current,admin.recommended-repositories.current,Current recommended repositories
+admin.table.header.langugageCode,admin.internalStorage.translation.table.header.languageCode,Language code
