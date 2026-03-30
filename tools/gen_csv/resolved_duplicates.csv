@@ -46,8 +46,8 @@ admin.repositories.delete-dialog.name,admin.repositories.delete-dialog.name,Name
 admin.repositories.delete-dialog.cancel,admin.repositories.delete-dialog.cancel,Cancel,dmp.steps.people.delete.dialog.button.cancel,Cancel(9)
 admin.repositories.delete-dialog.confirm,admin.repositories.delete-dialog.confirm,Delete,admin.internalStorage.table.action.delete,Delete(2)
 info.ethical.committeeReviewed.mail.link,dmp.steps.legal.info.committeeReviewed.mail.link",https://www.tuwien.at/forschung/fti-support/responsible-research-practices/research-ethics-committee,dmp.steps.legal.info.committeeReviewed.mail.link,https://www.tuwien.at/forschung/fti-support/responsible-research-practices/research-ethics-committee(2)
-dashboard.tool.heading,COULD_NOT_BE_AUTO_REPLACE_[wrong_key_name(should_be:info.about.link)],About DAMAP,info.how-to-create.tool.heading,About DAMAP(2)
-dashboard.tool.link,COULD_NOT_BE_AUTO_REPLACE_[wrong_key_name(should_be:info.about.link)],https://www.damap.org,info.how-to-create.tool.link,https://www.damap.org
+dashboard.tool.heading,info.how-to-create.tool.heading,About DAMAP,info.how-to-create.tool.heading,About DAMAP(2)
+dashboard.tool.link,info.about.link,https://www.damap.org,info.how-to-create.tool.link,https://www.damap.org
 dashboard.tool.description,dashboard.cards.about-damap.back-side,"DAMAP guides you through creating a DMP using pre-filled information and customizable templates. It aligns with Science Europe guidelines and national funder requirements, saving you time and effort.",info.how-to-create.tool.description,"DAMAP guides you through creating a DMP using pre-filled information and customizable templates. It aligns with Science Europe guidelines and national funder requirements, saving you time and effort.(2)"
 dashboard.instructions.description,dashboard.cards.how-to-create.back-side,"Learn how to create a DMP step-by-step, including exporting drafts, editing, and updating your DMP according to funder requirements.",info.how-to-create.instructions.description,"Learn how to create a DMP step-by-step, including exporting drafts, editing, and updating your DMP according to funder requirements.(2)"
 dashboard.instructions.create.heading,dashboard.cards.create-new-dmp.front-side,CREATE NEW DMP,dashboard.cards.create-new-dmp.front-side,CREATE NEW DMP(2)
@@ -102,6 +102,6 @@ versions.view.reuse.target.audience,dmp.versions.view.reuse.target.audience,Targ
 versions.view.repositories.heading,dmp.versions.view.repositories.heading,Repositories,dmp.versions.view.repositories.heading,Repositories(2)
 versions.view.repositories.datasets,dmp.versions.view.repositories.datasets,Datasets,dmp.versions.view.repositories.datasets,Datasets(3)
 versions.view.costs.heading,dmp.versions.view.costs.heading,Costs,dmp.versions.view.costs.heading,Costs(2)
-enum.compliance.OTHER,dmp.versions.view.legal.personal.data.other.compliance,other measures,dmp.versions.view.legal.personal.data.other.compliance,Other measures
-enum.contributor.role.EDITOR,dmp.versions.editor,Editor,dmp.versions.editor,Editor
+enum.compliance.OTHER,enum.compliance.OTHER,other measures,dmp.versions.view.legal.personal.data.other.compliance,Other measures
+enum.contributor.role.EDITOR,enum.contributor.role.EDITOR,Editor,dmp.versions.editor,Editor
 enum.securitymeasure.OTHER,enum.securitymeasure.OTHER,other measures,dmp.steps.documentation.question.short.otherDataQuality,Other measures

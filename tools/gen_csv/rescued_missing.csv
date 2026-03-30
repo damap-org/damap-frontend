@@ -102,3 +102,5 @@ treeselect.toggle,treeselect.toggle,Toggle {{value}}
 yes,yes,Yes
 admin.repositories.current,admin.recommended-repositories.current,Current recommended repositories
 admin.table.header.langugageCode,admin.internalStorage.translation.table.header.languageCode,Language code
+enum.compliance.OTHER,enum.compliance.OTHER,other measures
+enum.contributor.role.EDITOR,enum.contributor.role.EDITOR
