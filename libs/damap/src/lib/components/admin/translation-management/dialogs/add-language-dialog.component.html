@@ -1,7 +1,7 @@
-<h2 mat-dialog-title>
+<h1 mat-dialog-title>
   {{ "admin.appTranslations.addLanguage" | translate }}
-</h2>
-<div mat-dialog-content class="dialog-content">
+</h1>
+<mat-dialog-content class="dialog-content">
   <p class="hint">
     {{ "admin.appTranslations.addLanguageHint" | translate }}
   </p>
@@ -24,8 +24,8 @@
       {{ "admin.appTranslations.languageCodePattern" | translate }}
     </mat-error>
   </mat-form-field>
-</div>
-<div mat-dialog-actions align="end">
+</mat-dialog-content>
+<mat-dialog-actions>
   <button mat-button (click)="cancel()">
     {{ "admin.appTranslations.cancel" | translate }}
   </button>
@@ -37,4 +37,4 @@
     [disabled]="form.invalid">
     {{ "admin.appTranslations.add" | translate }}
   </button>
-</div>
+</mat-dialog-actions>
