@@ -2,7 +2,7 @@
   <mat-label
     class="label-title mat-title-large"
     id="example-radio-group-label"
-    >{{ "dmp.steps.legal.heading" | translate }}</mat-label
+    >{{ "dmp.steps.legal.view.button.legal" | translate }}</mat-label
   >
   <mat-card class="legal-ethical-card card-shadow">
     <mat-card-content>
@@ -81,19 +81,19 @@
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
-                  <app-tooltip [tooltip]="'help.legal.sensitiveDataSecurity'">
+                  <app-tooltip [tooltip]="'dmp.steps.legal.help.sensitiveDataSecurity'">
                   </app-tooltip>
                 </div>
                 <ng-container *ngIf="isOtherMeasureSelected">
                   <app-textarea-wrapper
                     [label]="
-                      'dmp.steps.legal.question.otherDataSecurityMeasures'
+                      'dmp.steps.legal.question.long.otherDataSecurityMeasures'
                     "
                     [control]="otherDataSecurityMeasures"
                     [maxLength]="4000"></app-textarea-wrapper>
                 </ng-container>
                 <app-textarea-wrapper
-                  [label]="'dmp.steps.legal.question.sensitiveDataAccess'"
+                  [label]="'dmp.steps.legal.question.long.sensitiveDataAccess'"
                   [control]="sensitiveDataAccess"
                   [maxLength]="4000"
                   appearance="fill"></app-textarea-wrapper>
@@ -166,14 +166,14 @@
                     </mat-option>
                   </mat-select>
                   <mat-hint>{{
-                    "help.legal.personalDataCompliance" | translate
+                    "dmp.steps.legal.help.personalDataCompliance" | translate
                   }}</mat-hint>
                 </mat-form-field>
                 <br /><br />
                 <ng-container *ngIf="isOtherSelected">
                   <app-textarea-wrapper
                     [label]="
-                      'dmp.steps.legal.question.otherPersonalDataCompliance'
+                      'dmp.steps.legal.question.long.otherPersonalDataCompliance'
                     "
                     [control]="otherPersonalDataCompliance"
                     [maxLength]="4000"></app-textarea-wrapper>
@@ -209,7 +209,7 @@
               </div>
               <div>
                 <app-textarea-wrapper
-                  [label]="'dmp.steps.legal.question.legalRestrictionsComment'"
+                  [label]="'dmp.steps.legal.question.long.legalRestrictionsComment'"
                   [control]="legalRestrictionsComment"
                   [maxLength]="4000"></app-textarea-wrapper>
               </div>
@@ -235,7 +235,7 @@
               <ng-container *ngIf="isOtherDocumentSelected">
                 <app-textarea-wrapper
                   [label]="
-                    'dmp.steps.legal.question.otherLegalRestrictionsDocuments'
+                    'dmp.steps.legal.question.long.otherLegalRestrictionsDocuments'
                   "
                   [maxLength]="4000"
                   [control]="
@@ -247,7 +247,7 @@
           </div>
 
           <app-textarea-wrapper
-            [label]="'dmp.steps.legal.question.dataRightsAndAccessControl'"
+            [label]="'dmp.steps.legal.question.long.dataRightsAndAccessControl'"
             [maxLength]="4000"
             [control]="dataRightsAndAccessControl"></app-textarea-wrapper>
         </div>
@@ -259,7 +259,7 @@
   <mat-label
     class="label-title mat-title-large"
     id="example-radio-group-label"
-    >{{ "dmp.steps.ethical.heading" | translate }}</mat-label
+    >{{ "dmp.steps.legal.view.button.ethical" | translate }}</mat-label
   >
   <app-ethical-aspects
     [legalEthicalStep]="legalEthicalStep"

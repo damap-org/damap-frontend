@@ -1,9 +1,9 @@
 <h1 mat-dialog-title>
   <ng-container *ngIf="mode === 'edit'; else add">{{
-    "admin.dialog.internal-storage-translation.edit" | translate
+    "admin.internalStorage.translation.dialog.title.edit" | translate
   }}</ng-container>
   <ng-template #add>{{
-    "admin.dialog.internal-storage-translation.add" | translate
+    "admin.internalStorage.translation.dialog.title.create" | translate
   }}</ng-template>
 </h1>
 
@@ -14,19 +14,19 @@
     <div class="dialogRow">
       <mat-form-field>
         <mat-label>{{
-          "admin.dialog.internal-storage-translation.captions.languageCode"
+          "admin.internalStorage.translation.dialog.field.languageCode"
             | translate
         }}</mat-label>
         <mat-select formControlName="languageCode" required>
           <mat-option [value]="'eng'">
             {{
-              "admin.dialog.internal-storage-translation.captions.eng"
+              "admin.internalStorage.translation.dialog.field.eng"
                 | translate
             }}
           </mat-option>
           <mat-option [value]="'deu'">
             {{
-              "admin.dialog.internal-storage-translation.captions.deu"
+              "admin.internalStorage.translation.dialog.field.deu"
                 | translate
             }}
           </mat-option>
@@ -36,13 +36,13 @@
 
     <app-input-wrapper
       [label]="
-        'admin.dialog.internal-storage-translation.captions.title' | translate
+        'admin.internalStorage.translation.dialog.field.title' | translate
       "
       [control]="title"></app-input-wrapper>
 
     <app-textarea-wrapper
       [label]="
-        'admin.dialog.internal-storage-translation.captions.description'
+        'admin.internalStorage.translation.dialog.field.description'
           | translate
       "
       [control]="description"
@@ -50,7 +50,7 @@
 
     <app-input-wrapper
       [label]="
-        'admin.dialog.internal-storage-translation.captions.backupFrequency'
+        'admin.internalStorage.translation.dialog.field.backupFrequency'
           | translate
       "
       [control]="backupFrequency"></app-input-wrapper>
@@ -59,17 +59,17 @@
 
 <mat-dialog-actions>
   <button mat-button (click)="onNoClick()">
-    {{ "admin.dialog.internal-storage-translation.button.cancel" | translate }}
+    {{ "admin.internalStorage.translation.dialog.button.cancel" | translate }}
   </button>
   <button
     (click)="onDialogClose()"
     mat-flat-button
     [disabled]="storageTranslation.invalid">
     <ng-container *ngIf="mode === 'edit'">{{
-      "admin.dialog.internal-storage-translation.button.update" | translate
+      "admin.internalStorage.translation.dialog.button.update" | translate
     }}</ng-container>
     <ng-container *ngIf="mode === 'add'">{{
-      "admin.dialog.internal-storage-translation.button.add" | translate
+      "admin.internalStorage.translation.dialog.button.add" | translate
     }}</ng-container>
   </button>
 </mat-dialog-actions>

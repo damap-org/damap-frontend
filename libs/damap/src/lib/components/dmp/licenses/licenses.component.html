@@ -2,7 +2,7 @@
   <mat-label
     class="label-title mat-title-large"
     id="example-radio-group-label"
-    >{{ "dmp.steps.licensing.rightLabel" | translate }}</mat-label
+    >{{ "dmp.steps.licensing.sectionTitle" | translate }}</mat-label
   >
   <ng-container
     formArrayName="datasets"
@@ -111,7 +111,7 @@
   <div [formGroup]="dmpForm">
     <ng-container *ngIf="restricted?.length > 0">
       <app-textarea-wrapper
-        [label]="'dmp.steps.licensing.question.restrictedAccessInfo'"
+        [label]="'dmp.steps.licensing.question.long.restrictedAccessInfo'"
         [labelDatasets]="restricted"
         [control]="restrictedAccessInfo"
         [maxLength]="4000">
@@ -120,7 +120,7 @@
 
     <ng-container *ngIf="closed?.length > 0">
       <app-textarea-wrapper
-        [label]="'dmp.steps.licensing.question.closedAccessInfo'"
+        [label]="'dmp.steps.licensing.question.long.closedAccessInfo'"
         [labelDatasets]="closed"
         [control]="closedAccessInfo"
         [maxLength]="4000">

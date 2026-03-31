@@ -111,7 +111,7 @@ export class EditImagesPageComponent {
 
     if (file.size > MAX_FILE_SIZE) {
       this.feedbackService.error(
-        this.translate.instant('admin.images.upload.file-size-too-large', {
+        this.translate.instant('admin.images.upload.file.size-too-large', {
           maxSize: this.formatFileSize(MAX_FILE_SIZE),
         }),
       );

@@ -6,7 +6,7 @@
   <!-- URL Column -->
   <ng-container matColumnDef="url">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>
-      {{ "admin.table.header.url" | translate }}
+      {{ "admin.internalStorage.table.header.url" | translate }}
     </th>
     <td mat-cell *matCellDef="let element">{{ element.url }}</td>
   </ng-container>
@@ -14,7 +14,7 @@
   <!-- Storage Location Column -->
   <ng-container matColumnDef="storageLocation">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>
-      {{ "admin.table.header.storageLocation" | translate }}
+      {{ "admin.internalStorage.table.header.storageLocation" | translate }}
     </th>
     <td mat-cell *matCellDef="let element">{{ element.storageLocation }}</td>
   </ng-container>
@@ -22,7 +22,7 @@
   <!-- Backup Location Column -->
   <ng-container matColumnDef="backupLocation">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>
-      {{ "admin.table.header.backupLocation" | translate }}
+      {{ "admin.internalStorage.table.header.backupLocation" | translate }}
     </th>
     <td mat-cell *matCellDef="let element">{{ element.backupLocation }}</td>
   </ng-container>
@@ -30,7 +30,7 @@
   <!-- Active Column -->
   <ng-container matColumnDef="active">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>
-      {{ "admin.table.header.active" | translate }}
+      {{ "admin.internalStorage.table.header.active" | translate }}
     </th>
     <td mat-cell *matCellDef="let element">
       <mat-slide-toggle
@@ -42,7 +42,7 @@
   <!-- Edit Column -->
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef>
-      {{ "admin.table.header.action" | translate }}
+      {{ "admin.internalStorage.table.header.actions" | translate }}
     </th>
     <td mat-cell *matCellDef="let element">
       <button mat-icon-button [matMenuTriggerFor]="menu">
@@ -51,16 +51,16 @@
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="editTranslations(element.id)">
           <mat-icon>language_us</mat-icon>
-          {{ "admin.table.action.translation" | translate }}
+          {{ "admin.internalStorage.table.action.translation" | translate }}
         </button>
         <button mat-menu-item (click)="editStorage(element.id)">
           <mat-icon>edit</mat-icon>
-          {{ "admin.table.action.edit" | translate }}
+          {{ "admin.internalStorage.table.action.edit" | translate }}
         </button>
         <mat-divider></mat-divider>
         <button mat-menu-item (click)="deleteStorage(element.id)">
           <mat-icon class="danger-icon-color">delete</mat-icon>
-          {{ "admin.table.action.delete" | translate }}
+          {{ "admin.internalStorage.table.action.delete" | translate }}
         </button>
       </mat-menu>
     </td>
@@ -72,7 +72,7 @@
 
   <!-- No Data Row -->
   <tr class="mat-row" *matNoDataRow>
-    <td class="mat-cell" colspan="2">{{ "admin.table.empty" | translate }}</td>
+    <td class="mat-cell" colspan="2">{{ "admin.internalStorage.table.state.empty" | translate }}</td>
   </tr>
 </table>
 

@@ -10,28 +10,28 @@
     <mat-card-content>
       <div class="mat-card-container">
         <app-textarea-wrapper
-          [label]="'dmp.steps.documentation.question.structure'"
+          [label]="'dmp.steps.documentation.question.long.structure'"
           [control]="structure"
           [autocompleteOptions]="optionsStructureAndVersioning">
         </app-textarea-wrapper>
 
         <div class="form-field-hint">
           <app-textarea-wrapper
-            [label]="'dmp.steps.documentation.question.metadata'"
+            [label]="'dmp.steps.documentation.question.long.metadata'"
             [control]="metadata"
             [autocompleteOptions]="optionsMetadata">
           </app-textarea-wrapper>
-          <app-tooltip [tooltip]="'info.documentation.metadata'"></app-tooltip>
+          <app-tooltip [tooltip]="'dmp.steps.documentation.info.metadata'"></app-tooltip>
         </div>
 
         <app-textarea-wrapper
-          [label]="'dmp.steps.documentation.question.documentation'"
+          [label]="'dmp.steps.documentation.question.long.documentation'"
           [control]="documentation">
         </app-textarea-wrapper>
 
         <mat-form-field class="full-width" [formGroup]="docDataStep">
           <mat-label
-            >{{ "dmp.steps.documentation.question.dataQuality" | translate }}
+            >{{ "dmp.steps.documentation.question.long.dataQuality" | translate }}
           </mat-label>
           <mat-select formControlName="dataQuality" multiple #matSelect>
             <mat-option
@@ -47,7 +47,7 @@
         <app-textarea-wrapper
           *ngIf="isOtherDataQualitySelected"
           [maxLength]="4000"
-          [label]="'dmp.steps.documentation.question.otherDataQuality'"
+          [label]="'dmp.steps.documentation.question.long.otherDataQuality'"
           [control]="otherDataQuality"></app-textarea-wrapper>
       </div>
     </mat-card-content>

@@ -1,10 +1,10 @@
-<h1 mat-dialog-title>{{'dialog.export.title' | translate}}</h1>
+<h1 mat-dialog-title>{{'export-dialog.title' | translate}}</h1>
 <mat-dialog-content>
-  {{'dialog.export.content' | translate}}
+  {{'export-dialog.message' | translate}}
   <div class="container">
     <ng-container>
       <mat-form-field *ngIf="!funderSupported">
-        <mat-label>{{ 'dialog.export.type' | translate }}</mat-label>
+        <mat-label>{{ 'export-dialog.field.type' | translate }}</mat-label>
         <mat-select [(value)]="selectedTemplate">
           <mat-option
             *ngFor="let id of dmpTemplate | keyvalue"
@@ -20,10 +20,10 @@
         [mat-dialog-close]="selectedTemplate"
         [disabled]="!selectedTemplate && !funderSupported"
         mat-flat-button>
-        {{'dialog.export.button' | translate}}
+        {{'export-dialog.button.ok' | translate}}
       </button>
       <button class="button" mat-dialog-close="cancel" mat-flat-button>
-        {{'dialog.export.cancel' | translate}}
+        {{'export-dialog.button.cancel' | translate}}
       </button>
     </div>
   </div>

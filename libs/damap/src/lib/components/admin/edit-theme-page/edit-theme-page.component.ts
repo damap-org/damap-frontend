@@ -73,10 +73,10 @@ export class EditThemePageComponent implements OnInit {
   onSave() {
     this.colorThemeService.saveColors().subscribe({
       next: response => {
-        this.feedBackService.success('admin.color-theme.popup.success');
+        this.feedBackService.success('admin.theme.popup.success');
       },
       error: error => {
-        this.feedBackService.error('admin.color-theme.popup.error');
+        this.feedBackService.error('admin.theme.popup.error');
       },
     });
   }

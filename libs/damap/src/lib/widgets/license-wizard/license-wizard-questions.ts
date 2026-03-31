@@ -24,10 +24,10 @@ const end: Step = {};
 // Software
 
 const strongCopyleft: Step = {
-  question: 'license.wizard.question.strongCopyleft',
+  question: 'license-wizard.question.strongCopyleft',
   answers: [
     {
-      label: 'license.wizard.answer.executable',
+      label: 'license-wizard.answer.executable',
       next: {
         step() {
           return end;
@@ -36,7 +36,7 @@ const strongCopyleft: Step = {
       },
     },
     {
-      label: 'license.wizard.answer.library',
+      label: 'license-wizard.answer.library',
       next: {
         step() {
           return end;
@@ -48,7 +48,7 @@ const strongCopyleft: Step = {
 };
 
 const copyleft: Step = {
-  question: 'license.wizard.question.copyleft',
+  question: 'license-wizard.question.copyleft',
   answers: [
     {
       label: 'yes',
@@ -75,10 +75,10 @@ const copyleft: Step = {
 };
 
 const licenseInteropSoftware: Step = {
-  question: 'license.wizard.question.licenseInteropSoftware',
+  question: 'license-wizard.question.licenseInteropSoftware',
   answers: [
     {
-      label: 'license.wizard.answer.next',
+      label: 'license-wizard.answer.next',
       next: {
         step(list: LicenseDetails[]) {
           if (has(list, 'copyleft') && has(list, 'permissive')) {
@@ -98,10 +98,10 @@ const licenseInteropSoftware: Step = {
 };
 
 const software: Step = {
-  question: 'license.wizard.question.software',
+  question: 'license-wizard.question.software',
   answers: [
     {
-      label: 'license.wizard.answer.licenseInteropSoftware',
+      label: 'license-wizard.answer.licenseInteropSoftware',
       next: {
         step() {
           return licenseInteropSoftware;
@@ -109,7 +109,7 @@ const software: Step = {
       },
     },
     {
-      label: 'license.wizard.answer.copyleft',
+      label: 'license-wizard.answer.copyleft',
       next: {
         step() {
           return copyleft;
@@ -122,7 +122,7 @@ const software: Step = {
 // Data
 
 const decideAttributes: Step = {
-  question: 'license.wizard.question.decideAttributes',
+  question: 'license-wizard.question.decideAttributes',
   answers: [
     {
       label: 'yes',
@@ -146,7 +146,7 @@ const decideAttributes: Step = {
 };
 
 const commercialUse: Step = {
-  question: 'license.wizard.question.commercialUse',
+  question: 'license-wizard.question.commercialUse',
   answers: [
     {
       label: 'yes',
@@ -173,7 +173,7 @@ const commercialUse: Step = {
 };
 
 const shareAlike: Step = {
-  question: 'license.wizard.question.shareAlike',
+  question: 'license-wizard.question.shareAlike',
   answers: [
     {
       label: 'yes',
@@ -203,7 +203,7 @@ const shareAlike: Step = {
 };
 
 const allowDerivativeWorks: Step = {
-  question: 'license.wizard.question.allowDerivativeWorks',
+  question: 'license-wizard.question.allowDerivativeWorks',
   answers: [
     {
       label: 'yes',
@@ -230,10 +230,10 @@ const allowDerivativeWorks: Step = {
 };
 
 const licenseInteropData: Step = {
-  question: 'license.wizard.question.licenseInteropData',
+  question: 'license-wizard.question.licenseInteropData',
   answers: [
     {
-      label: 'license.wizard.answer.next',
+      label: 'license-wizard.answer.next',
       next: {
         step(list: LicenseDetails[], option: string) {
           if (option === 'cantLicense') {
@@ -249,11 +249,11 @@ const licenseInteropData: Step = {
 };
 
 const cantLicense: Step = {
-  question: 'license.wizard.question.cantLicense',
+  question: 'license-wizard.question.cantLicense',
 };
 
 const ensureLicensing: Step = {
-  question: 'license.wizard.question.ensureLicensing',
+  question: 'license-wizard.question.ensureLicensing',
   answers: [
     {
       label: 'yes',
@@ -299,7 +299,7 @@ const ownIPR: Step = {
 };
 
 const data: Step = {
-  question: 'license.wizard.question.data',
+  question: 'license-wizard.question.data',
   answers: [
     {
       label: 'yes',
@@ -322,10 +322,10 @@ const data: Step = {
 };
 
 const root: Step = {
-  question: 'license.wizard.question.root',
+  question: 'license-wizard.question.root',
   answers: [
     {
-      label: 'license.wizard.answer.software',
+      label: 'license-wizard.answer.software',
       next: {
         step() {
           return software;
@@ -334,7 +334,7 @@ const root: Step = {
       },
     },
     {
-      label: 'license.wizard.answer.data',
+      label: 'license-wizard.answer.data',
       next: {
         step() {
           return data;
