@@ -1,5 +1,7 @@
-<app-toggle-buttons
-  [primaryLabel]="'dmp.steps.project.label'"
-  [secondaryLabel]="'dmp.steps.project.manual.input'"
-  (selectionChange)="emitSelection($event)">
-</app-toggle-buttons>
+@if (configService.getProjectService() !== "disabled") {
+  <app-toggle-buttons
+    [primaryLabel]="'dmp.steps.project.label'"
+    [secondaryLabel]="'dmp.steps.project.manual.input'"
+    (selectionChange)="emitSelection($event)">
+  </app-toggle-buttons>
+}

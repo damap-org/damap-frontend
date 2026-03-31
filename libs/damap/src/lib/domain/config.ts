@@ -17,6 +17,7 @@ export interface Config {
   readonly env: string;
   readonly appTitle: string;
   readonly personSearchServiceConfigs: ServiceConfig[];
+  readonly projectSearchServiceConfig: string;
   readonly fitsServiceAvailable: boolean;
   readonly livePreviewAvailable: boolean;
   readonly ethicalReportEnabled: boolean;

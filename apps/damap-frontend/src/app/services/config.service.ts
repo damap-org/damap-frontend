@@ -149,6 +149,10 @@ export class ConfigService {
     return this.config?.adminRoleName || null;
   }
 
+  public getProjectService(): string {
+    return this.config?.projectSearchServiceConfig || null;
+  }
+
   public getConfig(): Config {
     return this.config;
   }

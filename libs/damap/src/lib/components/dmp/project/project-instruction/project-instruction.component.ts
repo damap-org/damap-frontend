@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import { ConfigService } from '../../../../../../../../apps/damap-frontend/src/app/services/config.service';
 
 @Component({
   selector: 'app-project-instruction',
@@ -11,6 +12,7 @@ export class ProjectInstructionComponent implements OnInit {
   >();
 
   selectedView: 'primaryView' | 'secondaryView' = 'primaryView';
+  configService = inject(ConfigService);
 
   ngOnInit(): void {
     this.emitSelection('primaryView');
