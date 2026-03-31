@@ -1,5 +1,11 @@
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
-import { BehaviorSubject, Observable, lastValueFrom } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  Observable,
+  lastValueFrom,
+  throwError,
+} from 'rxjs';
 import { inject, Injectable, isDevMode } from '@angular/core';
 
 import { Config } from '@damap/core';
@@ -17,7 +23,6 @@ export class ConfigService {
   private imageThemeService = inject(ImageThemeService);
 
   private config: Config;
-  private configSubject = new BehaviorSubject<Config | null>(null);
   private backendDown$ = new BehaviorSubject<boolean>(true);
   private firstAttempt = true;
 
@@ -49,7 +54,6 @@ export class ConfigService {
             // eslint-disable-next-line no-console
             console.warn('App title is missing in the config');
           }
-          this.configSubject.next(config);
           const authConfig: AuthConfig = {
             issuer: config.issuer,
             clientId: config.clientID,
@@ -153,7 +157,26 @@ export class ConfigService {
     const host = environment.backendurl;
     const config$ = this.http.get<Config>(`${host}config`);
     let rawConfig = await lastValueFrom(config$);
-    this.configSubject.next(rawConfig);
     return rawConfig;
+  }
+
+  public async refreshConfig(): Promise<Config> {
+    const host = environment.backendurl;
+
+    return lastValueFrom(
+      this.http.get<Config>(`${host}config`).pipe(
+        catchError(err => {
+          this.feedbackService.error('landing-page.servers-down');
+          return throwError(() => err);
+        }),
+      ),
+    ).then(rawConfig => {
+      this.config = rawConfig;
+      return rawConfig;
+    });
+  }
+
+  public getActiveTemplates(): any[] {
+    return this.config?.templates?.filter(t => t.active) || [];
   }
 }

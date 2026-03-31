@@ -18,6 +18,7 @@ import { GdprComponent } from './components/gdpr/gdpr.component';
 import { PlansComponent } from './components/plans/plans.component';
 import { PlansModule } from './components/plans/plans.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { EditTemplatesPageComponent } from './components/admin/edit-templates-page/edit-templates-page.component';
 
 export const DAMAP_ROUTES: Route[] = [
   { path: 'dashboard', component: DashboardComponent },
@@ -49,6 +50,11 @@ export const DAMAP_ROUTES: Route[] = [
   {
     path: 'admin/repositories',
     component: EditRepositoriesPageComponent,
+    canActivate: [AdminGuard],
+  },
+  {
+    path: 'admin/templates',
+    component: EditTemplatesPageComponent,
     canActivate: [AdminGuard],
   },
 ];

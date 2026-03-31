@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, computed, inject, Input } from '@angular/core';
 
 import { ETemplateType } from '../../domain/enum/export-template-type.enum';
 import { MatDialogRef } from '@angular/material/dialog';
 import { UntypedFormGroup } from '@angular/forms';
+import { ConfigService } from '../../../../../../apps/damap-frontend/src/app/services/config.service';
 
 @Component({
   selector: 'damap-export-warning-dialog',
@@ -15,9 +16,13 @@ export class ExportWarningDialogComponent {
   @Input() project: UntypedFormGroup;
   @Input() funderSupported: boolean;
 
-  dmpTemplate: any = ETemplateType;
+  private configService = inject(ConfigService);
 
-  selectedTemplate = '';
+  readonly activeTemplates = computed(() =>
+    this.configService.getActiveTemplates(),
+  );
+
+  selectedTemplate: number | null = null;
 
   constructor(public dialogRef: MatDialogRef<ExportWarningDialogComponent>) {}
 }

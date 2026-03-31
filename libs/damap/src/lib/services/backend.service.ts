@@ -290,9 +290,9 @@ export class BackendService {
       .pipe(retry(3), catchError(this.handleError('http.error.openaire')));
   }
 
-  exportDmpTemplate(dmpId: number, template: string): void {
+  exportDmpTemplate(dmpId: number, template: number): void {
     this.http
-      .get(`${this.backendUrl}document/${dmpId}?template=${template}`, {
+      .get(`${this.backendUrl}document/${dmpId}/export?template=${template}`, {
         responseType: 'blob',
         observe: 'response',
       })
@@ -302,7 +302,7 @@ export class BackendService {
       });
   }
 
-  getPreviewPDF(dmpId: number, template: string): Observable<Blob> {
+  getPreviewPDF(dmpId: number, template: number): Observable<Blob> {
     return this.http
       .get(
         `${this.backendUrl}document/${dmpId}/export?template=${template}&download=false&filetype=pdf`,
@@ -315,7 +315,7 @@ export class BackendService {
 
   getDmpDocument(id: number): void {
     this.http
-      .get(`${this.backendUrl}document/${id}`, {
+      .get(`${this.backendUrl}document/${id}/export`, {
         responseType: 'blob',
         observe: 'response',
       })
@@ -529,6 +529,21 @@ export class BackendService {
         retry(3),
         catchError(this.handleError('http.error.admin.image.delete')),
       );
+  }
+
+  uploadExportTemplate(payload: FormData): Observable<any> {
+    return this.http.post(`${this.backendUrl}admin/export-templates`, payload);
+  }
+
+  toggleExportTemplateActive(id: number): Observable<any> {
+    return this.http.patch(
+      `${this.backendUrl}admin/export-templates/${id}/toggle-active`,
+      {},
+    );
+  }
+
+  deleteExportTemplate(id: number): Observable<any> {
+    return this.http.delete(`${this.backendUrl}admin/export-templates/${id}`);
   }
 
   private handleError(message = 'http.error.standard') {

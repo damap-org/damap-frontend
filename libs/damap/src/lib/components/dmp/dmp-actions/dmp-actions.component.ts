@@ -24,6 +24,7 @@ import { FormService } from '../../../services/form.service';
 import { LivePreviewComponent } from '../live-preview/live-preview.component';
 import { Location } from '@angular/common';
 import { selectDmpSaving } from '../../../store/selectors/dmp.selectors';
+import { ConfigService } from '../../../../../../../apps/damap-frontend/src/app/services/config.service';
 
 @Component({
   selector: 'app-actions',
@@ -43,7 +44,7 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
   savingDmp$: Observable<boolean>;
   savingDmp: boolean;
 
-  exportDmpType: ETemplateType;
+  exportDmpType: number;
 
   private subscriptions: Subscription[] = [];
 
@@ -54,6 +55,7 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
     private location: Location,
     private backendService: BackendService,
     private feedbackService: FeedbackService,
+    private configService: ConfigService,
   ) {
     this.dmpForm = this.formService.dmpForm;
   }
@@ -125,24 +127,36 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(ExportWarningDialogComponent, {});
     let funderSupported: boolean =
       this.dmpForm.controls.project?.getRawValue()?.funderSupported ?? false;
-    dialogRef.componentInstance.funderSupported = funderSupported;
+
+    if (funderSupported && this.dmpForm.value.id) {
+      this.backendService
+        .getTemplateType(this.dmpForm.value.id)
+        .subscribe(response => {
+          const templates = this.configService.getConfig()?.templates || [];
+          const activeMatch = templates.find(
+            t => t.templateCategory === response && t.active,
+          );
+          const fallbackId = templates.find(t => t.active)?.id || null;
+          dialogRef.componentInstance.selectedTemplate = activeMatch
+            ? activeMatch.id
+            : fallbackId;
+        });
+    } else {
+      const templates = this.configService.getConfig()?.templates || [];
+      dialogRef.componentInstance.selectedTemplate =
+        templates.find(t => t.active)?.id || null;
+    }
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 'cancel' || result === undefined) {
-      } else {
-        // Handle the actual export action
+      if (result && result !== 'cancel') {
         const template = result;
-        if (!funderSupported) {
-          this.exportDmpType = template;
-          this.store.dispatch(
-            exportDmpTemplate({
-              dmp: this.formService.exportFormToDmp(),
-              dmpTemplateType: this.exportDmpType,
-            }),
-          );
-        } else {
-          this.dispatchExportDmp();
-        }
+        this.exportDmpType = template;
+        this.store.dispatch(
+          exportDmpTemplate({
+            dmp: this.formService.exportFormToDmp(),
+            dmpTemplateType: this.exportDmpType,
+          }),
+        );
       }
     });
   }
@@ -162,8 +176,14 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
             width: '70vw',
             height: '90vh',
           });
-
-          dialogRef.componentInstance.selectedTemplate = response;
+          const templates = this.configService.getConfig()?.templates || [];
+          const activeMatch = templates.find(
+            t => t.templateCategory === response && t.active,
+          );
+          const fallbackId = templates.find(t => t.active)?.id || null;
+          dialogRef.componentInstance.selectedTemplate = activeMatch
+            ? activeMatch.id
+            : fallbackId;
         });
     } else {
       const dialogRef = this.dialog.open(LivePreviewComponent, {

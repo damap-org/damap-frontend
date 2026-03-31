@@ -23,4 +23,5 @@ export interface Config {
   readonly images: BackendImage[];
   readonly colorTheme: ColorTheme;
   readonly multitenancyEnabled: boolean;
+  readonly templates: any[];
 }

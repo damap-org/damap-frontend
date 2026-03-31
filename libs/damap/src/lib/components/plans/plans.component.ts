@@ -29,7 +29,7 @@ export class PlansComponent implements OnInit {
   dmps$: Observable<DmpListItem[]>;
   dmpsLoaded$: Observable<LoadingState>;
   LoadingState = LoadingState;
-  exportDmpType: ETemplateType;
+  exportDmpType: number;
   dmpForm: FormGroup;
 
   allDmps$: Observable<DmpListItem[]>;
