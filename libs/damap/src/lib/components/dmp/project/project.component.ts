@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Project } from '../../../domain/project';
 import { UntypedFormControl } from '@angular/forms';
+import { ConfigService } from '../../../../../../../apps/damap-frontend/src/app/services/config.service';
 
 @Component({
   selector: 'app-dmp-project',
@@ -14,6 +15,12 @@ export class ProjectComponent {
   @Output() project = new EventEmitter<Project>();
 
   selectedView: 'primaryView' | 'secondaryView' = 'primaryView';
+
+  constructor(private configService: ConfigService) {
+    if (this.configService.getProjectService() === 'disabled') {
+      this.selectedView = 'secondaryView';
+    }
+  }
 
   changeProject(project: Project): void {
     this.project.emit(project);
