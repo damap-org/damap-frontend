@@ -1,6 +1,7 @@
 import csv
-from pathlib import Path
+import re
 import shutil
+from pathlib import Path
 
 def replace_translation_keys():
     # 1. Set up paths
@@ -22,7 +23,7 @@ def replace_translation_keys():
 
     with open(csv_path, "r", encoding="utf-8-sig", newline="") as f:
         reader = csv.reader(f)
-        header = next(reader, None)
+        next(reader, None)  # skip header
 
         for row_num, row in enumerate(reader, start=2):
             if len(row) < 2:
@@ -75,7 +76,7 @@ def replace_translation_keys():
     print(f"🔍 Found {len(candidate_files)} candidate files to scan.")
 
     # 5. Sort replacements by descending old key length
-    # This avoids shorter keys replacing inside longer ones first.
+    # Avoid shorter keys changing text inside longer keys first.
     sorted_replacements = sorted(
         replacements.items(),
         key=lambda pair: len(pair[0]),
@@ -99,14 +100,28 @@ def replace_translation_keys():
         file_replacements = []
 
         for old_key, new_key in sorted_replacements:
-            count = new_content.count(old_key)
-            if count > 0:
-                new_content = new_content.replace(old_key, new_key)
-                total_replacements += count
-                file_replacements.append((old_key, new_key, count))
+            old_escaped = re.escape(old_key)
+
+            # Replace only when the key is directly inside matching quotes:
+            # 'old.key'  -> 'new.key'
+            # "old.key"  -> "new.key"
+            single_quote_pattern = re.compile(rf"(?<!\\)'{old_escaped}'")
+            double_quote_pattern = re.compile(rf'(?<!\\)"{old_escaped}"')
+
+            single_count = len(single_quote_pattern.findall(new_content))
+            if single_count > 0:
+                new_content = single_quote_pattern.sub(f"'{new_key}'", new_content)
+
+            double_count = len(double_quote_pattern.findall(new_content))
+            if double_count > 0:
+                new_content = double_quote_pattern.sub(f'"{new_key}"', new_content)
+
+            total_count = single_count + double_count
+            if total_count > 0:
+                total_replacements += total_count
+                file_replacements.append((old_key, new_key, total_count))
 
         if new_content != original_content:
-            # Create backup preserving relative structure
             try:
                 relative_path = file_path.relative_to(base_project_folder)
             except ValueError:
@@ -116,7 +131,6 @@ def replace_translation_keys():
             backup_path.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(file_path, backup_path)
 
-            # Write changed file
             file_path.write_text(new_content, encoding="utf-8")
 
             files_changed += 1
@@ -131,7 +145,7 @@ def replace_translation_keys():
         f.write(f"Files scanned: {len(candidate_files)}\n")
         f.write(f"Files changed: {files_changed}\n")
         f.write(f"Files unchanged: {unchanged_files}\n")
-        f.write(f"Total string replacements: {total_replacements}\n")
+        f.write(f"Total quoted replacements: {total_replacements}\n")
         f.write(f"Backups written to: {backup_root}\n\n")
 
         if skipped_rows:
@@ -152,7 +166,7 @@ def replace_translation_keys():
 
     print("\n✅ Replacement complete!")
     print(f"🟢 Files changed: {files_changed}")
-    print(f"📊 Total replacements: {total_replacements}")
+    print(f"📊 Total quoted replacements: {total_replacements}")
     print(f"🗂️ Backups stored in: {backup_root}")
     print(f"📄 Report written to: {output_report_path}")
 
