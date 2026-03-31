@@ -134,7 +134,7 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
         .subscribe(response => {
           const templates = this.configService.getConfig()?.templates || [];
           const activeMatch = templates.find(
-            t => t.templateKey === response && t.active,
+            t => t.templateCategory === response && t.active,
           );
           const fallbackId = templates.find(t => t.active)?.id || null;
           dialogRef.componentInstance.selectedTemplate = activeMatch
@@ -178,7 +178,7 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
           });
           const templates = this.configService.getConfig()?.templates || [];
           const activeMatch = templates.find(
-            t => t.templateKey === response && t.active,
+            t => t.templateCategory === response && t.active,
           );
           const fallbackId = templates.find(t => t.active)?.id || null;
           dialogRef.componentInstance.selectedTemplate = activeMatch
