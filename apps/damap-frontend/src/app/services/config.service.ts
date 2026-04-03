@@ -70,11 +70,16 @@ export class ConfigService {
           this.oauthService.setupAutomaticSilentRefresh();
           return this.oauthService
             .loadDiscoveryDocumentAndTryLogin()
-            .then(() => {
+            .then(async () => {
               if (
                 this.oauthService.hasValidIdToken() &&
                 this.oauthService.hasValidAccessToken()
               ) {
+                const tenantConfig = await this.loadConfig();
+                this.config = tenantConfig;
+                this.colorThemeService.applyTheming(tenantConfig);
+                this.imageThemeService.applyTheming(tenantConfig);
+
                 const url = decodeURIComponent(this.oauthService.state!);
                 if (url !== '') {
                   return this.router.navigateByUrl(url);
