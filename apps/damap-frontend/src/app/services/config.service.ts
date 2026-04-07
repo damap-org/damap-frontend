@@ -89,7 +89,8 @@ export class ConfigService {
                 }
               }
               return true;
-            }).catch(error => {
+            })
+            .catch(error => {
               // TODO: Use the same error handling mechanism as the main config call
               /* eslint-disable no-console */
               console.error(
