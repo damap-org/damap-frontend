@@ -36,9 +36,12 @@ describe('ConfigService', () => {
     env: 'test-env',
     appTitle: 'Test App Title',
     personSearchServiceConfigs: [],
+    projectSearchServiceConfig: null,
     fitsServiceAvailable: false,
     livePreviewAvailable: true,
     ethicalReportEnabled: true,
+    multitenancyEnabled: false,
+    templates: [],
     images: [
       {
         id: 1,
@@ -110,6 +113,11 @@ describe('ConfigService', () => {
       expect(req.request.method).toBe('GET');
       req.flush(mockConfig);
 
+      await new Promise(resolve => setTimeout(resolve, 0));
+
+      const req2 = httpMock.expectOne(`${environment.backendurl}config`);
+      req2.flush(mockConfig);
+
       await initializePromise;
 
       expect(mockOAuthService.configure).toHaveBeenCalledWith({
@@ -147,6 +155,11 @@ describe('ConfigService', () => {
       const initializePromise = service.initializeApp();
       const req = httpMock.expectOne(`${environment.backendurl}config`);
       req.flush(mockConfig);
+
+      await new Promise(resolve => setTimeout(resolve, 0));
+
+      const req2 = httpMock.expectOne(`${environment.backendurl}config`);
+      req2.flush(mockConfig);
 
       await initializePromise;
       // eslint-disable-next-line no-console

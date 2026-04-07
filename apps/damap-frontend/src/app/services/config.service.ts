@@ -62,25 +62,42 @@ export class ConfigService {
             responseType: config.responseType,
             oidc: true,
             scope: config.scope,
-            // useSilentRefresh: true,
             showDebugInformation: isDevMode(),
-            // sessionChecksEnabled: true,
           };
           this.oauthService.configure(authConfig);
           this.oauthService.setupAutomaticSilentRefresh();
           return this.oauthService
             .loadDiscoveryDocumentAndTryLogin()
-            .then(() => {
+            .then(async () => {
               if (
                 this.oauthService.hasValidIdToken() &&
                 this.oauthService.hasValidAccessToken()
               ) {
+                const tenantConfig = await this.loadConfig();
+                this.config = tenantConfig;
+                this.colorThemeService.applyTheming(tenantConfig);
+                this.imageThemeService.applyTheming(tenantConfig);
+                const appTitle = config.appTitle;
+                if (!appTitle) {
+                  // eslint-disable-next-line no-console
+                  console.warn('App title is missing in the config');
+                }
+
                 const url = decodeURIComponent(this.oauthService.state!);
                 if (url !== '') {
                   return this.router.navigateByUrl(url);
                 }
               }
-              return new Promise<boolean>(resolve => resolve(true));
+              return true;
+            })
+            .catch(error => {
+              // TODO: Use the same error handling mechanism as the main config call
+              /* eslint-disable no-console */
+              console.error(
+                'Failed to load tenant specific config after login - please make sure your backend is up and running!',
+              );
+              console.error(error);
+              return false;
             });
         }
       })
@@ -105,7 +122,7 @@ export class ConfigService {
           this.feedbackService.error('landing-page.servers-down', undefined, 0);
         }
 
-        return new Promise<boolean>(resolve => resolve(false));
+        return false;
       });
   }
 
