@@ -11,8 +11,6 @@
         "ORCID_PERSON_NOT_FOUND": "A person you searched for with ORCID couldn't be found.",
         "ORCID_NOT_AVAILABLE": "The ORCID person service is currently unavailable. Please try again later.",
         "ORCID_UNEXPECTED_ERROR": "The ORCID person service is currently unavailable due to an unexpected error. Please try again later.",
-        "FITS_NOT_AVAILABLE": "The file analysis service is currently unavailable. Please try again later.",
-        "FITS_UNEXPECTED_ERROR": "The file analysis service is currently unavailable due to an unexpected error. Please try again later.",
         "OPENAIRE_NOT_FOUND": "A dataset you searched for couldn't be found.",
         "OPENAIRE_NOT_AVAILABLE": "The OpenAire dataset service is currently unavailable. Please try again later.",
         "OPENAIRE_UNEXPECTED_ERROR": "The OpenAire dataset service is currently unavailable due to an unexpected error. Please try again later.",
