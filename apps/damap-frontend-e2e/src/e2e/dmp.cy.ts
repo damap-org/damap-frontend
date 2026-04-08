@@ -11,7 +11,7 @@ describe('dmp', () => {
 
   it('should create and autosave dmp', () => {
     cy.intercept('PUT', '/api/dmps/*').as('updateDmp');
-    cy.intercept('POST', '/api/fits/examine').as('examineFile');
+    cy.intercept('POST', '/api/file-analysis/examine').as('examineFile');
     // Create new dmp
     cy.get('div.button-row-left > button').last().click();
     // eslint-disable-next-line cypress/no-unnecessary-waiting

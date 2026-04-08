@@ -1,12 +1,5 @@
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Observable } from 'rxjs';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { AbstractBaseDataComponent } from '../abstract-base-data.component';
 import { Config } from '../../../../domain/config';
@@ -21,20 +14,12 @@ import { UntypedFormControl } from '@angular/forms';
   styleUrls: ['./created-data.component.css'],
   standalone: false,
 })
-export class CreatedDataComponent
-  extends AbstractBaseDataComponent
-  implements OnInit, OnDestroy
-{
+export class CreatedDataComponent extends AbstractBaseDataComponent {
   @Input() fileUpload: { file: File; progress: number; finalized: boolean }[];
   @Input() config$: Observable<Config>;
 
   @Output() fileToAnalyse = new EventEmitter<File>();
   @Output() uploadToCancel = new EventEmitter<number>();
-  @Input() fitsServiceAvailable$: BehaviorSubject<boolean>;
-  fitsServiceAvailable: boolean;
-  fitsServiceSubscription: Subscription;
-
-  configSubscription: Subscription;
 
   readonly tableHeaders: string[] = [
     'dataset',
@@ -47,20 +32,6 @@ export class CreatedDataComponent
 
   constructor(public dialog: MatDialog) {
     super();
-  }
-
-  ngOnInit(): void {
-    if (this.fitsServiceAvailable$) {
-      this.fitsServiceSubscription = this.fitsServiceAvailable$.subscribe(
-        value => {
-          this.fitsServiceAvailable = value;
-        },
-      );
-    }
-  }
-
-  ngOnDestroy(): void {
-    this.fitsServiceSubscription?.unsubscribe();
   }
 
   openDatasetDialog() {

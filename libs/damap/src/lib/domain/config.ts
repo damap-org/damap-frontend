@@ -18,7 +18,6 @@ export interface Config {
   readonly appTitle: string;
   readonly personSearchServiceConfigs: ServiceConfig[];
   readonly projectSearchServiceConfig: string;
-  readonly fitsServiceAvailable: boolean;
   readonly livePreviewAvailable: boolean;
   readonly ethicalReportEnabled: boolean;
   readonly images: BackendImage[];

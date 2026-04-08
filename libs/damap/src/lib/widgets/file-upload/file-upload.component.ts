@@ -19,7 +19,10 @@ export class FileUploadComponent {
   }
 
   onFileSelected(event) {
-    this.onFileDropped(event.target.files);
+    if (event.target.files && event.target.files.length > 0) {
+      this.onFileDropped(event.target.files);
+      event.target.value = '';
+    }
   }
 
   cancelUpload(index: number) {
