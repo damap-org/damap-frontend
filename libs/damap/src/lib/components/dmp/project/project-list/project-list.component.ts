@@ -69,7 +69,6 @@ export class ProjectListComponent implements OnInit, OnDestroy {
           console.error('Error fetching recommended projects:', error);
           return of({ items: [] } as SearchResult<Project>);
         }),
-        shareReplay(1),
       );
   }
 
