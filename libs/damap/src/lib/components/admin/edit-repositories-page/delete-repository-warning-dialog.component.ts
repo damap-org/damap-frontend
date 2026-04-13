@@ -17,7 +17,7 @@ export class DeleteRepositoryWarningDialogComponent extends DeleteWarningDialogC
   }
 
   override getDeleteContent(): string {
-    return 'admin.repositories.delete-dialog.message';
+    return 'admin.recommended-repositories.delete-dialog.message';
   }
 
   onCancel(): void {

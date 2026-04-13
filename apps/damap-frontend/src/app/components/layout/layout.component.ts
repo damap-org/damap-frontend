@@ -167,16 +167,16 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
         ' ' +
         this.name +
         ' ' +
-        this.translate.instant('layout.menu.titleDashboard');
-      this.summaryLine = 'layout.menu.section';
+        this.translate.instant('admin.dashboard.title');
+      this.summaryLine = 'dashboard.home.section-intro';
     } else if (componentInstance instanceof AdminComponent) {
       this.greeting =
         this.translate.instant('layout.menu.greeting') +
         ' ' +
         this.name +
         ' ' +
-        this.translate.instant('layout.menu.titleDashboard');
-      this.summaryLine = 'layout.menu.adminSection';
+        this.translate.instant('admin.dashboard.title');
+      this.summaryLine = 'admin.dashboard.section-intro';
     }
   }
 

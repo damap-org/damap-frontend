@@ -12,14 +12,14 @@
         [routerLink]="'/plans'"
         [disabled]="!formChanged"
         routerLinkActive="active">
-        {{ "button.discard" | translate }}
+        {{ "actions-bar.buttons.discard" | translate }}
       </button>
       <button
         class="action-button"
         mat-flat-button
         (click)="saveDmp()"
         [disabled]="dmpForm.invalid || !this.formChanged || this.savingDmp">
-        {{ "button.save" | translate }}
+        {{ "actions-bar.buttons.save" | translate }}
       </button>
       <button
         class="action-button"
@@ -33,7 +33,7 @@
         mat-flat-button
         (click)="exportDmpTemplate()"
         [disabled]="dmpForm.invalid || this.savingDmp">
-        {{ "button.export" | translate }}
+        {{ "actions-bar.buttons.export" | translate }}
       </button>
     </div>
   </mat-expansion-panel>
@@ -48,14 +48,14 @@
       [routerLink]="'/plans'"
       [disabled]="!this.formChanged"
       routerLinkActive="active">
-      {{ "button.discard" | translate }}
+      {{ "actions-bar.buttons.discard" | translate }}
     </button>
     <button
       class="action-button"
       mat-flat-button
       (click)="saveDmp()"
       [disabled]="dmpForm.invalid || !this.formChanged || this.savingDmp">
-      {{ "button.save" | translate }}
+      {{ "actions-bar.buttons.save" | translate }}
     </button>
     <button
       class="action-button"
@@ -66,14 +66,14 @@
     </button>
     <div
       *ngIf="preview"
-      matTooltip="{{ 'button.preview.tooltipDisabled' | translate }}"
+      matTooltip="{{ 'actions-bar.buttons.preview.hintWhenDisabled' | translate }}"
       [matTooltipDisabled]="previewEnabled()">
       <button
         class="action-button"
         mat-flat-button
         [disabled]="!previewEnabled()"
         (click)="showPreview()">
-        {{ "button.preview.content" | translate }}
+        {{ "actions-bar.buttons.preview.label" | translate }}
       </button>
     </div>
     <button
@@ -81,7 +81,7 @@
       mat-flat-button
       (click)="exportDmpTemplate()"
       [disabled]="dmpForm.invalid || this.savingDmp">
-      {{ "button.export" | translate }}
+      {{ "actions-bar.buttons.export" | translate }}
     </button>
   </div>
 </div>

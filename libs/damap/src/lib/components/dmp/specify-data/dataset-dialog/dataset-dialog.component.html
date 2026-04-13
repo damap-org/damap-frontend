@@ -3,14 +3,14 @@
     "dmp.steps.data.specify.dialog.edit" | translate
   }}</ng-container>
   <ng-template #add>{{
-    "dmp.steps.data.specify.dialog.add" | translate
+    "dmp.steps.data.specify.dialog.title.create" | translate
   }}</ng-template>
 </h1>
 
 <mat-dialog-content id="datasetDialog">
   <div [formGroup]="dataset">
     <app-input-wrapper
-      [label]="'dmp.steps.data.specify.dialog.title' | translate"
+      [label]="'dmp.steps.data.specify.dialog.field.title' | translate"
       [control]="title"></app-input-wrapper>
     <div
       class="dialogRow"

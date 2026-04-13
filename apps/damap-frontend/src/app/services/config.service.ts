@@ -37,7 +37,7 @@ export class ConfigService {
     return this.loadConfig()
       .then((config: Config) => {
         if (!this.firstAttempt) {
-          this.feedbackService.success('landing-page.servers-up');
+          this.feedbackService.success('landing.servers-up');
         }
         this.backendDown$.next(false);
         if (!config) {
@@ -114,12 +114,12 @@ export class ConfigService {
 
         if (this.firstAttempt) {
           this.firstAttempt = false;
-          this.feedbackService.error('landing-page.servers-down-retrying');
+          this.feedbackService.error('landing.servers-down-retrying');
           setTimeout(() => {
             this.initializeApp();
           }, 10000);
         } else {
-          this.feedbackService.error('landing-page.servers-down', undefined, 0);
+          this.feedbackService.error('landing.servers-down', undefined, 0);
         }
 
         return false;
@@ -187,7 +187,7 @@ export class ConfigService {
     return lastValueFrom(
       this.http.get<Config>(`${host}config`).pipe(
         catchError(err => {
-          this.feedbackService.error('landing-page.servers-down');
+          this.feedbackService.error('landing.servers-down');
           return throwError(() => err);
         }),
       ),

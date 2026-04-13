@@ -3,7 +3,7 @@
   <div>
     <div>
       <span class="headings"
-        >{{ "versions.view.legal.sensitive.data.present" | translate }}:</span
+        >{{ "dmp.versions.view.legal.sensitive.data.present" | translate }}:</span
       >
       <ng-container *ngIf="dmp.sensitiveData; else no">
         {{ "yes" | translate }}</ng-container
@@ -13,7 +13,7 @@
       <div>
         <span class="headings"
           >{{
-            "versions.view.legal.sensitive.data.security" | translate
+            "dmp.versions.view.legal.sensitive.data.security" | translate
           }}:</span
         >
         <span *ngFor="let item of dmp.sensitiveDataSecurity; last as last">
@@ -24,14 +24,14 @@
       <div *ngIf="otherSecurityMeasure">
         <span class="headings"
           >{{
-            "versions.view.legal.sensitive.data.other.security" | translate
+            "dmp.versions.view.legal.sensitive.data.other.security" | translate
           }}:</span
         >
         {{ dmp.otherDataSecurityMeasures }}
       </div>
       <div>
         <span class="headings"
-          >{{ "versions.view.legal.sensitive.data.access" | translate }}:</span
+          >{{ "dmp.versions.view.legal.sensitive.data.access" | translate }}:</span
         >
         {{ dmp.sensitiveDataAccess }}
       </div>
@@ -42,7 +42,7 @@
   <div>
     <div>
       <span class="headings"
-        >{{ "versions.view.legal.personal.data.present" | translate }}:</span
+        >{{ "dmp.versions.view.legal.personal.data.present" | translate }}:</span
       >
       <ng-container *ngIf="dmp.personalData; else no">
         {{ "yes" | translate }}</ng-container
@@ -52,7 +52,7 @@
       <div>
         <span class="headings"
           >{{
-            "versions.view.legal.personal.data.compliance" | translate
+            "dmp.versions.view.legal.personal.data.compliance" | translate
           }}:</span
         >
         <span *ngFor="let item of dmp.personalDataCompliance; last as last">
@@ -63,7 +63,7 @@
       <div *ngIf="otherCompliance">
         <span class="headings"
           >{{
-            "versions.view.legal.personal.data.other.compliance" | translate
+            "dmp.versions.view.legal.personal.data.other.compliance" | translate
           }}:</span
         >
         {{ dmp.otherPersonalDataCompliance }}
@@ -75,7 +75,7 @@
   <div>
     <div>
       <span class="headings"
-        >{{ "versions.view.legal.restrictions.present" | translate }}:</span
+        >{{ "dmp.versions.view.legal.restrictions.present" | translate }}:</span
       >
       <ng-container *ngIf="dmp.legalRestrictions; else no">
         {{ "yes" | translate }}</ng-container
@@ -84,13 +84,13 @@
     <ng-container *ngIf="dmp.legalRestrictions">
       <div>
         <span class="headings"
-          >{{ "versions.view.legal.restrictions.comment" | translate }}:</span
+          >{{ "dmp.versions.view.legal.restrictions.comment" | translate }}:</span
         >
         {{ dmp.legalRestrictionsComment }}
       </div>
       <div *ngIf="dmp.personalDataCompliance">
         <span class="headings"
-          >{{ "versions.view.legal.restrictions.documents" | translate }}:</span
+          >{{ "dmp.versions.view.legal.restrictions.documents" | translate }}:</span
         >
         <span *ngFor="let item of dmp.legalRestrictionsDocuments; last as last">
           {{ "enum.agreement." + item | translate
@@ -100,7 +100,7 @@
       <div *ngIf="otherDocuments">
         <span class="headings"
           >{{
-            "versions.view.legal.restrictions.other.documents" | translate
+            "dmp.versions.view.legal.restrictions.other.documents" | translate
           }}:</span
         >
         {{ dmp.otherLegalRestrictionsDocument }}
@@ -108,7 +108,7 @@
       <div>
         <span class="headings"
           >{{
-            "versions.view.legal.restrictions.data.rights.access" | translate
+            "dmp.versions.view.legal.restrictions.data.rights.access" | translate
           }}:</span
         >
         {{ dmp.dataRightsAndAccessControl }}
@@ -119,7 +119,7 @@
   <!-- Human participants -->
   <div>
     <span class="headings"
-      >{{ "versions.view.ethical.human.participants" | translate }}:</span
+      >{{ "dmp.versions.view.ethical.human.participants" | translate }}:</span
     >
     <ng-container *ngIf="dmp.humanParticipants; else no">
       {{ "yes" | translate }}</ng-container
@@ -129,7 +129,7 @@
   <!-- Ethical issues -->
   <div>
     <span class="headings"
-      >{{ "versions.view.ethical.issues" | translate }}:</span
+      >{{ "dmp.versions.view.ethical.issues" | translate }}:</span
     >
     <ng-container *ngIf="dmp.ethicalIssuesExist; else no">
       {{ "yes" | translate }}</ng-container
@@ -139,7 +139,7 @@
   <!-- Ethics committee -->
   <div>
     <span class="headings"
-      >{{ "versions.view.ethical.committee.reviewed" | translate }}:</span
+      >{{ "dmp.versions.view.ethical.committee.reviewed" | translate }}:</span
     >
     <ng-container *ngIf="dmp.committeeReviewed; else no">
       {{ "yes" | translate }}</ng-container

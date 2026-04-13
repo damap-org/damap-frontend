@@ -1,30 +1,30 @@
 <div>
   <div>
     <span class="headings"
-      >{{ "versions.view.reuse.target.audience" | translate }}:</span
+      >{{ "dmp.versions.view.reuse.target.audience" | translate }}:</span
     >
     {{ targetAudience }}
   </div>
   <div>
-    <span class="headings">{{ "versions.view.reuse.tools" | translate }}:</span>
+    <span class="headings">{{ "dmp.versions.view.reuse.tools" | translate }}:</span>
     {{ tools }}
   </div>
   <ng-container *ngIf="hasRestrictedDatasets">
     <div>
       <span class="headings"
-        >{{ "versions.view.reuse.restricted.data.access" | translate }}: </span
+        >{{ "dmp.versions.view.reuse.restricted.data.access" | translate }}: </span
       >{{ restrictedDataAccess }}
     </div>
     <div>
       <span class="headings"
-        >{{ "versions.view.reuse.access.info.restricted" | translate }}: </span
+        >{{ "dmp.versions.view.reuse.access.info.restricted" | translate }}: </span
       >{{ restrictedAccessInfo }}
     </div>
   </ng-container>
   <ng-container *ngIf="hasClosedDatasets">
     <div>
       <span class="headings"
-        >{{ "versions.view.reuse.access.info.closed" | translate }}:</span
+        >{{ "dmp.versions.view.reuse.access.info.closed" | translate }}:</span
       >
       {{ closedAccessInfo }}
     </div>

@@ -12,26 +12,26 @@
     </div>
     <div>
       <span class="headings"
-        >{{ "versions.view.datasets.size" | translate }}:</span
+        >{{ "dmp.versions.view.datasets.size" | translate }}:</span
       >
       {{ dataset.size | byte }}
     </div>
     <div>
       <span class="headings"
-        >{{ "versions.view.datasets.description" | translate }}:</span
+        >{{ "dmp.versions.view.datasets.description" | translate }}:</span
       >
       {{ dataset.description }}
     </div>
     <div *ngIf="dataset.dataAccess !== dataAccessType.CLOSED">
       <div>
         <span class="headings"
-          >{{ "versions.view.datasets.license" | translate }}:</span
+          >{{ "dmp.versions.view.datasets.license" | translate }}:</span
         >
         {{ dataset.license }}
       </div>
       <div>
         <span class="headings"
-          >{{ "versions.view.datasets.retention.period" | translate }} :</span
+          >{{ "dmp.versions.view.datasets.retention.period" | translate }} :</span
         >
         {{ dataset.retentionPeriod }}
       </div>
@@ -39,19 +39,19 @@
     <div *ngIf="dataset.dataAccess === dataAccessType.CLOSED && dataset.delete">
       <div>
         <span class="headings"
-          >{{ "versions.view.datasets.deletion.date" | translate }}:</span
+          >{{ "dmp.versions.view.datasets.deletion.date" | translate }}:</span
         >
         {{ dataset.dateOfDeletion | date }}
       </div>
       <div>
         <span class="headings"
-          >{{ "versions.view.datasets.deletion.reason" | translate }}:</span
+          >{{ "dmp.versions.view.datasets.deletion.reason" | translate }}:</span
         >
         {{ dataset.reasonForDeletion }}
       </div>
       <div>
         <span class="headings"
-          >{{ "versions.view.datasets.deletion.person" | translate }}:</span
+          >{{ "dmp.versions.view.datasets.deletion.person" | translate }}:</span
         >
         {{ dataset.deletionPerson?.firstName }}
         {{ dataset.deletionPerson?.lastName }}
@@ -59,38 +59,38 @@
     </div>
     <div>
       <span class="headings"
-        >{{ "versions.view.datasets.restrictions.label" | translate }}:</span
+        >{{ "dmp.versions.view.datasets.restrictions.label" | translate }}:</span
       >
       <ul>
         <li *ngIf="dataset.sensitiveData">
-          {{ "versions.view.datasets.restrictions.sensitive" | translate }}
+          {{ "dmp.versions.view.datasets.restrictions.sensitive" | translate }}
         </li>
         <li *ngIf="dataset.personalData">
-          {{ "versions.view.datasets.restrictions.personal" | translate }}
+          {{ "dmp.versions.view.datasets.restrictions.personal" | translate }}
         </li>
         <li *ngIf="dataset.legalRestrictions">
-          {{ "versions.view.datasets.restrictions.legal" | translate }}
+          {{ "dmp.versions.view.datasets.restrictions.legal" | translate }}
         </li>
       </ul>
     </div>
     <div>
       <span class="headings"
-        >{{ "versions.view.datasets.data.access.label" | translate }}:</span
+        >{{ "dmp.versions.view.datasets.data.access.label" | translate }}:</span
       >
       <ul>
         <li>
-          {{ "versions.view.datasets.data.access.public" | translate }}:
+          {{ "dmp.versions.view.datasets.data.access.public" | translate }}:
           {{ "enum.accessright." + dataset.publicAccess | translate }}
         </li>
         <li>
-          {{ "versions.view.datasets.data.access.selected" | translate }}:
+          {{ "dmp.versions.view.datasets.data.access.selected" | translate }}:
           {{
             "enum.accessright." + dataset.selectedProjectMembersAccess
               | translate
           }}
         </li>
         <li>
-          {{ "versions.view.datasets.data.access.other" | translate }}:
+          {{ "dmp.versions.view.datasets.data.access.other" | translate }}:
           {{
             "enum.accessright." + dataset.otherProjectMembersAccess | translate
           }}
@@ -114,7 +114,7 @@
   </div>
   <div>
     <span class="headings"
-      >{{ "versions.view.documentation.data.generation" | translate }}:</span
+      >{{ "dmp.versions.view.documentation.data.generation" | translate }}:</span
     >
     {{ dataGeneration }}
   </div>
@@ -126,7 +126,7 @@
   ">
   <div>
     <span class="headings"
-      >{{ "versions.view.datasets.data.none" | translate }}:</span
+      >{{ "dmp.versions.view.datasets.data.none" | translate }}:</span
     >
   </div>
   {{ noDataExplanation }}
@@ -139,5 +139,5 @@
     (dataKind !== dataKindType.SPECIFY &&
       reusedDataKind === dataKindType.UNKNOWN)
   ">
-  {{ "versions.view.datasets.data.unknown" | translate }}
+  {{ "dmp.versions.view.datasets.data.unknown" | translate }}
 </div>

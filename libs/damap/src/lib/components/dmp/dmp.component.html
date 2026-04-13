@@ -104,9 +104,9 @@
       <!-- The steps  -->
 
       <mat-step
-        label="{{ 'dmp.steps.project.label' | translate }}"
+        label="{{ 'dmp.steps.project.view.button.choose' | translate }}"
         [completed]="
-          completenessLabel('dmp.steps.project.label')?.completeness > 0
+          completenessLabel('dmp.steps.project.view.button.choose')?.completeness > 0
         ">
         <ng-container *ngIf="selectedStep === 0">
           <app-project-instruction
