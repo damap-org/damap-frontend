@@ -108,20 +108,23 @@
           [href]="'sidebar.footer.impressum.link' | translate"
           rel="noopener"
           target="_blank"
-          >{{ "sidebar.footer.impressum" | translate }}</a
         >
+          {{ "sidebar.footer.impressum.label" | translate }}
+        </a>
         <a
           [href]="'sidebar.footer.terms-and-conditions.link' | translate"
           rel="noopener"
           target="_blank"
-          >{{ "sidebar.footer.terms-and-conditions" | translate }}</a
         >
+          {{ "sidebar.footer.terms-and-conditions.label" | translate }}
+        </a>
         <a
           [href]="'sidebar.footer.data-protection-declaration.link' | translate"
           rel="noopener"
           target="_blank"
-          >{{ "sidebar.footer.data-protection-declaration" | translate }}</a
         >
+          {{ "sidebar.footer.data-protection-declaration.label" | translate }}
+        </a>
       </div>
       <div class="version-information">
         <a [routerLink]="'/gdpr'" rel="noopener">{{

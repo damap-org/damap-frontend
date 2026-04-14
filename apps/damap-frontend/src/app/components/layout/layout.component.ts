@@ -184,6 +184,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   //        Provide name to translate pipe or directive.
   //        Remove this method.
   replaceFirstname(name: string, str: string): string {
+    console.log(str);
     const regex = new RegExp(`\\b${'Firstname'}\\b`, 'g');
     if (regex.test(str)) {
       return str.replace(regex, name);
