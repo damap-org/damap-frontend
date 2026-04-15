@@ -6,7 +6,7 @@
 :root {
   /*
   These tokens are defined by us and used explicitly using var().
-  They are not used by Angular Material. They are also overriden by the custom-theme service.
+  They are not used by Angular Material. They are also overridden by the custom-theme service.
   If possible, we should use the Angular Material tokens instead of defining/using our own.
   */
   --custom-user-navbar-color: #{mat.get-theme-color(
@@ -52,15 +52,6 @@
       $app-light-theme,
       surface-container-high
     )};
-  --custom-error-color: #{mat.get-theme-color($app-light-theme, error)};
-  --custom-error-container: #{mat.get-theme-color(
-      $app-light-theme,
-      error-container
-    )};
-  --custom-on-error-container: #{mat.get-theme-color(
-      $app-light-theme,
-      on-error-container
-    )};
   --custom-neutral-color-medium-light: #{mat.get-theme-color(
       $app-light-theme,
       neutral,
@@ -93,34 +84,6 @@
   --body-typography: #{mat.get-theme-typography(
       $app-light-theme,
       body-medium,
-      font
-    )};
-
-  --body-large-typography: #{mat.get-theme-typography(
-      $app-light-theme,
-      body-large,
-      font
-    )};
-
-  --title-medium-typography: #{mat.get-theme-typography(
-      $app-light-theme,
-      title-medium,
-      font
-    )};
-
-  --title-large: #{mat.get-theme-typography($app-light-theme, title-large, font)};
-
-  --body-large: #{mat.get-theme-typography($app-light-theme, body-large, font)};
-
-  --display-large: #{mat.get-theme-typography(
-      $app-light-theme,
-      display-large,
-      font
-    )};
-
-  --display-medium: #{mat.get-theme-typography(
-      $app-light-theme,
-      display-medium,
       font
     )};
 }

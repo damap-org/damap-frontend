@@ -21,14 +21,14 @@
 }
 
 th.mat-column-title {
-  font: var(--title-medium-typography);
+  font: var(--mat-sys-title-medium);
 }
 
 th.mat-column-version,
 th.mat-column-created,
 th.mat-column-modified,
 th.mat-column-contact {
-  font: var(--body-large-typography);
+  font: var(--mat-sys-body-large);
   text-align: left;
 }
 

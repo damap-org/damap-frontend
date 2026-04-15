@@ -26,7 +26,7 @@
 }
 
 .info-bar-typography {
-  font: var(--body-large);
+  font: var(--mat-sys-body-large);
   color: var(--custom-landing-page-info-bar-color);
 }
 
@@ -72,10 +72,10 @@
 }
 
 .title-typography {
-  font: var(--display-large);
-  color: var(--mdc-theme-on-surface);
+  font: var(--mat-sys-display-large);
+  color: var(--mat-sys-on-surface);
   font-weight: bold;
-  margin-bottom: var(--body-large);
+  margin-bottom: var(--mat-sys-body-large);
 }
 
 .start-btn {
@@ -96,10 +96,10 @@
 
 @media (max-width: 1600px) {
   .title-typography {
-    font: var(--display-medium);
-    color: var(--mdc-theme-on-surface);
+    font: var(--mat-sys-display-medium);
+    color: var(--mat-sys-on-surface);
     font-weight: bold;
-    margin-bottom: var(--body-large);
+    margin-bottom: var(--mat-sys-body-large);
   }
 }
 
@@ -126,21 +126,21 @@
   }
 
   .info-bar-typography {
-    font: var(--title-large);
+    font: var(--mat-sys-title-large);
   }
 }
 
 @media (max-width: 570px) {
   .info-bar-typography {
-    font: var(--body-medium);
-    color: var(--mdc-theme-on-surface);
+    font: var(--mat-sys-body-medium);
+    color: var(--mat-sys-on-surface);
     font-weight: bold;
-    margin-bottom: var(--body-large);
+    margin-bottom: var(--mat-sys-body-large);
   }
 
   .title-typography {
-    font: var(--display-medium);
-    color: var(--mdc-theme-on-surface);
+    font: var(--mat-sys-display-medium);
+    color: var(--mat-sys-on-surface);
     font-weight: bold;
   }
 }
@@ -182,17 +182,17 @@
   0% {
     transform: scale(1);
     box-shadow: 0 0 0 0
-      color-mix(in srgb, var(--mdc-theme-primary) 70%, transparent);
+      color-mix(in srgb, var(--mat-sys-primary) 70%, transparent);
   }
   70% {
     transform: scale(1.05);
     box-shadow: 0 0 0 20px
-      color-mix(in srgb, var(--mdc-theme-primary) 0%, transparent);
+      color-mix(in srgb, var(--mat-sys-primary) 0%, transparent);
   }
   100% {
     transform: scale(1);
     box-shadow: 0 0 0 0
-      color-mix(in srgb, var(--mdc-theme-primary) 0%, transparent);
+      color-mix(in srgb, var(--mat-sys-primary) 0%, transparent);
   }
 }
 
