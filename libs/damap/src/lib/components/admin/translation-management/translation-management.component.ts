@@ -12,6 +12,7 @@ import { FeedbackService } from '../../../services/feedback.service';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
+import { TranslateService } from '@ngx-translate/core';
 import { TranslationLoaderService } from '@damap/core';
 
 @Component({
@@ -49,6 +50,7 @@ export class TranslationManagementComponent implements OnInit {
     private feedbackService: FeedbackService,
     private dialog: MatDialog,
     private translationLoader: TranslationLoaderService,
+    private translate: TranslateService,
   ) {}
 
   ngOnInit(): void {
@@ -208,7 +210,9 @@ export class TranslationManagementComponent implements OnInit {
           this.selectedTranslation = updated;
           this.customValue = updated.value ?? '';
           this.originalCustomValue = updated.value ?? '';
-          this.feedbackService.success('http.success.translations.update');
+          this.translate.reloadLang(this.selectedLanguage).subscribe(() => {
+            this.feedbackService.success('http.success.translations.update');
+          });
         },
         error: err => {
           const message = err?.error?.message;
