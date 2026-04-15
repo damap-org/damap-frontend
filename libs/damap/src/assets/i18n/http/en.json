@@ -53,6 +53,15 @@
         "save": "Failed to save DMP version. ",
         "revision": "Failed to load DMP revision. "
       },
+      "translations": {
+        "load": "Failed to load translations.",
+        "update": "Failed to update translation.",
+        "language": {
+          "create": "Failed to add language.",
+          "delete": "Failed to remove language."
+        }
+      },
+      "openaire": "Failed to get dataset information from OpenAIRE, please retry later.",
       "document": "An unexpected error occurred while generating your document. If the issue persists contact [insert contact for technical issue].",
       "access": {
         "load": "Failed to load access information. ",
@@ -81,6 +90,13 @@
       "admin": {
         "recommended-repositories": {
           "delete": "Repository deleted successfully."
+        }
+      },
+      "translations": {
+        "update": "Translation updated successfully.",
+        "language": {
+          "add": "Language activated successfully.",
+          "delete": "Language removed successfully."
         }
       }
     }

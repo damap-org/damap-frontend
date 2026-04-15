@@ -16,29 +16,29 @@
     #message />
   <mat-hint align="end">{{ message.value.length }} / {{ maxLength }}</mat-hint>
   <mat-error *ngIf="!control?.errors?.required && control?.errors?.empty">
-    {{ "form.error.empty" | translate }}
+    {{ "validation.error.invalidValue" | translate }}
   </mat-error>
   <mat-error *ngIf="control?.errors?.required">
-    {{ "form.error.required" | translate }}
+    {{ "validation.error.required" | translate }}
   </mat-error>
   <mat-error *ngIf="control?.errors?.maxlength">
     {{
-      "form.error.maxlength"
+      "validation.error.maxLength"
         | translate: { value: control.errors.maxlength?.requiredLength }
     }}
     <!-- "maxlength": { "requiredLength": 255, "actualLength": 273 } -->
   </mat-error>
   <mat-error *ngIf="control?.errors?.currency">
-    {{ "form.error.pattern.currency" | translate }}
+    {{ "validation.error.currencyFormat" | translate }}
   </mat-error>
   <mat-error *ngIf="control?.errors?.orcid">
-    {{ "form.error.orcid" | translate }}
+    {{ "validation.error.orcid" | translate }}
   </mat-error>
   <mat-error *ngIf="control?.errors?.url">
-    {{ "form.error.url" | translate }}
+    {{ "validation.error.url" | translate }}
   </mat-error>
   <mat-error *ngIf="control?.errors?.uri">
-    {{ "form.error.uri" | translate }}
+    {{ "validation.error.uri" | translate }}
   </mat-error>
 </mat-form-field>
 <!--{{control.errors | json}}-->

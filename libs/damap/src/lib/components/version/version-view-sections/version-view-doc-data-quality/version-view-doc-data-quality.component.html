@@ -1,25 +1,25 @@
 <div *ngIf="dmp">
   <div>
     <span class="headings"
-      >{{ "versions.view.documentation.structure" | translate }}:</span
+      >{{ "dmp.versions.view.documentation.structure" | translate }}:</span
     >
     {{ dmp.structure }}
   </div>
   <div>
     <span class="headings"
-      >{{ "versions.view.documentation.metadata" | translate }}:</span
+      >{{ "dmp.versions.view.documentation.metadata" | translate }}:</span
     >
     {{ dmp.metadata }}
   </div>
   <div>
     <span class="headings"
-      >{{ "versions.view.documentation.documentation" | translate }}:</span
+      >{{ "dmp.versions.view.documentation.documentation" | translate }}:</span
     >
     {{ dmp.documentation }}
   </div>
   <div>
     <span class="headings"
-      >{{ "versions.view.documentation.data.quality" | translate }}:</span
+      >{{ "dmp.versions.view.documentation.data.quality" | translate }}:</span
     >
     <ul>
       <li *ngFor="let quality of dmp.dataQuality">

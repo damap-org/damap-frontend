@@ -2,7 +2,7 @@
   <mat-label
     class="label-title mat-title-large"
     id="example-radio-group-label"
-    >{{ "dmp.steps.legal.heading" | translate }}</mat-label
+    >{{ "dmp.steps.legal.view.button.legal" | translate }}</mat-label
   >
   <mat-card class="legal-ethical-card card-shadow">
     <mat-card-content>
@@ -81,7 +81,8 @@
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
-                  <app-tooltip [tooltip]="'help.legal.sensitiveDataSecurity'">
+                  <app-tooltip
+                    [tooltip]="'dmp.steps.legal.help.sensitiveDataSecurity'">
                   </app-tooltip>
                 </div>
                 <ng-container *ngIf="isOtherMeasureSelected">
@@ -172,7 +173,7 @@
                     </mat-option>
                   </mat-select>
                   <mat-hint>{{
-                    "help.legal.personalDataCompliance" | translate
+                    "dmp.steps.legal.help.personalDataCompliance" | translate
                   }}</mat-hint>
                 </mat-form-field>
                 <br /><br />
@@ -281,7 +282,7 @@
   <mat-label
     class="label-title mat-title-large"
     id="example-radio-group-label"
-    >{{ "dmp.steps.ethical.heading" | translate }}</mat-label
+    >{{ "dmp.steps.legal.view.button.ethical" | translate }}</mat-label
   >
   <app-ethical-aspects
     [legalEthicalStep]="legalEthicalStep"

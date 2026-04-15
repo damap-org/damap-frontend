@@ -14,19 +14,23 @@
     </mat-card-header>
     <mat-card-content class="scrollable-content">
       <p>
-        {{ "dashboard.dmp.text.prefix" | translate }}
-        <a [href]="'dashboard.dmp.text.dmp.link' | translate" target="_blank">
-          {{ "dashboard.dmp.text.dmp.text" | translate }}</a
-        >{{ "dashboard.dmp.text.middle" | translate }}
+        {{ "info.how-to-create.dmp.text.prefix" | translate }}
         <a
-          [href]="'dashboard.dmp.text.fairprinciples.link' | translate"
+          [href]="'info.how-to-create.dmp.text.dmp.link' | translate"
           target="_blank">
-          {{ "dashboard.dmp.text.fairprinciples.text" | translate }}</a
-        >{{ "dashboard.dmp.text.suffix" | translate }}
+          {{ "info.how-to-create.dmp.text.dmp.text" | translate }}</a
+        >{{ "info.how-to-create.dmp.text.middle" | translate }}
+        <a
+          [href]="'info.how-to-create.dmp.text.fairprinciples.link' | translate"
+          target="_blank">
+          {{ "info.how-to-create.dmp.text.fairprinciples.text" | translate }}</a
+        >{{ "info.how-to-create.dmp.text.suffix" | translate }}
       </p>
 
       <mat-card-subtitle>
-        <h4 class="middle" translate>dashboard.instructions.heading</h4>
+        <h4 class="middle" translate>
+          dashboard.cards.how-to-create.front-side
+        </h4>
       </mat-card-subtitle>
 
       <mat-accordion>
@@ -39,10 +43,10 @@
               <mat-icon class="list-icon material-icon-primary outline"
                 >list_alt</mat-icon
               >
-              <h4 translate>dashboard.instructions.steps.heading</h4>
+              <h4 translate>info.how-to-create.instructions.steps.heading</h4>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <p translate>dashboard.instructions.steps.body</p>
+          <p translate>info.how-to-create.instructions.steps.body</p>
           <mat-action-row>
             <button mat-button (click)="nextStep()">Next</button>
           </mat-action-row>
@@ -56,10 +60,10 @@
               <mat-icon class="list-icon material-icon-primary outline"
                 >export_notes</mat-icon
               >
-              <h4 translate>dashboard.instructions.export.heading</h4>
+              <h4 translate>info.how-to-create.instructions.export.heading</h4>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <p translate>dashboard.instructions.export.body</p>
+          <p translate>info.how-to-create.instructions.export.body</p>
           <mat-action-row>
             <button mat-button (click)="prevStep()">Previous</button>
             <button mat-button (click)="nextStep()">Next</button>
@@ -74,10 +78,12 @@
               <mat-icon class="list-icon material-icon-primary outline"
                 >edit_document</mat-icon
               >
-              <h4 translate>dashboard.instructions.finalise.heading</h4>
+              <h4 translate>
+                info.how-to-create.instructions.finalise.heading
+              </h4>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <p translate>dashboard.instructions.finalise.body</p>
+          <p translate>info.how-to-create.instructions.finalise.body</p>
           <mat-action-row>
             <button mat-button (click)="prevStep()">Previous</button>
             <button mat-button (click)="nextStep()">Next</button>
@@ -92,10 +98,10 @@
               <mat-icon class="list-icon material-icon-primary outline"
                 >add_notes</mat-icon
               >
-              <h4 translate>dashboard.instructions.update.heading</h4>
+              <h4 translate>info.how-to-create.instructions.update.heading</h4>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <p translate>dashboard.instructions.update.body</p>
+          <p translate>info.how-to-create.instructions.update.body</p>
           <mat-action-row>
             <button mat-button (click)="prevStep()">Previous</button>
             <button mat-button (click)="nextStep()">Next</button>

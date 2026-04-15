@@ -1,0 +1,179 @@
+<div class="translation-management">
+  <div class="header">
+    <div>
+      <h2>Languages</h2>
+      <p class="subtitle">Manage available languages and their translations.</p>
+    </div>
+    <div class="language-actions">
+      <mat-form-field appearance="outline" class="language-select">
+        <mat-label>{{
+          "admin.appTranslations.languageLabel" | translate
+        }}</mat-label>
+        <mat-select
+          [value]="selectedLanguage"
+          (selectionChange)="onLanguageChange($event.value)">
+          <mat-option *ngFor="let language of languages" [value]="language">
+            {{ language | uppercase }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button
+        mat-raised-button
+        class="button-color-primary"
+        color="primary"
+        (click)="openAddLanguageDialog()"
+        [disabled]="languageLoading">
+        {{ "admin.appTranslations.addLanguage" | translate }}
+      </button>
+      <button
+        mat-stroked-button
+        color="warn"
+        (click)="confirmDeleteLanguage(selectedLanguage)"
+        [disabled]="languageLoading || languages.length <= 1">
+        {{ "admin.appTranslations.removeLanguage" | translate }}
+      </button>
+    </div>
+  </div>
+
+  <div class="filters">
+    <mat-form-field appearance="outline" class="filter">
+      <mat-label>{{
+        "admin.appTranslations.searchPlaceholder" | translate
+      }}</mat-label>
+      <input
+        matInput
+        [formControl]="searchControl"
+        [placeholder]="
+          'admin.appTranslations.searchPlaceholderExample' | translate
+        "
+        autocomplete="off" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="filter">
+      <mat-label>{{
+        "admin.appTranslations.sectionFilter" | translate
+      }}</mat-label>
+      <mat-select
+        [(value)]="sectionFilter"
+        (selectionChange)="onSectionChange($event.value)">
+        <mat-option value="all">
+          {{ "admin.appTranslations.sectionAll" | translate }}
+        </mat-option>
+        <mat-option *ngFor="let section of sections" [value]="section">
+          {{ section }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="filter">
+      <mat-label>{{
+        "admin.appTranslations.valueFilter" | translate
+      }}</mat-label>
+      <mat-select [formControl]="statusFilterControl">
+        <mat-option value="all">
+          {{ "admin.appTranslations.valueFilterAll" | translate }}
+        </mat-option>
+        <mat-option value="custom">
+          {{ "admin.appTranslations.valueFilterCustom" | translate }}
+        </mat-option>
+        <mat-option value="default">
+          {{ "admin.appTranslations.valueFilterDefault" | translate }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="content" [class.with-detail]="selectedTranslation">
+    <ng-container *ngIf="!loading; else translationsLoading">
+      <div class="table-container">
+        <div
+          class="table-card"
+          *ngIf="filteredTranslations.length > 0; else noResults">
+          <div class="table-header">
+            <div>{{ "admin.appTranslations.keyColumn" | translate }}</div>
+            <div>{{ "admin.appTranslations.valueColumn" | translate }}</div>
+          </div>
+          <div
+            class="table-row"
+            *ngFor="let translation of pagedTranslations"
+            [class.selected]="selectedTranslation?.id === translation.id"
+            (click)="selectTranslation(translation)">
+            <div class="key-cell">{{ translation.key }}</div>
+            <div
+              class="value-cell"
+              [ngClass]="{ custom: isCustomValue(translation) }"
+              [matTooltip]="translation.value || translation.defaultValue">
+              {{ translation.value || translation.defaultValue }}
+            </div>
+          </div>
+        </div>
+        <div class="pagination" *ngIf="filteredTranslations.length > pageSize">
+          <mat-paginator
+            [length]="filteredTranslations.length"
+            [pageIndex]="pageIndex"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="[5, 10, 20]"
+            showFirstLastButtons
+            (page)="onPageChange($event)">
+          </mat-paginator>
+        </div>
+      </div>
+    </ng-container>
+
+    <div class="detail-card" *ngIf="selectedTranslation">
+      <div class="detail-title">
+        <span class="key-label">{{ selectedTranslation.key }}</span>
+      </div>
+      <p class="detail-subtitle">
+        Customize text per language without code changes.
+      </p>
+      <div class="detail-section">
+        <p class="label">
+          {{ "admin.appTranslations.currentValueFor" | translate }}
+          {{ selectedLanguage | uppercase }}
+        </p>
+        <div class="current-value">
+          {{ selectedTranslation.value || selectedTranslation.defaultValue }}
+        </div>
+      </div>
+      <div class="detail-section">
+        <p class="label">
+          {{ "admin.appTranslations.customValueFor" | translate }}
+          {{ selectedLanguage | uppercase }}
+        </p>
+        <mat-form-field appearance="outline" class="custom-input">
+          <textarea
+            matInput
+            rows="3"
+            [value]="customValue"
+            (input)="customValue = $any($event.target).value"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="detail-actions">
+        <button mat-stroked-button (click)="clearSelection()">
+          {{ "admin.appTranslations.cancel" | translate }}
+        </button>
+        <button
+          mat-raised-button
+          class="button-color-primary"
+          color="primary"
+          (click)="saveCustomValue()"
+          [disabled]="saving || !hasChanges">
+          {{ "admin.appTranslations.save" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noResults>
+  <div class="empty-state">
+    {{ "admin.appTranslations.empty" | translate }}
+  </div>
+</ng-template>
+
+<ng-template #translationsLoading>
+  <div class="loading">
+    {{ "admin.appTranslations.loading" | translate }}
+  </div>
+</ng-template>

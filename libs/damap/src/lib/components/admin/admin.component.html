@@ -1,10 +1,19 @@
 <div id="content" class="content-max-width">
-  <h1 translate>admin.title</h1>
+  <h1 translate>admin.pageTitle</h1>
   <hr />
-  <h2 translate>admin.internal-storage</h2>
+  <h2 translate>admin.appTranslations.title</h2>
+  <button
+    class="button-position"
+    mat-flat-button
+    (click)="navigateTo('/admin/translations')">
+    <mat-icon>edit</mat-icon>
+    {{ "admin.edit.translations" | translate }}
+  </button>
+  <hr />
+  <h2 translate>admin.internalStorage.sectionTitle</h2>
   <button class="button-position" mat-flat-button (click)="openStorageDialog()">
     <mat-icon>add</mat-icon>
-    {{ "admin.create.storage" | translate }}
+    {{ "admin.internalStorage.action.create" | translate }}
   </button>
   <damap-internal-storage-table
     [internalStorages]="internalStorages"
@@ -14,14 +23,14 @@
   <h2 class="selected-storage">
     {{
       selectedInternalStorageUrl !== null
-        ? ("admin.internal-storage-translations" | translate)
+        ? ("admin.internalStorage.translation.sectionTitle" | translate)
         : ("admin.internal-storage-translations-no-selected" | translate)
     }}
     {{ selectedInternalStorageUrl }}
   </h2>
   <div *ngIf="selectedInternalStorageId === null">
     <p>
-      {{ "admin.translation-info" | translate }}
+      {{ "admin.internalStorage.translation.info" | translate }}
     </p>
   </div>
   <div *ngIf="selectedInternalStorageId !== null">
@@ -30,13 +39,13 @@
       mat-flat-button
       (click)="openTranslationDialog()">
       <mat-icon>add</mat-icon>
-      {{ "admin.create.translation" | translate }}
+      {{ "admin.internalStorage.translation.action.create" | translate }}
     </button>
     <button
       class="button-position"
       mat-flat-button
       (click)="resetStorageSelection()">
-      {{ "admin.reset-selection" | translate }}
+      {{ "admin.internalStorage.selection.reset" | translate }}
     </button>
     <damap-internal-storage-translation-table
       [internalStorageTranslations]="internalStorageTranslations"
@@ -45,16 +54,16 @@
       "></damap-internal-storage-translation-table>
   </div>
   <hr />
-  <h2 translate>admin.banner</h2>
+  <h2 translate>admin.banner.sectionTitle</h2>
   <div *ngIf="!appBanner">
     <button
       class="button-position"
       mat-flat-button
       (click)="openBannerDialog('add')">
       <mat-icon>add</mat-icon>
-      {{ "admin.create.banner" | translate }}
+      {{ "admin.banner.action.create" | translate }}
     </button>
-    <p translate>admin.banner-missing-info</p>
+    <p translate>admin.banner.state.missing</p>
   </div>
   <div *ngIf="appBanner">
     <button
@@ -62,11 +71,11 @@
       mat-flat-button
       (click)="openBannerDialog('edit')">
       <mat-icon>edit</mat-icon>
-      {{ "admin.edit.banner" | translate }}
+      {{ "admin.banner.action.edit" | translate }}
     </button>
     <button class="button-position" mat-flat-button (click)="deleteBanner()">
       <mat-icon>delete</mat-icon>
-      {{ "admin.delete.banner" | translate }}
+      {{ "admin.banner.action.delete" | translate }}
     </button>
     <div>
       <p>Title: {{ appBanner.title }}</p>
@@ -86,7 +95,7 @@
     </div>
   </div>
   <hr />
-  <h2 translate>admin.theme</h2>
+  <h2 translate>admin.theme.sectionTitle</h2>
   <button
     class="button-position"
     mat-flat-button
@@ -95,7 +104,7 @@
     {{ "admin.edit.theme" | translate }}
   </button>
   <hr />
-  <h2 translate>admin.image</h2>
+  <h2 translate>admin.images.sectionTitle</h2>
   <button
     class="button-position"
     mat-flat-button
@@ -104,7 +113,7 @@
     {{ "admin.edit.images" | translate }}
   </button>
   <hr />
-  <h2 translate>admin.recommended-repositories</h2>
+  <h2 translate>admin.recommended-repositories.sectionTitle</h2>
   <button
     class="button-position"
     mat-flat-button

@@ -57,7 +57,6 @@ export function HttpLoaderFactory(http: HttpBackend): MultiTranslateHttpLoader {
         useFactory: HttpLoaderFactory,
         deps: [HttpBackend],
       },
-      isolate: true,
       extend: true,
     }),
     VersionModule,

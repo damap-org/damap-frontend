@@ -1,17 +1,19 @@
 <h1 mat-dialog-title>
   <ng-container *ngIf="mode === 'edit'; else add">{{
-    "admin.dialog.banner.edit" | translate
+    "admin.banner.dialog.title.edit" | translate
   }}</ng-container>
-  <ng-template #add>{{ "admin.dialog.banner.add" | translate }}</ng-template>
+  <ng-template #add>{{
+    "admin.banner.dialog.title.create" | translate
+  }}</ng-template>
 </h1>
 
 <mat-dialog-content id="datasetDialog">
   <div [formGroup]="banner">
     <app-input-wrapper
-      [label]="'admin.dialog.banner.captions.title' | translate"
+      [label]="'admin.banner.dialog.field.title' | translate"
       [control]="title"></app-input-wrapper>
     <app-input-wrapper
-      [label]="'admin.dialog.banner.captions.description' | translate"
+      [label]="'admin.banner.dialog.field.description' | translate"
       [control]="description"></app-input-wrapper>
     <div class="color-picker-wrapper">
       <input
@@ -19,28 +21,28 @@
         type="color"
         [formControl]="color"
         class="color-picker-input"
-        [matTooltip]="'admin.dialog.banner.tooltip.color' | translate"
+        [matTooltip]="'admin.banner.dialog.help.backgroundColor' | translate"
         matTooltipPosition="above" />
       <label for="backgroundColor" class="color-picker-label">
-        {{ "admin.dialog.banner.captions.color" | translate }}
+        {{ "admin.banner.dialog.field.backgroundColor" | translate }}
       </label>
     </div>
     <mat-checkbox formControlName="dismissible">
-      {{ "admin.dialog.banner.captions.dismissible" | translate }}
+      {{ "admin.banner.dialog.field.dismissible" | translate }}
     </mat-checkbox>
   </div>
 </mat-dialog-content>
 
 <mat-dialog-actions>
   <button mat-button (click)="onNoClick()">
-    {{ "admin.dialog.banner.button.cancel" | translate }}
+    {{ "admin.banner.dialog.button.cancel" | translate }}
   </button>
   <button (click)="onDialogClose()" mat-raised-button [disabled]="isDisabled()">
     <ng-container *ngIf="mode === 'edit'">{{
-      "admin.dialog.banner.button.update" | translate
+      "admin.banner.dialog.button.update" | translate
     }}</ng-container>
     <ng-container *ngIf="mode === 'add'">{{
-      "admin.dialog.banner.button.add" | translate
+      "admin.banner.dialog.button.add" | translate
     }}</ng-container>
   </button>
 </mat-dialog-actions>
