@@ -2,20 +2,20 @@
   <div class="action-buttons">
     <button mat-raised-button [routerLink]="'/dmp/' + id + '/version'">
       <mat-icon>chevron_left</mat-icon>
-      {{ "versions.view.button.versions" | translate }}
+      {{ "dmp.versions.view.button.versions" | translate }}
     </button>
     <button mat-flat-button [routerLink]="'/dmp/' + id">
-      {{ "versions.view.button.goto.latest" | translate }}
+      {{ "dmp.versions.view.button.goto.latest" | translate }}
     </button>
   </div>
 
   <h2 *ngIf="versions$ | async as versions">{{ getVersionName(versions) }}</h2>
   <div class="action-buttons">
     <button mat-button (click)="accordion.openAll()">
-      {{ "versions.view.button.expand" | translate }}
+      {{ "dmp.versions.view.button.expand" | translate }}
     </button>
     <button mat-button (click)="accordion.closeAll()">
-      {{ "versions.view.button.collapse" | translate }}
+      {{ "dmp.versions.view.button.collapse" | translate }}
     </button>
   </div>
 
@@ -24,7 +24,7 @@
     <mat-expansion-panel *ngIf="dmp.project">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          {{ "versions.view.project.heading" | translate }}
+          {{ "dmp.versions.view.project.heading" | translate }}
         </mat-panel-title>
       </mat-expansion-panel-header>
       <app-version-view-project
@@ -35,7 +35,7 @@
     <mat-expansion-panel *ngIf="dmp.contributors?.length > 0">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          {{ "versions.view.contributors.heading" | translate }}
+          {{ "dmp.versions.view.contributors.heading" | translate }}
         </mat-panel-title>
       </mat-expansion-panel-header>
       <app-version-view-contributors
@@ -46,7 +46,7 @@
     <mat-expansion-panel *ngIf="dmp.dataKind || dmp.reusedDataKind">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          {{ "versions.view.datasets.heading" | translate }}
+          {{ "dmp.versions.view.datasets.heading" | translate }}
         </mat-panel-title>
         <mat-panel-description> </mat-panel-description>
       </mat-expansion-panel-header>
@@ -69,7 +69,7 @@
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{ "versions.view.documentation.heading" | translate }}
+            {{ "dmp.versions.view.documentation.heading" | translate }}
           </mat-panel-title>
           <mat-panel-description> </mat-panel-description>
         </mat-expansion-panel-header>
@@ -81,7 +81,7 @@
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{ "versions.view.legal.heading" | translate }}
+            {{ "dmp.versions.view.legal.heading" | translate }}
           </mat-panel-title>
           <mat-panel-description> </mat-panel-description>
         </mat-expansion-panel-header>
@@ -93,7 +93,7 @@
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{ "versions.view.storage.heading" | translate }}
+            {{ "dmp.versions.view.storage.heading" | translate }}
           </mat-panel-title>
           <mat-panel-description> </mat-panel-description>
         </mat-expansion-panel-header>
@@ -107,7 +107,7 @@
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{ "versions.view.repositories.heading" | translate }}
+            {{ "dmp.versions.view.repositories.heading" | translate }}
           </mat-panel-title>
           <mat-panel-description> </mat-panel-description>
         </mat-expansion-panel-header>
@@ -120,7 +120,7 @@
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{ "versions.view.reuse.heading" | translate }}
+            {{ "dmp.versions.view.reuse.heading" | translate }}
           </mat-panel-title>
           <mat-panel-description> </mat-panel-description>
         </mat-expansion-panel-header>
@@ -138,7 +138,7 @@
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{ "versions.view.costs.heading" | translate }}
+            {{ "dmp.versions.view.costs.heading" | translate }}
           </mat-panel-title>
           <mat-panel-description> </mat-panel-description>
         </mat-expansion-panel-header>

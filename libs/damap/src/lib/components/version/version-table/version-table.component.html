@@ -16,7 +16,7 @@
     <!-- Version Column -->
     <ng-container matColumnDef="version">
       <th mat-header-cell *matHeaderCellDef>
-        {{ "versions.versionId" | translate }}
+        {{ "dmp.versions.versionId" | translate }}
       </th>
       <td mat-cell *matCellDef="let element; index as i">{{ i + 1 }}</td>
     </ng-container>
@@ -24,7 +24,7 @@
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>
-        {{ "versions.versionName" | translate }}
+        {{ "dmp.versions.versionName" | translate }}
       </th>
       <td mat-cell *matCellDef="let element">{{ element.versionName }}</td>
     </ng-container>
@@ -32,7 +32,7 @@
     <!-- Date Column -->
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef>
-        {{ "versions.versionDate" | translate }}
+        {{ "dmp.versions.versionDate" | translate }}
       </th>
       <td mat-cell *matCellDef="let element">
         {{ element.versionDate | date }}
@@ -42,7 +42,7 @@
     <!-- Editor Column -->
     <ng-container matColumnDef="editor">
       <th mat-header-cell *matHeaderCellDef>
-        {{ "versions.editor" | translate }}
+        {{ "dmp.versions.editor" | translate }}
       </th>
       <td mat-cell *matCellDef="let element">{{ element.editor }}</td>
     </ng-container>
@@ -55,7 +55,7 @@
 
     <tr class="mat-row" *matNoDataRow>
       <td class="mat-cell" colspan="4">
-        {{ "versions.list.no.data" | translate }}
+        {{ "dmp.versions.list.no.data" | translate }}
       </td>
     </tr>
   </table>

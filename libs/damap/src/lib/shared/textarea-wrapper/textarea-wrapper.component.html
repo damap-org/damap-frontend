@@ -76,20 +76,20 @@
   </ng-container>
   <!-- ERROR -->
   <mat-error *ngIf="!control?.errors?.required && control?.errors?.empty">
-    {{ "form.error.empty" | translate }}
+    {{ "validation.error.invalidValue" | translate }}
   </mat-error>
   <mat-error *ngIf="control?.errors?.required">
-    {{ "form.error.required" | translate }}
+    {{ "validation.error.required" | translate }}
   </mat-error>
   <mat-error *ngIf="control?.errors?.maxlength">
     {{
-      "form.error.maxlength"
+      "validation.error.maxLength"
         | translate: { value: control.errors.maxlength?.requiredLength }
     }}
     <!-- "maxlength": { "requiredLength": 255, "actualLength": 273 } -->
   </mat-error>
   <mat-error *ngIf="control?.errors?.pattern">
-    {{ "form.error.pattern.currency" | translate }}
+    {{ "validation.error.currencyFormat" | translate }}
 
     <!-- { "pattern": { "requiredPattern": "^[0-9]*.?[0-9]{0,2}$", "actualValue": "123,345" } } false -->
   </mat-error>

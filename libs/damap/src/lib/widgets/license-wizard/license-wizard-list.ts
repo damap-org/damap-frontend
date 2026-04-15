@@ -32,11 +32,11 @@ import { LicenseDetails } from '../../domain/license-details';
  ***/
 export const agpl1 = {
   id: 'AGPL1',
-  name: 'license.wizard.license.agpl1.name',
+  name: 'license-wizard.license.agpl1.name',
   priority: 50,
   available: true,
   url: 'https://spdx.org/licenses/AGPL-1.0-only',
-  description: 'license.wizard.license.agpl1.description',
+  description: 'license-wizard.license.agpl1.description',
   categories: ['public', 'software', 'agpl', 'copyleft', 'strong'],
   labels: ['public', 'copyleft'],
   code: 'agpl-1',
@@ -44,11 +44,11 @@ export const agpl1 = {
 };
 export const agpl1plus = {
   id: 'AGPL1PLUS',
-  name: 'license.wizard.license.agpl1plus.name',
+  name: 'license-wizard.license.agpl1plus.name',
   priority: 50,
   available: true,
   url: 'https://spdx.org/licenses/AGPL-1.0-or-later',
-  description: 'license.wizard.license.agpl1plus.description',
+  description: 'license-wizard.license.agpl1plus.description',
   categories: ['public', 'software', 'agpl', 'copyleft', 'strong'],
   labels: ['public', 'copyleft'],
   code: 'agpl-1plus',
@@ -56,11 +56,11 @@ export const agpl1plus = {
 };
 export const agpl3 = {
   id: 'AGPL3',
-  name: 'license.wizard.license.agpl3.name',
+  name: 'license-wizard.license.agpl3.name',
   priority: 51,
   available: true,
   url: 'https://opensource.org/license/agpl-v3',
-  description: 'license.wizard.license.agpl3.description',
+  description: 'license-wizard.license.agpl3.description',
   categories: ['public', 'software', 'agpl', 'copyleft', 'strong'],
   labels: ['public', 'agpl3', 'copyleft'],
   code: 'agpl-3',
@@ -68,11 +68,11 @@ export const agpl3 = {
 };
 export const agpl3plus = {
   id: 'AGPL3PLUS',
-  name: 'license.wizard.license.agpl3plus.name',
+  name: 'license-wizard.license.agpl3plus.name',
   priority: 51,
   available: true,
   url: 'https://spdx.org/licenses/AGPL-3.0-or-later',
-  description: 'license.wizard.license.agpl3plus.description',
+  description: 'license-wizard.license.agpl3plus.description',
   categories: ['public', 'software', 'agpl', 'copyleft', 'strong'],
   labels: ['public', 'agpl3', 'copyleft'],
   code: 'agpl-3plus',
@@ -80,11 +80,11 @@ export const agpl3plus = {
 };
 export const apache1 = {
   id: 'APACHE1',
-  name: 'license.wizard.license.apache1.name',
+  name: 'license-wizard.license.apache1.name',
   priority: 4,
   available: true,
   url: 'https://spdx.org/licenses/Apache-1.0',
-  description: 'license.wizard.license.apache1.description',
+  description: 'license-wizard.license.apache1.description',
   categories: ['public', 'software', 'permissive'],
   labels: ['public', 'apache', 'osi'],
   code: 'apache-1',
@@ -92,11 +92,11 @@ export const apache1 = {
 };
 export const apache1_1 = {
   id: 'APACHE1_1',
-  name: 'license.wizard.license.apache1_1.name',
+  name: 'license-wizard.license.apache1_1.name',
   priority: 4,
   available: true,
   url: 'https://opensource.org/license/apache-1-1',
-  description: 'license.wizard.license.apache1_1.description',
+  description: 'license-wizard.license.apache1_1.description',
   categories: ['public', 'software', 'permissive'],
   labels: ['public', 'apache', 'osi'],
   code: 'apache-1_1',
@@ -104,11 +104,11 @@ export const apache1_1 = {
 };
 export const apache2 = {
   id: 'APACHE2',
-  name: 'license.wizard.license.apache2.name',
+  name: 'license-wizard.license.apache2.name',
   priority: 4,
   available: true,
   url: 'https://opensource.org/license/apache-2-0',
-  description: 'license.wizard.license.apache2.description',
+  description: 'license-wizard.license.apache2.description',
   categories: ['public', 'software', 'permissive'],
   labels: ['public', 'apache', 'osi'],
   code: 'apache-2',
@@ -116,41 +116,41 @@ export const apache2 = {
 };
 export const artistic1 = {
   id: 'ARTISTIC1',
-  name: 'license.wizard.license.artistic1.name',
+  name: 'license-wizard.license.artistic1.name',
   priority: 7,
   available: true,
   url: 'https://opensource.org/license/artistic-1-0',
-  description: 'license.wizard.license.artistic1.description',
+  description: 'license-wizard.license.artistic1.description',
   categories: ['public', 'software', 'perl'],
   labels: ['public', 'perl'],
 };
 export const artistic1Perl = {
   id: 'ARTISTIC1PERL',
-  name: 'license.wizard.license.artistic1Perl.name',
+  name: 'license-wizard.license.artistic1Perl.name',
   priority: 7,
   available: true,
   url: 'https://opensource.org/license/artistic-perl-1-0-2',
-  description: 'license.wizard.license.artistic1Perl.description',
+  description: 'license-wizard.license.artistic1Perl.description',
   categories: ['public', 'software', 'perl'],
   labels: ['public', 'perl'],
 };
 export const artistic2 = {
   id: 'ARTISTIC2',
-  name: 'license.wizard.license.artistic2.name',
+  name: 'license-wizard.license.artistic2.name',
   priority: 8,
   available: true,
   url: 'https://opensource.org/license/artistic-2-0',
-  description: 'license.wizard.license.artistic2.description',
+  description: 'license-wizard.license.artistic2.description',
   categories: ['public', 'software', 'perl'],
   labels: ['public', 'perl', 'osi'],
 };
 export const bsd2c = {
   id: 'BSD2C',
-  name: 'license.wizard.license.bsd2c.name',
+  name: 'license-wizard.license.bsd2c.name',
   priority: 3,
   available: true,
   url: 'https://opensource.org/license/bsd-2-clause',
-  description: 'license.wizard.license.bsd2c.description',
+  description: 'license-wizard.license.bsd2c.description',
   categories: ['public', 'software', 'permissive'],
   labels: ['public', 'bsd', 'osi'],
   code: 'bsd-2c',
@@ -173,11 +173,11 @@ export const bsd2c = {
 };
 export const bsd3c = {
   id: 'BSD3C',
-  name: 'license.wizard.license.bsd3c.name',
+  name: 'license-wizard.license.bsd3c.name',
   priority: 2,
   available: true,
   url: 'https://opensource.org/license/bsd-3-clause',
-  description: 'license.wizard.license.bsd3c.description',
+  description: 'license-wizard.license.bsd3c.description',
   categories: ['public', 'software', 'permissive'],
   labels: ['public', 'bsd', 'osi'],
   code: 'bsd-3c',
@@ -199,71 +199,71 @@ export const bsd3c = {
 };
 export const ccBy = {
   id: 'CCBY',
-  name: 'license.wizard.license.ccBy.name',
+  name: 'license-wizard.license.ccBy.name',
   priority: 1,
   available: true,
   url: 'https://creativecommons.org/licenses/by/4.0/',
-  description: 'license.wizard.license.ccBy.description',
+  description: 'license-wizard.license.ccBy.description',
   categories: ['public', 'data', 'by'],
   labels: ['public', 'cc', 'by', 'opendata'],
 };
 export const ccByNc = {
   id: 'CCBYNC',
-  name: 'license.wizard.license.ccByNc.name',
+  name: 'license-wizard.license.ccByNc.name',
   priority: 1,
   available: true,
   url: 'https://creativecommons.org/licenses/by-nc/4.0/',
-  description: 'license.wizard.license.ccByNc.description',
+  description: 'license-wizard.license.ccByNc.description',
   categories: ['public', 'data', 'by', 'nc'],
   labels: ['public', 'cc', 'nc'],
 };
 export const ccByNcNd = {
   id: 'CCBYNCND',
-  name: 'license.wizard.license.ccByNcNd.name',
+  name: 'license-wizard.license.ccByNcNd.name',
   priority: 1,
   available: true,
   url: 'https://creativecommons.org/licenses/by-nc-nd/4.0/',
-  description: 'license.wizard.license.ccByNcNd.description',
+  description: 'license-wizard.license.ccByNcNd.description',
   categories: ['public', 'data', 'by', 'nc', 'nd'],
   labels: ['public', 'cc', 'by', 'nc', 'nd'],
 };
 export const ccByNcSa = {
   id: 'CCBYNCSA',
-  name: 'license.wizard.license.ccByNcSa.name',
+  name: 'license-wizard.license.ccByNcSa.name',
   priority: 1,
   available: true,
   url: 'https://creativecommons.org/licenses/by-nc-sa/4.0/',
-  description: 'license.wizard.license.ccByNcSa.description',
+  description: 'license-wizard.license.ccByNcSa.description',
   categories: ['public', 'data', 'by', 'nc', 'sa'],
   labels: ['public', 'cc', 'by', 'nc', 'sa'],
 };
 export const ccByNd = {
   id: 'CCBYND',
-  name: 'license.wizard.license.ccByNd.name',
+  name: 'license-wizard.license.ccByNd.name',
   priority: 1,
   available: true,
   url: 'https://creativecommons.org/licenses/by-nd/4.0/',
-  description: 'license.wizard.license.ccByNd.description',
+  description: 'license-wizard.license.ccByNd.description',
   categories: ['public', 'data', 'by', 'nd'],
   labels: ['public', 'cc', 'nd'],
 };
 export const ccBySa = {
   id: 'CCBYSA',
-  name: 'license.wizard.license.ccBySa.name',
+  name: 'license-wizard.license.ccBySa.name',
   priority: 1,
   available: true,
   url: 'https://creativecommons.org/licenses/by-sa/4.0/',
-  description: 'license.wizard.license.ccBySa.description',
+  description: 'license-wizard.license.ccBySa.description',
   categories: ['public', 'data', 'by', 'sa'],
   labels: ['public', 'cc', 'by', 'sa', 'opendata'],
 };
 export const ccPublicDomain: LicenseDetails = {
   id: 'CCPUBLICDOMAIN',
-  name: 'license.wizard.license.ccPublicDomain.name',
+  name: 'license-wizard.license.ccPublicDomain.name',
   priority: 1,
   available: true,
   url: 'https://creativecommons.org/licenses/publicdomain/',
-  description: 'license.wizard.license.ccPublicDomain.description',
+  description: 'license-wizard.license.ccPublicDomain.description',
   categories: ['public', 'data', 'software', 'public-domain'],
   labels: ['public', 'pd'],
   code: 'cc-public-domain',
@@ -288,21 +288,21 @@ export const ccPublicDomain: LicenseDetails = {
 };
 export const ccZero = {
   id: 'CCZERO',
-  name: 'license.wizard.license.ccZero.name',
+  name: 'license-wizard.license.ccZero.name',
   priority: 1,
   available: true,
   url: 'https://creativecommons.org/publicdomain/zero/1.0/',
-  description: 'license.wizard.license.ccZero.description',
+  description: 'license-wizard.license.ccZero.description',
   categories: ['public', 'data', 'public-domain'],
   labels: ['public', 'cc', 'zero', 'opendata'],
 };
 export const cddl1 = {
   id: 'CDDL1',
-  name: 'license.wizard.license.cddl1.name',
+  name: 'license-wizard.license.cddl1.name',
   priority: 5,
   available: true,
   url: 'https://opensource.org/license/cddl-1-0',
-  description: 'license.wizard.license.cddl1.description',
+  description: 'license-wizard.license.cddl1.description',
   categories: ['public', 'software', 'copyleft', 'weak'],
   labels: ['public', 'copyleft', 'osi'],
   code: 'cddl-1',
@@ -310,11 +310,11 @@ export const cddl1 = {
 };
 export const cddl1_1 = {
   id: 'CDDL1_1',
-  name: 'license.wizard.license.cddl1_1.name',
+  name: 'license-wizard.license.cddl1_1.name',
   priority: 5,
   available: true,
   url: 'https://spdx.org/licenses/CDDL-1.1',
-  description: 'license.wizard.license.cddl1_1.description',
+  description: 'license-wizard.license.cddl1_1.description',
   categories: ['public', 'software', 'copyleft', 'weak'],
   labels: ['public', 'copyleft', 'osi'],
   code: 'cddl-1_1',
@@ -322,11 +322,11 @@ export const cddl1_1 = {
 };
 export const epl1 = {
   id: 'EPL1',
-  name: 'license.wizard.license.epl1.name',
+  name: 'license-wizard.license.epl1.name',
   priority: 4,
   available: true,
   url: 'https://opensource.org/license/epl-1-0',
-  description: 'license.wizard.license.epl1.description',
+  description: 'license-wizard.license.epl1.description',
   categories: ['public', 'software', 'copyleft', 'weak'],
   labels: ['public', 'eclipse', 'copyleft'],
   code: 'epl-1',
@@ -334,11 +334,11 @@ export const epl1 = {
 };
 export const epl2 = {
   id: 'EPL2',
-  name: 'license.wizard.license.epl2.name',
+  name: 'license-wizard.license.epl2.name',
   priority: 4,
   available: true,
   url: 'https://opensource.org/license/epl-2-0',
-  description: 'license.wizard.license.epl2.description',
+  description: 'license-wizard.license.epl2.description',
   categories: ['public', 'software', 'copyleft', 'weak'],
   labels: ['public', 'eclipse', 'copyleft'],
   code: 'epl-2',
@@ -346,11 +346,11 @@ export const epl2 = {
 };
 export const gpl2 = {
   id: 'GPL2',
-  name: 'license.wizard.license.gpl2.name',
+  name: 'license-wizard.license.gpl2.name',
   priority: 10,
   available: false,
   url: 'https://opensource.org/license/gpl-2-0',
-  description: 'license.wizard.license.gpl2.description',
+  description: 'license-wizard.license.gpl2.description',
   categories: ['public', 'software', 'gpl', 'copyleft', 'strong'],
   labels: ['public', 'gpl', 'copyleft'],
   code: 'gpl-2',
@@ -358,11 +358,11 @@ export const gpl2 = {
 };
 export const gpl2plus = {
   id: 'GPL2PLUS',
-  name: 'license.wizard.license.gpl2plus.name',
+  name: 'license-wizard.license.gpl2plus.name',
   priority: 10,
   available: true,
   url: 'https://spdx.org/licenses/GPL-2.0-or-later',
-  description: 'license.wizard.license.gpl2plus.description',
+  description: 'license-wizard.license.gpl2plus.description',
   categories: ['public', 'software', 'gpl', 'copyleft', 'strong'],
   labels: ['public', 'gpl', 'copyleft'],
   code: 'gpl-2plus',
@@ -370,11 +370,11 @@ export const gpl2plus = {
 };
 export const gpl3 = {
   id: 'GPL3',
-  name: 'license.wizard.license.gpl3.name',
+  name: 'license-wizard.license.gpl3.name',
   priority: 11,
   available: true,
   url: 'https://opensource.org/license/gpl-3-0',
-  description: 'license.wizard.license.gpl3.description',
+  description: 'license-wizard.license.gpl3.description',
   categories: ['public', 'software', 'gpl', 'copyleft', 'strong'],
   labels: ['public', 'gpl3', 'copyleft'],
   code: 'gpl-3',
@@ -382,11 +382,11 @@ export const gpl3 = {
 };
 export const gpl3plus = {
   id: 'GPL3PLUS',
-  name: 'license.wizard.license.gpl3plus.name',
+  name: 'license-wizard.license.gpl3plus.name',
   priority: 11,
   available: true,
   url: 'https://spdx.org/licenses/GPL-3.0-or-later',
-  description: 'license.wizard.license.gpl3plus.description',
+  description: 'license-wizard.license.gpl3plus.description',
   categories: ['public', 'software', 'gpl', 'copyleft', 'strong'],
   labels: ['public', 'gpl3', 'copyleft'],
   code: 'gpl-3plus',
@@ -394,11 +394,11 @@ export const gpl3plus = {
 };
 export const lgpl2 = {
   id: 'LGPL2',
-  name: 'license.wizard.license.lgpl2.name',
+  name: 'license-wizard.license.lgpl2.name',
   priority: 2,
   available: false,
   url: 'https://opensource.org/license/lgpl-2-0',
-  description: 'license.wizard.license.lgpl2.description',
+  description: 'license-wizard.license.lgpl2.description',
   categories: ['public', 'software', 'copyleft', 'weak'],
   labels: ['public', 'lgpl', 'copyleft'],
   code: 'lgpl-2',
@@ -406,11 +406,11 @@ export const lgpl2 = {
 };
 export const lgpl2plus = {
   id: 'LGPL2PLUS',
-  name: 'license.wizard.license.lgpl2plus.name',
+  name: 'license-wizard.license.lgpl2plus.name',
   priority: 2,
   available: false,
   url: 'https://spdx.org/licenses/LGPL-2.0-or-later',
-  description: 'license.wizard.license.lgpl2plus.description',
+  description: 'license-wizard.license.lgpl2plus.description',
   categories: ['public', 'software', 'copyleft', 'weak'],
   labels: ['public', 'lgpl', 'copyleft'],
   code: 'lgpl-2plus',
@@ -418,11 +418,11 @@ export const lgpl2plus = {
 };
 export const lgpl2_1 = {
   id: 'LGPL2_1',
-  name: 'license.wizard.license.lgpl2_1.name',
+  name: 'license-wizard.license.lgpl2_1.name',
   priority: 2,
   available: false,
   url: 'https://opensource.org/license/lgpl-2-1',
-  description: 'license.wizard.license.lgpl2_1.description',
+  description: 'license-wizard.license.lgpl2_1.description',
   categories: ['public', 'software', 'copyleft', 'weak'],
   labels: ['public', 'lgpl', 'copyleft'],
   code: 'lgpl-2_1',
@@ -430,11 +430,11 @@ export const lgpl2_1 = {
 };
 export const lgpl2_1plus = {
   id: 'LGPL2_1PLUS',
-  name: 'license.wizard.license.lgpl2_1plus.name',
+  name: 'license-wizard.license.lgpl2_1plus.name',
   priority: 2,
   available: true,
   url: 'https://spdx.org/licenses/LGPL-2.1-or-later',
-  description: 'license.wizard.license.lgpl2_1plus.description',
+  description: 'license-wizard.license.lgpl2_1plus.description',
   categories: ['public', 'software', 'copyleft', 'weak'],
   labels: ['public', 'lgpl', 'copyleft'],
   code: 'lgpl-2_1plus',
@@ -451,11 +451,11 @@ export const lgpl2_1plus = {
 };
 export const lgpl3 = {
   id: 'LGPL3',
-  name: 'license.wizard.license.lgpl3.name',
+  name: 'license-wizard.license.lgpl3.name',
   priority: 3,
   available: true,
   url: 'https://opensource.org/license/lgpl-3-0',
-  description: 'license.wizard.license.lgpl3.description',
+  description: 'license-wizard.license.lgpl3.description',
   categories: ['public', 'software', 'copyleft', 'weak'],
   labels: ['public', 'lgpl3', 'copyleft'],
   code: 'lgpl-3',
@@ -463,11 +463,11 @@ export const lgpl3 = {
 };
 export const lgpl3plus = {
   id: 'LGPL3PLUS',
-  name: 'license.wizard.license.lgpl3plus.name',
+  name: 'license-wizard.license.lgpl3plus.name',
   priority: 3,
   available: true,
   url: 'https://spdx.org/licenses/LGPL-3.0-or-later.html',
-  description: 'license.wizard.license.lgpl3plus.description',
+  description: 'license-wizard.license.lgpl3plus.description',
   categories: ['public', 'software', 'copyleft', 'weak'],
   labels: ['public', 'lgpl3', 'copyleft'],
   code: 'lgpl-3plus',
@@ -475,11 +475,11 @@ export const lgpl3plus = {
 };
 export const mit = {
   id: 'MIT',
-  name: 'license.wizard.license.mit.name',
+  name: 'license-wizard.license.mit.name',
   priority: 1,
   available: true,
   url: 'https://opensource.org/license/mit',
-  description: 'license.wizard.license.mit.description',
+  description: 'license-wizard.license.mit.description',
   categories: ['public', 'software', 'permissive'],
   labels: ['public', 'mit', 'osi'],
   code: 'mit',
@@ -503,11 +503,11 @@ export const mit = {
 };
 export const mpl1 = {
   id: 'MPL1',
-  name: 'license.wizard.license.mpl1.name',
+  name: 'license-wizard.license.mpl1.name',
   priority: 1,
   available: true,
   url: 'https://opensource.org/license/mpl-1-0',
-  description: 'license.wizard.license.mpl1.description',
+  description: 'license-wizard.license.mpl1.description',
   categories: ['public', 'software', 'copyleft', 'weak'],
   labels: ['public', 'mozilla', 'copyleft'],
   code: 'mpl-1',
@@ -515,11 +515,11 @@ export const mpl1 = {
 };
 export const mpl1_1 = {
   id: 'MPL1_1',
-  name: 'license.wizard.license.mpl1_1.name',
+  name: 'license-wizard.license.mpl1_1.name',
   priority: 1,
   available: true,
   url: 'https://opensource.org/license/mpl-1-1',
-  description: 'license.wizard.license.mpl1_1.description',
+  description: 'license-wizard.license.mpl1_1.description',
   categories: ['public', 'software', 'copyleft', 'weak'],
   labels: ['public', 'mozilla', 'copyleft'],
   code: 'mpl-1_1',
@@ -527,11 +527,11 @@ export const mpl1_1 = {
 };
 export const mpl2 = {
   id: 'MPL2',
-  name: 'license.wizard.license.mpl2.name',
+  name: 'license-wizard.license.mpl2.name',
   priority: 1,
   available: true,
   url: 'https://opensource.org/license/mpl-2-0',
-  description: 'license.wizard.license.mpl2.description',
+  description: 'license-wizard.license.mpl2.description',
   categories: ['public', 'software', 'copyleft', 'weak'],
   labels: ['public', 'mozilla', 'copyleft'],
   code: 'mpl-2',
@@ -549,41 +549,41 @@ export const mpl2 = {
 };
 export const odbl = {
   id: 'ODBL',
-  name: 'license.wizard.license.odbl.name',
+  name: 'license-wizard.license.odbl.name',
   priority: 1,
   available: false,
   url: 'https://spdx.org/licenses/ODbL-1.0',
-  description: 'license.wizard.license.odbl.description',
+  description: 'license-wizard.license.odbl.description',
   categories: ['public', 'data', 'by', 'sa'],
   labels: ['public'],
 };
 export const odcBy = {
   id: 'ODCBY',
-  name: 'license.wizard.license.odcBy.name',
+  name: 'license-wizard.license.odcBy.name',
   priority: 1,
   available: false,
   url: 'https://spdx.org/licenses/ODC-By-1.0',
-  description: 'license.wizard.license.odcBy.description',
+  description: 'license-wizard.license.odcBy.description',
   categories: ['public', 'data', 'by'],
   labels: ['public'],
 };
 export const pddl = {
   id: 'PDDL',
-  name: 'license.wizard.license.pddl.name',
+  name: 'license-wizard.license.pddl.name',
   priority: 1,
   available: false,
   url: 'https://spdx.org/licenses/PDDL-1.0',
-  description: 'license.wizard.license.pddl.description',
+  description: 'license-wizard.license.pddl.description',
   categories: ['public', 'data', 'public-domain'],
   labels: ['public'],
 };
 export const nolicense = {
   id: 'NOLICENSE',
-  name: 'license.wizard.license.nolicense.name',
+  name: 'license-wizard.license.nolicense.name',
   priority: null,
   available: null,
   url: null,
-  description: 'license.wizard.license.nolicense.description',
+  description: 'license-wizard.license.nolicense.description',
   categories: [],
   labels: null,
   code: null,
@@ -591,11 +591,11 @@ export const nolicense = {
 };
 export const custom = {
   id: 'CUSTOM',
-  name: 'license.wizard.license.custom.name',
+  name: 'license-wizard.license.custom.name',
   priority: null,
   available: null,
   url: null,
-  description: 'license.wizard.license.custom.description',
+  description: 'license-wizard.license.custom.description',
   categories: [],
   labels: null,
   code: null,

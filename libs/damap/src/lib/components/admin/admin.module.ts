@@ -1,6 +1,10 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { AddLanguageDialogComponent } from './translation-management/dialogs/add-language-dialog.component';
 import { AdminComponent } from './admin.component';
 import { BannerDialogComponent } from './banner-dialog/banner-dialog.component';
 import { CommonModule } from '@angular/common';
+import { DeleteLanguageDialogComponent } from './translation-management/dialogs/delete-language-dialog.component';
 import { DeleteRepositoryWarningDialogComponent } from './edit-repositories-page/delete-repository-warning-dialog.component';
 import { DmpTableModule } from '../../widgets/dmp-table/dmp-table.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -26,11 +30,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { TranslationManagementComponent } from './translation-management/translation-management.component';
 
 @NgModule({
   imports: [
@@ -42,7 +47,9 @@ import { TranslateModule } from '@ngx-translate/core';
     ExportWarningModule,
     InternalStorageTableModule,
     InternalStoragaTranslationTableModule,
+    FormsModule,
     ReactiveFormsModule,
+    MatDialogModule,
     // Materials
     MatIconModule,
     MatButtonModule,
@@ -61,6 +68,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatCardModule,
     MatProgressSpinnerModule,
     DragDropModule,
+    MatTooltipModule,
   ],
   declarations: [
     AdminComponent,
@@ -68,6 +76,9 @@ import { TranslateModule } from '@ngx-translate/core';
     InternalStorageTranslationDialogComponent,
     BannerDialogComponent,
     DeleteRepositoryWarningDialogComponent,
+    TranslationManagementComponent,
+    AddLanguageDialogComponent,
+    DeleteLanguageDialogComponent,
   ],
   exports: [
     CommonModule,
@@ -87,6 +98,10 @@ import { TranslateModule } from '@ngx-translate/core';
     MatTableModule,
     MatPaginatorModule,
     MatSelectModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatTooltipModule,
+    TranslationManagementComponent,
   ],
 })
 export class AdminModule {}

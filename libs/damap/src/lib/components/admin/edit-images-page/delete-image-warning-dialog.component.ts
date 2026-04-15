@@ -9,7 +9,7 @@ import { DeleteWarningDialogComponent } from '../../../widgets/delete-warning-di
   selector: 'damap-delete-image-warning-dialog',
   imports: [CommonModule, TranslateModule, MatDialogModule, MatButtonModule],
   template: `
-    <h1 mat-dialog-title>{{ 'dialog.delete.title' | translate }}</h1>
+    <h1 mat-dialog-title>{{ 'delete.dialog.title' | translate }}</h1>
     <mat-dialog-content>{{
       getDeleteContent() | translate
     }}</mat-dialog-content>

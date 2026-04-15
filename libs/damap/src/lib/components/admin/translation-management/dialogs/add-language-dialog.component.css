@@ -1,0 +1,14 @@
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hint {
+  margin: 0;
+  color: var(--on-surface-variant);
+}
+
+.input-full {
+  width: 100%;
+}
