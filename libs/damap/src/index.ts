@@ -27,6 +27,7 @@ export * from './lib/store/actions/internal-storage.actions';
 
 // Services & Guards
 export * from './lib/guards/auth.guard';
+export * from './lib/guards/tenant.guard';
 export * from './lib/auth/auth.service';
 export * from './lib/services/backend.service';
 export * from './lib/services/feedback.service';

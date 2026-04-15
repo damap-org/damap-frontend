@@ -57,6 +57,38 @@ export class AuthService {
     return roles.includes(this.configService.getAdminRoleName());
   }
 
+  getAffiliation(): string {
+    if (!this.oAuthService.hasValidAccessToken()) {
+      // user not logged in
+      return null;
+    }
+    const parts: string[] = this.oAuthService.getAccessToken().split('.');
+    const tokenBody: any = JSON.parse('' + window.atob(parts[1]));
+    const affiliations: string[] =
+      tokenBody[this.configService.getAffiliationClaim()];
+    if (!affiliations || affiliations.length === 0) {
+      return null;
+    }
+    const sanitizedAffiliations: string[] = affiliations.map(aff =>
+      aff.split('@')[1].replaceAll('.', '_'),
+    );
+    // check if only affiliations to one tenant are present
+    if (!sanitizedAffiliations.every(aff => aff === sanitizedAffiliations[0])) {
+      return null;
+    }
+    return sanitizedAffiliations[0];
+  }
+
+  // If DAMAP is run as single tenant, this always returns true
+  isUserAffiliatedWithATenant(): boolean {
+    if (!this.configService.isMultitenancyEnabled()) {
+      return true;
+    }
+    return (
+      this.configService.getTenants()?.includes(this.getAffiliation()) ?? false
+    );
+  }
+
   logout() {
     this.oAuthService.logOut();
   }

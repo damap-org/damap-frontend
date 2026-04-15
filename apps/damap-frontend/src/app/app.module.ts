@@ -1,5 +1,5 @@
 import { NgModule, inject, provideAppInitializer } from '@angular/core';
-import { EnvBannerModule, AuthGuard } from '@damap/core';
+import { EnvBannerModule, AuthGuard, TenantGuard } from '@damap/core';
 import { HttpBackend, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
@@ -84,6 +84,7 @@ export function HttpLoaderFactory(http: HttpBackend): MultiTranslateHttpLoader {
       useValue: { appearance: 'outline' },
     },
     AuthGuard,
+    TenantGuard,
     ConsentGuard,
   ],
   bootstrap: [AppComponent],

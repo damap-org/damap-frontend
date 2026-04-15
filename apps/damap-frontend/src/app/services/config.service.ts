@@ -162,6 +162,10 @@ export class ConfigService {
     return this.config?.userRolesClaimPath || null;
   }
 
+  public getAffiliationClaim(): string {
+    return this.config?.affiliationClaim || null;
+  }
+
   public getAdminRoleName(): string {
     return this.config?.adminRoleName || null;
   }
@@ -195,6 +199,14 @@ export class ConfigService {
       this.config = rawConfig;
       return rawConfig;
     });
+  }
+
+  public getTenants(): string[] {
+    return this.config?.tenants ?? [];
+  }
+
+  public isMultitenancyEnabled(): boolean {
+    return this.config?.multitenancyEnabled ?? false;
   }
 
   public getActiveTemplates(): any[] {

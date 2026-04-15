@@ -13,6 +13,7 @@ export interface Config {
   readonly emailClaim: string;
   readonly responseType: string;
   readonly userRolesClaimPath: string;
+  readonly affiliationClaim: string;
   readonly adminRoleName: string;
   readonly env: string;
   readonly appTitle: string;
@@ -23,5 +24,6 @@ export interface Config {
   readonly images: BackendImage[];
   readonly colorTheme: ColorTheme;
   readonly multitenancyEnabled: boolean;
+  readonly tenants: string[];
   readonly templates: any[];
 }
