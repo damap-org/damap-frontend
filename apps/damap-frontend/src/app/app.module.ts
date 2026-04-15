@@ -1,6 +1,6 @@
-import { NgModule, inject, provideAppInitializer } from '@angular/core';
-import { EnvBannerModule, AuthGuard } from '@damap/core';
+import { AuthGuard, EnvBannerModule } from '@damap/core';
 import { HttpBackend, HttpClientModule } from '@angular/common/http';
+import { NgModule, inject, provideAppInitializer } from '@angular/core';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { APP_ROUTES } from './app.routes';
@@ -12,13 +12,13 @@ import { ConfigService } from './services/config.service';
 import { ConsentGuard } from './guard/consent.guard';
 import { ConsentModule } from './components/consent/consent.module';
 import { LayoutModule } from './components/layout/layout.module';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { environment } from '../environments/environment';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 // required for AOT compilation
 export function HttpLoaderFactory(http: HttpBackend): MultiTranslateHttpLoader {

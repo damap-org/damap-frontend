@@ -9,6 +9,11 @@ import {
   InternalStorage,
   InternalStorageTranslation,
 } from '../domain/internal-storage';
+import { Observable, of, throwError } from 'rxjs';
+import {
+  TranslationEntry,
+  TranslationUpdatePayload,
+} from '../domain/translation';
 import { catchError, map, retry, shareReplay } from 'rxjs/operators';
 import { APP_ENV } from '../constants';
 import { Access, UserDo } from '../domain/access';
@@ -22,7 +27,6 @@ import { DmpListItem } from '../domain/dmp-list-item';
 import { FeedbackService } from './feedback.service';
 import { Gdpr } from '../domain/gdpr';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Project } from '../domain/project';
 import { RecommendedRepository } from '../domain/recommended-repository';
 import { RepositoryDetails } from '../domain/repository-details';
@@ -447,6 +451,72 @@ export class BackendService {
     return this.http.get<InternalStorageTranslation[]>(
       `${this.backendUrl}storages/${id}/translations/`,
     );
+  }
+
+  getTranslations(
+    language: string,
+    options?: { silent?: boolean },
+  ): Observable<TranslationEntry[]> {
+    const request = this.http
+      .get<TranslationEntry[]>(`${this.backendUrl}languages/${language}`)
+      .pipe(retry(3));
+
+    if (options?.silent) {
+      return request.pipe(catchError(() => of([])));
+    }
+
+    return request.pipe(
+      catchError(this.handleError('http.error.translations.load')),
+    );
+  }
+
+  updateTranslation(
+    translation: TranslationUpdatePayload,
+  ): Observable<TranslationEntry> {
+    return this.http
+      .patch<TranslationEntry>(
+        `${this.backendUrl}languages/${translation.language}/translations/${encodeURIComponent(translation.key)}`,
+        { value: translation.value, active: translation.active },
+      )
+      .pipe(
+        retry(3),
+        catchError(this.handleError('http.error.translations.update')),
+      );
+  }
+
+  createLanguage(
+    language: string,
+    options?: { silent?: boolean },
+  ): Observable<void> {
+    const request = this.http
+      .post<void>(`${this.backendUrl}languages`, { language })
+      .pipe(retry(3));
+
+    if (options?.silent) {
+      return request.pipe(
+        catchError((error: HttpErrorResponse) => throwError(() => error)),
+      );
+    }
+
+    return request.pipe(
+      catchError(this.handleError('http.error.translations.language.create')),
+    );
+  }
+
+  getLanguages(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.backendUrl}languages`).pipe(
+      retry(3),
+      catchError(() => of(['en'])),
+    );
+  }
+
+  deleteLanguage(language: string): Observable<void> {
+    return this.http
+      .delete<void>(`${this.backendUrl}languages/${language}`)
+      .pipe(
+        retry(3),
+        catchError(this.handleError('http.error.translations.language.delete')),
+      );
   }
 
   getAppBanner(): Observable<Banner> {

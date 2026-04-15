@@ -85,7 +85,8 @@
       "banner": "App Banner bearbeiten",
       "theme": "App Theme bearbeiten",
       "images": "App Bilder bearbeiten",
-      "repositories": "Empfohlene Repositories bearbeiten"
+      "repositories": "Empfohlene Repositories bearbeiten",
+      "translations": "App Übersetzungen bearbeiten"
     },
     "color-theme": {
       "title": "Farbauswahl",
