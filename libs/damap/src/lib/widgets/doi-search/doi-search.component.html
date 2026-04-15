@@ -5,20 +5,20 @@
       [label]="'dmp.steps.data.specify.doi.search'"
       [placeholder]="'10.5281/zenodo.3885730'"
       [control]="form.get('doi')"
-      [errorMessage]="'form.error.doi'"
+      [errorMessage]="'validation.error.doi'"
       (searchChange)="searchChange($event)"></app-search-field>
     <button
       mat-flat-button
       type="submit"
       (click)="search()"
       [disabled]="form.invalid || loading === loadingState.LOADING">
-      {{ "dmp.steps.data.specify.button.add.doi" | translate }}
+      {{ "dmp.steps.data.specify.button.addFromDoi" | translate }}
     </button>
   </div>
 </form>
 <app-error-message
   *ngIf="result === null"
-  message="dmp.steps.data.specify.doi.not.found"></app-error-message>
+  message="dmp.steps.data.specify.doi.notFound"></app-error-message>
 <app-error-message
   *ngIf="duplicate"
-  message="form.error.duplicateDoi"></app-error-message>
+  message="validation.error.doiDuplicate"></app-error-message>

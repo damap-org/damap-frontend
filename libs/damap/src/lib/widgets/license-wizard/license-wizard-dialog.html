@@ -1,6 +1,6 @@
-<h2 mat-dialog-title>{{'license.wizard.title' | translate}}</h2>
+<h2 mat-dialog-title>{{'license-wizard.title' | translate}}</h2>
 <app-info-message class="narrow-margin"
-  >{{"license.wizard.legalWarning" | translate}}</app-info-message
+  >{{"license-wizard.legalWarning" | translate}}</app-info-message
 >
 <mat-dialog-content class="mat-typography">
   <div>
@@ -10,12 +10,12 @@
       <div class="ls-question" *ngIf="last">
         <button id="ls-reset-button" mat-stroked-button (click)="reset()">
           <mat-icon>replay</mat-icon>
-          {{'license.wizard.reset' | translate}}
+          {{'license-wizard.reset' | translate}}
         </button>
         <h4>{{step.question | translate}}</h4>
         <!-- Software: License Matrix -->
         <ng-container
-          *ngIf="step.question === 'license.wizard.question.licenseInteropSoftware'">
+          *ngIf="step.question === 'license-wizard.question.licenseInteropSoftware'">
           <div *ngFor="let license of softwareLicenses">
             <mat-checkbox
               *ngIf="license.code"
@@ -26,7 +26,7 @@
         </ng-container>
         <!-- Data: License Options -->
         <ng-container
-          *ngIf="step.question === 'license.wizard.question.licenseInteropData'">
+          *ngIf="step.question === 'license-wizard.question.licenseInteropData'">
           <div
             *ngFor="let licenses of dataLicenses, let j = index"
             style="align-content: flex-start">
@@ -54,7 +54,7 @@
     *ngIf="(licenseList | licenseFilter: '')?.length else noLicense">
     <div id="ls-search">
       <app-search-field
-        [label]="'license.wizard.search'"
+        [label]="'license-wizard.search'"
         (searchChange)="searchChange($event)"></app-search-field>
     </div>
     <div class="ls-list">
@@ -71,7 +71,7 @@
                 target="_blank"
                 rel="noopener"
                 mat-button
-                >{{'license.wizard.info' | translate}}</a
+                >{{'license-wizard.info' | translate}}</a
               >
             </div>
           </div>
@@ -83,6 +83,6 @@
     </div>
   </ng-container>
   <ng-template #noLicense>
-    {{'license.wizard.none.found' | translate}}
+    {{'license-wizard.none.found' | translate}}
   </ng-template>
 </mat-dialog-content>

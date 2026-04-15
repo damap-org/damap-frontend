@@ -1,28 +1,28 @@
 <mat-dialog-content class="mat-typography">
-  <h2 translate>heading</h2>
+  <h2 translate>consent-popup.title</h2>
 
   <p>
-    {{ "information.text" | translate }}
+    {{ "consent-popup.personalData.processingAgreement" | translate }}
   </p>
 
   <ul>
     <li>
-      {{ "information.purpose.registration.label" | translate }}
+      {{ "consent-popup.personalData.registrationLabel" | translate }}
       <ul>
-        <li translate>information.purpose.registration.name</li>
-        <li translate>information.purpose.registration.mail</li>
-        <li translate>information.purpose.registration.id</li>
+        <li translate>consent-popup.personalData.fullName</li>
+        <li translate>consent-popup.personalData.email</li>
+        <li translate>consent-popup.personalData.institutionalId</li>
       </ul>
     </li>
   </ul>
 
-  <p translate>duration</p>
-  <p translate>agreement</p>
-  <p translate>withdrawal</p>
+  <p translate>consent-popup.dataRetention.duration</p>
+  <p translate>consent-popup.agreement.gdprNotice</p>
+  <p translate>consent-popup.withdrawal.notice</p>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
   <button mat-flat-button [mat-dialog-close]="true" cdkFocusInitial>
-    {{ "accept" | translate }}
+    {{ "consent-popup.button.accept" | translate }}
   </button>
 </mat-dialog-actions>

@@ -1,5 +1,5 @@
 <mat-label class="label-title mat-title-large" id="example-radio-group-label">
-  {{ "dmp.steps.costs.rightLabel" | translate }}
+  {{ "dmp.steps.costs.sectionTitle" | translate }}
 </mat-label>
 <mat-card class="data-management-costs-card card-shadow">
   <mat-card-content>
@@ -56,7 +56,7 @@
               <div class="form-row">
                 <div class="form-row-group">
                   <app-input-wrapper
-                    [label]="'dmp.steps.costs.question.title'"
+                    [label]="'dmp.steps.costs.question.name'"
                     [control]="getFormControl(i, 'title')">
                   </app-input-wrapper>
                 </div>
@@ -85,7 +85,7 @@
                   </mat-form-field>
                   <ng-container *ngIf="item.value.type === costType.OTHER">
                     <app-input-wrapper
-                      [label]="'dmp.steps.costs.question.other'"
+                      [label]="'dmp.steps.costs.question.specifyType'"
                       [type]="'text'"
                       [control]="getFormControl(i, 'customType')">
                     </app-input-wrapper>

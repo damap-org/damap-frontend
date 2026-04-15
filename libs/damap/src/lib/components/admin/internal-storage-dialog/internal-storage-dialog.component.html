@@ -1,29 +1,29 @@
 <h1 mat-dialog-title>
   <ng-container *ngIf="mode === 'edit'; else add">{{
-    "admin.dialog.internal-storage.edit" | translate
+    "admin.internalStorage.dialog.title.edit" | translate
   }}</ng-container>
   <ng-template #add>{{
-    "admin.dialog.internal-storage.add" | translate
+    "admin.internalStorage.dialog.title.create" | translate
   }}</ng-template>
 </h1>
 
 <mat-dialog-content id="datasetDialog">
   <div [formGroup]="storage">
     <app-input-wrapper
-      [label]="'admin.dialog.internal-storage.captions.url' | translate"
+      [label]="'admin.internalStorage.dialog.field.url' | translate"
       [control]="url"></app-input-wrapper>
     <app-input-wrapper
       [label]="
-        'admin.dialog.internal-storage.captions.storageLocation' | translate
+        'admin.internalStorage.dialog.field.storageLocation' | translate
       "
       [control]="storageLocation"></app-input-wrapper>
     <app-input-wrapper
       [label]="
-        'admin.dialog.internal-storage.captions.backupLocation' | translate
+        'admin.internalStorage.dialog.field.backupLocation' | translate
       "
       [control]="backupLocation"></app-input-wrapper>
     <mat-checkbox formControlName="active">
-      {{ "admin.dialog.internal-storage.captions.active" | translate }}
+      {{ "admin.internalStorage.dialog.field.active" | translate }}
     </mat-checkbox>
     <div *ngIf="mode === 'add'">
       <div [formGroup]="storageTranslation">
@@ -32,19 +32,19 @@
         <div class="dialogRow">
           <mat-form-field>
             <mat-label>{{
-              "admin.dialog.internal-storage-translation.captions.languageCode"
+              "admin.internalStorage.translation.dialog.field.languageCode"
                 | translate
             }}</mat-label>
             <mat-select formControlName="languageCode" required>
               <mat-option [value]="'eng'">
                 {{
-                  "admin.dialog.internal-storage-translation.captions.eng"
+                  "admin.internalStorage.translation.dialog.field.eng"
                     | translate
                 }}
               </mat-option>
               <mat-option [value]="'deu'">
                 {{
-                  "admin.dialog.internal-storage-translation.captions.deu"
+                  "admin.internalStorage.translation.dialog.field.deu"
                     | translate
                 }}
               </mat-option>
@@ -54,14 +54,14 @@
 
         <app-input-wrapper
           [label]="
-            'admin.dialog.internal-storage-translation.captions.title'
+            'admin.internalStorage.translation.dialog.field.title'
               | translate
           "
           [control]="title"></app-input-wrapper>
 
         <app-textarea-wrapper
           [label]="
-            'admin.dialog.internal-storage-translation.captions.description'
+            'admin.internalStorage.translation.dialog.field.description'
               | translate
           "
           [control]="description"
@@ -69,7 +69,7 @@
 
         <app-input-wrapper
           [label]="
-            'admin.dialog.internal-storage-translation.captions.backupFrequency'
+            'admin.internalStorage.translation.dialog.field.backupFrequency'
               | translate
           "
           [control]="backupFrequency"></app-input-wrapper>

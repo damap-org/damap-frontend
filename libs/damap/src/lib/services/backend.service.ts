@@ -549,7 +549,7 @@ export class BackendService {
       .pipe(
         retry(3),
         catchError(
-          this.handleError('http.error.admin.recommended-repositories.load'),
+          this.handleError('http.error.recommended-repositories.load'),
         ),
       );
   }
@@ -571,7 +571,7 @@ export class BackendService {
       .pipe(
         retry(3),
         catchError(
-          this.handleError('http.error.admin.recommended-repositories.save'),
+          this.handleError('http.error.recommended-repositories.save'),
         ),
       );
   }
@@ -582,7 +582,7 @@ export class BackendService {
       .pipe(
         retry(3),
         catchError(
-          this.handleError('http.error.admin.recommended-repositories.delete'),
+          this.handleError('http.error.recommended-repositories.delete'),
         ),
       );
   }

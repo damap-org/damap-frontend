@@ -6,13 +6,13 @@
   >
   <mat-radio-group aria-label="Select an option" [formControl]="control">
     <mat-radio-button [value]="dataKind.UNKNOWN">{{
-      "dmp.steps.data.specify.answer.kind.unknown" | translate
+      "dmp.steps.data.specify.answer.unknownYet" | translate
     }}</mat-radio-button>
     <mat-radio-button [value]="dataKind.NONE">{{
       answerLabelNone | translate
     }}</mat-radio-button>
     <mat-radio-button [value]="dataKind.SPECIFY">{{
-      "dmp.steps.data.specify.answer.kind.specify" | translate
+      "dmp.steps.data.specify.answer.defineDatasets" | translate
     }}</mat-radio-button>
   </mat-radio-group>
 </form>

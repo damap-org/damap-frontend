@@ -9,16 +9,16 @@ import { DeleteWarningDialogComponent } from '../../delete-warning-dialog/delete
   selector: 'damap-delete-storage-warning-dialog',
   imports: [CommonModule, TranslateModule, MatDialogModule, MatButtonModule],
   template: `
-    <h1 mat-dialog-title>{{ 'dialog.delete.title' | translate }}</h1>
+    <h1 mat-dialog-title>{{ 'delete.dialog.title' | translate }}</h1>
     <mat-dialog-content>{{
       getDeleteContent() | translate
     }}</mat-dialog-content>
     <mat-dialog-actions>
       <button mat-button [mat-dialog-close]="false">
-        {{ 'dialog.delete.cancel' | translate }}
+        {{ 'delete.dialog.button.cancel' | translate }}
       </button>
       <button mat-button [mat-dialog-close]="true">
-        {{ 'dialog.delete.button' | translate }}
+        {{ 'delete.dialog.button.delete' | translate }}
       </button>
     </mat-dialog-actions>
   `,
@@ -26,6 +26,6 @@ import { DeleteWarningDialogComponent } from '../../delete-warning-dialog/delete
 })
 export class DeleteStorageWarningDialogComponent extends DeleteWarningDialogComponent {
   override getDeleteContent(): string {
-    return 'dialog.delete.content.storage';
+    return 'delete.dialog.message.storage';
   }
 }

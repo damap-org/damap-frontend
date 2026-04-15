@@ -2,9 +2,9 @@
   <mat-card-content>
     <div [formGroup]="legalEthicalStep">
       <label id="humanParticipants">
-        {{ "dmp.steps.ethical.question.humanParticipants" | translate }}
+        {{ "dmp.steps.legal.question.humanParticipants" | translate }}
       </label>
-      <app-tooltip [tooltip]="'help.ethical.humanParticipants'"></app-tooltip>
+      <app-tooltip [tooltip]="'dmp.steps.legal.help.humanParticipants'"></app-tooltip>
       <div class="flex-radio">
         <app-cris-tag
           [cris]="legalEthicalStep?.value.humanParticipantsCris"></app-cris-tag>
@@ -21,37 +21,37 @@
       </div>
       <app-info-message
         *ngIf="legalEthicalStep.controls.humanParticipants.value">
-        {{ "info.ethical.humanParticipants.prefix" | translate }}
+        {{ "dmp.steps.legal.info.humanParticipants.prefix" | translate }}
         <a
           href="{{
-            'info.ethical.humanParticipants.researchEthicsCoordination.link'
+            'dmp.steps.legal.info.humanParticipants.researchEthicsCoordination.link'
               | translate
           }}"
           target="_blank"
           rel="noopener"
           >{{
-            "info.ethical.humanParticipants.researchEthicsCoordination.text"
+            "dmp.steps.legal.info.humanParticipants.researchEthicsCoordination.text"
               | translate
           }}</a
         >
-        {{ "info.ethical.humanParticipants.middle" | translate }}
+        {{ "dmp.steps.legal.info.humanParticipants.middle" | translate }}
         <a
           href="{{
-            'info.ethical.humanParticipants.researchEthics.link' | translate
+            'dmp.steps.legal.info.humanParticipants.researchEthics.link' | translate
           }}"
           target="_blank"
           rel="noopener"
           >{{
-            "info.ethical.humanParticipants.researchEthics.text" | translate
+            "dmp.steps.legal.info.humanParticipants.researchEthics.text" | translate
           }}</a
         >
         .
       </app-info-message>
 
       <label id="ethicalIssues">
-        {{ "dmp.steps.ethical.question.ethicalIssues" | translate }}
+        {{ "dmp.steps.legal.question.ethicalIssues" | translate }}
       </label>
-      <app-tooltip [tooltip]="'help.ethical.ethicalIssues'"></app-tooltip>
+      <app-tooltip [tooltip]="'dmp.steps.legal.help.ethicalIssues'"></app-tooltip>
       <div class="flex-radio">
         <mat-radio-group
           aria-labelledby="ethicalIssues"
@@ -67,33 +67,33 @@
         </mat-radio-group>
       </div>
       <app-info-message *ngIf="legalEthicalStep.controls.ethicalIssues.value">
-        {{ "info.ethical.ethicalIssues.text" | translate }}
+        {{ "dmp.steps.legal.info.ethicalIssues.text" | translate }}
         <a
           href="{{
-            'info.ethical.ethicalIssues.researchEthics.link' | translate
+            'dmp.steps.legal.info.ethicalIssues.researchEthics.link' | translate
           }}"
           target="_blank"
           rel="noopener"
-          >{{ "info.ethical.ethicalIssues.researchEthics.text" | translate }}</a
+          >{{ "dmp.steps.legal.info.ethicalIssues.researchEthics.text" | translate }}</a
         >
         .
       </app-info-message>
 
       <label id="committeeReviewed">
-        {{ "dmp.steps.ethical.question.committeeReviewed.prefix" | translate }}
+        {{ "dmp.steps.legal.question.committeeReviewed.prefix" | translate }}
         <a
           href="{{
-            'dmp.steps.ethical.question.committeeReviewed.researchCommittee.link'
+            'dmp.steps.legal.question.committeeReviewed.researchCommittee.link'
               | translate
           }}"
           target="_blank"
           rel="noopener"
           >{{
-            "dmp.steps.ethical.question.committeeReviewed.researchCommittee.text"
+            "dmp.steps.legal.question.committeeReviewed.researchCommittee.text"
               | translate
           }}</a
         >
-        {{ "dmp.steps.ethical.question.committeeReviewed.suffix" | translate }}
+        {{ "dmp.steps.legal.question.committeeReviewed.suffix" | translate }}
       </label>
       <div class="flex-radio">
         <app-cris-tag
@@ -115,18 +115,18 @@
           ethicalReportEnabled
         ">
         <app-input-wrapper
-          [label]="'dmp.steps.ethical.question.ethicalIssueReport'"
+          [label]="'dmp.steps.legal.question.ethicalIssueReport'"
           [maxLength]="255"
           [control]="ethicalIssuesReport"></app-input-wrapper>
       </div>
       <app-info-message>
-        {{ "info.ethical.committeeReviewed.prefix" | translate }}
+        {{ "dmp.steps.legal.info.committeeReviewed.prefix" | translate }}
         <a
-          href="{{ 'info.ethical.committeeReviewed.mail.link' | translate }}"
+          href="{{ 'dmp.steps.legal.info.committeeReviewed.mail.link' | translate }}"
           rel="noopener"
-          >{{ "info.ethical.committeeReviewed.mail.text" | translate }}</a
+          >{{ "dmp.steps.legal.info.committeeReviewed.mail.text" | translate }}</a
         >
-        {{ "info.ethical.committeeReviewed.suffix" | translate }}
+        {{ "dmp.steps.legal.info.committeeReviewed.suffix" | translate }}
       </app-info-message>
     </div>
   </mat-card-content>

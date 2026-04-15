@@ -12,7 +12,7 @@
       <div class="mm-navbar">
         <button
           mat-icon-button
-          title="{{ 'layout.menu.mobile.close' | translate }}"
+          title="{{ 'sidebar.header.button.hint' | translate }}"
           class="sidenav-btn"
           (click)="toggleMenu()">
           <mat-icon class="material-icon-white outline">{{
@@ -44,8 +44,12 @@
           {{ lang }}
         </button>
         <mat-menu #language="matMenu">
-          <button mat-menu-item (click)="useLanguage('en')">EN</button>
-          <button mat-menu-item (click)="useLanguage('de')">DE</button>
+          <button
+            mat-menu-item
+            *ngFor="let language of availableLanguages"
+            (click)="useLanguage(language)">
+            {{ language.toUpperCase() }}
+          </button>
         </mat-menu>
       </div>
     </div>
@@ -59,7 +63,7 @@
           [routerLinkActiveOptions]="{ exact: true }">
           <mat-icon class="menu-icon-size outline">home</mat-icon>
           <span *ngIf="!isCollapsed" class="menu-icon-text">{{
-            "layout.menu.home" | translate
+            "sidebar.navigation.home" | translate
           }}</span>
         </a>
         <a
@@ -69,7 +73,7 @@
           [routerLinkActiveOptions]="{ exact: true }">
           <mat-icon class="menu-icon-size outline">table_view</mat-icon>
           <span *ngIf="!isCollapsed" class="menu-icon-text">{{
-            "layout.menu.plans" | translate
+            "sidebar.navigation.dmps" | translate
           }}</span>
         </a>
         <a
@@ -80,7 +84,7 @@
           [routerLinkActiveOptions]="{ exact: true }">
           <mat-icon class="menu-icon-size outline">shield_person</mat-icon>
           <span *ngIf="!isCollapsed" class="menu-icon-text">{{
-            "layout.menu.admin" | translate
+            "sidebar.navigation.admin" | translate
           }}</span>
         </a>
       </div>
@@ -101,38 +105,41 @@
     <div *ngIf="!isCollapsed" class="footer mat-title-small">
       <div class="info">
         <a
-          [href]="'layout.impressum.link' | translate"
+          [href]="'sidebar.footer.impressum.link' | translate"
           rel="noopener"
           target="_blank"
-          >{{ "layout.impressum.text" | translate }}</a
         >
+          {{ "sidebar.footer.impressum.label" | translate }}
+        </a>
         <a
-          [href]="'layout.termsandconditions.link' | translate"
+          [href]="'sidebar.footer.terms-and-conditions.link' | translate"
           rel="noopener"
           target="_blank"
-          >{{ "layout.termsandconditions.text" | translate }}</a
         >
+          {{ "sidebar.footer.terms-and-conditions.label" | translate }}
+        </a>
         <a
-          [href]="'layout.dataprotection.link' | translate"
+          [href]="'sidebar.footer.data-protection-declaration.link' | translate"
           rel="noopener"
           target="_blank"
-          >{{ "layout.dataprotection.text" | translate }}</a
         >
+          {{ "sidebar.footer.data-protection-declaration.label" | translate }}
+        </a>
       </div>
       <div class="version-information">
         <a [routerLink]="'/gdpr'" rel="noopener">{{
-          "layout.gdpr" | translate
+          "sidebar.footer.gdpr-info" | translate
         }}</a>
         <span class="version-text"
-          >{{ "layout.version" | translate }}: {{ version }}</span
+          >{{ "sidebar.footer.version" | translate }}: {{ version }}</span
         >
       </div>
     </div>
     <div *ngIf="isCollapsed" class="footer-icon">
       <button
         mat-icon-button
-        [matTooltip]="'layout.icon.dataAlert' | translate"
-        [aria-label]="'layout.icon.dataAlert' | translate">
+        [matTooltip]="'sidebar.footer.collapsed.hint' | translate"
+        [aria-label]="'sidebar.footer.collapsed.hint' | translate">
         <mat-icon class="md-light outline">data_alert</mat-icon>
       </button>
     </div>
@@ -152,7 +159,7 @@
           <a
             class="logo-header"
             [title]="'layout.logo.text' | translate"
-            [href]="'layout.logo.link' | translate"
+            [href]="'info.how-to-create.tool.link' | translate"
             target="_blank"
             rel="noopener">
             <img
