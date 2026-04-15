@@ -1,0 +1,43 @@
+.page {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  max-width: 520px;
+  text-align: center;
+}
+
+.icon-wrapper {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 24px auto;
+  border-radius: 50%;
+  background: var(--mat-sys-error-container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-wrapper mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  color: var(--mat-sys-error);
+}
+
+.subtitle {
+  margin-bottom: 12px;
+}
+
+.description {
+  color: var(--mat-sys-outline);
+  line-height: 1.5;
+}
+
+.landing-page-button {
+  margin-top: 5px;
+}

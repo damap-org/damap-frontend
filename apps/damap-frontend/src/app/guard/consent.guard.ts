@@ -4,7 +4,7 @@ import {
   CanActivate,
   RouterStateSnapshot,
 } from '@angular/router';
-import { BackendService } from '@damap/core';
+import { AuthService, BackendService } from '@damap/core';
 import { ConsentComponent } from '../components/consent/consent.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -16,6 +16,7 @@ export class ConsentGuard implements CanActivate {
   constructor(
     private backendService: BackendService,
     private dialog: MatDialog,
+    private authService: AuthService,
   ) {
     this.consentGiven = true;
   }
@@ -24,6 +25,11 @@ export class ConsentGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): boolean {
+    // in single tenant mode this does nothing
+    // in multitenant mode this guards against users logging in without having their affiliation registered
+    if (!this.authService.isUserAffiliatedWithATenant()) {
+      return true;
+    }
     const consentResponse = this.backendService.getConsentGiven();
     consentResponse.subscribe(response => {
       if (response) {
