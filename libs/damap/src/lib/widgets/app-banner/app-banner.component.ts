@@ -11,14 +11,9 @@ import { BackendService } from '../../services/backend.service';
 export class AppBannerComponent implements OnInit {
   constructor(private backendService: BackendService) {}
 
-  banner: Banner = {
-    title: 'Default Title',
-    description: 'Default Description',
-    dismissible: true,
-    color: '#ffffff',
-  };
+  banner: Banner | undefined;
 
-  bannerVisible = true;
+  bannerVisible = false;
 
   dismissBanner() {
     this.bannerVisible = false;
@@ -26,10 +21,10 @@ export class AppBannerComponent implements OnInit {
 
   ngOnInit(): void {
     this.backendService.getAppBanner().subscribe(banner => {
-      if (!banner) {
-        this.bannerVisible = false;
+      if (banner) {
+        this.banner = banner;
+        this.bannerVisible = true;
       }
-      this.banner = banner;
     });
   }
 }
