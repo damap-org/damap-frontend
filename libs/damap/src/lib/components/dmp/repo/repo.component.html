@@ -87,7 +87,7 @@
         </ng-container>
         <ng-template #noRecommended>
           <p translate>dmp.steps.repositories.recommended.none</p>
-          <button mat-flat-button (click)="selectedTabIndex = 1">
+          <button mat-flat-button (click)="onViewChange('secondaryView')">
             {{ "dmp.steps.repositories.find.other" | translate }}
             <mat-icon iconPositionEnd>search</mat-icon>
           </button>
