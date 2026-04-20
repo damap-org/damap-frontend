@@ -1,6 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';
+import {
+  AbstractControl,
+  UntypedFormArray,
+  UntypedFormControl,
+  UntypedFormGroup,
+} from '@angular/forms';
 import {
   loadAllRepositories,
   loadRecommendedRepositories,
@@ -29,11 +34,11 @@ import { RepositoryDetails } from '../../../domain/repository-details';
   standalone: false,
 })
 export class RepoComponent implements OnInit {
-  repositoriesLoaded$: Observable<LoadingState>;
-  repositories$: Observable<RepositoryDetails[]>; // Repo list loaded from backend
-  recommendedLoaded$: Observable<LoadingState>;
-  recommended$: Observable<RepositoryDetails[]>;
-  filters$: Observable<{ [key: string]: { id: string; label: string }[] }>;
+  repositoriesLoaded$!: Observable<LoadingState>;
+  repositories$!: Observable<RepositoryDetails[]>; // Repo list loaded from backend
+  recommendedLoaded$!: Observable<LoadingState>;
+  recommended$!: Observable<RepositoryDetails[]>;
+  filters$!: Observable<{ [key: string]: { id: string; label: string }[] }>;
 
   @Input() dmpForm: UntypedFormGroup;
   @Input() repoStep: UntypedFormArray;
@@ -44,7 +49,8 @@ export class RepoComponent implements OnInit {
   @Output() viewChange = new EventEmitter<'primaryView' | 'secondaryView'>();
 
   LoadingState = LoadingState;
-  readonly datasetSource: any = DataSource;
+  readonly retentionOptions: number[] = [10, 25, 100];
+  readonly datasetTableHeaders: string[] = ['dataset', 'deposit', 'retention'];
 
   selectedTabIndex = 0;
   selectedView: 'primaryView' | 'secondaryView' = 'primaryView';
@@ -63,6 +69,15 @@ export class RepoComponent implements OnInit {
     this.recommended$ = this.store.pipe(select(selectRecommendedRepositories));
     this.store.dispatch(loadRecommendedRepositories());
     this.store.dispatch(loadAllRepositories(true));
+    this.syncAllRetentionControls();
+    this.repoStep.valueChanges.subscribe(() => this.syncAllRetentionControls());
+  }
+
+  get newDatasets(): AbstractControl[] {
+    if (!this.datasets) return [];
+    return this.datasets.controls.filter(
+      c => c.value.source === DataSource.NEW,
+    );
   }
 
   addRepository(repo: RepositoryDetails) {
@@ -89,6 +104,41 @@ export class RepoComponent implements OnInit {
     }
   }
 
+  isDatasetInRepo(repoIndex: number, datasetHash: string): boolean {
+    const repoDatasets =
+      this.repoStep.at(repoIndex).get('datasets')?.value || [];
+    return repoDatasets.includes(datasetHash);
+  }
+
+  isDatasetAssigned(datasetHash: string): boolean {
+    return this.repoStep.controls.some(repoControl => {
+      const repoDatasets = repoControl.get('datasets')?.value || [];
+      return repoDatasets.includes(datasetHash);
+    });
+  }
+
+  toggleDatasetInRepo(repoIndex: number, datasetHash: string): void {
+    const datasetsControl = this.repoStep.at(repoIndex).get('datasets');
+    const current = [...(datasetsControl?.value || [])];
+    const idx = current.indexOf(datasetHash);
+    if (idx === -1) {
+      current.push(datasetHash);
+    } else {
+      current.splice(idx, 1);
+    }
+    datasetsControl?.setValue(current);
+  }
+
+  getRetentionControl(datasetHash: string): UntypedFormControl | null {
+    const idx = this.datasets.controls.findIndex(
+      c => c.value.referenceHash === datasetHash,
+    );
+    if (idx < 0) return null;
+    return this.datasets.controls[idx].get(
+      'retentionPeriod',
+    ) as UntypedFormControl;
+  }
+
   getDatasetsMarkedForDeletion(index: number): Dataset[] {
     const repo = this.repoStep.at(index);
     return this.datasets.value.filter(
@@ -109,5 +159,26 @@ export class RepoComponent implements OnInit {
   onViewChange(view: 'primaryView' | 'secondaryView'): void {
     this.selectedView = view;
     this.viewChange.emit(view);
+  }
+
+  private syncRetentionControl(datasetHash: string): void {
+    const idx = this.datasets.controls.findIndex(
+      c => c.value.referenceHash === datasetHash,
+    );
+    if (idx < 0) return;
+    const control = this.datasets.controls[idx].get('retentionPeriod');
+    if (!control) return;
+    if (this.isDatasetAssigned(datasetHash)) {
+      control.enable({ emitEvent: false });
+    } else {
+      control.disable({ emitEvent: false });
+    }
+  }
+
+  private syncAllRetentionControls(): void {
+    if (!this.datasets) return;
+    for (const datasetControl of this.datasets.controls) {
+      this.syncRetentionControl(datasetControl.value.referenceHash);
+    }
   }
 }

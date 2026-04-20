@@ -9,3 +9,43 @@
 mat-form-field {
   width: 100%;
 }
+
+.dataset-assignment-table {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.repository-recommendations-card {
+  margin-top: 2rem;
+}
+
+.dataset-assignment-table td,
+.dataset-assignment-table th {
+  vertical-align: middle;
+}
+
+.dataset-assignment-table .mat-column-deposit {
+  text-align: center;
+}
+
+.dataset-assignment-table .mat-column-dataset {
+  max-width: 40%;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.dataset-assignment-table .mat-column-deposit {
+  width: 10%;
+  text-align: center;
+}
+
+.dataset-assignment-table .mat-column-retention {
+  width: 50%;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.retention-field {
+  width: 100%;
+  max-width: 280px;
+}
