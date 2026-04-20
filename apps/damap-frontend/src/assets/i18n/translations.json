@@ -443,7 +443,7 @@
     "dmp.steps.repositories.filter.reset": "Reset filter",
     "dmp.steps.repositories.filters": "Filters",
     "dmp.steps.repositories.find": "Find repository",
-    "dmp.steps.repositories.find.other": "Find other repository",
+    "dmp.steps.repositories.find.other": "Search other Repositories",
     "dmp.steps.repositories.heading": "Repositories",
     "dmp.steps.repositories.label": "Repositories and preservation",
     "dmp.steps.repositories.loading.failed.all": "Recommended repositories could not be loaded.",
