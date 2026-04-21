@@ -2,6 +2,16 @@
   <h1 translate>gdpr.title</h1>
   {{ "gdpr.info" | translate }}
   <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title translate>gdpr.user-info.title</mat-panel-title>
+      </mat-expansion-panel-header>
+      <div><strong translate>gdpr.user-info.name</strong>: {{ userName }}</div>
+      <div>
+        <strong translate>gdpr.user-info.email</strong>: {{ userEmail }}
+      </div>
+      <div><strong translate>gdpr.user-info.id</strong>: {{ userId }}</div>
+    </mat-expansion-panel>
     <mat-expansion-panel *ngFor="let item of gdpr$ | async">
       <mat-expansion-panel-header>
         <mat-panel-title>

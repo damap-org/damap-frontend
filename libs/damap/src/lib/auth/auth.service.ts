@@ -29,6 +29,11 @@ export class AuthService {
     return claims[this.configService.getUserIdClaim()];
   }
 
+  getEmail(): string {
+    const claims = this.oAuthService.getIdentityClaims();
+    return claims?.[this.configService.getEmailClaim()] ?? null;
+  }
+
   isAuthenticated(route: string): boolean {
     const isAuthenticated =
       this.oAuthService.hasValidIdToken() &&
