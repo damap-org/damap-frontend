@@ -1,4 +1,4 @@
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { AccessComponent } from '../access/access.component';
 import { CommonModule } from '@angular/common';
@@ -10,14 +10,12 @@ import { DmpActionsModule } from './dmp-actions/dmp-actions.module';
 import { DmpComponent } from './dmp.component';
 import { DocDataQualityModule } from './doc-data-quality/doc-data-quality.module';
 import { FormsModule } from '@angular/forms';
-import { HttpBackend } from '@angular/common/http';
 import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
 import { LegalEthicalAspectsModule } from './legal-ethical-aspects/legal-ethical-aspects.module';
 import { LicensesModule } from './licenses/licenses.module';
 import { LivePreviewModule } from './live-preview/live-preview.module';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatStepperModule } from '@angular/material/stepper';
-import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { NgModule } from '@angular/core';
 import { PeopleModule } from './people/people.module';
 import { ProjectModule } from './project/project.module';
@@ -30,18 +28,6 @@ import { ToggleButtonsModule } from '../../widgets/toggle-buttons/toggle-buttons
 import { VersionModule } from '../version/version.module';
 import { MatIconModule } from '@angular/material/icon';
 
-// required for AOT compilation
-export function HttpLoaderFactory(http: HttpBackend): MultiTranslateHttpLoader {
-  return new MultiTranslateHttpLoader(http, [
-    '/assets/damap-core/i18n/',
-    '/assets/damap-core/i18n/access/',
-    '/assets/damap-core/i18n/templates/',
-    '/assets/damap-core/i18n/help/',
-    '/assets/damap-core/i18n/info/',
-    '/assets/i18n/',
-  ]);
-}
-
 @NgModule({
   imports: [
     CommonModule,
@@ -50,15 +36,7 @@ export function HttpLoaderFactory(http: HttpBackend): MultiTranslateHttpLoader {
     ToggleButtonsModule,
     ProjectModule,
     MatButtonToggleModule,
-    TranslateModule.forChild({
-      defaultLanguage: 'en',
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpBackend],
-      },
-      extend: true,
-    }),
+    TranslateModule.forChild({ extend: true }),
     VersionModule,
     AccessComponent,
     // Steps

@@ -66,8 +66,9 @@ export class TranslationManagementComponent implements OnInit {
 
     this.backendService.getLanguages().subscribe(languages => {
       this.languages = languages.length > 0 ? languages : ['en'];
-      this.selectedLanguage = this.languages.includes('en')
-        ? 'en'
+      const currentLang = this.translate.currentLang ?? 'en';
+      this.selectedLanguage = this.languages.includes(currentLang)
+        ? currentLang
         : this.languages[0];
       this.languages.forEach(l =>
         this.translationLoader.registerAvailableLanguage(l),
