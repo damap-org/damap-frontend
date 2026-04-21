@@ -47,7 +47,11 @@
           <button
             mat-menu-item
             *ngFor="let language of availableLanguages"
-            (click)="useLanguage(language)">
+            (click)="useLanguage(language)"
+            [disabled]="language.toUpperCase() === lang">
+            @if (language.toUpperCase() === lang) {
+              <mat-icon style="transform: scale(0.85)">check</mat-icon>
+            }
             {{ language.toUpperCase() }}
           </button>
         </mat-menu>

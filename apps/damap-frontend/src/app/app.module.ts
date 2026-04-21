@@ -19,27 +19,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { environment } from '../environments/environment';
 
-const JSON_TRANSLATION_PATHS = [
-  '/assets/i18n/layout/',
-  '/assets/i18n/consent/',
-  '/assets/i18n/landing-page/',
-  '/assets/damap-core/i18n/dashboard/',
-  '/assets/damap-core/i18n/plans/',
-  '/assets/damap-core/i18n/http/',
-  '/assets/damap-core/i18n/gdpr/',
-  '/assets/damap-core/i18n/admin/',
-  '/assets/damap-core/i18n/',
-  '/assets/damap-core/i18n/templates/',
-  '/assets/i18n/',
-];
-
 // required for AOT compilation
 export function HttpLoaderFactory(http: HttpBackend): BackendTranslateLoader {
-  return new BackendTranslateLoader(
-    http,
-    environment.backendurl,
-    JSON_TRANSLATION_PATHS,
-  );
+  return new BackendTranslateLoader(http, environment.backendurl);
 }
 
 @NgModule({

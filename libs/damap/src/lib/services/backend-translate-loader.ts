@@ -1,33 +1,26 @@
 import { TranslateLoader } from '@ngx-translate/core';
 import { HttpBackend, HttpClient } from '@angular/common/http';
-import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
-import { Observable, forkJoin, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { TranslationEntry } from '../domain/translation';
 
 export class BackendTranslateLoader implements TranslateLoader {
   private readonly httpClient: HttpClient;
-  private readonly jsonLoader: MultiTranslateHttpLoader;
 
   constructor(
     http: HttpBackend,
     private readonly backendUrl: string,
-    jsonPaths: string[],
   ) {
     this.httpClient = new HttpClient(http);
-    this.jsonLoader = new MultiTranslateHttpLoader(http, jsonPaths);
   }
 
   getTranslation(lang: string): Observable<Record<string, any>> {
-    return forkJoin({
-      json: this.jsonLoader.getTranslation(lang).pipe(catchError(() => of({}))),
-      backend: this.httpClient
-        .get<TranslationEntry[]>(`${this.backendUrl}languages/${lang}`)
-        .pipe(
-          map(entries => this.entriesToNested(entries)),
-          catchError(() => of({})),
-        ),
-    }).pipe(map(({ json, backend }) => this.deepMerge(json, backend)));
+    return this.httpClient
+      .get<TranslationEntry[]>(`${this.backendUrl}languages/${lang}`)
+      .pipe(
+        map(entries => this.entriesToNested(entries)),
+        catchError(() => of({})),
+      );
   }
 
   private entriesToNested(entries: TranslationEntry[]): Record<string, any> {
@@ -55,25 +48,5 @@ export class BackendTranslateLoader implements TranslateLoader {
       current = current[parts[i]];
     }
     current[parts[parts.length - 1]] = value;
-  }
-
-  private deepMerge(
-    base: Record<string, any>,
-    override: Record<string, any>,
-  ): Record<string, any> {
-    const result = { ...base };
-    for (const key of Object.keys(override)) {
-      if (
-        typeof override[key] === 'object' &&
-        override[key] !== null &&
-        typeof result[key] === 'object' &&
-        result[key] !== null
-      ) {
-        result[key] = this.deepMerge(result[key], override[key]);
-      } else {
-        result[key] = override[key];
-      }
-    }
-    return result;
   }
 }
