@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 import { Gdpr } from '../../domain/gdpr';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'damap-gdpr',
@@ -15,10 +16,19 @@ import { MatExpansionModule } from '@angular/material/expansion';
 })
 export class GdprComponent implements OnInit {
   gdpr$: Observable<Gdpr[]>;
+  userName: string;
+  userEmail: string;
+  userId: string;
 
-  constructor(private backendService: BackendService) {}
+  constructor(
+    private backendService: BackendService,
+    private authService: AuthService,
+  ) {}
 
   ngOnInit(): void {
     this.gdpr$ = this.backendService.getGdpr();
+    this.userName = this.authService.getDisplayName();
+    this.userEmail = this.authService.getEmail();
+    this.userId = this.authService.getId();
   }
 }
