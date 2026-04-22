@@ -11,9 +11,7 @@
           <!--Sensitive Data-->
           <div class="flex-radio">
             <label id="sensitiveData"
-              >{{
-                "dmp.steps.legal.question.sensitiveData.prefix" | translate
-              }}
+              >{{ "dmp.steps.legal.question.sensitiveData.prefix" | translate }}
               <a
                 href="{{ 'dmp.steps.legal.link.sensitiveData' | translate }}"
                 target="_blank"
@@ -87,20 +85,14 @@
                 </div>
                 <ng-container *ngIf="isOtherMeasureSelected">
                   <app-textarea-wrapper
-                    [label]="
-                      'dmp.steps.legal.question.short.otherDataSecurityMeasures'
-                    "
-                    [longLabel]="
-                      'dmp.steps.legal.question.long.otherDataSecurityMeasures'
-                    "
+                    [label]="'dmp.steps.legal.question.short.otherDataSecurityMeasures'"
+                    [longLabel]="'dmp.steps.legal.question.long.otherDataSecurityMeasures'"
                     [control]="otherDataSecurityMeasures"
                     [maxLength]="4000"></app-textarea-wrapper>
                 </ng-container>
                 <app-textarea-wrapper
                   [label]="'dmp.steps.legal.question.short.sensitiveDataAccess'"
-                  [longLabel]="
-                    'dmp.steps.legal.question.long.sensitiveDataAccess'
-                  "
+                  [longLabel]="'dmp.steps.legal.question.long.sensitiveDataAccess'"
                   [control]="sensitiveDataAccess"
                   [maxLength]="4000"
                   appearance="fill"></app-textarea-wrapper>
@@ -179,12 +171,8 @@
                 <br /><br />
                 <ng-container *ngIf="isOtherSelected">
                   <app-textarea-wrapper
-                    [label]="
-                      'dmp.steps.legal.question.short.otherPersonalDataCompliance'
-                    "
-                    [longLabel]="
-                      'dmp.steps.legal.question.long.otherPersonalDataCompliance'
-                    "
+                    [label]="'dmp.steps.legal.question.short.otherPersonalDataCompliance'"
+                    [longLabel]="'dmp.steps.legal.question.long.otherPersonalDataCompliance'"
                     [control]="otherPersonalDataCompliance"
                     [maxLength]="4000"></app-textarea-wrapper>
                 </ng-container>
@@ -219,12 +207,8 @@
               </div>
               <div>
                 <app-textarea-wrapper
-                  [label]="
-                    'dmp.steps.legal.question.short.legalRestrictionsComment'
-                  "
-                  [longLabel]="
-                    'dmp.steps.legal.question.long.legalRestrictionsComment'
-                  "
+                  [label]="'dmp.steps.legal.question.short.legalRestrictionsComment'"
+                  [longLabel]="'dmp.steps.legal.question.long.legalRestrictionsComment'"
                   [control]="legalRestrictionsComment"
                   [maxLength]="4000"></app-textarea-wrapper>
               </div>
@@ -249,12 +233,8 @@
               </mat-form-field>
               <ng-container *ngIf="isOtherDocumentSelected">
                 <app-textarea-wrapper
-                  [label]="
-                    'dmp.steps.legal.question.short.otherLegalRestrictionsDocuments'
-                  "
-                  [longLabel]="
-                    'dmp.steps.legal.question.long.otherLegalRestrictionsDocuments'
-                  "
+                  [label]="'dmp.steps.legal.question.short.otherLegalRestrictionsDocuments'"
+                  [longLabel]="'dmp.steps.legal.question.long.otherLegalRestrictionsDocuments'"
                   [maxLength]="4000"
                   [control]="
                     otherLegalRestrictionsDocuments
@@ -265,12 +245,8 @@
           </div>
 
           <app-textarea-wrapper
-            [label]="
-              'dmp.steps.legal.question.short.dataRightsAndAccessControl'
-            "
-            [longLabel]="
-              'dmp.steps.legal.question.long.dataRightsAndAccessControl'
-            "
+            [label]="'dmp.steps.legal.question.short.dataRightsAndAccessControl'"
+            [longLabel]="'dmp.steps.legal.question.long.dataRightsAndAccessControl'"
             [maxLength]="4000"
             [control]="dataRightsAndAccessControl"></app-textarea-wrapper>
         </div>

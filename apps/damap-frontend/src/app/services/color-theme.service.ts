@@ -40,21 +40,29 @@ export class ColorThemeService {
   }
 
   public applyTheming(config: Config): void {
-    const theme = config.colorTheme;
-    if (!theme?.colors?.['primary']) return;
-
-    const newColors: Colors = {
-      primary: theme.colors['primary'] ?? null,
-      secondary: theme.colors['secondary'] ?? null,
-      tertiary: theme.colors['tertiary'] ?? null,
-      primaryContainer: theme.colors['primaryContainer'] ?? null,
-      secondaryContainer: theme.colors['secondaryContainer'] ?? null,
-      tertiaryContainer: theme.colors['tertiaryContainer'] ?? null,
-    };
+    let newColors: Colors;
+    if (
+      !config.colorTheme ||
+      !config.colorTheme.colors ||
+      !config.colorTheme.colors['primary']
+    ) {
+      newColors = this.generateDefaultColorScheme();
+    } else {
+      newColors = {
+        primary: config.colorTheme.colors['primary'] ?? null,
+        secondary: config.colorTheme.colors['secondary'] ?? null,
+        tertiary: config.colorTheme.colors['tertiary'] ?? null,
+        primaryContainer: config.colorTheme.colors['primaryContainer'] ?? null,
+        secondaryContainer:
+          config.colorTheme.colors['secondaryContainer'] ?? null,
+        tertiaryContainer:
+          config.colorTheme.colors['tertiaryContainer'] ?? null,
+      };
+    }
 
     this.colorsSignal.set(newColors);
     this.savedColorsSignal.set(newColors);
-    this.exactColorModeSignal.set(theme.exactColors);
+    this.exactColorModeSignal.set(config.colorTheme?.exactColors ?? false);
   }
 
   public saveColors(): Observable<ColorTheme> {
@@ -64,6 +72,17 @@ export class ColorThemeService {
         exactColors: this.exactColorModeSignal(),
       })
       .pipe(tap(() => this.savedColorsSignal.set(this.colorsSignal())));
+  }
+
+  private generateDefaultColorScheme(): Colors {
+    return {
+      primary: '#006699',
+      secondary: null,
+      tertiary: '#373737',
+      primaryContainer: null,
+      secondaryContainer: null,
+      tertiaryContainer: null,
+    };
   }
 
   private applyMaterial3Tokens(colors: Colors, exactMode: boolean): void {

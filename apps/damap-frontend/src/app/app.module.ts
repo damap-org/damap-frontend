@@ -1,5 +1,10 @@
 import { NgModule, inject, provideAppInitializer } from '@angular/core';
-import { EnvBannerModule, AuthGuard, TenantGuard, BackendTranslateLoader } from '@damap/core';
+import {
+  EnvBannerModule,
+  AuthGuard,
+  TenantGuard,
+  BackendTranslateLoader,
+} from '@damap/core';
 import { HttpBackend, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
