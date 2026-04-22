@@ -7,6 +7,7 @@ import {
 import { AuthService, BackendService } from '@damap/core';
 import { ConsentComponent } from '../components/consent/consent.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ConfigService } from '../services/config.service';
 
 @Injectable()
 export class ConsentGuard implements CanActivate {
@@ -17,6 +18,7 @@ export class ConsentGuard implements CanActivate {
     private backendService: BackendService,
     private dialog: MatDialog,
     private authService: AuthService,
+    private configService: ConfigService,
   ) {
     this.consentGiven = true;
   }
@@ -30,12 +32,25 @@ export class ConsentGuard implements CanActivate {
     if (!this.authService.isUserAffiliatedWithATenant()) {
       return true;
     }
+
+    if (
+      !this.authService.isAdmin() &&
+      !this.configService.isPublicAvailable()
+    ) {
+      return true;
+    }
+
     const consentResponse = this.backendService.getConsentGiven();
     consentResponse.subscribe(response => {
       if (response) {
         this.consentGiven = true;
       } else {
         this.consentGiven = false;
+
+        if (!this.configService.isConsentFormEnabled()) {
+          return;
+        }
+
         let dialogRef = this.dialog.open(ConsentComponent, {
           disableClose: true,
         });

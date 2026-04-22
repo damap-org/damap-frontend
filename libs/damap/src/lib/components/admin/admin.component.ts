@@ -259,7 +259,12 @@ export class AdminComponent implements OnInit {
   }
 
   onPublicAvailabilityToggle(publicAvailable: boolean) {
+    if (!this.instanceConfig) {
+      return;
+    }
+
     const updatedConfig: InstanceConfig = {
+      ...this.instanceConfig,
       publicAvailable,
     };
 
@@ -275,13 +280,40 @@ export class AdminComponent implements OnInit {
           this.feedbackService.error(error.message);
         }
 
-        // revert UI state if save failed
-        if (this.instanceConfig) {
-          this.instanceConfig = {
-            ...this.instanceConfig,
-            publicAvailable: !publicAvailable,
-          };
+        this.instanceConfig = {
+          ...this.instanceConfig!,
+          publicAvailable: !publicAvailable,
+        };
+      },
+    });
+  }
+
+  onConsentFormEnabledToggle(consentFormEnabled: boolean) {
+    if (!this.instanceConfig) {
+      return;
+    }
+
+    const updatedConfig: InstanceConfig = {
+      ...this.instanceConfig,
+      consentFormEnabled,
+    };
+
+    this.backendService.updateInstanceConfig(updatedConfig).subscribe({
+      next: config => {
+        this.instanceConfig = config;
+        this.feedbackService.success('http.success.instance-config.update');
+      },
+      error: error => {
+        if (error.error?.message) {
+          this.feedbackService.error(error.error.message);
+        } else {
+          this.feedbackService.error(error.message);
         }
+
+        this.instanceConfig = {
+          ...this.instanceConfig!,
+          consentFormEnabled: !consentFormEnabled,
+        };
       },
     });
   }

@@ -70,7 +70,7 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
     MatProgressSpinnerModule,
     DragDropModule,
     MatTooltipModule,
-    MatSlideToggle
+    MatSlideToggle,
   ],
   declarations: [
     AdminComponent,

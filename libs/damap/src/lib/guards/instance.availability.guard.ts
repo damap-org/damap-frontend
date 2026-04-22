@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
-  CanActivate, Router,
-  RouterStateSnapshot
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
@@ -13,7 +14,7 @@ export class InstanceAvailabilityGuard implements CanActivate {
   constructor(
     private authService: AuthService,
     private configService: ConfigService,
-    private router: Router
+    private router: Router,
   ) {}
 
   canActivate(

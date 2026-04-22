@@ -55,6 +55,7 @@ describe('ConfigService', () => {
       exactColors: true,
       colors: null,
     },
+    publicAvailable: true,
   };
 
   beforeEach(() => {

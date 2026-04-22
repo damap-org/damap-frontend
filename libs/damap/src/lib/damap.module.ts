@@ -23,13 +23,29 @@ import { EditTemplatesPageComponent } from './components/admin/edit-templates-pa
 import { InstanceAvailabilityGuard } from './guards/instance.availability.guard';
 
 export const DAMAP_ROUTES: Route[] = [
-  { path: 'dashboard', component: DashboardComponent, canActivate: [InstanceAvailabilityGuard] },
-  { path: 'plans', component: PlansComponent, canActivate: [InstanceAvailabilityGuard] },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [InstanceAvailabilityGuard],
+  },
+  {
+    path: 'plans',
+    component: PlansComponent,
+    canActivate: [InstanceAvailabilityGuard],
+  },
   {
     path: 'info',
     children: [
-      { path: 'damap', component: DamapInfoComponent, canActivate: [InstanceAvailabilityGuard] },
-      { path: 'how-to-create', component: DmpInstructionsComponent, canActivate: [InstanceAvailabilityGuard] },
+      {
+        path: 'damap',
+        component: DamapInfoComponent,
+        canActivate: [InstanceAvailabilityGuard],
+      },
+      {
+        path: 'how-to-create',
+        component: DmpInstructionsComponent,
+        canActivate: [InstanceAvailabilityGuard],
+      },
     ],
   },
   {
@@ -38,7 +54,11 @@ export const DAMAP_ROUTES: Route[] = [
     loadChildren: () =>
       import('./components/dmp/dmp.module').then(m => m.DmpModule),
   },
-  { path: 'gdpr', component: GdprComponent, canActivate: [InstanceAvailabilityGuard] },
+  {
+    path: 'gdpr',
+    component: GdprComponent,
+    canActivate: [InstanceAvailabilityGuard],
+  },
   { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
   {
     path: 'admin/theme',

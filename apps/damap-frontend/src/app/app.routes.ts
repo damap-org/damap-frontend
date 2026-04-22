@@ -19,7 +19,7 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: 'instance-locked',
-    component: InstanceLockedComponent
+    component: InstanceLockedComponent,
   },
   {
     path: '',

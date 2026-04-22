@@ -222,4 +222,8 @@ export class ConfigService {
   public isPublicAvailable(): boolean {
     return this.config?.publicAvailable || false;
   }
+
+  public isConsentFormEnabled(): boolean {
+    return this.config?.consentFormEnabled || false;
+  }
 }
