@@ -3,15 +3,14 @@ import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { TranslationEntry } from '../domain/translation';
+import { inject} from '@angular/core';
 
 export class BackendTranslateLoader implements TranslateLoader {
-  private readonly httpClient: HttpClient;
+  private httpClient = inject(HttpClient);
 
   constructor(
-    http: HttpBackend,
     private readonly backendUrl: string,
   ) {
-    this.httpClient = new HttpClient(http);
   }
 
   getTranslation(lang: string): Observable<Record<string, any>> {
@@ -22,6 +21,7 @@ export class BackendTranslateLoader implements TranslateLoader {
         catchError(() => of({})),
       );
   }
+
 
   private entriesToNested(entries: TranslationEntry[]): Record<string, any> {
     const result: Record<string, any> = {};
