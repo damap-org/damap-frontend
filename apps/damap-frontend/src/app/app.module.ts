@@ -20,8 +20,8 @@ import { RouterModule } from '@angular/router';
 import { environment } from '../environments/environment';
 
 // required for AOT compilation
-export function HttpLoaderFactory(http: HttpBackend): BackendTranslateLoader {
-  return new BackendTranslateLoader(http, environment.backendurl);
+export function HttpLoaderFactory(): BackendTranslateLoader {
+  return new BackendTranslateLoader(environment.backendurl);
 }
 
 @NgModule({

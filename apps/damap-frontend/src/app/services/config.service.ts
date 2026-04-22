@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { ColorThemeService } from './color-theme.service';
 import { ImageThemeService } from './image-theme.service';
+import { TranslateService } from "@ngx-translate/core";
 @Injectable({
   providedIn: 'root',
 })
@@ -31,6 +32,7 @@ export class ConfigService {
     private oauthService: OAuthService,
     private router: Router,
     private feedbackService: FeedbackService,
+    private translate: TranslateService,
   ) {}
 
   public initializeApp(): Promise<boolean> {
@@ -75,8 +77,13 @@ export class ConfigService {
               ) {
                 const tenantConfig = await this.loadConfig();
                 this.config = tenantConfig;
+                console.log(this.config);
                 this.colorThemeService.applyTheming(tenantConfig);
                 this.imageThemeService.applyTheming(tenantConfig);
+                console.log("reset");
+                console.log(this.translate.currentLang);
+                console.log(this.translate.translations);
+                this.translate.resetLang("en");
                 const appTitle = config.appTitle;
                 if (!appTitle) {
                   // eslint-disable-next-line no-console
