@@ -80,10 +80,9 @@ export class ConfigService {
                 console.log(this.config);
                 this.colorThemeService.applyTheming(tenantConfig);
                 this.imageThemeService.applyTheming(tenantConfig);
-                console.log("reset");
-                console.log(this.translate.currentLang);
-                console.log(this.translate.translations);
-                this.translate.resetLang("en");
+                for (const lang of this.translate.langs) {
+                  this.translate.resetLang(lang);
+                }
                 const appTitle = config.appTitle;
                 if (!appTitle) {
                   // eslint-disable-next-line no-console
