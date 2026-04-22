@@ -12,3 +12,12 @@ div#content {
 .content-max-width {
   max-width: 1440px;
 }
+
+.instance-config-section {
+  margin-top: 12px;
+}
+
+.instance-config-hint {
+  margin-top: 10px;
+  color: #666;
+}

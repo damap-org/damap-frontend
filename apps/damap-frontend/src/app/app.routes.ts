@@ -5,6 +5,7 @@ import { AuthGuard, TenantGuard, DamapModule } from '@damap/core';
 import { ConsentGuard } from './guard/consent.guard';
 import { environment } from '../environments/environment';
 import { NoTenantComponent } from './components/no-tenant/no-tenant.component';
+import { InstanceLockedComponent } from './components/instance-locked-page/instance-locked.component';
 
 export const APP_ROUTES: Routes = [
   {
@@ -15,6 +16,10 @@ export const APP_ROUTES: Routes = [
   {
     path: '',
     component: LandingPageComponent,
+  },
+  {
+    path: 'instance-locked',
+    component: InstanceLockedComponent
   },
   {
     path: '',

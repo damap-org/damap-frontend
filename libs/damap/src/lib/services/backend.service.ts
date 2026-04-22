@@ -33,6 +33,7 @@ import { RepositoryDetails } from '../domain/repository-details';
 import { SearchResult } from '../domain/search/search-result';
 import { TranslateService } from '@ngx-translate/core';
 import { Version } from '../domain/version';
+import { InstanceConfig } from '../domain/instance-config';
 
 @Injectable({
   providedIn: 'root',
@@ -618,6 +619,36 @@ export class BackendService {
 
   deleteExportTemplate(id: number): Observable<any> {
     return this.http.delete(`${this.backendUrl}admin/export-templates/${id}`);
+  }
+
+  getInstanceConfig(): Observable<InstanceConfig> {
+    return this.http
+      .get<InstanceConfig>(`${this.backendUrl}admin/instance-config`)
+      .pipe(
+        retry(3),
+        catchError(this.handleError('http.error.admin.instance-config.load')),
+      );
+  }
+
+  updateInstanceConfig(
+    instanceConfig: InstanceConfig,
+  ): Observable<InstanceConfig> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+
+    return this.http
+      .put<InstanceConfig>(
+        `${this.backendUrl}admin/instance-config`,
+        instanceConfig,
+        httpOptions,
+      )
+      .pipe(
+        retry(3),
+        catchError(this.handleError('http.error.admin.instance-config.update')),
+      );
   }
 
   private handleError(message = 'http.error.standard') {

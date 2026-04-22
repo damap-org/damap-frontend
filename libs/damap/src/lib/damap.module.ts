@@ -20,23 +20,25 @@ import { PlansComponent } from './components/plans/plans.component';
 import { PlansModule } from './components/plans/plans.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { EditTemplatesPageComponent } from './components/admin/edit-templates-page/edit-templates-page.component';
+import { InstanceAvailabilityGuard } from './guards/instance.availability.guard';
 
 export const DAMAP_ROUTES: Route[] = [
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'plans', component: PlansComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [InstanceAvailabilityGuard] },
+  { path: 'plans', component: PlansComponent, canActivate: [InstanceAvailabilityGuard] },
   {
     path: 'info',
     children: [
-      { path: 'damap', component: DamapInfoComponent },
-      { path: 'how-to-create', component: DmpInstructionsComponent },
+      { path: 'damap', component: DamapInfoComponent, canActivate: [InstanceAvailabilityGuard] },
+      { path: 'how-to-create', component: DmpInstructionsComponent, canActivate: [InstanceAvailabilityGuard] },
     ],
   },
   {
     path: 'dmp',
+    canActivate: [InstanceAvailabilityGuard],
     loadChildren: () =>
       import('./components/dmp/dmp.module').then(m => m.DmpModule),
   },
-  { path: 'gdpr', component: GdprComponent },
+  { path: 'gdpr', component: GdprComponent, canActivate: [InstanceAvailabilityGuard] },
   { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
   {
     path: 'admin/theme',

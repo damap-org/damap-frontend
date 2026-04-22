@@ -130,4 +130,23 @@
     <mat-icon>edit</mat-icon>
     {{ "admin.edit.templates" | translate }}
   </button>
+  <hr />
+  <h2 translate>admin.instance-config</h2>
+
+  <div class="instance-config-section">
+    <mat-slide-toggle
+      [checked]="instanceConfig?.publicAvailable"
+      (change)="onPublicAvailabilityToggle($event.checked)">
+      {{ "admin.instance-config.public-available" | translate }}
+    </mat-slide-toggle>
+
+    <p class="instance-config-hint">
+      {{
+        (instanceConfig?.publicAvailable
+            ? "admin.instance-config.public-available-enabled"
+            : "admin.instance-config.public-available-disabled"
+        ) | translate
+      }}
+    </p>
+  </div>
 </div>
