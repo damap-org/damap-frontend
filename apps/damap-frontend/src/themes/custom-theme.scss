@@ -96,13 +96,22 @@ html {
     (
       selected-focus-track-color: var(--mdc-theme-primary),
       selected-pressed-track-color: var(--mdc-theme-primary),
-      selected-hover-handle-color:
-        color-mix(in srgb, var(--mdc-theme-primary) 30%, white),
-      selected-focus-handle-color:
-        color-mix(in srgb, var(--mdc-theme-primary) 30%, white),
+      selected-hover-handle-color: color-mix(
+          in srgb,
+          var(--mdc-theme-primary) 30%,
+          white
+        ),
+      selected-focus-handle-color: color-mix(
+          in srgb,
+          var(--mdc-theme-primary) 30%,
+          white
+        ),
       selected-focus-state-layer-color: var(--mdc-theme-primary),
-      selected-pressed-handle-color:
-        color-mix(in srgb, var(--mdc-theme-primary) 60%, white),
+      selected-pressed-handle-color: color-mix(
+          in srgb,
+          var(--mdc-theme-primary) 60%,
+          white
+        ),
     )
   );
 }
