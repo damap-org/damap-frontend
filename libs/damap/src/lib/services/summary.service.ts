@@ -60,7 +60,7 @@ export class SummaryService {
 
   static evaluateProjectStep(project: Project): Completeness {
     const projectsLevel: Completeness = {
-      step: 'dmp.steps.project.label',
+      step: 'dmp.steps.project.view.button.choose',
       completeness: 0,
       status: [],
     };

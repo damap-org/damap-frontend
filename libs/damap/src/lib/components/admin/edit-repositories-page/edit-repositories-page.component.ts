@@ -64,9 +64,7 @@ export class EditRepositoriesPageComponent implements OnInit {
       this.repositories.set(repositories);
     } catch (error) {
       console.error('Error loading repositories:', error);
-      this.feedbackService.error(
-        'http.error.admin.recommended-repositories.load',
-      );
+      this.feedbackService.error('http.error.recommended-repositories.load');
     }
   }
 
@@ -104,9 +102,7 @@ export class EditRepositoriesPageComponent implements OnInit {
       if (error.error?.message) {
         this.feedbackService.error(error.error.message);
       } else {
-        this.feedbackService.error(
-          'http.error.admin.recommended-repositories.save',
-        );
+        this.feedbackService.error('http.error.recommended-repositories.save');
       }
     }
   }
@@ -127,7 +123,7 @@ export class EditRepositoriesPageComponent implements OnInit {
       .subscribe({
         next: () => {
           this.feedbackService.success(
-            'http.success.admin.recommended-repositories.delete',
+            'http.success.recommended-repositories.delete',
           );
           void this.loadRepositories();
         },
@@ -136,7 +132,7 @@ export class EditRepositoriesPageComponent implements OnInit {
             this.feedbackService.error(error.error.message);
           } else {
             this.feedbackService.error(
-              'http.error.admin.recommended-repositories.delete',
+              'http.error.recommended-repositories.delete',
             );
           }
         },

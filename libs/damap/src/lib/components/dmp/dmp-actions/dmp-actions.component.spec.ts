@@ -114,7 +114,7 @@ describe('DmpActionsComponent', () => {
     const buttons = await loader.getAllHarnesses(MatButtonHarness);
     expect(buttons.length).toBe(11);
 
-    expect(await buttons[5].getText()).toBe('button.save');
+    expect(await buttons[5].getText()).toBe('actions-bar.buttons.save');
     expect(await buttons[5].isDisabled()).toBe(true);
 
     await buttons[6].click();

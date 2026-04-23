@@ -7,18 +7,20 @@
           <app-flip-card
             [navigateRoute]="'/plans'"
             iconCard="list_alt"
-            frontContent="{{ 'plans.mydmps' | translate }}"
-            backContent="{{ 'plans.myDmpsDescription' | translate }}">
+            frontContent="{{
+              'dashboard.cards.my-dmps.front-side' | translate
+            }}"
+            backContent="{{ 'dashboard.cards.my-dmps.back-side' | translate }}">
           </app-flip-card>
 
           <app-flip-card
             [navigateRoute]="'/dmp'"
             iconCard="add_circle"
             frontContent="{{
-              'dashboard.instructions.create.heading' | translate
+              'dashboard.cards.create-new-dmp.front-side' | translate
             }}"
             backContent="{{
-              'dashboard.instructions.create.description' | translate
+              'dashboard.cards.create-new-dmp.back-side' | translate
             }}">
           </app-flip-card>
         </div>
@@ -31,18 +33,22 @@
         <div class="flip-card-container">
           <app-flip-card
             [navigateRoute]="'info/how-to-create'"
-            frontContent="{{ 'dashboard.instructions.heading' | translate }}"
+            frontContent="{{
+              'dashboard.cards.how-to-create.front-side' | translate
+            }}"
             iconCard="contact_support"
             backContent="{{
-              'dashboard.instructions.description' | translate
+              'dashboard.cards.how-to-create.back-side' | translate
             }}">
           </app-flip-card>
 
           <app-flip-card
             [navigateRoute]="'info/damap'"
             iconCard="info"
-            frontContent="{{ 'dashboard.tool.heading' | translate }}"
-            backContent="{{ 'dashboard.tool.description' | translate }}">
+            frontContent="{{ 'info.how-to-create.tool.heading' | translate }}"
+            backContent="{{
+              'dashboard.cards.about-damap.back-side' | translate
+            }}">
           </app-flip-card>
         </div>
       </mat-card-content>

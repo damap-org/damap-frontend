@@ -2,13 +2,13 @@
   <p>{{ repo.description }}</p>
 
   <div *ngIf="repo.contentTypes">
-    {{ "contenttypes" | translate }}:
+    {{ "dmp.steps.repositories.contenttypes" | translate }}:
     <div class="content-types tag" *ngFor="let type of repo.contentTypes">
       {{ type }}
     </div>
   </div>
   <div *ngIf="repo.metadataStandards">
-    {{ "metadatastandards" | translate }}:
+    {{ "dmp.steps.repositories.metadatastandards" | translate }}:
     <div
       class="metadata-standards tag"
       *ngFor="let standard of repo.metadataStandards">

@@ -2,7 +2,7 @@
   <app-search-field
     #contributorSearchField
     class="search-field"
-    [label]="'dmp.steps.people.search'"
+    [label]="'dmp.steps.people.search.field'"
     (searchChange)="search($event)"></app-search-field>
   <div class="result-list" *ngIf="currentSearchTerm && result.length > 0">
     <mat-selection-list

@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { ColorThemeService } from './color-theme.service';
 import { ImageThemeService } from './image-theme.service';
+import { TranslateService } from '@ngx-translate/core';
 @Injectable({
   providedIn: 'root',
 })
@@ -31,13 +32,14 @@ export class ConfigService {
     private oauthService: OAuthService,
     private router: Router,
     private feedbackService: FeedbackService,
+    private translate: TranslateService,
   ) {}
 
   public initializeApp(): Promise<boolean> {
     return this.loadConfig()
       .then((config: Config) => {
         if (!this.firstAttempt) {
-          this.feedbackService.success('landing-page.servers-up');
+          this.feedbackService.success('landing.servers-up');
         }
         this.backendDown$.next(false);
         if (!config) {
@@ -75,8 +77,12 @@ export class ConfigService {
               ) {
                 const tenantConfig = await this.loadConfig();
                 this.config = tenantConfig;
+                console.log(this.config);
                 this.colorThemeService.applyTheming(tenantConfig);
                 this.imageThemeService.applyTheming(tenantConfig);
+                for (const lang of this.translate.langs) {
+                  this.translate.resetLang(lang);
+                }
                 const appTitle = config.appTitle;
                 if (!appTitle) {
                   // eslint-disable-next-line no-console
@@ -114,12 +120,12 @@ export class ConfigService {
 
         if (this.firstAttempt) {
           this.firstAttempt = false;
-          this.feedbackService.error('landing-page.servers-down-retrying');
+          this.feedbackService.error('landing.servers-down-retrying');
           setTimeout(() => {
             this.initializeApp();
           }, 10000);
         } else {
-          this.feedbackService.error('landing-page.servers-down', undefined, 0);
+          this.feedbackService.error('landing.servers-down', undefined, 0);
         }
 
         return false;
@@ -191,7 +197,7 @@ export class ConfigService {
     return lastValueFrom(
       this.http.get<Config>(`${host}config`).pipe(
         catchError(err => {
-          this.feedbackService.error('landing-page.servers-down');
+          this.feedbackService.error('landing.servers-down');
           return throwError(() => err);
         }),
       ),

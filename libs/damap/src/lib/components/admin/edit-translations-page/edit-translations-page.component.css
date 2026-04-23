@@ -1,0 +1,16 @@
+.admin-translations-page {
+  padding: 20px;
+}
+
+.header-section {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin-bottom: 32px;
+  button {
+    margin-right: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

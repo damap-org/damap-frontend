@@ -167,7 +167,7 @@ export class EditTemplatesPageComponent {
             this.isProcessing.set(false);
           })
           .catch(() => {
-            this.feedbackService.error('landing-page.servers-down');
+            this.feedbackService.error('landing.servers-down');
             this.isProcessing.set(false);
           });
       },
