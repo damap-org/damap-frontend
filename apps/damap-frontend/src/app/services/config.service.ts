@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { ColorThemeService } from './color-theme.service';
 import { ImageThemeService } from './image-theme.service';
-import { TranslateService } from "@ngx-translate/core";
+import { TranslateService } from '@ngx-translate/core';
 @Injectable({
   providedIn: 'root',
 })

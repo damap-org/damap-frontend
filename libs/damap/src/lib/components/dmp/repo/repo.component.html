@@ -57,7 +57,9 @@
             <app-error-message
               *ngIf="getDatasetsMarkedForDeletion(i).length > 0"
               [data]="getDatasetsMarkedForDeletionAsString(i)"
-              [message]="'dmp.steps.repositories.warning.deletion'"></app-error-message>
+              [message]="
+                'dmp.steps.repositories.warning.deletion'
+              "></app-error-message>
           </div>
         </div>
       </ng-container>
