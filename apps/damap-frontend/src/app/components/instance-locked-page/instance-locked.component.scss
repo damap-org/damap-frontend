@@ -1,0 +1,70 @@
+.page {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--mat-sys-background);
+}
+
+.content {
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  padding: 32px 28px;
+  border-radius: 16px;
+
+  /* subtle surface, no harsh white */
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(6px);
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.icon-wrapper {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 24px auto;
+  border-radius: 50%;
+
+  /* neutral container instead of error */
+  background: var(--mat-sys-surface-variant);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-wrapper mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+
+  /* neutral icon color */
+  color: var(--mat-sys-primary);
+}
+
+.subtitle {
+  margin-bottom: 12px;
+}
+
+.description {
+  color: var(--mat-sys-outline);
+  line-height: 1.5;
+}
+
+h1 {
+  color: var(--mat-sys-on-surface);
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  margin-bottom: 12px;
+  color: var(--mat-sys-on-surface);
+}
+
+.description {
+  color: var(--mat-sys-outline);
+  line-height: 1.5;
+}

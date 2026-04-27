@@ -22,13 +22,25 @@ import { TranslateModule } from '@ngx-translate/core';
 import { EditTemplatesPageComponent } from './components/admin/edit-templates-page/edit-templates-page.component';
 
 export const DAMAP_ROUTES: Route[] = [
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'plans', component: PlansComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+  },
+  {
+    path: 'plans',
+    component: PlansComponent,
+  },
   {
     path: 'info',
     children: [
-      { path: 'damap', component: DamapInfoComponent },
-      { path: 'how-to-create', component: DmpInstructionsComponent },
+      {
+        path: 'damap',
+        component: DamapInfoComponent,
+      },
+      {
+        path: 'how-to-create',
+        component: DmpInstructionsComponent,
+      },
     ],
   },
   {
@@ -36,7 +48,10 @@ export const DAMAP_ROUTES: Route[] = [
     loadChildren: () =>
       import('./components/dmp/dmp.module').then(m => m.DmpModule),
   },
-  { path: 'gdpr', component: GdprComponent },
+  {
+    path: 'gdpr',
+    component: GdprComponent,
+  },
   { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
   {
     path: 'admin/theme',

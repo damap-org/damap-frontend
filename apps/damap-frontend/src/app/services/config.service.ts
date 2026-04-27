@@ -218,4 +218,12 @@ export class ConfigService {
   public getActiveTemplates(): any[] {
     return this.config?.templates?.filter(t => t.active) || [];
   }
+
+  public isPublicAvailable(): boolean {
+    return this.config?.publicAvailable || false;
+  }
+
+  public isConsentFormEnabled(): boolean {
+    return this.config?.consentFormEnabled || false;
+  }
 }

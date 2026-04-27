@@ -26,4 +26,6 @@ export interface Config {
   readonly multitenancyEnabled: boolean;
   readonly tenants: string[];
   readonly templates: any[];
+  readonly publicAvailable: boolean;
+  readonly consentFormEnabled: boolean;
 }

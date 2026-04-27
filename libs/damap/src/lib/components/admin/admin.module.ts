@@ -36,6 +36,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslationManagementComponent } from './translation-management/translation-management.component';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
 
 @NgModule({
   imports: [
@@ -69,6 +70,7 @@ import { TranslationManagementComponent } from './translation-management/transla
     MatProgressSpinnerModule,
     DragDropModule,
     MatTooltipModule,
+    MatSlideToggle,
   ],
   declarations: [
     AdminComponent,
