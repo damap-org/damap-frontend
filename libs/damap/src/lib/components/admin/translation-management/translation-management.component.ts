@@ -168,6 +168,13 @@ export class TranslationManagementComponent implements OnInit {
     this.originalCustomValue = entry.value ?? '';
   }
 
+  revertToDefault(): void {
+    this.customValue = '';
+    if (this.originalCustomValue) {
+      this.saveCustomValue();
+    }
+  }
+
   clearSelection(): void {
     this.selectedTranslation = null;
     this.customValue = '';

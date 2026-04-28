@@ -121,25 +121,19 @@
     </ng-container>
 
     <div class="detail-card" *ngIf="selectedTranslation">
-      <div class="detail-title">
-        <span class="key-label">{{ selectedTranslation.key }}</span>
-      </div>
-      <p class="detail-subtitle">
-        Customize text per language without code changes.
-      </p>
       <div class="detail-section">
-        <p class="label">
-          {{ "admin.appTranslations.currentValueFor" | translate }}
-          {{ selectedLanguage | uppercase }}
-        </p>
+        <p class="label">Key:</p>
+        <div class="current-value">{{ selectedTranslation.key }}</div>
+      </div>
+      <div class="detail-section">
+        <p class="label">Default value:</p>
         <div class="current-value">
-          {{ selectedTranslation.value || selectedTranslation.defaultValue }}
+          {{ selectedTranslation.defaultValue }}
         </div>
       </div>
       <div class="detail-section">
         <p class="label">
-          {{ "admin.appTranslations.customValueFor" | translate }}
-          {{ selectedLanguage | uppercase }}
+          Custom value for {{ selectedLanguage | uppercase }}:
         </p>
         <mat-form-field appearance="outline" class="custom-input">
           <textarea
@@ -154,9 +148,13 @@
           {{ "admin.appTranslations.cancel" | translate }}
         </button>
         <button
-          mat-raised-button
-          class="button-color-primary"
-          color="primary"
+          mat-stroked-button
+          (click)="revertToDefault()"
+          [disabled]="saving || !customValue">
+          Revert to default value
+        </button>
+        <button
+          mat-flat-button
           (click)="saveCustomValue()"
           [disabled]="saving || !hasChanges">
           {{ "admin.appTranslations.save" | translate }}
