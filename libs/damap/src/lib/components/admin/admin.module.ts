@@ -4,7 +4,6 @@ import { AddLanguageDialogComponent } from './translation-management/dialogs/add
 import { AdminComponent } from './admin.component';
 import { BannerDialogComponent } from './banner-dialog/banner-dialog.component';
 import { CommonModule } from '@angular/common';
-import { DeleteLanguageDialogComponent } from './translation-management/dialogs/delete-language-dialog.component';
 import { DeleteRepositoryWarningDialogComponent } from './edit-repositories-page/delete-repository-warning-dialog.component';
 import { DmpTableModule } from '../../widgets/dmp-table/dmp-table.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -80,7 +79,6 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
     DeleteRepositoryWarningDialogComponent,
     TranslationManagementComponent,
     AddLanguageDialogComponent,
-    DeleteLanguageDialogComponent,
   ],
   exports: [
     CommonModule,

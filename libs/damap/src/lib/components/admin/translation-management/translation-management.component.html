@@ -27,9 +27,15 @@
       </button>
       <button
         mat-stroked-button
+        (click)="toggleLanguageActive()"
+        [disabled]="isToggleActiveDisabled">
+        {{ toggleActiveLabelKey | translate }}
+      </button>
+      <button
+        mat-stroked-button
         color="warn"
         (click)="confirmDeleteLanguage(selectedLanguage)"
-        [disabled]="languageLoading || languages.length <= 1">
+        [disabled]="isRemoveLanguageDisabled">
         {{ "admin.appTranslations.removeLanguage" | translate }}
       </button>
     </div>
