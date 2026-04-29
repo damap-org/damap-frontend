@@ -98,7 +98,7 @@
             *ngFor="let translation of pagedTranslations"
             [class.selected]="selectedTranslation?.id === translation.id"
             (click)="selectTranslation(translation)">
-            <div class="key-cell">{{ translation.key }}</div>
+            <div class="key-cell">{{ translation.translationKey }}</div>
             <div
               class="value-cell"
               [ngClass]="{ custom: isCustomValue(translation) }"
@@ -122,7 +122,7 @@
 
     <div class="detail-card" *ngIf="selectedTranslation">
       <div class="detail-title">
-        <span class="key-label">{{ selectedTranslation.key }}</span>
+        <span class="key-label">{{ selectedTranslation.translationKey }}</span>
       </div>
       <p class="detail-subtitle">
         Customize text per language without code changes.

@@ -25,7 +25,7 @@ export class BackendTranslateLoader implements TranslateLoader {
       if (!entry.active) continue;
       const value = entry.value || entry.defaultValue;
       if (!value) continue;
-      this.setNestedValue(result, entry.key, value);
+      this.setNestedValue(result, entry.translationKey, value);
     }
     return result;
   }

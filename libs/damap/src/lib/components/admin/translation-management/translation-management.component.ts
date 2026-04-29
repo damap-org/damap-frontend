@@ -117,7 +117,9 @@ export class TranslationManagementComponent implements OnInit {
             }
           }
           this.sections = Array.from(
-            new Set(this.translations.map(t => this.sectionForKey(t.key))),
+            new Set(
+              this.translations.map(t => this.sectionForKey(t.translationKey)),
+            ),
           ).sort();
           this.applyFilters(true);
         },
@@ -193,7 +195,7 @@ export class TranslationManagementComponent implements OnInit {
         : null;
     const payload: TranslationUpdatePayload = {
       id: this.selectedTranslation.id,
-      key: this.selectedTranslation.key,
+      translationKey: this.selectedTranslation.translationKey,
       language: this.selectedTranslation.language,
       active: this.selectedTranslation.active,
       value: nextValue,
@@ -319,7 +321,11 @@ export class TranslationManagementComponent implements OnInit {
 
     if (term) {
       items = items.filter(item => {
-        const searchPool = [item.key, item.value ?? '', item.defaultValue ?? '']
+        const searchPool = [
+          item.translationKey,
+          item.value ?? '',
+          item.defaultValue ?? '',
+        ]
           .filter(Boolean)
           .map(text => text.toLowerCase());
         return searchPool.some(text => text.includes(term));
@@ -328,7 +334,7 @@ export class TranslationManagementComponent implements OnInit {
 
     if (this.sectionFilter !== 'all') {
       items = items.filter(
-        item => this.sectionForKey(item.key) === this.sectionFilter,
+        item => this.sectionForKey(item.translationKey) === this.sectionFilter,
       );
     }
 

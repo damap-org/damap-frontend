@@ -476,7 +476,7 @@ export class BackendService {
   ): Observable<TranslationEntry> {
     return this.http
       .patch<TranslationEntry>(
-        `${this.backendUrl}languages/${translation.language}/translations/${encodeURIComponent(translation.key)}`,
+        `${this.backendUrl}languages/${translation.language}/translations/${encodeURIComponent(translation.translationKey)}`,
         { value: translation.value, active: translation.active },
       )
       .pipe(
