@@ -130,6 +130,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   useLanguage(language: string): void {
     this.translate.use(language);
     localStorage.setItem('lang', language);
+    window.location.reload();
   }
 
   public logout(): void {

@@ -508,17 +508,11 @@ export class BackendService {
   }
 
   getLanguages(): Observable<string[]> {
-    if (this.authService.isAdmin) {
-      return this.http.get<string[]>(`${this.backendUrl}languages`).pipe(
-        retry(3),
-        catchError(() => of(['en'])),
-      );
-    } else {
-      return this.http.get<string[]>(`${this.backendUrl}languages/active`).pipe(
-        retry(3),
-        catchError(() => of(['en'])),
-      );
-    }
+    const path = this.authService.isAdmin() ? 'languages' : 'languages/active';
+    return this.http.get<string[]>(`${this.backendUrl}${path}`).pipe(
+      retry(3),
+      catchError(() => of(['en'])),
+    );
   }
 
   getLanguageDetails(): Observable<LanguageSummary[]> {

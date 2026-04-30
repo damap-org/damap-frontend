@@ -123,32 +123,41 @@ export class TranslationManagementComponent implements OnInit {
       : 'admin.appTranslations.activateLanguage';
   }
 
+  get toggleActiveDisabledTooltipKey(): string {
+    if (!this.isToggleActiveDisabled || this.languageLoading) return '';
+    return 'admin.appTranslations.deactivateLanguageDisabledLastActive';
+  }
+
+  get removeLanguageDisabledTooltipKey(): string {
+    if (!this.isRemoveLanguageDisabled || this.languageLoading) return '';
+    if (this.selectedLanguage === 'en') {
+      return 'admin.appTranslations.removeLanguageDisabledEnglish';
+    }
+    return '';
+  }
+
   toggleLanguageActive(): void {
-    const language = this.selectedLanguage;
     const nextActive = !this.selectedLanguageActive;
     this.languageLoading = true;
     this.backendService
-      .setLanguageActive(language, nextActive)
+      .setLanguageActive(this.selectedLanguage, nextActive)
       .pipe(finalize(() => (this.languageLoading = false)))
       .subscribe({
         next: () => {
-          this.languageActiveMap.set(language, nextActive);
-          if (nextActive) {
-            this.translationLoader.registerAvailableLanguage(language);
-          } else {
-            this.translationLoader.removeAvailableLanguage(language);
-          }
-          this.translate.reloadLang(language).subscribe();
           this.feedbackService.success(
             nextActive
               ? 'http.success.translations.language.activate'
               : 'http.success.translations.language.deactivate',
           );
+          window.location.reload();
         },
         error: err => {
           const message = err?.error?.message;
           this.feedbackService.error(
-            message || 'http.error.translations.language.activate',
+            message ||
+              (nextActive
+                ? 'http.error.translations.language.activate'
+                : 'http.error.translations.language.deactivate'),
           );
         },
       });
@@ -263,6 +272,14 @@ export class TranslationManagementComponent implements OnInit {
     return currentValue.trim() !== originalValue.trim();
   }
 
+  revertToDefault(): void {
+    if (!this.selectedTranslation || this.saving) {
+      return;
+    }
+    this.customValue = '';
+    this.saveCustomValue();
+  }
+
   saveCustomValue(): void {
     if (!this.selectedTranslation || this.saving) {
       return;
@@ -283,17 +300,9 @@ export class TranslationManagementComponent implements OnInit {
       .updateTranslation(payload)
       .pipe(finalize(() => (this.saving = false)))
       .subscribe({
-        next: updated => {
-          this.translations = this.translations.map(t =>
-            t.id === updated.id ? updated : t,
-          );
-          this.applyFilters();
-          this.selectedTranslation = updated;
-          this.customValue = updated.value ?? '';
-          this.originalCustomValue = updated.value ?? '';
-          this.translate.reloadLang(this.selectedLanguage).subscribe(() => {
-            this.feedbackService.success('http.success.translations.update');
-          });
+        next: () => {
+          this.feedbackService.success('http.success.translations.update');
+          window.location.reload();
         },
         error: err => {
           const message = err?.error?.message;
@@ -325,21 +334,11 @@ export class TranslationManagementComponent implements OnInit {
         .pipe(finalize(() => (this.languageLoading = false)))
         .subscribe({
           next: () => {
-            this.translationLoader.registerAvailableLanguage(normalizedCode);
-            if (!this.languages.includes(normalizedCode)) {
-              this.languageActiveMap.set(normalizedCode, true);
-              this.languages = [...this.languages, normalizedCode].sort();
-            }
-            this.translations = [];
-            this.sections = [];
-            this.selectedLanguage = normalizedCode;
-            this.selectedTranslation = null;
-            this.customValue = '';
-            this.originalCustomValue = '';
-            this.loadTranslations(normalizedCode);
+            this.translate.use(normalizedCode);
             this.feedbackService.success(
               'http.success.translations.language.add',
             );
+            window.location.reload();
           },
           error: err => {
             const message = err?.error?.message;
@@ -352,16 +351,8 @@ export class TranslationManagementComponent implements OnInit {
   }
 
   confirmDeleteLanguage(language: string): void {
-    if (language === 'en') {
-      this.feedbackService.error(
-        'admin.appTranslations.languages.cannotDeleteDefault',
-      );
-      return;
-    }
-
     const dialogRef = this.dialog.open(DeleteLanguageDialogComponent, {
       width: '420px',
-      data: { language },
     });
 
     dialogRef.afterClosed().subscribe(confirmed => {
@@ -374,16 +365,13 @@ export class TranslationManagementComponent implements OnInit {
         .pipe(finalize(() => (this.languageLoading = false)))
         .subscribe({
           next: () => {
-            this.translationLoader.removeAvailableLanguage(language);
-            this.languageActiveMap.delete(language);
-            this.languages = this.languages.filter(l => l !== language);
-            if (this.selectedLanguage === language) {
-              this.selectedLanguage = this.languages[0] ?? 'en';
-              this.loadTranslations(this.selectedLanguage);
+            if (this.translate.currentLang === language) {
+              this.translate.use('en');
             }
             this.feedbackService.success(
               'http.success.translations.language.delete',
             );
+            window.location.reload();
           },
           error: err => {
             const message = err?.error?.message;
