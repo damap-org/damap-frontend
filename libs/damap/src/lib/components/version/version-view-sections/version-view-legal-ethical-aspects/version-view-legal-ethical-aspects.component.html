@@ -8,7 +8,7 @@
         }}:</span
       >
       <ng-container *ngIf="dmp.sensitiveData; else no">
-        {{ "yes" | translate }}</ng-container
+        {{ "dmp.versions.view.legal-ethical.yes" | translate }}</ng-container
       >
     </div>
     <ng-container *ngIf="dmp.sensitiveData">
@@ -51,7 +51,7 @@
         }}:</span
       >
       <ng-container *ngIf="dmp.personalData; else no">
-        {{ "yes" | translate }}</ng-container
+        {{ "dmp.versions.view.legal-ethical.yes" | translate }}</ng-container
       >
     </div>
     <ng-container *ngIf="dmp.personalData">
@@ -85,7 +85,7 @@
         >{{ "dmp.versions.view.legal.restrictions.present" | translate }}:</span
       >
       <ng-container *ngIf="dmp.legalRestrictions; else no">
-        {{ "yes" | translate }}</ng-container
+        {{ "dmp.versions.view.legal-ethical.yes" | translate }}</ng-container
       >
     </div>
     <ng-container *ngIf="dmp.legalRestrictions">
@@ -134,7 +134,7 @@
       >{{ "dmp.versions.view.ethical.human.participants" | translate }}:</span
     >
     <ng-container *ngIf="dmp.humanParticipants; else no">
-      {{ "yes" | translate }}</ng-container
+      {{ "dmp.versions.view.legal-ethical.yes" | translate }}</ng-container
     >
   </div>
 
@@ -144,7 +144,7 @@
       >{{ "dmp.versions.view.ethical.issues" | translate }}:</span
     >
     <ng-container *ngIf="dmp.ethicalIssuesExist; else no">
-      {{ "yes" | translate }}</ng-container
+      {{ "dmp.versions.view.legal-ethical.yes" | translate }}</ng-container
     >
   </div>
 
@@ -154,9 +154,11 @@
       >{{ "dmp.versions.view.ethical.committee.reviewed" | translate }}:</span
     >
     <ng-container *ngIf="dmp.committeeReviewed; else no">
-      {{ "yes" | translate }}</ng-container
+      {{ "dmp.versions.view.legal-ethical.yes" | translate }}</ng-container
     >
   </div>
 
-  <ng-template #no> {{ "no" | translate }}</ng-template>
+  <ng-template #no>
+    {{ "dmp.versions.view.legal-ethical.no" | translate }}</ng-template
+  >
 </ng-container>

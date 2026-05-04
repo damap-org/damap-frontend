@@ -26,7 +26,9 @@
             id="damap-logo"
             class="mat-focus-indicator"
             [routerLink]="'/dashboard'">
-            <span *ngIf="!isCollapsed">{{ "title" | translate }}</span>
+            <span *ngIf="!isCollapsed">{{
+              "sidebar.header.title" | translate
+            }}</span>
           </a>
         </div>
       </div>
@@ -100,7 +102,7 @@
           mat-icon-button
           id="logout"
           class="material-icon-on-secondary-container"
-          [attr.aria-label]="'layout.logout' | translate"
+          [attr.aria-label]="'sidebar.navigation.logout' | translate"
           (click)="logout()">
           <mat-icon class="outline">logout</mat-icon>
         </button>
@@ -160,7 +162,7 @@
           <a
             class="logo-header"
             [title]="'layout.logo.text' | translate"
-            [href]="'info.how-to-create.tool.link' | translate"
+            [href]="'layout.logo.link' | translate"
             target="_blank"
             rel="noopener">
             <img

@@ -2,7 +2,7 @@
   <mat-expansion-panel class="mobile-panel">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        {{ "button.actions" | translate }}
+        {{ "actions-bar.mobile.title" | translate }}
       </mat-panel-title>
     </mat-expansion-panel-header>
     <div id="save-dmp">
@@ -26,7 +26,7 @@
         mat-flat-button
         (click)="saveDmpVersion()"
         [disabled]="dmpForm.invalid || this.savingDmp">
-        {{ "button.version" | translate }}
+        {{ "actions-bar.buttons.version" | translate }}
       </button>
       <button
         class="action-button"
@@ -62,7 +62,7 @@
       mat-flat-button
       (click)="saveDmpVersion()"
       [disabled]="dmpForm.invalid || this.savingDmp">
-      {{ "button.version" | translate }}
+      {{ "actions-bar.buttons.version" | translate }}
     </button>
     <div
       *ngIf="preview"

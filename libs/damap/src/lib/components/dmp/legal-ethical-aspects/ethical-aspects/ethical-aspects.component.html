@@ -13,10 +13,10 @@
           aria-labelledby="humanParticipants"
           formControlName="humanParticipants">
           <mat-radio-button class="boolean-mat-radio-button" [value]="true">
-            {{ "yes" | translate }}
+            {{ "dmp.steps.legal.question.answer.yes" | translate }}
           </mat-radio-button>
           <mat-radio-button class="boolean-mat-radio-button" [value]="false">
-            {{ "no" | translate }}
+            {{ "dmp.steps.legal.question.answer.no" | translate }}
           </mat-radio-button>
         </mat-radio-group>
       </div>
@@ -63,10 +63,10 @@
           <app-cris-tag
             [cris]="legalEthicalStep?.value.ethicalIssuesCris"></app-cris-tag>
           <mat-radio-button class="boolean-mat-radio-button" [value]="true">
-            Yes
+            {{ "dmp.steps.legal.question.answer.yes" | translate }}
           </mat-radio-button>
           <mat-radio-button class="boolean-mat-radio-button" [value]="false">
-            No
+            {{ "dmp.steps.legal.question.answer.no" | translate }}
           </mat-radio-button>
         </mat-radio-group>
       </div>
@@ -108,10 +108,10 @@
           aria-labelledby="committeeReviewed"
           formControlName="committeeReviewed">
           <mat-radio-button class="boolean-mat-radio-button" [value]="true">
-            Yes
+            {{ "dmp.steps.legal.question.answer.yes" | translate }}
           </mat-radio-button>
           <mat-radio-button class="boolean-mat-radio-button" [value]="false">
-            No
+            {{ "dmp.steps.legal.question.answer.no" | translate }}
           </mat-radio-button>
         </mat-radio-group>
       </div>
