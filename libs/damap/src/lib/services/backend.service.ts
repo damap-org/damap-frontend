@@ -11,6 +11,7 @@ import {
 } from '../domain/internal-storage';
 import { Observable, of, throwError } from 'rxjs';
 import {
+  LanguageSummary,
   TranslationEntry,
   TranslationUpdatePayload,
 } from '../domain/translation';
@@ -34,6 +35,7 @@ import { SearchResult } from '../domain/search/search-result';
 import { TranslateService } from '@ngx-translate/core';
 import { Version } from '../domain/version';
 import { InstanceConfig } from '../domain/instance-config';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -49,6 +51,7 @@ export class BackendService {
     private http: HttpClient,
     private feedbackService: FeedbackService,
     private translate: TranslateService,
+    private authService: AuthService,
   ) {}
 
   private static getFilenameFromContentDisposition(
@@ -505,10 +508,31 @@ export class BackendService {
   }
 
   getLanguages(): Observable<string[]> {
-    return this.http.get<string[]>(`${this.backendUrl}languages`).pipe(
+    const path = this.authService.isAdmin() ? 'languages' : 'languages/active';
+    return this.http.get<string[]>(`${this.backendUrl}${path}`).pipe(
       retry(3),
       catchError(() => of(['en'])),
     );
+  }
+
+  getLanguageDetails(): Observable<LanguageSummary[]> {
+    return this.http
+      .get<LanguageSummary[]>(`${this.backendUrl}languages/details`)
+      .pipe(
+        retry(3),
+        catchError(() => of([{ language: 'en', active: true }])),
+      );
+  }
+
+  setLanguageActive(language: string, active: boolean): Observable<void> {
+    return this.http
+      .patch<void>(`${this.backendUrl}languages/${language}`, { active })
+      .pipe(
+        retry(3),
+        catchError(
+          this.handleError('http.error.translations.language.activate'),
+        ),
+      );
   }
 
   deleteLanguage(language: string): Observable<void> {

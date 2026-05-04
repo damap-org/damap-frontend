@@ -7,6 +7,11 @@ export interface TranslationEntry {
   active: boolean;
 }
 
+export interface LanguageSummary {
+  language: string;
+  active: boolean;
+}
+
 export interface TranslationUpdatePayload {
   id: number;
   translationKey: string;

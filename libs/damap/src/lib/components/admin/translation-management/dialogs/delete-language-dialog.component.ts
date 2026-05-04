@@ -1,23 +1,31 @@
-import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { TranslateModule } from '@ngx-translate/core';
+import { DeleteWarningDialogComponent } from '../../../../widgets/delete-warning-dialog/delete-warning-dialog.component';
 
 @Component({
   selector: 'damap-delete-language-dialog',
-  templateUrl: './delete-language-dialog.component.html',
-  styleUrl: './delete-language-dialog.component.css',
-  standalone: false,
+  imports: [CommonModule, TranslateModule, MatDialogModule, MatButtonModule],
+  template: `
+    <h1 mat-dialog-title>{{ 'delete.dialog.title' | translate }}</h1>
+    <mat-dialog-content>{{
+      getDeleteContent() | translate
+    }}</mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="false">
+        {{ 'delete.dialog.button.cancel' | translate }}
+      </button>
+      <button mat-button [mat-dialog-close]="true">
+        {{ 'delete.dialog.button.delete' | translate }}
+      </button>
+    </mat-dialog-actions>
+  `,
+  standalone: true,
 })
-export class DeleteLanguageDialogComponent {
-  constructor(
-    private dialogRef: MatDialogRef<DeleteLanguageDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { language: string },
-  ) {}
-
-  confirm(): void {
-    this.dialogRef.close(true);
-  }
-
-  cancel(): void {
-    this.dialogRef.close(false);
+export class DeleteLanguageDialogComponent extends DeleteWarningDialogComponent {
+  override getDeleteContent(): string {
+    return 'admin.appTranslations.removeLanguageWarningIrreversible';
   }
 }

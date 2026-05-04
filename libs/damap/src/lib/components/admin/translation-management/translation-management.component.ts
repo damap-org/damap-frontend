@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  LanguageSummary,
   TranslationEntry,
   TranslationUpdatePayload,
 } from '../../../domain/translation';
@@ -35,6 +36,7 @@ export class TranslationManagementComponent implements OnInit {
 
   sections: string[] = [];
   languages: string[] = [];
+  languageActiveMap = new Map<string, boolean>();
   selectedLanguage = 'en';
 
   selectedTranslation: TranslationEntry | null = null;
@@ -64,8 +66,10 @@ export class TranslationManagementComponent implements OnInit {
       this.applyFilters(true);
     });
 
-    this.backendService.getLanguages().subscribe(languages => {
-      this.languages = languages.length > 0 ? languages : ['en'];
+    this.backendService.getLanguageDetails().subscribe(details => {
+      const list =
+        details.length > 0 ? details : [{ language: 'en', active: true }];
+      this.applyLanguageDetails(list);
       const currentLang = this.translate.currentLang ?? 'en';
       this.selectedLanguage = this.languages.includes(currentLang)
         ? currentLang
@@ -75,6 +79,88 @@ export class TranslationManagementComponent implements OnInit {
       );
       this.loadTranslations(this.selectedLanguage);
     });
+  }
+
+  private applyLanguageDetails(details: LanguageSummary[]): void {
+    this.languageActiveMap = new Map(
+      details.map(d => [d.language, d.active] as const),
+    );
+    this.languages = [...this.languageActiveMap.keys()].sort();
+  }
+
+  get selectedLanguageActive(): boolean {
+    return this.languageActiveMap.get(this.selectedLanguage) ?? true;
+  }
+
+  get activeLanguageCount(): number {
+    let count = 0;
+    for (const active of this.languageActiveMap.values()) {
+      if (active) count++;
+    }
+    return count;
+  }
+
+  get isRemoveLanguageDisabled(): boolean {
+    return (
+      this.languageLoading ||
+      this.languages.length <= 1 ||
+      this.selectedLanguage === 'en'
+    );
+  }
+
+  get isToggleActiveDisabled(): boolean {
+    if (this.languageLoading) return true;
+    // Allow activating an inactive language; only block deactivating the last active one.
+    if (this.selectedLanguageActive && this.activeLanguageCount <= 1) {
+      return true;
+    }
+    return false;
+  }
+
+  get toggleActiveLabelKey(): string {
+    return this.selectedLanguageActive
+      ? 'admin.appTranslations.deactivateLanguage'
+      : 'admin.appTranslations.activateLanguage';
+  }
+
+  get toggleActiveDisabledTooltipKey(): string {
+    if (!this.isToggleActiveDisabled || this.languageLoading) return '';
+    return 'admin.appTranslations.deactivateLanguageDisabledLastActive';
+  }
+
+  get removeLanguageDisabledTooltipKey(): string {
+    if (!this.isRemoveLanguageDisabled || this.languageLoading) return '';
+    if (this.selectedLanguage === 'en') {
+      return 'admin.appTranslations.removeLanguageDisabledEnglish';
+    }
+    return '';
+  }
+
+  toggleLanguageActive(): void {
+    const nextActive = !this.selectedLanguageActive;
+    this.languageLoading = true;
+    this.backendService
+      .setLanguageActive(this.selectedLanguage, nextActive)
+      .pipe(finalize(() => (this.languageLoading = false)))
+      .subscribe({
+        next: () => {
+          this.feedbackService.success(
+            nextActive
+              ? 'http.success.translations.language.activate'
+              : 'http.success.translations.language.deactivate',
+          );
+          window.location.reload();
+        },
+        error: err => {
+          const message = err?.error?.message;
+          this.feedbackService.error(
+            message ||
+              (nextActive
+                ? 'http.error.translations.language.activate'
+                : 'http.error.translations.language.deactivate'),
+          );
+        },
+      });
   }
 
   get totalPages(): number {
@@ -113,6 +199,7 @@ export class TranslationManagementComponent implements OnInit {
           if (this.translations.length > 0) {
             this.translationLoader.registerAvailableLanguage(langToLoad);
             if (!this.languages.includes(langToLoad)) {
+              this.languageActiveMap.set(langToLoad, true);
               this.languages = [...this.languages, langToLoad].sort();
             }
           }
@@ -185,6 +272,14 @@ export class TranslationManagementComponent implements OnInit {
     return currentValue.trim() !== originalValue.trim();
   }
 
+  revertToDefault(): void {
+    if (!this.selectedTranslation || this.saving) {
+      return;
+    }
+    this.customValue = null;
+    this.saveCustomValue();
+  }
+
   saveCustomValue(): void {
     if (!this.selectedTranslation || this.saving) {
       return;
@@ -247,20 +342,11 @@ export class TranslationManagementComponent implements OnInit {
         .pipe(finalize(() => (this.languageLoading = false)))
         .subscribe({
           next: () => {
-            this.translationLoader.registerAvailableLanguage(normalizedCode);
-            if (!this.languages.includes(normalizedCode)) {
-              this.languages = [...this.languages, normalizedCode].sort();
-            }
-            this.translations = [];
-            this.sections = [];
-            this.selectedLanguage = normalizedCode;
-            this.selectedTranslation = null;
-            this.customValue = '';
-            this.originalCustomValue = '';
-            this.loadTranslations(normalizedCode);
+            this.translate.use(normalizedCode);
             this.feedbackService.success(
               'http.success.translations.language.add',
             );
+            window.location.reload();
           },
           error: err => {
             const message = err?.error?.message;
@@ -273,16 +359,8 @@ export class TranslationManagementComponent implements OnInit {
   }
 
   confirmDeleteLanguage(language: string): void {
-    if (language === 'en') {
-      this.feedbackService.error(
-        'admin.appTranslations.languages.cannotDeleteDefault',
-      );
-      return;
-    }
-
     const dialogRef = this.dialog.open(DeleteLanguageDialogComponent, {
       width: '420px',
-      data: { language },
     });
 
     dialogRef.afterClosed().subscribe(confirmed => {
@@ -295,15 +373,13 @@ export class TranslationManagementComponent implements OnInit {
         .pipe(finalize(() => (this.languageLoading = false)))
         .subscribe({
           next: () => {
-            this.translationLoader.removeAvailableLanguage(language);
-            this.languages = this.languages.filter(l => l !== language);
-            if (this.selectedLanguage === language) {
-              this.selectedLanguage = this.languages[0] ?? 'en';
-              this.loadTranslations(this.selectedLanguage);
+            if (this.translate.currentLang === language) {
+              this.translate.use('en');
             }
             this.feedbackService.success(
               'http.success.translations.language.delete',
             );
+            window.location.reload();
           },
           error: err => {
             const message = err?.error?.message;

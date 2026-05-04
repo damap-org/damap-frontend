@@ -25,13 +25,26 @@
         [disabled]="languageLoading">
         {{ "admin.appTranslations.addLanguage" | translate }}
       </button>
-      <button
-        mat-stroked-button
-        color="warn"
-        (click)="confirmDeleteLanguage(selectedLanguage)"
-        [disabled]="languageLoading || languages.length <= 1">
-        {{ "admin.appTranslations.removeLanguage" | translate }}
-      </button>
+      <span
+        [matTooltip]="toggleActiveDisabledTooltipKey | translate"
+        [matTooltipDisabled]="!toggleActiveDisabledTooltipKey">
+        <button
+          mat-stroked-button
+          (click)="toggleLanguageActive()"
+          [disabled]="isToggleActiveDisabled">
+          {{ toggleActiveLabelKey | translate }}
+        </button>
+      </span>
+      <span
+        [matTooltip]="removeLanguageDisabledTooltipKey | translate"
+        [matTooltipDisabled]="!removeLanguageDisabledTooltipKey">
+        <button
+          mat-stroked-button
+          (click)="confirmDeleteLanguage(selectedLanguage)"
+          [disabled]="isRemoveLanguageDisabled">
+          {{ "admin.appTranslations.removeLanguage" | translate }}
+        </button>
+      </span>
     </div>
   </div>
 
@@ -98,7 +111,9 @@
             *ngFor="let translation of pagedTranslations"
             [class.selected]="selectedTranslation?.id === translation.id"
             (click)="selectTranslation(translation)">
-            <div class="key-cell">{{ translation.translationKey }}</div>
+            <div class="key-cell" [matTooltip]="translation.translationKey">
+              {{ translation.translationKey }}
+            </div>
             <div
               class="value-cell"
               [ngClass]="{ custom: isCustomValue(translation) }"
@@ -121,25 +136,22 @@
     </ng-container>
 
     <div class="detail-card" *ngIf="selectedTranslation">
-      <div class="detail-title">
-        <span class="key-label">{{ selectedTranslation.translationKey }}</span>
-      </div>
-      <p class="detail-subtitle">
-        Customize text per language without code changes.
-      </p>
       <div class="detail-section">
-        <p class="label">
-          {{ "admin.appTranslations.currentValueFor" | translate }}
-          {{ selectedLanguage | uppercase }}
-        </p>
+        <p class="label">{{ "admin.appTranslations.keyLabel" | translate }}:</p>
         <div class="current-value">
-          {{ selectedTranslation.value || selectedTranslation.defaultValue }}
+          {{ selectedTranslation.translationKey }}
         </div>
       </div>
       <div class="detail-section">
         <p class="label">
+          {{ "admin.appTranslations.defaultValueLabel" | translate }}:
+        </p>
+        <div class="current-value">{{ selectedTranslation.defaultValue }}</div>
+      </div>
+      <div class="detail-section">
+        <p class="label">
           {{ "admin.appTranslations.customValueFor" | translate }}
-          {{ selectedLanguage | uppercase }}
+          {{ selectedLanguage | uppercase }}:
         </p>
         <mat-form-field appearance="outline" class="custom-input">
           <textarea
@@ -152,6 +164,12 @@
       <div class="detail-actions">
         <button mat-stroked-button (click)="clearSelection()">
           {{ "admin.appTranslations.cancel" | translate }}
+        </button>
+        <button
+          mat-stroked-button
+          (click)="revertToDefault()"
+          [disabled]="saving || !selectedTranslation.value">
+          {{ "admin.appTranslations.revertToDefault" | translate }}
         </button>
         <button
           mat-raised-button
