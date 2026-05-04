@@ -276,7 +276,7 @@ export class TranslationManagementComponent implements OnInit {
     if (!this.selectedTranslation || this.saving) {
       return;
     }
-    this.customValue = '';
+    this.customValue = null;
     this.saveCustomValue();
   }
 
@@ -300,9 +300,17 @@ export class TranslationManagementComponent implements OnInit {
       .updateTranslation(payload)
       .pipe(finalize(() => (this.saving = false)))
       .subscribe({
-        next: () => {
-          this.feedbackService.success('http.success.translations.update');
-          window.location.reload();
+        next: updated => {
+          this.translations = this.translations.map(t =>
+            t.id === updated.id ? updated : t,
+          );
+          this.applyFilters();
+          this.selectedTranslation = updated;
+          this.customValue = updated.value ?? '';
+          this.originalCustomValue = updated.value ?? '';
+          this.translate.reloadLang(this.selectedLanguage).subscribe(() => {
+            this.feedbackService.success('http.success.translations.update');
+          });
         },
         error: err => {
           const message = err?.error?.message;

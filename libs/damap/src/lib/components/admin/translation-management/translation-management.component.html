@@ -40,7 +40,6 @@
         [matTooltipDisabled]="!removeLanguageDisabledTooltipKey">
         <button
           mat-stroked-button
-          color="warn"
           (click)="confirmDeleteLanguage(selectedLanguage)"
           [disabled]="isRemoveLanguageDisabled">
           {{ "admin.appTranslations.removeLanguage" | translate }}
@@ -138,10 +137,10 @@
 
     <div class="detail-card" *ngIf="selectedTranslation">
       <div class="detail-section">
-        <p class="label">
-          {{ "admin.appTranslations.keyLabel" | translate }}:
-        </p>
-        <div class="current-value">{{ selectedTranslation.translationKey }}</div>
+        <p class="label">{{ "admin.appTranslations.keyLabel" | translate }}:</p>
+        <div class="current-value">
+          {{ selectedTranslation.translationKey }}
+        </div>
       </div>
       <div class="detail-section">
         <p class="label">
