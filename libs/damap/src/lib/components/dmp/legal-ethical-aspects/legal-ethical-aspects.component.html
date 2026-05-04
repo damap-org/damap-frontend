@@ -28,11 +28,13 @@
             <mat-radio-group
               aria-labelledby="sensitiveData"
               formControlName="sensitiveData">
-              <mat-radio-button class="boolean-mat-radio-button" [value]="true"
-                >{{ "yes" | translate }}
+              <mat-radio-button class="boolean-mat-radio-button" [value]="true">
+                {{ "dmp.steps.legal.question.answer.yes" | translate }}
               </mat-radio-button>
-              <mat-radio-button class="boolean-mat-radio-button" [value]="false"
-                >{{ "no" | translate }}
+              <mat-radio-button
+                class="boolean-mat-radio-button"
+                [value]="false">
+                {{ "dmp.steps.legal.question.answer.no" | translate }}
               </mat-radio-button>
             </mat-radio-group>
             <ng-container
@@ -120,11 +122,13 @@
             <mat-radio-group
               formControlName="{{ question.model }}"
               aria-labelledby="{{ question.label }}">
-              <mat-radio-button class="boolean-mat-radio-button" [value]="true"
-                >{{ "yes" | translate }}
+              <mat-radio-button class="boolean-mat-radio-button" [value]="true">
+                {{ "dmp.steps.legal.question.answer.yes" | translate }}
               </mat-radio-button>
-              <mat-radio-button class="boolean-mat-radio-button" [value]="false"
-                >{{ "no" | translate }}
+              <mat-radio-button
+                class="boolean-mat-radio-button"
+                [value]="false">
+                {{ "dmp.steps.legal.question.answer.no" | translate }}
               </mat-radio-button>
             </mat-radio-group>
 

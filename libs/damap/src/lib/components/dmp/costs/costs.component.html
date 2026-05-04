@@ -7,11 +7,11 @@
       {{ "dmp.steps.costs.infoBox.description" | translate }}
       <a
         class="info-link-custom"
-        [href]="'dmp.steps.costs.infoBox.links.0.url' | translate"
+        [href]="'dmp.steps.costs.infoBox.link.url' | translate"
         target="_blank">
-        {{ "dmp.steps.costs.infoBox.links.0.title" | translate }}
+        {{ "dmp.steps.costs.infoBox.link.title" | translate }}
       </a>
-      {{ "dmp.steps.costs.infoBox.links.0.text" | translate }}
+      {{ "dmp.steps.costs.infoBox.link.text" | translate }}
     </app-info-message>
     <div [formGroup]="costsStep" class="flex-radio">
       <label id="costsFormGroup">{{

@@ -16,7 +16,7 @@
     </div>
   </div>
   <div *ngIf="repo.repositoryLanguages">
-    {{ "languages" | translate }}:
+    {{ "dmp.steps.repositories.languages" | translate }}:
     <div class="lang tag" *ngFor="let lang of repo.repositoryLanguages">
       {{ lang | uppercase }}
     </div>

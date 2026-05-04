@@ -169,9 +169,9 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
       this.summaryLine =
         componentInstance instanceof AdminComponent
           ? 'admin.dashboard.section-intro'
-          : 'dashboard.home.section-intro';
+          : 'layout.section-intro';
       this.greetingSubscription = this.translate
-        .get(['layout.menu.greeting', 'admin.dashboard.title'])
+        .get(['layout.menu.greeting', 'admin.dashboard.greeting'])
         .pipe(take(1))
         .subscribe(t => {
           this.greeting =
@@ -179,7 +179,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
             ' ' +
             this.name +
             ' ' +
-            t['admin.dashboard.title'];
+            t['admin.dashboard.greeting'];
         });
     }
   }

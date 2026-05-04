@@ -51,7 +51,7 @@ const copyleft: Step = {
   question: 'license-wizard.question.copyleft',
   answers: [
     {
-      label: 'yes',
+      label: 'license-wizard.answer.yes',
       next: {
         step(list: LicenseDetails[]) {
           if (has(list, 'weak') && has(list, 'strong')) {
@@ -63,7 +63,7 @@ const copyleft: Step = {
       },
     },
     {
-      label: 'no',
+      label: 'license-wizard.answer.no',
       next: {
         step() {
           return end;
@@ -125,7 +125,7 @@ const decideAttributes: Step = {
   question: 'license-wizard.question.decideAttributes',
   answers: [
     {
-      label: 'yes',
+      label: 'license-wizard.answer.yes',
       next: {
         step() {
           return end;
@@ -134,7 +134,7 @@ const decideAttributes: Step = {
       },
     },
     {
-      label: 'no',
+      label: 'license-wizard.answer.no',
       next: {
         step() {
           return end;
@@ -149,7 +149,7 @@ const commercialUse: Step = {
   question: 'license-wizard.question.commercialUse',
   answers: [
     {
-      label: 'yes',
+      label: 'license-wizard.answer.yes',
       next: {
         step(list: LicenseDetails[]) {
           if (only(list, 'by')) {
@@ -161,7 +161,7 @@ const commercialUse: Step = {
       },
     },
     {
-      label: 'no',
+      label: 'license-wizard.answer.no',
       next: {
         step() {
           return end;
@@ -176,7 +176,7 @@ const shareAlike: Step = {
   question: 'license-wizard.question.shareAlike',
   answers: [
     {
-      label: 'yes',
+      label: 'license-wizard.answer.yes',
       next: {
         step(list: LicenseDetails[]) {
           if (only(list, 'nc')) {
@@ -188,7 +188,7 @@ const shareAlike: Step = {
       },
     },
     {
-      label: 'no',
+      label: 'license-wizard.answer.no',
       next: {
         step(list: LicenseDetails[]) {
           if (only(list, 'nc')) {
@@ -206,7 +206,7 @@ const allowDerivativeWorks: Step = {
   question: 'license-wizard.question.allowDerivativeWorks',
   answers: [
     {
-      label: 'yes',
+      label: 'license-wizard.answer.yes',
       next: {
         step() {
           return shareAlike;
@@ -215,7 +215,7 @@ const allowDerivativeWorks: Step = {
       },
     },
     {
-      label: 'no',
+      label: 'license-wizard.answer.no',
       next: {
         step(list: LicenseDetails[]) {
           if (only(list, 'nc')) {
@@ -256,7 +256,7 @@ const ensureLicensing: Step = {
   question: 'license-wizard.question.ensureLicensing',
   answers: [
     {
-      label: 'yes',
+      label: 'license-wizard.answer.yes',
       next: {
         step() {
           return licenseInteropData;
@@ -264,7 +264,7 @@ const ensureLicensing: Step = {
       },
     },
     {
-      label: 'no',
+      label: 'license-wizard.answer.no',
       next: {
         step() {
           return cantLicense;
@@ -280,7 +280,7 @@ const ownIPR: Step = {
     'Do you own copyright and similar rights in your dataset and all its constitutive parts?',
   answers: [
     {
-      label: 'yes',
+      label: 'license-wizard.answer.yes',
       next: {
         step() {
           return allowDerivativeWorks;
@@ -288,7 +288,7 @@ const ownIPR: Step = {
       },
     },
     {
-      label: 'no',
+      label: 'license-wizard.answer.no',
       next: {
         step() {
           return ensureLicensing;
@@ -302,7 +302,7 @@ const data: Step = {
   question: 'license-wizard.question.data',
   answers: [
     {
-      label: 'yes',
+      label: 'license-wizard.answer.yes',
       next: {
         step() {
           return ownIPR;
@@ -310,7 +310,7 @@ const data: Step = {
       },
     },
     {
-      label: 'no',
+      label: 'license-wizard.answer.no',
       next: {
         step() {
           return end;
