@@ -3,7 +3,7 @@ export interface TranslationEntry {
   translationKey: string;
   language: string;
   defaultValue: string;
-  value?: string | null;
+  custom?: string | null;
   active: boolean;
 }
 
@@ -17,6 +17,6 @@ export interface TranslationUpdatePayload {
   translationKey: string;
   language: string;
   defaultValue?: string;
-  value?: string | null;
+  custom?: string | null;
   active: boolean;
 }

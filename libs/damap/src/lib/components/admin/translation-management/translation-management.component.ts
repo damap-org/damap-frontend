@@ -226,7 +226,7 @@ export class TranslationManagementComponent implements OnInit {
   }
 
   isCustomValue(entry: TranslationEntry): boolean {
-    return !!entry.value && entry.value.trim().length > 0;
+    return !!entry.custom && entry.custom.trim().length > 0;
   }
 
   onSectionChange(section: string): void {
@@ -253,8 +253,8 @@ export class TranslationManagementComponent implements OnInit {
 
   selectTranslation(entry: TranslationEntry): void {
     this.selectedTranslation = entry;
-    this.customValue = entry.value ?? '';
-    this.originalCustomValue = entry.value ?? '';
+    this.customValue = entry.custom ?? '';
+    this.originalCustomValue = entry.custom ?? '';
   }
 
   clearSelection(): void {
@@ -267,9 +267,9 @@ export class TranslationManagementComponent implements OnInit {
     if (!this.selectedTranslation) {
       return false;
     }
-    const currentValue = this.customValue ?? '';
-    const originalValue = this.originalCustomValue ?? '';
-    return currentValue.trim() !== originalValue.trim();
+    const currentCustom = this.customValue ?? '';
+    const originalCustom = this.originalCustomValue ?? '';
+    return currentCustom.trim() !== originalCustom.trim();
   }
 
   revertToDefault(): void {
@@ -284,7 +284,7 @@ export class TranslationManagementComponent implements OnInit {
     if (!this.selectedTranslation || this.saving) {
       return;
     }
-    const nextValue =
+    const nextCustom =
       this.customValue && this.customValue.trim().length > 0
         ? this.customValue
         : null;
@@ -293,7 +293,7 @@ export class TranslationManagementComponent implements OnInit {
       translationKey: this.selectedTranslation.translationKey,
       language: this.selectedTranslation.language,
       active: this.selectedTranslation.active,
-      value: nextValue,
+      custom: nextCustom,
     };
     this.saving = true;
     this.backendService
@@ -306,8 +306,8 @@ export class TranslationManagementComponent implements OnInit {
           );
           this.applyFilters();
           this.selectedTranslation = updated;
-          this.customValue = updated.value ?? '';
-          this.originalCustomValue = updated.value ?? '';
+          this.customValue = updated.custom ?? '';
+          this.originalCustomValue = updated.custom ?? '';
           this.translate.reloadLang(this.selectedLanguage).subscribe(() => {
             this.feedbackService.success('http.success.translations.update');
           });
@@ -399,7 +399,7 @@ export class TranslationManagementComponent implements OnInit {
       items = items.filter(item => {
         const searchPool = [
           item.translationKey,
-          item.value ?? '',
+          item.custom ?? '',
           item.defaultValue ?? '',
         ]
           .filter(Boolean)

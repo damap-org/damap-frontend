@@ -1,5 +1,5 @@
 import { TranslateLoader } from '@ngx-translate/core';
-import { HttpBackend, HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { TranslationEntry } from '../domain/translation';
@@ -23,9 +23,9 @@ export class BackendTranslateLoader implements TranslateLoader {
     const result: Record<string, any> = {};
     for (const entry of entries) {
       if (!entry.active) continue;
-      const value = entry.value || entry.defaultValue;
-      if (!value) continue;
-      this.setNestedValue(result, entry.translationKey, value);
+      const custom = entry.custom || entry.defaultValue;
+      if (!custom) continue;
+      this.setNestedValue(result, entry.translationKey, custom);
     }
     return result;
   }
