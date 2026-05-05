@@ -480,7 +480,7 @@ export class BackendService {
     return this.http
       .patch<TranslationEntry>(
         `${this.backendUrl}languages/${translation.language}/translations/${encodeURIComponent(translation.translationKey)}`,
-        { value: translation.value, active: translation.active },
+        { custom: translation.custom, active: translation.active },
       )
       .pipe(
         retry(3),

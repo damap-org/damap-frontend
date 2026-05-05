@@ -104,7 +104,7 @@
           *ngIf="filteredTranslations.length > 0; else noResults">
           <div class="table-header">
             <div>{{ "admin.appTranslations.keyColumn" | translate }}</div>
-            <div>{{ "admin.appTranslations.valueColumn" | translate }}</div>
+            <div>{{ "admin.appTranslations.customColumn" | translate }}</div>
           </div>
           <div
             class="table-row"
@@ -115,10 +115,10 @@
               {{ translation.translationKey }}
             </div>
             <div
-              class="value-cell"
+              class="custom-cell"
               [ngClass]="{ custom: isCustomValue(translation) }"
-              [matTooltip]="translation.value || translation.defaultValue">
-              {{ translation.value || translation.defaultValue }}
+              [matTooltip]="translation.custom || translation.defaultValue">
+              {{ translation.custom || translation.defaultValue }}
             </div>
           </div>
         </div>
@@ -168,7 +168,7 @@
         <button
           mat-stroked-button
           (click)="revertToDefault()"
-          [disabled]="saving || !selectedTranslation.value">
+          [disabled]="saving || !selectedTranslation.custom">
           {{ "admin.appTranslations.revertToDefault" | translate }}
         </button>
         <button
