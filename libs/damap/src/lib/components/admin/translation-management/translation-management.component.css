@@ -94,13 +94,13 @@
 }
 
 .key-cell,
-.value-cell {
+.custom-cell {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.value-cell.custom {
+.custom-cell.custom {
   font-weight: 600;
 }
 
