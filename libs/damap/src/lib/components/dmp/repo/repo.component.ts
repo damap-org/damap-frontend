@@ -52,7 +52,6 @@ export class RepoComponent implements OnInit {
   readonly retentionOptions: number[] = [10, 25, 100];
   readonly datasetTableHeaders: string[] = ['dataset', 'deposit', 'retention'];
 
-  selectedTabIndex = 0;
   selectedView: 'primaryView' | 'secondaryView' = 'primaryView';
 
   constructor(public store: Store<AppState>) {}

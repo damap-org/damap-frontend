@@ -3,7 +3,7 @@
 }
 
 .tab-content {
-  margin: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 mat-form-field {
@@ -48,4 +48,21 @@ mat-form-field {
 .retention-field {
   width: 100%;
   max-width: 280px;
+}
+
+mat-expansion-panel.card-selected {
+  width: 100%;
+  box-sizing: border-box;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+mat-expansion-panel.card-selected
+  .mat-expansion-panel-content
+  .mat-expansion-panel-body {
+  padding: 0 16px 16px;
+}
+
+.card-selected .mat-expansion-panel-header button[mat-icon-button] {
+  margin-top: -8px;
 }

@@ -7,109 +7,97 @@
   <mat-label class="label-title mat-title-large">{{
     "dmp.steps.repositories.selected" | translate
   }}</mat-label>
-  <mat-card
-    appearance="raised"
+  <mat-expansion-panel
     *ngFor="let repo of repoStep.controls; index as i"
-    class="card-selected">
-    <mat-card-content>
-      <div class="mat-card-container">
-        <div class="mat-card-left">
-          <h4>{{ repo.value.title }}</h4>
-        </div>
-        <div class="mat-card-right">
-          <button mat-icon-button (click)="removeRepository(i)">
-            <mat-icon>cancel</mat-icon>
-          </button>
-        </div>
-      </div>
+    class="card-selected"
+    [expanded]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{ repo.value.title }}</mat-panel-title>
+      <button
+        mat-icon-button
+        (click)="$event.stopPropagation(); removeRepository(i)">
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-expansion-panel-header>
 
-      <!-- Dataset assignment + retention period table -->
-      <table
-        mat-table
-        [dataSource]="newDatasets"
-        class="dataset-assignment-table"
-        aria-label="Dataset assignment">
-        <!-- Dataset column -->
-        <ng-container matColumnDef="dataset">
-          <th mat-header-cell *matHeaderCellDef>
-            {{ "dmp.steps.repositories.table.header.dataset" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let dataset">
-            <span [matTooltip]="dataset.value.title">{{
-              dataset.value.title
-            }}</span>
-          </td>
-        </ng-container>
+    <!-- Dataset assignment + retention period table -->
+    <table
+      mat-table
+      [dataSource]="newDatasets"
+      class="dataset-assignment-table"
+      aria-label="Dataset assignment">
+      <!-- Dataset column -->
+      <ng-container matColumnDef="dataset">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "dmp.steps.repositories.table.header.dataset" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let dataset">
+          {{ dataset.value.title }}
+        </td>
+      </ng-container>
 
-        <!-- Deposit checkbox column -->
-        <ng-container matColumnDef="deposit">
-          <th mat-header-cell *matHeaderCellDef>
-            {{ "dmp.steps.repositories.table.header.deposit" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let dataset">
-            <mat-checkbox
-              [checked]="isDatasetInRepo(i, dataset.value.referenceHash)"
-              (change)="toggleDatasetInRepo(i, dataset.value.referenceHash)">
-            </mat-checkbox>
-          </td>
-        </ng-container>
+      <!-- Deposit checkbox column -->
+      <ng-container matColumnDef="deposit">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "dmp.steps.repositories.table.header.deposit" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let dataset">
+          <mat-checkbox
+            [checked]="isDatasetInRepo(i, dataset.value.referenceHash)"
+            (change)="toggleDatasetInRepo(i, dataset.value.referenceHash)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
 
-        <!-- Retention period column -->
-        <ng-container matColumnDef="retention">
-          <th mat-header-cell *matHeaderCellDef>
-            {{ "dmp.steps.repositories.table.header.retention" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let dataset">
-            <ng-container
-              *ngIf="
-                getRetentionControl(dataset.value.referenceHash) as retControl
-              ">
-              <div
-                [matTooltip]="
-                  !isDatasetAssigned(dataset.value.referenceHash)
-                    ? ('dmp.steps.repositories.retention.unassigned'
-                      | translate)
-                    : ''
-                "
-                matTooltipPosition="above">
-                <mat-form-field
-                  appearance="outline"
-                  class="retention-field"
-                  subscriptSizing="dynamic">
-                  <mat-select [formControl]="retControl">
-                    <mat-option
-                      *ngFor="let option of retentionOptions"
-                      [value]="option">
-                      {{ option }}
-                      {{ "dmp.steps.retentionPeriod.years" | translate }}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-            </ng-container>
-          </td>
-        </ng-container>
+      <!-- Retention period column -->
+      <ng-container matColumnDef="retention">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "dmp.steps.repositories.table.header.retention" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let dataset">
+          <ng-container
+            *ngIf="
+              getRetentionControl(dataset.value.referenceHash) as retControl
+            ">
+            <div
+              [matTooltip]="
+                !isDatasetAssigned(dataset.value.referenceHash)
+                  ? ('dmp.steps.repositories.retention.unassigned' | translate)
+                  : ('dmp.steps.repositories.retention.assigned' | translate)
+              "
+              matTooltipPosition="above">
+              <mat-form-field
+                appearance="outline"
+                class="retention-field"
+                subscriptSizing="dynamic">
+                <mat-select [formControl]="retControl">
+                  <mat-option
+                    *ngFor="let option of retentionOptions"
+                    [value]="option">
+                    {{ option }}
+                    {{ "dmp.steps.retentionPeriod.years" | translate }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </ng-container>
+        </td>
+      </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="datasetTableHeaders"></tr>
-        <tr mat-row *matRowDef="let row; columns: datasetTableHeaders"></tr>
-        <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="3">
-            {{ "dmp.steps.repositories.nodatasets" | translate }}
-          </td>
-        </tr>
-      </table>
+      <tr mat-header-row *matHeaderRowDef="datasetTableHeaders"></tr>
+      <tr mat-row *matRowDef="let row; columns: datasetTableHeaders"></tr>
+    </table>
 
-      <!-- Deletion warning -->
-      <div class="mat-card-container">
-        <app-error-message
-          *ngIf="getDatasetsMarkedForDeletion(i).length > 0"
-          [data]="getDatasetsMarkedForDeletionAsString(i)"
-          [message]="
-            'dmp.steps.repositories.warning.deletion'
-          "></app-error-message>
-      </div>
-    </mat-card-content>
-  </mat-card>
+    <!-- Deletion warning -->
+    <div class="mat-card-container">
+      <app-error-message
+        *ngIf="getDatasetsMarkedForDeletion(i).length > 0"
+        [data]="getDatasetsMarkedForDeletionAsString(i)"
+        [message]="
+          'dmp.steps.repositories.warning.deletion'
+        "></app-error-message>
+    </div>
+  </mat-expansion-panel>
 </div>
 
 <!-- RECOMMENDED REPOS / SEARCH -->
