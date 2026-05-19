@@ -1,7 +1,12 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatLabel } from '@angular/material/form-field';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -12,6 +17,7 @@ import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   imports: [
     CommonModule,
+    NgClass,
     TranslateModule,
 
     // Materials
@@ -20,6 +26,12 @@ import { TranslateModule } from '@ngx-translate/core';
     MatTooltipModule,
     MatLabel,
     MatCardModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule,
+    MatProgressSpinnerModule,
   ],
   declarations: [SummaryComponent],
   exports: [
