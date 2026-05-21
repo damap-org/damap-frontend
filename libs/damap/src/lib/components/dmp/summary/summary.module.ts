@@ -1,7 +1,6 @@
 import { CommonModule, NgClass } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -30,7 +29,6 @@ import { TranslateModule } from '@ngx-translate/core';
     MatSelectModule,
     MatButtonModule,
     MatIconModule,
-    MatDividerModule,
     MatProgressSpinnerModule,
   ],
   declarations: [SummaryComponent],

@@ -22,7 +22,7 @@ import {
   EvaluationResult,
   EvaluationValue,
 } from '../../../domain/evaluation-result';
-import { EvaluationService } from '../../../services/evaluation.service';
+import { BackendService } from '../../../services/backend.service';
 
 type LoadingState = 'idle' | 'loading' | 'loaded' | 'failed';
 type EvalState = 'idle' | 'loading' | 'done' | 'failed';
@@ -83,7 +83,7 @@ export class SummaryComponent implements OnInit {
 
   constructor(
     public store: Store<AppState>,
-    private evalService: EvaluationService,
+    private backendService: BackendService,
   ) {
     // Auto-select benchmark once loaded: FWF for FWF projects, first otherwise
     effect(() => {
@@ -135,7 +135,7 @@ export class SummaryComponent implements OnInit {
 
   private loadBenchmarks(): void {
     this.benchmarksLoaded.set('loading');
-    this.evalService.getBenchmarks().subscribe({
+    this.backendService.getBenchmarks().subscribe({
       next: b => {
         this.benchmarks.set(b);
         this.benchmarksLoaded.set('loaded');
@@ -155,7 +155,7 @@ export class SummaryComponent implements OnInit {
     this.evaluating.set('loading');
     this.evaluationResults.set([]);
     this.expandedResults.set(new Set());
-    this.evalService.runEvaluation(dmpId, benchmarkId).subscribe({
+    this.backendService.runEvaluation(dmpId, benchmarkId).subscribe({
       next: r => {
         this.evaluationResults.set(r);
         this.evaluating.set('done');
@@ -184,18 +184,5 @@ export class SummaryComponent implements OnInit {
     if (value === 'PASS') return 'icon-pass';
     if (value === 'FAIL') return 'icon-fail';
     return 'icon-warn';
-  }
-
-  getPillClass(value: EvaluationValue): string {
-    if (value === 'PASS') return 'pill pill-pass';
-    if (value === 'FAIL') return 'pill pill-fail';
-    return 'pill pill-warn';
-  }
-
-  getPillLabel(value: EvaluationValue): string {
-    if (value === 'PASS') return 'passed';
-    if (value === 'FAIL') return 'failed';
-    if (value === 'NOT_APPLICABLE') return 'n/a';
-    return 'warning';
   }
 }

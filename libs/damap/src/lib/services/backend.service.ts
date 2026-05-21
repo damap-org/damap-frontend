@@ -19,8 +19,10 @@ import { catchError, map, retry, shareReplay } from 'rxjs/operators';
 import { APP_ENV } from '../constants';
 import { Access, UserDo } from '../domain/access';
 import { Banner } from '../domain/banner';
+import { Benchmark } from '../domain/benchmark';
 import { Config } from '../domain/config';
 import { Consent } from '../domain/consent';
+import { EvaluationResult } from '../domain/evaluation-result';
 import { Contributor } from '../domain/contributor';
 import { Dataset } from '../domain/dataset';
 import { Dmp } from '../domain/dmp';
@@ -46,6 +48,7 @@ export class BackendService {
   private versionBackendUrl = this.backendUrl + 'versions';
   private projectBackendUrl = this.backendUrl + 'projects';
   private repositoryBackendUrl = this.backendUrl + 'repositories';
+  private evaluationBackendUrl = this.backendUrl + 'evaluation';
 
   constructor(
     private http: HttpClient,
@@ -673,6 +676,23 @@ export class BackendService {
         retry(3),
         catchError(this.handleError('http.error.admin.instance-config.update')),
       );
+  }
+
+  getBenchmarks(): Observable<Benchmark[]> {
+    return this.http
+      .get<Benchmark[]>(`${this.evaluationBackendUrl}/benchmarks`)
+      .pipe(retry(3), catchError(this.handleError()));
+  }
+
+  runEvaluation(
+    dmpId: number,
+    benchmarkId: string,
+  ): Observable<EvaluationResult[]> {
+    return this.http
+      .post<
+        EvaluationResult[]
+      >(`${this.evaluationBackendUrl}/assess/${dmpId}`, null, { params: new HttpParams().set('benchmark', benchmarkId) })
+      .pipe(catchError(this.handleError()));
   }
 
   private handleError(message = 'http.error.standard') {
