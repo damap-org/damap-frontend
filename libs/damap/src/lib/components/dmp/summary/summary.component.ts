@@ -34,11 +34,7 @@ type EvalState = 'idle' | 'loading' | 'done' | 'failed';
   standalone: false,
 })
 export class SummaryComponent implements OnInit {
-  private readonly FWF_IDS = [
-    '501100002428',
-    'https://ror.org/013tf3c58',
-    '0000 0001 1091 8438',
-  ];
+  private readonly DEFAULT_BENCHMARK_ID = '69ef5cdfcde500798dbd1af8'; // FWF Benchmark
 
   form$: Observable<Dmp>;
   dmpForm: Dmp;
@@ -50,6 +46,7 @@ export class SummaryComponent implements OnInit {
   readonly summaryTableHeaders: string[] = ['step', 'completeness', 'status'];
 
   // Evaluation signals
+  readonly evaluationEnabled = signal<boolean>(false);
   readonly benchmarks = signal<Benchmark[]>([]);
   readonly benchmarksLoaded = signal<LoadingState>('idle');
   readonly selectedBenchmarkId = signal<string | null>(null);
@@ -85,25 +82,16 @@ export class SummaryComponent implements OnInit {
     public store: Store<AppState>,
     private backendService: BackendService,
   ) {
-    // Auto-select benchmark once loaded: FWF for FWF projects, first otherwise
+    // Auto-select benchmark once loaded: FWF benchmark by default, first otherwise
     effect(() => {
       const benchmarks = this.benchmarks();
       if (benchmarks.length === 0 || this.selectedBenchmarkId()) return;
 
-      const fwf = benchmarks.find(
-        b =>
-          b.identifier?.toLowerCase().includes('fwf') ||
-          b.title?.toLowerCase().includes('fwf'),
+      const target = benchmarks.find(
+        b => b.identifier === this.DEFAULT_BENCHMARK_ID,
       );
-      const target = this.isFwfProject ? fwf : null;
       this.selectedBenchmarkId.set((target ?? benchmarks[0]).identifier);
     });
-  }
-
-  get isFwfProject(): boolean {
-    return this.FWF_IDS.includes(
-      this.dmpForm?.project?.funding?.funderId?.identifier ?? '',
-    );
   }
 
   get canEvaluate(): boolean {
@@ -130,7 +118,14 @@ export class SummaryComponent implements OnInit {
       }
     });
 
-    this.loadBenchmarks();
+    this.backendService.loadServiceConfig().subscribe({
+      next: config => {
+        this.evaluationEnabled.set(config.evaluationAvailable);
+        if (config.evaluationAvailable) {
+          this.loadBenchmarks();
+        }
+      },
+    });
   }
 
   private loadBenchmarks(): void {

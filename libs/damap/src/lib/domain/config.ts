@@ -21,6 +21,7 @@ export interface Config {
   readonly projectSearchServiceConfig: string;
   readonly livePreviewAvailable: boolean;
   readonly ethicalReportEnabled: boolean;
+  readonly evaluationAvailable: boolean;
   readonly images: BackendImage[];
   readonly colorTheme: ColorTheme;
   readonly multitenancyEnabled: boolean;

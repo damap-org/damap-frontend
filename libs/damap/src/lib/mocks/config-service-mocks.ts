@@ -18,4 +18,5 @@ export const configMockData: Config = {
   personSearchServiceConfigs: serviceConfigMockData,
   livePreviewAvailable: true,
   ethicalReportEnabled: true,
+  evaluationAvailable: true,
 };
