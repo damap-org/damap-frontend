@@ -681,7 +681,10 @@ export class BackendService {
   getBenchmarks(): Observable<Benchmark[]> {
     return this.http
       .get<Benchmark[]>(`${this.evaluationBackendUrl}/benchmarks`)
-      .pipe(retry(3), catchError(this.handleError()));
+      .pipe(
+        retry(3),
+        catchError(this.handleError('http.error.evaluation.benchmarks.load')),
+      );
   }
 
   runEvaluation(
@@ -692,7 +695,7 @@ export class BackendService {
       .post<
         EvaluationResult[]
       >(`${this.evaluationBackendUrl}/assess/${dmpId}`, null, { params: new HttpParams().set('benchmark', benchmarkId) })
-      .pipe(catchError(this.handleError()));
+      .pipe(catchError(this.handleError('http.error.evaluation.assess')));
   }
 
   private handleError(message = 'http.error.standard') {
