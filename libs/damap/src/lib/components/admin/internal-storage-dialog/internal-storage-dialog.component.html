@@ -27,24 +27,57 @@
 
         <div class="dialogRow">
           <mat-form-field>
-            <mat-label>{{
-              "admin.internalStorage.translation.dialog.field.languageCode"
-                | translate
-            }}</mat-label>
-            <mat-select formControlName="languageCode" required>
-              <mat-option [value]="'eng'">
-                {{
-                  "admin.internalStorage.translation.dialog.field.eng"
-                    | translate
-                }}
+            <mat-label>
+              {{
+                "admin.internalStorage.translation.dialog.field.languageCode"
+                  | translate
+              }}
+            </mat-label>
+
+            <input
+              matInput
+              maxlength="2"
+              autocomplete="off"
+              formControlName="languageCode"
+              [matAutocomplete]="languageAutocomplete" />
+
+            <mat-autocomplete
+              #languageAutocomplete="matAutocomplete"
+              [displayWith]="getLanguageDisplayValue.bind(this)">
+              <mat-option
+                *ngFor="let language of filteredLanguageOptions$ | async"
+                [value]="language.code">
+                {{ language.name }} ({{ language.code | uppercase }})
               </mat-option>
-              <mat-option [value]="'deu'">
-                {{
-                  "admin.internalStorage.translation.dialog.field.deu"
-                    | translate
-                }}
-              </mat-option>
-            </mat-select>
+            </mat-autocomplete>
+
+            <mat-hint>
+              {{
+                "admin.internalStorage.translation.dialog.field.languageCodeHint"
+                  | translate
+              }}
+            </mat-hint>
+
+            <mat-error *ngIf="languageCode.hasError('required')">
+              {{
+                "admin.internalStorage.translation.dialog.field.languageCodeRequired"
+                  | translate
+              }}
+            </mat-error>
+
+            <mat-error *ngIf="languageCode.hasError('pattern')">
+              {{
+                "admin.internalStorage.translation.dialog.field.languageCodePattern"
+                  | translate
+              }}
+            </mat-error>
+
+            <mat-error *ngIf="languageCode.hasError('invalidLanguageCode')">
+              {{
+                "admin.internalStorage.translation.dialog.field.languageCodeInvalid"
+                  | translate
+              }}
+            </mat-error>
           </mat-form-field>
         </div>
 
