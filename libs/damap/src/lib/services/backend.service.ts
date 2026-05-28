@@ -342,13 +342,37 @@ export class BackendService {
 
   getMaDmpJsonFile(id: number): void {
     this.http
-      .get(`${this.backendUrl}madmp/file/${id}`, {
+      .get(`${this.backendUrl}rda/dmps/${id}`, {
         responseType: 'blob',
         observe: 'response',
       })
       .pipe(catchError(this.handleError('http.error.document')))
-      .subscribe({
-        next: response => this.downloadFile(response),
+      .subscribe(async response => {
+        try {
+          /*
+            The backend supplies the DMP together with the id.
+            This is to fit the OpenAPI spec.
+            However here we strip away that id so the downloaded JSON is RDA complient.
+            Finally we prettify it.
+          */
+          const text = await response.body.text();
+          const rawObj = JSON.parse(text);
+          const dmpDocument = { dmp: rawObj.dmp };
+          const prettyJson = JSON.stringify(dmpDocument, null, 2);
+          const prettyBlob = new Blob([prettyJson], {
+            type: 'application/json',
+          });
+
+          this.downloadFile({
+            headers: response.headers,
+            body: prettyBlob,
+          });
+        } catch (e) {
+          console.error('Failed to prettify and download maDMP JSON file', e);
+          this.feedbackService.error(
+            this.translate.instant('http.error.document'),
+          );
+        }
       });
   }
 
