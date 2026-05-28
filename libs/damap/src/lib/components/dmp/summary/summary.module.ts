@@ -1,6 +1,8 @@
 import { CommonModule, NgClass } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -30,6 +32,8 @@ import { TranslateModule } from '@ngx-translate/core';
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    MatExpansionModule,
+    MatChipsModule,
   ],
   declarations: [SummaryComponent],
   exports: [

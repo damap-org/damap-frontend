@@ -52,7 +52,6 @@ export class SummaryComponent implements OnInit {
   readonly selectedBenchmarkId = signal<string | null>(null);
   readonly evaluationResults = signal<EvaluationResult[]>([]);
   readonly evaluating = signal<EvalState>('idle');
-  readonly expandedResults = signal<Set<string>>(new Set());
 
   // Result summary counts
   readonly passedCount = computed(
@@ -149,7 +148,6 @@ export class SummaryComponent implements OnInit {
     if (!dmpId || !benchmarkId) return;
     this.evaluating.set('loading');
     this.evaluationResults.set([]);
-    this.expandedResults.set(new Set());
     this.backendService.runEvaluation(dmpId, benchmarkId).subscribe({
       next: r => {
         this.evaluationResults.set(r);
@@ -157,16 +155,6 @@ export class SummaryComponent implements OnInit {
       },
       error: () => this.evaluating.set('failed'),
     });
-  }
-
-  toggleExpand(id: string): void {
-    const current = new Set(this.expandedResults());
-    if (current.has(id)) {
-      current.delete(id);
-    } else {
-      current.add(id);
-    }
-    this.expandedResults.set(current);
   }
 
   getResultIcon(value: EvaluationValue): string {
