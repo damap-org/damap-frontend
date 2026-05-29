@@ -31,6 +31,7 @@ describe('ConfigService', () => {
     givenNameClaim: 'given_name',
     familyNameClaim: 'family_name',
     emailClaim: 'email',
+    affiliationClaim: 'affiliation',
     adminRoleName: 'damap-super-admin',
     responseType: 'code',
     env: 'test-env',
@@ -39,7 +40,9 @@ describe('ConfigService', () => {
     projectSearchServiceConfig: null,
     livePreviewAvailable: true,
     ethicalReportEnabled: true,
+    evaluationAvailable: true,
     multitenancyEnabled: false,
+    tenants: [],
     templates: [],
     images: [
       {
@@ -56,6 +59,7 @@ describe('ConfigService', () => {
       colors: null,
     },
     publicAvailable: true,
+    consentFormEnabled: true,
   };
 
   beforeEach(() => {

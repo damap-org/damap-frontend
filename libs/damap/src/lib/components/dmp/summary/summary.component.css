@@ -19,3 +19,142 @@ td a {
   text-decoration: underline;
   cursor: pointer;
 }
+
+/* DMP Evaluation card --------------------------------------------------- */
+
+.eval-card {
+  margin-top: 1.5rem;
+}
+
+.eval-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.eval-title {
+  color: var(--mat-sys-on-surface);
+}
+
+.eval-subtitle {
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.eval-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.benchmark-select {
+  flex: 1;
+}
+
+.eval-action {
+  flex-shrink: 0;
+}
+
+.btn-spinner {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+.eval-hint {
+  margin: 0.75rem 0 0;
+  font-size: 0.875rem;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.eval-hint-error {
+  color: var(--mat-sys-error);
+}
+
+/* Verdict + counts ------------------------------------------------------ */
+
+.eval-verdict {
+  margin-top: 1.25rem;
+}
+
+.verdict {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.875rem;
+}
+
+.verdict-pass {
+  color: var(--custom-success-icon-color);
+}
+
+.verdict-fail {
+  color: var(--mat-sys-error);
+}
+
+.eval-counts {
+  margin-top: 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+}
+
+.count.count-pass {
+  --mdc-chip-label-text-color: var(--custom-success-icon-color);
+}
+
+.count.count-fail {
+  --mdc-chip-label-text-color: var(--mat-sys-error);
+}
+
+.count.count-warn {
+  --mdc-chip-label-text-color: #bf6000;
+}
+
+/* Results list ---------------------------------------------------------- */
+
+.eval-results {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.eval-result {
+  background: transparent;
+}
+
+.result-icon {
+  flex-shrink: 0;
+  margin-right: 0.75rem;
+}
+
+.icon-pass {
+  color: var(--custom-success-icon-color);
+}
+
+.icon-fail {
+  color: var(--mat-sys-error);
+}
+
+.icon-warn {
+  color: #bf6000;
+}
+
+.result-title {
+  flex: 1;
+  min-width: 0;
+  color: var(--mat-sys-on-surface);
+}
+
+.result-desc {
+  margin: 0 0 0.5rem;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.result-log {
+  margin: 0;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.result-log strong {
+  color: var(--mat-sys-on-surface);
+  margin-right: 0.25rem;
+}
