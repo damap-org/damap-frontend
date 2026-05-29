@@ -22,9 +22,8 @@ export class BackendTranslateLoader implements TranslateLoader {
   private entriesToNested(entries: TranslationEntry[]): Record<string, any> {
     const result: Record<string, any> = {};
     for (const entry of entries) {
-      const custom = entry.active
-        ? entry.custom || entry.defaultValue
-        : entry.custom;
+      if (!entry.active) continue;
+      const custom = entry.custom || entry.defaultValue;
       if (!custom) continue;
       this.setNestedValue(result, entry.translationKey, custom);
     }

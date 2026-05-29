@@ -23,9 +23,6 @@ import { TranslationLoaderService } from '@damap/core';
   standalone: false,
 })
 export class TranslationManagementComponent implements OnInit {
-  private static readonly FILTER_KEY = 'damap.translation.filters';
-  private restoredPageIndex: number | null = null;
-
   pageSize = 5;
   pageIndex = 0;
 
@@ -59,18 +56,6 @@ export class TranslationManagementComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const savedFilters = sessionStorage.getItem(
-      TranslationManagementComponent.FILTER_KEY,
-    );
-    if (savedFilters) {
-      const { search, section, status, pageIndex } = JSON.parse(savedFilters);
-      this.searchControl.setValue(search ?? '', { emitEvent: false });
-      this.sectionFilter = section ?? 'all';
-      this.statusFilterControl.setValue(status ?? 'all', { emitEvent: false });
-      this.restoredPageIndex = pageIndex ?? 0;
-      sessionStorage.removeItem(TranslationManagementComponent.FILTER_KEY);
-    }
-
     this.searchControl.valueChanges
       .pipe(debounceTime(300), distinctUntilChanged())
       .subscribe(() => {
@@ -325,16 +310,6 @@ export class TranslationManagementComponent implements OnInit {
           this.originalCustomValue = updated.custom ?? '';
           this.translate.reloadLang(this.selectedLanguage).subscribe(() => {
             this.feedbackService.success('http.success.translations.update');
-            sessionStorage.setItem(
-              TranslationManagementComponent.FILTER_KEY,
-              JSON.stringify({
-                search: this.searchControl.value ?? '',
-                section: this.sectionFilter,
-                status: this.statusFilterControl.value ?? 'all',
-                pageIndex: this.pageIndex,
-              }),
-            );
-            window.location.reload();
           });
         },
         error: err => {
@@ -449,8 +424,7 @@ export class TranslationManagementComponent implements OnInit {
     this.filteredTranslations = items;
 
     if (resetPage) {
-      this.pageIndex = this.restoredPageIndex ?? 0;
-      this.restoredPageIndex = null;
+      this.pageIndex = 0;
     } else if (this.pageIndex > this.totalPages - 1) {
       this.pageIndex = Math.max(0, this.totalPages - 1);
     }
