@@ -5,11 +5,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Observable, map, startWith } from 'rxjs';
 import { InternalStorage } from '../../../domain/internal-storage';
 import {
+  isValidCode,
   LANGUAGE_CODE_OPTIONS,
-  LanguageCodeOption,
 } from '../../../domain/language-codes';
 import { FormService } from '../../../services/form.service';
 
@@ -25,7 +24,6 @@ export class InternalStorageDialogComponent {
   storageTranslation: UntypedFormGroup;
 
   readonly languageOptions = LANGUAGE_CODE_OPTIONS;
-  readonly filteredLanguageOptions$: Observable<LanguageCodeOption[]>;
 
   constructor(
     public dialogRef: MatDialogRef<InternalStorageDialogComponent>,
@@ -44,14 +42,8 @@ export class InternalStorageDialogComponent {
 
     this.languageCode.addValidators([
       Validators.required,
-      Validators.pattern(/^[a-z]{2}$/i),
       this.validLanguageCodeValidator.bind(this),
     ]);
-
-    this.filteredLanguageOptions$ = this.languageCode.valueChanges.pipe(
-      startWith(this.languageCode.value ?? ''),
-      map(value => this.filterLanguageOptions(value ?? '')),
-    );
 
     this.mode = data.mode ?? this.mode;
   }
@@ -102,16 +94,12 @@ export class InternalStorageDialogComponent {
     const newStorage = this.storage.value;
 
     if (this.mode === 'add') {
-      const normalizedLanguageCode = (
-        this.storageTranslation.value.languageCode as string
-      )
-        .trim()
-        .toLowerCase();
+      const languageCode = this.storageTranslation.value.languageCode as string;
 
       newStorage.translations = [
         {
           ...this.storageTranslation.value,
-          languageCode: normalizedLanguageCode,
+          languageCode: languageCode,
         },
       ];
     }
@@ -127,41 +115,6 @@ export class InternalStorageDialogComponent {
     );
   }
 
-  getLanguageDisplayValue(code: string): string {
-    const normalizedCode = (code ?? '').trim().toLowerCase();
-
-    if (!normalizedCode) {
-      return '';
-    }
-
-    const language = this.languageOptions.find(
-      option => option.code === normalizedCode,
-    );
-
-    return language
-      ? `${language.name} (${language.code.toUpperCase()})`
-      : code;
-  }
-
-  private filterLanguageOptions(value: string): LanguageCodeOption[] {
-    const normalizedValue = value.trim().toLowerCase();
-
-    if (!normalizedValue) {
-      return this.languageOptions;
-    }
-
-    return this.languageOptions.filter(option => {
-      const displayValue =
-        `${option.name} (${option.code.toUpperCase()})`.toLowerCase();
-
-      return (
-        option.code.includes(normalizedValue) ||
-        option.name.toLowerCase().includes(normalizedValue) ||
-        displayValue.includes(normalizedValue)
-      );
-    });
-  }
-
   private validLanguageCodeValidator(): { invalidLanguageCode: true } | null {
     const value = this.languageCode?.value as string | undefined;
 
@@ -169,12 +122,6 @@ export class InternalStorageDialogComponent {
       return null;
     }
 
-    const normalizedValue = value.trim().toLowerCase();
-
-    const exists = this.languageOptions.some(
-      option => option.code === normalizedValue,
-    );
-
-    return exists ? null : { invalidLanguageCode: true };
+    return isValidCode(value) ? null : { invalidLanguageCode: true };
   }
 }

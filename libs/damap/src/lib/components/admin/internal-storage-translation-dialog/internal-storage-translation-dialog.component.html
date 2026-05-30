@@ -11,61 +11,26 @@
   <div [formGroup]="storageTranslation">
     <hr />
 
-    <div class="dialogRow">
-      <mat-form-field>
-        <mat-label>
-          {{
-            "admin.internalStorage.translation.dialog.field.languageCode"
-              | translate
-          }}
-        </mat-label>
-
-        <input
-          matInput
-          maxlength="2"
-          autocomplete="off"
-          formControlName="languageCode"
-          [matAutocomplete]="languageAutocomplete" />
-
-        <mat-autocomplete
-          #languageAutocomplete="matAutocomplete"
-          [displayWith]="getLanguageDisplayValue.bind(this)">
-          <mat-option
-            *ngFor="let language of filteredLanguageOptions$ | async"
-            [value]="language.code">
-            {{ language.name }} ({{ language.code | uppercase }})
-          </mat-option>
-        </mat-autocomplete>
-
-        <mat-hint>
-          {{
-            "admin.internalStorage.translation.dialog.field.languageCodeHint"
-              | translate
-          }}
-        </mat-hint>
-
-        <mat-error *ngIf="languageCode.hasError('required')">
-          {{
-            "admin.internalStorage.translation.dialog.field.languageCodeRequired"
-              | translate
-          }}
-        </mat-error>
-
-        <mat-error *ngIf="languageCode.hasError('pattern')">
-          {{
-            "admin.internalStorage.translation.dialog.field.languageCodePattern"
-              | translate
-          }}
-        </mat-error>
-
-        <mat-error *ngIf="languageCode.hasError('invalidLanguageCode')">
-          {{
-            "admin.internalStorage.translation.dialog.field.languageCodeInvalid"
-              | translate
-          }}
-        </mat-error>
-      </mat-form-field>
-    </div>
+    <app-language-code-input
+      class="dialogRow"
+      [label]="
+        'admin.internalStorage.translation.dialog.field.languageCode'
+          | translate
+      "
+      [hint]="
+        'admin.internalStorage.translation.dialog.field.languageCodeHint'
+          | translate
+      "
+      [control]="languageCode"
+      [errorMessageRequired]="
+        'admin.internalStorage.translation.dialog.field.languageCodeRequired'
+          | translate
+      "
+      [errorMessageInvalid]="
+        'admin.internalStorage.translation.dialog.field.languageCodeInvalid'
+          | translate
+      ">
+    </app-language-code-input>
 
     <app-input-wrapper
       [label]="

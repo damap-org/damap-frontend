@@ -67,26 +67,15 @@ export class StorageComponent implements OnInit {
   }
 
   public getStorageTitle(storage: InternalStorage): string {
-    const normalize = (languageCode?: string | null): string =>
-      (languageCode ?? '')
-        .trim()
-        .toLowerCase()
-        .replace('eng', 'en')
-        .replace('deu', 'de')
-        .split('-')[0];
-
-    const currentLanguage = normalize(
+    const currentLanguage =
       this.translateService.currentLang ||
-        localStorage.getItem('lang') ||
-        this.translateService.defaultLang ||
-        'en',
-    );
+      localStorage.getItem('lang') ||
+      this.translateService.defaultLang ||
+      'en';
 
     const translation =
-      storage.translations.find(
-        t => normalize(t.languageCode) === currentLanguage,
-      ) ??
-      storage.translations.find(t => normalize(t.languageCode) === 'en') ??
+      storage.translations.find(t => t.languageCode === currentLanguage) ??
+      storage.translations.find(t => t.languageCode === 'en') ??
       storage.translations[0];
 
     return translation?.title ?? '';

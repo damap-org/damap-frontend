@@ -7,7 +7,6 @@ import { CommonModule } from '@angular/common';
 import { DeleteRepositoryWarningDialogComponent } from './edit-repositories-page/delete-repository-warning-dialog.component';
 import { DmpTableModule } from '../../widgets/dmp-table/dmp-table.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { EditRepositoriesPageComponent } from './edit-repositories-page/edit-repositories-page.component';
 import { ErrorMessageModule } from '../../widgets/error-message/error-message.module';
 import { ExportWarningModule } from '../../widgets/export-warning-dialog/export-warning.module';
 import { InternalStoragaTranslationTableModule } from '../../widgets/internal-storage-translation-table/internal-storage-translation-table.module';
@@ -36,6 +35,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslationManagementComponent } from './translation-management/translation-management.component';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
+import { LanguageCodeInputComponent } from '../../shared/language-code-input/language-code-input.component';
 
 @NgModule({
   imports: [
@@ -70,6 +70,7 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
     DragDropModule,
     MatTooltipModule,
     MatSlideToggle,
+    LanguageCodeInputComponent,
   ],
   declarations: [
     AdminComponent,

@@ -1,0 +1,41 @@
+<mat-form-field>
+  <mat-label>
+    {{ label }}
+  </mat-label>
+
+  <input
+    matInput
+    autocomplete="off"
+    [formControl]="control"
+    [matAutocomplete]="languageAutocomplete" />
+
+  <mat-autocomplete
+    #languageAutocomplete="matAutocomplete"
+    [displayWith]="getLanguageDisplayValue.bind(this)">
+    <mat-option
+      *ngFor="let language of filteredLanguageOptions$ | async"
+      [value]="language.code">
+      {{ language.name }} ({{ language.code | uppercase }})
+    </mat-option>
+  </mat-autocomplete>
+
+  <mat-hint>
+    {{ hint }}
+  </mat-hint>
+
+  <mat-error *ngIf="control?.hasError('required') && errorMessageRequired">
+    {{ errorMessageRequired }}
+  </mat-error>
+
+  <mat-error
+    *ngIf="control?.hasError('invalidLanguageCode') && errorMessageInvalid">
+    {{ errorMessageInvalid }}
+  </mat-error>
+
+  <mat-error
+    *ngIf="
+      control?.hasError('languageAlreadyExists') && errorMessageAlreadyExists
+    ">
+    {{ errorMessageAlreadyExists }}
+  </mat-error>
+</mat-form-field>

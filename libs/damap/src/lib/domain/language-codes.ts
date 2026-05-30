@@ -191,3 +191,7 @@ export const LANGUAGE_CODE_OPTIONS: LanguageCodeOption[] = [
   { code: 'zh', name: 'Chinese' },
   { code: 'zu', name: 'Zulu' },
 ];
+
+export function isValidCode(code: string): boolean {
+  return LANGUAGE_CODE_OPTIONS.some(option => option.code === code);
+}

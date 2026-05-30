@@ -4,7 +4,6 @@ import {
   EventEmitter,
   Input,
   OnChanges,
-  OnInit,
   Output,
   SimpleChanges,
   ViewChild,
@@ -17,7 +16,6 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { LoadingState } from '../../domain/enum/loading-state.enum';
 import { Observable } from 'rxjs';
-import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-dmp-table',

@@ -7,48 +7,21 @@
     {{ "admin.appTranslations.addLanguageHint" | translate }}
   </p>
 
-  <mat-form-field appearance="outline" class="input-full">
-    <mat-label>
-      {{ "admin.appTranslations.languageCode" | translate }}
-    </mat-label>
-
-    <input
-      matInput
-      maxlength="2"
-      autocomplete="off"
-      [formControl]="form.controls.language"
-      [matAutocomplete]="languageAutocomplete" />
-
-    <mat-autocomplete
-      #languageAutocomplete="matAutocomplete"
-      [displayWith]="getLanguageDisplayValue.bind(this)">
-      <mat-option
-        *ngFor="let language of filteredLanguageOptions$ | async"
-        [value]="language.code">
-        {{ language.name }} ({{ language.code | uppercase }})
-      </mat-option>
-    </mat-autocomplete>
-
-    <mat-hint>
-      {{ "admin.appTranslations.languageCodeHint" | translate }}
-    </mat-hint>
-
-    <mat-error *ngIf="form.controls.language.hasError('required')">
-      {{ "admin.appTranslations.languageCodeRequired" | translate }}
-    </mat-error>
-
-    <mat-error *ngIf="form.controls.language.hasError('pattern')">
-      {{ "admin.appTranslations.languageCodePattern" | translate }}
-    </mat-error>
-
-    <mat-error *ngIf="form.controls.language.hasError('invalidLanguageCode')">
-      {{ "admin.appTranslations.languageCodeInvalid" | translate }}
-    </mat-error>
-
-    <mat-error *ngIf="form.controls.language.hasError('languageAlreadyExists')">
-      {{ "admin.appTranslations.languageCodeAlreadyExists" | translate }}
-    </mat-error>
-  </mat-form-field>
+  <app-language-code-input
+    class="input-full"
+    [label]="'admin.appTranslations.languageCode' | translate"
+    [hint]="'admin.appTranslations.languageCodeHint' | translate"
+    [control]="form.controls.language"
+    [errorMessageRequired]="
+      'admin.appTranslations.languageCodeRequired' | translate
+    "
+    [errorMessageInvalid]="
+      'admin.appTranslations.languageCodeInvalid' | translate
+    "
+    [errorMessageAlreadyExists]="
+      'admin.appTranslations.languageCodeAlreadyExists' | translate
+    ">
+  </app-language-code-input>
 </mat-dialog-content>
 
 <mat-dialog-actions>
