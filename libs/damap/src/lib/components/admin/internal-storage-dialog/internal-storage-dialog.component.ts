@@ -1,12 +1,15 @@
 import { Component, Inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {
-  FormControl,
   UntypedFormControl,
   UntypedFormGroup,
+  Validators,
 } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { InternalStorage } from '../../../domain/internal-storage';
+import {
+  isValidCode,
+  LANGUAGE_CODE_OPTIONS,
+} from '../../../domain/language-codes';
 import { FormService } from '../../../services/form.service';
 
 @Component({
@@ -19,6 +22,8 @@ export class InternalStorageDialogComponent {
   public mode = 'add';
   storage: UntypedFormGroup;
   storageTranslation: UntypedFormGroup;
+
+  readonly languageOptions = LANGUAGE_CODE_OPTIONS;
 
   constructor(
     public dialogRef: MatDialogRef<InternalStorageDialogComponent>,
@@ -34,6 +39,12 @@ export class InternalStorageDialogComponent {
 
     this.storageTranslation =
       this.formService.createInternalStorageTranslationFormGroup();
+
+    this.languageCode.addValidators([
+      Validators.required,
+      this.validLanguageCodeValidator.bind(this),
+    ]);
+
     this.mode = data.mode ?? this.mode;
   }
 
@@ -73,10 +84,24 @@ export class InternalStorageDialogComponent {
     this.dialogRef.close();
   }
 
-  onDialogClose() {
-    let newStorage = this.storage.value;
+  onDialogClose(): void {
+    if (this.isDisabled()) {
+      this.storage.markAllAsTouched();
+      this.storageTranslation.markAllAsTouched();
+      return;
+    }
+
+    const newStorage = this.storage.value;
+
     if (this.mode === 'add') {
-      newStorage.translations = [this.storageTranslation.value];
+      const languageCode = this.storageTranslation.value.languageCode as string;
+
+      newStorage.translations = [
+        {
+          ...this.storageTranslation.value,
+          languageCode: languageCode,
+        },
+      ];
     }
 
     this.dialogRef.close(newStorage);
@@ -84,9 +109,19 @@ export class InternalStorageDialogComponent {
 
   isDisabled(): boolean {
     return (
-      (this.mode == 'add' &&
+      (this.mode === 'add' &&
         (this.storage.invalid || this.storageTranslation.invalid)) ||
-      (this.mode == 'edit' && this.storage.invalid)
+      (this.mode === 'edit' && this.storage.invalid)
     );
+  }
+
+  private validLanguageCodeValidator(): { invalidLanguageCode: true } | null {
+    const value = this.languageCode?.value as string | undefined;
+
+    if (!value) {
+      return null;
+    }
+
+    return isValidCode(value) ? null : { invalidLanguageCode: true };
   }
 }

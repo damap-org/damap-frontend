@@ -12,6 +12,7 @@ import { LoadingState } from '../../../../domain/enum/loading-state.enum';
 import { MatDialog } from '@angular/material/dialog';
 import { StorageInfoDialogComponent } from '../storage-dialog/storage-info-dialog.component';
 import { loadInternalStorages } from '../../../../store/actions/internal-storage.actions';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dmp-storage',
@@ -34,6 +35,7 @@ export class StorageComponent implements OnInit {
   constructor(
     private store: Store<AppState>,
     private dialog: MatDialog,
+    private translateService: TranslateService,
   ) {}
 
   ngOnInit() {
@@ -64,11 +66,19 @@ export class StorageComponent implements OnInit {
     );
   }
 
-  public getStorageTitle(storage: InternalStorage) {
-    const translation = storage.translations.find(
-      t => t.languageCode === 'eng',
-    );
-    return translation ? translation.title : storage.translations[0].title;
+  public getStorageTitle(storage: InternalStorage): string {
+    const currentLanguage =
+      this.translateService.currentLang ||
+      localStorage.getItem('lang') ||
+      this.translateService.defaultLang ||
+      'en';
+
+    const translation =
+      storage.translations.find(t => t.languageCode === currentLanguage) ??
+      storage.translations.find(t => t.languageCode === 'en') ??
+      storage.translations[0];
+
+    return translation?.title ?? '';
   }
 
   openStorageInfo(storage: InternalStorage) {

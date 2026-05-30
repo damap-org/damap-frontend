@@ -1,9 +1,17 @@
 import { Component, Inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import {
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 import { FormService } from '../../../services/form.service';
 import { InternalStorageTranslation } from '../../../domain/internal-storage';
+import {
+  isValidCode,
+  LanguageCodeOption,
+} from '../../../domain/language-codes';
 
 @Component({
   selector: 'internal-storage-translation-dialog',
@@ -29,10 +37,20 @@ export class InternalStorageTranslationDialogComponent {
       this.formService.createInternalStorageTranslationFormGroup();
 
     if (data.translation) {
-      this.storageTranslation.patchValue(data.translation);
+      this.storageTranslation.patchValue({
+        ...data.translation,
+        languageCode: data.translation.languageCode,
+      });
     }
 
-    this.storageTranslation.get('storageId').setValue(data.storageId);
+    this.storageTranslation.get('storageId')?.setValue(data.storageId);
+
+    this.languageCode.addValidators([
+      Validators.required,
+      this.validLanguageCodeValidator.bind(this),
+    ]);
+
+    this.languageCode.updateValueAndValidity();
 
     this.mode = data.mode ?? this.mode;
   }
@@ -57,9 +75,28 @@ export class InternalStorageTranslationDialogComponent {
     this.dialogRef.close();
   }
 
-  onDialogClose() {
-    let newTranslation = this.storageTranslation.value;
-    newTranslation.id = this.data.translation?.id;
+  onDialogClose(): void {
+    if (this.storageTranslation.invalid) {
+      this.storageTranslation.markAllAsTouched();
+      return;
+    }
+
+    const newTranslation = {
+      ...this.storageTranslation.value,
+      id: this.data.translation?.id,
+      languageCode: this.storageTranslation.value.languageCode as string,
+    };
+
     this.dialogRef.close(newTranslation);
+  }
+
+  private validLanguageCodeValidator(): { invalidLanguageCode: true } | null {
+    const value = this.languageCode?.value as string | undefined;
+
+    if (!value) {
+      return null;
+    }
+
+    return isValidCode(value) ? null : { invalidLanguageCode: true };
   }
 }

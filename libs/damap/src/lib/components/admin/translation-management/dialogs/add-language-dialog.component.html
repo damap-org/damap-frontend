@@ -1,34 +1,34 @@
 <h1 mat-dialog-title>
   {{ "admin.appTranslations.addLanguage" | translate }}
 </h1>
+
 <mat-dialog-content class="dialog-content">
   <p class="hint">
     {{ "admin.appTranslations.addLanguageHint" | translate }}
   </p>
-  <mat-form-field appearance="outline" class="input-full">
-    <mat-label>{{
-      "admin.appTranslations.languageCode" | translate
-    }}</mat-label>
-    <input
-      matInput
-      maxlength="2"
-      autocomplete="off"
-      [formControl]="form.controls.language" />
-    <mat-hint>{{
-      "admin.appTranslations.languageCodeHint" | translate
-    }}</mat-hint>
-    <mat-error *ngIf="form.controls.language.hasError('required')">
-      {{ "admin.appTranslations.languageCodeRequired" | translate }}
-    </mat-error>
-    <mat-error *ngIf="form.controls.language.hasError('pattern')">
-      {{ "admin.appTranslations.languageCodePattern" | translate }}
-    </mat-error>
-  </mat-form-field>
+
+  <app-language-code-input
+    class="input-full"
+    [label]="'admin.appTranslations.languageCode' | translate"
+    [hint]="'admin.appTranslations.languageCodeHint' | translate"
+    [control]="form.controls.language"
+    [errorMessageRequired]="
+      'admin.appTranslations.languageCodeRequired' | translate
+    "
+    [errorMessageInvalid]="
+      'admin.appTranslations.languageCodeInvalid' | translate
+    "
+    [errorMessageAlreadyExists]="
+      'admin.appTranslations.languageCodeAlreadyExists' | translate
+    ">
+  </app-language-code-input>
 </mat-dialog-content>
+
 <mat-dialog-actions>
   <button mat-button (click)="cancel()">
     {{ "admin.appTranslations.cancel" | translate }}
   </button>
+
   <button
     mat-raised-button
     color="primary"
