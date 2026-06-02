@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormsModule,
@@ -49,7 +49,7 @@ import { TranslateModule } from '@ngx-translate/core';
     TranslateModule,
   ],
 })
-export class LanguageCodeInputComponent {
+export class LanguageCodeInputComponent implements OnChanges {
   @Input() label: string = '';
   @Input() hint: string = '';
   @Input() control!: FormControl;

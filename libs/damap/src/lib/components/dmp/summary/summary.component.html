@@ -53,7 +53,7 @@
   <mat-card class="dmp-summary-card card-shadow eval-card">
     <mat-card-content>
       <div class="eval-head">
-        <span class="eval-title mat-title-medium">{{
+        <span class="eval-title mat-title-large">{{
           "dmp.steps.summary.evaluation.title" | translate
         }}</span>
         <span class="eval-subtitle mat-body-medium">{{
@@ -81,7 +81,6 @@
 
           <button
             mat-flat-button
-            color="primary"
             class="eval-action"
             [disabled]="!canEvaluate"
             (click)="runEvaluation()">
@@ -97,13 +96,13 @@
         </div>
 
         @if (!dmpForm?.id) {
-          <p class="eval-hint">
+          <p class="eval-hint mat-body-small">
             {{ "dmp.steps.summary.evaluation.warning.unsaved" | translate }}
           </p>
         }
 
         @if (benchmarksLoaded() === "failed") {
-          <p class="eval-hint eval-hint-error">
+          <p class="eval-hint eval-hint-error mat-body-small">
             {{ "dmp.steps.summary.evaluation.benchmarks.error" | translate }}
           </p>
         }
@@ -111,7 +110,7 @@
         @if (hasResults) {
           <div class="eval-verdict" aria-live="polite">
             <span
-              class="verdict"
+              class="verdict mat-label-large"
               [class.verdict-pass]="overallVerdict() === 'PASS'"
               [class.verdict-fail]="overallVerdict() === 'FAIL'">
               @if (overallVerdict() === "FAIL") {
@@ -170,13 +169,13 @@
         }
 
         @if (evaluating() === "failed") {
-          <p class="eval-hint eval-hint-error">
+          <p class="eval-hint eval-hint-error mat-body-small">
             {{ "dmp.steps.summary.evaluation.error" | translate }}
           </p>
         }
       }
       @if (benchmarksLoaded() === "failed") {
-        <p class="eval-hint eval-hint-error">
+        <p class="eval-hint eval-hint-error mat-body-small">
           {{ "dmp.steps.summary.evaluation.benchmarks.error" | translate }}
         </p>
       }
