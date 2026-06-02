@@ -70,7 +70,14 @@
                 appearance="outline"
                 class="retention-field"
                 subscriptSizing="dynamic">
-                <mat-select [formControl]="retControl">
+                <!--
+                  binding [value]/(selectionChange) instead of
+                  [formControl] keeps all cards in sync.
+                -->
+                <mat-select
+                  [value]="retControl.value"
+                  [disabled]="retControl.disabled"
+                  (selectionChange)="retControl.setValue($event.value)">
                   <mat-option
                     *ngFor="let option of retentionOptions"
                     [value]="option">
