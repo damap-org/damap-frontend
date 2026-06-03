@@ -49,8 +49,19 @@ export class LandingPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const browserLang = this.translate.getBrowserLang();
-    this.translate.use(browserLang?.match(/en|de/) ? browserLang : 'en');
+    // TODO: The fallback doesnt work when english has been deactivated
+    const preferredLang =
+      localStorage.getItem('lang') || this.translate.getBrowserLang() || 'en';
+    this.translate.getTranslation(preferredLang).subscribe(translations => {
+      const languageToUse =
+        translations && Object.keys(translations).length > 0
+          ? preferredLang
+          : 'en';
+
+      this.translate.use(languageToUse);
+      localStorage.setItem('lang', languageToUse);
+    });
+
     this.backendDown$ = this.configService.isBackendDown();
   }
 }
