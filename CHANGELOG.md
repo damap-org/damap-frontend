@@ -7,6 +7,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] -
 
+## [5.0.0] - 2026-06-05
+
+### Added
+
+- Added license dropdown in reused dataset manual input mask [#486](https://github.com/damap-org/damap-frontend/pull/486)
+- Added support for more configurable SSO provider connections to decrease friction in deployment [#511](https://github.com/damap-org/damap-frontend/pull/511)
+- Added admin panel for customizing system colors [#488](https://github.com/damap-org/damap-frontend/pull/488)
+- Added admin panel for customizing logos and images [#488](https://github.com/damap-org/damap-frontend/pull/488)
+- Added admin panel for configuring recommended repositories [#488](https://github.com/damap-org/damap-frontend/pull/488)
+- Added admin panel for configuring custom templates [#519](https://github.com/damap-org/damap-frontend/pull/519)
+- Disabling the project service now hides it in the frontend, making it possible to deploy DAMAP without connected CRIS-Systems [#524](https://github.com/damap-org/damap-frontend/pull/524)
+- users without a registered affiliation will get redirected to an info page, instead of seeing the application [#535](https://github.com/damap-org/damap-frontend/pull/535)
+- Admins can now change texts from the UI instead of having to work with json files in the codebase [#536](https://github.com/damap-org/damap-frontend/pull/536)
+- Admins can now add translations from the UI instead of having to work with json files in the codebase [#536](https://github.com/damap-org/damap-frontend/pull/536)
+- Added options for admins to lock the application for non-admins, making it easier to customize [#540](https://github.com/damap-org/damap-frontend/pull/540)
+- Added options for admins to disable the consent popup [#540](https://github.com/damap-org/damap-frontend/pull/540)
+- Added connection with evaluation service, so users can get their DMP evaluated against certain benchmarks [#552](https://github.com/damap-org/damap-frontend/pull/552)
+
+### Changed
+
+- Improved UI for live preview [#510](https://github.com/damap-org/damap-frontend/pull/510)
+- Reworked DMP access feature to base access on system users instead of contributors [#514](https://github.com/damap-org/damap-frontend/pull/514)
+- Rework frontend architecture to support multitenant behaviour, enabling simpler cloud deployments [#523](https://github.com/damap-org/damap-frontend/pull/523)
+- Errors encountered by accessing external services now show clearer error messages [#484](https://github.com/damap-org/damap-frontend/pull/484)
+- Replaced FITS service to make deployments more lightweight [#522](https://github.com/damap-org/damap-frontend/pull/522)
+- Update GDPR section, since we now store user data [#539](https://github.com/damap-org/damap-frontend/pull/539)
+
+### Fixed
+
+- Fixed small UI bugs in cost step [#509](https://github.com/damap-org/damap-frontend/pull/509)
+- Fixed a bug with searchfields, wehre the x to clear it wouldnt show up [4eef483](https://github.com/damap-org/damap-frontend/commit/4eef4838f865b5850085dbdfc0257770479aa311)
+- Fixed a textarea bug, where long label description where cut off [#492](https://github.com/damap-org/damap-frontend/pull/492)
+- Fixed a bug where you could sometimes see a white banner flickering when loading the page [#522](https://github.com/damap-org/damap-frontend/pull/522)
+
 ## [4.7.0] - 2025-12-11
 
 ### Added
@@ -101,7 +135,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed small errors in the contributor section and improved visuals [#407](https://github.com/tuwien-csd/damap-frontend/pull/407).
 - Fixed a bug where dropdown font size in the storage section was too small [#406](https://github.com/tuwien-csd/damap-frontend/pull/406).
 
-## [4.3.1] - 2024-13-12
+## [4.3.1] - 2024-12-13
 
 ### Added
 
