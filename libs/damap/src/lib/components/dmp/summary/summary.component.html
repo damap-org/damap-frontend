@@ -150,10 +150,34 @@
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 @if (r.description) {
-                  <p class="result-desc">{{ r.description }}</p>
+                  <p class="result-desc mat-body-large">{{ r.description }}</p>
                 }
-                @if (r.log) {
-                  <p class="result-log">
+                @if (r.guidance?.summary || r.guidance?.issues?.length) {
+                  <section class="result-guidance">
+                    <div class="guidance-head">
+                      @if (r.guidance?.summary) {
+                        <p class="result-summary mat-title-small">
+                          {{ r.guidance.summary }}
+                        </p>
+                      }
+                    </div>
+                    @if (r.guidance?.issues?.length) {
+                      <ul class="result-issues">
+                        @for (issue of r.guidance.issues; track $index) {
+                          <li class="result-issue">
+                            <span class="issue-dataset mat-title-small">
+                              {{ issue.dataset }}
+                            </span>
+                            <span class="issue-reason mat-body-large">
+                              {{ issue.reason }}
+                            </span>
+                          </li>
+                        }
+                      </ul>
+                    }
+                  </section>
+                } @else if (r.log) {
+                  <p class="result-log mat-body-large">
                     <strong
                       >{{
                         "dmp.steps.summary.evaluation.details.reason"

@@ -6,6 +6,16 @@ export type EvaluationValue =
   | 'INDERTERMINATED'
   | 'NOT_APPLICABLE';
 
+export interface EvaluationGuidanceIssue {
+  dataset: string;
+  reason: string;
+}
+
+export interface EvaluationGuidance {
+  summary?: string;
+  issues?: EvaluationGuidanceIssue[];
+}
+
 export interface EvaluationResult {
   identifier: string;
   title: string;
@@ -19,4 +29,5 @@ export interface EvaluationResult {
   assessmentTarget?: string;
   wasGeneratedBy?: string;
   outputFromTest?: string;
+  guidance?: EvaluationGuidance;
 }
