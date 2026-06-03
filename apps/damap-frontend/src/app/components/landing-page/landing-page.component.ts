@@ -49,9 +49,9 @@ export class LandingPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // TODO: The fallback doesnt work when english has been deactivated
     const preferredLang =
       localStorage.getItem('lang') || this.translate.getBrowserLang() || 'en';
-
     this.translate.getTranslation(preferredLang).subscribe(translations => {
       const languageToUse =
         translations && Object.keys(translations).length > 0
