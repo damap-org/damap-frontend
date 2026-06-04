@@ -53,7 +53,7 @@
   <mat-card class="dmp-summary-card card-shadow eval-card">
     <mat-card-content>
       <div class="eval-head">
-        <span class="eval-title mat-title-medium">{{
+        <span class="eval-title mat-title-large">{{
           "dmp.steps.summary.evaluation.title" | translate
         }}</span>
         <span class="eval-subtitle mat-body-medium">{{
@@ -81,7 +81,6 @@
 
           <button
             mat-flat-button
-            color="primary"
             class="eval-action"
             [disabled]="!canEvaluate"
             (click)="runEvaluation()">
@@ -97,13 +96,13 @@
         </div>
 
         @if (!dmpForm?.id) {
-          <p class="eval-hint">
+          <p class="eval-hint mat-body-small">
             {{ "dmp.steps.summary.evaluation.warning.unsaved" | translate }}
           </p>
         }
 
         @if (benchmarksLoaded() === "failed") {
-          <p class="eval-hint eval-hint-error">
+          <p class="eval-hint eval-hint-error mat-body-small">
             {{ "dmp.steps.summary.evaluation.benchmarks.error" | translate }}
           </p>
         }
@@ -111,7 +110,7 @@
         @if (hasResults) {
           <div class="eval-verdict" aria-live="polite">
             <span
-              class="verdict"
+              class="verdict mat-label-large"
               [class.verdict-pass]="overallVerdict() === 'PASS'"
               [class.verdict-fail]="overallVerdict() === 'FAIL'">
               @if (overallVerdict() === "FAIL") {
@@ -151,10 +150,34 @@
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 @if (r.description) {
-                  <p class="result-desc">{{ r.description }}</p>
+                  <p class="result-desc mat-body-large">{{ r.description }}</p>
                 }
-                @if (r.log) {
-                  <p class="result-log">
+                @if (r.guidance?.summary || r.guidance?.issues?.length) {
+                  <section class="result-guidance">
+                    <div class="guidance-head">
+                      @if (r.guidance?.summary) {
+                        <p class="result-summary mat-title-small">
+                          {{ r.guidance.summary }}
+                        </p>
+                      }
+                    </div>
+                    @if (r.guidance?.issues?.length) {
+                      <ul class="result-issues">
+                        @for (issue of r.guidance.issues; track $index) {
+                          <li class="result-issue">
+                            <span class="issue-dataset mat-title-small">
+                              {{ issue.dataset }}
+                            </span>
+                            <span class="issue-reason mat-body-large">
+                              {{ issue.reason }}
+                            </span>
+                          </li>
+                        }
+                      </ul>
+                    }
+                  </section>
+                } @else if (r.log) {
+                  <p class="result-log mat-body-large">
                     <strong
                       >{{
                         "dmp.steps.summary.evaluation.details.reason"
@@ -170,13 +193,13 @@
         }
 
         @if (evaluating() === "failed") {
-          <p class="eval-hint eval-hint-error">
+          <p class="eval-hint eval-hint-error mat-body-small">
             {{ "dmp.steps.summary.evaluation.error" | translate }}
           </p>
         }
       }
       @if (benchmarksLoaded() === "failed") {
-        <p class="eval-hint eval-hint-error">
+        <p class="eval-hint eval-hint-error mat-body-small">
           {{ "dmp.steps.summary.evaluation.benchmarks.error" | translate }}
         </p>
       }
