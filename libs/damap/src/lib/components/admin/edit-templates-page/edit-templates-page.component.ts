@@ -6,7 +6,7 @@ import {
   computed,
 } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -27,7 +27,6 @@ import { ConfigService } from '../../../../../../../apps/damap-frontend/src/app/
   styleUrls: ['./edit-templates-page.component.css'],
   standalone: true,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     FormsModule,
     MatCardModule,

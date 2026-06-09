@@ -1,4 +1,4 @@
-<ng-container *ngIf="dmp">
+@if (dmp) {
   <!-- Sensitive data -->
   <div>
     <div>
@@ -7,30 +7,39 @@
           "dmp.versions.view.legal.sensitive.data.present" | translate
         }}:</span
       >
-      <ng-container *ngIf="dmp.sensitiveData; else no">
-        {{ "dmp.versions.view.legal-ethical.yes" | translate }}</ng-container
-      >
+      @if (dmp.sensitiveData) {
+        {{ "dmp.versions.view.legal-ethical.yes" | translate }}
+      } @else {
+        {{ "dmp.versions.view.legal-ethical.no" | translate }}
+      }
     </div>
-    <ng-container *ngIf="dmp.sensitiveData">
+    @if (dmp.sensitiveData) {
       <div>
         <span class="headings"
           >{{
             "dmp.versions.view.legal.sensitive.data.security" | translate
           }}:</span
         >
-        <span *ngFor="let item of dmp.sensitiveDataSecurity; last as last">
-          {{ "enum.securitymeasure." + item | translate
-          }}<span *ngIf="!last">, </span>
-        </span>
+        @for (item of dmp.sensitiveDataSecurity; track item; let last = $last) {
+          <span>
+            {{ "enum.securitymeasure." + item | translate }}
+            @if (!last) {
+              <span>, </span>
+            }
+          </span>
+        }
       </div>
-      <div *ngIf="otherSecurityMeasure">
-        <span class="headings"
-          >{{
-            "dmp.versions.view.legal.sensitive.data.other.security" | translate
-          }}:</span
-        >
-        {{ dmp.otherDataSecurityMeasures }}
-      </div>
+      @if (otherSecurityMeasure) {
+        <div>
+          <span class="headings"
+            >{{
+              "dmp.versions.view.legal.sensitive.data.other.security"
+                | translate
+            }}:</span
+          >
+          {{ dmp.otherDataSecurityMeasures }}
+        </div>
+      }
       <div>
         <span class="headings"
           >{{
@@ -39,9 +48,8 @@
         >
         {{ dmp.sensitiveDataAccess }}
       </div>
-    </ng-container>
+    }
   </div>
-
   <!-- Personal data -->
   <div>
     <div>
@@ -50,45 +58,58 @@
           "dmp.versions.view.legal.personal.data.present" | translate
         }}:</span
       >
-      <ng-container *ngIf="dmp.personalData; else no">
-        {{ "dmp.versions.view.legal-ethical.yes" | translate }}</ng-container
-      >
+      @if (dmp.personalData) {
+        {{ "dmp.versions.view.legal-ethical.yes" | translate }}
+      } @else {
+        {{ "dmp.versions.view.legal-ethical.no" | translate }}
+      }
     </div>
-    <ng-container *ngIf="dmp.personalData">
+    @if (dmp.personalData) {
       <div>
         <span class="headings"
           >{{
             "dmp.versions.view.legal.personal.data.compliance" | translate
           }}:</span
         >
-        <span *ngFor="let item of dmp.personalDataCompliance; last as last">
-          {{ "enum.compliance." + item | translate
-          }}<span *ngIf="!last">, </span>
-        </span>
+        @for (
+          item of dmp.personalDataCompliance;
+          track item;
+          let last = $last
+        ) {
+          <span>
+            {{ "enum.compliance." + item | translate }}
+            @if (!last) {
+              <span>, </span>
+            }
+          </span>
+        }
       </div>
-      <div *ngIf="otherCompliance">
-        <span class="headings"
-          >{{
-            "dmp.versions.view.legal.personal.data.other.compliance"
-              | translate
-          }}:</span
-        >
-        {{ dmp.otherPersonalDataCompliance }}
-      </div>
-    </ng-container>
+      @if (otherCompliance) {
+        <div>
+          <span class="headings"
+            >{{
+              "dmp.versions.view.legal.personal.data.other.compliance"
+                | translate
+            }}:</span
+          >
+          {{ dmp.otherPersonalDataCompliance }}
+        </div>
+      }
+    }
   </div>
-
   <!-- Legal restrictions -->
   <div>
     <div>
       <span class="headings"
         >{{ "dmp.versions.view.legal.restrictions.present" | translate }}:</span
       >
-      <ng-container *ngIf="dmp.legalRestrictions; else no">
-        {{ "dmp.versions.view.legal-ethical.yes" | translate }}</ng-container
-      >
+      @if (dmp.legalRestrictions) {
+        {{ "dmp.versions.view.legal-ethical.yes" | translate }}
+      } @else {
+        {{ "dmp.versions.view.legal-ethical.no" | translate }}
+      }
     </div>
-    <ng-container *ngIf="dmp.legalRestrictions">
+    @if (dmp.legalRestrictions) {
       <div>
         <span class="headings"
           >{{
@@ -97,25 +118,38 @@
         >
         {{ dmp.legalRestrictionsComment }}
       </div>
-      <div *ngIf="dmp.personalDataCompliance">
-        <span class="headings"
-          >{{
-            "dmp.versions.view.legal.restrictions.documents" | translate
-          }}:</span
-        >
-        <span *ngFor="let item of dmp.legalRestrictionsDocuments; last as last">
-          {{ "enum.agreement." + item | translate
-          }}<span *ngIf="!last">, </span>
-        </span>
-      </div>
-      <div *ngIf="otherDocuments">
-        <span class="headings"
-          >{{
-            "dmp.versions.view.legal.restrictions.other.documents" | translate
-          }}:</span
-        >
-        {{ dmp.otherLegalRestrictionsDocument }}
-      </div>
+      @if (dmp.personalDataCompliance) {
+        <div>
+          <span class="headings"
+            >{{
+              "dmp.versions.view.legal.restrictions.documents" | translate
+            }}:</span
+          >
+          @for (
+            item of dmp.legalRestrictionsDocuments;
+            track item;
+            let last = $last
+          ) {
+            <span>
+              {{ "enum.agreement." + item | translate }}
+              @if (!last) {
+                <span>, </span>
+              }
+            </span>
+          }
+        </div>
+      }
+      @if (otherDocuments) {
+        <div>
+          <span class="headings"
+            >{{
+              "dmp.versions.view.legal.restrictions.other.documents"
+                | translate
+            }}:</span
+          >
+          {{ dmp.otherLegalRestrictionsDocument }}
+        </div>
+      }
       <div>
         <span class="headings"
           >{{
@@ -125,40 +159,39 @@
         >
         {{ dmp.dataRightsAndAccessControl }}
       </div>
-    </ng-container>
+    }
   </div>
-
   <!-- Human participants -->
   <div>
     <span class="headings"
       >{{ "dmp.versions.view.ethical.human.participants" | translate }}:</span
     >
-    <ng-container *ngIf="dmp.humanParticipants; else no">
-      {{ "dmp.versions.view.legal-ethical.yes" | translate }}</ng-container
-    >
+    @if (dmp.humanParticipants) {
+      {{ "dmp.versions.view.legal-ethical.yes" | translate }}
+    } @else {
+      {{ "dmp.versions.view.legal-ethical.no" | translate }}
+    }
   </div>
-
   <!-- Ethical issues -->
   <div>
     <span class="headings"
       >{{ "dmp.versions.view.ethical.issues" | translate }}:</span
     >
-    <ng-container *ngIf="dmp.ethicalIssuesExist; else no">
-      {{ "dmp.versions.view.legal-ethical.yes" | translate }}</ng-container
-    >
+    @if (dmp.ethicalIssuesExist) {
+      {{ "dmp.versions.view.legal-ethical.yes" | translate }}
+    } @else {
+      {{ "dmp.versions.view.legal-ethical.no" | translate }}
+    }
   </div>
-
   <!-- Ethics committee -->
   <div>
     <span class="headings"
       >{{ "dmp.versions.view.ethical.committee.reviewed" | translate }}:</span
     >
-    <ng-container *ngIf="dmp.committeeReviewed; else no">
-      {{ "dmp.versions.view.legal-ethical.yes" | translate }}</ng-container
-    >
+    @if (dmp.committeeReviewed) {
+      {{ "dmp.versions.view.legal-ethical.yes" | translate }}
+    } @else {
+      {{ "dmp.versions.view.legal-ethical.no" | translate }}
+    }
   </div>
-
-  <ng-template #no>
-    {{ "dmp.versions.view.legal-ethical.no" | translate }}</ng-template
-  >
-</ng-container>
+}

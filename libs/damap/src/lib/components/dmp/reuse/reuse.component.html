@@ -18,7 +18,7 @@
         [maxLength]="4000">
       </app-textarea-wrapper>
 
-      <ng-container *ngIf="restricted?.length > 0">
+      @if (restricted?.length > 0) {
         <app-textarea-wrapper
           [label]="'dmp.steps.data.reuse.question.short.restrictedDataAccess'"
           [longLabel]="
@@ -28,7 +28,7 @@
           [control]="restrictedDataAccess"
           [maxLength]="4000">
         </app-textarea-wrapper>
-      </ng-container>
+      }
     </div>
   </mat-card-content>
 </mat-card>

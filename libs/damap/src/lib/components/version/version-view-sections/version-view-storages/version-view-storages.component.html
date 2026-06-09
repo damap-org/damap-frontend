@@ -1,53 +1,65 @@
-<div *ngFor="let storage of storages; last as last">
-  <h3>{{ storage.title }}</h3>
+@for (storage of storages; track storage.id; let last = $last) {
   <div>
-    <span class="headings"
-      >{{ "dmp.versions.view.storage.datasets" | translate }}:</span
-    >
-    <ul>
-      <li *ngFor="let dataset of getDatasetsForStorage(storage)">
-        {{ dataset.title }}
-      </li>
-    </ul>
+    <h3>{{ storage.title }}</h3>
+    <div>
+      <span class="headings"
+        >{{ "dmp.versions.view.storage.datasets" | translate }}:</span
+      >
+      <ul>
+        @for (dataset of getDatasetsForStorage(storage); track dataset.id) {
+          <li>
+            {{ dataset.title }}
+          </li>
+        }
+      </ul>
+    </div>
+    @if (!last || externalStorages.length > 0) {
+      <hr />
+    }
   </div>
-  <hr *ngIf="!last || externalStorages.length > 0" />
-</div>
+}
 
-<div *ngFor="let storage of externalStorages; last as last">
-  <h3>{{ storage.title }}</h3>
+@for (storage of externalStorages; track storage.id; let last = $last) {
   <div>
-    <span class="headings"
-      >{{ "dmp.versions.view.storage.url" | translate }}:</span
-    >
-    {{ storage.url }}
+    <h3>{{ storage.title }}</h3>
+    <div>
+      <span class="headings"
+        >{{ "dmp.versions.view.storage.url" | translate }}:</span
+      >
+      {{ storage.url }}
+    </div>
+    <div>
+      <span class="headings"
+        >{{ "dmp.versions.view.storage.backup.frequency" | translate }}:</span
+      >
+      {{ storage.backupFrequency }}
+    </div>
+    <div>
+      <span class="headings"
+        >{{ "dmp.versions.view.storage.location" | translate }}:</span
+      >
+      {{ storage.storageLocation }}
+    </div>
+    <div>
+      <span class="headings"
+        >{{ "dmp.versions.view.storage.backup.location" | translate }}:</span
+      >
+      {{ storage.backupLocation }}
+    </div>
+    <div>
+      <span class="headings"
+        >{{ "dmp.versions.view.storage.datasets" | translate }}:</span
+      >
+      <ul>
+        @for (dataset of getDatasetsForStorage(storage); track dataset.id) {
+          <li>
+            {{ dataset.title }}
+          </li>
+        }
+      </ul>
+    </div>
+    @if (!last) {
+      <hr />
+    }
   </div>
-  <div>
-    <span class="headings"
-      >{{ "dmp.versions.view.storage.backup.frequency" | translate }}:</span
-    >
-    {{ storage.backupFrequency }}
-  </div>
-  <div>
-    <span class="headings"
-      >{{ "dmp.versions.view.storage.location" | translate }}:</span
-    >
-    {{ storage.storageLocation }}
-  </div>
-  <div>
-    <span class="headings"
-      >{{ "dmp.versions.view.storage.backup.location" | translate }}:</span
-    >
-    {{ storage.backupLocation }}
-  </div>
-  <div>
-    <span class="headings"
-      >{{ "dmp.versions.view.storage.datasets" | translate }}:</span
-    >
-    <ul>
-      <li *ngFor="let dataset of getDatasetsForStorage(storage)">
-        {{ dataset.title }}
-      </li>
-    </ul>
-  </div>
-  <hr *ngIf="!last" />
-</div>
+}

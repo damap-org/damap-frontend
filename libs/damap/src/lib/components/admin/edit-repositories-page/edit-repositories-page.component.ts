@@ -5,7 +5,7 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { filter, switchMap, take } from 'rxjs/operators';
 
 import { BackendService } from '../../../services/backend.service';
@@ -30,7 +30,6 @@ import { firstValueFrom } from 'rxjs';
   styleUrls: ['./edit-repositories-page.component.css'],
   standalone: true,
   imports: [
-    CommonModule,
     MatButtonModule,
     MatCardModule,
     MatIconModule,

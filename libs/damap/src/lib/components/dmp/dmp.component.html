@@ -10,95 +10,97 @@
       <!-- The logic for the icons in the stepper  -->
 
       <ng-template matStepperIcon="done" let-index="index">
-        <mat-icon
-          class="material-icon-white-background-primary custom-icon-step"
-          *ngIf="iconsValidatorDone(index, 'check')"
-          >check</mat-icon
-        >
+        @if (iconsValidatorDone(index, "check")) {
+          <mat-icon
+            class="material-icon-white-background-primary custom-icon-step"
+            >check</mat-icon
+          >
+        }
 
-        <mat-icon
-          class="material-icon-white-background-success custom-icon-step outline"
-          *ngIf="iconsValidatorDone(index, 'edit')"
-          >edit</mat-icon
-        >
+        @if (iconsValidatorDone(index, "edit")) {
+          <mat-icon
+            class="material-icon-white-background-success custom-icon-step outline"
+            >edit</mat-icon
+          >
+        }
 
-        <mat-icon
-          class="custom-icon-step"
-          *ngIf="iconsValidatorDone(index, 'lock')"
-          >lock</mat-icon
-        >
+        @if (iconsValidatorDone(index, "lock")) {
+          <mat-icon class="custom-icon-step">lock</mat-icon>
+        }
 
-        <mat-icon
-          class="material-icon-white-background-primary custom-icon-step"
-          *ngIf="iconsValidatorDone(index, 'text_snippet')">
-          text_snippet
-        </mat-icon>
+        @if (iconsValidatorDone(index, "text_snippet")) {
+          <mat-icon
+            class="material-icon-white-background-primary custom-icon-step">
+            text_snippet
+          </mat-icon>
+        }
       </ng-template>
 
       <ng-template matStepperIcon="edit" let-index="index">
-        <mat-icon
-          class="material-icon-white-background-success custom-icon-step"
-          *ngIf="iconsValidatorEdit(index, 'text_snippet')">
-          text_snippet
-        </mat-icon>
+        @if (iconsValidatorEdit(index, "text_snippet")) {
+          <mat-icon
+            class="material-icon-white-background-success custom-icon-step">
+            text_snippet
+          </mat-icon>
+        }
 
-        <mat-icon
-          class="material-icon-white-background-primary custom-icon-step"
-          *ngIf="iconsValidatorEdit(index, 'edit')">
-          edit
-        </mat-icon>
+        @if (iconsValidatorEdit(index, "edit")) {
+          <mat-icon
+            class="material-icon-white-background-primary custom-icon-step">
+            edit
+          </mat-icon>
+        }
 
-        <mat-icon
-          class="material-icon-white-background-primary custom-icon-step"
-          *ngIf="iconsValidatorEdit(index, 'lock')"
-          >lock</mat-icon
-        >
+        @if (iconsValidatorEdit(index, "lock")) {
+          <mat-icon
+            class="material-icon-white-background-primary custom-icon-step"
+            >lock</mat-icon
+          >
+        }
       </ng-template>
 
       <ng-template matStepperIcon="number" let-index="index">
-        <mat-icon
-          class="custom-icon-step number-step-icon"
-          *ngIf="iconsValidatorNumber(index, 'number', stepper.selectedIndex)">
-          {{ index + 1 }}
-        </mat-icon>
+        @if (iconsValidatorNumber(index, "number", stepper.selectedIndex)) {
+          <mat-icon class="custom-icon-step number-step-icon">
+            {{ index + 1 }}
+          </mat-icon>
+        }
 
-        <mat-icon
-          class="material-icon-white-background-primary custom-icon-step"
-          *ngIf="iconsValidatorNumber(index, 'edit', stepper.selectedIndex)">
-          edit
-        </mat-icon>
+        @if (iconsValidatorNumber(index, "edit", stepper.selectedIndex)) {
+          <mat-icon
+            class="material-icon-white-background-primary custom-icon-step">
+            edit
+          </mat-icon>
+        }
 
-        <mat-icon
-          class="custom-icon-step"
-          *ngIf="
-            iconsValidatorNumber(
-              index,
-              'text_snippet',
-              stepper.selectedIndex,
-              'gray'
-            )
-          ">
-          text_snippet
-        </mat-icon>
+        @if (
+          iconsValidatorNumber(
+            index,
+            "text_snippet",
+            stepper.selectedIndex,
+            "gray"
+          )
+        ) {
+          <mat-icon class="custom-icon-step"> text_snippet </mat-icon>
+        }
 
-        <mat-icon
-          class="material-icon-white-background-success custom-icon-step"
-          *ngIf="
-            iconsValidatorNumber(
-              index,
-              'text_snippet',
-              stepper.selectedIndex,
-              'success'
-            )
-          ">
-          text_snippet
-        </mat-icon>
+        @if (
+          iconsValidatorNumber(
+            index,
+            "text_snippet",
+            stepper.selectedIndex,
+            "success"
+          )
+        ) {
+          <mat-icon
+            class="material-icon-white-background-success custom-icon-step">
+            text_snippet
+          </mat-icon>
+        }
 
-        <mat-icon
-          class="custom-icon-step"
-          *ngIf="iconsValidatorNumber(index, 'lock', stepper.selectedIndex)"
-          >lock</mat-icon
-        >
+        @if (iconsValidatorNumber(index, "lock", stepper.selectedIndex)) {
+          <mat-icon class="custom-icon-step">lock</mat-icon>
+        }
       </ng-template>
 
       <!-- The steps  -->
@@ -109,12 +111,12 @@
           completenessLabel('dmp.steps.project.view.button.choose')
             ?.completeness > 0
         ">
-        <ng-container *ngIf="selectedStep === 0">
+        @if (selectedStep === 0) {
           <app-project-instruction
             (selectionChange)="
               projectComponent?.onViewChange($event)
             "></app-project-instruction>
-        </ng-container>
+        }
       </mat-step>
       <mat-step
         class="label-container"
@@ -122,24 +124,24 @@
         [completed]="
           completenessLabel('dmp.steps.people.label')?.completeness > 0
         ">
-        <ng-container *ngIf="selectedStep === 1">
+        @if (selectedStep === 1) {
           <app-people-instruction
             (selectionChange)="
               peopleComponent?.onViewChange($event)
             "></app-people-instruction>
-        </ng-container>
+        }
       </mat-step>
       <mat-step
         label="{{ 'dmp.steps.data.specify.label' | translate }}"
         [completed]="
           completenessLabel('dmp.steps.data.specify.label')?.completeness > 0
         ">
-        <ng-container *ngIf="selectedStep === 2">
+        @if (selectedStep === 2) {
           <app-specify-data-instruction
             (selectionChange)="
               specifyDataComponent?.onViewChange($event)
             "></app-specify-data-instruction>
-        </ng-container>
+        }
       </mat-step>
       <mat-step
         label="{{ 'dmp.steps.documentation.label' | translate }}"
@@ -152,23 +154,23 @@
         [completed]="
           completenessLabel('dmp.steps.storage.label')?.completeness > 0
         ">
-        <ng-container *ngIf="selectedStep === 4">
+        @if (selectedStep === 4) {
           <app-data-storage-instruction
             (selectionChange)="onViewChangeStorage($event)">
           </app-data-storage-instruction>
-        </ng-container>
+        }
       </mat-step>
       <mat-step
         label="{{ 'dmp.steps.legal.label' | translate }}"
         [completed]="
           completenessLabel('dmp.steps.legal.label')?.completeness > 0
         ">
-        <ng-container *ngIf="selectedStep === 5">
+        @if (selectedStep === 5) {
           <app-legal-ethical-instruction
             (selectionChange)="
               legalEthicalAspectsComponent?.onViewChange($event)
             "></app-legal-ethical-instruction>
-        </ng-container>
+        }
       </mat-step>
       <mat-step
         label="{{ 'dmp.steps.licensing.label' | translate }}"
@@ -181,11 +183,11 @@
         [completed]="
           completenessLabel('dmp.steps.repositories.label')?.completeness > 0
         ">
-        <ng-container *ngIf="selectedStep === 7">
+        @if (selectedStep === 7) {
           <app-repo-instruction
             (selectionChange)="repoComponent?.onViewChange($event)">
           </app-repo-instruction>
-        </ng-container>
+        }
       </mat-step>
       <mat-step
         label="{{ 'dmp.steps.data.reuse.label' | translate }}"
@@ -206,13 +208,13 @@
   </div>
 
   <div class="detailed-view-container card-shadow" style="overflow-x: auto">
-    <ng-container *ngIf="selectedStep === 0">
+    @if (selectedStep === 0) {
       <app-dmp-project
         #projectComponent
         [projectStep]="projectStep"
         (project)="changeProject($event)"></app-dmp-project>
-    </ng-container>
-    <ng-container *ngIf="selectedStep === 1">
+    }
+    @if (selectedStep === 1) {
       <app-dmp-people
         #peopleComponent
         [config$]="config$"
@@ -223,73 +225,88 @@
         (contributorToRemove)="removeContributor($event)"
         (contributorToUpdate)="updateContributorDetails($event)">
       </app-dmp-people>
-    </ng-container>
-    <ng-container *ngIf="selectedStep === 2">
-      <app-dmp-specify-data
-        #specifyData
-        *ngIf="selectedStep === 2"
-        [config$]="config$"
-        [specifyDataStep]="specifyDataStep"
-        [datasets]="datasets"
-        [fileUpload]="fileUpload"
-        (datasetToAdd)="addDataset($event)"
-        (updateDataset)="updateDataset($event)"
-        (fileToAnalyse)="analyseFile($event)"
-        (uploadToCancel)="cancelFileUpload($event)"
-        (removeDataset)="removeDataset($event)">
-      </app-dmp-specify-data>
-      <div
-        *ngIf="specifyDataStep.invalid || datasets.invalid"
-        class="error-message">
-        {{ "dmp.steps.data.specify.error" | translate }}
-      </div>
-    </ng-container>
-    <ng-container *ngIf="selectedStep === 3">
-      <ng-container *ngIf="showStep; else noDatasets">
+    }
+    @if (selectedStep === 2) {
+      @if (selectedStep === 2) {
+        <app-dmp-specify-data
+          #specifyData
+          [config$]="config$"
+          [specifyDataStep]="specifyDataStep"
+          [datasets]="datasets"
+          [fileUpload]="fileUpload"
+          (datasetToAdd)="addDataset($event)"
+          (updateDataset)="updateDataset($event)"
+          (fileToAnalyse)="analyseFile($event)"
+          (uploadToCancel)="cancelFileUpload($event)"
+          (removeDataset)="removeDataset($event)">
+        </app-dmp-specify-data>
+      }
+      @if (specifyDataStep.invalid || datasets.invalid) {
+        <div class="error-message">
+          {{ "dmp.steps.data.specify.error" | translate }}
+        </div>
+      }
+    }
+    @if (selectedStep === 3) {
+      @if (showStep) {
         <app-dmp-doc-data-quality [docDataStep]="docDataStep">
         </app-dmp-doc-data-quality>
-      </ng-container>
-      <div *ngIf="docDataStep.invalid" class="error-message">
-        {{ "dmp.steps.documentation.error" | translate }}
-      </div>
-    </ng-container>
-    <ng-container *ngIf="selectedStep === 4">
-      <ng-container *ngIf="showStep; else noDatasets">
-        <div *ngIf="selectedViewStorage === 'primaryView'">
-          <app-data-access
-            [dmpForm]="dmpForm"
-            [datasets]="datasets"></app-data-access>
+      } @else {
+        <a href="javascript:void(0)" (click)="onNewDatasetClick()">
+          {{ "dmp.nodatasets" | translate }}
+        </a>
+      }
+      @if (docDataStep.invalid) {
+        <div class="error-message">
+          {{ "dmp.steps.documentation.error" | translate }}
         </div>
-        <div *ngIf="selectedViewStorage === 'secondaryView'">
-          <app-dmp-storage
-            [dmpForm]="dmpForm"
-            [storageStep]="storageStep"
-            [datasets]="datasets"
-            (storageToAdd)="addStorage($event)"
-            (storageToRemove)="removeStorage($event)">
-          </app-dmp-storage>
-          <mat-divider></mat-divider>
-          <app-dmp-external-storage
-            [externalStorageStep]="externalStorageStep"
-            [externalStorageInfo]="externalStorageInfo"
-            [datasets]="datasets"
-            (externalStorageToAdd)="addExternalStorage()"
-            (externalStorageToRemove)="removeExternalStorage($event)">
-          </app-dmp-external-storage>
-        </div>
-        <div
-          *ngIf="
-            storageStep.invalid ||
-            externalStorageStep.invalid ||
-            externalStorageInfo.invalid
-          "
-          class="error-message">
-          {{ "dmp.steps.storage.error" | translate }}
-        </div>
-      </ng-container>
-    </ng-container>
-    <ng-container *ngIf="selectedStep === 5">
-      <ng-container *ngIf="showStep; else noDatasets">
+      }
+    }
+    @if (selectedStep === 4) {
+      @if (showStep) {
+        @if (selectedViewStorage === "primaryView") {
+          <div>
+            <app-data-access
+              [dmpForm]="dmpForm"
+              [datasets]="datasets"></app-data-access>
+          </div>
+        }
+        @if (selectedViewStorage === "secondaryView") {
+          <div>
+            <app-dmp-storage
+              [dmpForm]="dmpForm"
+              [storageStep]="storageStep"
+              [datasets]="datasets"
+              (storageToAdd)="addStorage($event)"
+              (storageToRemove)="removeStorage($event)">
+            </app-dmp-storage>
+            <mat-divider></mat-divider>
+            <app-dmp-external-storage
+              [externalStorageStep]="externalStorageStep"
+              [externalStorageInfo]="externalStorageInfo"
+              [datasets]="datasets"
+              (externalStorageToAdd)="addExternalStorage()"
+              (externalStorageToRemove)="removeExternalStorage($event)">
+            </app-dmp-external-storage>
+          </div>
+        }
+        @if (
+          storageStep.invalid ||
+          externalStorageStep.invalid ||
+          externalStorageInfo.invalid
+        ) {
+          <div class="error-message">
+            {{ "dmp.steps.storage.error" | translate }}
+          </div>
+        }
+      } @else {
+        <a href="javascript:void(0)" (click)="onNewDatasetClick()">
+          {{ "dmp.nodatasets" | translate }}
+        </a>
+      }
+    }
+    @if (selectedStep === 5) {
+      @if (showStep) {
         <app-dmp-legal-ethical-aspects
           #legalEthicalAspects
           [dmpForm]="dmpForm"
@@ -297,20 +314,30 @@
           [datasets]="datasets"
           [ethicalReportEnabled]="ethicalReportEnabled">
         </app-dmp-legal-ethical-aspects>
-      </ng-container>
-    </ng-container>
-    <ng-container *ngIf="selectedStep === 6">
-      <ng-container *ngIf="showStepIfNewDatasets; else noNewDataset">
+      } @else {
+        <a href="javascript:void(0)" (click)="onNewDatasetClick()">
+          {{ "dmp.nodatasets" | translate }}
+        </a>
+      }
+    }
+    @if (selectedStep === 6) {
+      @if (showStepIfNewDatasets) {
         <app-dmp-licenses
           [dmpForm]="dmpForm"
           [datasets]="datasets"></app-dmp-licenses>
-        <div *ngIf="datasets.invalid" class="error-message">
-          {{ "dmp.steps.licensing.error" | translate }}
-        </div>
-      </ng-container>
-    </ng-container>
-    <ng-container *ngIf="selectedStep === 7">
-      <ng-container *ngIf="showStepIfNewDatasets; else noNewDataset">
+        @if (datasets.invalid) {
+          <div class="error-message">
+            {{ "dmp.steps.licensing.error" | translate }}
+          </div>
+        }
+      } @else {
+        <a href="javascript:void(0)" (click)="onNewDatasetClick()">
+          {{ "dmp.nonewdataset" | translate }}
+        </a>
+      }
+    }
+    @if (selectedStep === 7) {
+      @if (showStepIfNewDatasets) {
         <app-dmp-repo
           #repo
           [dmpForm]="dmpForm"
@@ -319,47 +346,51 @@
           (repositoryToAdd)="addRepository($event)"
           (repositoryToRemove)="removeRepository($event)">
         </app-dmp-repo>
-        <div *ngIf="repoStep.invalid" class="error-message">
-          {{ "dmp.steps.repositories.error" | translate }}
-        </div>
-      </ng-container>
-    </ng-container>
-    <ng-container *ngIf="selectedStep === 8">
-      <ng-container *ngIf="showStepIfNewDatasets; else noNewDataset">
+        @if (repoStep.invalid) {
+          <div class="error-message">
+            {{ "dmp.steps.repositories.error" | translate }}
+          </div>
+        }
+      } @else {
+        <a href="javascript:void(0)" (click)="onNewDatasetClick()">
+          {{ "dmp.nonewdataset" | translate }}
+        </a>
+      }
+    }
+    @if (selectedStep === 8) {
+      @if (showStepIfNewDatasets) {
         <app-dmp-reuse
           [reuseStep]="reuseStep"
           [datasets]="datasets"></app-dmp-reuse>
-        <div *ngIf="reuseStep.invalid" class="error-message">
-          {{ "dmp.steps.reuse.error" | translate }}
-        </div>
-      </ng-container>
-    </ng-container>
-    <ng-container *ngIf="selectedStep === 9">
-      <ng-container *ngIf="showStep; else noDatasets">
+        @if (reuseStep.invalid) {
+          <div class="error-message">
+            {{ "dmp.steps.reuse.error" | translate }}
+          </div>
+        }
+      } @else {
+        <a href="javascript:void(0)" (click)="onNewDatasetClick()">
+          {{ "dmp.nonewdataset" | translate }}
+        </a>
+      }
+    }
+    @if (selectedStep === 9) {
+      @if (showStep) {
         <app-dmp-costs
           [costsStep]="costsStep"
           (costToAdd)="addCost()"
           (costToRemove)="removeCost($event)">
         </app-dmp-costs>
-      </ng-container>
-    </ng-container>
-    <ng-container *ngIf="selectedStep === 10">
+      } @else {
+        <a href="javascript:void(0)" (click)="onNewDatasetClick()">
+          {{ "dmp.nodatasets" | translate }}
+        </a>
+      }
+    }
+    @if (selectedStep === 10) {
       <app-dmp-summary [stepper]="stepper"></app-dmp-summary>
-    </ng-container>
+    }
   </div>
 </div>
-
-<ng-template #noDatasets>
-  <a href="javascript:void(0)" (click)="onNewDatasetClick()">
-    {{ "dmp.nodatasets" | translate }}
-  </a>
-</ng-template>
-
-<ng-template #noNewDataset>
-  <a href="javascript:void(0)" (click)="onNewDatasetClick()">
-    {{ "dmp.nonewdataset" | translate }}
-  </a>
-</ng-template>
 
 <app-actions
   class="dmp-actions"

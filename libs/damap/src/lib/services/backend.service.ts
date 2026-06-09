@@ -350,11 +350,11 @@ export class BackendService {
       .subscribe(async response => {
         try {
           /*
-            The backend supplies the DMP together with the id.
-            This is to fit the OpenAPI spec.
-            However here we strip away that id so the downloaded JSON is RDA complient.
-            Finally we prettify it.
-          */
+                      The backend supplies the DMP together with the id.
+                      This is to fit the OpenAPI spec.
+                      However here we strip away that id so the downloaded JSON is RDA complient.
+                      Finally we prettify it.
+                    */
           const text = await response.body.text();
           const rawObj = JSON.parse(text);
           const dmpDocument = { dmp: rawObj.dmp };
