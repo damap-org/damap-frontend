@@ -94,15 +94,15 @@ html {
 
   @include mat.slide-toggle-overrides(
     (
-      selected-focus-track-color: var(--mdc-theme-primary),
-      selected-pressed-track-color: var(--mdc-theme-primary),
+      selected-focus-track-color: var(--mat-theme-primary),
+      selected-pressed-track-color: var(--mat-theme-primary),
       selected-hover-handle-color:
-        color-mix(in srgb, var(--mdc-theme-primary) 30%, white),
+        color-mix(in srgb, var(--mat-theme-primary) 30%, white),
       selected-focus-handle-color:
-        color-mix(in srgb, var(--mdc-theme-primary) 30%, white),
-      selected-focus-state-layer-color: var(--mdc-theme-primary),
+        color-mix(in srgb, var(--mat-theme-primary) 30%, white),
+      selected-focus-state-layer-color: var(--mat-theme-primary),
       selected-pressed-handle-color:
-        color-mix(in srgb, var(--mdc-theme-primary) 60%, white),
+        color-mix(in srgb, var(--mat-theme-primary) 60%, white),
     )
   );
 }
@@ -162,26 +162,26 @@ html {
 // All other classes overwrite variables inside the components directly
 
 .material-icon-white-background-primary {
-  --mat-icon-color: var(--mdc-theme-on-primary);
-  background-color: var(--mdc-theme-primary);
+  --mat-icon-color: var(--mat-theme-on-primary);
+  background-color: var(--mat-theme-primary);
 }
 
 .material-icon-white-background-success {
-  --mat-icon-color: var(--mdc-theme-primary);
+  --mat-icon-color: var(--mat-theme-primary);
   background-color: white;
-  border: 2px solid var(--mdc-theme-primary);
+  border: 2px solid var(--mat-theme-primary);
 }
 
 .material-icon-primary-background-none {
-  --mat-icon-color: var(--mdc-theme-primary);
+  --mat-icon-color: var(--mat-theme-primary);
 }
 
 .material-icon-on-secondary-container {
-  --mat-icon-color: var(--mdc-theme-on-secondary-container);
+  --mat-icon-color: var(--mat-theme-on-secondary-container);
 }
 
 .material-icon-white {
-  --mat-icon-color: var(--mdc-theme-on-primary);
+  --mat-icon-color: var(--mat-theme-on-primary);
 }
 
 .material-icon-warning {
@@ -189,31 +189,31 @@ html {
 }
 
 .material-btn-text-primary-lightest {
-  --mdc-text-button-label-text-color: var(--custom-primary-lightest);
+  --mat-button-text-label-text-color: var(--custom-primary-lightest);
 }
 
 .snack-error {
-  --mdc-snackbar-container-color: var(--mat-sys-error-container);
-  --mdc-snackbar-supporting-text-color: var(--mat-sys-on-error-container);
-  --mdc-snackbar-supporting-text-weight: bold;
+  --mat-snackbar-container-color: var(--mat-sys-error-container);
+  --mat-snackbar-supporting-text-color: var(--mat-sys-on-error-container);
+  --mat-snackbar-supporting-text-weight: bold;
   --mat-snack-bar-button-color: var(--mat-sys-on-error-container);
-  --mdc-text-button-label-text-weight: bold;
+  --mat-button-text-label-text-weight: bold;
 }
 
 .snack-success {
-  --mdc-snackbar-container-color: var(--custom-success-container);
-  --mdc-snackbar-supporting-text-color: var(--custom-on-success-container);
-  --mdc-snackbar-supporting-text-weight: bold;
+  --mat-snackbar-container-color: var(--custom-success-container);
+  --mat-snackbar-supporting-text-color: var(--custom-on-success-container);
+  --mat-snackbar-supporting-text-weight: bold;
   --mat-snack-bar-button-color: var(--custom-on-success-container);
-  --mdc-text-button-label-text-weight: bold;
+  --mat-button-text-label-text-weight: bold;
 }
 
 .material-icon-primary {
-  color: var(--mdc-theme-primary);
+  color: var(--mat-theme-primary);
 }
 
 .card-selected {
-  --mdc-elevated-card-container-color: var(--custom-surface-container-low);
+  --mat-card-elevated-container-color: var(--custom-surface-container-low);
 }
 
 .form-error {
@@ -256,7 +256,7 @@ html {
 
 // used with mat-raised-button
 .empty-button-with-border {
-  border: 1px solid var(--mdc-theme-primary) !important;
+  border: 1px solid var(--mat-theme-primary) !important;
 }
 
 // custom typography classes

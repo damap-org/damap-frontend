@@ -11,6 +11,5 @@ export const adapter: EntityAdapter<InternalStorage> =
 
 export const initialInternalStorageState: InternalStorageState =
   adapter.getInitialState({
-    internalStorages: [],
     loaded: LoadingState.NOT_LOADED,
   });
