@@ -21,18 +21,20 @@
     </div>
 
     <div class="scrollable-repo-content">
-      <div *ngIf="(filters | keyvalue).length">
-        {{ "dmp.steps.repositories.filters" | translate }}:
-        <ng-container *ngFor="let filter of filters | keyvalue">
-          <app-tag
-            background="var(--custom-green-tag)"
-            *ngFor="let item of filter.value">
-            {{ item.label }}
-          </app-tag>
-        </ng-container>
-      </div>
+      @if ((filters | keyvalue).length) {
+        <div>
+          {{ "dmp.steps.repositories.filters" | translate }}:
+          @for (filter of filters | keyvalue; track filter.key) {
+            @for (item of filter.value; track item.id) {
+              <app-tag background="var(--custom-green-tag)">
+                {{ item.label }}
+              </app-tag>
+            }
+          }
+        </div>
+      }
 
-      <ng-container *ngIf="loaded === LoadingState.LOADED">
+      @if (loaded === LoadingState.LOADED) {
         <table
           mat-table
           [dataSource]="dataSource"
@@ -41,19 +43,14 @@
           <ng-container matColumnDef="expand">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element" (click)="expandRow(element)">
-              <mat-icon
-                *ngIf="element.id === expandedElement"
-                class="material-icon-primary"
-                >expand_less</mat-icon
-              >
-              <mat-icon
-                *ngIf="element.id !== expandedElement"
-                class="material-icon-primary"
-                >expand_more</mat-icon
-              >
+              @if (element.id === expandedElement) {
+                <mat-icon class="material-icon-primary">expand_less</mat-icon>
+              }
+              @if (element.id !== expandedElement) {
+                <mat-icon class="material-icon-primary">expand_more</mat-icon>
+              }
             </td>
           </ng-container>
-
           <ng-container matColumnDef="title">
             <th mat-header-cell *matHeaderCellDef>
               {{ "dmp.steps.repositories.table.header.title" | translate }}
@@ -62,7 +59,6 @@
               <h3>{{ element.name }}</h3>
             </td>
           </ng-container>
-
           <ng-container matColumnDef="add">
             <th mat-header-cell *matHeaderCellDef>
               <span class="sr-only">{{
@@ -75,7 +71,6 @@
               </button>
             </td>
           </ng-container>
-
           <ng-container matColumnDef="expandedDetail">
             <td
               mat-cell
@@ -86,17 +81,15 @@
                 [@detailExpand]="
                   element.id === expandedElement ? 'expanded' : 'collapsed'
                 ">
-                <ng-container *ngIf="element.description; else loading">
+                @if (element.description) {
                   <mat-divider></mat-divider>
                   <app-repo-details [repo]="element"></app-repo-details>
-                </ng-container>
-                <ng-template #loading>
+                } @else {
                   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-                </ng-template>
+                }
               </div>
             </td>
           </ng-container>
-
           <tr mat-header-row *matHeaderRowDef="tableHeaders"></tr>
           <tr
             mat-row
@@ -108,19 +101,18 @@
             *matRowDef="let row; columns: ['expandedDetail']"
             class="detail-row"></tr>
           <tr class="mat-row" *matNoDataRow>
-            <ng-container *ngIf="this.input.length > 0; else empty">
+            @if (this.input.length > 0) {
               <td class="mat-cell" colspan="4">
                 {{
                   "dmp.steps.repositories.nodatafilter"
                     | translate: { value: this.input }
                 }}"
               </td>
-            </ng-container>
-            <ng-template #empty>
+            } @else {
               <td class="mat-cell" colspan="4">
                 {{ "dmp.steps.repositories.norepositories" | translate }}
               </td>
-            </ng-template>
+            }
           </tr>
         </table>
         <mat-paginator
@@ -128,18 +120,18 @@
           [pageSize]="10"
           [pageSizeOptions]="[10, 15, 20]"
           showFirstLastButtons="true"></mat-paginator>
-      </ng-container>
+      }
 
-      <ng-container *ngIf="loaded === LoadingState.LOADING">
+      @if (loaded === LoadingState.LOADING) {
         <p translate>dmp.steps.repositories.loading.load.all</p>
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-      </ng-container>
-      <ng-container *ngIf="loaded === LoadingState.FAILED">
+      }
+      @if (loaded === LoadingState.FAILED) {
         <app-error-message
           message="{{
             'dmp.steps.repositories.loading.failed.all' | translate
           }}"></app-error-message>
-      </ng-container>
+      }
     </div>
   </mat-card-content>
 </mat-card>

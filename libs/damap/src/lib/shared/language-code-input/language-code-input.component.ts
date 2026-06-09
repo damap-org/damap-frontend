@@ -16,7 +16,7 @@ import {
   MatAutocompleteTrigger,
   MatOption,
 } from '@angular/material/autocomplete';
-import { AsyncPipe, NgForOf, NgIf, UpperCasePipe } from '@angular/common';
+import { AsyncPipe, UpperCasePipe } from '@angular/common';
 import {
   LANGUAGE_CODE_OPTIONS,
   LanguageCodeOption,
@@ -42,8 +42,6 @@ import { TranslateModule } from '@ngx-translate/core';
     MatLabel,
     UpperCasePipe,
     AsyncPipe,
-    NgIf,
-    NgForOf,
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,

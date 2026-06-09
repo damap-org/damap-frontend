@@ -1,151 +1,150 @@
-<div class="content" *ngIf="dmp$ | async as dmp">
-  <div class="action-buttons">
-    <button mat-raised-button [routerLink]="'/dmp/' + id + '/version'">
-      <mat-icon>chevron_left</mat-icon>
-      {{ "dmp.versions.view.button.versions" | translate }}
-    </button>
-    <button mat-flat-button [routerLink]="'/dmp/' + id">
-      {{ "dmp.versions.view.button.goto.latest" | translate }}
-    </button>
-  </div>
-
-  <h2 *ngIf="versions$ | async as versions">{{ getVersionName(versions) }}</h2>
-  <div class="action-buttons">
-    <button mat-button (click)="accordion.openAll()">
-      {{ "dmp.versions.view.button.expand" | translate }}
-    </button>
-    <button mat-button (click)="accordion.closeAll()">
-      {{ "dmp.versions.view.button.collapse" | translate }}
-    </button>
-  </div>
-
-  <mat-accordion class="headers-align" multi>
-    <!-- Project -->
-    <mat-expansion-panel *ngIf="dmp.project">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          {{ "dmp.versions.view.project.heading" | translate }}
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <app-version-view-project
-        [project]="dmp.project"></app-version-view-project>
-    </mat-expansion-panel>
-
-    <!-- Contributors-->
-    <mat-expansion-panel *ngIf="dmp.contributors?.length > 0">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          {{ "dmp.versions.view.contributors.heading" | translate }}
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <app-version-view-contributors
-        [contributors]="dmp.contributors"></app-version-view-contributors>
-    </mat-expansion-panel>
-
-    <!-- Datasets -->
-    <mat-expansion-panel *ngIf="dmp.dataKind || dmp.reusedDataKind">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          {{ "dmp.versions.view.datasets.heading" | translate }}
-        </mat-panel-title>
-        <mat-panel-description> </mat-panel-description>
-      </mat-expansion-panel-header>
-      <app-version-view-datasets
-        [dataKind]="dmp.dataKind"
-        [reusedDataKind]="dmp.reusedDataKind"
-        [dataGeneration]="dmp.dataGeneration"
-        [noDataExplanation]="dmp.noDataExplanation"
-        [datasets]="dmp.datasets"></app-version-view-datasets>
-    </mat-expansion-panel>
-
-    <!-- Only display sections if datasets are defined -->
-    <ng-container
-      *ngIf="
+@if (dmp$ | async; as dmp) {
+  <div class="content">
+    <div class="action-buttons">
+      <button mat-raised-button [routerLink]="'/dmp/' + id + '/version'">
+        <mat-icon>chevron_left</mat-icon>
+        {{ "dmp.versions.view.button.versions" | translate }}
+      </button>
+      <button mat-flat-button [routerLink]="'/dmp/' + id">
+        {{ "dmp.versions.view.button.goto.latest" | translate }}
+      </button>
+    </div>
+    @if (versions$ | async; as versions) {
+      <h2>{{ getVersionName(versions) }}</h2>
+    }
+    <div class="action-buttons">
+      <button mat-button (click)="accordion.openAll()">
+        {{ "dmp.versions.view.button.expand" | translate }}
+      </button>
+      <button mat-button (click)="accordion.closeAll()">
+        {{ "dmp.versions.view.button.collapse" | translate }}
+      </button>
+    </div>
+    <mat-accordion class="headers-align" multi>
+      <!-- Project -->
+      @if (dmp.project) {
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ "dmp.versions.view.project.heading" | translate }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-version-view-project
+            [project]="dmp.project"></app-version-view-project>
+        </mat-expansion-panel>
+      }
+      <!-- Contributors-->
+      @if (dmp.contributors?.length > 0) {
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ "dmp.versions.view.contributors.heading" | translate }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-version-view-contributors
+            [contributors]="dmp.contributors"></app-version-view-contributors>
+        </mat-expansion-panel>
+      }
+      <!-- Datasets -->
+      @if (dmp.dataKind || dmp.reusedDataKind) {
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ "dmp.versions.view.datasets.heading" | translate }}
+            </mat-panel-title>
+            <mat-panel-description> </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-version-view-datasets
+            [dataKind]="dmp.dataKind"
+            [reusedDataKind]="dmp.reusedDataKind"
+            [dataGeneration]="dmp.dataGeneration"
+            [noDataExplanation]="dmp.noDataExplanation"
+            [datasets]="dmp.datasets"></app-version-view-datasets>
+        </mat-expansion-panel>
+      }
+      <!-- Only display sections if datasets are defined -->
+      @if (
         (dmp.dataKind === dataKind.SPECIFY ||
           dmp.reusedDataKind === dataKind.SPECIFY) &&
         dmp.datasets?.length > 0
-      ">
-      <!-- Documentation -->
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{ "dmp.versions.view.documentation.heading" | translate }}
-          </mat-panel-title>
-          <mat-panel-description> </mat-panel-description>
-        </mat-expansion-panel-header>
-        <app-version-view-doc-data-quality
-          [dmp]="dmp"></app-version-view-doc-data-quality>
-      </mat-expansion-panel>
-
-      <!-- Legal -->
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{ "dmp.versions.view.legal.heading" | translate }}
-          </mat-panel-title>
-          <mat-panel-description> </mat-panel-description>
-        </mat-expansion-panel-header>
-        <app-version-view-legal-ethical-aspects
-          [dmp]="dmp"></app-version-view-legal-ethical-aspects>
-      </mat-expansion-panel>
-
-      <!-- Storages -->
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{ "dmp.versions.view.storage.heading" | translate }}
-          </mat-panel-title>
-          <mat-panel-description> </mat-panel-description>
-        </mat-expansion-panel-header>
-        <app-version-view-storages
-          [storages]="dmp.storage"
-          [externalStorages]="dmp.externalStorage"
-          [datasets]="dmp.datasets"></app-version-view-storages>
-      </mat-expansion-panel>
-
-      <!-- Repositories -->
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{ "dmp.versions.view.repositories.heading" | translate }}
-          </mat-panel-title>
-          <mat-panel-description> </mat-panel-description>
-        </mat-expansion-panel-header>
-        <app-version-view-repositories
-          [repositories]="dmp.repositories"
-          [datasets]="dmp.datasets"></app-version-view-repositories>
-      </mat-expansion-panel>
-
-      <!-- Reuse -->
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{ "dmp.versions.view.reuse.heading" | translate }}
-          </mat-panel-title>
-          <mat-panel-description> </mat-panel-description>
-        </mat-expansion-panel-header>
-        <app-version-view-reuse
-          [targetAudience]="dmp.targetAudience"
-          [tools]="dmp.tools"
-          [restrictedDataAccess]="dmp.restrictedDataAccess"
-          [restrictedAccessInfo]="dmp.restrictedAccessInfo"
-          [closedAccessInfo]="dmp.closedAccessInfo"
-          [datasets]="dmp.datasets">
-        </app-version-view-reuse>
-      </mat-expansion-panel>
-
-      <!-- Costs -->
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{ "dmp.versions.view.costs.heading" | translate }}
-          </mat-panel-title>
-          <mat-panel-description> </mat-panel-description>
-        </mat-expansion-panel-header>
-        <app-version-view-costs
-          [costsExist]="dmp.costsExist"
-          [costs]="dmp.costs"></app-version-view-costs>
-      </mat-expansion-panel>
-    </ng-container>
-  </mat-accordion>
-</div>
+      ) {
+        <!-- Documentation -->
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ "dmp.versions.view.documentation.heading" | translate }}
+            </mat-panel-title>
+            <mat-panel-description> </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-version-view-doc-data-quality
+            [dmp]="dmp"></app-version-view-doc-data-quality>
+        </mat-expansion-panel>
+        <!-- Legal -->
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ "dmp.versions.view.legal.heading" | translate }}
+            </mat-panel-title>
+            <mat-panel-description> </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-version-view-legal-ethical-aspects
+            [dmp]="dmp"></app-version-view-legal-ethical-aspects>
+        </mat-expansion-panel>
+        <!-- Storages -->
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ "dmp.versions.view.storage.heading" | translate }}
+            </mat-panel-title>
+            <mat-panel-description> </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-version-view-storages
+            [storages]="dmp.storage"
+            [externalStorages]="dmp.externalStorage"
+            [datasets]="dmp.datasets"></app-version-view-storages>
+        </mat-expansion-panel>
+        <!-- Repositories -->
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ "dmp.versions.view.repositories.heading" | translate }}
+            </mat-panel-title>
+            <mat-panel-description> </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-version-view-repositories
+            [repositories]="dmp.repositories"
+            [datasets]="dmp.datasets"></app-version-view-repositories>
+        </mat-expansion-panel>
+        <!-- Reuse -->
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ "dmp.versions.view.reuse.heading" | translate }}
+            </mat-panel-title>
+            <mat-panel-description> </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-version-view-reuse
+            [targetAudience]="dmp.targetAudience"
+            [tools]="dmp.tools"
+            [restrictedDataAccess]="dmp.restrictedDataAccess"
+            [restrictedAccessInfo]="dmp.restrictedAccessInfo"
+            [closedAccessInfo]="dmp.closedAccessInfo"
+            [datasets]="dmp.datasets">
+          </app-version-view-reuse>
+        </mat-expansion-panel>
+        <!-- Costs -->
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ "dmp.versions.view.costs.heading" | translate }}
+            </mat-panel-title>
+            <mat-panel-description> </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-version-view-costs
+            [costsExist]="dmp.costsExist"
+            [costs]="dmp.costs"></app-version-view-costs>
+        </mat-expansion-panel>
+      }
+    </mat-accordion>
+  </div>
+}

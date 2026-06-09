@@ -10,16 +10,20 @@
       (createJsonFile)="getJsonFile($event)"
       (dmpToDelete)="deleteDmp($event)"></app-dmp-table>
   </div>
-  <div *ngIf="(dmpsLoaded$ | async) === LoadingState.LOADING">
-    <p translate>plans.loading.load</p>
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-  </div>
-  <div *ngIf="(dmpsLoaded$ | async) === LoadingState.FAILED">
-    <app-error-message
-      message="{{ 'plans.loading.failed' | translate }}"></app-error-message>
-  </div>
+  @if ((dmpsLoaded$ | async) === LoadingState.LOADING) {
+    <div>
+      <p translate>plans.loading.load</p>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+  }
+  @if ((dmpsLoaded$ | async) === LoadingState.FAILED) {
+    <div>
+      <app-error-message
+        message="{{ 'plans.loading.failed' | translate }}"></app-error-message>
+    </div>
+  }
 
-  <ng-container *ngIf="isAdmin()">
+  @if (isAdmin()) {
     <h2 translate>plans.alldmps</h2>
     <app-dmp-table
       [dmps]="allDmps$ | async"
@@ -28,5 +32,5 @@
       [admin]="true"
       (createJsonFile)="getJsonFile($event)"
       (dmpToDelete)="deleteDmp($event)"></app-dmp-table>
-  </ng-container>
+  }
 </div>

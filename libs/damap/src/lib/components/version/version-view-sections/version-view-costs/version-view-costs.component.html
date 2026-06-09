@@ -1,19 +1,19 @@
-<ng-container *ngIf="costsExist; else noCosts">
+@if (costsExist) {
   {{ "dmp.steps.costs.question.exist.yes" | translate }}
-  <div *ngFor="let cost of costs">
-    <hr />
-    <h3>{{ cost.title }}</h3>
-    <div>{{ cost.description }}</div>
-    <ng-container *ngIf="cost.type">
-      {{ "enum.costs." + cost.type | translate }}:
-      <ng-container *ngIf="cost.type === costType.OTHER">
-        {{ cost.customType }}</ng-container
-      >
-    </ng-container>
-    {{ cost.value | currency: cost.currencyCode }}
-  </div>
-</ng-container>
-
-<ng-template #noCosts
-  >{{ "dmp.steps.costs.question.exist.no" | translate }}
-</ng-template>
+  @for (cost of costs; track cost.id) {
+    <div>
+      <hr />
+      <h3>{{ cost.title }}</h3>
+      <div>{{ cost.description }}</div>
+      @if (cost.type) {
+        {{ "enum.costs." + cost.type | translate }}:
+        @if (cost.type === costType.OTHER) {
+          {{ cost.customType }}
+        }
+      }
+      {{ cost.value | currency: cost.currencyCode }}
+    </div>
+  }
+} @else {
+  {{ "dmp.steps.costs.question.exist.no" | translate }}
+}

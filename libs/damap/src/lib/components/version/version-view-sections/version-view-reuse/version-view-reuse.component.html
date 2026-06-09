@@ -11,7 +11,7 @@
     >
     {{ tools }}
   </div>
-  <ng-container *ngIf="hasRestrictedDatasets">
+  @if (hasRestrictedDatasets) {
     <div>
       <span class="headings"
         >{{
@@ -26,13 +26,13 @@
         }}: </span
       >{{ restrictedAccessInfo }}
     </div>
-  </ng-container>
-  <ng-container *ngIf="hasClosedDatasets">
+  }
+  @if (hasClosedDatasets) {
     <div>
       <span class="headings"
         >{{ "dmp.versions.view.reuse.access.info.closed" | translate }}:</span
       >
       {{ closedAccessInfo }}
     </div>
-  </ng-container>
+  }
 </div>

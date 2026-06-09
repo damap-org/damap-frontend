@@ -38,9 +38,9 @@
           {{ "dmp.steps.summary.table.header.status" | translate }}
         </th>
         <td mat-cell *matCellDef="let element">
-          <ng-container *ngFor="let sentence of element.status">{{
-            sentence | translate
-          }}</ng-container>
+          @for (sentence of element.status; track sentence) {
+            {{ sentence | translate }}
+          }
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="summaryTableHeaders"></tr>

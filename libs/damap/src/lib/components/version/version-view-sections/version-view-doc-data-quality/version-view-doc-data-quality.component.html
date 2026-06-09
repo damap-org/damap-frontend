@@ -1,33 +1,39 @@
-<div *ngIf="dmp">
+@if (dmp) {
   <div>
-    <span class="headings"
-      >{{ "dmp.versions.view.documentation.structure" | translate }}:</span
-    >
-    {{ dmp.structure }}
+    <div>
+      <span class="headings"
+        >{{ "dmp.versions.view.documentation.structure" | translate }}:</span
+      >
+      {{ dmp.structure }}
+    </div>
+    <div>
+      <span class="headings"
+        >{{ "dmp.versions.view.documentation.metadata" | translate }}:</span
+      >
+      {{ dmp.metadata }}
+    </div>
+    <div>
+      <span class="headings"
+        >{{
+          "dmp.versions.view.documentation.documentation" | translate
+        }}:</span
+      >
+      {{ dmp.documentation }}
+    </div>
+    <div>
+      <span class="headings"
+        >{{ "dmp.versions.view.documentation.data.quality" | translate }}:</span
+      >
+      <ul>
+        @for (quality of dmp.dataQuality; track quality) {
+          <li>
+            {{ "enum.dataquality." + quality | translate }}
+            @if (isOtherDataQuality(quality)) {
+              <span>: {{ dmp.otherDataQuality }}</span>
+            }
+          </li>
+        }
+      </ul>
+    </div>
   </div>
-  <div>
-    <span class="headings"
-      >{{ "dmp.versions.view.documentation.metadata" | translate }}:</span
-    >
-    {{ dmp.metadata }}
-  </div>
-  <div>
-    <span class="headings"
-      >{{ "dmp.versions.view.documentation.documentation" | translate }}:</span
-    >
-    {{ dmp.documentation }}
-  </div>
-  <div>
-    <span class="headings"
-      >{{ "dmp.versions.view.documentation.data.quality" | translate }}:</span
-    >
-    <ul>
-      <li *ngFor="let quality of dmp.dataQuality">
-        {{ "enum.dataquality." + quality | translate
-        }}<span *ngIf="isOtherDataQuality(quality)"
-          >: {{ dmp.otherDataQuality }}</span
-        >
-      </li>
-    </ul>
-  </div>
-</div>
+}
