@@ -75,7 +75,10 @@ export class AuthService {
       return null;
     }
     const sanitizedAffiliations: string[] = affiliations.map(aff =>
-      aff.split('@')[1].replaceAll('.', '_'),
+      aff
+        .split('@')[1]
+        .replace(/[^a-zA-Z0-9_]+/g, '_')
+        .replace(/_+/g, '_'),
     );
     // check if only affiliations to one tenant are present
     if (!sanitizedAffiliations.every(aff => aff === sanitizedAffiliations[0])) {
