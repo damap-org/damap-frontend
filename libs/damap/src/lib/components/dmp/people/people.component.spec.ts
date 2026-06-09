@@ -46,7 +46,7 @@ describe('PeopleComponent', () => {
     );
 
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         TranslateTestingModule,
         MatCardModule,
         MatIconModule,
@@ -54,11 +54,11 @@ describe('PeopleComponent', () => {
         ReactiveFormsModule,
         MatSelectModule,
         NoopAnimationsModule,
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [PeopleComponent, ContributorFilterPipe],
-      providers: [{ provide: BackendService, useValue: backendSpy }],
-    }).compileComponents();
+        PeopleComponent, ContributorFilterPipe,
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    providers: [{ provide: BackendService, useValue: backendSpy }],
+}).compileComponents();
   }));
 
   beforeEach(() => {

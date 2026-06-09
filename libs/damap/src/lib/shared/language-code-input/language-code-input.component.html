@@ -12,30 +12,37 @@
   <mat-autocomplete
     #languageAutocomplete="matAutocomplete"
     [displayWith]="getLanguageDisplayValue.bind(this)">
-    <mat-option
-      *ngFor="let language of filteredLanguageOptions$ | async"
-      [value]="language.code">
-      {{ language.name }} ({{ language.code | uppercase }})
-    </mat-option>
+    @for (language of filteredLanguageOptions$ | async; track language) {
+      <mat-option
+        [value]="language.code">
+        {{ language.name }} ({{ language.code | uppercase }})
+      </mat-option>
+    }
   </mat-autocomplete>
 
   <mat-hint>
     {{ hint }}
   </mat-hint>
 
-  <mat-error *ngIf="control?.hasError('required') && errorMessageRequired">
-    {{ errorMessageRequired }}
-  </mat-error>
+  @if (control?.hasError('required') && errorMessageRequired) {
+    <mat-error>
+      {{ errorMessageRequired }}
+    </mat-error>
+  }
 
-  <mat-error
-    *ngIf="control?.hasError('invalidLanguageCode') && errorMessageInvalid">
-    {{ errorMessageInvalid }}
-  </mat-error>
+  @if (control?.hasError('invalidLanguageCode') && errorMessageInvalid) {
+    <mat-error
+      >
+      {{ errorMessageInvalid }}
+    </mat-error>
+  }
 
-  <mat-error
-    *ngIf="
-      control?.hasError('languageAlreadyExists') && errorMessageAlreadyExists
-    ">
-    {{ errorMessageAlreadyExists }}
-  </mat-error>
+  @if (
+    control?.hasError('languageAlreadyExists') && errorMessageAlreadyExists
+    ) {
+    <mat-error
+      >
+      {{ errorMessageAlreadyExists }}
+    </mat-error>
+  }
 </mat-form-field>

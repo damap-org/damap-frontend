@@ -9,88 +9,92 @@
   </div>
   <div class="storage-selected">
     <ng-container>
-      <mat-card
-        class="card-shadow"
-        appearance="raised"
-        *ngFor="let item of externalStorageStep?.controls; let i = index">
-        <div class="storage-card-top">
-          <mat-card-header>
-            <mat-card-title [class.form-error]="item.invalid">
-              {{ item.value.title }}
-            </mat-card-title>
-          </mat-card-header>
-        </div>
-        <mat-card-content>
-          <div class="form-row">
-            <div class="storage-card-top">
-              <app-input-wrapper
-                [label]="'dmp.steps.storage.external.question.name'"
-                [control]="getFormControl(i, 'title')"></app-input-wrapper>
-            </div>
-            <button
-              mat-icon-button
-              aria-label="{{ 'dmp.steps.storage.external.remove' | translate }}"
-              (click)="removeExternalStorage(i)">
-              <mat-icon class="material-icon-primary">cancel</mat-icon>
-            </button>
+      @for (item of externalStorageStep?.controls; track item; let i = $index) {
+        <mat-card
+          class="card-shadow"
+          appearance="raised"
+          >
+          <div class="storage-card-top">
+            <mat-card-header>
+              <mat-card-title [class.form-error]="item.invalid">
+                {{ item.value.title }}
+              </mat-card-title>
+            </mat-card-header>
           </div>
-          <div class="form-row">
-            <div class="storage-card-container">
-              <mat-form-field class="full-width">
-                <mat-label>{{
-                  "dmp.steps.storage.question.datasets" | translate
-                }}</mat-label>
-                <mat-select
-                  multiple
-                  [formControl]="getFormControl(i, 'datasets')">
-                  <mat-option
-                    *ngFor="let dataset of datasets?.controls"
-                    [value]="dataset.value.referenceHash">
-                    {{ dataset.value.title }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-              <app-input-wrapper
-                [label]="'dmp.steps.storage.external.question.location'"
+          <mat-card-content>
+            <div class="form-row">
+              <div class="storage-card-top">
+                <app-input-wrapper
+                  [label]="'dmp.steps.storage.external.question.name'"
+                [control]="getFormControl(i, 'title')"></app-input-wrapper>
+              </div>
+              <button
+                mat-icon-button
+                aria-label="{{ 'dmp.steps.storage.external.remove' | translate }}"
+                (click)="removeExternalStorage(i)">
+                <mat-icon class="material-icon-primary">cancel</mat-icon>
+              </button>
+            </div>
+            <div class="form-row">
+              <div class="storage-card-container">
+                <mat-form-field class="full-width">
+                  <mat-label>{{
+                    "dmp.steps.storage.question.datasets" | translate
+                  }}</mat-label>
+                  <mat-select
+                    multiple
+                    [formControl]="getFormControl(i, 'datasets')">
+                    @for (dataset of datasets?.controls; track dataset) {
+                      <mat-option
+                        [value]="dataset.value.referenceHash">
+                        {{ dataset.value.title }}
+                      </mat-option>
+                    }
+                  </mat-select>
+                </mat-form-field>
+                <app-input-wrapper
+                  [label]="'dmp.steps.storage.external.question.location'"
                 [control]="
                   getFormControl(i, 'storageLocation')
                 "></app-input-wrapper>
+              </div>
             </div>
-          </div>
-          <div class="form-row">
-            <div class="storage-card-top">
-              <app-input-wrapper
-                [label]="'dmp.steps.storage.external.question.backup.frequency'"
+            <div class="form-row">
+              <div class="storage-card-top">
+                <app-input-wrapper
+                  [label]="'dmp.steps.storage.external.question.backup.frequency'"
                 [control]="
                   getFormControl(i, 'backupFrequency')
                 "></app-input-wrapper>
-              <app-input-wrapper
-                [label]="'dmp.steps.storage.external.question.backup.location'"
+                <app-input-wrapper
+                  [label]="'dmp.steps.storage.external.question.backup.location'"
                 [control]="
                   getFormControl(i, 'backupLocation')
                 "></app-input-wrapper>
+              </div>
             </div>
-          </div>
-        </mat-card-content>
-        <mat-card-actions>
-          <mat-slide-toggle
-            [formControl]="getFormControl(i, 'isManagedInternally')">
-            {{
+          </mat-card-content>
+          <mat-card-actions>
+            <mat-slide-toggle
+              [formControl]="getFormControl(i, 'isManagedInternally')">
+              {{
               "dmp.steps.storage.external.question.isManagedInternally"
-                | translate
-            }}
-          </mat-slide-toggle>
-        </mat-card-actions>
-      </mat-card>
+              | translate
+              }}
+            </mat-slide-toggle>
+          </mat-card-actions>
+        </mat-card>
+      }
     </ng-container>
-    <div
-      *ngIf="externalStorageStep?.controls.length && anyNonInternalStorage()"
-      class="storage-textarea">
-      <app-textarea-wrapper
-        [label]="'dmp.steps.storage.external.question.short.info'"
-        [longLabel]="'dmp.steps.storage.external.question.long.info'"
-        [control]="externalStorageInfo">
-      </app-textarea-wrapper>
-    </div>
+    @if (externalStorageStep?.controls.length && anyNonInternalStorage()) {
+      <div
+        class="storage-textarea">
+        <app-textarea-wrapper
+          [label]="'dmp.steps.storage.external.question.short.info'"
+          [longLabel]="'dmp.steps.storage.external.question.long.info'"
+          [control]="externalStorageInfo">
+        </app-textarea-wrapper>
+      </div>
+    }
   </div>
 </section>

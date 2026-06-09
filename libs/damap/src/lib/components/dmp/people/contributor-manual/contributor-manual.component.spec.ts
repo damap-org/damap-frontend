@@ -14,15 +14,15 @@ describe('ContributorManualComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         MatButtonModule,
         MatIconModule,
         MatCardModule,
         ReactiveFormsModule,
         TranslateTestingModule,
-      ],
-      declarations: [ContributorManualComponent],
-    }).compileComponents();
+        ContributorManualComponent,
+    ],
+}).compileComponents();
   }));
 
   beforeEach(() => {

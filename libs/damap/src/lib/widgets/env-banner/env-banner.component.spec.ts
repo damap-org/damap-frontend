@@ -10,9 +10,8 @@ describe('EnvBannerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [MatCardModule, TranslateTestingModule],
-      declarations: [EnvBannerComponent],
-    }).compileComponents();
+    imports: [MatCardModule, TranslateTestingModule, EnvBannerComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

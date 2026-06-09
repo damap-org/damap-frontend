@@ -1,10 +1,13 @@
 <h1 mat-dialog-title>
-  <ng-container *ngIf="mode === 'edit'; else add">{{
+  @if (mode === 'edit') {
+    {{
     "admin.internalStorage.translation.dialog.title.edit" | translate
-  }}</ng-container>
-  <ng-template #add>{{
+    }}
+  } @else {
+    {{
     "admin.internalStorage.translation.dialog.title.create" | translate
-  }}</ng-template>
+    }}
+  }
 </h1>
 
 <mat-dialog-content id="datasetDialog">
@@ -36,21 +39,21 @@
       [label]="
         'admin.internalStorage.translation.dialog.field.title' | translate
       "
-      [control]="title"></app-input-wrapper>
+    [control]="title"></app-input-wrapper>
 
     <app-textarea-wrapper
       [label]="
         'admin.internalStorage.translation.dialog.field.description' | translate
       "
       [control]="description"
-      [maxLength]="4000"></app-textarea-wrapper>
+    [maxLength]="4000"></app-textarea-wrapper>
 
     <app-input-wrapper
       [label]="
         'admin.internalStorage.translation.dialog.field.backupFrequency'
           | translate
       "
-      [control]="backupFrequency"></app-input-wrapper>
+    [control]="backupFrequency"></app-input-wrapper>
   </div>
 </mat-dialog-content>
 
@@ -62,11 +65,15 @@
     (click)="onDialogClose()"
     mat-flat-button
     [disabled]="storageTranslation.invalid">
-    <ng-container *ngIf="mode === 'edit'">{{
+    @if (mode === 'edit') {
+      {{
       "admin.internalStorage.translation.dialog.button.update" | translate
-    }}</ng-container>
-    <ng-container *ngIf="mode === 'add'">{{
+      }}
+    }
+    @if (mode === 'add') {
+      {{
       "admin.internalStorage.translation.dialog.button.add" | translate
-    }}</ng-container>
+      }}
+    }
   </button>
 </mat-dialog-actions>

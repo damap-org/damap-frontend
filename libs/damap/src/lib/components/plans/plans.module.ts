@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { DmpTableModule } from '../../widgets/dmp-table/dmp-table.module';
-import { ErrorMessageModule } from '../../widgets/error-message/error-message.module';
+
+
 import { ExportWarningModule } from '../../widgets/export-warning-dialog/export-warning.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -16,12 +16,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
 
 @NgModule({
-  imports: [
+    imports: [
     CommonModule,
     TranslateModule,
     RouterModule,
-    DmpTableModule,
-    ErrorMessageModule,
     ExportWarningModule,
     // Materials
     MatIconModule,
@@ -32,17 +30,14 @@ import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
     MatPaginatorModule,
     MatSelectModule,
     InfoCardComponent,
-  ],
-  declarations: [PlansComponent],
-  exports: [
+    PlansComponent,
+],
+    exports: [
     CommonModule,
     TranslateModule,
     RouterModule,
-    DmpTableModule,
-    ErrorMessageModule,
     PlansComponent,
     ExportWarningModule,
-
     // Materials
     MatIconModule,
     MatButtonModule,
@@ -51,6 +46,6 @@ import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
     MatTableModule,
     MatPaginatorModule,
     MatSelectModule,
-  ],
+],
 })
 export class PlansModule {}

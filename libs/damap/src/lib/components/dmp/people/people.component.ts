@@ -9,13 +9,8 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import {
-  UntypedFormArray,
-  UntypedFormControl,
-  UntypedFormGroup,
-  Validators,
-} from '@angular/forms';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { ServiceConfig } from '../../../domain/config-services';
@@ -31,13 +26,51 @@ import { orcidValidator } from '../../../validators/orcid.validator';
 import { notEmptyValidator } from '../../../validators/not-empty.validator';
 import { ContributorFilterPipe } from './contributor-filter.pipe';
 import { FeedbackService } from '../../../services/feedback.service';
+import { AsyncPipe, KeyValuePipe } from '@angular/common';
+import { MatLabel, MatFormField } from '@angular/material/form-field';
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/autocomplete';
+import { MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle } from '@angular/material/expansion';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatCard, MatCardContent } from '@angular/material/card';
+import { ContributorManualComponent } from './contributor-manual/contributor-manual.component';
+import { OrcidComponent } from '../../../widgets/orcid/orcid.component';
+import { InputWrapperComponent } from '../../../shared/input-wrapper/input-wrapper.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
+import { CdkScrollable } from '@angular/cdk/scrolling';
 
 @Component({
-  selector: 'app-dmp-people',
-  templateUrl: './people.component.html',
-  styleUrls: ['./people.component.css'],
-  providers: [ContributorFilterPipe],
-  standalone: false,
+    selector: 'app-dmp-people',
+    templateUrl: './people.component.html',
+    styleUrls: ['./people.component.css'],
+    providers: [ContributorFilterPipe],
+    imports: [
+    MatLabel,
+    FormsModule,
+    ReactiveFormsModule,
+    PersonSearchComponent,
+    MatFormField,
+    MatSelect,
+    MatOption,
+    MatExpansionPanel,
+    MatExpansionPanelHeader,
+    MatExpansionPanelTitle,
+    MatButton,
+    MatIcon,
+    MatCard,
+    ContributorManualComponent,
+    MatCardContent,
+    OrcidComponent,
+    MatIconButton,
+    InputWrapperComponent,
+    AsyncPipe,
+    KeyValuePipe,
+    TranslateModule,
+    ContributorFilterPipe,
+    TranslatePipeMock
+],
 })
 export class PeopleComponent implements OnInit, OnDestroy {
   @ViewChild(PersonSearchComponent) personSearch: PersonSearchComponent;
@@ -247,9 +280,18 @@ export class PeopleComponent implements OnInit, OnDestroy {
 }
 
 @Component({
-  selector: 'app-confirm-deletion-dialog',
-  templateUrl: 'confirm-deletion-dialog.html',
-  standalone: false,
+    selector: 'app-confirm-deletion-dialog',
+    templateUrl: 'confirm-deletion-dialog.html',
+    imports: [
+    MatDialogTitle,
+    CdkScrollable,
+    MatDialogContent,
+    MatDialogActions,
+    MatButton,
+    MatDialogClose,
+    TranslateModule,
+    TranslatePipeMock
+],
 })
 export class ConfirmDeletionDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: Dataset[]) {}

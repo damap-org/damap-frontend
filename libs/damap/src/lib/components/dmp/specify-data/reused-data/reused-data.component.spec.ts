@@ -20,11 +20,10 @@ describe('ReusedDataComponent', () => {
   beforeEach(waitForAsync(() => {
     backendSpy = jasmine.createSpyObj('BackendService', ['searchDataset']);
     TestBed.configureTestingModule({
-      imports: [MatDialogModule],
-      declarations: [ReusedDataComponent],
-      schemas: [NO_ERRORS_SCHEMA],
-      providers: [{ provide: BackendService, useValue: backendSpy }],
-    }).compileComponents();
+    imports: [MatDialogModule, ReusedDataComponent],
+    schemas: [NO_ERRORS_SCHEMA],
+    providers: [{ provide: BackendService, useValue: backendSpy }],
+}).compileComponents();
   }));
 
   beforeEach(() => {

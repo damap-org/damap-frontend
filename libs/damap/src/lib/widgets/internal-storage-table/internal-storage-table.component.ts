@@ -9,24 +9,54 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { InternalStorage } from '../../domain/internal-storage';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow, MatNoDataRow } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, MatSortHeader } from '@angular/material/sort';
 import { BackendService } from '../../services/backend.service';
 import { FeedbackService } from '../../services/feedback.service';
 import { MatDialog } from '@angular/material/dialog';
 import { InternalStorageDialogComponent } from '../../components/admin/internal-storage-dialog/internal-storage-dialog.component';
 import { DeleteStorageWarningDialogComponent } from './dialog/delete-storage-warning-dialog.component';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import validator from 'validator';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
+import { MatIconButton } from '@angular/material/button';
+import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
+import { MatIcon } from '@angular/material/icon';
+import { MatDivider } from '@angular/material/divider';
+import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
 
 @Component({
-  selector: 'damap-internal-storage-table',
-  templateUrl: './internal-storage-table.component.html',
-  styleUrls: ['./internal-storage-table.component.css'],
-  standalone: false,
+    selector: 'damap-internal-storage-table',
+    templateUrl: './internal-storage-table.component.html',
+    styleUrls: ['./internal-storage-table.component.css'],
+    imports: [
+        MatTable,
+        MatSort,
+        MatColumnDef,
+        MatHeaderCellDef,
+        MatHeaderCell,
+        MatSortHeader,
+        MatCellDef,
+        MatCell,
+        MatSlideToggle,
+        MatIconButton,
+        MatMenuTrigger,
+        MatIcon,
+        MatMenu,
+        MatMenuItem,
+        MatDivider,
+        MatHeaderRowDef,
+        MatHeaderRow,
+        MatRowDef,
+        MatRow,
+        MatNoDataRow,
+        MatPaginator,
+        TranslateModule,
+        TranslatePipeMock,
+    ],
 })
 export class InternalStorageTableComponent implements AfterViewInit, OnChanges {
   @Output() selectInternalStorage = new EventEmitter<number>();

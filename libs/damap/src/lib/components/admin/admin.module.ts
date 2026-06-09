@@ -5,13 +5,13 @@ import { AdminComponent } from './admin.component';
 import { BannerDialogComponent } from './banner-dialog/banner-dialog.component';
 import { CommonModule } from '@angular/common';
 import { DeleteRepositoryWarningDialogComponent } from './edit-repositories-page/delete-repository-warning-dialog.component';
-import { DmpTableModule } from '../../widgets/dmp-table/dmp-table.module';
+
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { ErrorMessageModule } from '../../widgets/error-message/error-message.module';
+
 import { ExportWarningModule } from '../../widgets/export-warning-dialog/export-warning.module';
-import { InternalStoragaTranslationTableModule } from '../../widgets/internal-storage-translation-table/internal-storage-translation-table.module';
+
 import { InternalStorageDialogComponent } from './internal-storage-dialog/internal-storage-dialog.component';
-import { InternalStorageTableModule } from '../../widgets/internal-storage-table/internal-storage-table.module';
+
 import { InternalStorageTranslationDialogComponent } from './internal-storage-translation-dialog/internal-storage-translation-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -31,22 +31,18 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { SharedModule } from '../../shared/shared.module';
+
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslationManagementComponent } from './translation-management/translation-management.component';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { LanguageCodeInputComponent } from '../../shared/language-code-input/language-code-input.component';
 
 @NgModule({
-  imports: [
+    imports: [
     CommonModule,
     TranslateModule,
     RouterModule,
-    DmpTableModule,
-    ErrorMessageModule,
     ExportWarningModule,
-    InternalStorageTableModule,
-    InternalStoragaTranslationTableModule,
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
@@ -58,7 +54,6 @@ import { LanguageCodeInputComponent } from '../../shared/language-code-input/lan
     MatTableModule,
     MatPaginatorModule,
     MatSelectModule,
-    SharedModule,
     MatCheckboxModule,
     MatFormFieldModule,
     MatInputModule,
@@ -71,8 +66,6 @@ import { LanguageCodeInputComponent } from '../../shared/language-code-input/lan
     MatTooltipModule,
     MatSlideToggle,
     LanguageCodeInputComponent,
-  ],
-  declarations: [
     AdminComponent,
     InternalStorageDialogComponent,
     InternalStorageTranslationDialogComponent,
@@ -80,17 +73,13 @@ import { LanguageCodeInputComponent } from '../../shared/language-code-input/lan
     DeleteRepositoryWarningDialogComponent,
     TranslationManagementComponent,
     AddLanguageDialogComponent,
-  ],
-  exports: [
+],
+    exports: [
     CommonModule,
     TranslateModule,
     RouterModule,
-    DmpTableModule,
-    ErrorMessageModule,
     AdminComponent,
     ExportWarningModule,
-    InternalStorageTableModule,
-
     // Materials
     MatIconModule,
     MatButtonModule,
@@ -103,6 +92,6 @@ import { LanguageCodeInputComponent } from '../../shared/language-code-input/lan
     MatFormFieldModule,
     MatTooltipModule,
     TranslationManagementComponent,
-  ],
+],
 })
 export class AdminModule {}

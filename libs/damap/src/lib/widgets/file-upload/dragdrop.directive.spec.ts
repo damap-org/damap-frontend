@@ -3,11 +3,8 @@ import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-@Component({
-  template: ` <div appDragdrop>Drag and drop div</div>
-    <div>Standard div</div>`,
-  standalone: false,
-})
+@Component({ template: ` <div appDragdrop>Drag and drop div</div>
+    <div>Standard div</div>`, })
 class TestComponent {}
 
 describe('DragdropDirective', () => {
@@ -17,8 +14,8 @@ describe('DragdropDirective', () => {
 
   beforeEach(() => {
     fixture = TestBed.configureTestingModule({
-      declarations: [DragdropDirective, TestComponent],
-    }).createComponent(TestComponent);
+    imports: [DragdropDirective, TestComponent],
+}).createComponent(TestComponent);
 
     fixture.detectChanges(); // initial binding
 

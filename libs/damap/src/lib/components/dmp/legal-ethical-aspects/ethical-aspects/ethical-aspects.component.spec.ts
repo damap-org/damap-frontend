@@ -16,10 +16,9 @@ describe('EthicalAspectsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, MatRadioModule, TranslateTestingModule],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [EthicalAspectsComponent],
-    }).compileComponents();
+    imports: [ReactiveFormsModule, MatRadioModule, TranslateTestingModule, EthicalAspectsComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+}).compileComponents();
   }));
 
   beforeEach(() => {

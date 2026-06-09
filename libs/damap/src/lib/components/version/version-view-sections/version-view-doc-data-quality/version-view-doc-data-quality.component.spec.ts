@@ -9,9 +9,8 @@ describe('VersionViewDocDataQualityComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [VersionViewDocDataQualityComponent],
-      imports: [TranslateTestingModule],
-    }).compileComponents();
+    imports: [TranslateTestingModule, VersionViewDocDataQualityComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

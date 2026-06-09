@@ -39,21 +39,22 @@
                     isProcessing() || (template.active && activeCount() <= 1)
                   ">
                   {{
-                    (template.active
-                      ? "admin.templates.active"
-                      : "admin.templates.inactive"
-                    ) | translate
+                  (template.active
+                  ? "admin.templates.active"
+                  : "admin.templates.inactive"
+                  ) | translate
                   }}
                 </mat-slide-toggle>
 
-                <button
-                  *ngIf="template.custom"
-                  mat-button
-                  [disabled]="isProcessing()"
-                  (click)="deleteTemplate(template.id)">
-                  <mat-icon>delete</mat-icon>
-                  {{ "admin.templates.actions.delete" | translate }}
-                </button>
+                @if (template.custom) {
+                  <button
+                    mat-button
+                    [disabled]="isProcessing()"
+                    (click)="deleteTemplate(template.id)">
+                    <mat-icon>delete</mat-icon>
+                    {{ "admin.templates.actions.delete" | translate }}
+                  </button>
+                }
               </div>
             </mat-card>
           }
@@ -94,45 +95,45 @@
               href="https://damap.org/manual/customization/templates/"
               target="_blank"
               >https://damap.org/manual/customization/templates/</a
-            >.
-          </p>
-        </div>
-
-        <div
-          class="file-upload-area"
-          [class.drag-over]="isDragOver()"
-          (dragover)="onDragOver($event)"
-          (dragleave)="onDragLeave()"
-          (drop)="onDrop($event)"
-          (click)="fileInput.click()">
-          <input
-            type="file"
-            #fileInput
-            accept=".docx"
-            class="hidden-file-input"
-            (change)="onFileSelected($event)" />
-          <div class="upload-content">
-            <mat-icon>upload_file</mat-icon>
-            <p>{{ "admin.templates.upload.dropzone" | translate }}</p>
+              >.
+            </p>
           </div>
-        </div>
 
-        @if (selectedFile(); as file) {
-          <div class="inserted-file-card">
-            <mat-icon>attachment</mat-icon>
-            <span class="file-text-truncate">{{ file.name }}</span>
-            <button mat-icon-button (click)="clearFile()">
-              <mat-icon>close</mat-icon>
+          <div
+            class="file-upload-area"
+            [class.drag-over]="isDragOver()"
+            (dragover)="onDragOver($event)"
+            (dragleave)="onDragLeave()"
+            (drop)="onDrop($event)"
+            (click)="fileInput.click()">
+            <input
+              type="file"
+              #fileInput
+              accept=".docx"
+              class="hidden-file-input"
+              (change)="onFileSelected($event)" />
+            <div class="upload-content">
+              <mat-icon>upload_file</mat-icon>
+              <p>{{ "admin.templates.upload.dropzone" | translate }}</p>
+            </div>
+          </div>
+
+          @if (selectedFile(); as file) {
+            <div class="inserted-file-card">
+              <mat-icon>attachment</mat-icon>
+              <span class="file-text-truncate">{{ file.name }}</span>
+              <button mat-icon-button (click)="clearFile()">
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+            <button
+              mat-raised-button
+              class="upload-save-btn"
+              (click)="uploadTemplate()">
+              {{ "admin.templates.upload.button" | translate }}
             </button>
-          </div>
-          <button
-            mat-raised-button
-            class="upload-save-btn"
-            (click)="uploadTemplate()">
-            {{ "admin.templates.upload.button" | translate }}
-          </button>
-        }
-      </mat-card>
-    </section>
+          }
+        </mat-card>
+      </section>
+    </div>
   </div>
-</div>

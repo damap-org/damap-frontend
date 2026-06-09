@@ -7,12 +7,28 @@ import { DatasetDialogComponent } from '../dataset-dialog/dataset-dialog.compone
 import { DatasetDialogUploadComponent } from '../dataset-dialog/dataset-dialog-upload.component';
 import { MatDialog } from '@angular/material/dialog';
 import { UntypedFormControl } from '@angular/forms';
+import { DataMcComponent } from '../data-mc/data-mc.component';
+
+import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { DatasetTableComponent } from '../dataset-table/dataset-table.component';
+import { InfoMessageComponent } from '../../../../widgets/info-message/info-message.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 
 @Component({
-  selector: 'app-created-data',
-  templateUrl: './created-data.component.html',
-  styleUrls: ['./created-data.component.css'],
-  standalone: false,
+    selector: 'app-created-data',
+    templateUrl: './created-data.component.html',
+    styleUrls: ['./created-data.component.css'],
+    imports: [
+    DataMcComponent,
+    MatButton,
+    MatIcon,
+    DatasetTableComponent,
+    InfoMessageComponent,
+    TranslateModule,
+    TranslatePipeMock
+],
 })
 export class CreatedDataComponent extends AbstractBaseDataComponent {
   @Input() fileUpload: { file: File; progress: number; finalized: boolean }[];

@@ -15,20 +15,20 @@ describe('ExportWarningDialogComponent', () => {
   const fakeMatDialogRef = jasmine.createSpyObj(['close']);
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         TranslateTestingModule,
         MatSelectModule,
         MatButtonModule,
         MatDialogModule,
         NoopAnimationsModule,
-      ],
-      declarations: [ExportWarningDialogComponent],
-      providers: [
+        ExportWarningDialogComponent,
+    ],
+    providers: [
         provideMockStore(),
         { provide: MatDialogRef, useValue: fakeMatDialogRef },
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    }).compileComponents();
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+}).compileComponents();
     fixture = TestBed.createComponent(ExportWarningDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

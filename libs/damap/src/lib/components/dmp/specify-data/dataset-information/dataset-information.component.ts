@@ -1,16 +1,28 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions } from '@angular/material/dialog';
 import { Dataset } from '../../../../domain/dataset';
 import { DataSource } from '../../../../domain/enum/data-source.enum';
 import { DatasetDialogComponent } from '../dataset-dialog/dataset-dialog.component';
 import { FILE_SIZES } from '../data-specs';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+
+import { MatButton } from '@angular/material/button';
+import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 
 @Component({
-  selector: 'app-information-component',
-  templateUrl: './dataset-information.component.html',
-  styleUrls: ['./dataset-information.component.css'],
-  standalone: false,
+    selector: 'app-information-component',
+    templateUrl: './dataset-information.component.html',
+    styleUrls: ['./dataset-information.component.css'],
+    imports: [
+    MatDialogTitle,
+    CdkScrollable,
+    MatDialogContent,
+    MatDialogActions,
+    MatButton,
+    TranslateModule,
+    TranslatePipeMock
+],
 })
 export class DatasetInformationComponent {
   dataset: Dataset;

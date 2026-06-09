@@ -11,9 +11,8 @@ describe('FileUploadComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [MatIconModule, MatProgressBarModule, TranslateTestingModule],
-      declarations: [FileUploadComponent],
-    }).compileComponents();
+    imports: [MatIconModule, MatProgressBarModule, TranslateTestingModule, FileUploadComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

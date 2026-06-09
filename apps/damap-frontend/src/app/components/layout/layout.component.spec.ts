@@ -18,8 +18,11 @@ import { of } from 'rxjs';
 import { ImageThemeService } from '../../services/image-theme.service';
 
 @Component({
-  template: '',
-  standalone: false,
+    template: '',
+    imports: [TranslateTestingModule,
+        MatSidenavModule,
+        MatToolbarModule,
+        MatMenuModule,],
 })
 class DummyComponent {}
 
@@ -86,17 +89,17 @@ describe('LayoutComponent', () => {
     breakpointObserverSpy.observe.and.returnValue(of({ matches: false }));
 
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         TranslateTestingModule,
         MatSidenavModule,
         MatToolbarModule,
         MatMenuModule,
         NoopAnimationsModule,
         RouterModule.forRoot([]),
-      ],
-      declarations: [LayoutComponent, DummyComponent],
-      schemas: [NO_ERRORS_SCHEMA],
-      providers: [
+        LayoutComponent, DummyComponent,
+    ],
+    schemas: [NO_ERRORS_SCHEMA],
+    providers: [
         provideHttpClient(withFetch()),
         provideHttpClientTesting(),
         { provide: OAuthService, useValue: oauthSpy },
@@ -106,15 +109,15 @@ describe('LayoutComponent', () => {
         { provide: Router, useValue: mockRouter },
         { provide: RouterOutlet, useValue: mockRouterOutlet },
         {
-          provide: ImageThemeService,
-          useValue: {
-            getImage: jasmine
-              .createSpy('getImage')
-              .and.returnValue('mock-logo-url'),
-          },
+            provide: ImageThemeService,
+            useValue: {
+                getImage: jasmine
+                    .createSpy('getImage')
+                    .and.returnValue('mock-logo-url'),
+            },
         },
-      ],
-    }).compileComponents();
+    ],
+}).compileComponents();
     breakpointObserver = TestBed.inject(BreakpointObserver);
   }));
 

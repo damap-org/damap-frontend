@@ -12,9 +12,11 @@
         <mat-select
           [value]="selectedLanguage"
           (selectionChange)="onLanguageChange($event.value)">
-          <mat-option *ngFor="let language of languages" [value]="language">
-            {{ language | uppercase }}
-          </mat-option>
+          @for (language of languages; track language) {
+            <mat-option [value]="language">
+              {{ language | uppercase }}
+            </mat-option>
+          }
         </mat-select>
       </mat-form-field>
       <button
@@ -72,9 +74,11 @@
         <mat-option value="all">
           {{ "admin.appTranslations.sectionAll" | translate }}
         </mat-option>
-        <mat-option *ngFor="let section of sections" [value]="section">
-          {{ section }}
-        </mat-option>
+        @for (section of sections; track section) {
+          <mat-option [value]="section">
+            {{ section }}
+          </mat-option>
+        }
       </mat-select>
     </mat-form-field>
 
@@ -97,101 +101,106 @@
   </div>
 
   <div class="content" [class.with-detail]="selectedTranslation">
-    <ng-container *ngIf="!loading; else translationsLoading">
+    @if (!loading) {
       <div class="table-container">
-        <div
-          class="table-card"
-          *ngIf="filteredTranslations.length > 0; else noResults">
-          <div class="table-header">
-            <div>{{ "admin.appTranslations.keyColumn" | translate }}</div>
-            <div>{{ "admin.appTranslations.customColumn" | translate }}</div>
-          </div>
+        @if (filteredTranslations.length > 0) {
           <div
-            class="table-row"
-            *ngFor="let translation of pagedTranslations"
-            [class.selected]="selectedTranslation?.id === translation.id"
-            (click)="selectTranslation(translation)">
-            <div class="key-cell" [matTooltip]="translation.translationKey">
-              {{ translation.translationKey }}
+            class="table-card"
+            >
+            <div class="table-header">
+              <div>{{ "admin.appTranslations.keyColumn" | translate }}</div>
+              <div>{{ "admin.appTranslations.customColumn" | translate }}</div>
             </div>
-            <div
-              class="custom-cell"
-              [ngClass]="{ custom: isCustomValue(translation) }"
-              [matTooltip]="translation.custom || translation.defaultValue">
-              {{ translation.custom || translation.defaultValue }}
-            </div>
+            @for (translation of pagedTranslations; track translation) {
+              <div
+                class="table-row"
+                [class.selected]="selectedTranslation?.id === translation.id"
+                (click)="selectTranslation(translation)">
+                <div class="key-cell" [matTooltip]="translation.translationKey">
+                  {{ translation.translationKey }}
+                </div>
+                <div
+                  class="custom-cell"
+                  [ngClass]="{ custom: isCustomValue(translation) }"
+                  [matTooltip]="translation.custom || translation.defaultValue">
+                  {{ translation.custom || translation.defaultValue }}
+                </div>
+              </div>
+            }
+          </div>
+        } @else {
+          <div class="empty-state">
+            {{ "admin.appTranslations.empty" | translate }}
+          </div>
+        }
+        @if (filteredTranslations.length > pageSize) {
+          <div class="pagination">
+            <mat-paginator
+              [length]="filteredTranslations.length"
+              [pageIndex]="pageIndex"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="[5, 10, 20]"
+              showFirstLastButtons
+              (page)="onPageChange($event)">
+            </mat-paginator>
+          </div>
+        }
+      </div>
+    } @else {
+      <div class="loading">
+        {{ "admin.appTranslations.loading" | translate }}
+      </div>
+    }
+
+    @if (selectedTranslation) {
+      <div class="detail-card">
+        <div class="detail-section">
+          <p class="label">{{ "admin.appTranslations.keyLabel" | translate }}:</p>
+          <div class="current-value">
+            {{ selectedTranslation.translationKey }}
           </div>
         </div>
-        <div class="pagination" *ngIf="filteredTranslations.length > pageSize">
-          <mat-paginator
-            [length]="filteredTranslations.length"
-            [pageIndex]="pageIndex"
-            [pageSize]="pageSize"
-            [pageSizeOptions]="[5, 10, 20]"
-            showFirstLastButtons
-            (page)="onPageChange($event)">
-          </mat-paginator>
+        <div class="detail-section">
+          <p class="label">
+            {{ "admin.appTranslations.defaultValueLabel" | translate }}:
+          </p>
+          <div class="current-value">{{ selectedTranslation.defaultValue }}</div>
         </div>
-      </div>
-    </ng-container>
-
-    <div class="detail-card" *ngIf="selectedTranslation">
-      <div class="detail-section">
-        <p class="label">{{ "admin.appTranslations.keyLabel" | translate }}:</p>
-        <div class="current-value">
-          {{ selectedTranslation.translationKey }}
-        </div>
-      </div>
-      <div class="detail-section">
-        <p class="label">
-          {{ "admin.appTranslations.defaultValueLabel" | translate }}:
-        </p>
-        <div class="current-value">{{ selectedTranslation.defaultValue }}</div>
-      </div>
-      <div class="detail-section">
-        <p class="label">
-          {{ "admin.appTranslations.customValueFor" | translate }}
-          {{ selectedLanguage | uppercase }}:
-        </p>
-        <mat-form-field appearance="outline" class="custom-input">
-          <textarea
-            matInput
-            rows="3"
-            [value]="customValue"
+        <div class="detail-section">
+          <p class="label">
+            {{ "admin.appTranslations.customValueFor" | translate }}
+            {{ selectedLanguage | uppercase }}:
+          </p>
+          <mat-form-field appearance="outline" class="custom-input">
+            <textarea
+              matInput
+              rows="3"
+              [value]="customValue"
             (input)="customValue = $any($event.target).value"></textarea>
-        </mat-form-field>
+          </mat-form-field>
+        </div>
+        <div class="detail-actions">
+          <button mat-stroked-button (click)="clearSelection()">
+            {{ "admin.appTranslations.cancel" | translate }}
+          </button>
+          <button
+            mat-stroked-button
+            (click)="revertToDefault()"
+            [disabled]="saving || !selectedTranslation.custom">
+            {{ "admin.appTranslations.revertToDefault" | translate }}
+          </button>
+          <button
+            mat-raised-button
+            class="button-color-primary"
+            color="primary"
+            (click)="saveCustomValue()"
+            [disabled]="saving || !hasChanges">
+            {{ "admin.appTranslations.save" | translate }}
+          </button>
+        </div>
       </div>
-      <div class="detail-actions">
-        <button mat-stroked-button (click)="clearSelection()">
-          {{ "admin.appTranslations.cancel" | translate }}
-        </button>
-        <button
-          mat-stroked-button
-          (click)="revertToDefault()"
-          [disabled]="saving || !selectedTranslation.custom">
-          {{ "admin.appTranslations.revertToDefault" | translate }}
-        </button>
-        <button
-          mat-raised-button
-          class="button-color-primary"
-          color="primary"
-          (click)="saveCustomValue()"
-          [disabled]="saving || !hasChanges">
-          {{ "admin.appTranslations.save" | translate }}
-        </button>
-      </div>
-    </div>
+    }
   </div>
 </div>
 
-<ng-template #noResults>
-  <div class="empty-state">
-    {{ "admin.appTranslations.empty" | translate }}
-  </div>
-</ng-template>
 
-<ng-template #translationsLoading>
-  <div class="loading">
-    {{ "admin.appTranslations.loading" | translate }}
-  </div>
-</ng-template>

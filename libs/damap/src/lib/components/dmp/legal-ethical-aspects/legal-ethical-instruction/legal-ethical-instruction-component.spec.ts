@@ -10,10 +10,9 @@ describe('LegalEthicalInstructionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LegalEthicalInstructionComponent],
-      imports: [TranslateModule.forRoot()],
-      schemas: [NO_ERRORS_SCHEMA],
-    }).compileComponents();
+    imports: [TranslateModule.forRoot(), LegalEthicalInstructionComponent],
+    schemas: [NO_ERRORS_SCHEMA],
+}).compileComponents();
 
     fixture = TestBed.createComponent(LegalEthicalInstructionComponent);
     component = fixture.componentInstance;

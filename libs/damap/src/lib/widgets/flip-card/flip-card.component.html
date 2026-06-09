@@ -7,7 +7,9 @@
   <div class="flip-card-inner">
     <div class="flip-card-front">
       <div class="title mat-title-medium">{{ frontContent }}</div>
-      <mat-icon class="outline" *ngIf="iconCard">{{ iconCard }}</mat-icon>
+      @if (iconCard) {
+        <mat-icon class="outline">{{ iconCard }}</mat-icon>
+      }
     </div>
     <div class="flip-card-back">
       <div class="description mat-body-medium">{{ backContent }}</div>

@@ -1,10 +1,7 @@
 import { Contributor, compareContributors } from '../../../domain/contributor';
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({
-  name: 'contributorFilter',
-  standalone: false,
-})
+@Pipe({ name: 'contributorFilter', })
 export class ContributorFilterPipe implements PipeTransform {
   transform(
     newContributors: Contributor[],

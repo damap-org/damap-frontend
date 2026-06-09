@@ -1,11 +1,33 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatCard, MatCardContent } from '@angular/material/card';
+import { TooltipComponent } from '../../../../widgets/tooltip/tooltip.component';
+import { CrisTagComponent } from '../../../../widgets/cris-tag/cris-tag.component';
+import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';
+
+import { InfoMessageComponent } from '../../../../widgets/info-message/info-message.component';
+import { InputWrapperComponent } from '../../../../shared/input-wrapper/input-wrapper.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 
 @Component({
-  selector: 'app-ethical-aspects',
-  templateUrl: './ethical-aspects.component.html',
-  styleUrls: ['./ethical-aspects.component.css'],
-  standalone: false,
+    selector: 'app-ethical-aspects',
+    templateUrl: './ethical-aspects.component.html',
+    styleUrls: ['./ethical-aspects.component.css'],
+    imports: [
+    MatCard,
+    MatCardContent,
+    FormsModule,
+    ReactiveFormsModule,
+    TooltipComponent,
+    CrisTagComponent,
+    MatRadioGroup,
+    MatRadioButton,
+    InfoMessageComponent,
+    InputWrapperComponent,
+    TranslateModule,
+    TranslatePipeMock
+],
 })
 export class EthicalAspectsComponent implements OnInit {
   @Input() legalEthicalStep: UntypedFormGroup;

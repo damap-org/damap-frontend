@@ -10,12 +10,14 @@ import { DmpListItem } from '../../../domain/dmp-list-item';
 import { loadDmps } from '../../../store/actions/dmp.actions';
 import { AuthService } from '../../../auth/auth.service';
 import { Dmp } from '../../../domain/dmp';
+import { VersionTableComponent } from '../version-table/version-table.component';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-version-list',
-  templateUrl: './version-list.component.html',
-  styleUrls: [],
-  standalone: false,
+    selector: 'app-version-list',
+    templateUrl: './version-list.component.html',
+    styleUrls: [],
+    imports: [VersionTableComponent, AsyncPipe],
 })
 export class VersionListComponent implements OnInit {
   versions$: Observable<Version[]>;

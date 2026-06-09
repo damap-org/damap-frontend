@@ -16,10 +16,9 @@ describe('LivePreviewComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, TranslateModule.forRoot()],
-      declarations: [LivePreviewComponent],
-      providers: [{ provide: MatDialogRef, useValue: matDialogRefMock }],
-    }).compileComponents();
+    imports: [HttpClientTestingModule, TranslateModule.forRoot(), LivePreviewComponent],
+    providers: [{ provide: MatDialogRef, useValue: matDialogRefMock }],
+}).compileComponents();
 
     fixture = TestBed.createComponent(LivePreviewComponent);
     component = fixture.componentInstance;

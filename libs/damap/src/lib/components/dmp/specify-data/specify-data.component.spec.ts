@@ -23,15 +23,15 @@ describe('SpecifyDataComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         ReactiveFormsModule,
         MatTabsModule,
         MatRadioModule,
         TranslateTestingModule,
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [SpecifyDataComponent, StepIntroComponent],
-    }).compileComponents();
+        SpecifyDataComponent, StepIntroComponent,
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+}).compileComponents();
   }));
 
   beforeEach(() => {

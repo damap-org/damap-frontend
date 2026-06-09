@@ -5,7 +5,7 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { filter, switchMap, take } from 'rxjs/operators';
 
 import { BackendService } from '../../../services/backend.service';
@@ -18,11 +18,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RecommendedRepository } from '../../../domain/recommended-repository';
-import { RepoModule } from '../../dmp/repo/repo.module';
+
 import { RepositoryDetails } from '../../../domain/repository-details';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { firstValueFrom } from 'rxjs';
+import { RepoTableComponent } from '../../dmp/repo/repo-table/repo-table.component';
 
 @Component({
   selector: 'app-edit-repositories-page',
@@ -30,14 +31,13 @@ import { firstValueFrom } from 'rxjs';
   styleUrls: ['./edit-repositories-page.component.css'],
   standalone: true,
   imports: [
-    CommonModule,
     MatButtonModule,
     MatCardModule,
     MatIconModule,
     MatTooltipModule,
-    RepoModule,
-    TranslateModule,
-  ],
+    RepoTableComponent,
+    TranslateModule
+],
 })
 export class EditRepositoriesPageComponent implements OnInit {
   private readonly backendService = inject(BackendService);

@@ -16,16 +16,16 @@ describe('DoiSearchComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         TranslateTestingModule,
         MatFormFieldModule,
         MatInputModule,
         MatIconModule,
         NoopAnimationsModule,
-      ],
-      schemas: [NO_ERRORS_SCHEMA],
-      declarations: [DoiSearchComponent],
-    }).compileComponents();
+        DoiSearchComponent,
+    ],
+    schemas: [NO_ERRORS_SCHEMA],
+}).compileComponents();
   }));
 
   beforeEach(() => {

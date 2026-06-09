@@ -12,10 +12,9 @@ describe('DmpTableComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [MatTableModule, MatIconModule, TranslateTestingModule],
-      schemas: [NO_ERRORS_SCHEMA],
-      declarations: [DmpTableComponent],
-    }).compileComponents();
+    imports: [MatTableModule, MatIconModule, TranslateTestingModule, DmpTableComponent],
+    schemas: [NO_ERRORS_SCHEMA],
+}).compileComponents();
   }));
 
   beforeEach(() => {

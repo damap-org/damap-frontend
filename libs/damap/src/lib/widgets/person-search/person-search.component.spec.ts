@@ -23,16 +23,16 @@ describe('PersonSearchComponent', () => {
   let loader: HarnessLoader;
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         TranslateTestingModule,
         MatFormFieldModule,
         MatInputModule,
         MatIconModule,
         MatListModule,
         NoopAnimationsModule,
-      ],
-      declarations: [PersonSearchComponent, SearchFieldComponent],
-    }).compileComponents();
+        PersonSearchComponent, SearchFieldComponent,
+    ],
+}).compileComponents();
   }));
   beforeEach(() => {
     fixture = TestBed.createComponent(PersonSearchComponent);

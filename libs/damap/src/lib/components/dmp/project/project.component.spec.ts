@@ -27,16 +27,16 @@ describe('ProjectComponent', () => {
     );
 
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         TranslateTestingModule,
         MatIconModule,
         MatDialogModule,
         ReactiveFormsModule,
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ProjectComponent, ProjectListComponent],
-      providers: [{ provide: BackendService, useValue: backendSpy }],
-    }).compileComponents();
+        ProjectComponent, ProjectListComponent,
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    providers: [{ provide: BackendService, useValue: backendSpy }],
+}).compileComponents();
 
     fixture = TestBed.createComponent(ProjectComponent);
     component = fixture.componentInstance;

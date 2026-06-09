@@ -1,8 +1,12 @@
-<div class="error-message" *ngIf="data">
-  <mat-icon class="outline">error</mat-icon>&nbsp;{{
+@if (data) {
+  <div class="error-message">
+    <mat-icon class="outline">error</mat-icon>&nbsp;{{
     message | translate: { value: data }
-  }}
-</div>
-<div class="error-message" *ngIf="!data">
-  <mat-icon class="outline">error</mat-icon>&nbsp;{{ message | translate }}
-</div>
+    }}
+  </div>
+}
+@if (!data) {
+  <div class="error-message">
+    <mat-icon class="outline">error</mat-icon>&nbsp;{{ message | translate }}
+  </div>
+}

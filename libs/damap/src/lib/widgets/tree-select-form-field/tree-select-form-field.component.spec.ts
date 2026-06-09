@@ -24,7 +24,7 @@ describe('TreeSelectFormFieldComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
+    imports: [
         MatFormFieldModule,
         MatChipsModule,
         MatInputModule,
@@ -36,9 +36,9 @@ describe('TreeSelectFormFieldComponent', () => {
         MatIconModule,
         TranslateTestingModule,
         NoopAnimationsModule,
-      ],
-      declarations: [TreeSelectFormFieldComponent],
-    }).compileComponents();
+        TreeSelectFormFieldComponent,
+    ],
+}).compileComponents();
     fixture = TestBed.createComponent(TreeSelectFormFieldComponent);
     component = fixture.componentInstance;
     component.label = 'Filter';

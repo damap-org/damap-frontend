@@ -1,28 +1,29 @@
 <div class="scrollable-recommendation-content">
-  <ng-container *ngIf="loaded === LoadingState.LOADED">
-    <mat-card
-      appearance="raised"
-      *ngFor="let repo of recommended"
-      class="recommendation-card">
-      <mat-card-header>
-        <mat-card-title>{{ repo.name }}</mat-card-title>
-      </mat-card-header>
-      <app-repo-details [repo]="repo"></app-repo-details>
-      <mat-card-actions align="end">
-        <button mat-flat-button (click)="addRepository(repo)">
-          Use repository
-        </button>
-      </mat-card-actions>
-    </mat-card>
-  </ng-container>
-  <ng-container *ngIf="loaded === LoadingState.LOADING">
+  @if (loaded === LoadingState.LOADED) {
+    @for (repo of recommended; track repo) {
+      <mat-card
+        appearance="raised"
+        class="recommendation-card">
+        <mat-card-header>
+          <mat-card-title>{{ repo.name }}</mat-card-title>
+        </mat-card-header>
+        <app-repo-details [repo]="repo"></app-repo-details>
+        <mat-card-actions align="end">
+          <button mat-flat-button (click)="addRepository(repo)">
+            Use repository
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    }
+  }
+  @if (loaded === LoadingState.LOADING) {
     <p translate>dmp.steps.repositories.loading.load.recommended</p>
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-  </ng-container>
-  <ng-container *ngIf="loaded === LoadingState.FAILED">
+  }
+  @if (loaded === LoadingState.FAILED) {
     <app-error-message
       message="{{
         'dmp.steps.repositories.loading.failed.recommended' | translate
       }}"></app-error-message>
-  </ng-container>
+  }
 </div>

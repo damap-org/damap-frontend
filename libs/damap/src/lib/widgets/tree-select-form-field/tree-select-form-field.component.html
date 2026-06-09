@@ -2,13 +2,14 @@
   <mat-form-field>
     <mat-label>{{ label }}</mat-label>
     <mat-chip-grid #chipList>
-      <mat-chip-row
-        *ngFor="let node of selectionList"
-        [removable]="true"
-        (removed)="itemSelectionToggle(node)">
-        {{ node.item.label }}
-        <mat-icon matChipRemove>cancel</mat-icon>
-      </mat-chip-row>
+      @for (node of selectionList; track node) {
+        <mat-chip-row
+          [removable]="true"
+          (removed)="itemSelectionToggle(node)">
+          {{ node.item.label }}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip-row>
+      }
       <input
         matInput
         #input
@@ -49,7 +50,7 @@
           <button mat-icon-button matTreeNodeToggle>
             <mat-icon class="mat-icon-rtl-mirror">
               {{
-                treeControl.isExpanded(node) ? "expand_more" : "chevron_right"
+              treeControl.isExpanded(node) ? "expand_more" : "chevron_right"
               }}
             </mat-icon>
           </button>
@@ -58,9 +59,9 @@
             [indeterminate]="descendantsPartiallySelected(node)"
             (change)="itemSelectionToggle(node)"
             >{{ node.item.label }}</mat-checkbox
-          >
-        </mat-tree-node>
-      </mat-tree>
-    </mat-autocomplete>
-  </mat-form-field>
-</div>
+            >
+          </mat-tree-node>
+        </mat-tree>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>

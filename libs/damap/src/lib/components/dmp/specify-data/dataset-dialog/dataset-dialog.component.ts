@@ -1,11 +1,6 @@
 import { Component, Inject } from '@angular/core';
-import {
-  FormArray,
-  FormControl,
-  UntypedFormControl,
-  UntypedFormGroup,
-} from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { FormArray, FormControl, UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions } from '@angular/material/dialog';
 import { FILE_SIZES, FILE_TYPES } from '../data-specs';
 import { FormService } from '../../../../services/form.service';
 
@@ -20,12 +15,46 @@ import { Dataset } from '../../../../domain/dataset';
 import { DataSource } from '../../../../domain/enum/data-source.enum';
 import { Identifier } from '../../../../domain/identifier';
 import { DataType } from '../../../../domain/enum/data-type.enum';
+import { KeyValuePipe } from '@angular/common';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { InputWrapperComponent } from '../../../../shared/input-wrapper/input-wrapper.component';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/autocomplete';
+import { MatInput } from '@angular/material/input';
+import { LicenseWizardComponent } from '../../../../widgets/license-wizard/license-wizard.component';
+import { TextareaWrapperComponent } from '../../../../shared/textarea-wrapper/textarea-wrapper.component';
+import { MatIconButton, MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 
 @Component({
-  selector: 'app-dataset-dialog',
-  templateUrl: './dataset-dialog.component.html',
-  styleUrls: ['./dataset-dialog.component.css'],
-  standalone: false,
+    selector: 'app-dataset-dialog',
+    templateUrl: './dataset-dialog.component.html',
+    styleUrls: ['./dataset-dialog.component.css'],
+    imports: [
+    MatDialogTitle,
+    CdkScrollable,
+    MatDialogContent,
+    FormsModule,
+    ReactiveFormsModule,
+    InputWrapperComponent,
+    MatFormField,
+    MatLabel,
+    MatSelect,
+    MatOption,
+    MatInput,
+    LicenseWizardComponent,
+    TextareaWrapperComponent,
+    MatIconButton,
+    MatIcon,
+    MatButton,
+    MatDialogActions,
+    KeyValuePipe,
+    TranslateModule,
+    TranslatePipeMock
+],
 })
 export class DatasetDialogComponent {
   readonly FILE_TYPES = FILE_TYPES;

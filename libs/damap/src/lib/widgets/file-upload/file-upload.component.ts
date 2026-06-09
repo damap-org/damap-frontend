@@ -1,10 +1,25 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { DragdropDirective } from './dragdrop.directive';
+import { MatIcon } from '@angular/material/icon';
+import { MatButton, MatIconButton } from '@angular/material/button';
+
+import { MatProgressBar } from '@angular/material/progress-bar';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
 
 @Component({
-  selector: 'app-file-upload',
-  templateUrl: './file-upload.component.html',
-  styleUrls: ['./file-upload.component.css'],
-  standalone: false,
+    selector: 'app-file-upload',
+    templateUrl: './file-upload.component.html',
+    styleUrls: ['./file-upload.component.css'],
+    imports: [
+    DragdropDirective,
+    MatIcon,
+    MatButton,
+    MatIconButton,
+    MatProgressBar,
+    TranslateModule,
+    TranslatePipeMock
+],
 })
 export class FileUploadComponent {
   @Input() fileUpload: { file: File; progress: number; finalized: boolean }[];

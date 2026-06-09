@@ -9,9 +9,8 @@ describe('VersionViewCostsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [VersionViewCostsComponent],
-      imports: [TranslateTestingModule],
-    }).compileComponents();
+    imports: [TranslateTestingModule, VersionViewCostsComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

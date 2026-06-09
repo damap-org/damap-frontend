@@ -20,17 +20,15 @@ describe('LicenseWizardComponent', () => {
   beforeEach(waitForAsync(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [
-          MatDialogModule,
-          NoopAnimationsModule,
-          TranslateTestingModule,
-        ],
-        declarations: [
-          LicenseWizardComponent,
-          LicenseSelectorDialogComponent,
-          LicenseFilterPipe,
-        ],
-      }).compileComponents();
+    imports: [
+        MatDialogModule,
+        NoopAnimationsModule,
+        TranslateTestingModule,
+        LicenseWizardComponent,
+        LicenseSelectorDialogComponent,
+        LicenseFilterPipe,
+    ],
+}).compileComponents();
       fixture = TestBed.createComponent(LicenseWizardComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();

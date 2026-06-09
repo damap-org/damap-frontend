@@ -20,10 +20,9 @@ describe('DataDeletionComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [MatSliderModule, TranslateTestingModule],
-      schemas: [NO_ERRORS_SCHEMA],
-      declarations: [DataDeletionComponent],
-    }).compileComponents();
+    imports: [MatSliderModule, TranslateTestingModule, DataDeletionComponent],
+    schemas: [NO_ERRORS_SCHEMA],
+}).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,16 +1,23 @@
 import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { REPO_FILTERS } from '../repo-filters';
-import {
-  MAT_DIALOG_DATA,
-  MatDialog,
-  MatDialogRef,
-} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
+import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { TreeSelectFormFieldComponent } from '../../../../widgets/tree-select-form-field/tree-select-form-field.component';
 
 @Component({
-  selector: 'app-repo-filter',
-  templateUrl: './repo-filter.component.html',
-  styleUrls: ['./repo-filter.component.css'],
-  standalone: false,
+    selector: 'app-repo-filter',
+    templateUrl: './repo-filter.component.html',
+    styleUrls: ['./repo-filter.component.css'],
+    imports: [
+        MatButton,
+        MatIcon,
+        TranslateModule,
+        TranslatePipeMock,
+    ],
 })
 export class RepoFilterComponent {
   @Input() filters: { [key: string]: { id: string; label: string }[] };
@@ -39,9 +46,19 @@ export class RepoFilterComponent {
 }
 
 @Component({
-  selector: 'filter-dialog',
-  templateUrl: './filter-dialog.html',
-  standalone: false,
+    selector: 'filter-dialog',
+    templateUrl: './filter-dialog.html',
+    imports: [
+        MatDialogTitle,
+        CdkScrollable,
+        MatDialogContent,
+        TreeSelectFormFieldComponent,
+        MatDialogActions,
+        MatButton,
+        MatDialogClose,
+        TranslateModule,
+        TranslatePipeMock,
+    ],
 })
 export class FilterDialogComponent {
   readonly FILTER = REPO_FILTERS;

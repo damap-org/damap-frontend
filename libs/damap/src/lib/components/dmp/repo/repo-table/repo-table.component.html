@@ -4,7 +4,7 @@
       <app-search-field
         [label]="'dmp.steps.repositories.filters'"
         [placeholder]="'Search Repository'"
-        (searchChange)="applyFilter($event)"></app-search-field>
+      (searchChange)="applyFilter($event)"></app-search-field>
       <span class="repo-filter-container">
         <button
           class="w-full"
@@ -16,23 +16,27 @@
         </button>
         <app-repo-filter
           [filters]="filters"
-          (filterChange)="onFilterChange($event)"></app-repo-filter>
+        (filterChange)="onFilterChange($event)"></app-repo-filter>
       </span>
     </div>
 
     <div class="scrollable-repo-content">
-      <div *ngIf="(filters | keyvalue).length">
-        {{ "dmp.steps.repositories.filters" | translate }}:
-        <ng-container *ngFor="let filter of filters | keyvalue">
-          <app-tag
-            background="var(--custom-green-tag)"
-            *ngFor="let item of filter.value">
-            {{ item.label }}
-          </app-tag>
-        </ng-container>
-      </div>
+      @if ((filters | keyvalue).length) {
+        <div>
+          {{ "dmp.steps.repositories.filters" | translate }}:
+          @for (filter of filters | keyvalue; track filter) {
+            @for (item of filter.value; track item) {
+              <app-tag
+                background="var(--custom-green-tag)"
+                >
+                {{ item.label }}
+              </app-tag>
+            }
+          }
+        </div>
+      }
 
-      <ng-container *ngIf="loaded === LoadingState.LOADED">
+      @if (loaded === LoadingState.LOADED) {
         <table
           mat-table
           [dataSource]="dataSource"
@@ -41,105 +45,101 @@
           <ng-container matColumnDef="expand">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element" (click)="expandRow(element)">
-              <mat-icon
-                *ngIf="element.id === expandedElement"
-                class="material-icon-primary"
-                >expand_less</mat-icon
-              >
-              <mat-icon
-                *ngIf="element.id !== expandedElement"
-                class="material-icon-primary"
-                >expand_more</mat-icon
-              >
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="title">
-            <th mat-header-cell *matHeaderCellDef>
-              {{ "dmp.steps.repositories.table.header.title" | translate }}
-            </th>
-            <td mat-cell *matCellDef="let element" (click)="expandRow(element)">
-              <h3>{{ element.name }}</h3>
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="add">
-            <th mat-header-cell *matHeaderCellDef>
-              <span class="sr-only">{{
-                "dmp.steps.repositories.add" | translate
-              }}</span>
-            </th>
-            <td mat-cell *matCellDef="let element">
-              <button mat-flat-button (click)="addRepository(element)">
-                {{ "dmp.steps.repositories.use" | translate }}
-              </button>
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="expandedDetail">
-            <td
-              mat-cell
-              *matCellDef="let element"
-              [attr.colspan]="tableHeaders.length">
-              <div
-                class="element-detail"
+              @if (element.id === expandedElement) {
+                <mat-icon
+                  class="material-icon-primary"
+                  >expand_less</mat-icon
+                  >
+                }
+                @if (element.id !== expandedElement) {
+                  <mat-icon
+                    class="material-icon-primary"
+                    >expand_more</mat-icon
+                    >
+                  }
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "dmp.steps.repositories.table.header.title" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element" (click)="expandRow(element)">
+                  <h3>{{ element.name }}</h3>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="add">
+                <th mat-header-cell *matHeaderCellDef>
+                  <span class="sr-only">{{
+                    "dmp.steps.repositories.add" | translate
+                  }}</span>
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-flat-button (click)="addRepository(element)">
+                    {{ "dmp.steps.repositories.use" | translate }}
+                  </button>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="expandedDetail">
+                <td
+                  mat-cell
+                  *matCellDef="let element"
+                  [attr.colspan]="tableHeaders.length">
+                  <div
+                    class="element-detail"
                 [@detailExpand]="
                   element.id === expandedElement ? 'expanded' : 'collapsed'
                 ">
-                <ng-container *ngIf="element.description; else loading">
-                  <mat-divider></mat-divider>
-                  <app-repo-details [repo]="element"></app-repo-details>
-                </ng-container>
-                <ng-template #loading>
-                  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-                </ng-template>
-              </div>
-            </td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="tableHeaders"></tr>
-          <tr
-            mat-row
-            *matRowDef="let element; columns: tableHeaders"
-            class="element-row"
-            [class.expanded-row]="expandedElement === element.id"></tr>
-          <tr
-            mat-row
-            *matRowDef="let row; columns: ['expandedDetail']"
-            class="detail-row"></tr>
-          <tr class="mat-row" *matNoDataRow>
-            <ng-container *ngIf="this.input.length > 0; else empty">
-              <td class="mat-cell" colspan="4">
-                {{
-                  "dmp.steps.repositories.nodatafilter"
+                    @if (element.description) {
+                      <mat-divider></mat-divider>
+                      <app-repo-details [repo]="element"></app-repo-details>
+                    } @else {
+                      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                    }
+                  </div>
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="tableHeaders"></tr>
+              <tr
+                mat-row
+                *matRowDef="let element; columns: tableHeaders"
+                class="element-row"
+              [class.expanded-row]="expandedElement === element.id"></tr>
+              <tr
+                mat-row
+                *matRowDef="let row; columns: ['expandedDetail']"
+              class="detail-row"></tr>
+              <tr class="mat-row" *matNoDataRow>
+                @if (this.input.length > 0) {
+                  <td class="mat-cell" colspan="4">
+                    {{
+                    "dmp.steps.repositories.nodatafilter"
                     | translate: { value: this.input }
-                }}"
-              </td>
-            </ng-container>
-            <ng-template #empty>
-              <td class="mat-cell" colspan="4">
-                {{ "dmp.steps.repositories.norepositories" | translate }}
-              </td>
-            </ng-template>
-          </tr>
-        </table>
-        <mat-paginator
-          class="mat-elevation-z8"
-          [pageSize]="10"
-          [pageSizeOptions]="[10, 15, 20]"
-          showFirstLastButtons="true"></mat-paginator>
-      </ng-container>
+                    }}"
+                  </td>
+                } @else {
+                  <td class="mat-cell" colspan="4">
+                    {{ "dmp.steps.repositories.norepositories" | translate }}
+                  </td>
+                }
+              </tr>
+            </table>
+            <mat-paginator
+              class="mat-elevation-z8"
+              [pageSize]="10"
+              [pageSizeOptions]="[10, 15, 20]"
+            showFirstLastButtons="true"></mat-paginator>
+          }
 
-      <ng-container *ngIf="loaded === LoadingState.LOADING">
-        <p translate>dmp.steps.repositories.loading.load.all</p>
-        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-      </ng-container>
-      <ng-container *ngIf="loaded === LoadingState.FAILED">
-        <app-error-message
+          @if (loaded === LoadingState.LOADING) {
+            <p translate>dmp.steps.repositories.loading.load.all</p>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          }
+          @if (loaded === LoadingState.FAILED) {
+            <app-error-message
           message="{{
             'dmp.steps.repositories.loading.failed.all' | translate
           }}"></app-error-message>
-      </ng-container>
-    </div>
-  </mat-card-content>
-</mat-card>
+          }
+        </div>
+      </mat-card-content>
+    </mat-card>

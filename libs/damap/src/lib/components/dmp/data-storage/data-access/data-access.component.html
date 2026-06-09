@@ -6,7 +6,7 @@
     <ng-container>
       <div class="wrapper" [formGroup]="dmpForm">
         <ng-container formArrayName="datasets">
-          <ng-container *ngIf="datasets?.controls.length">
+          @if (datasets?.controls.length) {
             <div class="one bold">
               {{ "dmp.steps.data.access.question.dataset" | translate }}
             </div>
@@ -19,7 +19,7 @@
             <div class="four bold">
               {{ "dmp.steps.data.access.question.public" | translate }}
             </div>
-            <ng-container *ngFor="let dataset of datasets.controls; index as j">
+            @for (dataset of datasets.controls; track dataset; let j = $index) {
               <ng-container [formGroupName]="j">
                 <div class="one">
                   {{ dataset.value.title }}
@@ -34,11 +34,12 @@
                         | translate: { dataset: dataset.value.title }
                     }}"
                     formControlName="selectedProjectMembersAccess">
-                    <mat-option
-                      *ngFor="let right of accessRight | keyvalue"
-                      [value]="right.key">
-                      {{ translatePrefixEnum + right.value | translate }}
-                    </mat-option>
+                    @for (right of accessRight | keyvalue; track right) {
+                      <mat-option
+                        [value]="right.key">
+                        {{ translatePrefixEnum + right.value | translate }}
+                      </mat-option>
+                    }
                   </mat-select>
                 </mat-form-field>
                 <mat-form-field class="three">
@@ -51,11 +52,12 @@
                         | translate: { dataset: dataset.value.title }
                     }}"
                     formControlName="otherProjectMembersAccess">
-                    <mat-option
-                      *ngFor="let right of accessRight | keyvalue"
-                      [value]="right.key">
-                      {{ translatePrefixEnum + right.value | translate }}
-                    </mat-option>
+                    @for (right of accessRight | keyvalue; track right) {
+                      <mat-option
+                        [value]="right.key">
+                        {{ translatePrefixEnum + right.value | translate }}
+                      </mat-option>
+                    }
                   </mat-select>
                 </mat-form-field>
                 <mat-form-field class="four">
@@ -68,17 +70,18 @@
                         | translate: { dataset: dataset.value.title }
                     }}"
                     formControlName="publicAccess">
-                    <mat-option
-                      *ngFor="let right of accessRight | keyvalue"
-                      [value]="right.key">
-                      {{ translatePrefixEnum + right.value | translate }}
-                    </mat-option>
+                    @for (right of accessRight | keyvalue; track right) {
+                      <mat-option
+                        [value]="right.key">
+                        {{ translatePrefixEnum + right.value | translate }}
+                      </mat-option>
+                    }
                   </mat-select>
                 </mat-form-field>
               </ng-container>
-            </ng-container>
+            }
             <br />
-          </ng-container>
+          }
         </ng-container>
       </div>
     </ng-container>

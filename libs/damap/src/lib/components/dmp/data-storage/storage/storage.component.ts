@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';
+import { UntypedFormArray, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   selectInternalStorages,
   selectInternalStoragesLoaded,
@@ -12,13 +12,42 @@ import { LoadingState } from '../../../../domain/enum/loading-state.enum';
 import { MatDialog } from '@angular/material/dialog';
 import { StorageInfoDialogComponent } from '../storage-dialog/storage-info-dialog.component';
 import { loadInternalStorages } from '../../../../store/actions/internal-storage.actions';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { MatLabel, MatFormField } from '@angular/material/form-field';
+
+import { MatCard, MatCardHeader, MatCardAvatar, MatCardSubtitle, MatCardContent, MatCardTitleGroup, MatCardTitle } from '@angular/material/card';
+import { MatIcon } from '@angular/material/icon';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/autocomplete';
+import { StorageFilterPipe } from './storage-filter.pipe';
+import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 
 @Component({
-  selector: 'app-dmp-storage',
-  templateUrl: './storage.component.html',
-  styleUrls: ['./storage.component.css'],
-  standalone: false,
+    selector: 'app-dmp-storage',
+    templateUrl: './storage.component.html',
+    styleUrls: ['./storage.component.css'],
+    imports: [
+    MatLabel,
+    MatCard,
+    MatCardHeader,
+    MatCardAvatar,
+    MatIcon,
+    MatCardSubtitle,
+    MatCardContent,
+    MatButton,
+    FormsModule,
+    ReactiveFormsModule,
+    MatCardTitleGroup,
+    MatCardTitle,
+    MatIconButton,
+    MatFormField,
+    MatSelect,
+    MatOption,
+    TranslateModule,
+    StorageFilterPipe,
+    TranslatePipeMock
+],
 })
 export class StorageComponent implements OnInit {
   @Input() dmpForm: UntypedFormGroup;

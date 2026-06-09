@@ -11,35 +11,33 @@ import { NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    TranslateModule,
-    FormsModule,
-
-    // Materials
-    MatButtonModule,
-    MatSelectModule,
-    MatFormFieldModule,
-    MatDialogModule,
-    MatInputModule,
-    ReactiveFormsModule,
-  ],
-  providers: [
-    {
-      provide: MatDialogRef,
-      useValue: {},
-    },
-  ],
-  declarations: [ExportWarningDialogComponent],
-
-  exports: [
-    CommonModule,
-    MatButtonModule,
-    MatSelectModule,
-    ExportWarningDialogComponent,
-    MatFormFieldModule,
-    MatDialogModule,
-    MatInputModule,
-  ],
+    imports: [
+        CommonModule,
+        TranslateModule,
+        FormsModule,
+        // Materials
+        MatButtonModule,
+        MatSelectModule,
+        MatFormFieldModule,
+        MatDialogModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        ExportWarningDialogComponent,
+    ],
+    providers: [
+        {
+            provide: MatDialogRef,
+            useValue: {},
+        },
+    ],
+    exports: [
+        CommonModule,
+        MatButtonModule,
+        MatSelectModule,
+        ExportWarningDialogComponent,
+        MatFormFieldModule,
+        MatDialogModule,
+        MatInputModule,
+    ],
 })
 export class ExportWarningModule {}

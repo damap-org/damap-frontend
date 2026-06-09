@@ -1,14 +1,20 @@
-<div *ngFor="let repo of repositories; last as last">
-  <h3>{{ repo.title }}</h3>
+@for (repo of repositories; track repo; let last = $last) {
   <div>
-    <span class="headings"
-      >{{ "dmp.versions.view.repositories.datasets" | translate }}:</span
-    >
-    <ul>
-      <li *ngFor="let dataset of getDatasetsForRepository(repo)">
-        {{ dataset.title }}
-      </li>
-    </ul>
-  </div>
-  <hr *ngIf="!last" />
-</div>
+    <h3>{{ repo.title }}</h3>
+    <div>
+      <span class="headings"
+        >{{ "dmp.versions.view.repositories.datasets" | translate }}:</span
+        >
+        <ul>
+          @for (dataset of getDatasetsForRepository(repo); track dataset) {
+            <li>
+              {{ dataset.title }}
+            </li>
+          }
+        </ul>
+      </div>
+      @if (!last) {
+        <hr />
+      }
+    </div>
+  }

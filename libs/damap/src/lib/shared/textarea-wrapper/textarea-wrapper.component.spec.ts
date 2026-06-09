@@ -14,16 +14,16 @@ describe('TextareaWrapperComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         MatFormFieldModule,
         MatInputModule,
         ReactiveFormsModule,
         NoopAnimationsModule,
         TranslateTestingModule,
-      ],
-      schemas: [NO_ERRORS_SCHEMA],
-      declarations: [TextareaWrapperComponent],
-    }).compileComponents();
+        TextareaWrapperComponent,
+    ],
+    schemas: [NO_ERRORS_SCHEMA],
+}).compileComponents();
   }));
 
   beforeEach(() => {

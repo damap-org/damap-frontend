@@ -1,11 +1,18 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatButton } from '@angular/material/button';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
 
 @Component({
-  selector: 'app-toggle-buttons',
-  templateUrl: './toggle-buttons.component.html',
-  styleUrls: ['./toggle-buttons.component.css'],
-  standalone: false,
+    selector: 'app-toggle-buttons',
+    templateUrl: './toggle-buttons.component.html',
+    styleUrls: ['./toggle-buttons.component.css'],
+    imports: [
+        MatButton,
+        TranslateModule,
+        TranslatePipeMock,
+    ],
 })
 export class ToggleButtonsComponent implements OnInit {
   @Input() selectedView: 'primaryView' | 'secondaryView' = 'primaryView';

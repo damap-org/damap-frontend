@@ -9,9 +9,8 @@ describe('VersionTableComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [TranslateTestingModule],
-      declarations: [VersionTableComponent],
-    }).compileComponents();
+    imports: [TranslateTestingModule, VersionTableComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

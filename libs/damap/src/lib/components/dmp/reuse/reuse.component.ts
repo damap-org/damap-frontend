@@ -1,17 +1,28 @@
 import { Component, Input } from '@angular/core';
-import {
-  UntypedFormArray,
-  UntypedFormControl,
-  UntypedFormGroup,
-} from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataAccessType } from '../../../domain/enum/data-access-type.enum';
 import { DataSource } from '../../../domain/enum/data-source.enum';
+import { MatLabel } from '@angular/material/form-field';
+import { MatCard, MatCardContent } from '@angular/material/card';
+import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
+
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
 
 @Component({
-  selector: 'app-dmp-reuse',
-  templateUrl: './reuse.component.html',
-  styleUrls: ['./reuse.component.css'],
-  standalone: false,
+    selector: 'app-dmp-reuse',
+    templateUrl: './reuse.component.html',
+    styleUrls: ['./reuse.component.css'],
+    imports: [
+    MatLabel,
+    MatCard,
+    MatCardContent,
+    FormsModule,
+    ReactiveFormsModule,
+    TextareaWrapperComponent,
+    TranslateModule,
+    TranslatePipeMock
+],
 })
 export class ReuseComponent {
   @Input() reuseStep: UntypedFormGroup;

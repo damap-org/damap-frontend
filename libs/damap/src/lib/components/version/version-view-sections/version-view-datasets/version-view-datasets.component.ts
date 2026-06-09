@@ -2,12 +2,23 @@ import { Component, Input } from '@angular/core';
 import { Dataset } from '../../../../domain/dataset';
 import { DataKind } from '../../../../domain/enum/data-kind.enum';
 import { DataAccessType } from '../../../../domain/enum/data-access-type.enum';
+import { DatePipe } from '@angular/common';
+import { TagComponent } from '../../../../widgets/tag/tag.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { BytePipe } from '../../../../pipes/byte/byte.pipe';
+import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 
 @Component({
-  selector: 'app-version-view-datasets',
-  templateUrl: './version-view-datasets.component.html',
-  styleUrls: ['./version-view-datasets.component.css'],
-  standalone: false,
+    selector: 'app-version-view-datasets',
+    templateUrl: './version-view-datasets.component.html',
+    styleUrls: ['./version-view-datasets.component.css'],
+    imports: [
+    TagComponent,
+    DatePipe,
+    TranslateModule,
+    BytePipe,
+    TranslatePipeMock
+],
 })
 export class VersionViewDatasetsComponent {
   @Input() dataKind: DataKind;

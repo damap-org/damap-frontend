@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, map, startWith } from 'rxjs';
 import {
@@ -7,12 +7,26 @@ import {
   LANGUAGE_CODE_OPTIONS,
   LanguageCodeOption,
 } from '../../../../domain/language-codes';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { LanguageCodeInputComponent } from '../../../../shared/language-code-input/language-code-input.component';
+import { MatButton } from '@angular/material/button';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 
 @Component({
-  selector: 'damap-add-language-dialog',
-  templateUrl: './add-language-dialog.component.html',
-  styleUrl: './add-language-dialog.component.css',
-  standalone: false,
+    selector: 'damap-add-language-dialog',
+    templateUrl: './add-language-dialog.component.html',
+    styleUrl: './add-language-dialog.component.css',
+    imports: [
+        MatDialogTitle,
+        CdkScrollable,
+        MatDialogContent,
+        LanguageCodeInputComponent,
+        MatDialogActions,
+        MatButton,
+        TranslateModule,
+        TranslatePipeMock,
+    ],
 })
 export class AddLanguageDialogComponent {
   readonly form: FormGroup;

@@ -1,28 +1,42 @@
 <div class="repo-details-container">
   <p>{{ repo.description }}</p>
 
-  <div *ngIf="repo.contentTypes">
-    {{ "dmp.steps.repositories.contenttypes" | translate }}:
-    <div class="content-types tag" *ngFor="let type of repo.contentTypes">
-      {{ type }}
+  @if (repo.contentTypes) {
+    <div>
+      {{ "dmp.steps.repositories.contenttypes" | translate }}:
+      @for (type of repo.contentTypes; track type) {
+        <div class="content-types tag">
+          {{ type }}
+        </div>
+      }
     </div>
-  </div>
-  <div *ngIf="repo.metadataStandards">
-    {{ "dmp.steps.repositories.metadatastandards" | translate }}:
-    <div
-      class="metadata-standards tag"
-      *ngFor="let standard of repo.metadataStandards">
-      {{ standard }}
+  }
+  @if (repo.metadataStandards) {
+    <div>
+      {{ "dmp.steps.repositories.metadatastandards" | translate }}:
+      @for (standard of repo.metadataStandards; track standard) {
+        <div
+          class="metadata-standards tag"
+          >
+          {{ standard }}
+        </div>
+      }
     </div>
-  </div>
-  <div *ngIf="repo.repositoryLanguages">
-    {{ "dmp.steps.repositories.languages" | translate }}:
-    <div class="lang tag" *ngFor="let lang of repo.repositoryLanguages">
-      {{ lang | uppercase }}
+  }
+  @if (repo.repositoryLanguages) {
+    <div>
+      {{ "dmp.steps.repositories.languages" | translate }}:
+      @for (lang of repo.repositoryLanguages; track lang) {
+        <div class="lang tag">
+          {{ lang | uppercase }}
+        </div>
+      }
     </div>
-  </div>
+  }
 
-  <div *ngIf="repo.repositoryURL">
-    <a [href]="repo.repositoryURL" target="_blank">{{ repo.repositoryURL }}</a>
-  </div>
+  @if (repo.repositoryURL) {
+    <div>
+      <a [href]="repo.repositoryURL" target="_blank">{{ repo.repositoryURL }}</a>
+    </div>
+  }
 </div>

@@ -23,22 +23,21 @@ describe('StorageComponent', () => {
     mockDialog = jasmine.createSpyObj('MatDialog', ['open']);
 
     TestBed.configureTestingModule({
-      imports: [TranslateTestingModule],
-      schemas: [NO_ERRORS_SCHEMA],
-      declarations: [StorageComponent, StorageFilterPipe],
-      providers: [
+    imports: [TranslateTestingModule, StorageComponent, StorageFilterPipe],
+    schemas: [NO_ERRORS_SCHEMA],
+    providers: [
         provideMockStore({
-          selectors: [
-            {
-              selector: selectInternalStoragesLoaded,
-              value: LoadingState.LOADED,
-            },
-            { selector: selectInternalStorages, value: [mockInternalStorage] },
-          ],
+            selectors: [
+                {
+                    selector: selectInternalStoragesLoaded,
+                    value: LoadingState.LOADED,
+                },
+                { selector: selectInternalStorages, value: [mockInternalStorage] },
+            ],
         }),
         { provide: MatDialog, useValue: mockDialog },
-      ],
-    }).compileComponents();
+    ],
+}).compileComponents();
   }));
 
   beforeEach(() => {

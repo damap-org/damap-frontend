@@ -7,14 +7,25 @@ import {
 } from '@angular/core';
 
 import { Contributor } from '../../domain/contributor';
-import { MatSelectionListChange } from '@angular/material/list';
+import { MatSelectionListChange, MatSelectionList, MatListOption, MatListItemTitle, MatListItemLine } from '@angular/material/list';
 import { SearchFieldComponent } from '../../shared/search-field/search-field.component';
+import { FormsModule } from '@angular/forms';
+
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-person-search',
-  templateUrl: './person-search.component.html',
-  styleUrls: ['./person-search.component.css'],
-  standalone: false,
+    selector: 'app-person-search',
+    templateUrl: './person-search.component.html',
+    styleUrls: ['./person-search.component.css'],
+    imports: [
+    FormsModule,
+    SearchFieldComponent,
+    MatSelectionList,
+    MatListOption,
+    MatListItemTitle,
+    MatListItemLine,
+    MatIcon
+],
 })
 export class PersonSearchComponent {
   @Input() result: Contributor[] = [];

@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 
 import { ConfigService } from './services/config.service';
 import { Title } from '@angular/platform-browser';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: [],
-  standalone: false,
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: [],
+    imports: [RouterOutlet],
 })
 export class AppComponent implements OnInit {
   constructor(

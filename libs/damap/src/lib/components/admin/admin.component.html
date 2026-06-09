@@ -22,67 +22,74 @@
     "></damap-internal-storage-table>
   <h2 class="selected-storage">
     {{
-      selectedInternalStorageUrl !== null
-        ? ("admin.internalStorage.translation.sectionTitle" | translate)
-        : ("admin.internal-storage-translations-no-selected" | translate)
+    selectedInternalStorageUrl !== null
+    ? ("admin.internalStorage.translation.sectionTitle" | translate)
+    : ("admin.internal-storage-translations-no-selected" | translate)
     }}
     {{ selectedInternalStorageUrl }}
   </h2>
-  <div *ngIf="selectedInternalStorageId === null">
-    <p>
-      {{ "admin.internalStorage.translation.info" | translate }}
-    </p>
-  </div>
-  <div *ngIf="selectedInternalStorageId !== null">
-    <button
-      class="button-position"
-      mat-flat-button
-      (click)="openTranslationDialog()">
-      <mat-icon>add</mat-icon>
-      {{ "admin.internalStorage.translation.action.create" | translate }}
-    </button>
-    <button
-      class="button-position"
-      mat-flat-button
-      (click)="resetStorageSelection()">
-      {{ "admin.internalStorage.selection.reset" | translate }}
-    </button>
-    <damap-internal-storage-translation-table
-      [internalStorageTranslations]="internalStorageTranslations"
+  @if (selectedInternalStorageId === null) {
+    <div>
+      <p>
+        {{ "admin.internalStorage.translation.info" | translate }}
+      </p>
+    </div>
+  }
+  @if (selectedInternalStorageId !== null) {
+    <div>
+      <button
+        class="button-position"
+        mat-flat-button
+        (click)="openTranslationDialog()">
+        <mat-icon>add</mat-icon>
+        {{ "admin.internalStorage.translation.action.create" | translate }}
+      </button>
+      <button
+        class="button-position"
+        mat-flat-button
+        (click)="resetStorageSelection()">
+        {{ "admin.internalStorage.selection.reset" | translate }}
+      </button>
+      <damap-internal-storage-translation-table
+        [internalStorageTranslations]="internalStorageTranslations"
       [selectedInternalStorageId]="
         selectedInternalStorageId
       "></damap-internal-storage-translation-table>
-  </div>
+    </div>
+  }
   <hr />
   <h2 translate>admin.banner.sectionTitle</h2>
-  <div *ngIf="!appBanner">
-    <button
-      class="button-position"
-      mat-flat-button
-      (click)="openBannerDialog('add')">
-      <mat-icon>add</mat-icon>
-      {{ "admin.banner.action.create" | translate }}
-    </button>
-    <p translate>admin.banner.state.missing</p>
-  </div>
-  <div *ngIf="appBanner">
-    <button
-      class="button-position"
-      mat-flat-button
-      (click)="openBannerDialog('edit')">
-      <mat-icon>edit</mat-icon>
-      {{ "admin.banner.action.edit" | translate }}
-    </button>
-    <button class="button-position" mat-flat-button (click)="deleteBanner()">
-      <mat-icon>delete</mat-icon>
-      {{ "admin.banner.action.delete" | translate }}
-    </button>
+  @if (!appBanner) {
     <div>
-      <p>Title: {{ appBanner.title }}</p>
-      <p>Description: {{ appBanner.description }}</p>
-      <p style="display: flex; align-items: center">
-        Color: {{ appBanner.color }}
-        <span
+      <button
+        class="button-position"
+        mat-flat-button
+        (click)="openBannerDialog('add')">
+        <mat-icon>add</mat-icon>
+        {{ "admin.banner.action.create" | translate }}
+      </button>
+      <p translate>admin.banner.state.missing</p>
+    </div>
+  }
+  @if (appBanner) {
+    <div>
+      <button
+        class="button-position"
+        mat-flat-button
+        (click)="openBannerDialog('edit')">
+        <mat-icon>edit</mat-icon>
+        {{ "admin.banner.action.edit" | translate }}
+      </button>
+      <button class="button-position" mat-flat-button (click)="deleteBanner()">
+        <mat-icon>delete</mat-icon>
+        {{ "admin.banner.action.delete" | translate }}
+      </button>
+      <div>
+        <p>Title: {{ appBanner.title }}</p>
+        <p>Description: {{ appBanner.description }}</p>
+        <p style="display: flex; align-items: center">
+          Color: {{ appBanner.color }}
+          <span
           style="
             display: inline-block;
             width: 20px;
@@ -90,10 +97,11 @@
             margin-left: 10px;
           "
           [style.background-color]="appBanner.color"></span>
-      </p>
-      <p>Dismissible: {{ appBanner.dismissible }}</p>
+        </p>
+        <p>Dismissible: {{ appBanner.dismissible }}</p>
+      </div>
     </div>
-  </div>
+  }
   <hr />
   <h2 translate>admin.theme.sectionTitle</h2>
   <button
@@ -142,10 +150,10 @@
 
     <p class="instance-config-hint">
       {{
-        (instanceConfig?.publicAvailable
-          ? "admin.instance-config.public-available-enabled"
-          : "admin.instance-config.public-available-disabled"
-        ) | translate
+      (instanceConfig?.publicAvailable
+      ? "admin.instance-config.public-available-enabled"
+      : "admin.instance-config.public-available-disabled"
+      ) | translate
       }}
     </p>
 
@@ -157,10 +165,10 @@
 
     <p class="instance-config-hint">
       {{
-        (instanceConfig?.consentFormEnabled
-          ? "admin.instance-config.consent-form-enabled-on"
-          : "admin.instance-config.consent-form-enabled-off"
-        ) | translate
+      (instanceConfig?.consentFormEnabled
+      ? "admin.instance-config.consent-form-enabled-on"
+      : "admin.instance-config.consent-form-enabled-off"
+      ) | translate
       }}
     </p>
   </div>

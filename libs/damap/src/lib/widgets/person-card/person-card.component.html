@@ -5,22 +5,24 @@
         <div>
           <mat-icon class="mat-icon-style">person</mat-icon>
           {{ person.firstName }} {{ person.lastName }}
-          <mat-icon
-            *ngIf="contact"
-            class="mat-icon-contact button-color-primary">
-            contact_mail
-          </mat-icon>
+          @if (contact) {
+            <mat-icon
+              class="mat-icon-contact button-color-primary">
+              contact_mail
+            </mat-icon>
+          }
           <span class="sr-only">{{
             "dmp.steps.people.contact.person" | translate
           }}</span>
         </div>
         <mat-icon class="mat-icon-style outline">mail</mat-icon>
         {{ person.mbox }}
-        <app-orcid
-          *ngIf="
-            personId?.identifier && personId?.type === identifierType.ORCID
-          "
+        @if (
+          personId?.identifier && personId?.type === identifierType.ORCID
+          ) {
+          <app-orcid
           [orcidId]="personId?.identifier"></app-orcid>
+        }
       </div>
       <ng-content></ng-content>
     </div>

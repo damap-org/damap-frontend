@@ -8,12 +8,19 @@ import {
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { FlatTreeControl } from '@angular/cdk/tree';
-import {
-  MatTreeFlatDataSource,
-  MatTreeFlattener,
-} from '@angular/material/tree';
+import { MatTreeFlatDataSource, MatTreeFlattener, MatTree, MatTreeNodeDef, MatTreeNode, MatTreeNodeToggle, MatTreeNodePadding } from '@angular/material/tree';
 import { SelectionModel } from '@angular/cdk/collections';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatChipGrid, MatChipRow, MatChipRemove, MatChipInput } from '@angular/material/chips';
+
+import { MatIcon } from '@angular/material/icon';
+import { MatInput } from '@angular/material/input';
+import { MatAutocompleteTrigger, MatAutocomplete, MatOption } from '@angular/material/autocomplete';
+import { MatIconButton } from '@angular/material/button';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
 
 /**
  * Tree data
@@ -98,11 +105,32 @@ export class TreeDatabase {
  * Searchable select form field with tree structured options, shows selected options as chip list.
  */
 @Component({
-  selector: 'app-tree-select-form-field',
-  templateUrl: './tree-select-form-field.component.html',
-  styleUrls: ['./tree-select-form-field.component.css'],
-  providers: [TreeDatabase],
-  standalone: false,
+    selector: 'app-tree-select-form-field',
+    templateUrl: './tree-select-form-field.component.html',
+    styleUrls: ['./tree-select-form-field.component.css'],
+    providers: [TreeDatabase],
+    imports: [
+    MatFormField,
+    MatLabel,
+    MatChipGrid,
+    MatChipRow,
+    MatIcon,
+    MatChipRemove,
+    MatInput,
+    MatChipInput,
+    MatAutocompleteTrigger,
+    MatAutocomplete,
+    MatOption,
+    MatTree,
+    MatTreeNodeDef,
+    MatTreeNode,
+    MatTreeNodeToggle,
+    MatTreeNodePadding,
+    MatIconButton,
+    MatCheckbox,
+    TranslateModule,
+    TranslatePipeMock
+],
 })
 export class TreeSelectFormFieldComponent implements OnInit {
   /** Map from flat node to nested node. This helps us find the nested node to be modified */

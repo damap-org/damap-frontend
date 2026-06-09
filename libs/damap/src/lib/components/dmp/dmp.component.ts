@@ -33,7 +33,7 @@ import { InfoLabelService } from '../../services/infoLabel.service';
 import { InternalStorage } from '../../domain/internal-storage';
 import { LegalEthicalAspectsComponent } from './legal-ethical-aspects/legal-ethical-aspects.component';
 import { LoggerService } from '../../services/logger.service';
-import { MatStepper } from '@angular/material/stepper';
+import { MatStepper, MatStepperIcon, MatStep } from '@angular/material/stepper';
 import { PeopleComponent } from './people/people.component';
 import { Project } from '../../domain/project';
 import { ProjectComponent } from './project/project.component';
@@ -47,18 +47,68 @@ import { select, Store } from '@ngrx/store';
 import { Dmp } from '../../domain/dmp';
 import { selectForm } from '../../store/selectors/form.selectors';
 import { Completeness, SummaryService } from '../../services/summary.service';
+import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
+
+import { MatIcon } from '@angular/material/icon';
+import { ProjectInstructionComponent } from './project/project-instruction/project-instruction.component';
+import { PeopleInstructionComponent } from './people/people-instruction/people-instruction.component';
+import { SpecifyDataInstructionComponent } from './specify-data/specify-data-instruction/specify-data-instruction.component';
+import { DataStorageInstructionComponent } from './data-storage/data-storage-instruction/data-storage-instruction.component';
+import { LegalEthicalInstructionComponent } from './legal-ethical-aspects/legal-ethical-instruction/legal-ethical-instruction.component';
+import { RepoInstructionComponent } from './repo/repo-instruction/repo-instruction.component';
+import { DocDataQualityComponent } from './doc-data-quality/doc-data-quality.component';
+import { DataAccessComponent } from './data-storage/data-access/data-access.component';
+import { StorageComponent } from './data-storage/storage/storage.component';
+import { MatDivider } from '@angular/material/divider';
+import { ExternalStorageComponent } from './data-storage/external-storage/external-storage.component';
+import { LicensesComponent } from './licenses/licenses.component';
+import { ReuseComponent } from './reuse/reuse.component';
+import { CostsComponent } from './costs/costs.component';
+import { SummaryComponent } from './summary/summary.component';
+import { DmpActionsComponent } from './dmp-actions/dmp-actions.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
 
 @Component({
-  selector: 'app-dmp',
-  templateUrl: './dmp.component.html',
-  styleUrls: ['./dmp.component.css'],
-  providers: [
-    {
-      provide: STEPPER_GLOBAL_OPTIONS,
-      useValue: { displayDefaultIndicatorType: false },
-    },
-  ],
-  standalone: false,
+    selector: 'app-dmp',
+    templateUrl: './dmp.component.html',
+    styleUrls: ['./dmp.component.css'],
+    providers: [
+        {
+            provide: STEPPER_GLOBAL_OPTIONS,
+            useValue: { displayDefaultIndicatorType: false },
+        },
+    ],
+    imports: [
+    InfoCardComponent,
+    MatStepper,
+    MatStepperIcon,
+    MatIcon,
+    MatStep,
+    ProjectInstructionComponent,
+    PeopleInstructionComponent,
+    SpecifyDataInstructionComponent,
+    DataStorageInstructionComponent,
+    LegalEthicalInstructionComponent,
+    RepoInstructionComponent,
+    ProjectComponent,
+    PeopleComponent,
+    SpecifyDataComponent,
+    DocDataQualityComponent,
+    DataAccessComponent,
+    StorageComponent,
+    MatDivider,
+    ExternalStorageComponent,
+    LegalEthicalAspectsComponent,
+    LicensesComponent,
+    RepoComponent,
+    ReuseComponent,
+    CostsComponent,
+    SummaryComponent,
+    DmpActionsComponent,
+    TranslateModule,
+    TranslatePipeMock
+],
 })
 export class DmpComponent implements OnInit, OnDestroy {
   config$: Observable<Config> = new Observable<Config>();

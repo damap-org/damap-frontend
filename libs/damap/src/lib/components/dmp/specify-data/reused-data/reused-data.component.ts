@@ -7,12 +7,28 @@ import { LoadingState } from '../../../../domain/enum/loading-state.enum';
 import { AbstractBaseDataComponent } from '../abstract-base-data.component';
 import { DatasetDialogComponent } from '../dataset-dialog/dataset-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { DataMcComponent } from '../data-mc/data-mc.component';
+
+import { MatButton } from '@angular/material/button';
+import { TranslateModule } from '@ngx-translate/core';
+import { DoiSearchComponent } from '../../../../widgets/doi-search/doi-search.component';
+import { DatasetTableComponent } from '../dataset-table/dataset-table.component';
+import { InfoMessageComponent } from '../../../../widgets/info-message/info-message.component';
+import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 
 @Component({
-  selector: 'app-reused-data',
-  templateUrl: './reused-data.component.html',
-  styleUrls: ['./reused-data.component.css'],
-  standalone: false,
+    selector: 'app-reused-data',
+    templateUrl: './reused-data.component.html',
+    styleUrls: ['./reused-data.component.css'],
+    imports: [
+    DataMcComponent,
+    MatButton,
+    TranslateModule,
+    DoiSearchComponent,
+    DatasetTableComponent,
+    InfoMessageComponent,
+    TranslatePipeMock
+],
 })
 export class ReusedDataComponent
   extends AbstractBaseDataComponent

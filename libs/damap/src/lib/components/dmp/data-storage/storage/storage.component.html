@@ -3,68 +3,72 @@
 }}</mat-label>
 <section class="tu-storage">
   <div class="storage-grid">
-    <mat-card
-      appearance="raised"
-      *ngFor="
-        let element of activeStorages
-          | storageFilter: storageStep?.getRawValue()
-      "
-      class="storage-card card-shadow">
-      <mat-card-header
-        (click)="addStorage(element)"
-        (keydown.enter)="addStorage(element)">
-        <div mat-card-avatar>
-          <mat-icon>folder_open</mat-icon>
-        </div>
-        <mat-card-subtitle>{{ getStorageTitle(element) }}</mat-card-subtitle>
-      </mat-card-header>
-      <ng-container *ngIf="element.url">
-        <mat-card-content>
-          <button mat-button (click)="openStorageInfo(element)">
-            {{ "dmp.steps.storage.link" | translate }}
-          </button>
-        </mat-card-content>
-      </ng-container>
-    </mat-card>
+    @for (
+      element of activeStorages
+      | storageFilter: storageStep?.getRawValue()
+      ; track
+      element) {
+      <mat-card
+        appearance="raised"
+        class="storage-card card-shadow">
+        <mat-card-header
+          (click)="addStorage(element)"
+          (keydown.enter)="addStorage(element)">
+          <div mat-card-avatar>
+            <mat-icon>folder_open</mat-icon>
+          </div>
+          <mat-card-subtitle>{{ getStorageTitle(element) }}</mat-card-subtitle>
+        </mat-card-header>
+        @if (element.url) {
+          <mat-card-content>
+            <button mat-button (click)="openStorageInfo(element)">
+              {{ "dmp.steps.storage.link" | translate }}
+            </button>
+          </mat-card-content>
+        }
+      </mat-card>
+    }
   </div>
   <div class="storage-selected" [formGroup]="dmpForm">
     <ng-container formArrayName="storage">
-      <mat-card
-        appearance="raised"
-        *ngFor="let item of storageStep?.controls; let i = index"
-        class="selected-storage-card card-shadow">
-        <mat-card-header>
-          <mat-card-title-group>
-            <mat-card-title>{{ item.value.title }}</mat-card-title>
-            <button
-              mat-icon-button
-              class="button-color-primary"
-              aria-label="{{ 'dmp.steps.storage.remove' | translate }}"
-              (click)="removeStorage(i)">
-              <mat-icon>cancel</mat-icon>
-            </button>
-          </mat-card-title-group>
-        </mat-card-header>
-        <mat-card-content>
-          <div [formGroupName]="i">
-            <div class="form-row">
-              <mat-form-field class="full-width">
-                <mat-label>{{
-                  "dmp.steps.storage.question.datasets" | translate
-                }}</mat-label>
-                <mat-select multiple formControlName="datasets">
-                  <mat-option
-                    panelClass="mat-option-text"
-                    *ngFor="let dataset of datasets?.controls"
-                    [value]="dataset.value.referenceHash">
-                    {{ dataset.value.title }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
+      @for (item of storageStep?.controls; track item; let i = $index) {
+        <mat-card
+          appearance="raised"
+          class="selected-storage-card card-shadow">
+          <mat-card-header>
+            <mat-card-title-group>
+              <mat-card-title>{{ item.value.title }}</mat-card-title>
+              <button
+                mat-icon-button
+                class="button-color-primary"
+                aria-label="{{ 'dmp.steps.storage.remove' | translate }}"
+                (click)="removeStorage(i)">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-card-title-group>
+          </mat-card-header>
+          <mat-card-content>
+            <div [formGroupName]="i">
+              <div class="form-row">
+                <mat-form-field class="full-width">
+                  <mat-label>{{
+                    "dmp.steps.storage.question.datasets" | translate
+                  }}</mat-label>
+                  <mat-select multiple formControlName="datasets">
+                    @for (dataset of datasets?.controls; track dataset) {
+                      <mat-option
+                        panelClass="mat-option-text"
+                        [value]="dataset.value.referenceHash">
+                        {{ dataset.value.title }}
+                      </mat-option>
+                    }
+                  </mat-select>
+                </mat-form-field>
+              </div>
             </div>
-          </div>
-        </mat-card-content>
-      </mat-card>
+          </mat-card-content>
+        </mat-card>
+      }
     </ng-container>
   </div>
 </section>

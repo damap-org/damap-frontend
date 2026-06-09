@@ -4,11 +4,17 @@ import { SecurityMeasure } from '../../../../domain/enum/security-measure.enum';
 import { ComplianceType } from '../../../../domain/enum/compliance-type.enum';
 import { Agreement } from '../../../../domain/enum/agreement.enum';
 
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
+
 @Component({
-  selector: 'app-version-view-legal-ethical-aspects',
-  templateUrl: './version-view-legal-ethical-aspects.component.html',
-  styleUrls: [],
-  standalone: false,
+    selector: 'app-version-view-legal-ethical-aspects',
+    templateUrl: './version-view-legal-ethical-aspects.component.html',
+    styleUrls: [],
+    imports: [
+    TranslateModule,
+    TranslatePipeMock
+],
 })
 export class VersionViewLegalEthicalAspectsComponent {
   @Input() dmp: Dmp;

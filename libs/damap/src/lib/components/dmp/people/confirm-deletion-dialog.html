@@ -4,7 +4,9 @@
 <mat-dialog-content>
   {{'dmp.steps.people.delete.dialog.question' | translate}}
   <ul>
-    <li *ngFor="let dataset of data">{{dataset.title}}</li>
+    @for (dataset of data; track dataset) {
+      <li>{{dataset.title}}</li>
+    }
   </ul>
 </mat-dialog-content>
 <mat-dialog-actions align="start">

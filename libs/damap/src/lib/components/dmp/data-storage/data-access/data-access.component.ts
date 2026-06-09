@@ -1,12 +1,31 @@
 import { Component, Input } from '@angular/core';
-import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';
+import { UntypedFormArray, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccessRight } from '../../../../domain/enum/access-right.enum';
+import { MatLabel, MatFormField } from '@angular/material/form-field';
+import { MatCard, MatCardContent } from '@angular/material/card';
+import { KeyValuePipe } from '@angular/common';
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/autocomplete';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 
 @Component({
-  selector: 'app-data-access',
-  templateUrl: './data-access.component.html',
-  styleUrls: ['./data-access.component.css'],
-  standalone: false,
+    selector: 'app-data-access',
+    templateUrl: './data-access.component.html',
+    styleUrls: ['./data-access.component.css'],
+    imports: [
+    MatLabel,
+    MatCard,
+    MatCardContent,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatSelect,
+    MatOption,
+    KeyValuePipe,
+    TranslateModule,
+    TranslatePipeMock
+],
 })
 export class DataAccessComponent {
   @Input() dmpForm: UntypedFormGroup;

@@ -9,7 +9,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ImageThemeService } from '../../../../../../../apps/damap-frontend/src/app/services/image-theme.service';
 
-import { CommonModule } from '@angular/common';
+
 import { FeedbackService } from '../../../services/feedback.service';
 import { BackendService } from '../../../services/backend.service';
 import { MatButtonModule } from '@angular/material/button';
@@ -43,7 +43,6 @@ const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
   styleUrls: ['./edit-images-page.component.css'],
   standalone: true,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     FormsModule,
     MatSidenavModule,
@@ -56,8 +55,8 @@ const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
     MatProgressSpinnerModule,
     MatTooltipModule,
     MatCheckboxModule,
-    TranslateModule,
-  ],
+    TranslateModule
+],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditImagesPageComponent {

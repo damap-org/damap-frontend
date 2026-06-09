@@ -11,8 +11,8 @@ import {
 } from '@angular/material-moment-adapter';
 
 import { CommonModule } from '@angular/common';
-import { ErrorMessageModule } from '../../../widgets/error-message/error-message.module';
-import { InfoMessageModule } from '../../../widgets/info-message/info-message.module';
+
+
 import { ManualProjectInputComponent } from './manual-project-input/manual-project-input.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -30,19 +30,14 @@ import { NgModule } from '@angular/core';
 import { ProjectComponent } from './project.component';
 import { ProjectInstructionComponent } from './project-instruction/project-instruction.component';
 import { ProjectListComponent } from './project-list/project-list.component';
-import { SharedModule } from '../../../shared/shared.module';
-import { ToggleButtonsModule } from '../../../widgets/toggle-buttons/toggle-buttons.module';
+
+
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-  imports: [
+    imports: [
     CommonModule,
     TranslateModule,
-    ErrorMessageModule,
-    SharedModule,
-    InfoMessageModule,
-    ToggleButtonsModule,
-
     // Materials
     MatCardModule,
     MatButtonModule,
@@ -54,20 +49,15 @@ import { TranslateModule } from '@ngx-translate/core';
     MatDatepickerModule,
     MatMomentDateModule,
     MatTabsModule,
-  ],
-  declarations: [
     ProjectComponent,
     ManualProjectInputComponent,
     ProjectListComponent,
     ProjectInstructionComponent,
-  ],
-  exports: [
+],
+    exports: [
     CommonModule,
     TranslateModule,
-    ErrorMessageModule,
-    SharedModule,
     ProjectComponent,
-    InfoMessageModule,
     ProjectComponent,
     ProjectInstructionComponent,
     MatCardModule,
@@ -79,20 +69,20 @@ import { TranslateModule } from '@ngx-translate/core';
     MatTooltipModule,
     MatDatepickerModule,
     MatTabsModule,
-  ],
-  providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
-    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
-    {
-      provide: DateAdapter,
-      useClass: MomentDateAdapter,
-      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
-    },
-    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
-    {
-      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-      useValue: { appearance: 'outline' },
-    },
-  ],
+],
+    providers: [
+        { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+        { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
+        {
+            provide: DateAdapter,
+            useClass: MomentDateAdapter,
+            deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
+        },
+        { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
+        {
+            provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+            useValue: { appearance: 'outline' },
+        },
+    ],
 })
 export class ProjectModule {}

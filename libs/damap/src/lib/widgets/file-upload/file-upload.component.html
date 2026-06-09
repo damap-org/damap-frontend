@@ -26,19 +26,21 @@
 
 <!-- FILES -->
 <div>
-  <ng-container *ngFor="let upload of fileUpload; let i = index">
-    <div class="progress" *ngIf="!upload.finalized">
-      <div class="progress-row">
-        {{ upload.file.name }}
-        <button mat-icon-button class="cancel-upload" (click)="cancelUpload(i)">
-          <mat-icon>clear</mat-icon>
-        </button>
+  @for (upload of fileUpload; track upload; let i = $index) {
+    @if (!upload.finalized) {
+      <div class="progress">
+        <div class="progress-row">
+          {{ upload.file.name }}
+          <button mat-icon-button class="cancel-upload" (click)="cancelUpload(i)">
+            <mat-icon>clear</mat-icon>
+          </button>
+        </div>
+        <mat-progress-bar
+          class="progress-bar"
+          mode="determinate"
+          [value]="upload.progress">
+        </mat-progress-bar>
       </div>
-      <mat-progress-bar
-        class="progress-bar"
-        mode="determinate"
-        [value]="upload.progress">
-      </mat-progress-bar>
-    </div>
-  </ng-container>
+    }
+  }
 </div>

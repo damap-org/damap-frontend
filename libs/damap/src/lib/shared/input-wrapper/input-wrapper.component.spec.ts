@@ -13,15 +13,15 @@ describe('InputFormFieldWrapperComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         MatFormFieldModule,
         MatInputModule,
         ReactiveFormsModule,
         NoopAnimationsModule,
         TranslateTestingModule,
-      ],
-      declarations: [InputWrapperComponent],
-    }).compileComponents();
+        InputWrapperComponent,
+    ],
+}).compileComponents();
   }));
 
   beforeEach(() => {

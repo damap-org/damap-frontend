@@ -15,9 +15,8 @@ describe('TooltipComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [MatTooltipModule, NoopAnimationsModule, TranslateTestingModule],
-      declarations: [TooltipComponent],
-    }).compileComponents();
+    imports: [MatTooltipModule, NoopAnimationsModule, TranslateTestingModule, TooltipComponent],
+}).compileComponents();
     fixture = TestBed.createComponent(TooltipComponent);
     component = fixture.componentInstance;
     component.tooltip = 'placeholder';

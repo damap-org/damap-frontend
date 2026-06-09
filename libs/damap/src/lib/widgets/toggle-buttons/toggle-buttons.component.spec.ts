@@ -10,10 +10,9 @@ describe('ToggleButtonsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ToggleButtonsComponent],
-      imports: [TranslateModule.forRoot()],
-      schemas: [NO_ERRORS_SCHEMA],
-    }).compileComponents();
+    imports: [TranslateModule.forRoot(), ToggleButtonsComponent],
+    schemas: [NO_ERRORS_SCHEMA],
+}).compileComponents();
 
     fixture = TestBed.createComponent(ToggleButtonsComponent);
     component = fixture.componentInstance;

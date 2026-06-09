@@ -3,12 +3,34 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Project } from '../../../domain/project';
 import { UntypedFormControl } from '@angular/forms';
 import { ConfigService } from '../../../../../../../apps/damap-frontend/src/app/services/config.service';
+import { DatePipe } from '@angular/common';
+import { MatLabel } from '@angular/material/form-field';
+import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
+import { MatIcon } from '@angular/material/icon';
+import { MatIconButton } from '@angular/material/button';
+import { ProjectListComponent } from './project-list/project-list.component';
+import { ManualProjectInputComponent } from './manual-project-input/manual-project-input.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
 
 @Component({
-  selector: 'app-dmp-project',
-  templateUrl: './project.component.html',
-  styleUrls: [],
-  standalone: false,
+    selector: 'app-dmp-project',
+    templateUrl: './project.component.html',
+    styleUrls: [],
+    imports: [
+    MatLabel,
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent,
+    MatIcon,
+    MatIconButton,
+    ProjectListComponent,
+    ManualProjectInputComponent,
+    DatePipe,
+    TranslateModule,
+    TranslatePipeMock
+],
 })
 export class ProjectComponent {
   @Input() projectStep: UntypedFormControl;

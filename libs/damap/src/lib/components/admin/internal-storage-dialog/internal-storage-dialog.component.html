@@ -1,32 +1,35 @@
 <h1 mat-dialog-title>
-  <ng-container *ngIf="mode === 'edit'; else add">{{
+  @if (mode === 'edit') {
+    {{
     "admin.internalStorage.dialog.title.edit" | translate
-  }}</ng-container>
-  <ng-template #add>{{
+    }}
+  } @else {
+    {{
     "admin.internalStorage.dialog.title.create" | translate
-  }}</ng-template>
+    }}
+  }
 </h1>
 
 <mat-dialog-content id="datasetDialog">
   <div [formGroup]="storage">
     <app-input-wrapper
       [label]="'admin.internalStorage.dialog.field.url' | translate"
-      [control]="url"></app-input-wrapper>
+    [control]="url"></app-input-wrapper>
     <app-input-wrapper
       [label]="'admin.internalStorage.dialog.field.storageLocation' | translate"
-      [control]="storageLocation"></app-input-wrapper>
+    [control]="storageLocation"></app-input-wrapper>
     <app-input-wrapper
       [label]="'admin.internalStorage.dialog.field.backupLocation' | translate"
-      [control]="backupLocation"></app-input-wrapper>
+    [control]="backupLocation"></app-input-wrapper>
     <mat-checkbox formControlName="active">
       {{ "admin.internalStorage.dialog.field.active" | translate }}
     </mat-checkbox>
-    <div *ngIf="mode === 'add'">
-      <div [formGroup]="storageTranslation">
-        <hr />
-
-        <app-language-code-input
-          class="dialogRow"
+    @if (mode === 'add') {
+      <div>
+        <div [formGroup]="storageTranslation">
+          <hr />
+          <app-language-code-input
+            class="dialogRow"
           [label]="
             'admin.internalStorage.translation.dialog.field.languageCode'
               | translate
@@ -35,7 +38,7 @@
             'admin.internalStorage.translation.dialog.field.languageCodeHint'
               | translate
           "
-          [control]="languageCode"
+            [control]="languageCode"
           [errorMessageRequired]="
             'admin.internalStorage.translation.dialog.field.languageCodeRequired'
               | translate
@@ -44,30 +47,28 @@
             'admin.internalStorage.translation.dialog.field.languageCodeInvalid'
               | translate
           ">
-        </app-language-code-input>
-
-        <app-input-wrapper
+          </app-language-code-input>
+          <app-input-wrapper
           [label]="
             'admin.internalStorage.translation.dialog.field.title' | translate
           "
           [control]="title"></app-input-wrapper>
-
-        <app-textarea-wrapper
+          <app-textarea-wrapper
           [label]="
             'admin.internalStorage.translation.dialog.field.description'
               | translate
           "
-          [control]="description"
+            [control]="description"
           [maxLength]="4000"></app-textarea-wrapper>
-
-        <app-input-wrapper
+          <app-input-wrapper
           [label]="
             'admin.internalStorage.translation.dialog.field.backupFrequency'
               | translate
           "
           [control]="backupFrequency"></app-input-wrapper>
+        </div>
       </div>
-    </div>
+    }
   </div>
 </mat-dialog-content>
 
@@ -76,11 +77,15 @@
     {{ "admin.dialog.internal-storage.button.cancel" | translate }}
   </button>
   <button (click)="onDialogClose()" mat-flat-button [disabled]="isDisabled()">
-    <ng-container *ngIf="mode === 'edit'">{{
+    @if (mode === 'edit') {
+      {{
       "admin.dialog.internal-storage.button.update" | translate
-    }}</ng-container>
-    <ng-container *ngIf="mode === 'add'">{{
+      }}
+    }
+    @if (mode === 'add') {
+      {{
       "admin.dialog.internal-storage.button.add" | translate
-    }}</ng-container>
+      }}
+    }
   </button>
 </mat-dialog-actions>

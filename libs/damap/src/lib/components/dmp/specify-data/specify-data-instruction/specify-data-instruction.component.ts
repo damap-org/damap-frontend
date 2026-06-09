@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { ToggleButtonsComponent } from '../../../../widgets/toggle-buttons/toggle-buttons.component';
 
 @Component({
-  selector: 'app-specify-data-instruction',
-  templateUrl: './specify-data-instruction.component.html',
-  standalone: false,
+    selector: 'app-specify-data-instruction',
+    templateUrl: './specify-data-instruction.component.html',
+    imports: [ToggleButtonsComponent],
 })
 export class SpecifyDataInstructionComponent {
   @Output() selectionChange = new EventEmitter<

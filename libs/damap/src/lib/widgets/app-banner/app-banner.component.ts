@@ -1,12 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Banner } from '../../domain/banner';
 import { BackendService } from '../../services/backend.service';
+import { NgStyle } from '@angular/common';
+import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-banner',
-  templateUrl: './app-banner.component.html',
-  styleUrls: ['./app-banner.component.css'],
-  standalone: false,
+    selector: 'app-banner',
+    templateUrl: './app-banner.component.html',
+    styleUrls: ['./app-banner.component.css'],
+    imports: [
+    MatCard,
+    NgStyle,
+    MatCardHeader,
+    MatCardTitle,
+    MatIcon,
+    MatCardContent
+],
 })
 export class AppBannerComponent implements OnInit {
   constructor(private backendService: BackendService) {}

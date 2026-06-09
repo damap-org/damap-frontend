@@ -2,11 +2,13 @@ import { Component, Input } from '@angular/core';
 
 import { Router } from '@angular/router';
 
+import { MatIcon } from '@angular/material/icon';
+
 @Component({
-  selector: 'app-flip-card',
-  templateUrl: './flip-card.component.html',
-  styleUrls: ['./flip-card.component.css'],
-  standalone: false,
+    selector: 'app-flip-card',
+    templateUrl: './flip-card.component.html',
+    styleUrls: ['./flip-card.component.css'],
+    imports: [MatIcon],
 })
 export class FlipCardComponent {
   @Input() frontContent: string;

@@ -1,12 +1,36 @@
 import { Component, Input } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataQualityType } from '../../../domain/enum/data-quality-type.enum';
+import { KeyValuePipe } from '@angular/common';
+import { MatLabel, MatHint, MatFormField } from '@angular/material/form-field';
+import { MatCard, MatCardContent } from '@angular/material/card';
+import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
+import { TooltipComponent } from '../../../widgets/tooltip/tooltip.component';
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/autocomplete';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
 
 @Component({
-  selector: 'app-dmp-doc-data-quality',
-  templateUrl: './doc-data-quality.component.html',
-  styleUrls: ['./doc-data-quality.component.css'],
-  standalone: false,
+    selector: 'app-dmp-doc-data-quality',
+    templateUrl: './doc-data-quality.component.html',
+    styleUrls: ['./doc-data-quality.component.css'],
+    imports: [
+    MatLabel,
+    MatCard,
+    MatCardContent,
+    TextareaWrapperComponent,
+    TooltipComponent,
+    MatHint,
+    MatFormField,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelect,
+    MatOption,
+    KeyValuePipe,
+    TranslateModule,
+    TranslatePipeMock
+],
 })
 export class DocDataQualityComponent {
   @Input() docDataStep: UntypedFormGroup;

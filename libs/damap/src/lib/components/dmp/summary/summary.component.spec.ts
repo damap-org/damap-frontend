@@ -34,19 +34,18 @@ describe('SummaryComponent', () => {
     backendSpy.getBenchmarks.and.returnValue(of([]));
 
     TestBed.configureTestingModule({
-      imports: [MatTableModule, MatProgressBarModule, TranslateTestingModule],
-      declarations: [SummaryComponent],
-      providers: [
+    imports: [MatTableModule, MatProgressBarModule, TranslateTestingModule, SummaryComponent],
+    providers: [
         { provide: BackendService, useValue: backendSpy },
         provideMockStore({
-          initialState,
-          selectors: [
-            { selector: selectForm, value: completeDmp },
-            { selector: selectFormContact, value: mockContact },
-          ],
+            initialState,
+            selectors: [
+                { selector: selectForm, value: completeDmp },
+                { selector: selectFormContact, value: mockContact },
+            ],
         }),
-      ],
-    }).compileComponents();
+    ],
+}).compileComponents();
   }));
 
   beforeEach(() => {

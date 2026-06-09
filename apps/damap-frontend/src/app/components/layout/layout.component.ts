@@ -7,25 +7,61 @@ import {
   ViewChild,
 } from '@angular/core';
 import { AuthService, BackendService } from '@damap/core';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { Subscription, filter, take } from 'rxjs';
 
 import { AdminComponent } from '../../../../../../libs/damap/src/lib/components/admin/admin.component'; // eslint-disable-line
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ConfigService } from '../../services/config.service';
 import { DmpComponent } from '../../../../../../libs/damap/src/lib/components/dmp/dmp.component'; // eslint-disable-line
-import { MatSidenav } from '@angular/material/sidenav';
+import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav';
 import { SafeUrl } from '@angular/platform-browser';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import pkg from '../../../../../../package.json'; // eslint-disable-line
 import { ImageThemeService } from '../../services/image-theme.service';
 import { IMAGE_KEYS } from '../../../../../../libs/damap/src/lib/domain/image-keys';
+import { NgClass, NgStyle } from '@angular/common';
+import { MatIconButton, MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
+import { MatNavList, MatListItem } from '@angular/material/list';
+import { MatDivider } from '@angular/material/divider';
+import { MatTooltip } from '@angular/material/tooltip';
+import { EnvBannerComponent } from '../../../../../../libs/damap/src/lib/widgets/env-banner/env-banner.component';
+import { AppBannerComponent } from '../../../../../../libs/damap/src/lib/widgets/app-banner/app-banner.component';
+import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
+import { TranslatePipeMock } from '../../../../../../libs/damap/src/lib/testing/translate-testing/translate-testing.module';
 
 @Component({
-  selector: 'app-layout',
-  templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.css'],
-  standalone: false,
+    selector: 'app-layout',
+    templateUrl: './layout.component.html',
+    styleUrls: ['./layout.component.css'],
+    imports: [
+    MatSidenavContainer,
+    MatSidenav,
+    NgClass,
+    NgStyle,
+    MatIconButton,
+    MatIcon,
+    RouterLink,
+    MatButton,
+    MatMenuTrigger,
+    MatMenu,
+    MatMenuItem,
+    MatNavList,
+    MatListItem,
+    RouterLinkActive,
+    MatDivider,
+    MatTooltip,
+    MatSidenavContent,
+    EnvBannerComponent,
+    AppBannerComponent,
+    MatToolbar,
+    MatToolbarRow,
+    RouterOutlet,
+    TranslateModule,
+    TranslatePipeMock
+],
 })
 export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('sidenav', { static: true }) sidenav!: MatSidenav;

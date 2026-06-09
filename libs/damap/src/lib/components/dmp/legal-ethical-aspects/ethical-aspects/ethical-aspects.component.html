@@ -5,10 +5,10 @@
         {{ "dmp.steps.legal.question.humanParticipants" | translate }}
       </label>
       <app-tooltip
-        [tooltip]="'dmp.steps.legal.help.humanParticipants'"></app-tooltip>
+      [tooltip]="'dmp.steps.legal.help.humanParticipants'"></app-tooltip>
       <div class="flex-radio">
         <app-cris-tag
-          [cris]="legalEthicalStep?.value.humanParticipantsCris"></app-cris-tag>
+        [cris]="legalEthicalStep?.value.humanParticipantsCris"></app-cris-tag>
         <mat-radio-group
           aria-labelledby="humanParticipants"
           formControlName="humanParticipants">
@@ -20,124 +20,130 @@
           </mat-radio-button>
         </mat-radio-group>
       </div>
-      <app-info-message
-        *ngIf="legalEthicalStep.controls.humanParticipants.value">
-        {{ "dmp.steps.legal.info.humanParticipants.prefix" | translate }}
-        <a
+      @if (legalEthicalStep.controls.humanParticipants.value) {
+        <app-info-message
+          >
+          {{ "dmp.steps.legal.info.humanParticipants.prefix" | translate }}
+          <a
           href="{{
             'dmp.steps.legal.info.humanParticipants.researchEthicsCoordination.link'
               | translate
           }}"
-          target="_blank"
-          rel="noopener"
-          >{{
+            target="_blank"
+            rel="noopener"
+            >{{
             "dmp.steps.legal.info.humanParticipants.researchEthicsCoordination.text"
-              | translate
-          }}</a
-        >
-        {{ "dmp.steps.legal.info.humanParticipants.middle" | translate }}
-        <a
+            | translate
+            }}</a
+            >
+            {{ "dmp.steps.legal.info.humanParticipants.middle" | translate }}
+            <a
           href="{{
             'dmp.steps.legal.info.humanParticipants.researchEthics.link'
               | translate
           }}"
-          target="_blank"
-          rel="noopener"
-          >{{
-            "dmp.steps.legal.info.humanParticipants.researchEthics.text"
+              target="_blank"
+              rel="noopener"
+              >{{
+              "dmp.steps.legal.info.humanParticipants.researchEthics.text"
               | translate
-          }}</a
-        >
-        .
-      </app-info-message>
+              }}</a
+              >
+              .
+            </app-info-message>
+          }
 
-      <label id="ethicalIssues">
-        {{ "dmp.steps.legal.question.ethicalIssues" | translate }}
-      </label>
-      <app-tooltip
-        [tooltip]="'dmp.steps.legal.help.ethicalIssues'"></app-tooltip>
-      <div class="flex-radio">
-        <mat-radio-group
-          aria-labelledby="ethicalIssues"
-          formControlName="ethicalIssues">
-          <app-cris-tag
-            [cris]="legalEthicalStep?.value.ethicalIssuesCris"></app-cris-tag>
-          <mat-radio-button class="boolean-mat-radio-button" [value]="true">
-            {{ "dmp.steps.legal.question.answer.yes" | translate }}
-          </mat-radio-button>
-          <mat-radio-button class="boolean-mat-radio-button" [value]="false">
-            {{ "dmp.steps.legal.question.answer.no" | translate }}
-          </mat-radio-button>
-        </mat-radio-group>
-      </div>
-      <app-info-message *ngIf="legalEthicalStep.controls.ethicalIssues.value">
-        {{ "dmp.steps.legal.info.ethicalIssues.text" | translate }}
-        <a
+          <label id="ethicalIssues">
+            {{ "dmp.steps.legal.question.ethicalIssues" | translate }}
+          </label>
+          <app-tooltip
+          [tooltip]="'dmp.steps.legal.help.ethicalIssues'"></app-tooltip>
+          <div class="flex-radio">
+            <mat-radio-group
+              aria-labelledby="ethicalIssues"
+              formControlName="ethicalIssues">
+              <app-cris-tag
+              [cris]="legalEthicalStep?.value.ethicalIssuesCris"></app-cris-tag>
+              <mat-radio-button class="boolean-mat-radio-button" [value]="true">
+                {{ "dmp.steps.legal.question.answer.yes" | translate }}
+              </mat-radio-button>
+              <mat-radio-button class="boolean-mat-radio-button" [value]="false">
+                {{ "dmp.steps.legal.question.answer.no" | translate }}
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+          @if (legalEthicalStep.controls.ethicalIssues.value) {
+            <app-info-message>
+              {{ "dmp.steps.legal.info.ethicalIssues.text" | translate }}
+              <a
           href="{{
             'dmp.steps.legal.info.ethicalIssues.researchEthics.link' | translate
           }}"
-          target="_blank"
-          rel="noopener"
-          >{{
-            "dmp.steps.legal.info.ethicalIssues.researchEthics.text" | translate
-          }}</a
-        >
-        .
-      </app-info-message>
+                target="_blank"
+                rel="noopener"
+                >{{
+                "dmp.steps.legal.info.ethicalIssues.researchEthics.text" | translate
+                }}</a
+                >
+                .
+              </app-info-message>
+            }
 
-      <label id="committeeReviewed">
-        {{ "dmp.steps.legal.question.committeeReviewed.prefix" | translate }}
-        <a
+            <label id="committeeReviewed">
+              {{ "dmp.steps.legal.question.committeeReviewed.prefix" | translate }}
+              <a
           href="{{
             'dmp.steps.legal.question.committeeReviewed.researchCommittee.link'
               | translate
           }}"
-          target="_blank"
-          rel="noopener"
-          >{{
-            "dmp.steps.legal.question.committeeReviewed.researchCommittee.text"
-              | translate
-          }}</a
-        >
-        {{ "dmp.steps.legal.question.committeeReviewed.suffix" | translate }}
-      </label>
-      <div class="flex-radio">
-        <app-cris-tag
-          [cris]="legalEthicalStep?.value.committeeReviewedCris"></app-cris-tag>
-        <mat-radio-group
-          aria-labelledby="committeeReviewed"
-          formControlName="committeeReviewed">
-          <mat-radio-button class="boolean-mat-radio-button" [value]="true">
-            {{ "dmp.steps.legal.question.answer.yes" | translate }}
-          </mat-radio-button>
-          <mat-radio-button class="boolean-mat-radio-button" [value]="false">
-            {{ "dmp.steps.legal.question.answer.no" | translate }}
-          </mat-radio-button>
-        </mat-radio-group>
-      </div>
-      <div
-        *ngIf="
-          legalEthicalStep.controls.committeeReviewed.value &&
-          ethicalReportEnabled
-        ">
-        <app-input-wrapper
-          [label]="'dmp.steps.legal.question.ethicalIssueReport'"
-          [maxLength]="255"
-          [control]="ethicalIssuesReport"></app-input-wrapper>
-      </div>
-      <app-info-message>
-        {{ "dmp.steps.legal.info.committeeReviewed.prefix" | translate }}
-        <a
+                target="_blank"
+                rel="noopener"
+                >{{
+                "dmp.steps.legal.question.committeeReviewed.researchCommittee.text"
+                | translate
+                }}</a
+                >
+                {{ "dmp.steps.legal.question.committeeReviewed.suffix" | translate }}
+              </label>
+              <div class="flex-radio">
+                <app-cris-tag
+                [cris]="legalEthicalStep?.value.committeeReviewedCris"></app-cris-tag>
+                <mat-radio-group
+                  aria-labelledby="committeeReviewed"
+                  formControlName="committeeReviewed">
+                  <mat-radio-button class="boolean-mat-radio-button" [value]="true">
+                    {{ "dmp.steps.legal.question.answer.yes" | translate }}
+                  </mat-radio-button>
+                  <mat-radio-button class="boolean-mat-radio-button" [value]="false">
+                    {{ "dmp.steps.legal.question.answer.no" | translate }}
+                  </mat-radio-button>
+                </mat-radio-group>
+              </div>
+              @if (
+                legalEthicalStep.controls.committeeReviewed.value &&
+                ethicalReportEnabled
+                ) {
+                <div
+                  >
+                  <app-input-wrapper
+                    [label]="'dmp.steps.legal.question.ethicalIssueReport'"
+                    [maxLength]="255"
+                  [control]="ethicalIssuesReport"></app-input-wrapper>
+                </div>
+              }
+              <app-info-message>
+                {{ "dmp.steps.legal.info.committeeReviewed.prefix" | translate }}
+                <a
           href="{{
             'dmp.steps.legal.info.committeeReviewed.mail.link' | translate
           }}"
-          rel="noopener"
-          >{{
-            "dmp.steps.legal.info.committeeReviewed.mail.text" | translate
-          }}</a
-        >
-        {{ "dmp.steps.legal.info.committeeReviewed.suffix" | translate }}
-      </app-info-message>
-    </div>
-  </mat-card-content>
-</mat-card>
+                  rel="noopener"
+                  >{{
+                  "dmp.steps.legal.info.committeeReviewed.mail.text" | translate
+                  }}</a
+                  >
+                  {{ "dmp.steps.legal.info.committeeReviewed.suffix" | translate }}
+                </app-info-message>
+              </div>
+            </mat-card-content>
+          </mat-card>

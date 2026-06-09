@@ -12,18 +12,26 @@
       </div>
       <div><strong translate>gdpr.user-info.id</strong>: {{ userId }}</div>
     </mat-expansion-panel>
-    <mat-expansion-panel *ngFor="let item of gdpr$ | async">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          {{ item.entity }}
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <div *ngFor="let entry of item.entries; last as last">
-        <div *ngFor="let property of entry | keyvalue">
-          <strong>{{ property.key }}:</strong> {{ property.value }}
-        </div>
-        <hr *ngIf="!last" />
-      </div>
-    </mat-expansion-panel>
+    @for (item of gdpr$ | async; track item) {
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ item.entity }}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        @for (entry of item.entries; track entry; let last = $last) {
+          <div>
+            @for (property of entry | keyvalue; track property) {
+              <div>
+                <strong>{{ property.key }}:</strong> {{ property.value }}
+              </div>
+            }
+            @if (!last) {
+              <hr />
+            }
+          </div>
+        }
+      </mat-expansion-panel>
+    }
   </mat-accordion>
 </div>

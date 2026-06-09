@@ -1,10 +1,11 @@
 import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { ConfigService } from '../../../../../../../../apps/damap-frontend/src/app/services/config.service';
+import { ToggleButtonsComponent } from '../../../../widgets/toggle-buttons/toggle-buttons.component';
 
 @Component({
-  selector: 'app-project-instruction',
-  templateUrl: './project-instruction.component.html',
-  standalone: false,
+    selector: 'app-project-instruction',
+    templateUrl: './project-instruction.component.html',
+    imports: [ToggleButtonsComponent],
 })
 export class ProjectInstructionComponent implements OnInit {
   @Output() selectionChange = new EventEmitter<
