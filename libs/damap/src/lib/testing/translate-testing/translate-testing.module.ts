@@ -42,6 +42,10 @@ export class TranslateServiceStub {
     return of(key);
   }
 
+  public getTranslation(lang: string): Observable<any> {
+    return of({});
+  }
+
   public use(key: string): void {
     this._currentLang = key;
   }
