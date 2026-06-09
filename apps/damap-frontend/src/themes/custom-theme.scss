@@ -1,9 +1,9 @@
-@use "node_modules/@angular/material/index" as mat;
+@use "@angular/material" as mat;
 @use "sass:map";
 // Plus imports for other components in your app.
 // Depending on your layout you will want to include your own palettes or import an
 // Angular Material prebuilt theme of your choice.
-@use "apps/damap-frontend/src/themes/custom-palettes" as palettes;
+@use "./custom-palettes" as palettes;
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.

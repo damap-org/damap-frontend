@@ -63,10 +63,10 @@
     "zone.js": "0.15.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "21.2.14",
     "@angular-devkit/core": "21.2.14",
     "@angular-devkit/schematics": "21.2.14",
     "@angular-eslint/builder": "^21.4.0",
+    "@angular/build": "^21.2.14",
     "@angular/compiler-cli": "21.2.16",
     "@angular/language-service": "21.2.16",
     "@cypress/schematic": "^4.0.0",
