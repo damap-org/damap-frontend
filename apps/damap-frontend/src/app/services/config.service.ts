@@ -43,7 +43,7 @@ export class ConfigService {
         }
         this.backendDown$.next(false);
         if (!config) {
-          // eslint-disable-next-line no-console
+           
           console.warn('Config is missing!');
           return new Promise<boolean>(resolve => resolve(false));
         } else {
@@ -53,7 +53,7 @@ export class ConfigService {
           this.imageThemeService.applyTheming(config);
           const appTitle = config.appTitle;
           if (!appTitle) {
-            // eslint-disable-next-line no-console
+             
             console.warn('App title is missing in the config');
           }
           const authConfig: AuthConfig = {
@@ -85,7 +85,7 @@ export class ConfigService {
                 }
                 const appTitle = config.appTitle;
                 if (!appTitle) {
-                  // eslint-disable-next-line no-console
+                   
                   console.warn('App title is missing in the config');
                 }
 
@@ -98,7 +98,7 @@ export class ConfigService {
             })
             .catch(error => {
               // TODO: Use the same error handling mechanism as the main config call
-              /* eslint-disable no-console */
+               
               console.error(
                 'Failed to load tenant specific config after login - please make sure your backend is up and running!',
               );
@@ -108,7 +108,7 @@ export class ConfigService {
         }
       })
       .catch(error => {
-        /* eslint-disable no-console */
+         
         console.error(
           'Failed to load config - please make sure your backend is up and running!',
         );
