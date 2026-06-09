@@ -16,8 +16,6 @@ import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/autocomplete';
 import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-dmp-costs',
     templateUrl: './costs.component.html',
@@ -47,8 +45,7 @@ import { TranslatePipeMock } from '../../../testing/translate-testing/translate-
     TextareaWrapperComponent,
     CurrencyPipe,
     KeyValuePipe,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class CostsComponent {

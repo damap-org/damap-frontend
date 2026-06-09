@@ -14,8 +14,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { DoiSearchComponent } from '../../../../widgets/doi-search/doi-search.component';
 import { DatasetTableComponent } from '../dataset-table/dataset-table.component';
 import { InfoMessageComponent } from '../../../../widgets/info-message/info-message.component';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-reused-data',
     templateUrl: './reused-data.component.html',
@@ -26,8 +24,7 @@ import { TranslatePipeMock } from '../../../../testing/translate-testing/transla
     TranslateModule,
     DoiSearchComponent,
     DatasetTableComponent,
-    InfoMessageComponent,
-    TranslatePipeMock
+    InfoMessageComponent
 ],
 })
 export class ReusedDataComponent

@@ -26,8 +26,6 @@ import { SearchFieldComponent } from '../../../../shared/search-field/search-fie
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-project-list',
     templateUrl: './project-list.component.html',
@@ -43,8 +41,7 @@ import { TranslatePipeMock } from '../../../../testing/translate-testing/transla
     MatTooltip,
     AsyncPipe,
     DatePipe,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class ProjectListComponent implements OnInit, AfterViewInit {

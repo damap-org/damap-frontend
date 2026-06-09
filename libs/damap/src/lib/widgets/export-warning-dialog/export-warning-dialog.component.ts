@@ -11,8 +11,6 @@ import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/autocomplete';
 import { MatButton } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'damap-export-warning-dialog',
     templateUrl: './export-warning-dialog.html',
@@ -27,8 +25,7 @@ import { TranslatePipeMock } from '../../testing/translate-testing/translate-tes
     MatOption,
     MatButton,
     MatDialogClose,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class ExportWarningDialogComponent {

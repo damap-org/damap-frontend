@@ -8,8 +8,6 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 
 import { MatButton } from '@angular/material/button';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-information-component',
     templateUrl: './dataset-information.component.html',
@@ -20,8 +18,7 @@ import { TranslatePipeMock } from '../../../../testing/translate-testing/transla
     MatDialogContent,
     MatDialogActions,
     MatButton,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class DatasetInformationComponent {

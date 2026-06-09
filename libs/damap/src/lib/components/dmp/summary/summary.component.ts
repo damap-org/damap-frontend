@@ -37,8 +37,6 @@ import { MatChipSet, MatChip } from '@angular/material/chips';
 import { MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle } from '@angular/material/expansion';
 import { MatIcon } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
-
 type LoadingState = 'idle' | 'loading' | 'loaded' | 'failed';
 type EvalState = 'idle' | 'loading' | 'done' | 'failed';
 
@@ -75,8 +73,7 @@ type EvalState = 'idle' | 'loading' | 'done' | 'failed';
     MatExpansionPanelTitle,
     MatIcon,
     NgClass,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class SummaryComponent implements OnInit {

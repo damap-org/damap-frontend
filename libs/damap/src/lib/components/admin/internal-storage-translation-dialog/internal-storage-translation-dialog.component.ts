@@ -15,8 +15,6 @@ import { InputWrapperComponent } from '../../../shared/input-wrapper/input-wrapp
 import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
 import { MatButton } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'internal-storage-translation-dialog',
     templateUrl: './internal-storage-translation-dialog.component.html',
@@ -32,8 +30,7 @@ import { TranslatePipeMock } from '../../../testing/translate-testing/translate-
     TextareaWrapperComponent,
     MatDialogActions,
     MatButton,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class InternalStorageTranslationDialogComponent {

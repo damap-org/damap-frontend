@@ -24,8 +24,6 @@ import { SearchFieldComponent } from '../../shared/search-field/search-field.com
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-dmp-table',
     templateUrl: './dmp-table.component.html',
@@ -56,8 +54,7 @@ import { TranslatePipeMock } from '../../testing/translate-testing/translate-tes
     MatPaginator,
     AsyncPipe,
     DatePipe,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class DmpTableComponent implements OnChanges, AfterViewInit {

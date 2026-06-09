@@ -6,8 +6,6 @@ import { MatIcon } from '@angular/material/icon';
 import { OrcidComponent } from '../../../../widgets/orcid/orcid.component';
 import { TagComponent } from '../../../../widgets/tag/tag.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-version-view-contributors',
     templateUrl: './version-view-contributors.component.html',
@@ -16,8 +14,7 @@ import { TranslatePipeMock } from '../../../../testing/translate-testing/transla
     MatIcon,
     OrcidComponent,
     TagComponent,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class VersionViewContributorsComponent {

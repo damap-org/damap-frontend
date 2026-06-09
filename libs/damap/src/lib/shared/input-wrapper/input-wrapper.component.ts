@@ -5,8 +5,6 @@ import { MatFormFieldAppearance, MatFormField, MatLabel, MatPrefix, MatHint, Mat
 import { TooltipComponent } from '../../widgets/tooltip/tooltip.component';
 import { MatInput } from '@angular/material/input';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-input-wrapper [label] [control]',
     templateUrl: './input-wrapper.component.html',
@@ -21,8 +19,7 @@ import { TranslatePipeMock } from '../../testing/translate-testing/translate-tes
     ReactiveFormsModule,
     MatHint,
     MatError,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class InputWrapperComponent implements OnInit {

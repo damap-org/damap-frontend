@@ -3,8 +3,6 @@ import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDia
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { MatButton } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-storage-info-dialog',
     templateUrl: './storage-info-dialog.component.html',
@@ -15,7 +13,6 @@ import { TranslatePipeMock } from '../../../../testing/translate-testing/transla
         MatDialogActions,
         MatButton,
         TranslateModule,
-        TranslatePipeMock,
     ],
 })
 export class StorageInfoDialogComponent {

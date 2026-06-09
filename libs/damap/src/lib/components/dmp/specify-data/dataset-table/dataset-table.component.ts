@@ -15,8 +15,6 @@ import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { DatasetSourcePipe } from '../../../../pipes/dataset-source/dataset-source.pipe';
 import { LimitStringPipe } from '../../../../pipes/limit-string/limitString.pipe';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-dataset-table',
     templateUrl: './dataset-table.component.html',
@@ -37,8 +35,7 @@ import { TranslatePipeMock } from '../../../../testing/translate-testing/transla
     MatRow,
     TranslateModule,
     DatasetSourcePipe,
-    LimitStringPipe,
-    TranslatePipeMock
+    LimitStringPipe
 ],
 })
 export class DatasetTableComponent {

@@ -38,7 +38,6 @@ import { ContributorManualComponent } from './contributor-manual/contributor-man
 import { OrcidComponent } from '../../../widgets/orcid/orcid.component';
 import { InputWrapperComponent } from '../../../shared/input-wrapper/input-wrapper.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 
 @Component({
@@ -68,8 +67,7 @@ import { CdkScrollable } from '@angular/cdk/scrolling';
     AsyncPipe,
     KeyValuePipe,
     TranslateModule,
-    ContributorFilterPipe,
-    TranslatePipeMock
+    ContributorFilterPipe
 ],
 })
 export class PeopleComponent implements OnInit, OnDestroy {
@@ -289,8 +287,7 @@ export class PeopleComponent implements OnInit, OnDestroy {
     MatDialogActions,
     MatButton,
     MatDialogClose,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class ConfirmDeletionDialogComponent {

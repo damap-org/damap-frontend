@@ -4,8 +4,6 @@ import { Consent } from '@damap/core';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
 import { MatButton } from '@angular/material/button';
-import { TranslatePipeMock } from '../../../../../../libs/damap/src/lib/testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-consent',
     templateUrl: './consent.component.html',
@@ -17,7 +15,6 @@ import { TranslatePipeMock } from '../../../../../../libs/damap/src/lib/testing/
         MatDialogActions,
         MatButton,
         MatDialogClose,
-        TranslatePipeMock,
     ],
 })
 export class ConsentComponent {

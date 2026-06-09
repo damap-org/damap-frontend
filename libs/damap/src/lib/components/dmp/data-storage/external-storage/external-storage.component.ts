@@ -11,8 +11,6 @@ import { MatOption } from '@angular/material/autocomplete';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { TextareaWrapperComponent } from '../../../../shared/textarea-wrapper/textarea-wrapper.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-dmp-external-storage',
     templateUrl: './external-storage.component.html',
@@ -35,8 +33,7 @@ import { TranslatePipeMock } from '../../../../testing/translate-testing/transla
     MatCardActions,
     MatSlideToggle,
     TextareaWrapperComponent,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class ExternalStorageComponent {

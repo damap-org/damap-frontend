@@ -7,8 +7,6 @@ import { MatCard, MatCardContent } from '@angular/material/card';
 import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
 
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-dmp-reuse',
     templateUrl: './reuse.component.html',
@@ -20,8 +18,7 @@ import { TranslatePipeMock } from '../../../testing/translate-testing/translate-
     FormsModule,
     ReactiveFormsModule,
     TextareaWrapperComponent,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class ReuseComponent {

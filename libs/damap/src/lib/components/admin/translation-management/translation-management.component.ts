@@ -22,8 +22,6 @@ import { MatOption } from '@angular/material/autocomplete';
 import { MatButton } from '@angular/material/button';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatInput } from '@angular/material/input';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'damap-translation-management',
     templateUrl: './translation-management.component.html',
@@ -41,8 +39,7 @@ import { TranslatePipeMock } from '../../../testing/translate-testing/translate-
     NgClass,
     MatPaginator,
     UpperCasePipe,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class TranslationManagementComponent implements OnInit {

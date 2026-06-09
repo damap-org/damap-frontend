@@ -11,8 +11,6 @@ import { CdkScrollable } from '@angular/cdk/scrolling';
 import { LanguageCodeInputComponent } from '../../../../shared/language-code-input/language-code-input.component';
 import { MatButton } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'damap-add-language-dialog',
     templateUrl: './add-language-dialog.component.html',
@@ -25,7 +23,6 @@ import { TranslatePipeMock } from '../../../../testing/translate-testing/transla
         MatDialogActions,
         MatButton,
         TranslateModule,
-        TranslatePipeMock,
     ],
 })
 export class AddLanguageDialogComponent {

@@ -8,8 +8,6 @@ import { RouterLink } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow, MatNoDataRow } from '@angular/material/table';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-version-table',
     templateUrl: './version-table.component.html',
@@ -30,8 +28,7 @@ import { TranslatePipeMock } from '../../../testing/translate-testing/translate-
     MatRow,
     MatNoDataRow,
     DatePipe,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class VersionTableComponent {

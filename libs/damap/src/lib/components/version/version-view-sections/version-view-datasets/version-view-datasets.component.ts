@@ -6,8 +6,6 @@ import { DatePipe } from '@angular/common';
 import { TagComponent } from '../../../../widgets/tag/tag.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { BytePipe } from '../../../../pipes/byte/byte.pipe';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-version-view-datasets',
     templateUrl: './version-view-datasets.component.html',
@@ -16,8 +14,7 @@ import { TranslatePipeMock } from '../../../../testing/translate-testing/transla
     TagComponent,
     DatePipe,
     TranslateModule,
-    BytePipe,
-    TranslatePipeMock
+    BytePipe
 ],
 })
 export class VersionViewDatasetsComponent {

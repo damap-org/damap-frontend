@@ -4,7 +4,6 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatDialogTitle, MatDialogCont
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { TreeSelectFormFieldComponent } from '../../../../widgets/tree-select-form-field/tree-select-form-field.component';
 
@@ -16,7 +15,6 @@ import { TreeSelectFormFieldComponent } from '../../../../widgets/tree-select-fo
         MatButton,
         MatIcon,
         TranslateModule,
-        TranslatePipeMock,
     ],
 })
 export class RepoFilterComponent {
@@ -57,7 +55,6 @@ export class RepoFilterComponent {
         MatButton,
         MatDialogClose,
         TranslateModule,
-        TranslatePipeMock,
     ],
 })
 export class FilterDialogComponent {

@@ -19,8 +19,6 @@ import { VersionViewRepositoriesComponent } from '../version-view-sections/versi
 import { VersionViewReuseComponent } from '../version-view-sections/version-view-reuse/version-view-reuse.component';
 import { VersionViewCostsComponent } from '../version-view-sections/version-view-costs/version-view-costs.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-version-view',
     templateUrl: './version-view.component.html',
@@ -44,8 +42,7 @@ import { TranslatePipeMock } from '../../../testing/translate-testing/translate-
     VersionViewReuseComponent,
     VersionViewCostsComponent,
     AsyncPipe,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class VersionViewComponent implements OnInit {

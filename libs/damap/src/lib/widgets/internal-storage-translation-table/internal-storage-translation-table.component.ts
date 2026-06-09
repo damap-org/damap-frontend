@@ -27,8 +27,6 @@ import { MatIconButton } from '@angular/material/button';
 import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
 import { MatIcon } from '@angular/material/icon';
 import { MatDivider } from '@angular/material/divider';
-import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'damap-internal-storage-translation-table',
     templateUrl: './internal-storage-translation-table.component.html',
@@ -55,7 +53,6 @@ import { TranslatePipeMock } from '../../testing/translate-testing/translate-tes
         MatNoDataRow,
         MatPaginator,
         TranslateModule,
-        TranslatePipeMock,
     ],
 })
 export class InternalStorageTranslationTableComponent

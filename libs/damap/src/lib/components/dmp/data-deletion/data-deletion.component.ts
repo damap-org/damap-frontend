@@ -11,8 +11,6 @@ import { MatInput } from '@angular/material/input';
 import { MatDatepickerInput, MatDatepickerToggle, MatDatepicker } from '@angular/material/datepicker';
 import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-data-deletion',
     templateUrl: './data-deletion.component.html',
@@ -31,8 +29,7 @@ import { TranslatePipeMock } from '../../../testing/translate-testing/translate-
     MatSuffix,
     MatDatepicker,
     TextareaWrapperComponent,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class DataDeletionComponent {

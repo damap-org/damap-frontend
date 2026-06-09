@@ -15,8 +15,6 @@ import { MatFormField, MatLabel } from '@angular/material/form-field';
 
 import { MatOption } from '@angular/material/autocomplete';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'damap-live-preview',
     templateUrl: './live-preview.component.html',
@@ -32,8 +30,7 @@ import { TranslatePipeMock } from '../../../testing/translate-testing/translate-
     MatLabel,
     MatSelect,
     MatOption,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class LivePreviewComponent implements OnInit {

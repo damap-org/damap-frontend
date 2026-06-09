@@ -16,8 +16,6 @@ import { TooltipComponent } from '../../../widgets/tooltip/tooltip.component';
 import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
 import { EthicalAspectsComponent } from './ethical-aspects/ethical-aspects.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-dmp-legal-ethical-aspects',
     templateUrl: './legal-ethical-aspects.component.html',
@@ -40,8 +38,7 @@ import { TranslatePipeMock } from '../../../testing/translate-testing/translate-
     MatHint,
     EthicalAspectsComponent,
     KeyValuePipe,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class LegalEthicalAspectsComponent {

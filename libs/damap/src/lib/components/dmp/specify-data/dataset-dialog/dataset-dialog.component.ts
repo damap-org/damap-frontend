@@ -27,8 +27,6 @@ import { TextareaWrapperComponent } from '../../../../shared/textarea-wrapper/te
 import { MatIconButton, MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-dataset-dialog',
     templateUrl: './dataset-dialog.component.html',
@@ -52,8 +50,7 @@ import { TranslatePipeMock } from '../../../../testing/translate-testing/transla
     MatButton,
     MatDialogActions,
     KeyValuePipe,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class DatasetDialogComponent {

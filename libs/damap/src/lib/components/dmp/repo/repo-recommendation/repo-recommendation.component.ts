@@ -9,8 +9,6 @@ import { MatButton } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatProgressBar } from '@angular/material/progress-bar';
 import { ErrorMessageComponent } from '../../../../widgets/error-message/error-message.component';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-repo-recommendation',
     templateUrl: './repo-recommendation.component.html',
@@ -24,8 +22,7 @@ import { TranslatePipeMock } from '../../../../testing/translate-testing/transla
     MatButton,
     TranslateModule,
     MatProgressBar,
-    ErrorMessageComponent,
-    TranslatePipeMock
+    ErrorMessageComponent
 ],
 })
 export class RepoRecommendationComponent {

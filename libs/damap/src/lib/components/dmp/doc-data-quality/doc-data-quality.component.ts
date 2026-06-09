@@ -9,8 +9,6 @@ import { TooltipComponent } from '../../../widgets/tooltip/tooltip.component';
 import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/autocomplete';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-dmp-doc-data-quality',
     templateUrl: './doc-data-quality.component.html',
@@ -28,8 +26,7 @@ import { TranslatePipeMock } from '../../../testing/translate-testing/translate-
     MatSelect,
     MatOption,
     KeyValuePipe,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class DocDataQualityComponent {

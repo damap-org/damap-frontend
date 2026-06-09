@@ -18,8 +18,6 @@ import { MatDatepickerInput, MatDatepickerToggle, MatDatepicker } from '@angular
 import { DataDeletionComponent } from '../data-deletion/data-deletion.component';
 import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-dmp-licenses',
     templateUrl: './licenses.component.html',
@@ -45,8 +43,7 @@ import { TranslatePipeMock } from '../../../testing/translate-testing/translate-
     DataDeletionComponent,
     TextareaWrapperComponent,
     KeyValuePipe,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class LicensesComponent {

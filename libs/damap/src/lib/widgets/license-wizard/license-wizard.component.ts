@@ -13,7 +13,6 @@ import { MatDialog, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogClo
 import { MatButton, MatAnchor } from '@angular/material/button';
 import { MatTooltip } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
 import { InfoMessageComponent } from '../info-message/info-message.component';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 
@@ -31,7 +30,6 @@ import { LicenseFilterPipe } from './license-filter.pipe';
         MatButton,
         MatTooltip,
         TranslateModule,
-        TranslatePipeMock,
     ],
 })
 export class LicenseWizardComponent {
@@ -68,8 +66,7 @@ export class LicenseWizardComponent {
     MatDialogClose,
     MatAnchor,
     TranslateModule,
-    LicenseFilterPipe,
-    TranslatePipeMock
+    LicenseFilterPipe
 ],
 })
 export class LicenseSelectorDialogComponent {

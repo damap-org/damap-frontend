@@ -6,8 +6,6 @@ import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material/autoc
 import { MatInput } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-search-field',
     templateUrl: './search-field.component.html',
@@ -22,8 +20,7 @@ import { TranslatePipeMock } from '../../testing/translate-testing/translate-tes
     MatIcon,
     MatSuffix,
     MatError,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class SearchFieldComponent {

@@ -30,8 +30,6 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { EnvBannerComponent } from '../../../../../../libs/damap/src/lib/widgets/env-banner/env-banner.component';
 import { AppBannerComponent } from '../../../../../../libs/damap/src/lib/widgets/app-banner/app-banner.component';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
-import { TranslatePipeMock } from '../../../../../../libs/damap/src/lib/testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-layout',
     templateUrl: './layout.component.html',
@@ -59,8 +57,7 @@ import { TranslatePipeMock } from '../../../../../../libs/damap/src/lib/testing/
     MatToolbar,
     MatToolbarRow,
     RouterOutlet,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {

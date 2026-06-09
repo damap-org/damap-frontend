@@ -15,8 +15,6 @@ import { LanguageCodeInputComponent } from '../../../shared/language-code-input/
 import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
 import { MatButton } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'damap-internal-storage-dialog',
     templateUrl: './internal-storage-dialog.component.html',
@@ -33,8 +31,7 @@ import { TranslatePipeMock } from '../../../testing/translate-testing/translate-
     TextareaWrapperComponent,
     MatDialogActions,
     MatButton,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class InternalStorageDialogComponent {

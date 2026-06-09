@@ -36,8 +36,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { RepoTableComponent } from './repo-table/repo-table.component';
 import { DatasetSourcePipe } from '../../../pipes/dataset-source/dataset-source.pipe';
 import { RepoPipe } from './repo.pipe';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-dmp-repo',
     templateUrl: './repo.component.html',
@@ -62,8 +60,7 @@ import { TranslatePipeMock } from '../../../testing/translate-testing/translate-
     RepoTableComponent,
     AsyncPipe,
     DatasetSourcePipe,
-    RepoPipe,
-    TranslatePipeMock
+    RepoPipe
 ],
 })
 export class RepoComponent implements OnInit {

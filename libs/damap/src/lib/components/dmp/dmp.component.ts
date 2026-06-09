@@ -67,8 +67,6 @@ import { CostsComponent } from './costs/costs.component';
 import { SummaryComponent } from './summary/summary.component';
 import { DmpActionsComponent } from './dmp-actions/dmp-actions.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-dmp',
     templateUrl: './dmp.component.html',
@@ -106,8 +104,7 @@ import { TranslatePipeMock } from '../../testing/translate-testing/translate-tes
     CostsComponent,
     SummaryComponent,
     DmpActionsComponent,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class DmpComponent implements OnInit, OnDestroy {

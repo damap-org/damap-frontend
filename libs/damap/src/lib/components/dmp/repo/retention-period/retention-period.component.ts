@@ -10,8 +10,6 @@ import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/autocomplete';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-retention-period',
     templateUrl: './retention-period.component.html',
@@ -30,8 +28,7 @@ import { TranslatePipeMock } from '../../../../testing/translate-testing/transla
     MatLabel,
     MatSelect,
     MatOption,
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class RetentionPeriodComponent {

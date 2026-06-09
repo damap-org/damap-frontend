@@ -5,15 +5,12 @@ import { ExternalStorage } from '../../../../domain/external-storage';
 import { Host } from '../../../../domain/host';
 
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
-
 @Component({
     selector: 'app-version-view-storages',
     templateUrl: './version-view-storages.component.html',
     styleUrls: [],
     imports: [
-    TranslateModule,
-    TranslatePipeMock
+    TranslateModule
 ],
 })
 export class VersionViewStoragesComponent {
