@@ -1,81 +1,93 @@
 <div id="access-wrapper">
-  <div *ngIf="isOwner$ | async; else noOwner">
-    <div *ngIf="dmp$ | async as dmp">
-      <h2>{{ dmp.project?.title || "DMP ID: " + dmp.id }}</h2>
-    </div>
-    <div class="action-buttons">
-      <button mat-raised-button [routerLink]="'/plans'">
-        <mat-icon>chevron_left</mat-icon>
-        {{ "access.button.plans" | translate }}
-      </button>
-      <button mat-flat-button [routerLink]="'/dmp/' + id">
-        {{ "dmp.versions.view.button.goto.latest" | translate }}
-      </button>
-    </div>
-    <app-info-message
-      >{{ "access.list" | translate
-      }}{{ "access.info" | translate }}</app-info-message
-    >
-    <app-search-field
-      style="width: 100%; display: block; margin-top: 1rem"
-      label="access.search.label"
-      [control]="userSearchControl"
-      [autocomplete]="auto">
-    </app-search-field>
-
-    <mat-autocomplete
-      #auto="matAutocomplete"
-      (optionSelected)="addNewAccess($event)">
-      <mat-option *ngFor="let user of searchResult$ | async" [value]="user">
-        <div class="list-option-container">
-          <div class="person-detail-content">
-            <strong>{{ user.firstName }} {{ user.lastName }}</strong>
-          </div>
-          <div class="person-detail-content" *ngIf="user.email">
-            <mat-icon
-              class="outline"
-              inline="true"
-              style="
-                vertical-align: middle;
-                font-size: 1rem;
-                width: 1rem;
-                height: 1rem;
-                margin-right: 4px;
-              "
-              >mail</mat-icon
-            >
-            {{ user.email }}
-          </div>
+  @if (isOwner$ | async) {
+    <div>
+      @if (dmp$ | async; as dmp) {
+        <div>
+          <h2>{{ dmp.project?.title || "DMP ID: " + dmp.id }}</h2>
         </div>
-      </mat-option>
-    </mat-autocomplete>
-    <div class="access-list" *ngFor="let access of accesses$ | async">
-      <damap-person-card [person]="access">
-        <div *ngIf="access.identifier !== this.userId; else user">
-          <mat-radio-group
-            class="radio-buttons"
-            [(ngModel)]="access.role"
-            (change)="toggleAccess($event, access)">
-            <mat-radio-button *ngFor="let role of roles" [value]="role">
-              <span class="role-text">{{ role }}</span>
-              <app-tooltip
-                [tooltip]="'access.' + role.toLocaleLowerCase()"></app-tooltip>
-            </mat-radio-button>
-          </mat-radio-group>
+      }
+      <div class="action-buttons">
+        <button mat-raised-button [routerLink]="'/plans'">
+          <mat-icon>chevron_left</mat-icon>
+          {{ "access.button.plans" | translate }}
+        </button>
+        <button mat-flat-button [routerLink]="'/dmp/' + id">
+          {{ "dmp.versions.view.button.goto.latest" | translate }}
+        </button>
+      </div>
+      <app-info-message
+        >{{ "access.list" | translate
+        }}{{ "access.info" | translate }}</app-info-message
+      >
+      <app-search-field
+        style="width: 100%; display: block; margin-top: 1rem"
+        label="access.search.label"
+        [control]="userSearchControl"
+        [autocomplete]="auto">
+      </app-search-field>
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionSelected)="addNewAccess($event)">
+        @for (user of searchResult$ | async; track user.identifier) {
+          <mat-option [value]="user">
+            <div class="list-option-container">
+              <div class="person-detail-content">
+                <strong>{{ user.firstName }} {{ user.lastName }}</strong>
+              </div>
+              @if (user.email) {
+                <div class="person-detail-content">
+                  <mat-icon
+                    class="outline"
+                    inline="true"
+                    style="
+                      vertical-align: middle;
+                      font-size: 1rem;
+                      width: 1rem;
+                      height: 1rem;
+                      margin-right: 4px;
+                    "
+                    >mail</mat-icon
+                  >
+                  {{ user.email }}
+                </div>
+              }
+            </div>
+          </mat-option>
+        }
+      </mat-autocomplete>
+      @for (access of accesses$ | async; track access.id) {
+        <div class="access-list">
+          <damap-person-card [person]="access">
+            @if (access.identifier !== this.userId) {
+              <div>
+                <mat-radio-group
+                  class="radio-buttons"
+                  [(ngModel)]="access.role"
+                  (change)="toggleAccess($event, access)">
+                  @for (role of roles; track role) {
+                    <mat-radio-button [value]="role">
+                      <span class="role-text">{{ role }}</span>
+                      <app-tooltip
+                        [tooltip]="
+                          'access.' + role.toLocaleLowerCase()
+                        "></app-tooltip>
+                    </mat-radio-button>
+                  }
+                </mat-radio-group>
+              </div>
+            } @else {
+              <div class="user">
+                <mat-icon class="mat-icon-style material-icon-primary"
+                  >star</mat-icon
+                >
+                {{ access.role }}
+              </div>
+            }
+          </damap-person-card>
         </div>
-        <ng-template #user>
-          <div class="user">
-            <mat-icon class="mat-icon-style material-icon-primary"
-              >star</mat-icon
-            >
-            {{ access.role }}
-          </div>
-        </ng-template>
-      </damap-person-card>
+      }
     </div>
-  </div>
-
-  <ng-template #noOwner>
+  } @else {
     <app-info-message>{{ "access.noOwner" | translate }}</app-info-message>
-  </ng-template>
+  }
 </div>

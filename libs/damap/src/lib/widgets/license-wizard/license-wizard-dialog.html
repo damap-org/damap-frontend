@@ -4,85 +4,76 @@
 >
 <mat-dialog-content class="mat-typography">
   <div>
-    <div
-      class="ls-steps"
-      *ngFor="let step of steps, let i = index, let last = last">
-      <div class="ls-question" *ngIf="last">
+    @for (step of steps; track step.question; let i = $index; let last = $last)
+    {
+    <div class="ls-steps">
+      @if (last) {
+      <div class="ls-question">
         <button id="ls-reset-button" mat-stroked-button (click)="reset()">
           <mat-icon>replay</mat-icon>
           {{'license-wizard.reset' | translate}}
         </button>
         <h4>{{step.question | translate}}</h4>
         <!-- Software: License Matrix -->
-        <ng-container
-          *ngIf="step.question === 'license-wizard.question.licenseInteropSoftware'">
-          <div *ngFor="let license of softwareLicenses">
-            <mat-checkbox
-              *ngIf="license.code"
-              (change)="changeLicenseMatrix(license.code)">
-              {{license.name | translate}}
-            </mat-checkbox>
-          </div>
-        </ng-container>
+        @if (step.question === 'license-wizard.question.licenseInteropSoftware')
+        { @for (license of softwareLicenses; track license.id) {
+        <div>
+          @if (license.code) {
+          <mat-checkbox (change)="changeLicenseMatrix(license.code)">
+            {{license.name | translate}}
+          </mat-checkbox>
+          }
+        </div>
+        } }
         <!-- Data: License Options -->
-        <ng-container
-          *ngIf="step.question === 'license-wizard.question.licenseInteropData'">
-          <div
-            *ngFor="let licenses of dataLicenses, let j = index"
-            style="align-content: flex-start">
-            <mat-checkbox (change)="changeLicenseOptions(j)">
-              <ng-container *ngFor="let license of licenses; last as isLast">
-                {{license.name | translate}}
-                <ng-container *ngIf="!isLast">,</ng-container>
-              </ng-container>
-            </mat-checkbox>
-          </div>
-        </ng-container>
+        @if (step.question === 'license-wizard.question.licenseInteropData') {
+        @for (licenses of dataLicenses; track licenses; let j = $index) {
+        <div style="align-content: flex-start">
+          <mat-checkbox (change)="changeLicenseOptions(j)">
+            @for (license of licenses; track license.id; let isLast = $last) {
+            {{license.name | translate}} @if (!isLast) { , } }
+          </mat-checkbox>
+        </div>
+        } }
         <!-- Answers -->
         <div class="ls-answer-buttons">
-          <ng-container *ngFor="let item of step.answers">
-            <button mat-flat-button (click)="setNextStep(i, item.next)">
-              {{item.label | translate}}
-            </button>
-          </ng-container>
+          @for (item of step.answers; track item.label) {
+          <button mat-flat-button (click)="setNextStep(i, item.next)">
+            {{item.label | translate}}
+          </button>
+          }
         </div>
       </div>
+      }
     </div>
+    }
   </div>
   <!-- List of licenses -->
-  <ng-container
-    *ngIf="(licenseList | licenseFilter: '')?.length else noLicense">
-    <div id="ls-search">
-      <app-search-field
-        [label]="'license-wizard.search'"
-        (searchChange)="searchChange($event)"></app-search-field>
-    </div>
-    <div class="ls-list">
-      <mat-card
-        appearance="raised"
-        class="ls-item"
-        *ngFor="let license of (licenseList | licenseFilter:searchTerm)">
-        <mat-card-content>
-          <div class="ls-item-header">
-            <h4 [mat-dialog-close]="license">{{license.name | translate}}</h4>
-            <div>
-              <a
-                href="{{license.url}}"
-                target="_blank"
-                rel="noopener"
-                mat-button
-                >{{'license-wizard.info' | translate}}</a
-              >
-            </div>
+  @if ((licenseList | licenseFilter: '')?.length) {
+  <div id="ls-search">
+    <app-search-field
+      [label]="'license-wizard.search'"
+      (searchChange)="searchChange($event)"></app-search-field>
+  </div>
+  <div class="ls-list">
+    @for (license of (licenseList | licenseFilter:searchTerm); track license.id)
+    {
+    <mat-card appearance="raised" class="ls-item">
+      <mat-card-content>
+        <div class="ls-item-header">
+          <h4 [mat-dialog-close]="license">{{license.name | translate}}</h4>
+          <div>
+            <a href="{{license.url}}" target="_blank" rel="noopener" mat-button
+              >{{'license-wizard.info' | translate}}</a
+            >
           </div>
-          <div class="ls-description" [mat-dialog-close]="license">
-            {{license.description | translate}}
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  </ng-container>
-  <ng-template #noLicense>
-    {{'license-wizard.none.found' | translate}}
-  </ng-template>
+        </div>
+        <div class="ls-description" [mat-dialog-close]="license">
+          {{license.description | translate}}
+        </div>
+      </mat-card-content>
+    </mat-card>
+    }
+  </div>
+  } @else { {{'license-wizard.none.found' | translate}} }
 </mat-dialog-content>

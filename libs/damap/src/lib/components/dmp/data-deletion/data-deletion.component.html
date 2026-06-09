@@ -9,39 +9,43 @@
       }}</mat-slide-toggle
     >
   </div>
-  <div *ngIf="dataset.value.delete">
-    <div class="form-row">
-      <mat-form-field class="full-width">
-        <mat-label>{{
-          "dmp.steps.data.deletion.question.person" | translate
-        }}</mat-label>
-        <mat-select
-          formControlName="deletionPerson"
-          [compareWith]="getSelection">
-          <mat-option [value]="null"></mat-option>
-          <mat-option
-            *ngFor="let contributor of contributors"
-            [value]="contributor">
-            {{ contributor.firstName + " " + contributor.lastName }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>{{
-          "dmp.steps.data.deletion.question.date" | translate
-        }}</mat-label>
-        <input
-          matInput
-          formControlName="dateOfDeletion"
-          [matDatepicker]="picker" />
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
+  @if (dataset.value.delete) {
+    <div>
+      <div class="form-row">
+        <mat-form-field class="full-width">
+          <mat-label>{{
+            "dmp.steps.data.deletion.question.person" | translate
+          }}</mat-label>
+          <mat-select
+            formControlName="deletionPerson"
+            [compareWith]="getSelection">
+            <mat-option [value]="null"></mat-option>
+            @for (contributor of contributors; track contributor.id) {
+              <mat-option [value]="contributor">
+                {{ contributor.firstName + " " + contributor.lastName }}
+              </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{
+            "dmp.steps.data.deletion.question.date" | translate
+          }}</mat-label>
+          <input
+            matInput
+            formControlName="dateOfDeletion"
+            [matDatepicker]="picker" />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <app-textarea-wrapper
+        [label]="'dmp.steps.data.deletion.question.reason'"
+        [control]="reasonForDeletion"
+        [maxLength]="4000">
+      </app-textarea-wrapper>
     </div>
-    <app-textarea-wrapper
-      [label]="'dmp.steps.data.deletion.question.reason'"
-      [control]="reasonForDeletion"
-      [maxLength]="4000">
-    </app-textarea-wrapper>
-  </div>
+  }
 </div>

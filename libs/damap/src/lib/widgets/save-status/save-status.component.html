@@ -1,9 +1,9 @@
 <div class="save-status">
-  <ng-container *ngIf="saved; else unsaved">
+  @if (saved) {
     <mat-icon>done</mat-icon>&nbsp;&nbsp;
-    <div translate>actions-bar.status.saved</div> </ng-container
-  ><ng-template #unsaved>
+    <div translate>actions-bar.status.saved</div>
+  } @else {
     <mat-icon>save</mat-icon>&nbsp;&nbsp;
     <div translate>actions-bar.status.unsaved</div>
-  </ng-template>
+  }
 </div>

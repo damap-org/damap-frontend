@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { Contributor } from '../../domain/contributor';
 import { IdentifierType } from '../../domain/enum/identifier-type.enum';
 import { MatCardModule } from '@angular/material/card';
@@ -16,13 +16,7 @@ import { Access } from '@damap/core';
  */
 @Component({
   selector: 'damap-person-card',
-  imports: [
-    CommonModule,
-    TranslateModule,
-    MatCardModule,
-    MatIconModule,
-    OrcidModule,
-  ],
+  imports: [TranslateModule, MatCardModule, MatIconModule, OrcidModule],
   templateUrl: './person-card.component.html',
   styleUrls: [],
   standalone: true,

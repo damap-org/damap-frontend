@@ -64,20 +64,21 @@
       [disabled]="dmpForm.invalid || this.savingDmp">
       {{ "actions-bar.buttons.version" | translate }}
     </button>
-    <div
-      *ngIf="preview"
-      matTooltip="{{
-        'actions-bar.buttons.preview.hintWhenDisabled' | translate
-      }}"
-      [matTooltipDisabled]="previewEnabled()">
-      <button
-        class="action-button"
-        mat-flat-button
-        [disabled]="!previewEnabled()"
-        (click)="showPreview()">
-        {{ "actions-bar.buttons.preview.label" | translate }}
-      </button>
-    </div>
+    @if (preview) {
+      <div
+        matTooltip="{{
+          'actions-bar.buttons.preview.hintWhenDisabled' | translate
+        }}"
+        [matTooltipDisabled]="previewEnabled()">
+        <button
+          class="action-button"
+          mat-flat-button
+          [disabled]="!previewEnabled()"
+          (click)="showPreview()">
+          {{ "actions-bar.buttons.preview.label" | translate }}
+        </button>
+      </div>
+    }
     <button
       class="action-button"
       mat-flat-button

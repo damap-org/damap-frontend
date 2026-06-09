@@ -46,14 +46,15 @@
                   }}
                 </mat-slide-toggle>
 
-                <button
-                  *ngIf="template.custom"
-                  mat-button
-                  [disabled]="isProcessing()"
-                  (click)="deleteTemplate(template.id)">
-                  <mat-icon>delete</mat-icon>
-                  {{ "admin.templates.actions.delete" | translate }}
-                </button>
+                @if (template.custom) {
+                  <button
+                    mat-button
+                    [disabled]="isProcessing()"
+                    (click)="deleteTemplate(template.id)">
+                    <mat-icon>delete</mat-icon>
+                    {{ "admin.templates.actions.delete" | translate }}
+                  </button>
+                }
               </div>
             </mat-card>
           }

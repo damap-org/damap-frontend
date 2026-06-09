@@ -1,9 +1,17 @@
 <div class="question-long-hint">
   {{ longLabel | translate }}
-  <ng-container *ngFor="let set of labelDatasets; last as last">
-    "{{ set.title }}"<span *ngIf="!last">, </span> <span *ngIf="last">.</span>
-  </ng-container>
-  <ng-container *ngIf="labelSuffix"> {{ labelSuffix }} </ng-container>
+  @for (set of labelDatasets; track set.id; let last = $last) {
+    "{{ set.title }}"
+    @if (!last) {
+      <span>, </span>
+    }
+    @if (last) {
+      <span>.</span>
+    }
+  }
+  @if (labelSuffix) {
+    {{ labelSuffix }}
+  }
 </div>
 <mat-form-field
   [appearance]="appearance"
@@ -14,7 +22,48 @@
   <!-- this will hopefully be fixed with the next angular version, lets pray -->
   <mat-label style="display: inline-flex">{{ label | translate }} </mat-label>
 
-  <ng-template #standard>
+  <!-- AUTOCOMPLETE -->
+  @if (autocompleteOptions?.length && isAutocompleteOpen) {
+    <textarea
+      matInput
+      [formControl]="control"
+      [placeholder]="placeholder"
+      type="text"
+      [matAutocomplete]="auto"
+      [required]="required"
+      cdkTextareaAutosize
+      cdkAutosizeMinRows="{{ minRows }}"
+      cdkAutosizeMaxRows="{{ maxRows }}"
+      class="no-resize"
+      (input)="this.updateAutocompletePosition()"
+      #message></textarea>
+    @if (showLength) {
+      <mat-hint align="end"
+        >{{ message.value.length }} / {{ maxLength }}</mat-hint
+      >
+    }
+    <span class="suggestion-label">
+      <span class="suggestions-label">Suggestions</span>
+      @if (isAutocompleteOpen) {
+        <button
+          (click)="closeAutocomplete()"
+          mat-icon-button
+          class="close-button-dp">
+          <mat-icon class="material-icon-primary">keyboard_arrow_up</mat-icon>
+        </button>
+      }
+    </span>
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="closeAutocomplete()"
+      (closed)="closeAutocomplete()">
+      @for (option of autocompleteOptions; track option) {
+        <mat-option value="{{ option | translate }}">
+          {{ option | translate }}
+        </mat-option>
+      }
+    </mat-autocomplete>
+  } @else {
     <textarea
       matInput
       [formControl]="control"
@@ -29,70 +78,38 @@
       #message
       (click)="openAutocomplete()">
     </textarea>
-    <mat-hint *ngIf="showLength" align="end"
-      >{{ message.value.length }} / {{ maxLength }}
-    </mat-hint>
-  </ng-template>
-  <!-- AUTOCOMPLETE -->
-  <ng-container
-    *ngIf="autocompleteOptions?.length && isAutocompleteOpen; else standard">
-    <textarea
-      matInput
-      [formControl]="control"
-      [placeholder]="placeholder"
-      type="text"
-      [matAutocomplete]="auto"
-      [required]="required"
-      cdkTextareaAutosize
-      cdkAutosizeMinRows="{{ minRows }}"
-      cdkAutosizeMaxRows="{{ maxRows }}"
-      class="no-resize"
-      (input)="this.updateAutocompletePosition()"
-      #message></textarea>
-    <mat-hint *ngIf="showLength" align="end"
-      >{{ message.value.length }} / {{ maxLength }}</mat-hint
-    >
-    <span class="suggestion-label">
-      <span class="suggestions-label">Suggestions</span>
-      <button
-        *ngIf="isAutocompleteOpen"
-        (click)="closeAutocomplete()"
-        mat-icon-button
-        class="close-button-dp">
-        <mat-icon class="material-icon-primary">keyboard_arrow_up</mat-icon>
-      </button>
-    </span>
-
-    <mat-autocomplete
-      #auto="matAutocomplete"
-      (optionSelected)="closeAutocomplete()"
-      (closed)="closeAutocomplete()">
-      <mat-option
-        *ngFor="let option of autocompleteOptions"
-        value="{{ option | translate }}">
-        {{ option | translate }}
-      </mat-option>
-    </mat-autocomplete>
-  </ng-container>
+    @if (showLength) {
+      <mat-hint align="end"
+        >{{ message.value.length }} / {{ maxLength }}
+      </mat-hint>
+    }
+  }
   <!-- ERROR -->
-  <mat-error *ngIf="!control?.errors?.required && control?.errors?.empty">
-    {{ "validation.error.invalidValue" | translate }}
-  </mat-error>
-  <mat-error *ngIf="control?.errors?.required">
-    {{ "validation.error.required" | translate }}
-  </mat-error>
-  <mat-error *ngIf="control?.errors?.maxlength">
-    {{
-      "validation.error.maxLength"
-        | translate: { value: control.errors.maxlength?.requiredLength }
-    }}
-    <!-- "maxlength": { "requiredLength": 255, "actualLength": 273 } -->
-  </mat-error>
-  <mat-error *ngIf="control?.errors?.pattern">
-    {{ "validation.error.currencyFormat" | translate }}
-
-    <!-- { "pattern": { "requiredPattern": "^[0-9]*.?[0-9]{0,2}$", "actualValue": "123,345" } } false -->
-  </mat-error>
+  @if (!control?.errors?.required && control?.errors?.empty) {
+    <mat-error>
+      {{ "validation.error.invalidValue" | translate }}
+    </mat-error>
+  }
+  @if (control?.errors?.required) {
+    <mat-error>
+      {{ "validation.error.required" | translate }}
+    </mat-error>
+  }
+  @if (control?.errors?.maxlength) {
+    <mat-error>
+      {{
+        "validation.error.maxLength"
+          | translate: { value: control.errors.maxlength?.requiredLength }
+      }}
+      <!-- "maxlength": { "requiredLength": 255, "actualLength": 273 } -->
+    </mat-error>
+  }
+  @if (control?.errors?.pattern) {
+    <mat-error>
+      {{ "validation.error.currencyFormat" | translate }}
+      <!-- { "pattern": { "requiredPattern": "^[0-9]*.?[0-9]{0,2}$", "actualValue": "123,345" } } false -->
+    </mat-error>
+  }
 </mat-form-field>
 <!--{{control.errors | json}}-->
 <!--{{control.valid}}-->

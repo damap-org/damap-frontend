@@ -1,10 +1,9 @@
 <h1 mat-dialog-title>
-  <ng-container *ngIf="mode === 'edit'; else add">{{
-    "admin.banner.dialog.title.edit" | translate
-  }}</ng-container>
-  <ng-template #add>{{
-    "admin.banner.dialog.title.create" | translate
-  }}</ng-template>
+  @if (mode === "edit") {
+    {{ "admin.banner.dialog.title.edit" | translate }}
+  } @else {
+    {{ "admin.banner.dialog.title.create" | translate }}
+  }
 </h1>
 
 <mat-dialog-content id="datasetDialog">
@@ -38,11 +37,11 @@
     {{ "admin.banner.dialog.button.cancel" | translate }}
   </button>
   <button (click)="onDialogClose()" mat-raised-button [disabled]="isDisabled()">
-    <ng-container *ngIf="mode === 'edit'">{{
-      "admin.banner.dialog.button.update" | translate
-    }}</ng-container>
-    <ng-container *ngIf="mode === 'add'">{{
-      "admin.banner.dialog.button.add" | translate
-    }}</ng-container>
+    @if (mode === "edit") {
+      {{ "admin.banner.dialog.button.update" | translate }}
+    }
+    @if (mode === "add") {
+      {{ "admin.banner.dialog.button.add" | translate }}
+    }
   </button>
 </mat-dialog-actions>

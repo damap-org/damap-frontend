@@ -1,27 +1,33 @@
 <mat-form-field [appearance]="appearance" class="search-field focus-icon">
   <!-- translate has to happen here, if it is done outside label is rendered as empty string always-->
-  <mat-label *ngIf="label">{{ label | translate }}</mat-label>
+  @if (label) {
+    <mat-label>{{ label | translate }}</mat-label>
+  }
   <!-- TODO: Sadly, [matAutocomplete] deactivates the x to clear the search input, to circumvent, I added *ngIf
-        Maybe we can find a better solution in the future or just refactor all search fields to use autocomplete-->
-  <input
-    *ngIf="!autocomplete"
-    type="search"
-    matInput
-    placeholder="{{ placeholder }}"
-    [formControl]="control"
-    (input)="onSearchChange(input.value)"
-    #input />
-  <input
-    *ngIf="autocomplete"
-    type="search"
-    matInput
-    [matAutocomplete]="autocomplete"
-    placeholder="{{ placeholder }}"
-    [formControl]="control"
-    (input)="onSearchChange(input.value)"
-    #input />
+  Maybe we can find a better solution in the future or just refactor all search fields to use autocomplete-->
+  @if (!autocomplete) {
+    <input
+      type="search"
+      matInput
+      placeholder="{{ placeholder }}"
+      [formControl]="control"
+      (input)="onSearchChange(input.value)"
+      #input />
+  }
+  @if (autocomplete) {
+    <input
+      type="search"
+      matInput
+      [matAutocomplete]="autocomplete"
+      placeholder="{{ placeholder }}"
+      [formControl]="control"
+      (input)="onSearchChange(input.value)"
+      #input />
+  }
   <mat-icon matIconSuffix>search</mat-icon>
-  <mat-error *ngIf="errorMessage">
-    {{ errorMessage | translate }}
-  </mat-error>
+  @if (errorMessage) {
+    <mat-error>
+      {{ errorMessage | translate }}
+    </mat-error>
+  }
 </mat-form-field>

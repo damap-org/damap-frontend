@@ -1,46 +1,48 @@
 <div class="step-container">
-  <div *ngIf="selectedView === 'primaryView'">
-    <app-created-data
-      *ngIf="selectedView === 'primaryView'"
-      [specifyDataStep]="specifyDataStep"
-      [datasets]="datasets"
-      [fileUpload]="fileUpload"
-      [config$]="config$"
-      (datasetToAdd)="add($event)"
-      (updateDataset)="update($event)"
-      (removeDataset)="remove($event)"
-      (fileToAnalyse)="analyseFile($event)"
-      (uploadToCancel)="cancelUpload($event)">
-    </app-created-data>
-  </div>
-  <div *ngIf="selectedView === 'secondaryView'">
-    <app-reused-data
-      [specifyDataStep]="specifyDataStep"
-      [datasets]="datasets"
-      (datasetToAdd)="add($event)"
-      (updateDataset)="update($event)"
-      (removeDataset)="remove($event)"></app-reused-data>
-  </div>
-  <ng-container
-    *ngIf="
-      specifyDataStep.value.kind === dataKind.NONE &&
-      specifyDataStep.value['reusedKind'] === dataKind.NONE
-    ">
+  @if (selectedView === "primaryView") {
+    <div>
+      @if (selectedView === "primaryView") {
+        <app-created-data
+          [specifyDataStep]="specifyDataStep"
+          [datasets]="datasets"
+          [fileUpload]="fileUpload"
+          [config$]="config$"
+          (datasetToAdd)="add($event)"
+          (updateDataset)="update($event)"
+          (removeDataset)="remove($event)"
+          (fileToAnalyse)="analyseFile($event)"
+          (uploadToCancel)="cancelUpload($event)">
+        </app-created-data>
+      }
+    </div>
+  }
+  @if (selectedView === "secondaryView") {
+    <div>
+      <app-reused-data
+        [specifyDataStep]="specifyDataStep"
+        [datasets]="datasets"
+        (datasetToAdd)="add($event)"
+        (updateDataset)="update($event)"
+        (removeDataset)="remove($event)"></app-reused-data>
+    </div>
+  }
+  @if (
+    specifyDataStep.value.kind === dataKind.NONE &&
+    specifyDataStep.value["reusedKind"] === dataKind.NONE
+  ) {
     <app-textarea-wrapper
       [label]="'dmp.steps.data.specify.question.short.noData'"
       [longLabel]="'dmp.steps.data.specify.question.long.noData'"
       [control]="explanation">
     </app-textarea-wrapper>
-  </ng-container>
+  }
 
-  <ng-container
-    *ngIf="
-      (selectedView === 'primaryView' &&
-        specifyDataStep.value.kind === dataKind.SPECIFY) ||
-      (selectedView === 'secondaryView' &&
-        specifyDataStep.value['reusedKind'] === dataKind.SPECIFY)
-    ">
-  </ng-container>
+  @if (
+    (selectedView === "primaryView" &&
+      specifyDataStep.value.kind === dataKind.SPECIFY) ||
+    (selectedView === "secondaryView" &&
+      specifyDataStep.value["reusedKind"] === dataKind.SPECIFY)
+  ) {}
 </div>
 
 <mat-hint>{{

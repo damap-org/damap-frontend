@@ -1,38 +1,46 @@
-<mat-label
-  class="label-title mat-title-large"
-  *ngIf="!selectedProject"
-  id="example-radio-group-label"
-  >{{ "dmp.steps.project.list" | translate }}</mat-label
->
-<ng-container *ngIf="!selectedProject">
+@if (!selectedProject) {
+  <mat-label
+    class="label-title mat-title-large"
+    id="example-radio-group-label"
+    >{{ "dmp.steps.project.list" | translate }}</mat-label
+  >
+}
+@if (!selectedProject) {
   <app-search-field
     [label]="'dmp.steps.project.search' | translate"
     (searchChange)="search($event)"></app-search-field>
-  <div class="list-container" *ngIf="!selectedProject">
-    <mat-selection-list
-      hideSingleSelectionIndicator
-      [multiple]="false"
-      style="overflow: hidden"
-      (selectionChange)="changeProject($event)">
-      <mat-list-option
-        *ngFor="let project of (searchResult$ | async)?.items ?? []"
-        [style]="'height: auto;'"
-        [selected]="project.universityId === selectedProject?.universityId"
-        [value]="project">
-        <div matListItemTitle>
-          <strong>{{ project.title }}</strong>
-        </div>
-        <div matListItemLine>
-          <mat-icon class="mat-icon-style">date_range</mat-icon>
-          {{ project.start | date }} - {{ project.end | date }}
-          <mat-icon
-            *ngIf="project.dmpExists"
-            matTooltip="{{ 'dmp.steps.project.warning.dmp' | translate }}"
-            class="material-icon-warning mat-list-option-right">
-            warning
-          </mat-icon>
-        </div>
-      </mat-list-option>
-    </mat-selection-list>
-  </div>
-</ng-container>
+  @if (!selectedProject) {
+    <div class="list-container">
+      <mat-selection-list
+        hideSingleSelectionIndicator
+        [multiple]="false"
+        style="overflow: hidden"
+        (selectionChange)="changeProject($event)">
+        @for (
+          project of (searchResult$ | async)?.items ?? [];
+          track project.title
+        ) {
+          <mat-list-option
+            [style]="'height: auto;'"
+            [selected]="project.universityId === selectedProject?.universityId"
+            [value]="project">
+            <div matListItemTitle>
+              <strong>{{ project.title }}</strong>
+            </div>
+            <div matListItemLine>
+              <mat-icon class="mat-icon-style">date_range</mat-icon>
+              {{ project.start | date }} - {{ project.end | date }}
+              @if (project.dmpExists) {
+                <mat-icon
+                  matTooltip="{{ 'dmp.steps.project.warning.dmp' | translate }}"
+                  class="material-icon-warning mat-list-option-right">
+                  warning
+                </mat-icon>
+              }
+            </div>
+          </mat-list-option>
+        }
+      </mat-selection-list>
+    </div>
+  }
+}

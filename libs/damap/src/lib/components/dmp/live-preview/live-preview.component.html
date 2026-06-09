@@ -20,26 +20,30 @@
             [(value)]="selectedTemplate"
             (selectionChange)="onTemplateChange($event)"
             [placeholder]="'preview.requestTemplateSelection' | translate">
-            <mat-option
-              *ngFor="let template of activeTemplates()"
-              [value]="template.id">
-              {{ template.name }}
-            </mat-option>
+            @for (template of activeTemplates(); track template.id) {
+              <mat-option [value]="template.id">
+                {{ template.name }}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
       </div>
     </ng-container>
     <br />
-    <div *ngIf="pdfUrl" style="height: 80vh">
-      <iframe
-        [src]="pdfUrl"
-        width="100%"
-        height="100%"
-        title="preview"></iframe>
-    </div>
-    <div *ngIf="!pdfUrl && selectedTemplate !== null" class="no-preview">
-      <mat-icon class="loading-icon">autorenew</mat-icon>
-      <p>{{ "preview.info" | translate }}</p>
-    </div>
+    @if (pdfUrl) {
+      <div style="height: 80vh">
+        <iframe
+          [src]="pdfUrl"
+          width="100%"
+          height="100%"
+          title="preview"></iframe>
+      </div>
+    }
+    @if (!pdfUrl && selectedTemplate !== null) {
+      <div class="no-preview">
+        <mat-icon class="loading-icon">autorenew</mat-icon>
+        <p>{{ "preview.info" | translate }}</p>
+      </div>
+    }
   </div>
 </mat-dialog-content>
