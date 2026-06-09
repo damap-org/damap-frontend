@@ -5,10 +5,10 @@ import { Title } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: [],
-    imports: [RouterOutlet],
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: [],
+  imports: [RouterOutlet],
 })
 export class AppComponent implements OnInit {
   constructor(

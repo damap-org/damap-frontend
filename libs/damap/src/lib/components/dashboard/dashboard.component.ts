@@ -5,16 +5,16 @@ import { MatCard, MatCardContent } from '@angular/material/card';
 import { FlipCardComponent } from '../../widgets/flip-card/flip-card.component';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-dashboard',
-    templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.css'],
-    imports: [
-        InfoCardComponent,
-        MatCard,
-        MatCardContent,
-        FlipCardComponent,
-        TranslateModule,
-    ],
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.css'],
+  imports: [
+    InfoCardComponent,
+    MatCard,
+    MatCardContent,
+    FlipCardComponent,
+    TranslateModule,
+  ],
 })
 export class DashboardComponent {
   isSmallScreen = false;

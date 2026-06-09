@@ -6,12 +6,10 @@ import { Host } from '../../../../domain/host';
 
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-version-view-storages',
-    templateUrl: './version-view-storages.component.html',
-    styleUrls: [],
-    imports: [
-    TranslateModule
-],
+  selector: 'app-version-view-storages',
+  templateUrl: './version-view-storages.component.html',
+  styleUrls: [],
+  imports: [TranslateModule],
 })
 export class VersionViewStoragesComponent {
   @Input() storages: Storage[];

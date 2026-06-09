@@ -10,7 +10,7 @@
 } @else {
   <app-retention-period
     [dmpForm]="dmpForm"
-  [datasets]="datasets"></app-retention-period>
+    [datasets]="datasets"></app-retention-period>
 }
 <!-- RETENTION PERIOD-->
 
@@ -20,102 +20,98 @@
       class="label-title mat-title-large"
       id="example-radio-group-label"
       >{{ "dmp.steps.repositories.selected" | translate }}</mat-label
-      >
-      @for (repo of repoStep.controls; track repo; let i = $index) {
-        <mat-card
-          appearance="raised"
-          class="card-selected">
-          <mat-card-content>
-            <ng-container formArrayName="repositories">
+    >
+    @for (repo of repoStep.controls; track repo; let i = $index) {
+      <mat-card appearance="raised" class="card-selected">
+        <mat-card-content>
+          <ng-container formArrayName="repositories">
+            <div class="mat-card-container">
+              <div class="mat-card-left">
+                <h4>{{ repo.value.title }}</h4>
+              </div>
+              <div class="mat-card-right">
+                <button mat-icon-button (click)="removeRepository(i)">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </div>
+            </div>
+            <div [formGroupName]="i">
               <div class="mat-card-container">
-                <div class="mat-card-left">
-                  <h4>{{ repo.value.title }}</h4>
-                </div>
-                <div class="mat-card-right">
-                  <button mat-icon-button (click)="removeRepository(i)">
-                    <mat-icon>cancel</mat-icon>
-                  </button>
-                </div>
+                <mat-form-field>
+                  <mat-label>{{
+                    "dmp.steps.repositories.question.datasets" | translate
+                  }}</mat-label>
+                  <mat-select multiple formControlName="datasets">
+                    @for (
+                      dataset of datasets.value
+                        | datasetSource: datasetSource.NEW;
+                      track dataset
+                    ) {
+                      <mat-option [value]="dataset.referenceHash">
+                        {{ dataset.title }}
+                      </mat-option>
+                    }
+                  </mat-select>
+                </mat-form-field>
               </div>
-              <div [formGroupName]="i">
-                <div class="mat-card-container">
-                  <mat-form-field>
-                    <mat-label>{{
-                      "dmp.steps.repositories.question.datasets" | translate
-                    }}</mat-label>
-                    <mat-select multiple formControlName="datasets">
-                      @for (
-                        dataset of datasets.value
-                        | datasetSource: datasetSource.NEW
-                        ; track
-                        dataset) {
-                        <mat-option
-                          [value]="dataset.referenceHash">
-                          {{ dataset.title }}
-                        </mat-option>
-                      }
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="mat-card-container">
-                  @if (getDatasetsMarkedForDeletion(i).length > 0) {
-                    <app-error-message
-                      [data]="getDatasetsMarkedForDeletionAsString(i)"
-              [message]="
-                'dmp.steps.repositories.warning.deletion'
-              "></app-error-message>
-                  }
-                </div>
+              <div class="mat-card-container">
+                @if (getDatasetsMarkedForDeletion(i).length > 0) {
+                  <app-error-message
+                    [data]="getDatasetsMarkedForDeletionAsString(i)"
+                    [message]="
+                      'dmp.steps.repositories.warning.deletion'
+                    "></app-error-message>
+                }
               </div>
-            </ng-container>
-          </mat-card-content>
-        </mat-card>
-      }
+            </div>
+          </ng-container>
+        </mat-card-content>
+      </mat-card>
+    }
+  </div>
+}
+
+@if (recommended$ | async; as recommended) {
+  @if (selectedView === "primaryView") {
+    <div>
+      <mat-card class="repository-recommendations-card card-shadow">
+        <mat-card-content>
+          <ng-template mat-tab-label>
+            {{ "dmp.steps.repositories.recommended" | translate }}
+          </ng-template>
+          @if ((recommended | repo: repoStep.value).length) {
+            <app-repo-recommendation
+              [recommended]="recommended | repo: repoStep.value"
+              [loaded]="recommendedLoaded$ | async"
+              (repositoryToAdd)="addRepository($event)">
+            </app-repo-recommendation>
+          } @else {
+            <p translate>dmp.steps.repositories.recommended.none</p>
+            <button mat-flat-button (click)="selectedTabIndex = 1">
+              {{ "dmp.steps.repositories.find.other" | translate }}
+              <mat-icon iconPositionEnd>search</mat-icon>
+            </button>
+          }
+        </mat-card-content>
+      </mat-card>
     </div>
   }
-
-  @if (recommended$ | async; as recommended) {
-    @if (selectedView === 'primaryView') {
-      <div>
-        <mat-card class="repository-recommendations-card card-shadow">
-          <mat-card-content>
-            <ng-template mat-tab-label>
-              {{ "dmp.steps.repositories.recommended" | translate }}
-            </ng-template>
-            @if (
-              (recommended | repo: repoStep.value).length) {
-              <app-repo-recommendation
-                [recommended]="recommended | repo: repoStep.value"
-                [loaded]="recommendedLoaded$ | async"
-                (repositoryToAdd)="addRepository($event)">
-              </app-repo-recommendation>
-            } @else {
-              <p translate>dmp.steps.repositories.recommended.none</p>
-              <button mat-flat-button (click)="selectedTabIndex = 1">
-                {{ "dmp.steps.repositories.find.other" | translate }}
-                <mat-icon iconPositionEnd>search</mat-icon>
-              </button>
-            }
-          </mat-card-content>
-        </mat-card>
-      </div>
-    }
-    @if (selectedView === 'secondaryView') {
-      <div>
-        <!-- Repository list -->
-        <ng-template mat-tab-label>
-          {{ "dmp.steps.repositories.find" | translate }}
-        </ng-template>
-        <div class="tab-content">
-          <app-repo-table
-            [loaded]="repositoriesLoaded$ | async"
-            [filters]="filters$ | async"
-            (filterChange)="filterRepositories($event)"
-            [repositories]="repositories$ | async"
-            [selectedRepos]="repoStep.value"
-            (repositoryToAdd)="addRepository($event)"
+  @if (selectedView === "secondaryView") {
+    <div>
+      <!-- Repository list -->
+      <ng-template mat-tab-label>
+        {{ "dmp.steps.repositories.find" | translate }}
+      </ng-template>
+      <div class="tab-content">
+        <app-repo-table
+          [loaded]="repositoriesLoaded$ | async"
+          [filters]="filters$ | async"
+          (filterChange)="filterRepositories($event)"
+          [repositories]="repositories$ | async"
+          [selectedRepos]="repoStep.value"
+          (repositoryToAdd)="addRepository($event)"
           (repositoryDetails)="getRepositoryDetails($event)"></app-repo-table>
-        </div>
       </div>
-    }
+    </div>
   }
+}

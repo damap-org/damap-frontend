@@ -17,7 +17,13 @@ import {
 
 import { BackendService } from '../../../../services/backend.service';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSelectionListChange, MatSelectionList, MatListOption, MatListItemTitle, MatListItemLine } from '@angular/material/list';
+import {
+  MatSelectionListChange,
+  MatSelectionList,
+  MatListOption,
+  MatListItemTitle,
+  MatListItemLine,
+} from '@angular/material/list';
 import { Project } from '../../../../domain/project';
 import { SearchResult } from '../../../../domain/search/search-result';
 import { AsyncPipe, DatePipe } from '@angular/common';
@@ -27,10 +33,10 @@ import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-project-list',
-    templateUrl: './project-list.component.html',
-    styleUrls: ['./project-list.component.css'],
-    imports: [
+  selector: 'app-project-list',
+  templateUrl: './project-list.component.html',
+  styleUrls: ['./project-list.component.css'],
+  imports: [
     MatLabel,
     SearchFieldComponent,
     MatSelectionList,
@@ -41,8 +47,8 @@ import { TranslateModule } from '@ngx-translate/core';
     MatTooltip,
     AsyncPipe,
     DatePipe,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class ProjectListComponent implements OnInit, AfterViewInit {
   @Output() projectToSet = new EventEmitter<Project>();

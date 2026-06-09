@@ -1,5 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { UntypedFormArray, UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  UntypedFormArray,
+  UntypedFormControl,
+  UntypedFormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { CostType } from '../../../domain/enum/cost-type.enum';
 import { MatLabel, MatFormField } from '@angular/material/form-field';
@@ -10,17 +16,23 @@ import { CrisTagComponent } from '../../../widgets/cris-tag/cris-tag.component';
 import { CurrencyPipe, KeyValuePipe } from '@angular/common';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
-import { MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle, MatExpansionPanelDescription } from '@angular/material/expansion';
+import {
+  MatAccordion,
+  MatExpansionPanel,
+  MatExpansionPanelHeader,
+  MatExpansionPanelTitle,
+  MatExpansionPanelDescription,
+} from '@angular/material/expansion';
 import { InputWrapperComponent } from '../../../shared/input-wrapper/input-wrapper.component';
 import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/autocomplete';
 import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-dmp-costs',
-    templateUrl: './costs.component.html',
-    styleUrls: ['./costs.component.css'],
-    imports: [
+  selector: 'app-dmp-costs',
+  templateUrl: './costs.component.html',
+  styleUrls: ['./costs.component.css'],
+  imports: [
     MatLabel,
     MatCard,
     MatCardContent,
@@ -45,8 +57,8 @@ import { TranslateModule } from '@ngx-translate/core';
     TextareaWrapperComponent,
     CurrencyPipe,
     KeyValuePipe,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class CostsComponent {
   @Input() costsStep: UntypedFormGroup;

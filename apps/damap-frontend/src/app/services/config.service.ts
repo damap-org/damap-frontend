@@ -43,7 +43,6 @@ export class ConfigService {
         }
         this.backendDown$.next(false);
         if (!config) {
-           
           console.warn('Config is missing!');
           return new Promise<boolean>(resolve => resolve(false));
         } else {
@@ -53,7 +52,6 @@ export class ConfigService {
           this.imageThemeService.applyTheming(config);
           const appTitle = config.appTitle;
           if (!appTitle) {
-             
             console.warn('App title is missing in the config');
           }
           const authConfig: AuthConfig = {
@@ -85,7 +83,6 @@ export class ConfigService {
                 }
                 const appTitle = config.appTitle;
                 if (!appTitle) {
-                   
                   console.warn('App title is missing in the config');
                 }
 
@@ -98,7 +95,7 @@ export class ConfigService {
             })
             .catch(error => {
               // TODO: Use the same error handling mechanism as the main config call
-               
+
               console.error(
                 'Failed to load tenant specific config after login - please make sure your backend is up and running!',
               );
@@ -108,7 +105,6 @@ export class ConfigService {
         }
       })
       .catch(error => {
-         
         console.error(
           'Failed to load config - please make sure your backend is up and running!',
         );

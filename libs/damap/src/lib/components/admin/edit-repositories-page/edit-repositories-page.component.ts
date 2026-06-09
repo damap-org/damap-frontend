@@ -36,8 +36,8 @@ import { RepoTableComponent } from '../../dmp/repo/repo-table/repo-table.compone
     MatIconModule,
     MatTooltipModule,
     RepoTableComponent,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class EditRepositoriesPageComponent implements OnInit {
   private readonly backendService = inject(BackendService);

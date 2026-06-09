@@ -4,17 +4,17 @@
     <div>
       <span class="headings"
         >{{ "dmp.versions.view.repositories.datasets" | translate }}:</span
-        >
-        <ul>
-          @for (dataset of getDatasetsForRepository(repo); track dataset) {
-            <li>
-              {{ dataset.title }}
-            </li>
-          }
-        </ul>
-      </div>
-      @if (!last) {
-        <hr />
-      }
+      >
+      <ul>
+        @for (dataset of getDatasetsForRepository(repo); track dataset) {
+          <li>
+            {{ dataset.title }}
+          </li>
+        }
+      </ul>
     </div>
-  }
+    @if (!last) {
+      <hr />
+    }
+  </div>
+}

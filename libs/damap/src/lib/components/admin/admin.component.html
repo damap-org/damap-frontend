@@ -22,9 +22,9 @@
     "></damap-internal-storage-table>
   <h2 class="selected-storage">
     {{
-    selectedInternalStorageUrl !== null
-    ? ("admin.internalStorage.translation.sectionTitle" | translate)
-    : ("admin.internal-storage-translations-no-selected" | translate)
+      selectedInternalStorageUrl !== null
+        ? ("admin.internalStorage.translation.sectionTitle" | translate)
+        : ("admin.internal-storage-translations-no-selected" | translate)
     }}
     {{ selectedInternalStorageUrl }}
   </h2>
@@ -52,9 +52,9 @@
       </button>
       <damap-internal-storage-translation-table
         [internalStorageTranslations]="internalStorageTranslations"
-      [selectedInternalStorageId]="
-        selectedInternalStorageId
-      "></damap-internal-storage-translation-table>
+        [selectedInternalStorageId]="
+          selectedInternalStorageId
+        "></damap-internal-storage-translation-table>
     </div>
   }
   <hr />
@@ -90,13 +90,13 @@
         <p style="display: flex; align-items: center">
           Color: {{ appBanner.color }}
           <span
-          style="
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            margin-left: 10px;
-          "
-          [style.background-color]="appBanner.color"></span>
+            style="
+              display: inline-block;
+              width: 20px;
+              height: 20px;
+              margin-left: 10px;
+            "
+            [style.background-color]="appBanner.color"></span>
         </p>
         <p>Dismissible: {{ appBanner.dismissible }}</p>
       </div>
@@ -150,10 +150,10 @@
 
     <p class="instance-config-hint">
       {{
-      (instanceConfig?.publicAvailable
-      ? "admin.instance-config.public-available-enabled"
-      : "admin.instance-config.public-available-disabled"
-      ) | translate
+        (instanceConfig?.publicAvailable
+          ? "admin.instance-config.public-available-enabled"
+          : "admin.instance-config.public-available-disabled"
+        ) | translate
       }}
     </p>
 
@@ -165,10 +165,10 @@
 
     <p class="instance-config-hint">
       {{
-      (instanceConfig?.consentFormEnabled
-      ? "admin.instance-config.consent-form-enabled-on"
-      : "admin.instance-config.consent-form-enabled-off"
-      ) | translate
+        (instanceConfig?.consentFormEnabled
+          ? "admin.instance-config.consent-form-enabled-on"
+          : "admin.instance-config.consent-form-enabled-off"
+        ) | translate
       }}
     </p>
   </div>

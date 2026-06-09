@@ -20,15 +20,15 @@ describe('ManualProjectInputComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [
+      imports: [
         TranslateTestingModule,
         MatButtonModule,
         FormsModule,
         ReactiveFormsModule,
         ManualProjectInputComponent,
-    ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-}).compileComponents();
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

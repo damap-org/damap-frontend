@@ -23,10 +23,10 @@ import { MatButton } from '@angular/material/button';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatInput } from '@angular/material/input';
 @Component({
-    selector: 'damap-translation-management',
-    templateUrl: './translation-management.component.html',
-    styleUrl: './translation-management.component.css',
-    imports: [
+  selector: 'damap-translation-management',
+  templateUrl: './translation-management.component.html',
+  styleUrl: './translation-management.component.css',
+  imports: [
     MatFormField,
     MatLabel,
     MatSelect,
@@ -39,8 +39,8 @@ import { MatInput } from '@angular/material/input';
     NgClass,
     MatPaginator,
     UpperCasePipe,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class TranslationManagementComponent implements OnInit {
   pageSize = 5;

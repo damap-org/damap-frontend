@@ -1,8 +1,23 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { UntypedFormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  UntypedFormControl,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
-import { MatFormFieldAppearance, MatFormField, MatLabel, MatHint, MatError } from '@angular/material/form-field';
-import { MatAutocompleteTrigger, MatAutocomplete, MatOption } from '@angular/material/autocomplete';
+import {
+  MatFormFieldAppearance,
+  MatFormField,
+  MatLabel,
+  MatHint,
+  MatError,
+} from '@angular/material/form-field';
+import {
+  MatAutocompleteTrigger,
+  MatAutocomplete,
+  MatOption,
+} from '@angular/material/autocomplete';
 import { Dataset } from '../../domain/dataset';
 
 import { MatInput } from '@angular/material/input';
@@ -11,10 +26,10 @@ import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-textarea-wrapper [label] [control]',
-    templateUrl: './textarea-wrapper.component.html',
-    styleUrls: ['./textarea-wrapper.component.css'],
-    imports: [
+  selector: 'app-textarea-wrapper [label] [control]',
+  templateUrl: './textarea-wrapper.component.html',
+  styleUrls: ['./textarea-wrapper.component.css'],
+  imports: [
     MatFormField,
     MatLabel,
     MatInput,
@@ -28,8 +43,8 @@ import { TranslateModule } from '@ngx-translate/core';
     MatAutocomplete,
     MatOption,
     MatError,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class TextareaWrapperComponent implements OnInit {
   @Input() label: string;

@@ -15,15 +15,15 @@ describe('FlipCardComponent', () => {
     routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
     TestBed.configureTestingModule({
-    imports: [
+      imports: [
         RouterModule,
         TranslateTestingModule,
         MatCardModule,
         MatIconModule,
         FlipCardComponent,
-    ],
-    providers: [{ provide: Router, useValue: routerSpy }],
-}).compileComponents();
+      ],
+      providers: [{ provide: Router, useValue: routerSpy }],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

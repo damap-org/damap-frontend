@@ -1,6 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { UntypedFormArray, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  UntypedFormArray,
+  UntypedFormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import {
   loadAllRepositories,
   loadRecommendedRepositories,
@@ -37,10 +42,10 @@ import { RepoTableComponent } from './repo-table/repo-table.component';
 import { DatasetSourcePipe } from '../../../pipes/dataset-source/dataset-source.pipe';
 import { RepoPipe } from './repo.pipe';
 @Component({
-    selector: 'app-dmp-repo',
-    templateUrl: './repo.component.html',
-    styleUrls: ['./repo.component.css'],
-    imports: [
+  selector: 'app-dmp-repo',
+  templateUrl: './repo.component.html',
+  styleUrls: ['./repo.component.css'],
+  imports: [
     MatLabel,
     RetentionPeriodComponent,
     FormsModule,
@@ -60,8 +65,8 @@ import { RepoPipe } from './repo.pipe';
     RepoTableComponent,
     AsyncPipe,
     DatasetSourcePipe,
-    RepoPipe
-],
+    RepoPipe,
+  ],
 })
 export class RepoComponent implements OnInit {
   repositoriesLoaded$: Observable<LoadingState>;

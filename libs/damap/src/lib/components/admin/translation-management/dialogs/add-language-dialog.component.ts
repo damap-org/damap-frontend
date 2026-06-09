@@ -1,5 +1,11 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogTitle,
+  MatDialogContent,
+  MatDialogActions,
+} from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, map, startWith } from 'rxjs';
 import {
@@ -12,18 +18,18 @@ import { LanguageCodeInputComponent } from '../../../../shared/language-code-inp
 import { MatButton } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'damap-add-language-dialog',
-    templateUrl: './add-language-dialog.component.html',
-    styleUrl: './add-language-dialog.component.css',
-    imports: [
-        MatDialogTitle,
-        CdkScrollable,
-        MatDialogContent,
-        LanguageCodeInputComponent,
-        MatDialogActions,
-        MatButton,
-        TranslateModule,
-    ],
+  selector: 'damap-add-language-dialog',
+  templateUrl: './add-language-dialog.component.html',
+  styleUrl: './add-language-dialog.component.css',
+  imports: [
+    MatDialogTitle,
+    CdkScrollable,
+    MatDialogContent,
+    LanguageCodeInputComponent,
+    MatDialogActions,
+    MatButton,
+    TranslateModule,
+  ],
 })
 export class AddLanguageDialogComponent {
   readonly form: FormGroup;

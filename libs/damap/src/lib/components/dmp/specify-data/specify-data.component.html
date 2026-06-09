@@ -1,7 +1,7 @@
 <div class="step-container">
-  @if (selectedView === 'primaryView') {
+  @if (selectedView === "primaryView") {
     <div>
-      @if (selectedView === 'primaryView') {
+      @if (selectedView === "primaryView") {
         <app-created-data
           [specifyDataStep]="specifyDataStep"
           [datasets]="datasets"
@@ -16,20 +16,20 @@
       }
     </div>
   }
-  @if (selectedView === 'secondaryView') {
+  @if (selectedView === "secondaryView") {
     <div>
       <app-reused-data
         [specifyDataStep]="specifyDataStep"
         [datasets]="datasets"
         (datasetToAdd)="add($event)"
         (updateDataset)="update($event)"
-      (removeDataset)="remove($event)"></app-reused-data>
+        (removeDataset)="remove($event)"></app-reused-data>
     </div>
   }
   @if (
     specifyDataStep.value.kind === dataKind.NONE &&
-    specifyDataStep.value['reusedKind'] === dataKind.NONE
-    ) {
+    specifyDataStep.value["reusedKind"] === dataKind.NONE
+  ) {
     <app-textarea-wrapper
       [label]="'dmp.steps.data.specify.question.short.noData'"
       [longLabel]="'dmp.steps.data.specify.question.long.noData'"
@@ -38,12 +38,11 @@
   }
 
   @if (
-    (selectedView === 'primaryView' &&
-    specifyDataStep.value.kind === dataKind.SPECIFY) ||
-    (selectedView === 'secondaryView' &&
-    specifyDataStep.value['reusedKind'] === dataKind.SPECIFY)
-    ) {
-  }
+    (selectedView === "primaryView" &&
+      specifyDataStep.value.kind === dataKind.SPECIFY) ||
+    (selectedView === "secondaryView" &&
+      specifyDataStep.value["reusedKind"] === dataKind.SPECIFY)
+  ) {}
 </div>
 
 <mat-hint>{{

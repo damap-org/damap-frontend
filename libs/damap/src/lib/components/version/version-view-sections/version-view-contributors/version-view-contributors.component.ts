@@ -7,15 +7,10 @@ import { OrcidComponent } from '../../../../widgets/orcid/orcid.component';
 import { TagComponent } from '../../../../widgets/tag/tag.component';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-version-view-contributors',
-    templateUrl: './version-view-contributors.component.html',
-    styleUrls: ['./version-view-contributors.component.css'],
-    imports: [
-    MatIcon,
-    OrcidComponent,
-    TagComponent,
-    TranslateModule
-],
+  selector: 'app-version-view-contributors',
+  templateUrl: './version-view-contributors.component.html',
+  styleUrls: ['./version-view-contributors.component.css'],
+  imports: [MatIcon, OrcidComponent, TagComponent, TranslateModule],
 })
 export class VersionViewContributorsComponent {
   @Input() contributors: Contributor[];

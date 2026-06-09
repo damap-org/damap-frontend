@@ -13,13 +13,13 @@ describe('AppComponent', () => {
     mockConfigService = jasmine.createSpyObj('ConfigService', ['getAppTitle']);
 
     TestBed.configureTestingModule({
-    imports: [AppComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    providers: [
+      imports: [AppComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [
         Title,
         { provide: ConfigService, useValue: mockConfigService },
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
 
     titleService = TestBed.inject(Title);
   }));

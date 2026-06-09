@@ -16,9 +16,13 @@ describe('VersionViewComponent', () => {
       'getDmpVersions',
     ]);
     TestBed.configureTestingModule({
-    imports: [RouterModule.forRoot([]), TranslateTestingModule, VersionViewComponent], // Updated import
-    providers: [{ provide: BackendService, useValue: backendSpy }],
-}).compileComponents();
+      imports: [
+        RouterModule.forRoot([]),
+        TranslateTestingModule,
+        VersionViewComponent,
+      ], // Updated import
+      providers: [{ provide: BackendService, useValue: backendSpy }],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

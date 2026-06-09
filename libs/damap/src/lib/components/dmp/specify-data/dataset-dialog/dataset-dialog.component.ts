@@ -1,6 +1,19 @@
 import { Component, Inject } from '@angular/core';
-import { FormArray, FormControl, UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions } from '@angular/material/dialog';
+import {
+  FormArray,
+  FormControl,
+  UntypedFormControl,
+  UntypedFormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogTitle,
+  MatDialogContent,
+  MatDialogActions,
+} from '@angular/material/dialog';
 import { FILE_SIZES, FILE_TYPES } from '../data-specs';
 import { FormService } from '../../../../services/form.service';
 
@@ -28,10 +41,10 @@ import { MatIconButton, MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-dataset-dialog',
-    templateUrl: './dataset-dialog.component.html',
-    styleUrls: ['./dataset-dialog.component.css'],
-    imports: [
+  selector: 'app-dataset-dialog',
+  templateUrl: './dataset-dialog.component.html',
+  styleUrls: ['./dataset-dialog.component.css'],
+  imports: [
     MatDialogTitle,
     CdkScrollable,
     MatDialogContent,
@@ -50,8 +63,8 @@ import { TranslateModule } from '@ngx-translate/core';
     MatButton,
     MatDialogActions,
     KeyValuePipe,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class DatasetDialogComponent {
   readonly FILE_TYPES = FILE_TYPES;

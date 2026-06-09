@@ -10,16 +10,27 @@ import { DatasetInformationComponent } from '../dataset-information/dataset-info
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 
 import { StepIntroComponent } from '../../../../widgets/step-intro/step-intro.component';
-import { MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from '@angular/material/table';
+import {
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { DatasetSourcePipe } from '../../../../pipes/dataset-source/dataset-source.pipe';
 import { LimitStringPipe } from '../../../../pipes/limit-string/limitString.pipe';
 @Component({
-    selector: 'app-dataset-table',
-    templateUrl: './dataset-table.component.html',
-    styleUrls: ['./dataset-table.component.css'],
-    imports: [
+  selector: 'app-dataset-table',
+  templateUrl: './dataset-table.component.html',
+  styleUrls: ['./dataset-table.component.css'],
+  imports: [
     StepIntroComponent,
     MatTable,
     MatColumnDef,
@@ -35,8 +46,8 @@ import { LimitStringPipe } from '../../../../pipes/limit-string/limitString.pipe
     MatRow,
     TranslateModule,
     DatasetSourcePipe,
-    LimitStringPipe
-],
+    LimitStringPipe,
+  ],
 })
 export class DatasetTableComponent {
   readonly FILE_SIZES = FILE_SIZES;

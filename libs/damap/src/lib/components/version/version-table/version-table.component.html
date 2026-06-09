@@ -48,7 +48,7 @@
       <tr
         mat-row
         *matRowDef="let row; columns: displayedColumns"
-      (click)="viewVersion(row.revisionNumber)"></tr>
+        (click)="viewVersion(row.revisionNumber)"></tr>
       <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell" colspan="4">
           {{ "dmp.versions.list.no.data" | translate }}

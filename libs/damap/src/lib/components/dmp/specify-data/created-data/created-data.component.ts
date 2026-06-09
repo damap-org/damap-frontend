@@ -15,17 +15,17 @@ import { DatasetTableComponent } from '../dataset-table/dataset-table.component'
 import { InfoMessageComponent } from '../../../../widgets/info-message/info-message.component';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-created-data',
-    templateUrl: './created-data.component.html',
-    styleUrls: ['./created-data.component.css'],
-    imports: [
+  selector: 'app-created-data',
+  templateUrl: './created-data.component.html',
+  styleUrls: ['./created-data.component.css'],
+  imports: [
     DataMcComponent,
     MatButton,
     MatIcon,
     DatasetTableComponent,
     InfoMessageComponent,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class CreatedDataComponent extends AbstractBaseDataComponent {
   @Input() fileUpload: { file: File; progress: number; finalized: boolean }[];

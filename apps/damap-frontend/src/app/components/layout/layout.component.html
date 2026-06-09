@@ -27,9 +27,7 @@
             class="mat-focus-indicator"
             [routerLink]="'/dashboard'">
             @if (!isCollapsed) {
-              <span>{{
-                "sidebar.header.title" | translate
-              }}</span>
+              <span>{{ "sidebar.header.title" | translate }}</span>
             }
           </a>
         </div>
@@ -136,7 +134,9 @@
             {{ "sidebar.footer.terms-and-conditions.label" | translate }}
           </a>
           <a
-            [href]="'sidebar.footer.data-protection-declaration.link' | translate"
+            [href]="
+              'sidebar.footer.data-protection-declaration.link' | translate
+            "
             rel="noopener"
             target="_blank">
             {{ "sidebar.footer.data-protection-declaration.label" | translate }}
@@ -148,52 +148,52 @@
           }}</a>
           <span class="version-text"
             >{{ "sidebar.footer.version" | translate }}: {{ version }}</span
-            >
-          </div>
+          >
         </div>
-      }
-      @if (isCollapsed) {
-        <div class="footer-icon">
-          <button
-            mat-icon-button
-            [matTooltip]="'sidebar.footer.collapsed.hint' | translate"
-            [aria-label]="'sidebar.footer.collapsed.hint' | translate">
-            <mat-icon class="md-light outline">data_alert</mat-icon>
-          </button>
-        </div>
-      }
-    </mat-sidenav>
-    <mat-sidenav-content class="mat-sidenav-content">
-      @if (env === 'DEV') {
-        <app-env-banner></app-env-banner>
-      }
-      <app-banner></app-banner>
-      <mat-toolbar class="toolbar">
-        <mat-toolbar-row id="mainHeader">
-          <div class="header-container">
-            <div class="header-title mat-title-large">
-              {{ greeting | translate }}
-              <div class="paragraph-section mat-title-medium">
-                {{ summaryLine | translate }}
-              </div>
+      </div>
+    }
+    @if (isCollapsed) {
+      <div class="footer-icon">
+        <button
+          mat-icon-button
+          [matTooltip]="'sidebar.footer.collapsed.hint' | translate"
+          [aria-label]="'sidebar.footer.collapsed.hint' | translate">
+          <mat-icon class="md-light outline">data_alert</mat-icon>
+        </button>
+      </div>
+    }
+  </mat-sidenav>
+  <mat-sidenav-content class="mat-sidenav-content">
+    @if (env === "DEV") {
+      <app-env-banner></app-env-banner>
+    }
+    <app-banner></app-banner>
+    <mat-toolbar class="toolbar">
+      <mat-toolbar-row id="mainHeader">
+        <div class="header-container">
+          <div class="header-title mat-title-large">
+            {{ greeting | translate }}
+            <div class="paragraph-section mat-title-medium">
+              {{ summaryLine | translate }}
             </div>
-            <a
-              class="logo-header"
-              [title]="'layout.logo.text' | translate"
-              [href]="'layout.logo.link' | translate"
-              target="_blank"
-              rel="noopener">
-              <img
-                [src]="logoUrl"
-                alt="Logo"
+          </div>
+          <a
+            class="logo-header"
+            [title]="'layout.logo.text' | translate"
+            [href]="'layout.logo.link' | translate"
+            target="_blank"
+            rel="noopener">
+            <img
+              [src]="logoUrl"
+              alt="Logo"
               [class]="
                 isDefaultLogo(logoUrl) ? 'header-logo-default' : 'header-logo'
               " />
-            </a>
-          </div>
-        </mat-toolbar-row>
-      </mat-toolbar>
+          </a>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
 
-      <router-outlet #outlet="outlet"></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+    <router-outlet #outlet="outlet"></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

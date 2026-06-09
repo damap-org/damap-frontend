@@ -16,10 +16,15 @@ describe('DashboardComponent', () => {
     routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
     TestBed.configureTestingModule({
-    schemas: [NO_ERRORS_SCHEMA],
-    imports: [MatButtonModule, MatIconModule, TranslateTestingModule, DashboardComponent],
-    providers: [{ provide: Router, useValue: routerSpy }],
-}).compileComponents();
+      schemas: [NO_ERRORS_SCHEMA],
+      imports: [
+        MatButtonModule,
+        MatIconModule,
+        TranslateTestingModule,
+        DashboardComponent,
+      ],
+      providers: [{ provide: Router, useValue: routerSpy }],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -8,7 +8,7 @@
     <app-search-field
       class="search-bar"
       [label]="'plans.table.search'"
-    (searchChange)="applyFilter($event)"></app-search-field>
+      (searchChange)="applyFilter($event)"></app-search-field>
   }
 </div>
 
@@ -40,31 +40,29 @@
       <td mat-cell *matCellDef="let element">
         <a class="version" routerLink="/dmp/{{ element.id }}/version">
           {{
-          element.versionCount !== null && element.versionCount !== undefined
-          ? ("plans.table.header.version_tag" | translate) + ": "
-          : ""
+            element.versionCount !== null && element.versionCount !== undefined
+              ? ("plans.table.header.version_tag" | translate) + ": "
+              : ""
           }}
           <span class="underlined">{{
             element.versionCount !== null && element.versionCount !== undefined
-            ? "#" + element.versionCount
-            : ""
+              ? "#" + element.versionCount
+              : ""
           }}</span>
           @if (
-            element.versionCount !== null &&
-            element.versionCount !== undefined
-            ) {
-            <br
-              />
+            element.versionCount !== null && element.versionCount !== undefined
+          ) {
+            <br />
           }
           {{
-          element.versionCount !== null && element.versionCount !== undefined
-          ? ("plans.table.header.version_name" | translate) + ": "
-          : "No versions for this DMP available"
+            element.versionCount !== null && element.versionCount !== undefined
+              ? ("plans.table.header.version_name" | translate) + ": "
+              : "No versions for this DMP available"
           }}
           <span class="underlined">{{
             element.versionCount !== null && element.versionCount !== undefined
-            ? element.latestVersionName
-            : ""
+              ? element.latestVersionName
+              : ""
           }}</span>
         </a>
       </td>
@@ -112,9 +110,7 @@
           xPosition="before"
           class="mat-menu-secondary-container">
           @if (element.accessType === FUNCTION_ROLES.OWNER || admin) {
-            <button
-              mat-menu-item
-              routerLink="/dmp/{{ element.id }}/access">
+            <button mat-menu-item routerLink="/dmp/{{ element.id }}/access">
               <mat-icon>admin_panel_settings</mat-icon>
               {{ "plans.table.actions.access" | translate }}
             </button>
@@ -132,9 +128,7 @@
             {{ "plans.table.actions.history" | translate }}
           </button>
           @if (element.accessType === FUNCTION_ROLES.OWNER || admin) {
-            <button
-              mat-menu-item
-              (click)="deleteDmp(element.id)">
+            <button mat-menu-item (click)="deleteDmp(element.id)">
               <mat-icon>delete</mat-icon>
               {{ "plans.table.actions.delete" | translate }}
             </button>
@@ -156,8 +150,7 @@
           {{ "plans.table.empty" | translate }}
         </td>
       }
-      @if ((dmpsLoaded | async) === LoadingState.LOADED) {
-      }
+      @if ((dmpsLoaded | async) === LoadingState.LOADED) {}
     </tr>
   </table>
   <mat-paginator
@@ -165,5 +158,5 @@
     [pageSize]="10"
     [pageSizeOptions]="[10, 15, 20]"
     [length]="length"
-  showFirstLastButtons="true"></mat-paginator>
+    showFirstLastButtons="true"></mat-paginator>
 </div>

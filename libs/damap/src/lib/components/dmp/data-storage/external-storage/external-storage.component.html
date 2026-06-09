@@ -10,10 +10,7 @@
   <div class="storage-selected">
     <ng-container>
       @for (item of externalStorageStep?.controls; track item; let i = $index) {
-        <mat-card
-          class="card-shadow"
-          appearance="raised"
-          >
+        <mat-card class="card-shadow" appearance="raised">
           <div class="storage-card-top">
             <mat-card-header>
               <mat-card-title [class.form-error]="item.invalid">
@@ -26,11 +23,13 @@
               <div class="storage-card-top">
                 <app-input-wrapper
                   [label]="'dmp.steps.storage.external.question.name'"
-                [control]="getFormControl(i, 'title')"></app-input-wrapper>
+                  [control]="getFormControl(i, 'title')"></app-input-wrapper>
               </div>
               <button
                 mat-icon-button
-                aria-label="{{ 'dmp.steps.storage.external.remove' | translate }}"
+                aria-label="{{
+                  'dmp.steps.storage.external.remove' | translate
+                }}"
                 (click)="removeExternalStorage(i)">
                 <mat-icon class="material-icon-primary">cancel</mat-icon>
               </button>
@@ -45,8 +44,7 @@
                     multiple
                     [formControl]="getFormControl(i, 'datasets')">
                     @for (dataset of datasets?.controls; track dataset) {
-                      <mat-option
-                        [value]="dataset.value.referenceHash">
+                      <mat-option [value]="dataset.value.referenceHash">
                         {{ dataset.value.title }}
                       </mat-option>
                     }
@@ -54,23 +52,27 @@
                 </mat-form-field>
                 <app-input-wrapper
                   [label]="'dmp.steps.storage.external.question.location'"
-                [control]="
-                  getFormControl(i, 'storageLocation')
-                "></app-input-wrapper>
+                  [control]="
+                    getFormControl(i, 'storageLocation')
+                  "></app-input-wrapper>
               </div>
             </div>
             <div class="form-row">
               <div class="storage-card-top">
                 <app-input-wrapper
-                  [label]="'dmp.steps.storage.external.question.backup.frequency'"
-                [control]="
-                  getFormControl(i, 'backupFrequency')
-                "></app-input-wrapper>
+                  [label]="
+                    'dmp.steps.storage.external.question.backup.frequency'
+                  "
+                  [control]="
+                    getFormControl(i, 'backupFrequency')
+                  "></app-input-wrapper>
                 <app-input-wrapper
-                  [label]="'dmp.steps.storage.external.question.backup.location'"
-                [control]="
-                  getFormControl(i, 'backupLocation')
-                "></app-input-wrapper>
+                  [label]="
+                    'dmp.steps.storage.external.question.backup.location'
+                  "
+                  [control]="
+                    getFormControl(i, 'backupLocation')
+                  "></app-input-wrapper>
               </div>
             </div>
           </mat-card-content>
@@ -78,8 +80,8 @@
             <mat-slide-toggle
               [formControl]="getFormControl(i, 'isManagedInternally')">
               {{
-              "dmp.steps.storage.external.question.isManagedInternally"
-              | translate
+                "dmp.steps.storage.external.question.isManagedInternally"
+                  | translate
               }}
             </mat-slide-toggle>
           </mat-card-actions>
@@ -87,8 +89,7 @@
       }
     </ng-container>
     @if (externalStorageStep?.controls.length && anyNonInternalStorage()) {
-      <div
-        class="storage-textarea">
+      <div class="storage-textarea">
         <app-textarea-wrapper
           [label]="'dmp.steps.storage.external.question.short.info'"
           [longLabel]="'dmp.steps.storage.external.question.long.info'"

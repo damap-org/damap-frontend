@@ -7,15 +7,10 @@ import { TagComponent } from '../../../../widgets/tag/tag.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { BytePipe } from '../../../../pipes/byte/byte.pipe';
 @Component({
-    selector: 'app-version-view-datasets',
-    templateUrl: './version-view-datasets.component.html',
-    styleUrls: ['./version-view-datasets.component.css'],
-    imports: [
-    TagComponent,
-    DatePipe,
-    TranslateModule,
-    BytePipe
-],
+  selector: 'app-version-view-datasets',
+  templateUrl: './version-view-datasets.component.html',
+  styleUrls: ['./version-view-datasets.component.css'],
+  imports: [TagComponent, DatePipe, TranslateModule, BytePipe],
 })
 export class VersionViewDatasetsComponent {
   @Input() dataKind: DataKind;

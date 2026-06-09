@@ -35,9 +35,7 @@
       <div [formGroup]="costsStep" class="scrollable-cost-list">
         <mat-accordion formArrayName="list">
           @for (item of list.controls; track item; let i = $index) {
-            <mat-expansion-panel
-              class="expansion-panel"
-              >
+            <mat-expansion-panel class="expansion-panel">
               <mat-expansion-panel-header>
                 <mat-panel-title [class.form-error]="item.invalid">
                   {{ item.value.title }}
@@ -78,8 +76,7 @@
                       }}</mat-label>
                       <mat-select formControlName="type">
                         @for (type of costTypeObject | keyvalue; track type) {
-                          <mat-option
-                            [value]="type.value">
+                          <mat-option [value]="type.value">
                             {{ translateEnumPrefix + type.value | translate }}
                           </mat-option>
                         }

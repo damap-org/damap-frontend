@@ -1,7 +1,17 @@
 import { Component, Input } from '@angular/core';
-import { UntypedFormArray, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  UntypedFormArray,
+  UntypedFormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { DataSource } from '../../../../domain/enum/data-source.enum';
-import { MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle } from '@angular/material/expansion';
+import {
+  MatAccordion,
+  MatExpansionPanel,
+  MatExpansionPanelHeader,
+  MatExpansionPanelTitle,
+} from '@angular/material/expansion';
 import { MatIcon } from '@angular/material/icon';
 import { InfoMessageComponent } from '../../../../widgets/info-message/info-message.component';
 
@@ -11,10 +21,10 @@ import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/autocomplete';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-retention-period',
-    templateUrl: './retention-period.component.html',
-    styleUrls: ['./retention-period.component.css'],
-    imports: [
+  selector: 'app-retention-period',
+  templateUrl: './retention-period.component.html',
+  styleUrls: ['./retention-period.component.css'],
+  imports: [
     FormsModule,
     ReactiveFormsModule,
     MatAccordion,
@@ -28,8 +38,8 @@ import { TranslateModule } from '@ngx-translate/core';
     MatLabel,
     MatSelect,
     MatOption,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class RetentionPeriodComponent {
   @Input() dmpForm: UntypedFormGroup;

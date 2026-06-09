@@ -4,12 +4,10 @@ import { Dataset } from '../../../../domain/dataset';
 
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-version-view-repositories',
-    templateUrl: './version-view-repositories.component.html',
-    styleUrls: [],
-    imports: [
-    TranslateModule
-],
+  selector: 'app-version-view-repositories',
+  templateUrl: './version-view-repositories.component.html',
+  styleUrls: [],
+  imports: [TranslateModule],
 })
 export class VersionViewRepositoriesComponent {
   @Input() repositories: Repository[];

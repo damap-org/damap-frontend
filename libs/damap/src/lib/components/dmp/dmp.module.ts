@@ -5,8 +5,6 @@ import { CommonModule } from '@angular/common';
 
 import { DMP_ROUTES } from './dmp.routes';
 
-
-
 import { DmpComponent } from './dmp.component';
 
 import { FormsModule } from '@angular/forms';
@@ -20,16 +18,12 @@ import { NgModule } from '@angular/core';
 
 import { ProjectModule } from './project/project.module';
 
-
 import { RouterModule } from '@angular/router';
-
-
-
 
 import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-    imports: [
+  imports: [
     CommonModule,
     RouterModule.forChild(DMP_ROUTES),
     FormsModule,
@@ -45,6 +39,6 @@ import { MatIconModule } from '@angular/material/icon';
     MatStepperModule,
     MatIconModule,
     DmpComponent,
-],
+  ],
 })
 export class DmpModule {}

@@ -1,4 +1,3 @@
-
 import { HttpClient } from '@angular/common/http';
 import { effect, inject, Injectable, signal, DOCUMENT } from '@angular/core';
 import { Config, ColorTheme } from '@damap/core';

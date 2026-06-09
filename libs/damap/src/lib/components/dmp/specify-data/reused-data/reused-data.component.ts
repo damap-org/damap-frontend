@@ -15,17 +15,17 @@ import { DoiSearchComponent } from '../../../../widgets/doi-search/doi-search.co
 import { DatasetTableComponent } from '../dataset-table/dataset-table.component';
 import { InfoMessageComponent } from '../../../../widgets/info-message/info-message.component';
 @Component({
-    selector: 'app-reused-data',
-    templateUrl: './reused-data.component.html',
-    styleUrls: ['./reused-data.component.css'],
-    imports: [
+  selector: 'app-reused-data',
+  templateUrl: './reused-data.component.html',
+  styleUrls: ['./reused-data.component.css'],
+  imports: [
     DataMcComponent,
     MatButton,
     TranslateModule,
     DoiSearchComponent,
     DatasetTableComponent,
-    InfoMessageComponent
-],
+    InfoMessageComponent,
+  ],
 })
 export class ReusedDataComponent
   extends AbstractBaseDataComponent

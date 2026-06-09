@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { LicenseDetails } from '../../domain/license-details';
 
-@Pipe({ name: 'licenseFilter', })
+@Pipe({ name: 'licenseFilter' })
 export class LicenseFilterPipe implements PipeTransform {
   transform(data: LicenseDetails[], searchText: string) {
     if (searchText == null || data == null) {

@@ -17,12 +17,7 @@ import { OrcidComponent } from '../orcid/orcid.component';
  */
 @Component({
   selector: 'damap-person-card',
-  imports: [
-    TranslateModule,
-    MatCardModule,
-    MatIconModule,
-    OrcidComponent
-],
+  imports: [TranslateModule, MatCardModule, MatIconModule, OrcidComponent],
   templateUrl: './person-card.component.html',
   styleUrls: [],
   standalone: true,

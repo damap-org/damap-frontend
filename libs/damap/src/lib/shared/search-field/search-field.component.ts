@@ -1,16 +1,29 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatFormFieldAppearance, MatFormField, MatLabel, MatSuffix, MatError } from '@angular/material/form-field';
-import { UntypedFormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material/autocomplete';
+import {
+  MatFormFieldAppearance,
+  MatFormField,
+  MatLabel,
+  MatSuffix,
+  MatError,
+} from '@angular/material/form-field';
+import {
+  UntypedFormControl,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import {
+  MatAutocomplete,
+  MatAutocompleteTrigger,
+} from '@angular/material/autocomplete';
 
 import { MatInput } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-search-field',
-    templateUrl: './search-field.component.html',
-    styleUrl: './search-field.component.css',
-    imports: [
+  selector: 'app-search-field',
+  templateUrl: './search-field.component.html',
+  styleUrl: './search-field.component.css',
+  imports: [
     MatFormField,
     MatLabel,
     MatInput,
@@ -20,8 +33,8 @@ import { TranslateModule } from '@ngx-translate/core';
     MatIcon,
     MatSuffix,
     MatError,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class SearchFieldComponent {
   @Input() label: string = '';

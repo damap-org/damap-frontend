@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 
-
 import { ExportWarningModule } from '../../widgets/export-warning-dialog/export-warning.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -16,7 +15,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
 
 @NgModule({
-    imports: [
+  imports: [
     CommonModule,
     TranslateModule,
     RouterModule,
@@ -31,8 +30,8 @@ import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
     MatSelectModule,
     InfoCardComponent,
     PlansComponent,
-],
-    exports: [
+  ],
+  exports: [
     CommonModule,
     TranslateModule,
     RouterModule,
@@ -46,6 +45,6 @@ import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
     MatTableModule,
     MatPaginatorModule,
     MatSelectModule,
-],
+  ],
 })
 export class PlansModule {}

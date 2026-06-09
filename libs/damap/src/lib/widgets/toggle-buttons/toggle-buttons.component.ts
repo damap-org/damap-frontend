@@ -3,13 +3,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-toggle-buttons',
-    templateUrl: './toggle-buttons.component.html',
-    styleUrls: ['./toggle-buttons.component.css'],
-    imports: [
-        MatButton,
-        TranslateModule,
-    ],
+  selector: 'app-toggle-buttons',
+  templateUrl: './toggle-buttons.component.html',
+  styleUrls: ['./toggle-buttons.component.css'],
+  imports: [MatButton, TranslateModule],
 })
 export class ToggleButtonsComponent implements OnInit {
   @Input() selectedView: 'primaryView' | 'secondaryView' = 'primaryView';

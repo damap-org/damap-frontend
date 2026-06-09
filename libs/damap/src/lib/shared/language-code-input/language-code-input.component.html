@@ -13,8 +13,7 @@
     #languageAutocomplete="matAutocomplete"
     [displayWith]="getLanguageDisplayValue.bind(this)">
     @for (language of filteredLanguageOptions$ | async; track language) {
-      <mat-option
-        [value]="language.code">
+      <mat-option [value]="language.code">
         {{ language.name }} ({{ language.code | uppercase }})
       </mat-option>
     }
@@ -24,24 +23,22 @@
     {{ hint }}
   </mat-hint>
 
-  @if (control?.hasError('required') && errorMessageRequired) {
+  @if (control?.hasError("required") && errorMessageRequired) {
     <mat-error>
       {{ errorMessageRequired }}
     </mat-error>
   }
 
-  @if (control?.hasError('invalidLanguageCode') && errorMessageInvalid) {
-    <mat-error
-      >
+  @if (control?.hasError("invalidLanguageCode") && errorMessageInvalid) {
+    <mat-error>
       {{ errorMessageInvalid }}
     </mat-error>
   }
 
   @if (
-    control?.hasError('languageAlreadyExists') && errorMessageAlreadyExists
-    ) {
-    <mat-error
-      >
+    control?.hasError("languageAlreadyExists") && errorMessageAlreadyExists
+  ) {
+    <mat-error>
       {{ errorMessageAlreadyExists }}
     </mat-error>
   }

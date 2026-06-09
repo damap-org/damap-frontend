@@ -8,8 +8,8 @@ describe('VersionViewRepositoriesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [VersionViewRepositoriesComponent],
-}).compileComponents();
+      imports: [VersionViewRepositoriesComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

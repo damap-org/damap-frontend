@@ -38,7 +38,7 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { LanguageCodeInputComponent } from '../../shared/language-code-input/language-code-input.component';
 
 @NgModule({
-    imports: [
+  imports: [
     CommonModule,
     TranslateModule,
     RouterModule,
@@ -73,8 +73,8 @@ import { LanguageCodeInputComponent } from '../../shared/language-code-input/lan
     DeleteRepositoryWarningDialogComponent,
     TranslationManagementComponent,
     AddLanguageDialogComponent,
-],
-    exports: [
+  ],
+  exports: [
     CommonModule,
     TranslateModule,
     RouterModule,
@@ -92,6 +92,6 @@ import { LanguageCodeInputComponent } from '../../shared/language-code-input/lan
     MatFormFieldModule,
     MatTooltipModule,
     TranslationManagementComponent,
-],
+  ],
 })
 export class AdminModule {}

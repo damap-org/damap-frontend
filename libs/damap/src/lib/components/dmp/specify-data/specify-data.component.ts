@@ -11,16 +11,16 @@ import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/texta
 import { MatHint } from '@angular/material/form-field';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-dmp-specify-data',
-    templateUrl: './specify-data.component.html',
-    styleUrls: ['./specify-data.component.css'],
-    imports: [
+  selector: 'app-dmp-specify-data',
+  templateUrl: './specify-data.component.html',
+  styleUrls: ['./specify-data.component.css'],
+  imports: [
     CreatedDataComponent,
     ReusedDataComponent,
     TextareaWrapperComponent,
     MatHint,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class SpecifyDataComponent extends AbstractBaseDataComponent {
   @Input() fileUpload: { file: File; progress: number; finalized: boolean }[];

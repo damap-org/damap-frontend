@@ -58,7 +58,7 @@ describe('TranslationManagementComponent', () => {
     backendServiceMock.getLanguages.and.returnValue(of(['en']));
     backendServiceMock.getTranslations.and.returnValue(of(sampleTranslations));
     await TestBed.configureTestingModule({
-    imports: [
+      imports: [
         BrowserAnimationsModule,
         TranslateModule.forRoot(),
         MatFormFieldModule,
@@ -68,13 +68,13 @@ describe('TranslationManagementComponent', () => {
         MatIconModule,
         MatTooltipModule,
         TranslationManagementComponent,
-    ],
-    providers: [
+      ],
+      providers: [
         { provide: BackendService, useValue: backendServiceMock },
         { provide: FeedbackService, useValue: feedbackServiceMock },
         { provide: MatDialog, useValue: matDialogMock },
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TranslationManagementComponent);
     component = fixture.componentInstance;

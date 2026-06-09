@@ -23,19 +23,19 @@ describe('RepoComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [TranslateTestingModule, RepoComponent, StepIntroComponent],
-    providers: [
+      imports: [TranslateTestingModule, RepoComponent, StepIntroComponent],
+      providers: [
         provideMockStore({
-            initialState,
-            selectors: [
-                {
-                    selector: selectRepositoriesLoaded,
-                    value: LoadingState.NOT_LOADED,
-                },
-            ],
+          initialState,
+          selectors: [
+            {
+              selector: selectRepositoriesLoaded,
+              value: LoadingState.NOT_LOADED,
+            },
+          ],
         }),
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,5 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { UntypedFormArray, UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  UntypedFormArray,
+  UntypedFormControl,
+  UntypedFormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { DataAccessType } from '../../../domain/enum/data-access-type.enum';
 import { DataSource } from '../../../domain/enum/data-source.enum';
 import { MatLabel } from '@angular/material/form-field';
@@ -8,18 +14,18 @@ import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/texta
 
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-dmp-reuse',
-    templateUrl: './reuse.component.html',
-    styleUrls: ['./reuse.component.css'],
-    imports: [
+  selector: 'app-dmp-reuse',
+  templateUrl: './reuse.component.html',
+  styleUrls: ['./reuse.component.css'],
+  imports: [
     MatLabel,
     MatCard,
     MatCardContent,
     FormsModule,
     ReactiveFormsModule,
     TextareaWrapperComponent,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class ReuseComponent {
   @Input() reuseStep: UntypedFormGroup;

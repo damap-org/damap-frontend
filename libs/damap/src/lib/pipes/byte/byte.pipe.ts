@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({ name: 'byte', })
+@Pipe({ name: 'byte' })
 export class BytePipe implements PipeTransform {
   transform(value: number): string {
     if (!value) {

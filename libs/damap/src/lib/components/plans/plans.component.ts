@@ -25,17 +25,17 @@ import { AsyncPipe } from '@angular/common';
 import { MatProgressBar } from '@angular/material/progress-bar';
 import { ErrorMessageComponent } from '../../widgets/error-message/error-message.component';
 @Component({
-    selector: 'app-plan',
-    templateUrl: './plans.component.html',
-    styleUrls: ['./plans.component.css'],
-    imports: [
+  selector: 'app-plan',
+  templateUrl: './plans.component.html',
+  styleUrls: ['./plans.component.css'],
+  imports: [
     InfoCardComponent,
     TranslateModule,
     DmpTableComponent,
     MatProgressBar,
     ErrorMessageComponent,
-    AsyncPipe
-],
+    AsyncPipe,
+  ],
 })
 export class PlansComponent implements OnInit {
   dmps$: Observable<DmpListItem[]>;

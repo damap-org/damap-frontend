@@ -56,32 +56,32 @@ describe('DmpComponent', () => {
     backendSpy.getProjectMembers.and.returnValue(of([mockContributor1]));
 
     TestBed.configureTestingModule({
-    imports: [
+      imports: [
         ReactiveFormsModule,
         MatStepperModule,
         MatButtonModule,
         NoopAnimationsModule,
         RouterTestingModule.withRoutes([
-        /*{path: 'plans', component: PlansComponent}*/
+          /*{path: 'plans', component: PlansComponent}*/
         ]),
         TranslateTestingModule,
         FormTestingModule,
         DmpComponent,
-    ],
-    schemas: [NO_ERRORS_SCHEMA],
-    providers: [
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
+      providers: [
         { provide: AuthService, useValue: authSpy },
         provideMockStore({ initialState }),
         {
-            provide: ActivatedRoute,
-            useValue: {
-                snapshot: { paramMap: { get: (id: number) => completeDmp.id } },
-            },
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: { paramMap: { get: (id: number) => completeDmp.id } },
+          },
         },
         { provide: BackendService, useValue: backendSpy },
         { provide: FeedbackService, useValue: feedbackSpy },
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(async () => {

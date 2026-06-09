@@ -1,5 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  UntypedFormControl,
+  UntypedFormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { DataQualityType } from '../../../domain/enum/data-quality-type.enum';
 import { KeyValuePipe } from '@angular/common';
 import { MatLabel, MatHint, MatFormField } from '@angular/material/form-field';
@@ -10,10 +15,10 @@ import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/autocomplete';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-dmp-doc-data-quality',
-    templateUrl: './doc-data-quality.component.html',
-    styleUrls: ['./doc-data-quality.component.css'],
-    imports: [
+  selector: 'app-dmp-doc-data-quality',
+  templateUrl: './doc-data-quality.component.html',
+  styleUrls: ['./doc-data-quality.component.css'],
+  imports: [
     MatLabel,
     MatCard,
     MatCardContent,
@@ -26,8 +31,8 @@ import { TranslateModule } from '@ngx-translate/core';
     MatSelect,
     MatOption,
     KeyValuePipe,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class DocDataQualityComponent {
   @Input() docDataStep: UntypedFormGroup;

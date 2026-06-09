@@ -6,13 +6,25 @@ import { DatePipe } from '@angular/common';
 import { MatButton } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
-import { MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow, MatNoDataRow } from '@angular/material/table';
+import {
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+  MatNoDataRow,
+} from '@angular/material/table';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-version-table',
-    templateUrl: './version-table.component.html',
-    styleUrls: ['./version-table.component.css'],
-    imports: [
+  selector: 'app-version-table',
+  templateUrl: './version-table.component.html',
+  styleUrls: ['./version-table.component.css'],
+  imports: [
     MatButton,
     RouterLink,
     MatIcon,
@@ -28,8 +40,8 @@ import { TranslateModule } from '@ngx-translate/core';
     MatRow,
     MatNoDataRow,
     DatePipe,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class VersionTableComponent {
   displayedColumns: string[] = ['version', 'name', 'date', 'editor'];

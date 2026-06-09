@@ -14,10 +14,10 @@ import { VersionTableComponent } from '../version-table/version-table.component'
 import { AsyncPipe } from '@angular/common';
 
 @Component({
-    selector: 'app-version-list',
-    templateUrl: './version-list.component.html',
-    styleUrls: [],
-    imports: [VersionTableComponent, AsyncPipe],
+  selector: 'app-version-list',
+  templateUrl: './version-list.component.html',
+  styleUrls: [],
+  imports: [VersionTableComponent, AsyncPipe],
 })
 export class VersionListComponent implements OnInit {
   versions$: Observable<Version[]>;

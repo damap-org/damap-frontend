@@ -4,9 +4,9 @@ import { ImageThemeService } from 'apps/damap-frontend/src/app/services/image-th
 import { IMAGE_KEYS } from '../../domain/image-keys';
 
 @Component({
-    selector: 'app-orcid',
-    templateUrl: './orcid.component.html',
-    styleUrls: ['./orcid.component.css'],
+  selector: 'app-orcid',
+  templateUrl: './orcid.component.html',
+  styleUrls: ['./orcid.component.css'],
 })
 export class OrcidComponent implements OnInit {
   private readonly imageThemeService = inject(ImageThemeService);

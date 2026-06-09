@@ -11,9 +11,9 @@ describe('LicensesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [MatCardModule, TranslateTestingModule, LicensesComponent],
-    schemas: [NO_ERRORS_SCHEMA],
-}).compileComponents();
+      imports: [MatCardModule, TranslateTestingModule, LicensesComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -68,16 +68,16 @@ import { SummaryComponent } from './summary/summary.component';
 import { DmpActionsComponent } from './dmp-actions/dmp-actions.component';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-dmp',
-    templateUrl: './dmp.component.html',
-    styleUrls: ['./dmp.component.css'],
-    providers: [
-        {
-            provide: STEPPER_GLOBAL_OPTIONS,
-            useValue: { displayDefaultIndicatorType: false },
-        },
-    ],
-    imports: [
+  selector: 'app-dmp',
+  templateUrl: './dmp.component.html',
+  styleUrls: ['./dmp.component.css'],
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: { displayDefaultIndicatorType: false },
+    },
+  ],
+  imports: [
     InfoCardComponent,
     MatStepper,
     MatStepperIcon,
@@ -104,8 +104,8 @@ import { TranslateModule } from '@ngx-translate/core';
     CostsComponent,
     SummaryComponent,
     DmpActionsComponent,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class DmpComponent implements OnInit, OnDestroy {
   config$: Observable<Config> = new Observable<Config>();

@@ -1,21 +1,25 @@
 import { Component, Input } from '@angular/core';
-import { UntypedFormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  UntypedFormControl,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { DataKind } from '../../../../domain/enum/data-kind.enum';
 import { MatLabel } from '@angular/material/form-field';
 import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-data-mc',
-    templateUrl: './data-mc.component.html',
-    styleUrls: ['./data-mc.component.css'],
-    imports: [
-        FormsModule,
-        MatLabel,
-        MatRadioGroup,
-        ReactiveFormsModule,
-        MatRadioButton,
-        TranslateModule,
-    ],
+  selector: 'app-data-mc',
+  templateUrl: './data-mc.component.html',
+  styleUrls: ['./data-mc.component.css'],
+  imports: [
+    FormsModule,
+    MatLabel,
+    MatRadioGroup,
+    ReactiveFormsModule,
+    MatRadioButton,
+    TranslateModule,
+  ],
 })
 export class DataMcComponent {
   @Input() control: UntypedFormControl;

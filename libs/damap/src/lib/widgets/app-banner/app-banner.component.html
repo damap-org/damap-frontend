@@ -7,15 +7,11 @@
         <strong> {{ banner.title }} </strong>
       </mat-card-title>
       @if (banner.dismissible) {
-        <mat-icon
-          class="dismiss-btn"
-          (click)="dismissBanner()"
-          >close</mat-icon
-          >
-        }
-      </mat-card-header>
-      <mat-card-content>
-        <p>{{ banner.description }}</p>
-      </mat-card-content>
-    </mat-card>
-  }
+        <mat-icon class="dismiss-btn" (click)="dismissBanner()">close</mat-icon>
+      }
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ banner.description }}</p>
+    </mat-card-content>
+  </mat-card>
+}

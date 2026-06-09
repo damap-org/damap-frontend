@@ -19,16 +19,16 @@ describe('RetentionPeriodComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [
+      imports: [
         ReactiveFormsModule,
         MatSelectModule,
         MatExpansionModule,
         NoopAnimationsModule,
         TranslateTestingModule,
         RetentionPeriodComponent,
-    ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-}).compileComponents();
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

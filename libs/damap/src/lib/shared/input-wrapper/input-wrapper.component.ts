@@ -1,15 +1,27 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { UntypedFormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldAppearance, MatFormField, MatLabel, MatPrefix, MatHint, MatError } from '@angular/material/form-field';
+import {
+  UntypedFormControl,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import {
+  MatFormFieldAppearance,
+  MatFormField,
+  MatLabel,
+  MatPrefix,
+  MatHint,
+  MatError,
+} from '@angular/material/form-field';
 
 import { TooltipComponent } from '../../widgets/tooltip/tooltip.component';
 import { MatInput } from '@angular/material/input';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-input-wrapper [label] [control]',
-    templateUrl: './input-wrapper.component.html',
-    styleUrls: ['./input-wrapper.component.css'],
-    imports: [
+  selector: 'app-input-wrapper [label] [control]',
+  templateUrl: './input-wrapper.component.html',
+  styleUrls: ['./input-wrapper.component.css'],
+  imports: [
     MatFormField,
     MatLabel,
     TooltipComponent,
@@ -19,8 +31,8 @@ import { TranslateModule } from '@ngx-translate/core';
     ReactiveFormsModule,
     MatHint,
     MatError,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class InputWrapperComponent implements OnInit {
   @Input() label: string;

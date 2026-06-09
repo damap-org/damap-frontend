@@ -30,7 +30,7 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <app-version-view-project
-          [project]="dmp.project"></app-version-view-project>
+            [project]="dmp.project"></app-version-view-project>
         </mat-expansion-panel>
       }
       <!-- Contributors-->
@@ -42,7 +42,7 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <app-version-view-contributors
-          [contributors]="dmp.contributors"></app-version-view-contributors>
+            [contributors]="dmp.contributors"></app-version-view-contributors>
         </mat-expansion-panel>
       }
       <!-- Datasets -->
@@ -59,15 +59,15 @@
             [reusedDataKind]="dmp.reusedDataKind"
             [dataGeneration]="dmp.dataGeneration"
             [noDataExplanation]="dmp.noDataExplanation"
-          [datasets]="dmp.datasets"></app-version-view-datasets>
+            [datasets]="dmp.datasets"></app-version-view-datasets>
         </mat-expansion-panel>
       }
       <!-- Only display sections if datasets are defined -->
       @if (
         (dmp.dataKind === dataKind.SPECIFY ||
-        dmp.reusedDataKind === dataKind.SPECIFY) &&
+          dmp.reusedDataKind === dataKind.SPECIFY) &&
         dmp.datasets?.length > 0
-        ) {
+      ) {
         <!-- Documentation -->
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -77,7 +77,7 @@
             <mat-panel-description> </mat-panel-description>
           </mat-expansion-panel-header>
           <app-version-view-doc-data-quality
-          [dmp]="dmp"></app-version-view-doc-data-quality>
+            [dmp]="dmp"></app-version-view-doc-data-quality>
         </mat-expansion-panel>
         <!-- Legal -->
         <mat-expansion-panel>
@@ -88,7 +88,7 @@
             <mat-panel-description> </mat-panel-description>
           </mat-expansion-panel-header>
           <app-version-view-legal-ethical-aspects
-          [dmp]="dmp"></app-version-view-legal-ethical-aspects>
+            [dmp]="dmp"></app-version-view-legal-ethical-aspects>
         </mat-expansion-panel>
         <!-- Storages -->
         <mat-expansion-panel>
@@ -101,7 +101,7 @@
           <app-version-view-storages
             [storages]="dmp.storage"
             [externalStorages]="dmp.externalStorage"
-          [datasets]="dmp.datasets"></app-version-view-storages>
+            [datasets]="dmp.datasets"></app-version-view-storages>
         </mat-expansion-panel>
         <!-- Repositories -->
         <mat-expansion-panel>
@@ -113,7 +113,7 @@
           </mat-expansion-panel-header>
           <app-version-view-repositories
             [repositories]="dmp.repositories"
-          [datasets]="dmp.datasets"></app-version-view-repositories>
+            [datasets]="dmp.datasets"></app-version-view-repositories>
         </mat-expansion-panel>
         <!-- Reuse -->
         <mat-expansion-panel>
@@ -142,7 +142,7 @@
           </mat-expansion-panel-header>
           <app-version-view-costs
             [costsExist]="dmp.costsExist"
-          [costs]="dmp.costs"></app-version-view-costs>
+            [costs]="dmp.costs"></app-version-view-costs>
         </mat-expansion-panel>
       }
     </mat-accordion>

@@ -11,9 +11,9 @@ export function instructionTestHelper<T>(componentClass: {
   describe(`${componentClass.name} Tests`, () => {
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-    imports: [componentClass],
-    schemas: [NO_ERRORS_SCHEMA],
-}).compileComponents();
+        imports: [componentClass],
+        schemas: [NO_ERRORS_SCHEMA],
+      }).compileComponents();
 
       fixture = TestBed.createComponent(componentClass);
       component = fixture.componentInstance;

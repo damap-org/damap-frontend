@@ -8,7 +8,20 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow, MatNoDataRow } from '@angular/material/table';
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+  MatNoDataRow,
+} from '@angular/material/table';
 import { RepositoryDetails } from '../../../../domain/repository-details';
 import { LoadingState } from '../../../../domain/enum/loading-state.enum';
 import { MatPaginator } from '@angular/material/paginator';
@@ -33,17 +46,20 @@ import { MatProgressBar } from '@angular/material/progress-bar';
 import { TranslateModule } from '@ngx-translate/core';
 import { ErrorMessageComponent } from '../../../../widgets/error-message/error-message.component';
 @Component({
-    selector: 'app-repo-table',
-    templateUrl: './repo-table.component.html',
-    styleUrls: ['./repo-table.component.css'],
-    animations: [
-        trigger('detailExpand', [
-            state('collapsed', style({ height: '0px', minHeight: '0' })),
-            state('expanded', style({ height: '*' })),
-            transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-        ]),
-    ],
-    imports: [
+  selector: 'app-repo-table',
+  templateUrl: './repo-table.component.html',
+  styleUrls: ['./repo-table.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition(
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'),
+      ),
+    ]),
+  ],
+  imports: [
     MatCard,
     MatCardContent,
     SearchFieldComponent,
@@ -68,8 +84,8 @@ import { ErrorMessageComponent } from '../../../../widgets/error-message/error-m
     MatPaginator,
     TranslateModule,
     ErrorMessageComponent,
-    KeyValuePipe
-],
+    KeyValuePipe,
+  ],
 })
 export class RepoTableComponent implements OnChanges, AfterViewInit {
   @Input() selectedRepos: Repository[];

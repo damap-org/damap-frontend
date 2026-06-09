@@ -1,6 +1,13 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, UntypedFormControl } from '@angular/forms';
-import { MatDialog, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogRef,
+  MatDialogTitle,
+  MatDialogContent,
+  MatDialogActions,
+  MatDialogClose,
+} from '@angular/material/dialog';
 import { Observable, Subject, Subscription, filter, take } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import {
@@ -25,7 +32,12 @@ import { LivePreviewComponent } from '../live-preview/live-preview.component';
 import { Location } from '@angular/common';
 import { selectDmpSaving } from '../../../store/selectors/dmp.selectors';
 import { ConfigService } from '../../../../../../../apps/damap-frontend/src/app/services/config.service';
-import { MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle } from '@angular/material/expansion';
+import {
+  MatAccordion,
+  MatExpansionPanel,
+  MatExpansionPanelHeader,
+  MatExpansionPanelTitle,
+} from '@angular/material/expansion';
 import { MatButton } from '@angular/material/button';
 import { RouterLinkActive, RouterLink } from '@angular/router';
 import { SaveStatusComponent } from '../../../widgets/save-status/save-status.component';
@@ -35,10 +47,10 @@ import { CdkScrollable } from '@angular/cdk/scrolling';
 import { InputWrapperComponent } from '../../../shared/input-wrapper/input-wrapper.component';
 
 @Component({
-    selector: 'app-actions',
-    templateUrl: './dmp-actions.component.html',
-    styleUrls: ['./dmp-actions.component.css'],
-    imports: [
+  selector: 'app-actions',
+  templateUrl: './dmp-actions.component.html',
+  styleUrls: ['./dmp-actions.component.css'],
+  imports: [
     MatAccordion,
     MatExpansionPanel,
     MatExpansionPanelHeader,
@@ -48,8 +60,8 @@ import { InputWrapperComponent } from '../../../shared/input-wrapper/input-wrapp
     RouterLink,
     SaveStatusComponent,
     MatTooltip,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class DmpActionsComponent implements OnInit, OnDestroy {
   @Input() stepChanged$: Subject<any>;
@@ -216,19 +228,19 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
 }
 
 @Component({
-    selector: 'app-save-version-dialog',
-    templateUrl: 'save-version-dialog.html',
-    styleUrls: ['./dmp-actions.component.css'],
-    imports: [
-        MatDialogTitle,
-        CdkScrollable,
-        MatDialogContent,
-        InputWrapperComponent,
-        MatDialogActions,
-        MatButton,
-        MatDialogClose,
-        TranslateModule,
-    ],
+  selector: 'app-save-version-dialog',
+  templateUrl: 'save-version-dialog.html',
+  styleUrls: ['./dmp-actions.component.css'],
+  imports: [
+    MatDialogTitle,
+    CdkScrollable,
+    MatDialogContent,
+    InputWrapperComponent,
+    MatDialogActions,
+    MatButton,
+    MatDialogClose,
+    TranslateModule,
+  ],
 })
 export class SaveVersionDialogComponent {
   versionName = '';

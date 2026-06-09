@@ -44,8 +44,8 @@ import { TranslateModule } from '@ngx-translate/core';
     AsyncPipe,
     FormsModule,
     ReactiveFormsModule,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class LanguageCodeInputComponent implements OnChanges {
   @Input() label: string = '';

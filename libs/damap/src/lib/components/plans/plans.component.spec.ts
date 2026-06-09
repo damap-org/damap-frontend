@@ -53,24 +53,24 @@ describe('PlansComponent', () => {
         'isAdmin',
       ]);
       TestBed.configureTestingModule({
-    imports: [
-        MatIconModule,
-        MatProgressBarModule,
-        MatDialogModule,
-        MatButtonModule,
-        TranslateTestingModule,
-        DeleteWarningDialogComponent,
-        NoopAnimationsModule,
-        PlansComponent,
-    ],
-    providers: [
-        provideMockStore({ initialState }),
-        { provide: BackendService, useValue: backendSpy },
-        { provide: AuthService, useValue: authSpy },
-        UntypedFormBuilder,
-        FormService,
-    ],
-}).compileComponents();
+        imports: [
+          MatIconModule,
+          MatProgressBarModule,
+          MatDialogModule,
+          MatButtonModule,
+          TranslateTestingModule,
+          DeleteWarningDialogComponent,
+          NoopAnimationsModule,
+          PlansComponent,
+        ],
+        providers: [
+          provideMockStore({ initialState }),
+          { provide: BackendService, useValue: backendSpy },
+          { provide: AuthService, useValue: authSpy },
+          UntypedFormBuilder,
+          FormService,
+        ],
+      }).compileComponents();
       fixture = TestBed.createComponent(PlansComponent);
       component = fixture.componentInstance;
       store = TestBed.inject(MockStore);

@@ -20,16 +20,17 @@ describe('CostsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [
+      imports: [
         ReactiveFormsModule,
         MatExpansionModule,
         MatRadioModule,
         MatIconModule,
         TranslateTestingModule,
-        CostsComponent, StepIntroComponent,
-    ],
-    schemas: [NO_ERRORS_SCHEMA],
-}).compileComponents();
+        CostsComponent,
+        StepIntroComponent,
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

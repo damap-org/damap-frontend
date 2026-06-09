@@ -1,9 +1,7 @@
 <div class="scrollable-recommendation-content">
   @if (loaded === LoadingState.LOADED) {
     @for (repo of recommended; track repo) {
-      <mat-card
-        appearance="raised"
-        class="recommendation-card">
+      <mat-card appearance="raised" class="recommendation-card">
         <mat-card-header>
           <mat-card-title>{{ repo.name }}</mat-card-title>
         </mat-card-header>

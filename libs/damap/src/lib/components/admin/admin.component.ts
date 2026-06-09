@@ -25,17 +25,17 @@ import { InternalStorageTableComponent } from '../../widgets/internal-storage-ta
 import { InternalStorageTranslationTableComponent } from '../../widgets/internal-storage-translation-table/internal-storage-translation-table.component';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 @Component({
-    selector: 'damap-admin',
-    templateUrl: './admin.component.html',
-    styleUrl: './admin.component.css',
-    imports: [
+  selector: 'damap-admin',
+  templateUrl: './admin.component.html',
+  styleUrl: './admin.component.css',
+  imports: [
     TranslateModule,
     MatButton,
     MatIcon,
     InternalStorageTableComponent,
     InternalStorageTranslationTableComponent,
-    MatSlideToggle
-],
+    MatSlideToggle,
+  ],
 })
 export class AdminComponent implements OnInit {
   constructor(

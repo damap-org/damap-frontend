@@ -1,5 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { UntypedFormArray, UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  UntypedFormArray,
+  UntypedFormControl,
+  UntypedFormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { Agreement } from '../../../domain/enum/agreement.enum';
 import { ComplianceType } from '../../../domain/enum/compliance-type.enum';
@@ -17,10 +23,10 @@ import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/texta
 import { EthicalAspectsComponent } from './ethical-aspects/ethical-aspects.component';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-dmp-legal-ethical-aspects',
-    templateUrl: './legal-ethical-aspects.component.html',
-    styleUrls: ['./legal-ethical-aspects.component.css'],
-    imports: [
+  selector: 'app-dmp-legal-ethical-aspects',
+  templateUrl: './legal-ethical-aspects.component.html',
+  styleUrls: ['./legal-ethical-aspects.component.css'],
+  imports: [
     MatLabel,
     MatCard,
     MatCardContent,
@@ -38,8 +44,8 @@ import { TranslateModule } from '@ngx-translate/core';
     MatHint,
     EthicalAspectsComponent,
     KeyValuePipe,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class LegalEthicalAspectsComponent {
   @Input() dmpForm: UntypedFormGroup;

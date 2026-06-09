@@ -1,6 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { UntypedFormArray, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  UntypedFormArray,
+  UntypedFormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import {
   selectInternalStorages,
   selectInternalStoragesLoaded,
@@ -15,17 +20,25 @@ import { loadInternalStorages } from '../../../../store/actions/internal-storage
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { MatLabel, MatFormField } from '@angular/material/form-field';
 
-import { MatCard, MatCardHeader, MatCardAvatar, MatCardSubtitle, MatCardContent, MatCardTitleGroup, MatCardTitle } from '@angular/material/card';
+import {
+  MatCard,
+  MatCardHeader,
+  MatCardAvatar,
+  MatCardSubtitle,
+  MatCardContent,
+  MatCardTitleGroup,
+  MatCardTitle,
+} from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/autocomplete';
 import { StorageFilterPipe } from './storage-filter.pipe';
 @Component({
-    selector: 'app-dmp-storage',
-    templateUrl: './storage.component.html',
-    styleUrls: ['./storage.component.css'],
-    imports: [
+  selector: 'app-dmp-storage',
+  templateUrl: './storage.component.html',
+  styleUrls: ['./storage.component.css'],
+  imports: [
     MatLabel,
     MatCard,
     MatCardHeader,
@@ -43,8 +56,8 @@ import { StorageFilterPipe } from './storage-filter.pipe';
     MatSelect,
     MatOption,
     TranslateModule,
-    StorageFilterPipe
-],
+    StorageFilterPipe,
+  ],
 })
 export class StorageComponent implements OnInit {
   @Input() dmpForm: UntypedFormGroup;

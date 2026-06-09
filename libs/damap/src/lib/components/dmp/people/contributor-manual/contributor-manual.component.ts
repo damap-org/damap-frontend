@@ -1,5 +1,11 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { IdentifierType } from '../../../../domain/enum/identifier-type.enum';
 import { notEmptyValidator } from '../../../../validators/not-empty.validator';
@@ -12,21 +18,21 @@ import { MatIcon } from '@angular/material/icon';
 import { NgClass } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-contributor-manual',
-    templateUrl: './contributor-manual.component.html',
-    styleUrls: ['./contributor-manual.component.css'],
-    imports: [
-        MatLabel,
-        MatCard,
-        MatCardContent,
-        FormsModule,
-        ReactiveFormsModule,
-        InputWrapperComponent,
-        MatButton,
-        MatIcon,
-        NgClass,
-        TranslateModule,
-    ],
+  selector: 'app-contributor-manual',
+  templateUrl: './contributor-manual.component.html',
+  styleUrls: ['./contributor-manual.component.css'],
+  imports: [
+    MatLabel,
+    MatCard,
+    MatCardContent,
+    FormsModule,
+    ReactiveFormsModule,
+    InputWrapperComponent,
+    MatButton,
+    MatIcon,
+    NgClass,
+    TranslateModule,
+  ],
 })
 export class ContributorManualComponent {
   @Output() contactPerson = new EventEmitter<any>();

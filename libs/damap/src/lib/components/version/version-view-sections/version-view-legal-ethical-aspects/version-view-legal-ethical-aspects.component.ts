@@ -6,12 +6,10 @@ import { Agreement } from '../../../../domain/enum/agreement.enum';
 
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-version-view-legal-ethical-aspects',
-    templateUrl: './version-view-legal-ethical-aspects.component.html',
-    styleUrls: [],
-    imports: [
-    TranslateModule
-],
+  selector: 'app-version-view-legal-ethical-aspects',
+  templateUrl: './version-view-legal-ethical-aspects.component.html',
+  styleUrls: [],
+  imports: [TranslateModule],
 })
 export class VersionViewLegalEthicalAspectsComponent {
   @Input() dmp: Dmp;

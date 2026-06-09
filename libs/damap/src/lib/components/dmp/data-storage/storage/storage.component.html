@@ -4,13 +4,10 @@
 <section class="tu-storage">
   <div class="storage-grid">
     @for (
-      element of activeStorages
-      | storageFilter: storageStep?.getRawValue()
-      ; track
-      element) {
-      <mat-card
-        appearance="raised"
-        class="storage-card card-shadow">
+      element of activeStorages | storageFilter: storageStep?.getRawValue();
+      track element
+    ) {
+      <mat-card appearance="raised" class="storage-card card-shadow">
         <mat-card-header
           (click)="addStorage(element)"
           (keydown.enter)="addStorage(element)">
@@ -32,9 +29,7 @@
   <div class="storage-selected" [formGroup]="dmpForm">
     <ng-container formArrayName="storage">
       @for (item of storageStep?.controls; track item; let i = $index) {
-        <mat-card
-          appearance="raised"
-          class="selected-storage-card card-shadow">
+        <mat-card appearance="raised" class="selected-storage-card card-shadow">
           <mat-card-header>
             <mat-card-title-group>
               <mat-card-title>{{ item.value.title }}</mat-card-title>

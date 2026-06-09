@@ -13,16 +13,16 @@ fdescribe('SearchFieldComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [
+      imports: [
         SharedModule,
         MatFormFieldModule,
         TranslateTestingModule,
         ReactiveFormsModule,
         NoopAnimationsModule,
         SearchFieldComponent,
-    ],
-    schemas: [NO_ERRORS_SCHEMA],
-}).compileComponents();
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SearchFieldComponent);
     component = fixture.componentInstance;

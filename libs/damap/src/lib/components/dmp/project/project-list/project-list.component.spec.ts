@@ -47,7 +47,7 @@ describe('ProjectListComponent', () => {
     );
 
     TestBed.configureTestingModule({
-    imports: [
+      imports: [
         TranslateTestingModule,
         MatDialogModule,
         MatFormFieldModule,
@@ -55,11 +55,12 @@ describe('ProjectListComponent', () => {
         MatIconModule,
         MatListModule,
         NoopAnimationsModule,
-        ProjectListComponent, SearchFieldComponent,
-    ],
-    schemas: [NO_ERRORS_SCHEMA],
-    providers: [{ provide: BackendService, useValue: backendSpy }],
-}).compileComponents();
+        ProjectListComponent,
+        SearchFieldComponent,
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
+      providers: [{ provide: BackendService, useValue: backendSpy }],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ProjectListComponent);
     component = fixture.componentInstance;

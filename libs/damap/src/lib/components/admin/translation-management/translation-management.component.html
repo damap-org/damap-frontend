@@ -104,9 +104,7 @@
     @if (!loading) {
       <div class="table-container">
         @if (filteredTranslations.length > 0) {
-          <div
-            class="table-card"
-            >
+          <div class="table-card">
             <div class="table-header">
               <div>{{ "admin.appTranslations.keyColumn" | translate }}</div>
               <div>{{ "admin.appTranslations.customColumn" | translate }}</div>
@@ -155,7 +153,9 @@
     @if (selectedTranslation) {
       <div class="detail-card">
         <div class="detail-section">
-          <p class="label">{{ "admin.appTranslations.keyLabel" | translate }}:</p>
+          <p class="label">
+            {{ "admin.appTranslations.keyLabel" | translate }}:
+          </p>
           <div class="current-value">
             {{ selectedTranslation.translationKey }}
           </div>
@@ -164,7 +164,9 @@
           <p class="label">
             {{ "admin.appTranslations.defaultValueLabel" | translate }}:
           </p>
-          <div class="current-value">{{ selectedTranslation.defaultValue }}</div>
+          <div class="current-value">
+            {{ selectedTranslation.defaultValue }}
+          </div>
         </div>
         <div class="detail-section">
           <p class="label">
@@ -176,7 +178,7 @@
               matInput
               rows="3"
               [value]="customValue"
-            (input)="customValue = $any($event.target).value"></textarea>
+              (input)="customValue = $any($event.target).value"></textarea>
           </mat-form-field>
         </div>
         <div class="detail-actions">
@@ -202,5 +204,3 @@
     }
   </div>
 </div>
-
-

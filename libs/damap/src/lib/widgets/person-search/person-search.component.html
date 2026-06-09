@@ -3,7 +3,7 @@
     #contributorSearchField
     class="search-field"
     [label]="'dmp.steps.people.search.field'"
-  (searchChange)="search($event)"></app-search-field>
+    (searchChange)="search($event)"></app-search-field>
   @if (currentSearchTerm && result.length > 0) {
     <div class="result-list">
       <mat-selection-list
@@ -18,22 +18,21 @@
             <div class="list-option-container">
               <div>
                 <div matListItemTitle class="person-detail-content">
-                  <strong> {{ person.firstName }} {{ person.lastName }} </strong>
+                  <strong>
+                    {{ person.firstName }} {{ person.lastName }}
+                  </strong>
                 </div>
                 @if (person.mbox) {
-                  <div
-                    matListItemLine
-                    class="person-detail-content">
+                  <div matListItemLine class="person-detail-content">
                     <mat-icon class="outline" inline="true">mail</mat-icon>
                     {{ person.mbox }}
                   </div>
                 }
                 @if (person.personId?.identifier) {
-                  <div
-                    matListItemLine
-                    class="person-detail-content">
+                  <div matListItemLine class="person-detail-content">
                     <mat-icon inline="true">fingerprint</mat-icon>
-                    {{ person.personId?.type }}: {{ person.personId.identifier }}
+                    {{ person.personId?.type }}:
+                    {{ person.personId.identifier }}
                   </div>
                 }
               </div>

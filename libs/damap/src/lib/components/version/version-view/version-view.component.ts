@@ -3,7 +3,13 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { BackendService } from '../../../services/backend.service';
 import { Observable } from 'rxjs';
 import { Dmp } from '../../../domain/dmp';
-import { MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle, MatExpansionPanelDescription } from '@angular/material/expansion';
+import {
+  MatAccordion,
+  MatExpansionPanel,
+  MatExpansionPanelHeader,
+  MatExpansionPanelTitle,
+  MatExpansionPanelDescription,
+} from '@angular/material/expansion';
 import { Version } from '../../../domain/version';
 import { DataKind } from '../../../domain/enum/data-kind.enum';
 import { AsyncPipe } from '@angular/common';
@@ -20,10 +26,10 @@ import { VersionViewReuseComponent } from '../version-view-sections/version-view
 import { VersionViewCostsComponent } from '../version-view-sections/version-view-costs/version-view-costs.component';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-version-view',
-    templateUrl: './version-view.component.html',
-    styleUrls: ['./version-view.component.css'],
-    imports: [
+  selector: 'app-version-view',
+  templateUrl: './version-view.component.html',
+  styleUrls: ['./version-view.component.css'],
+  imports: [
     MatButton,
     RouterLink,
     MatIcon,
@@ -42,8 +48,8 @@ import { TranslateModule } from '@ngx-translate/core';
     VersionViewReuseComponent,
     VersionViewCostsComponent,
     AsyncPipe,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class VersionViewComponent implements OnInit {
   @ViewChild(MatAccordion) accordion: MatAccordion;

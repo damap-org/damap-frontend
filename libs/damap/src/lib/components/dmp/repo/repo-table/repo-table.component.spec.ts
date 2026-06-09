@@ -10,9 +10,9 @@ describe('RepoTableComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [TranslateTestingModule, RepoTableComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-}).compileComponents();
+      imports: [TranslateTestingModule, RepoTableComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

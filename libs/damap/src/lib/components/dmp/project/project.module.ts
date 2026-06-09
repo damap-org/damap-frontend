@@ -12,7 +12,6 @@ import {
 
 import { CommonModule } from '@angular/common';
 
-
 import { ManualProjectInputComponent } from './manual-project-input/manual-project-input.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -31,11 +30,10 @@ import { ProjectComponent } from './project.component';
 import { ProjectInstructionComponent } from './project-instruction/project-instruction.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 
-
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-    imports: [
+  imports: [
     CommonModule,
     TranslateModule,
     // Materials
@@ -53,8 +51,8 @@ import { TranslateModule } from '@ngx-translate/core';
     ManualProjectInputComponent,
     ProjectListComponent,
     ProjectInstructionComponent,
-],
-    exports: [
+  ],
+  exports: [
     CommonModule,
     TranslateModule,
     ProjectComponent,
@@ -69,20 +67,20 @@ import { TranslateModule } from '@ngx-translate/core';
     MatTooltipModule,
     MatDatepickerModule,
     MatTabsModule,
-],
-    providers: [
-        { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
-        { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
-        {
-            provide: DateAdapter,
-            useClass: MomentDateAdapter,
-            deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
-        },
-        { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
-        {
-            provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-            useValue: { appearance: 'outline' },
-        },
-    ],
+  ],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
+    },
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'outline' },
+    },
+  ],
 })
 export class ProjectModule {}

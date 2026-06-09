@@ -6,40 +6,57 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { Project } from '../../../../domain/project';
 import { FeedbackService } from '../../../../services/feedback.service';
-import { MatLabel, MatFormField, MatHint, MatSuffix } from '@angular/material/form-field';
+import {
+  MatLabel,
+  MatFormField,
+  MatHint,
+  MatSuffix,
+} from '@angular/material/form-field';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { InputWrapperComponent } from '../../../../shared/input-wrapper/input-wrapper.component';
-import { MatDateRangeInput, MatStartDate, MatEndDate, MatDatepickerToggle, MatDateRangePicker } from '@angular/material/datepicker';
+import {
+  MatDateRangeInput,
+  MatStartDate,
+  MatEndDate,
+  MatDatepickerToggle,
+  MatDateRangePicker,
+} from '@angular/material/datepicker';
 import { TextareaWrapperComponent } from '../../../../shared/textarea-wrapper/textarea-wrapper.component';
 import { MatButton } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-manual-project-input',
-    templateUrl: './manual-project-input.component.html',
-    styleUrls: ['./manual-project-input.component.css'],
-    imports: [
-        MatLabel,
-        MatCard,
-        MatCardContent,
-        FormsModule,
-        InputWrapperComponent,
-        MatFormField,
-        MatDateRangeInput,
-        ReactiveFormsModule,
-        MatStartDate,
-        MatEndDate,
-        MatHint,
-        MatDatepickerToggle,
-        MatSuffix,
-        MatDateRangePicker,
-        TextareaWrapperComponent,
-        MatButton,
-        TranslateModule,
-    ],
+  selector: 'app-manual-project-input',
+  templateUrl: './manual-project-input.component.html',
+  styleUrls: ['./manual-project-input.component.css'],
+  imports: [
+    MatLabel,
+    MatCard,
+    MatCardContent,
+    FormsModule,
+    InputWrapperComponent,
+    MatFormField,
+    MatDateRangeInput,
+    ReactiveFormsModule,
+    MatStartDate,
+    MatEndDate,
+    MatHint,
+    MatDatepickerToggle,
+    MatSuffix,
+    MatDateRangePicker,
+    TextareaWrapperComponent,
+    MatButton,
+    TranslateModule,
+  ],
 })
 export class ManualProjectInputComponent implements OnChanges {
   @Input() project: Project;

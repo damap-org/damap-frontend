@@ -1,28 +1,47 @@
 import { Component, Input } from '@angular/core';
-import { UntypedFormArray, UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  UntypedFormArray,
+  UntypedFormControl,
+  UntypedFormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { ComplianceType } from '../../../domain/enum/compliance-type.enum';
 import { DataAccessType } from '../../../domain/enum/data-access-type.enum';
 import { DataSource } from '../../../domain/enum/data-source.enum';
 import { LicenseDetails } from '../../../domain/license-details';
 import { LicenseDefinitions } from '../../../widgets/license-wizard/license-wizard-list';
-import { MatLabel, MatFormField, MatSuffix } from '@angular/material/form-field';
+import {
+  MatLabel,
+  MatFormField,
+  MatSuffix,
+} from '@angular/material/form-field';
 import { KeyValuePipe } from '@angular/common';
-import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
+import {
+  MatCard,
+  MatCardHeader,
+  MatCardTitle,
+  MatCardContent,
+} from '@angular/material/card';
 import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/autocomplete';
 import { MatIcon } from '@angular/material/icon';
 import { LicenseWizardComponent } from '../../../widgets/license-wizard/license-wizard.component';
 import { MatInput } from '@angular/material/input';
-import { MatDatepickerInput, MatDatepickerToggle, MatDatepicker } from '@angular/material/datepicker';
+import {
+  MatDatepickerInput,
+  MatDatepickerToggle,
+  MatDatepicker,
+} from '@angular/material/datepicker';
 import { DataDeletionComponent } from '../data-deletion/data-deletion.component';
 import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-dmp-licenses',
-    templateUrl: './licenses.component.html',
-    styleUrls: ['./licenses.component.css'],
-    imports: [
+  selector: 'app-dmp-licenses',
+  templateUrl: './licenses.component.html',
+  styleUrls: ['./licenses.component.css'],
+  imports: [
     FormsModule,
     ReactiveFormsModule,
     MatLabel,
@@ -43,8 +62,8 @@ import { TranslateModule } from '@ngx-translate/core';
     DataDeletionComponent,
     TextareaWrapperComponent,
     KeyValuePipe,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class LicensesComponent {
   @Input() dmpForm: UntypedFormGroup;

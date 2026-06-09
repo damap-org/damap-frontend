@@ -9,7 +9,13 @@ import {
 } from './license-wizard-list';
 import { LicenseDetails } from '../../domain/license-details';
 import { Filter, QUESTION_TREE, Step } from './license-wizard-questions';
-import { MatDialog, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogClose } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogRef,
+  MatDialogTitle,
+  MatDialogContent,
+  MatDialogClose,
+} from '@angular/material/dialog';
 import { MatButton, MatAnchor } from '@angular/material/button';
 import { MatTooltip } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
@@ -23,14 +29,10 @@ import { MatCard, MatCardContent } from '@angular/material/card';
 import { LicenseFilterPipe } from './license-filter.pipe';
 
 @Component({
-    selector: 'app-license-wizard',
-    templateUrl: './license-wizard.component.html',
-    styleUrls: ['./license-wizard.component.css'],
-    imports: [
-        MatButton,
-        MatTooltip,
-        TranslateModule,
-    ],
+  selector: 'app-license-wizard',
+  templateUrl: './license-wizard.component.html',
+  styleUrls: ['./license-wizard.component.css'],
+  imports: [MatButton, MatTooltip, TranslateModule],
 })
 export class LicenseWizardComponent {
   @Output() selectedLicense = new EventEmitter<LicenseDetails>();
@@ -49,10 +51,10 @@ export class LicenseWizardComponent {
 }
 
 @Component({
-    selector: 'app-license-wizard-dialog',
-    templateUrl: 'license-wizard-dialog.html',
-    styleUrls: ['./license-wizard.component.css'],
-    imports: [
+  selector: 'app-license-wizard-dialog',
+  templateUrl: 'license-wizard-dialog.html',
+  styleUrls: ['./license-wizard.component.css'],
+  imports: [
     MatDialogTitle,
     InfoMessageComponent,
     CdkScrollable,
@@ -66,8 +68,8 @@ export class LicenseWizardComponent {
     MatDialogClose,
     MatAnchor,
     TranslateModule,
-    LicenseFilterPipe
-],
+    LicenseFilterPipe,
+  ],
 })
 export class LicenseSelectorDialogComponent {
   licenseList: LicenseDetails[] = [...LicenseDefinitions];

@@ -10,8 +10,8 @@ describe('RepoRecommendationComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [RepoRecommendationComponent, RepoPipe],
-}).compileComponents();
+      imports: [RepoRecommendationComponent, RepoPipe],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

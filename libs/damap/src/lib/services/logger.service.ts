@@ -38,10 +38,10 @@ export class LoggerService {
     if (!this.prod) {
       switch (level) {
         case LogLevel.DEBUG:
-          console.debug(message);  
+          console.debug(message);
           break;
         case LogLevel.INFO:
-          console.info(message);  
+          console.info(message);
           break;
         case LogLevel.WARN:
           console.warn(message);

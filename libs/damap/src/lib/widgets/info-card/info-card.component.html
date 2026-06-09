@@ -1,7 +1,5 @@
 @if (isIntroShow) {
-  <mat-card
-    appearance="outlined"
-    class="info-box mat-icon-shadow custom-card">
+  <mat-card appearance="outlined" class="info-box mat-icon-shadow custom-card">
     <button (click)="closeIntro()" mat-icon-button class="close-button">
       <mat-icon class="material-icon-primary close-icon" matSuffix>
         close
@@ -11,16 +9,16 @@
       <div class="flex-row-container">
         <section>
           <div
-          [ngClass]="{
-            'info-icon-background': icon === 'info',
-            'number-icon-background': icon > 0,
-          }">
+            [ngClass]="{
+              'info-icon-background': icon === 'info',
+              'number-icon-background': icon > 0,
+            }">
             <mat-icon
               class="page-info-icon"
-            [ngClass]="{
-              'material-icon-primary outline': icon === 'info',
-              'material-icon-white-background-primary number-icon': icon > 0,
-            }">
+              [ngClass]="{
+                'material-icon-primary outline': icon === 'info',
+                'material-icon-white-background-primary number-icon': icon > 0,
+              }">
               {{ icon }}
             </mat-icon>
           </div>

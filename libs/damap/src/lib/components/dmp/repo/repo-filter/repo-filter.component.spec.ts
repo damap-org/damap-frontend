@@ -16,10 +16,15 @@ describe('RepoFilterComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [MatDialogModule, TranslateTestingModule, RepoFilterComponent, FilterDialogComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    providers: [provideMockStore({ initialState })],
-}).compileComponents();
+      imports: [
+        MatDialogModule,
+        TranslateTestingModule,
+        RepoFilterComponent,
+        FilterDialogComponent,
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [provideMockStore({ initialState })],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

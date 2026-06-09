@@ -20,14 +20,14 @@ describe('DatasetTableComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [
+      imports: [
         MatDialogModule,
         TranslateTestingModule,
         DatasetSourceModule,
         NoopAnimationsModule,
         DatasetTableComponent,
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

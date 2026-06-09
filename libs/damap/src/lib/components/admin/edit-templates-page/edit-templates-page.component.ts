@@ -36,8 +36,8 @@ import { ConfigService } from '../../../../../../../apps/damap-frontend/src/app/
     TranslateModule,
     MatInputModule,
     MatFormFieldModule,
-    MatSlideToggleModule
-],
+    MatSlideToggleModule,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditTemplatesPageComponent {

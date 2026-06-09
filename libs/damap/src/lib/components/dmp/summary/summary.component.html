@@ -20,191 +20,189 @@
               element.step | translate
             }}' and displays a tooltip when focused or hovered over"
             >{{ element.step | translate }}</a
-            >
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="completeness">
-          <th mat-header-cell *matHeaderCellDef>
-            {{ "dmp.steps.summary.table.header.completeness" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let element">
-            <mat-progress-bar
-              mode="determinate"
+          >
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="completeness">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "dmp.steps.summary.table.header.completeness" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-progress-bar
+            mode="determinate"
             [value]="element.completeness"></mat-progress-bar>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef>
-            {{ "dmp.steps.summary.table.header.status" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let element">
-            @for (sentence of element.status; track sentence) {
-              {{
-              sentence | translate
-              }}
-            }
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="summaryTableHeaders"></tr>
-        <tr mat-row *matRowDef="let row; columns: summaryTableHeaders"></tr>
-      </table>
-    </mat-card-content>
-  </mat-card>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "dmp.steps.summary.table.header.status" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          @for (sentence of element.status; track sentence) {
+            {{ sentence | translate }}
+          }
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="summaryTableHeaders"></tr>
+      <tr mat-row *matRowDef="let row; columns: summaryTableHeaders"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>
 
-  @if (evaluationEnabled()) {
-    <mat-card class="dmp-summary-card card-shadow eval-card">
-      <mat-card-content>
-        <div class="eval-head">
-          <span class="eval-title mat-title-large">{{
-            "dmp.steps.summary.evaluation.title" | translate
-          }}</span>
-          <span class="eval-subtitle mat-body-medium">{{
-            "dmp.steps.summary.evaluation.subtitle" | translate
-          }}</span>
+@if (evaluationEnabled()) {
+  <mat-card class="dmp-summary-card card-shadow eval-card">
+    <mat-card-content>
+      <div class="eval-head">
+        <span class="eval-title mat-title-large">{{
+          "dmp.steps.summary.evaluation.title" | translate
+        }}</span>
+        <span class="eval-subtitle mat-body-medium">{{
+          "dmp.steps.summary.evaluation.subtitle" | translate
+        }}</span>
+      </div>
+
+      @if (benchmarksLoaded() === "loaded") {
+        <div class="eval-controls">
+          <mat-form-field
+            appearance="outline"
+            subscriptSizing="dynamic"
+            class="benchmark-select">
+            <mat-label>{{
+              "dmp.steps.summary.evaluation.benchmark.select" | translate
+            }}</mat-label>
+            <mat-select
+              [value]="selectedBenchmarkId()"
+              (selectionChange)="selectedBenchmarkId.set($event.value)">
+              @for (b of benchmarks(); track b.identifier) {
+                <mat-option [value]="b.identifier">{{ b.title }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <button
+            mat-flat-button
+            class="eval-action"
+            [disabled]="!canEvaluate"
+            (click)="runEvaluation()">
+            @if (evaluating() === "loading") {
+              <mat-spinner diameter="16" class="btn-spinner"></mat-spinner>
+            }
+            {{
+              hasResults
+                ? ("dmp.steps.summary.evaluation.button.reassess" | translate)
+                : ("dmp.steps.summary.evaluation.button.assess" | translate)
+            }}
+          </button>
         </div>
 
-        @if (benchmarksLoaded() === "loaded") {
-          <div class="eval-controls">
-            <mat-form-field
-              appearance="outline"
-              subscriptSizing="dynamic"
-              class="benchmark-select">
-              <mat-label>{{
-                "dmp.steps.summary.evaluation.benchmark.select" | translate
-              }}</mat-label>
-              <mat-select
-                [value]="selectedBenchmarkId()"
-                (selectionChange)="selectedBenchmarkId.set($event.value)">
-                @for (b of benchmarks(); track b.identifier) {
-                  <mat-option [value]="b.identifier">{{ b.title }}</mat-option>
-                }
-              </mat-select>
-            </mat-form-field>
+        @if (!dmpForm?.id) {
+          <p class="eval-hint mat-body-small">
+            {{ "dmp.steps.summary.evaluation.warning.unsaved" | translate }}
+          </p>
+        }
 
-            <button
-              mat-flat-button
-              class="eval-action"
-              [disabled]="!canEvaluate"
-              (click)="runEvaluation()">
-              @if (evaluating() === "loading") {
-                <mat-spinner diameter="16" class="btn-spinner"></mat-spinner>
+        @if (benchmarksLoaded() === "failed") {
+          <p class="eval-hint eval-hint-error mat-body-small">
+            {{ "dmp.steps.summary.evaluation.benchmarks.error" | translate }}
+          </p>
+        }
+
+        @if (hasResults) {
+          <div class="eval-verdict" aria-live="polite">
+            <span
+              class="verdict mat-label-large"
+              [class.verdict-pass]="overallVerdict() === 'PASS'"
+              [class.verdict-fail]="overallVerdict() === 'FAIL'">
+              @if (overallVerdict() === "FAIL") {
+                {{ "dmp.steps.summary.evaluation.verdict.fail" | translate }}
+              } @else {
+                {{ "dmp.steps.summary.evaluation.verdict.pass" | translate }}
               }
-              {{
-              hasResults
-              ? ("dmp.steps.summary.evaluation.button.reassess" | translate)
-              : ("dmp.steps.summary.evaluation.button.assess" | translate)
-              }}
-            </button>
+            </span>
           </div>
 
-          @if (!dmpForm?.id) {
-            <p class="eval-hint mat-body-small">
-              {{ "dmp.steps.summary.evaluation.warning.unsaved" | translate }}
-            </p>
-          }
+          <mat-chip-set class="eval-counts">
+            <mat-chip disableRipple class="count count-pass">
+              {{ passedCount() }}
+              {{ "dmp.steps.summary.evaluation.stats.passed" | translate }}
+            </mat-chip>
+            <mat-chip disableRipple class="count count-fail">
+              {{ failedCount() }}
+              {{ "dmp.steps.summary.evaluation.stats.failed" | translate }}
+            </mat-chip>
+            <mat-chip disableRipple class="count count-warn">
+              {{ warningCount() }}
+              {{ "dmp.steps.summary.evaluation.stats.warnings" | translate }}
+            </mat-chip>
+          </mat-chip-set>
 
-          @if (benchmarksLoaded() === "failed") {
-            <p class="eval-hint eval-hint-error mat-body-small">
-              {{ "dmp.steps.summary.evaluation.benchmarks.error" | translate }}
-            </p>
-          }
-
-          @if (hasResults) {
-            <div class="eval-verdict" aria-live="polite">
-              <span
-                class="verdict mat-label-large"
-                [class.verdict-pass]="overallVerdict() === 'PASS'"
-                [class.verdict-fail]="overallVerdict() === 'FAIL'">
-                @if (overallVerdict() === "FAIL") {
-                  {{ "dmp.steps.summary.evaluation.verdict.fail" | translate }}
-                } @else {
-                  {{ "dmp.steps.summary.evaluation.verdict.pass" | translate }}
+          <mat-accordion class="eval-results" multi>
+            @for (r of evaluationResults(); track r.identifier) {
+              <mat-expansion-panel class="eval-result">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <mat-icon
+                      class="result-icon"
+                      [ngClass]="getResultIconClass(r.value)">
+                      {{ getResultIcon(r.value) }}
+                    </mat-icon>
+                    <span class="result-title">{{ r.title }}</span>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                @if (r.description) {
+                  <p class="result-desc mat-body-large">{{ r.description }}</p>
                 }
-              </span>
-            </div>
-
-            <mat-chip-set class="eval-counts">
-              <mat-chip disableRipple class="count count-pass">
-                {{ passedCount() }}
-                {{ "dmp.steps.summary.evaluation.stats.passed" | translate }}
-              </mat-chip>
-              <mat-chip disableRipple class="count count-fail">
-                {{ failedCount() }}
-                {{ "dmp.steps.summary.evaluation.stats.failed" | translate }}
-              </mat-chip>
-              <mat-chip disableRipple class="count count-warn">
-                {{ warningCount() }}
-                {{ "dmp.steps.summary.evaluation.stats.warnings" | translate }}
-              </mat-chip>
-            </mat-chip-set>
-
-            <mat-accordion class="eval-results" multi>
-              @for (r of evaluationResults(); track r.identifier) {
-                <mat-expansion-panel class="eval-result">
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      <mat-icon
-                        class="result-icon"
-                        [ngClass]="getResultIconClass(r.value)">
-                        {{ getResultIcon(r.value) }}
-                      </mat-icon>
-                      <span class="result-title">{{ r.title }}</span>
-                    </mat-panel-title>
-                  </mat-expansion-panel-header>
-                  @if (r.description) {
-                    <p class="result-desc mat-body-large">{{ r.description }}</p>
-                  }
-                  @if (r.guidance?.summary || r.guidance?.issues?.length) {
-                    <section class="result-guidance">
-                      <div class="guidance-head">
-                        @if (r.guidance?.summary) {
-                          <p class="result-summary mat-title-small">
-                            {{ r.guidance.summary }}
-                          </p>
-                        }
-                      </div>
-                      @if (r.guidance?.issues?.length) {
-                        <ul class="result-issues">
-                          @for (issue of r.guidance.issues; track $index) {
-                            <li class="result-issue">
-                              <span class="issue-dataset mat-title-small">
-                                {{ issue.dataset }}
-                              </span>
-                              <span class="issue-reason mat-body-large">
-                                {{ issue.reason }}
-                              </span>
-                            </li>
-                          }
-                        </ul>
+                @if (r.guidance?.summary || r.guidance?.issues?.length) {
+                  <section class="result-guidance">
+                    <div class="guidance-head">
+                      @if (r.guidance?.summary) {
+                        <p class="result-summary mat-title-small">
+                          {{ r.guidance.summary }}
+                        </p>
                       }
-                    </section>
-                  } @else if (r.log) {
-                    <p class="result-log mat-body-large">
-                      <strong
-                        >{{
-                        "dmp.steps.summary.evaluation.details.reason"
-                        | translate
-                        }}:</strong
-                        >
-                        {{ r.log }}
-                      </p>
+                    </div>
+                    @if (r.guidance?.issues?.length) {
+                      <ul class="result-issues">
+                        @for (issue of r.guidance.issues; track $index) {
+                          <li class="result-issue">
+                            <span class="issue-dataset mat-title-small">
+                              {{ issue.dataset }}
+                            </span>
+                            <span class="issue-reason mat-body-large">
+                              {{ issue.reason }}
+                            </span>
+                          </li>
+                        }
+                      </ul>
                     }
-                  </mat-expansion-panel>
+                  </section>
+                } @else if (r.log) {
+                  <p class="result-log mat-body-large">
+                    <strong
+                      >{{
+                        "dmp.steps.summary.evaluation.details.reason"
+                          | translate
+                      }}:</strong
+                    >
+                    {{ r.log }}
+                  </p>
                 }
-              </mat-accordion>
+              </mat-expansion-panel>
             }
+          </mat-accordion>
+        }
 
-            @if (evaluating() === "failed") {
-              <p class="eval-hint eval-hint-error mat-body-small">
-                {{ "dmp.steps.summary.evaluation.error" | translate }}
-              </p>
-            }
-          }
-          @if (benchmarksLoaded() === "failed") {
-            <p class="eval-hint eval-hint-error mat-body-small">
-              {{ "dmp.steps.summary.evaluation.benchmarks.error" | translate }}
-            </p>
-          }
-        </mat-card-content>
-      </mat-card>
-    }
+        @if (evaluating() === "failed") {
+          <p class="eval-hint eval-hint-error mat-body-small">
+            {{ "dmp.steps.summary.evaluation.error" | translate }}
+          </p>
+        }
+      }
+      @if (benchmarksLoaded() === "failed") {
+        <p class="eval-hint eval-hint-error mat-body-small">
+          {{ "dmp.steps.summary.evaluation.benchmarks.error" | translate }}
+        </p>
+      }
+    </mat-card-content>
+  </mat-card>
+}

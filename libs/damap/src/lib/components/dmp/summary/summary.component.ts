@@ -25,7 +25,18 @@ import {
 import { BackendService } from '../../../services/backend.service';
 import { MatLabel, MatFormField } from '@angular/material/form-field';
 import { MatCard, MatCardContent } from '@angular/material/card';
-import { MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from '@angular/material/table';
+import {
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatProgressBar } from '@angular/material/progress-bar';
 import { NgClass } from '@angular/common';
@@ -34,17 +45,22 @@ import { MatOption } from '@angular/material/autocomplete';
 import { MatButton } from '@angular/material/button';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatChipSet, MatChip } from '@angular/material/chips';
-import { MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle } from '@angular/material/expansion';
+import {
+  MatAccordion,
+  MatExpansionPanel,
+  MatExpansionPanelHeader,
+  MatExpansionPanelTitle,
+} from '@angular/material/expansion';
 import { MatIcon } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 type LoadingState = 'idle' | 'loading' | 'loaded' | 'failed';
 type EvalState = 'idle' | 'loading' | 'done' | 'failed';
 
 @Component({
-    selector: 'app-dmp-summary',
-    templateUrl: './summary.component.html',
-    styleUrls: ['./summary.component.css'],
-    imports: [
+  selector: 'app-dmp-summary',
+  templateUrl: './summary.component.html',
+  styleUrls: ['./summary.component.css'],
+  imports: [
     MatLabel,
     MatCard,
     MatCardContent,
@@ -73,8 +89,8 @@ type EvalState = 'idle' | 'loading' | 'done' | 'failed';
     MatExpansionPanelTitle,
     MatIcon,
     NgClass,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class SummaryComponent implements OnInit {
   private readonly DEFAULT_BENCHMARK_ID = '69ef5cdfcde500798dbd1af8'; // FWF Benchmark

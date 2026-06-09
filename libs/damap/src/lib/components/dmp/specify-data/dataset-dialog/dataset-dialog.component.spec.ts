@@ -44,7 +44,7 @@ describe('DatasetDialogComponent', () => {
       },
     };
     TestBed.configureTestingModule({
-    imports: [
+      imports: [
         MatDialogModule,
         MatSelectModule,
         MatInputModule,
@@ -54,17 +54,17 @@ describe('DatasetDialogComponent', () => {
         TranslateTestingModule,
         NoopAnimationsModule,
         DatasetDialogComponent,
-    ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    providers: [
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [
         { provide: MatDialogRef, useValue: { close: (value?: any) => value } },
         { provide: FormService, useValue: formServiceStub },
         {
-            provide: MAT_DIALOG_DATA,
-            useValue: { dataset: closedDatasetMock, mode: 'edit' },
+          provide: MAT_DIALOG_DATA,
+          useValue: { dataset: closedDatasetMock, mode: 'edit' },
         },
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

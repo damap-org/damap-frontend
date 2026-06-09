@@ -6,17 +6,17 @@ import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatProgressBar } from '@angular/material/progress-bar';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-file-upload',
-    templateUrl: './file-upload.component.html',
-    styleUrls: ['./file-upload.component.css'],
-    imports: [
+  selector: 'app-file-upload',
+  templateUrl: './file-upload.component.html',
+  styleUrls: ['./file-upload.component.css'],
+  imports: [
     DragdropDirective,
     MatIcon,
     MatButton,
     MatIconButton,
     MatProgressBar,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class FileUploadComponent {
   @Input() fileUpload: { file: File; progress: number; finalized: boolean }[];

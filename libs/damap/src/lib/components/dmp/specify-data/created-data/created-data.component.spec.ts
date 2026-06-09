@@ -19,9 +19,14 @@ describe('CreatedDataComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [MatDialogModule, TranslateTestingModule, CreatedDataComponent, DatasetDialogComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-}).compileComponents();
+      imports: [
+        MatDialogModule,
+        TranslateTestingModule,
+        CreatedDataComponent,
+        DatasetDialogComponent,
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

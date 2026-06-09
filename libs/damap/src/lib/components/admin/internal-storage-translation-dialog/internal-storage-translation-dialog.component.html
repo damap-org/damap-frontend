@@ -1,12 +1,8 @@
 <h1 mat-dialog-title>
-  @if (mode === 'edit') {
-    {{
-    "admin.internalStorage.translation.dialog.title.edit" | translate
-    }}
+  @if (mode === "edit") {
+    {{ "admin.internalStorage.translation.dialog.title.edit" | translate }}
   } @else {
-    {{
-    "admin.internalStorage.translation.dialog.title.create" | translate
-    }}
+    {{ "admin.internalStorage.translation.dialog.title.create" | translate }}
   }
 </h1>
 
@@ -39,21 +35,21 @@
       [label]="
         'admin.internalStorage.translation.dialog.field.title' | translate
       "
-    [control]="title"></app-input-wrapper>
+      [control]="title"></app-input-wrapper>
 
     <app-textarea-wrapper
       [label]="
         'admin.internalStorage.translation.dialog.field.description' | translate
       "
       [control]="description"
-    [maxLength]="4000"></app-textarea-wrapper>
+      [maxLength]="4000"></app-textarea-wrapper>
 
     <app-input-wrapper
       [label]="
         'admin.internalStorage.translation.dialog.field.backupFrequency'
           | translate
       "
-    [control]="backupFrequency"></app-input-wrapper>
+      [control]="backupFrequency"></app-input-wrapper>
   </div>
 </mat-dialog-content>
 
@@ -65,15 +61,11 @@
     (click)="onDialogClose()"
     mat-flat-button
     [disabled]="storageTranslation.invalid">
-    @if (mode === 'edit') {
-      {{
-      "admin.internalStorage.translation.dialog.button.update" | translate
-      }}
+    @if (mode === "edit") {
+      {{ "admin.internalStorage.translation.dialog.button.update" | translate }}
     }
-    @if (mode === 'add') {
-      {{
-      "admin.internalStorage.translation.dialog.button.add" | translate
-      }}
+    @if (mode === "add") {
+      {{ "admin.internalStorage.translation.dialog.button.add" | translate }}
     }
   </button>
 </mat-dialog-actions>

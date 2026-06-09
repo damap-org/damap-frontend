@@ -7,17 +7,27 @@ import {
   ViewChild,
 } from '@angular/core';
 import { AuthService, BackendService } from '@damap/core';
-import { NavigationEnd, Router, RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import {
+  NavigationEnd,
+  Router,
+  RouterOutlet,
+  RouterLink,
+  RouterLinkActive,
+} from '@angular/router';
 import { Subscription, filter, take } from 'rxjs';
 
-import { AdminComponent } from '../../../../../../libs/damap/src/lib/components/admin/admin.component';  
+import { AdminComponent } from '../../../../../../libs/damap/src/lib/components/admin/admin.component';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ConfigService } from '../../services/config.service';
-import { DmpComponent } from '../../../../../../libs/damap/src/lib/components/dmp/dmp.component';  
-import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav';
+import { DmpComponent } from '../../../../../../libs/damap/src/lib/components/dmp/dmp.component';
+import {
+  MatSidenav,
+  MatSidenavContainer,
+  MatSidenavContent,
+} from '@angular/material/sidenav';
 import { SafeUrl } from '@angular/platform-browser';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
-import pkg from '../../../../../../package.json';  
+import pkg from '../../../../../../package.json';
 import { ImageThemeService } from '../../services/image-theme.service';
 import { IMAGE_KEYS } from '../../../../../../libs/damap/src/lib/domain/image-keys';
 import { NgClass, NgStyle } from '@angular/common';
@@ -31,10 +41,10 @@ import { EnvBannerComponent } from '../../../../../../libs/damap/src/lib/widgets
 import { AppBannerComponent } from '../../../../../../libs/damap/src/lib/widgets/app-banner/app-banner.component';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 @Component({
-    selector: 'app-layout',
-    templateUrl: './layout.component.html',
-    styleUrls: ['./layout.component.css'],
-    imports: [
+  selector: 'app-layout',
+  templateUrl: './layout.component.html',
+  styleUrls: ['./layout.component.css'],
+  imports: [
     MatSidenavContainer,
     MatSidenav,
     NgClass,
@@ -57,8 +67,8 @@ import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
     MatToolbar,
     MatToolbarRow,
     RouterOutlet,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('sidenav', { static: true }) sidenav!: MatSidenav;

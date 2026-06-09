@@ -8,8 +8,8 @@ describe('CrisTagComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [CrisTagComponent],
-}).compileComponents();
+      imports: [CrisTagComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

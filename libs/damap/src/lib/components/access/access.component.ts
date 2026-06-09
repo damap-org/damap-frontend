@@ -60,8 +60,8 @@ import { TooltipComponent } from '../../widgets/tooltip/tooltip.component';
     MatOption,
     ReactiveFormsModule,
     MatInputModule,
-    SearchFieldComponent
-],
+    SearchFieldComponent,
+  ],
   templateUrl: './access.component.html',
   styleUrls: ['./access.component.css'],
   standalone: true,

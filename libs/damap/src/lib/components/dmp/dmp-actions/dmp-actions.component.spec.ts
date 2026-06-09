@@ -47,7 +47,7 @@ describe('DmpActionsComponent', () => {
     );
 
     TestBed.configureTestingModule({
-    imports: [
+      imports: [
         ExportWarningModule,
         MatButtonModule,
         MatDialogModule,
@@ -56,15 +56,16 @@ describe('DmpActionsComponent', () => {
         TranslateTestingModule,
         FormTestingModule,
         LivePreviewModule,
-        DmpActionsComponent, SaveVersionDialogComponent,
-    ],
-    providers: [
+        DmpActionsComponent,
+        SaveVersionDialogComponent,
+      ],
+      providers: [
         provideMockStore({ initialState }),
         { provide: BackendService, useValue: backendSpy },
         { provide: MatSnackBar, useValue: matSnackBarSpy },
-    ],
-    schemas: [NO_ERRORS_SCHEMA],
-}).compileComponents();
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
     store = TestBed.inject(MockStore);
   }));
 

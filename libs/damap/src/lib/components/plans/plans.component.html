@@ -8,7 +8,7 @@
       [dmpsLoaded]="dmpsLoaded$"
       (createDocument)="getDocument($event)"
       (createJsonFile)="getJsonFile($event)"
-    (dmpToDelete)="deleteDmp($event)"></app-dmp-table>
+      (dmpToDelete)="deleteDmp($event)"></app-dmp-table>
   </div>
   @if ((dmpsLoaded$ | async) === LoadingState.LOADING) {
     <div>
@@ -19,7 +19,7 @@
   @if ((dmpsLoaded$ | async) === LoadingState.FAILED) {
     <div>
       <app-error-message
-      message="{{ 'plans.loading.failed' | translate }}"></app-error-message>
+        message="{{ 'plans.loading.failed' | translate }}"></app-error-message>
     </div>
   }
 
@@ -31,6 +31,6 @@
       (createDocument)="getDocument($event)"
       [admin]="true"
       (createJsonFile)="getJsonFile($event)"
-    (dmpToDelete)="deleteDmp($event)"></app-dmp-table>
+      (dmpToDelete)="deleteDmp($event)"></app-dmp-table>
   }
 </div>

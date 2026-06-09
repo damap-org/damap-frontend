@@ -11,32 +11,32 @@
         <!-- <div class="info-bar-typography">
         Usage 29 | DMPs 311 | Related Organizations 322
       </div> -->
-    </div>
-  </div>
-  <div class="double-items">
-    <div class="left-side-container">
-      <div class="title-typography fadeInTop">
-        {{ "landing.title" | translate }}
       </div>
-      <div class="double-items fadeInLeft">
-        @if ((backendDown$ | async) === false) {
-          <button
-            mat-flat-button
-            class="pulse-button button-color-primary"
-            routerLink="/dashboard">
-            <mat-icon>play_arrow</mat-icon>
-            <span>{{ "landing.start" | translate }}</span>
-          </button>
-        }
+    </div>
+    <div class="double-items">
+      <div class="left-side-container">
+        <div class="title-typography fadeInTop">
+          {{ "landing.title" | translate }}
+        </div>
+        <div class="double-items fadeInLeft">
+          @if ((backendDown$ | async) === false) {
+            <button
+              mat-flat-button
+              class="pulse-button button-color-primary"
+              routerLink="/dashboard">
+              <mat-icon>play_arrow</mat-icon>
+              <span>{{ "landing.start" | translate }}</span>
+            </button>
+          }
 
-        <a
-          mat-button
-          class="empty-button-with-border play-video-btn"
-          href="https://www.youtube.com/watch?v=IxQzqy26ZO4"
-          target="_blank"
-          rel="noopener noreferrer">
-          <mat-icon class="material-icon-primary"
-            >cast_for_education</mat-icon
+          <a
+            mat-button
+            class="empty-button-with-border play-video-btn"
+            href="https://www.youtube.com/watch?v=IxQzqy26ZO4"
+            target="_blank"
+            rel="noopener noreferrer">
+            <mat-icon class="material-icon-primary"
+              >cast_for_education</mat-icon
             >
             <span>Introduction</span>
           </a>

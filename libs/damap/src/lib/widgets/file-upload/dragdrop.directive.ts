@@ -6,7 +6,7 @@ import {
   Output,
 } from '@angular/core';
 
-@Directive({ selector: '[appDragdrop]', })
+@Directive({ selector: '[appDragdrop]' })
 export class DragdropDirective {
   @HostBinding('class.fileover') fileOver: boolean;
 

@@ -16,16 +16,17 @@ describe('ReuseComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [
+      imports: [
         MatAutocompleteModule,
         MatInputModule,
         MatFormFieldModule,
         NoopAnimationsModule,
         TranslateTestingModule,
-        ReuseComponent, StepIntroComponent,
-    ],
-    schemas: [NO_ERRORS_SCHEMA],
-}).compileComponents();
+        ReuseComponent,
+        StepIntroComponent,
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

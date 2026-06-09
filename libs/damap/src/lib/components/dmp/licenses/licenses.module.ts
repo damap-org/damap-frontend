@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 
-
 import { LicensesComponent } from './licenses.component';
 import {
   DateAdapter,
@@ -21,7 +20,7 @@ import {
 } from '@angular/material-moment-adapter';
 
 @NgModule({
-    imports: [
+  imports: [
     CommonModule,
     ReactiveFormsModule,
     TranslateModule,
@@ -30,8 +29,8 @@ import {
     MatDatepickerModule,
     MatMomentDateModule,
     LicensesComponent,
-],
-    exports: [
+  ],
+  exports: [
     CommonModule,
     TranslateModule,
     ReactiveFormsModule,
@@ -39,16 +38,16 @@ import {
     // Materials
     MatSelectModule,
     MatDatepickerModule,
-],
-    providers: [
-        { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
-        { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
-        {
-            provide: DateAdapter,
-            useClass: MomentDateAdapter,
-            deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
-        },
-        { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
-    ],
+  ],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
+    },
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
+  ],
 })
 export class LicensesModule {}

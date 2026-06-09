@@ -14,7 +14,7 @@
     [loading]="loading"
     [duplicate]="duplicate"
     (termToSearch)="searchDataset($event)"
-  (datasetToAdd)="add($event)"></app-doi-search>
+    (datasetToAdd)="add($event)"></app-doi-search>
   <!-- TABLE -->
   @if (datasets.controls.length) {
     <app-dataset-table

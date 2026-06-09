@@ -2,9 +2,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { ToggleButtonsComponent } from '../../../../widgets/toggle-buttons/toggle-buttons.component';
 
 @Component({
-    selector: 'app-people-instruction',
-    templateUrl: './people-instruction.component.html',
-    imports: [ToggleButtonsComponent],
+  selector: 'app-people-instruction',
+  templateUrl: './people-instruction.component.html',
+  imports: [ToggleButtonsComponent],
 })
 export class PeopleInstructionComponent {
   @Output() selectionChange = new EventEmitter<

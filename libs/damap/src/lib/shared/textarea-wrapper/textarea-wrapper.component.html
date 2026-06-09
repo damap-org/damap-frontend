@@ -1,15 +1,17 @@
 <div class="question-long-hint">
   {{ longLabel | translate }}
   @for (set of labelDatasets; track set; let last = $last) {
-    "{{ set.title }}"@if (!last) {
-    <span>, </span>
-    } @if (last) {
-    <span>.</span>
+    "{{ set.title }}"
+    @if (!last) {
+      <span>, </span>
+    }
+    @if (last) {
+      <span>.</span>
+    }
   }
-}
-@if (labelSuffix) {
-  {{ labelSuffix }}
-}
+  @if (labelSuffix) {
+    {{ labelSuffix }}
+  }
 </div>
 <mat-form-field
   [appearance]="appearance"
@@ -34,81 +36,80 @@
       cdkAutosizeMaxRows="{{ maxRows }}"
       class="no-resize"
       (input)="this.updateAutocompletePosition()"
-    #message></textarea>
+      #message></textarea>
     @if (showLength) {
       <mat-hint align="end"
         >{{ message.value.length }} / {{ maxLength }}</mat-hint
-        >
+      >
+    }
+    <span class="suggestion-label">
+      <span class="suggestions-label">Suggestions</span>
+      @if (isAutocompleteOpen) {
+        <button
+          (click)="closeAutocomplete()"
+          mat-icon-button
+          class="close-button-dp">
+          <mat-icon class="material-icon-primary">keyboard_arrow_up</mat-icon>
+        </button>
       }
-      <span class="suggestion-label">
-        <span class="suggestions-label">Suggestions</span>
-        @if (isAutocompleteOpen) {
-          <button
-            (click)="closeAutocomplete()"
-            mat-icon-button
-            class="close-button-dp">
-            <mat-icon class="material-icon-primary">keyboard_arrow_up</mat-icon>
-          </button>
-        }
-      </span>
-      <mat-autocomplete
-        #auto="matAutocomplete"
-        (optionSelected)="closeAutocomplete()"
-        (closed)="closeAutocomplete()">
-        @for (option of autocompleteOptions; track option) {
-          <mat-option
-            value="{{ option | translate }}">
-            {{ option | translate }}
-          </mat-option>
-        }
-      </mat-autocomplete>
-    } @else {
-      <textarea
-        matInput
-        [formControl]="control"
-        [placeholder]="placeholder"
-        type="text"
-        [required]="required"
-        [maxLength]="maxLength"
-        cdkTextareaAutosize
-        cdkAutosizeMinRows="{{ minRows }}"
-        cdkAutosizeMaxRows="{{ maxRows }}"
-        class="no-resize"
-        #message
-        (click)="openAutocomplete()">
-      </textarea>
-      @if (showLength) {
-        <mat-hint align="end"
-          >{{ message.value.length }} / {{ maxLength }}
-        </mat-hint>
+    </span>
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="closeAutocomplete()"
+      (closed)="closeAutocomplete()">
+      @for (option of autocompleteOptions; track option) {
+        <mat-option value="{{ option | translate }}">
+          {{ option | translate }}
+        </mat-option>
       }
+    </mat-autocomplete>
+  } @else {
+    <textarea
+      matInput
+      [formControl]="control"
+      [placeholder]="placeholder"
+      type="text"
+      [required]="required"
+      [maxLength]="maxLength"
+      cdkTextareaAutosize
+      cdkAutosizeMinRows="{{ minRows }}"
+      cdkAutosizeMaxRows="{{ maxRows }}"
+      class="no-resize"
+      #message
+      (click)="openAutocomplete()">
+    </textarea>
+    @if (showLength) {
+      <mat-hint align="end"
+        >{{ message.value.length }} / {{ maxLength }}
+      </mat-hint>
     }
-    <!-- ERROR -->
-    @if (!control?.errors?.required && control?.errors?.empty) {
-      <mat-error>
-        {{ "validation.error.invalidValue" | translate }}
-      </mat-error>
-    }
-    @if (control?.errors?.required) {
-      <mat-error>
-        {{ "validation.error.required" | translate }}
-      </mat-error>
-    }
-    @if (control?.errors?.maxlength) {
-      <mat-error>
-        {{
+  }
+  <!-- ERROR -->
+  @if (!control?.errors?.required && control?.errors?.empty) {
+    <mat-error>
+      {{ "validation.error.invalidValue" | translate }}
+    </mat-error>
+  }
+  @if (control?.errors?.required) {
+    <mat-error>
+      {{ "validation.error.required" | translate }}
+    </mat-error>
+  }
+  @if (control?.errors?.maxlength) {
+    <mat-error>
+      {{
         "validation.error.maxLength"
-        | translate: { value: control.errors.maxlength?.requiredLength }
-        }}
-        <!-- "maxlength": { "requiredLength": 255, "actualLength": 273 } -->
-      </mat-error>
-    }
-    @if (control?.errors?.pattern) {
-      <mat-error>
-        {{ "validation.error.currencyFormat" | translate }}
-        <!-- { "pattern": { "requiredPattern": "^[0-9]*.?[0-9]{0,2}$", "actualValue": "123,345" } } false -->
-      </mat-error>
-    }
-  </mat-form-field>
-  <!--{{control.errors | json}}-->
-  <!--{{control.valid}}-->
+          | translate: { value: control.errors.maxlength?.requiredLength }
+      }}
+      <!-- "maxlength": { "requiredLength": 255, "actualLength": 273 } -->
+    </mat-error>
+  }
+  @if (control?.errors?.pattern) {
+    <mat-error>
+      {{ "validation.error.currencyFormat" | translate }}
+      <!-- { "pattern": { "requiredPattern": "^[0-9]*.?[0-9]{0,2}$", "actualValue": "123,345" } } false -->
+    </mat-error>
+  }
+</mat-form-field>
+<!--{{control.errors | json}}-->
+<!--{{control.valid}}-->

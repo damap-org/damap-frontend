@@ -1,6 +1,11 @@
 import { Component, computed, inject, Input, OnInit } from '@angular/core';
 import { ExportWarningDialogComponent } from '../../../widgets/export-warning-dialog/export-warning-dialog.component';
-import { MatDialogRef, MatDialogTitle, MatDialogClose, MatDialogContent } from '@angular/material/dialog';
+import {
+  MatDialogRef,
+  MatDialogTitle,
+  MatDialogClose,
+  MatDialogContent,
+} from '@angular/material/dialog';
 import { BackendService } from '../../../services/backend.service';
 import { MatSelectChange, MatSelect } from '@angular/material/select';
 import { FormGroup } from '@angular/forms';
@@ -16,10 +21,10 @@ import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatOption } from '@angular/material/autocomplete';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'damap-live-preview',
-    templateUrl: './live-preview.component.html',
-    styleUrl: './live-preview.component.css',
-    imports: [
+  selector: 'damap-live-preview',
+  templateUrl: './live-preview.component.html',
+  styleUrl: './live-preview.component.css',
+  imports: [
     MatDialogTitle,
     MatButton,
     MatDialogClose,
@@ -30,8 +35,8 @@ import { TranslateModule } from '@ngx-translate/core';
     MatLabel,
     MatSelect,
     MatOption,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class LivePreviewComponent implements OnInit {
   @Input() selectedTemplate: number | null = null;

@@ -1,5 +1,11 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogTitle,
+  MatDialogContent,
+  MatDialogActions,
+} from '@angular/material/dialog';
 import { Dataset } from '../../../../domain/dataset';
 import { DataSource } from '../../../../domain/enum/data-source.enum';
 import { DatasetDialogComponent } from '../dataset-dialog/dataset-dialog.component';
@@ -9,17 +15,17 @@ import { CdkScrollable } from '@angular/cdk/scrolling';
 
 import { MatButton } from '@angular/material/button';
 @Component({
-    selector: 'app-information-component',
-    templateUrl: './dataset-information.component.html',
-    styleUrls: ['./dataset-information.component.css'],
-    imports: [
+  selector: 'app-information-component',
+  templateUrl: './dataset-information.component.html',
+  styleUrls: ['./dataset-information.component.css'],
+  imports: [
     MatDialogTitle,
     CdkScrollable,
     MatDialogContent,
     MatDialogActions,
     MatButton,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class DatasetInformationComponent {
   dataset: Dataset;

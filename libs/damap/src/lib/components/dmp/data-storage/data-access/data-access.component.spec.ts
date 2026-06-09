@@ -12,14 +12,14 @@ describe('DataAccessComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [
+      imports: [
         MatExpansionModule,
         NoopAnimationsModule,
         TranslateTestingModule,
         DataAccessComponent,
-    ],
-    schemas: [NO_ERRORS_SCHEMA],
-}).compileComponents();
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

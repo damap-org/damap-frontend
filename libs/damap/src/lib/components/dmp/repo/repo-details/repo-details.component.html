@@ -15,9 +15,7 @@
     <div>
       {{ "dmp.steps.repositories.metadatastandards" | translate }}:
       @for (standard of repo.metadataStandards; track standard) {
-        <div
-          class="metadata-standards tag"
-          >
+        <div class="metadata-standards tag">
           {{ standard }}
         </div>
       }
@@ -36,7 +34,9 @@
 
   @if (repo.repositoryURL) {
     <div>
-      <a [href]="repo.repositoryURL" target="_blank">{{ repo.repositoryURL }}</a>
+      <a [href]="repo.repositoryURL" target="_blank">{{
+        repo.repositoryURL
+      }}</a>
     </div>
   }
 </div>

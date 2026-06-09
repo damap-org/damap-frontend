@@ -8,8 +8,8 @@ describe('InfoMessageComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [InfoMessageComponent],
-}).compileComponents();
+      imports: [InfoMessageComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -4,12 +4,10 @@ import { FormService } from '../../../../services/form.service';
 
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-version-view-reuse',
-    templateUrl: './version-view-reuse.component.html',
-    styleUrls: [],
-    imports: [
-    TranslateModule
-],
+  selector: 'app-version-view-reuse',
+  templateUrl: './version-view-reuse.component.html',
+  styleUrls: [],
+  imports: [TranslateModule],
 })
 export class VersionViewReuseComponent {
   @Input() targetAudience: string;

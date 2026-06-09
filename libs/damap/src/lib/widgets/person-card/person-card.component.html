@@ -6,8 +6,7 @@
           <mat-icon class="mat-icon-style">person</mat-icon>
           {{ person.firstName }} {{ person.lastName }}
           @if (contact) {
-            <mat-icon
-              class="mat-icon-contact button-color-primary">
+            <mat-icon class="mat-icon-contact button-color-primary">
               contact_mail
             </mat-icon>
           }
@@ -17,11 +16,8 @@
         </div>
         <mat-icon class="mat-icon-style outline">mail</mat-icon>
         {{ person.mbox }}
-        @if (
-          personId?.identifier && personId?.type === identifierType.ORCID
-          ) {
-          <app-orcid
-          [orcidId]="personId?.identifier"></app-orcid>
+        @if (personId?.identifier && personId?.type === identifierType.ORCID) {
+          <app-orcid [orcidId]="personId?.identifier"></app-orcid>
         }
       </div>
       <ng-content></ng-content>

@@ -6,7 +6,13 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { Dataset } from '../../domain/dataset';
 import { LoadingState } from '../../domain/enum/loading-state.enum';
@@ -17,17 +23,17 @@ import { MatButton } from '@angular/material/button';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-doi-search',
-    templateUrl: './doi-search.component.html',
-    styleUrls: ['./doi-search.component.css'],
-    imports: [
+  selector: 'app-doi-search',
+  templateUrl: './doi-search.component.html',
+  styleUrls: ['./doi-search.component.css'],
+  imports: [
     FormsModule,
     ReactiveFormsModule,
     SearchFieldComponent,
     MatButton,
     ErrorMessageComponent,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class DoiSearchComponent implements OnChanges {
   @Input() result: Dataset = undefined;

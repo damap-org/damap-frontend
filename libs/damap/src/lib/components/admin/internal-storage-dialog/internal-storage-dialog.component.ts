@@ -1,6 +1,18 @@
 import { Component, Inject } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions } from '@angular/material/dialog';
+import {
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogTitle,
+  MatDialogContent,
+  MatDialogActions,
+} from '@angular/material/dialog';
 import { InternalStorage } from '../../../domain/internal-storage';
 import {
   isValidCode,
@@ -16,10 +28,10 @@ import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/texta
 import { MatButton } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'damap-internal-storage-dialog',
-    templateUrl: './internal-storage-dialog.component.html',
-    styleUrl: './internal-storage-dialog.component.css',
-    imports: [
+  selector: 'damap-internal-storage-dialog',
+  templateUrl: './internal-storage-dialog.component.html',
+  styleUrl: './internal-storage-dialog.component.css',
+  imports: [
     MatDialogTitle,
     CdkScrollable,
     MatDialogContent,
@@ -31,8 +43,8 @@ import { TranslateModule } from '@ngx-translate/core';
     TextareaWrapperComponent,
     MatDialogActions,
     MatButton,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class InternalStorageDialogComponent {
   public mode = 'add';

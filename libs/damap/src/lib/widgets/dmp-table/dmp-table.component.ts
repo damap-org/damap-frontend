@@ -13,7 +13,20 @@ import { DmpListItem } from '../../domain/dmp-list-item';
 import { FunctionRole } from '../../domain/enum/function-role.enum';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, MatSortHeader } from '@angular/material/sort';
-import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow, MatNoDataRow } from '@angular/material/table';
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+  MatNoDataRow,
+} from '@angular/material/table';
 import { LoadingState } from '../../domain/enum/loading-state.enum';
 import { Observable } from 'rxjs';
 import { MatButton, MatIconButton } from '@angular/material/button';
@@ -25,10 +38,10 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-    selector: 'app-dmp-table',
-    templateUrl: './dmp-table.component.html',
-    styleUrls: ['./dmp-table.component.css'],
-    imports: [
+  selector: 'app-dmp-table',
+  templateUrl: './dmp-table.component.html',
+  styleUrls: ['./dmp-table.component.css'],
+  imports: [
     MatButton,
     RouterLink,
     MatIcon,
@@ -54,8 +67,8 @@ import { TranslateModule } from '@ngx-translate/core';
     MatPaginator,
     AsyncPipe,
     DatePipe,
-    TranslateModule
-],
+    TranslateModule,
+  ],
 })
 export class DmpTableComponent implements OnChanges, AfterViewInit {
   @Input() dmps: DmpListItem[];
