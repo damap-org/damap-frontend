@@ -1,4 +1,10 @@
-import { enableProdMode, provideAppInitializer, inject, importProvidersFrom } from '@angular/core';
+import {
+  enableProdMode,
+  provideAppInitializer,
+  inject,
+  importProvidersFrom,
+  provideZoneChangeDetection,
+} from '@angular/core';
 
 import { HttpLoaderFactory } from './app/app.module';
 import { environment } from './environments/environment';
@@ -23,38 +29,46 @@ if (environment.production) {
 }
 
 bootstrapApplication(AppComponent, {
-    providers: [
-        importProvidersFrom(BrowserModule, HttpClientModule, ReactiveFormsModule, AppStoreModule, OAuthModule.forRoot({
-            resourceServer: {
-                allowedUrls: [environment.backendurl],
-                sendAccessToken: true,
-            },
-        }), 
-        // NGX Translate
-        TranslateModule.forRoot({
-            defaultLanguage: localStorage.getItem('lang') ?? 'en',
-            loader: {
-                provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [HttpBackend],
-            },
-        }), 
-        // Materials
-        MatSnackBarModule),
-        provideAppInitializer(() => {
-            const initializerFn = ((configService: ConfigService) => () => configService.initializeApp())(inject(ConfigService));
-            return initializerFn();
-        }),
-        {
-            provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-            useValue: { appearance: 'outline' },
+  providers: [
+    provideZoneChangeDetection(),
+    importProvidersFrom(
+      BrowserModule,
+      HttpClientModule,
+      ReactiveFormsModule,
+      AppStoreModule,
+      OAuthModule.forRoot({
+        resourceServer: {
+          allowedUrls: [environment.backendurl],
+          sendAccessToken: true,
         },
-        AuthGuard,
-        TenantGuard,
-        ConsentGuard,
-        provideRouter(APP_ROUTES),
-        provideAnimations(),
-    ]
-})
-   
-  .catch(err => console.error(err));
+      }),
+      // NGX Translate
+      TranslateModule.forRoot({
+        defaultLanguage: localStorage.getItem('lang') ?? 'en',
+        loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpBackend],
+        },
+      }),
+      // Materials
+      MatSnackBarModule,
+    ),
+    provideAppInitializer(() => {
+      const initializerFn = (
+        (configService: ConfigService) => () =>
+          configService.initializeApp()
+      )(inject(ConfigService));
+      return initializerFn();
+    }),
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'outline' },
+    },
+    AuthGuard,
+    TenantGuard,
+    ConsentGuard,
+    provideRouter(APP_ROUTES),
+    provideAnimations(),
+  ],
+}).catch(err => console.error(err));

@@ -147,7 +147,9 @@ describe('LayoutComponent', () => {
 
   function toggleMenu(): void {
     component.toggleMenu();
-    fixture.detectChanges();
+    // No detectChanges(): these tests assert component state only, and forcing
+    // a render here triggers a dev-mode NG0100 from the autosize mat-sidenav
+    // remeasuring its dynamic width under Angular 21's change detection.
   }
 
   it('should create the component', waitForAsync(() => {
