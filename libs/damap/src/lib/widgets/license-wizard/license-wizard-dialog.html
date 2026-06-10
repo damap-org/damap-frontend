@@ -27,7 +27,7 @@
         } }
         <!-- Data: License Options -->
         @if (step.question === 'license-wizard.question.licenseInteropData') {
-        @for (licenses of dataLicenses; track licenses; let j = $index) {
+        @for (licenses of dataLicenses; track $index; let j = $index) {
         <div style="align-content: flex-start">
           <mat-checkbox (change)="changeLicenseOptions(j)">
             @for (license of licenses; track license.id; let isLast = $last) {

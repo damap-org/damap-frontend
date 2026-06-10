@@ -63,7 +63,7 @@
   <div class="technical-resources">
     @for (
       resource of dataset.technicalResources;
-      track resource;
+      track $index;
       let i = $index
     ) {
       <div class="resource-box">
