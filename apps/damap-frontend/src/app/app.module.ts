@@ -1,10 +1,5 @@
 import { NgModule, inject, provideAppInitializer } from '@angular/core';
-import {
-  EnvBannerModule,
-  AuthGuard,
-  TenantGuard,
-  BackendTranslateLoader,
-} from '@damap/core';
+import { AuthGuard, TenantGuard, BackendTranslateLoader } from '@damap/core';
 import { HttpBackend, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
@@ -15,8 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { ConfigService } from './services/config.service';
 import { ConsentGuard } from './guard/consent.guard';
-import { ConsentModule } from './components/consent/consent.module';
-import { LayoutModule } from './components/layout/layout.module';
+
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { OAuthModule } from 'angular-oauth2-oidc';
@@ -44,7 +38,6 @@ export function HttpLoaderFactory(): BackendTranslateLoader {
         sendAccessToken: true,
       },
     }),
-
     // NGX Translate
     TranslateModule.forRoot({
       defaultLanguage: localStorage.getItem('lang') ?? 'en',
@@ -54,14 +47,8 @@ export function HttpLoaderFactory(): BackendTranslateLoader {
         deps: [HttpBackend],
       },
     }),
-
     // Materials
     MatSnackBarModule,
-
-    // Modules
-    LayoutModule,
-    EnvBannerModule,
-    ConsentModule,
   ],
   providers: [
     provideAppInitializer(() => {

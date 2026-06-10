@@ -11,7 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { Dmp } from '../../domain/dmp';
 import { MatButtonModule } from '@angular/material/button';
-import { InfoMessageModule } from '../../widgets/info-message/info-message.module';
+
 import { AuthService } from '../../auth/auth.service';
 import {
   debounceTime,
@@ -27,7 +27,7 @@ import {
   MatRadioGroup,
 } from '@angular/material/radio';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TooltipModule } from '../../widgets/tooltip/tooltip.module';
+
 import { MatFormField, MatInputModule } from '@angular/material/input';
 import {
   MatAutocomplete,
@@ -37,7 +37,9 @@ import {
   MatAutocompleteModule,
 } from '@angular/material/autocomplete';
 import { SearchFieldComponent } from '../../shared/search-field/search-field.component';
-import { SharedModule } from '../../shared/shared.module';
+
+import { InfoMessageComponent } from '../../widgets/info-message/info-message.component';
+import { TooltipComponent } from '../../widgets/tooltip/tooltip.component';
 
 @Component({
   selector: 'damap-access',
@@ -49,16 +51,16 @@ import { SharedModule } from '../../shared/shared.module';
     MatCheckboxModule,
     MatIconModule,
     MatButtonModule,
-    InfoMessageModule,
+    InfoMessageComponent,
     MatRadioGroup,
     MatRadioButton,
     FormsModule,
-    TooltipModule,
+    TooltipComponent,
     MatAutocomplete,
     MatOption,
     ReactiveFormsModule,
     MatInputModule,
-    SharedModule,
+    SearchFieldComponent,
   ],
   templateUrl: './access.component.html',
   styleUrls: ['./access.component.css'],
