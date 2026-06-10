@@ -10,9 +10,8 @@ describe('DataMcComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [TranslateTestingModule],
+      imports: [TranslateTestingModule, DataMcComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [DataMcComponent],
     }).compileComponents();
   }));
 

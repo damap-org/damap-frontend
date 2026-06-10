@@ -22,9 +22,10 @@ describe('ReuseComponent', () => {
         MatFormFieldModule,
         NoopAnimationsModule,
         TranslateTestingModule,
+        ReuseComponent,
+        StepIntroComponent,
       ],
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [ReuseComponent, StepIntroComponent],
     }).compileComponents();
   }));
 

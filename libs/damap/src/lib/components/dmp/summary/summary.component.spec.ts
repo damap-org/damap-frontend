@@ -34,8 +34,12 @@ describe('SummaryComponent', () => {
     backendSpy.getBenchmarks.and.returnValue(of([]));
 
     TestBed.configureTestingModule({
-      imports: [MatTableModule, MatProgressBarModule, TranslateTestingModule],
-      declarations: [SummaryComponent],
+      imports: [
+        MatTableModule,
+        MatProgressBarModule,
+        TranslateTestingModule,
+        SummaryComponent,
+      ],
       providers: [
         { provide: BackendService, useValue: backendSpy },
         provideMockStore({

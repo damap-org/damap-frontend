@@ -25,9 +25,9 @@ describe('RetentionPeriodComponent', () => {
         MatExpansionModule,
         NoopAnimationsModule,
         TranslateTestingModule,
+        RetentionPeriodComponent,
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [RetentionPeriodComponent],
     }).compileComponents();
   }));
 

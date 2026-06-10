@@ -23,8 +23,7 @@ describe('RepoComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [TranslateTestingModule],
-      declarations: [RepoComponent, StepIntroComponent],
+      imports: [TranslateTestingModule, RepoComponent, StepIntroComponent],
       providers: [
         provideMockStore({
           initialState,

@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DatasetSourcePipe } from './dataset-source.pipe';
 
 @NgModule({
-  declarations: [DatasetSourcePipe],
   exports: [DatasetSourcePipe],
-  imports: [CommonModule],
+  imports: [CommonModule, DatasetSourcePipe],
 })
 export class DatasetSourceModule {}

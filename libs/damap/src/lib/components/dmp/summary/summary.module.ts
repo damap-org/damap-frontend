@@ -20,7 +20,6 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     NgClass,
     TranslateModule,
-
     // Materials
     MatTableModule,
     MatProgressBarModule,
@@ -34,13 +33,12 @@ import { TranslateModule } from '@ngx-translate/core';
     MatProgressSpinnerModule,
     MatExpansionModule,
     MatChipsModule,
+    SummaryComponent,
   ],
-  declarations: [SummaryComponent],
   exports: [
     CommonModule,
     TranslateModule,
     SummaryComponent,
-
     // Materials
     MatTableModule,
     MatProgressBarModule,

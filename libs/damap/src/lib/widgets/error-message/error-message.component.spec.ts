@@ -10,9 +10,8 @@ describe('ErrorMessageComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [TranslateTestingModule],
+      imports: [TranslateTestingModule, ErrorMessageComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ErrorMessageComponent],
     }).compileComponents();
   }));
 

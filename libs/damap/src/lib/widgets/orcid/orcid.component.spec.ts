@@ -8,7 +8,7 @@ describe('OrcidComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [OrcidComponent],
+      imports: [OrcidComponent],
     }).compileComponents();
   }));
 

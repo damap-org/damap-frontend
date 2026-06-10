@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { ToggleButtonsComponent } from '../../../../widgets/toggle-buttons/toggle-buttons.component';
 
 @Component({
   selector: 'app-repo-instruction',
   templateUrl: './repo-instruction.component.html',
-  standalone: false,
+  imports: [ToggleButtonsComponent],
 })
 export class RepoInstructionComponent {
   @Output() selectionChange = new EventEmitter<

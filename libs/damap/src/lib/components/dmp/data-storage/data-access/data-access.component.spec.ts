@@ -16,9 +16,9 @@ describe('DataAccessComponent', () => {
         MatExpansionModule,
         NoopAnimationsModule,
         TranslateTestingModule,
+        DataAccessComponent,
       ],
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [DataAccessComponent],
     }).compileComponents();
   }));
 

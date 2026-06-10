@@ -56,8 +56,9 @@ describe('DmpActionsComponent', () => {
         TranslateTestingModule,
         FormTestingModule,
         LivePreviewModule,
+        DmpActionsComponent,
+        SaveVersionDialogComponent,
       ],
-      declarations: [DmpActionsComponent, SaveVersionDialogComponent],
       providers: [
         provideMockStore({ initialState }),
         { provide: BackendService, useValue: backendSpy },

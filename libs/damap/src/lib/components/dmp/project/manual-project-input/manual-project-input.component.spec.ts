@@ -25,9 +25,9 @@ describe('ManualProjectInputComponent', () => {
         MatButtonModule,
         FormsModule,
         ReactiveFormsModule,
+        ManualProjectInputComponent,
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ManualProjectInputComponent],
     }).compileComponents();
   }));
 

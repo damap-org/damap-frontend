@@ -17,15 +17,41 @@ import {
 
 import { BackendService } from '../../../../services/backend.service';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSelectionListChange } from '@angular/material/list';
+import {
+  MatSelectionListChange,
+  MatSelectionList,
+  MatListOption,
+  MatListItemTitle,
+  MatListItemLine,
+} from '@angular/material/list';
 import { Project } from '../../../../domain/project';
 import { SearchResult } from '../../../../domain/search/search-result';
+import { MatLabel } from '@angular/material/form-field';
+import { SearchFieldComponent } from '../../../../shared/search-field/search-field.component';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
+import { AsyncPipe, DatePipe } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-project-list',
   templateUrl: './project-list.component.html',
   styleUrls: ['./project-list.component.css'],
-  standalone: false,
+  imports: [
+    MatLabel,
+    SearchFieldComponent,
+    MatSelectionList,
+    MatListOption,
+    MatListItemTitle,
+    MatListItemLine,
+    MatIcon,
+    MatTooltip,
+    AsyncPipe,
+    DatePipe,
+    TranslateModule,
+    TranslatePipeMock,
+  ],
 })
 export class ProjectListComponent implements OnInit, AfterViewInit {
   @Output() projectToSet = new EventEmitter<Project>();

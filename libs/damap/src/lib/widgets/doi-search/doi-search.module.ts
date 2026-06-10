@@ -13,7 +13,6 @@ import { SharedModule } from '../../shared/shared.module';
 import { InfoMessageModule } from '../info-message/info-message.module';
 
 @NgModule({
-  declarations: [DoiSearchComponent],
   imports: [
     CommonModule,
     TranslateModule,
@@ -21,14 +20,13 @@ import { InfoMessageModule } from '../info-message/info-message.module';
     ReactiveFormsModule,
     ErrorMessageModule,
     SharedModule,
-
+    DoiSearchComponent,
     // Materials
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
     MatOptionModule,
     MatButtonModule,
-    InfoMessageModule,
   ],
   exports: [
     CommonModule,
@@ -38,7 +36,6 @@ import { InfoMessageModule } from '../info-message/info-message.module';
     DoiSearchComponent,
     ErrorMessageModule,
     SharedModule,
-
     // Materials
     MatFormFieldModule,
     MatInputModule,

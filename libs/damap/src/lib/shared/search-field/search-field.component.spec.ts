@@ -19,8 +19,8 @@ fdescribe('SearchFieldComponent', () => {
         TranslateTestingModule,
         ReactiveFormsModule,
         NoopAnimationsModule,
+        SearchFieldComponent,
       ],
-      declarations: [SearchFieldComponent],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 

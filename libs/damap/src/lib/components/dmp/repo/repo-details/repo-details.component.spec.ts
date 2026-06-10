@@ -10,8 +10,7 @@ describe('RepoRecommendationComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [TranslateTestingModule],
-      declarations: [RepoDetailsComponent],
+      imports: [TranslateTestingModule, RepoDetailsComponent],
     }).compileComponents();
   }));
 

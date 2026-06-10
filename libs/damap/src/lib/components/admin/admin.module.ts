@@ -71,8 +71,6 @@ import { LanguageCodeInputComponent } from '../../shared/language-code-input/lan
     MatTooltipModule,
     MatSlideToggle,
     LanguageCodeInputComponent,
-  ],
-  declarations: [
     AdminComponent,
     InternalStorageDialogComponent,
     InternalStorageTranslationDialogComponent,
@@ -90,7 +88,6 @@ import { LanguageCodeInputComponent } from '../../shared/language-code-input/lan
     AdminComponent,
     ExportWarningModule,
     InternalStorageTableModule,
-
     // Materials
     MatIconModule,
     MatButtonModule,

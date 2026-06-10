@@ -7,7 +7,6 @@ import { IMAGE_KEYS } from '../../domain/image-keys';
   selector: 'app-orcid',
   templateUrl: './orcid.component.html',
   styleUrls: ['./orcid.component.css'],
-  standalone: false,
 })
 export class OrcidComponent implements OnInit {
   private readonly imageThemeService = inject(ImageThemeService);

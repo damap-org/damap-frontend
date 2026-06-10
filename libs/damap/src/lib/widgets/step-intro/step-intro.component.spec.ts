@@ -8,7 +8,7 @@ describe('IntroComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [StepIntroComponent],
+      imports: [StepIntroComponent],
     }).compileComponents();
   }));
 

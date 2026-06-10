@@ -20,8 +20,8 @@ describe('ContributorManualComponent', () => {
         MatCardModule,
         ReactiveFormsModule,
         TranslateTestingModule,
+        ContributorManualComponent,
       ],
-      declarations: [ContributorManualComponent],
     }).compileComponents();
   }));
 

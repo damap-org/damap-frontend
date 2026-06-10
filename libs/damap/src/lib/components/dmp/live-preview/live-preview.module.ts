@@ -20,7 +20,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     TranslateModule,
     ReactiveFormsModule,
     SharedModule,
-
     // Materials
     MatIconModule,
     MatSlideToggleModule,
@@ -31,15 +30,14 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     MatSelectModule,
     MatDialogModule,
+    LivePreviewComponent,
   ],
-  declarations: [LivePreviewComponent],
   exports: [
     CommonModule,
     TranslateModule,
     ReactiveFormsModule,
     SharedModule,
     LivePreviewComponent,
-
     // Materials
     MatIconModule,
     MatSlideToggleModule,

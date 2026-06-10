@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { ToggleButtonsComponent } from '../../../../widgets/toggle-buttons/toggle-buttons.component';
 
 @Component({
   selector: 'app-legal-ethical-instruction',
   templateUrl: './legal-ethical-instruction.component.html',
-  standalone: false,
+  imports: [ToggleButtonsComponent],
 })
 export class LegalEthicalInstructionComponent {
   @Output() selectionChange = new EventEmitter<

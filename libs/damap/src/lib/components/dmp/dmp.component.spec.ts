@@ -66,8 +66,8 @@ describe('DmpComponent', () => {
         ]),
         TranslateTestingModule,
         FormTestingModule,
+        DmpComponent,
       ],
-      declarations: [DmpComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: AuthService, useValue: authSpy },

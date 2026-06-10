@@ -19,8 +19,8 @@ describe('InputFormFieldWrapperComponent', () => {
         ReactiveFormsModule,
         NoopAnimationsModule,
         TranslateTestingModule,
+        InputWrapperComponent,
       ],
-      declarations: [InputWrapperComponent],
     }).compileComponents();
   }));
 

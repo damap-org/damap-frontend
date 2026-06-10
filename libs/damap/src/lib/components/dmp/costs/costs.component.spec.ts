@@ -26,9 +26,10 @@ describe('CostsComponent', () => {
         MatRadioModule,
         MatIconModule,
         TranslateTestingModule,
+        CostsComponent,
+        StepIntroComponent,
       ],
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [CostsComponent, StepIntroComponent],
     }).compileComponents();
   }));
 

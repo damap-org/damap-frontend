@@ -52,7 +52,6 @@ import { MatIconModule } from '@angular/material/icon';
     ReuseModule,
     CostsModule,
     SummaryModule,
-
     // Live preview
     LivePreviewModule,
     InfoCardComponent,
@@ -60,7 +59,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatStepperModule,
     MatIconModule,
     DmpActionsModule,
+    DmpComponent,
   ],
-  declarations: [DmpComponent],
 })
 export class DmpModule {}

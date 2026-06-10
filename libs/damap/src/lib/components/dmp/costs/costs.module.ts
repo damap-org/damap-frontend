@@ -22,15 +22,14 @@ import { TranslateModule } from '@ngx-translate/core';
     SharedModule,
     CrisTagModule,
     InfoMessageModule,
-
     // Materials
     MatRadioModule,
     MatIconModule,
     MatExpansionModule,
     MatSelectModule,
     MatButtonModule,
+    CostsComponent,
   ],
-  declarations: [CostsComponent],
   exports: [
     CommonModule,
     TranslateModule,
@@ -40,7 +39,6 @@ import { TranslateModule } from '@ngx-translate/core';
     CrisTagModule,
     CostsComponent,
     InfoMessageModule,
-
     // Materials
     MatRadioModule,
     MatIconModule,

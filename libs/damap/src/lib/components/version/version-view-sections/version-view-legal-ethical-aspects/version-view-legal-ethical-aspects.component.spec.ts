@@ -9,8 +9,10 @@ describe('VersionViewLegalEthicalAspectsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [VersionViewLegalEthicalAspectsComponent],
-      imports: [TranslateTestingModule],
+      imports: [
+        TranslateTestingModule,
+        VersionViewLegalEthicalAspectsComponent,
+      ],
     }).compileComponents();
   }));
 

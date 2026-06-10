@@ -23,7 +23,18 @@ import { RouterModule } from '@angular/router';
 import { VersionViewReuseComponent } from './version-view-sections/version-view-reuse/version-view-reuse.component';
 
 @NgModule({
-  declarations: [
+  imports: [
+    CommonModule,
+    RouterModule,
+    TranslateModule,
+    OrcidModule,
+    TagModule,
+    ByteModule,
+    // Materials
+    MatTableModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatButtonModule,
     VersionListComponent,
     VersionViewComponent,
     VersionTableComponent,
@@ -37,24 +48,9 @@ import { VersionViewReuseComponent } from './version-view-sections/version-view-
     VersionViewCostsComponent,
     VersionViewReuseComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    TranslateModule,
-    OrcidModule,
-    TagModule,
-    ByteModule,
-
-    // Materials
-    MatTableModule,
-    MatExpansionModule,
-    MatIconModule,
-    MatButtonModule,
-  ],
   exports: [
     VersionListComponent,
     VersionViewComponent,
-
     // Materials
     MatTableModule,
     MatExpansionModule,

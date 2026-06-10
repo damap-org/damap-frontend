@@ -13,23 +13,20 @@ import { MatIconButton } from '@angular/material/button';
 import { InfoMessageModule } from '../widgets/info-message/info-message.module';
 
 @NgModule({
-  declarations: [
-    InputWrapperComponent,
-    TextareaWrapperComponent,
-    SearchFieldComponent,
-  ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,
     TooltipModule,
-
     // Materials
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
     MatIconButton,
+    InputWrapperComponent,
+    TextareaWrapperComponent,
+    SearchFieldComponent,
     InfoMessageModule,
   ],
   exports: [
@@ -41,7 +38,6 @@ import { InfoMessageModule } from '../widgets/info-message/info-message.module';
     TextareaWrapperComponent,
     TooltipModule,
     SearchFieldComponent,
-
     // Materials
     MatFormFieldModule,
     MatInputModule,

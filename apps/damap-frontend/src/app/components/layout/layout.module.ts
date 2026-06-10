@@ -19,7 +19,6 @@ import { TranslateModule } from '@ngx-translate/core';
     TranslateModule,
     RouterModule,
     EnvBannerModule,
-
     // Materials
     MatSidenavModule,
     MatMenuModule,
@@ -29,15 +28,14 @@ import { TranslateModule } from '@ngx-translate/core';
     MatToolbarModule,
     MatTooltipModule,
     AppBannerModule,
+    LayoutComponent,
   ],
-  declarations: [LayoutComponent],
   exports: [
     CommonModule,
     TranslateModule,
     RouterModule,
     EnvBannerModule,
     LayoutComponent,
-
     // Materials
     MatSidenavModule,
     MatMenuModule,

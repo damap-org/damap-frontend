@@ -5,19 +5,17 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
-  declarations: [EnvBannerComponent],
   imports: [
     CommonModule,
     TranslateModule,
-
     // Materials
     MatCardModule,
+    EnvBannerComponent,
   ],
   exports: [
     CommonModule,
     TranslateModule,
     EnvBannerComponent,
-
     // Materials
     MatCardModule,
   ],

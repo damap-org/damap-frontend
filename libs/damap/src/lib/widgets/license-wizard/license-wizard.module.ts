@@ -23,7 +23,6 @@ import { InfoMessageModule } from '../info-message/info-message.module';
     CommonModule,
     TranslateModule,
     SharedModule,
-
     // Materials
     MatIconModule,
     MatButtonModule,
@@ -34,8 +33,6 @@ import { InfoMessageModule } from '../info-message/info-message.module';
     TooltipModule,
     MatInputModule,
     InfoMessageModule,
-  ],
-  declarations: [
     LicenseWizardComponent,
     LicenseSelectorDialogComponent,
     LicenseFilterPipe,
@@ -45,7 +42,6 @@ import { InfoMessageModule } from '../info-message/info-message.module';
     TranslateModule,
     LicenseWizardComponent,
     SharedModule,
-
     // Materials
     MatIconModule,
     MatButtonModule,
