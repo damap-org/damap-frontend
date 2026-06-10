@@ -8,7 +8,7 @@ import {
 
 import { AccessComponent } from './access.component';
 import { BackendService } from '../../services/backend.service';
-import { InfoMessageModule } from '../../widgets/info-message/info-message.module';
+import { InfoMessageComponent } from '../../widgets/info-message/info-message.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -38,7 +38,7 @@ describe('AccessComponent', () => {
         AccessComponent,
         TranslateTestingModule,
         PersonCardComponent,
-        InfoMessageModule,
+        InfoMessageComponent,
         RouterModule.forRoot([]),
         MatButtonModule,
         MatCheckboxModule,
