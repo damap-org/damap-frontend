@@ -11,7 +11,6 @@ import { DeleteWarningDialogComponent } from '../../../widgets/delete-warning-di
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { MatButton } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-delete-repository-warning-dialog',
@@ -23,7 +22,6 @@ import { TranslatePipeMock } from '../../../testing/translate-testing/translate-
     MatDialogActions,
     MatButton,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class DeleteRepositoryWarningDialogComponent extends DeleteWarningDialogComponent {

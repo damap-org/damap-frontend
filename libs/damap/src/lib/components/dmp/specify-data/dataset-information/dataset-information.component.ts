@@ -13,7 +13,6 @@ import { FILE_SIZES } from '../data-specs';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { MatButton } from '@angular/material/button';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-information-component',
@@ -26,7 +25,6 @@ import { TranslatePipeMock } from '../../../../testing/translate-testing/transla
     MatDialogActions,
     MatButton,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class DatasetInformationComponent {

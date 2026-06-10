@@ -20,7 +20,6 @@ import {
 } from '@angular/material/table';
 import { DatePipe } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-version-table',
@@ -43,7 +42,6 @@ import { TranslatePipeMock } from '../../../testing/translate-testing/translate-
     MatNoDataRow,
     DatePipe,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class VersionTableComponent {

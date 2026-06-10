@@ -23,7 +23,6 @@ import { MatIcon } from '@angular/material/icon';
 import { InternalStorageTableComponent } from '../../widgets/internal-storage-table/internal-storage-table.component';
 import { InternalStorageTranslationTableComponent } from '../../widgets/internal-storage-translation-table/internal-storage-translation-table.component';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
-import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'damap-admin',
@@ -36,7 +35,6 @@ import { TranslatePipeMock } from '../../testing/translate-testing/translate-tes
     InternalStorageTableComponent,
     InternalStorageTranslationTableComponent,
     MatSlideToggle,
-    TranslatePipeMock,
   ],
 })
 export class AdminComponent implements OnInit {

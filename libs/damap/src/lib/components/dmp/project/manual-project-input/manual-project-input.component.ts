@@ -34,7 +34,6 @@ import {
 import { TextareaWrapperComponent } from '../../../../shared/textarea-wrapper/textarea-wrapper.component';
 import { MatButton } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-manual-project-input',
@@ -58,7 +57,6 @@ import { TranslatePipeMock } from '../../../../testing/translate-testing/transla
     TextareaWrapperComponent,
     MatButton,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class ManualProjectInputComponent implements OnChanges {

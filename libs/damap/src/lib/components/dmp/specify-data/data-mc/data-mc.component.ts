@@ -8,7 +8,6 @@ import { DataKind } from '../../../../domain/enum/data-kind.enum';
 import { MatLabel } from '@angular/material/form-field';
 import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-data-mc',
@@ -21,7 +20,6 @@ import { TranslatePipeMock } from '../../../../testing/translate-testing/transla
     ReactiveFormsModule,
     MatRadioButton,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class DataMcComponent {

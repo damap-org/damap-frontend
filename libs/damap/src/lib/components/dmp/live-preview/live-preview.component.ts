@@ -19,7 +19,6 @@ import { CdkScrollable } from '@angular/cdk/scrolling';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatOption } from '@angular/material/autocomplete';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'damap-live-preview',
@@ -37,7 +36,6 @@ import { TranslatePipeMock } from '../../../testing/translate-testing/translate-
     MatSelect,
     MatOption,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class LivePreviewComponent implements OnInit {

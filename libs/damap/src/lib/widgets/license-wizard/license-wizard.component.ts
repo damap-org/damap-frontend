@@ -19,7 +19,6 @@ import {
 import { MatButton, MatAnchor } from '@angular/material/button';
 import { MatTooltip } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
 import { InfoMessageComponent } from '../info-message/info-message.component';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { MatIcon } from '@angular/material/icon';
@@ -32,7 +31,7 @@ import { LicenseFilterPipe } from './license-filter.pipe';
   selector: 'app-license-wizard',
   templateUrl: './license-wizard.component.html',
   styleUrls: ['./license-wizard.component.css'],
-  imports: [MatButton, MatTooltip, TranslateModule, TranslatePipeMock],
+  imports: [MatButton, MatTooltip, TranslateModule],
 })
 export class LicenseWizardComponent {
   @Output() selectedLicense = new EventEmitter<LicenseDetails>();
@@ -69,7 +68,6 @@ export class LicenseWizardComponent {
     MatAnchor,
     TranslateModule,
     LicenseFilterPipe,
-    TranslatePipeMock,
   ],
 })
 export class LicenseSelectorDialogComponent {

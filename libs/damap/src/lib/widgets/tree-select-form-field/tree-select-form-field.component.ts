@@ -36,7 +36,6 @@ import {
 import { MatIconButton } from '@angular/material/button';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
 
 /**
  * Tree data
@@ -145,7 +144,6 @@ export class TreeDatabase {
     MatIconButton,
     MatCheckbox,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class TreeSelectFormFieldComponent implements OnInit {

@@ -33,7 +33,6 @@ import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/autocomplete';
 import { StorageFilterPipe } from './storage-filter.pipe';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-dmp-storage',
@@ -58,7 +57,6 @@ import { TranslatePipeMock } from '../../../../testing/translate-testing/transla
     MatOption,
     TranslateModule,
     StorageFilterPipe,
-    TranslatePipeMock,
   ],
 })
 export class StorageComponent implements OnInit {

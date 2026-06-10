@@ -40,7 +40,6 @@ import { MatIconButton, MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { KeyValuePipe } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-dataset-dialog',
@@ -66,7 +65,6 @@ import { TranslatePipeMock } from '../../../../testing/translate-testing/transla
     MatDialogActions,
     KeyValuePipe,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class DatasetDialogComponent {

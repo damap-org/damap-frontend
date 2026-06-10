@@ -12,7 +12,6 @@ import { MatLabel } from '@angular/material/form-field';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-dmp-reuse',
@@ -26,7 +25,6 @@ import { TranslatePipeMock } from '../../../testing/translate-testing/translate-
     ReactiveFormsModule,
     TextareaWrapperComponent,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class ReuseComponent {
