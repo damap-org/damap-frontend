@@ -16,8 +16,11 @@ describe('LivePreviewComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, TranslateModule.forRoot()],
-      declarations: [LivePreviewComponent],
+      imports: [
+        HttpClientTestingModule,
+        TranslateModule.forRoot(),
+        LivePreviewComponent,
+      ],
       providers: [{ provide: MatDialogRef, useValue: matDialogRefMock }],
     }).compileComponents();
 

@@ -8,16 +8,14 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     CommonModule,
     TranslateModule,
-
     // Materials
     MatIconModule,
+    ErrorMessageComponent,
   ],
-  declarations: [ErrorMessageComponent],
   exports: [
     CommonModule,
     TranslateModule,
     ErrorMessageComponent,
-
     // Materials
     MatIconModule,
   ],

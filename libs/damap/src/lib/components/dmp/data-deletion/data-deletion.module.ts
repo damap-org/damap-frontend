@@ -18,7 +18,6 @@ import { MatSelectModule } from '@angular/material/select';
     TranslateModule,
     ReactiveFormsModule,
     SharedModule,
-
     // Materials
     MatIconModule,
     MatSlideToggleModule,
@@ -27,15 +26,14 @@ import { MatSelectModule } from '@angular/material/select';
     MatNativeDateModule,
     MatInputModule,
     MatSelectModule,
+    DataDeletionComponent,
   ],
-  declarations: [DataDeletionComponent],
   exports: [
     CommonModule,
     TranslateModule,
     ReactiveFormsModule,
     SharedModule,
     DataDeletionComponent,
-
     // Materials
     MatIconModule,
     MatSlideToggleModule,

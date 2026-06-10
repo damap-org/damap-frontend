@@ -6,7 +6,6 @@ import { By } from '@angular/platform-browser';
 @Component({
   template: ` <div appDragdrop>Drag and drop div</div>
     <div>Standard div</div>`,
-  standalone: false,
 })
 class TestComponent {}
 
@@ -17,7 +16,7 @@ describe('DragdropDirective', () => {
 
   beforeEach(() => {
     fixture = TestBed.configureTestingModule({
-      declarations: [DragdropDirective, TestComponent],
+      imports: [DragdropDirective, TestComponent],
     }).createComponent(TestComponent);
 
     fixture.detectChanges(); // initial binding

@@ -12,7 +12,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
 
 @NgModule({
-  declarations: [DashboardComponent, FlipCardComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -24,11 +23,12 @@ import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
     InfoCardComponent,
     FormsModule,
     MatInput,
+    DashboardComponent,
+    FlipCardComponent,
   ],
   exports: [
     CommonModule,
     DashboardComponent,
-
     // Materials
     MatButtonModule,
     MatIconModule,

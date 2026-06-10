@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BytePipe } from './byte.pipe';
 
 @NgModule({
-  declarations: [BytePipe],
+  imports: [BytePipe],
   exports: [BytePipe],
 })
 export class ByteModule {}

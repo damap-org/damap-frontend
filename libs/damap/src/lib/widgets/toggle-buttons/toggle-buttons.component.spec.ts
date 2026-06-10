@@ -10,8 +10,7 @@ describe('ToggleButtonsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ToggleButtonsComponent],
-      imports: [TranslateModule.forRoot()],
+      imports: [TranslateModule.forRoot(), ToggleButtonsComponent],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 

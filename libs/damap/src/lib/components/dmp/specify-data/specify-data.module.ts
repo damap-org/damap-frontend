@@ -40,7 +40,6 @@ import { InfoMessageModule } from '../../../widgets/info-message/info-message.mo
     DatasetSourceModule,
     DoiSearchModule,
     ToggleButtonsModule,
-
     // Materials
     MatDialogModule,
     MatSelectModule,
@@ -51,8 +50,6 @@ import { InfoMessageModule } from '../../../widgets/info-message/info-message.mo
     LimitStringPipe,
     InfoMessageModule,
     LicenseWizardModule,
-  ],
-  declarations: [
     SpecifyDataComponent,
     DatasetDialogComponent,
     CreatedDataComponent,
@@ -77,7 +74,6 @@ import { InfoMessageModule } from '../../../widgets/info-message/info-message.mo
     SpecifyDataInstructionComponent,
     DatasetDialogUploadComponent,
     DatasetInformationComponent,
-
     // Materials
     MatDialogModule,
     MatSelectModule,

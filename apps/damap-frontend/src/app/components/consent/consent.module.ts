@@ -9,17 +9,15 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     CommonModule,
     TranslateModule,
-
     // Materials
     MatDialogModule,
     MatButtonModule,
+    ConsentComponent,
   ],
-  declarations: [ConsentComponent],
   exports: [
     CommonModule,
     TranslateModule,
     ConsentComponent,
-
     // Materials
     MatDialogModule,
     MatButtonModule,

@@ -61,8 +61,8 @@ describe('PlansComponent', () => {
           TranslateTestingModule,
           DeleteWarningDialogComponent,
           NoopAnimationsModule,
+          PlansComponent,
         ],
-        declarations: [PlansComponent],
         providers: [
           provideMockStore({ initialState }),
           { provide: BackendService, useValue: backendSpy },

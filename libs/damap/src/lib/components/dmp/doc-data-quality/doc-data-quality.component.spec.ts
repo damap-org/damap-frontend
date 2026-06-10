@@ -15,13 +15,14 @@ describe('DocDataQualityComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [MatAutocompleteModule, TranslateTestingModule],
-      schemas: [NO_ERRORS_SCHEMA],
-      declarations: [
+      imports: [
+        MatAutocompleteModule,
+        TranslateTestingModule,
         DocDataQualityComponent,
         StepIntroComponent,
         TextareaWrapperComponent,
       ],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   }));
 

@@ -28,9 +28,10 @@ describe('SpecifyDataComponent', () => {
         MatTabsModule,
         MatRadioModule,
         TranslateTestingModule,
+        SpecifyDataComponent,
+        StepIntroComponent,
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [SpecifyDataComponent, StepIntroComponent],
     }).compileComponents();
   }));
 

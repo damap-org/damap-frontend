@@ -9,17 +9,15 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [
     CommonModule,
     TranslateModule,
-
     // Materials
     MatIconModule,
     MatTooltipModule,
+    TooltipComponent,
   ],
-  declarations: [TooltipComponent],
   exports: [
     CommonModule,
     TranslateModule,
     TooltipComponent,
-
     // Materials
     MatIconModule,
     MatTooltipModule,

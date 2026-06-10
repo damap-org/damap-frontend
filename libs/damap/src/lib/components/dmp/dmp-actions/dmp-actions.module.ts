@@ -20,7 +20,6 @@ import { SharedModule } from '../../../shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-  declarations: [DmpActionsComponent, SaveVersionDialogComponent],
   exports: [
     DmpActionsComponent,
     // Materials
@@ -40,7 +39,6 @@ import { TranslateModule } from '@ngx-translate/core';
     SaveStatusModule,
     SharedModule,
     LivePreviewModule,
-
     // Materials
     MatDialogModule,
     MatButtonModule,
@@ -50,6 +48,8 @@ import { TranslateModule } from '@ngx-translate/core';
     MatProgressBarModule,
     MatExpansionModule,
     MatTooltipModule,
+    DmpActionsComponent,
+    SaveVersionDialogComponent,
   ],
 })
 export class DmpActionsModule {}

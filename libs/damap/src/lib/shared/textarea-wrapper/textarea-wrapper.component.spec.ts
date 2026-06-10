@@ -20,9 +20,9 @@ describe('TextareaWrapperComponent', () => {
         ReactiveFormsModule,
         NoopAnimationsModule,
         TranslateTestingModule,
+        TextareaWrapperComponent,
       ],
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [TextareaWrapperComponent],
     }).compileComponents();
   }));
 

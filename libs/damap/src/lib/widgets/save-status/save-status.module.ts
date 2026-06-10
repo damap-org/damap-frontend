@@ -5,8 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-  imports: [CommonModule, TranslateModule, MatIconModule],
-  declarations: [SaveStatusComponent],
+  imports: [CommonModule, TranslateModule, MatIconModule, SaveStatusComponent],
   exports: [SaveStatusComponent, TranslateModule, MatIconModule],
 })
 export class SaveStatusModule {}

@@ -22,9 +22,9 @@ describe('DoiSearchComponent', () => {
         MatInputModule,
         MatIconModule,
         NoopAnimationsModule,
+        DoiSearchComponent,
       ],
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [DoiSearchComponent],
     }).compileComponents();
   }));
 

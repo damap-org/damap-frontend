@@ -11,7 +11,7 @@ export function instructionTestHelper<T>(componentClass: {
   describe(`${componentClass.name} Tests`, () => {
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        declarations: [componentClass],
+        imports: [componentClass],
         schemas: [NO_ERRORS_SCHEMA],
       }).compileComponents();
 

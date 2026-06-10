@@ -25,13 +25,10 @@ import { TextFieldModule } from '@angular/cdk/text-field';
     TooltipModule,
     InfoMessageModule,
     ToggleButtonsModule,
-
     // Materials
     MatRadioModule,
     MatCheckboxModule,
     MatSelectModule,
-  ],
-  declarations: [
     LegalEthicalAspectsComponent,
     EthicalAspectsComponent,
     LegalEthicalInstructionComponent,
@@ -46,7 +43,6 @@ import { TextFieldModule } from '@angular/cdk/text-field';
     InfoMessageModule,
     LegalEthicalAspectsComponent,
     LegalEthicalInstructionComponent,
-
     // Materials
     MatRadioModule,
     MatCheckboxModule,

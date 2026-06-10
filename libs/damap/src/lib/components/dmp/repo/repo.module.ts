@@ -50,7 +50,6 @@ import { TreeSelectFormFieldModule } from '../../../widgets/tree-select-form-fie
     ToggleButtonsModule,
     InfoMessageModule,
     SharedModule,
-
     // Materials
     MatCardModule,
     MatIconModule,
@@ -66,8 +65,6 @@ import { TreeSelectFormFieldModule } from '../../../widgets/tree-select-form-fie
     MatExpansionModule,
     MatDialogModule,
     MatTooltipModule,
-  ],
-  declarations: [
     RepoDetailsComponent,
     RepoFilterComponent,
     FilterDialogComponent,
@@ -91,7 +88,6 @@ import { TreeSelectFormFieldModule } from '../../../widgets/tree-select-form-fie
     RepoInstructionComponent,
     SharedModule,
     RepoTableComponent,
-
     // Materials
     MatCardModule,
     MatIconModule,

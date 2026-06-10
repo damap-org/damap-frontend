@@ -10,17 +10,40 @@ import { AddLanguageDialogComponent } from './dialogs/add-language-dialog.compon
 import { BackendService } from '../../../services/backend.service';
 import { DeleteLanguageDialogComponent } from './dialogs/delete-language-dialog.component';
 import { FeedbackService } from '../../../services/feedback.service';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { PageEvent } from '@angular/material/paginator';
-import { TranslateService } from '@ngx-translate/core';
+import { PageEvent, MatPaginator } from '@angular/material/paginator';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { TranslationLoaderService } from '@damap/core';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/autocomplete';
+import { MatButton } from '@angular/material/button';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatInput } from '@angular/material/input';
+import { NgClass, UpperCasePipe } from '@angular/common';
+import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'damap-translation-management',
   templateUrl: './translation-management.component.html',
   styleUrl: './translation-management.component.css',
-  standalone: false,
+  imports: [
+    MatFormField,
+    MatLabel,
+    MatSelect,
+    MatOption,
+    MatButton,
+    MatTooltip,
+    MatInput,
+    FormsModule,
+    ReactiveFormsModule,
+    NgClass,
+    MatPaginator,
+    UpperCasePipe,
+    TranslateModule,
+    TranslatePipeMock,
+  ],
 })
 export class TranslationManagementComponent implements OnInit {
   pageSize = 5;

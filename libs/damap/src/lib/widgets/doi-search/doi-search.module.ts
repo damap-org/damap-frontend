@@ -12,7 +12,6 @@ import { ErrorMessageModule } from '../error-message/error-message.module';
 import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
-  declarations: [DoiSearchComponent],
   imports: [
     CommonModule,
     TranslateModule,
@@ -20,13 +19,13 @@ import { SharedModule } from '../../shared/shared.module';
     ReactiveFormsModule,
     ErrorMessageModule,
     SharedModule,
-
     // Materials
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
     MatOptionModule,
     MatButtonModule,
+    DoiSearchComponent,
   ],
   exports: [
     CommonModule,
@@ -36,7 +35,6 @@ import { SharedModule } from '../../shared/shared.module';
     DoiSearchComponent,
     ErrorMessageModule,
     SharedModule,
-
     // Materials
     MatFormFieldModule,
     MatInputModule,

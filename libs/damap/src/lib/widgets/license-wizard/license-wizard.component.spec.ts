@@ -24,8 +24,6 @@ describe('LicenseWizardComponent', () => {
           MatDialogModule,
           NoopAnimationsModule,
           TranslateTestingModule,
-        ],
-        declarations: [
           LicenseWizardComponent,
           LicenseSelectorDialogComponent,
           LicenseFilterPipe,

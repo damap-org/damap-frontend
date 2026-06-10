@@ -55,9 +55,10 @@ describe('ProjectListComponent', () => {
         MatIconModule,
         MatListModule,
         NoopAnimationsModule,
+        ProjectListComponent,
+        SearchFieldComponent,
       ],
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [ProjectListComponent, SearchFieldComponent],
       providers: [{ provide: BackendService, useValue: backendSpy }],
     }).compileComponents();
 

@@ -32,9 +32,10 @@ describe('ProjectComponent', () => {
         MatIconModule,
         MatDialogModule,
         ReactiveFormsModule,
+        ProjectComponent,
+        ProjectListComponent,
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ProjectComponent, ProjectListComponent],
       providers: [{ provide: BackendService, useValue: backendSpy }],
     }).compileComponents();
 

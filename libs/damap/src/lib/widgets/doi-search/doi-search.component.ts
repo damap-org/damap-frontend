@@ -10,17 +10,32 @@ import {
   UntypedFormControl,
   UntypedFormGroup,
   Validators,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
 
 import { Dataset } from '../../domain/dataset';
 import { LoadingState } from '../../domain/enum/loading-state.enum';
 import { doiValidator } from '../../validators/doi.validator';
+import { SearchFieldComponent } from '../../shared/search-field/search-field.component';
+import { MatButton } from '@angular/material/button';
+import { ErrorMessageComponent } from '../error-message/error-message.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-doi-search',
   templateUrl: './doi-search.component.html',
   styleUrls: ['./doi-search.component.css'],
-  standalone: false,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    SearchFieldComponent,
+    MatButton,
+    ErrorMessageComponent,
+    TranslateModule,
+    TranslatePipeMock,
+  ],
 })
 export class DoiSearchComponent implements OnChanges {
   @Input() result: Dataset = undefined;

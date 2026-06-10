@@ -3,8 +3,7 @@ import { OrcidComponent } from './orcid.component';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
-  declarations: [OrcidComponent],
-  imports: [CommonModule],
+  imports: [CommonModule, OrcidComponent],
   exports: [CommonModule, OrcidComponent],
 })
 export class OrcidModule {}

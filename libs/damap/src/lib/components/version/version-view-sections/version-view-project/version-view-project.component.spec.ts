@@ -10,7 +10,7 @@ describe('VersionViewProjectComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [VersionViewProjectComponent],
+      imports: [VersionViewProjectComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   }));

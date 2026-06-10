@@ -1,19 +1,44 @@
 import { Component, computed, inject, Input, OnInit } from '@angular/core';
 import { ExportWarningDialogComponent } from '../../../widgets/export-warning-dialog/export-warning-dialog.component';
-import { MatDialogRef } from '@angular/material/dialog';
+import {
+  MatDialogRef,
+  MatDialogTitle,
+  MatDialogClose,
+  MatDialogContent,
+} from '@angular/material/dialog';
 import { BackendService } from '../../../services/backend.service';
-import { MatSelectChange } from '@angular/material/select';
+import { MatSelectChange, MatSelect } from '@angular/material/select';
 import { FormGroup } from '@angular/forms';
 import { FormService } from '../../../services/form.service';
 import { ETemplateType } from '../../../domain/enum/export-template-type.enum';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ConfigService } from '../../../../../../../apps/damap-frontend/src/app/services/config.service';
+import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatOption } from '@angular/material/autocomplete';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'damap-live-preview',
   templateUrl: './live-preview.component.html',
   styleUrl: './live-preview.component.css',
-  standalone: false,
+  imports: [
+    MatDialogTitle,
+    MatButton,
+    MatDialogClose,
+    MatIcon,
+    CdkScrollable,
+    MatDialogContent,
+    MatFormField,
+    MatLabel,
+    MatSelect,
+    MatOption,
+    TranslateModule,
+    TranslatePipeMock,
+  ],
 })
 export class LivePreviewComponent implements OnInit {
   @Input() selectedTemplate: number | null = null;

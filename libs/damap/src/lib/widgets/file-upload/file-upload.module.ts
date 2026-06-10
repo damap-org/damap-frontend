@@ -11,19 +11,18 @@ import { DragdropDirective } from './dragdrop.directive';
   imports: [
     CommonModule,
     TranslateModule,
-
     // Materials
     MatIconModule,
     MatButtonModule,
     MatProgressBarModule,
+    FileUploadComponent,
+    DragdropDirective,
   ],
-  declarations: [FileUploadComponent, DragdropDirective],
   exports: [
     CommonModule,
     TranslateModule,
     FileUploadComponent,
     DragdropDirective,
-
     // Materials
     MatIconModule,
     MatButtonModule,

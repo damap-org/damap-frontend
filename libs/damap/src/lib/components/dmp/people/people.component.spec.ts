@@ -54,9 +54,10 @@ describe('PeopleComponent', () => {
         ReactiveFormsModule,
         MatSelectModule,
         NoopAnimationsModule,
+        PeopleComponent,
+        ContributorFilterPipe,
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [PeopleComponent, ContributorFilterPipe],
       providers: [{ provide: BackendService, useValue: backendSpy }],
     }).compileComponents();
   }));
