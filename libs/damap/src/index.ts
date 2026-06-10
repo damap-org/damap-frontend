@@ -7,8 +7,6 @@ export * from './lib/components/dashboard';
 export * from './lib/components/dmp/dmp.module';
 
 export * from './lib/store/damap-store.module';
-export * from './lib/store/reducers/login.reducer';
-export * from './lib/store/actions/login.actions';
 export * from './lib/store/effects/dmp.effects';
 export * from './lib/store/selectors/dmp.selectors';
 export * from './lib/store/reducers/dmp.reducer';
