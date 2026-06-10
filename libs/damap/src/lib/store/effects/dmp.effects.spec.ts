@@ -9,7 +9,6 @@ import { of, throwError } from 'rxjs';
 
 import { BackendService } from '../../services/backend.service';
 import { DmpEffects } from './dmp.effects';
-import { ETemplateType } from '../../domain/enum/export-template-type.enum';
 import { FormService } from '../../services/form.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LoadingState } from '../../domain/enum/loading-state.enum';
@@ -112,7 +111,7 @@ describe('DmpEffects', () => {
     actions$ = of(
       exportDmpTemplate({
         dmp: completeDmp,
-        dmpTemplateType: ETemplateType.FWF,
+        dmpTemplateType: 1,
       }),
     );
     backendService.editDmp.and.returnValue(of(completeDmp));
@@ -136,7 +135,7 @@ describe('DmpEffects', () => {
     actions$ = of(
       exportDmpTemplate({
         dmp: completeDmp,
-        dmpTemplateType: ETemplateType.FWF,
+        dmpTemplateType: 1,
       }),
     );
     backendService.editDmp.and.returnValue(of(completeDmp));
@@ -162,7 +161,7 @@ describe('DmpEffects', () => {
     actions$ = of(
       exportDmpTemplate({
         dmp: completeDmp,
-        dmpTemplateType: ETemplateType.FWF,
+        dmpTemplateType: 1,
       }),
     );
     backendService.editDmp.and.returnValue(

@@ -10,7 +10,6 @@ import {
   updateDmp,
 } from '../actions/dmp.actions';
 
-import { ETemplateType } from '../../domain/enum/export-template-type.enum';
 import { LoadingState } from '../../domain/enum/loading-state.enum';
 import { completeDmp } from '../../mocks/dmp-mocks';
 import { dmpReducer } from './dmp.reducer';
@@ -76,7 +75,7 @@ describe('DmpReducer', () => {
       initialDmpState,
       exportDmpTemplate({
         dmp: completeDmp,
-        dmpTemplateType: ETemplateType.FWF,
+        dmpTemplateType: 1,
       }),
     );
     expect(state.saving).toBe(true);
