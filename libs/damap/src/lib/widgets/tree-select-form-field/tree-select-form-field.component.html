@@ -2,7 +2,7 @@
   <mat-form-field>
     <mat-label>{{ label }}</mat-label>
     <mat-chip-grid #chipList>
-      @for (node of selectionList; track node) {
+      @for (node of selectionList; track node.item.id) {
         <mat-chip-row [removable]="true" (removed)="itemSelectionToggle(node)">
           {{ node.item.label }}
           <mat-icon matChipRemove>cancel</mat-icon>
