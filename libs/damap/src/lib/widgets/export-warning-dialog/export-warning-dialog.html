@@ -7,7 +7,7 @@
       <mat-form-field>
         <mat-label>{{ 'export-dialog.field.type' | translate }}</mat-label>
         <mat-select [(value)]="selectedTemplate">
-          @for (template of activeTemplates(); track template) {
+          @for (template of activeTemplates(); track template.id) {
           <mat-option [value]="template.id"> {{ template.name }} </mat-option>
           }
         </mat-select>

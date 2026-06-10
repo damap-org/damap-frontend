@@ -26,7 +26,11 @@
 
 <!-- FILES -->
 <div>
-  @for (upload of fileUpload; track upload; let i = $index) {
+  @for (
+    upload of fileUpload;
+    track upload.file.name + upload.file.size + upload.file.lastModified;
+    let i = $index
+  ) {
     @if (!upload.finalized) {
       <div class="progress">
         <div class="progress-row">
