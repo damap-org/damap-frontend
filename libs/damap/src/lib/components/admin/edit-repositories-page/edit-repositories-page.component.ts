@@ -18,11 +18,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RecommendedRepository } from '../../../domain/recommended-repository';
-import { RepoModule } from '../../dmp/repo/repo.module';
+
 import { RepositoryDetails } from '../../../domain/repository-details';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { firstValueFrom } from 'rxjs';
+import { RepoTableComponent } from '../../dmp/repo/repo-table/repo-table.component';
 
 @Component({
   selector: 'app-edit-repositories-page',
@@ -34,7 +35,7 @@ import { firstValueFrom } from 'rxjs';
     MatCardModule,
     MatIconModule,
     MatTooltipModule,
-    RepoModule,
+    RepoTableComponent,
     TranslateModule,
   ],
 })

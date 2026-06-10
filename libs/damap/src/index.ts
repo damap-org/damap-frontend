@@ -1,7 +1,7 @@
 // Modules
 export * from './lib/damap.module';
 export * from './lib/testing/translate-testing/translate-testing.module';
-export * from './lib/widgets/env-banner/env-banner.module';
+
 export * from './lib/widgets/env-banner/env-banner.component';
 export * from './lib/components/dashboard';
 export * from './lib/components/dmp/dmp.module';
