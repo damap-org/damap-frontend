@@ -1,8 +1,25 @@
 <div class="button-and-search">
-  <button [routerLink]="'/dmp'" mat-flat-button>
-    <mat-icon>add</mat-icon>
-    {{ "plans.create.dmp" | translate }}
-  </button>
+  <div class="table-actions">
+    <button [routerLink]="'/dmp'" mat-flat-button>
+      <mat-icon>add</mat-icon>
+      {{ "plans.create.dmp" | translate }}
+    </button>
+
+    <button
+      mat-stroked-button
+      type="button"
+      [disabled]="importInProgress"
+      (click)="jsonImportInput.click()">
+      <mat-icon>upload_file</mat-icon>
+      {{ "plans.import.dmp" | translate }}
+    </button>
+    <input
+      #jsonImportInput
+      class="file-input"
+      type="file"
+      accept=".json,application/json"
+      (change)="importFileSelected($event)" />
+  </div>
 
   <app-search-field
     *ngIf="(dmpsLoaded | async) === LoadingState.LOADED"

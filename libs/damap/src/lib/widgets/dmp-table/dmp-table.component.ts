@@ -27,10 +27,12 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
   @Input() dmps: DmpListItem[];
   @Input() admin = false;
   @Input() dmpsLoaded: Observable<LoadingState>;
+  @Input() importInProgress = false;
   dataSource = new MatTableDataSource();
 
   @Output() createDocument = new EventEmitter<number>();
   @Output() createJsonFile = new EventEmitter<number>();
+  @Output() importJsonFile = new EventEmitter<File>();
   @Output() dmpToDelete = new EventEmitter<number>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -98,6 +100,17 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
 
   getJsonFile(id: number) {
     this.createJsonFile.emit(id);
+  }
+
+  importFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+
+    if (file) {
+      this.importJsonFile.emit(file);
+    }
+
+    input.value = '';
   }
 
   deleteDmp(id: number) {
