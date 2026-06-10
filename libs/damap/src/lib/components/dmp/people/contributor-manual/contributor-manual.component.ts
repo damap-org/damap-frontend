@@ -17,7 +17,6 @@ import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { NgClass } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-contributor-manual',
@@ -34,7 +33,6 @@ import { TranslatePipeMock } from '../../../../testing/translate-testing/transla
     MatIcon,
     NgClass,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class ContributorManualComponent {

@@ -37,7 +37,6 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-dmp-table',
@@ -70,7 +69,6 @@ import { TranslatePipeMock } from '../../testing/translate-testing/translate-tes
     AsyncPipe,
     DatePipe,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class DmpTableComponent implements OnChanges, AfterViewInit {

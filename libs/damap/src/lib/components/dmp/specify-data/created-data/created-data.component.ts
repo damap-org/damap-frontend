@@ -13,7 +13,6 @@ import { MatIcon } from '@angular/material/icon';
 import { DatasetTableComponent } from '../dataset-table/dataset-table.component';
 import { InfoMessageComponent } from '../../../../widgets/info-message/info-message.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-created-data',
@@ -26,7 +25,6 @@ import { TranslatePipeMock } from '../../../../testing/translate-testing/transla
     DatasetTableComponent,
     InfoMessageComponent,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class CreatedDataComponent extends AbstractBaseDataComponent {

@@ -4,13 +4,12 @@ import { Dataset } from '../../../../domain/dataset';
 import { ExternalStorage } from '../../../../domain/external-storage';
 import { Host } from '../../../../domain/host';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-version-view-storages',
   templateUrl: './version-view-storages.component.html',
   styleUrls: [],
-  imports: [TranslateModule, TranslatePipeMock],
+  imports: [TranslateModule],
 })
 export class VersionViewStoragesComponent {
   @Input() storages: Storage[];

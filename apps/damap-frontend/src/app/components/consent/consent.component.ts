@@ -8,7 +8,6 @@ import {
   MatDialogClose,
 } from '@angular/material/dialog';
 import { MatButton } from '@angular/material/button';
-import { TranslatePipeMock } from '../../../../../../libs/damap/src/lib/testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-consent',
@@ -21,7 +20,6 @@ import { TranslatePipeMock } from '../../../../../../libs/damap/src/lib/testing/
     MatDialogActions,
     MatButton,
     MatDialogClose,
-    TranslatePipeMock,
   ],
 })
 export class ConsentComponent {

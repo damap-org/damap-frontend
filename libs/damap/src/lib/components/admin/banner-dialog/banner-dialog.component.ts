@@ -22,7 +22,6 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { MatButton } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'damap-banner-dialog',
@@ -40,7 +39,6 @@ import { TranslatePipeMock } from '../../../testing/translate-testing/translate-
     MatDialogActions,
     MatButton,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class BannerDialogComponent {

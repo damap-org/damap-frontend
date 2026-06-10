@@ -25,7 +25,6 @@ import { VersionViewReuseComponent } from '../version-view-sections/version-view
 import { VersionViewCostsComponent } from '../version-view-sections/version-view-costs/version-view-costs.component';
 import { AsyncPipe } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-version-view',
@@ -51,7 +50,6 @@ import { TranslatePipeMock } from '../../../testing/translate-testing/translate-
     VersionViewCostsComponent,
     AsyncPipe,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class VersionViewComponent implements OnInit {

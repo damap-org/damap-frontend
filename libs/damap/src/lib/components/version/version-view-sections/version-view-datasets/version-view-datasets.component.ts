@@ -6,19 +6,12 @@ import { TagComponent } from '../../../../widgets/tag/tag.component';
 import { DatePipe } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { BytePipe } from '../../../../pipes/byte/byte.pipe';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-version-view-datasets',
   templateUrl: './version-view-datasets.component.html',
   styleUrls: ['./version-view-datasets.component.css'],
-  imports: [
-    TagComponent,
-    DatePipe,
-    TranslateModule,
-    BytePipe,
-    TranslatePipeMock,
-  ],
+  imports: [TagComponent, DatePipe, TranslateModule, BytePipe],
 })
 export class VersionViewDatasetsComponent {
   @Input() dataKind: DataKind;

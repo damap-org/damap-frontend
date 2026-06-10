@@ -4,7 +4,6 @@ import { MatIcon } from '@angular/material/icon';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatProgressBar } from '@angular/material/progress-bar';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-file-upload',
@@ -17,7 +16,6 @@ import { TranslatePipeMock } from '../../testing/translate-testing/translate-tes
     MatIconButton,
     MatProgressBar,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class FileUploadComponent {

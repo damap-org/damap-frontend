@@ -12,7 +12,6 @@ import {
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { TreeSelectFormFieldComponent } from '../../../../widgets/tree-select-form-field/tree-select-form-field.component';
 
@@ -20,7 +19,7 @@ import { TreeSelectFormFieldComponent } from '../../../../widgets/tree-select-fo
   selector: 'app-repo-filter',
   templateUrl: './repo-filter.component.html',
   styleUrls: ['./repo-filter.component.css'],
-  imports: [MatButton, MatIcon, TranslateModule, TranslatePipeMock],
+  imports: [MatButton, MatIcon, TranslateModule],
 })
 export class RepoFilterComponent {
   @Input() filters: { [key: string]: { id: string; label: string }[] };
@@ -60,7 +59,6 @@ export class RepoFilterComponent {
     MatButton,
     MatDialogClose,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class FilterDialogComponent {

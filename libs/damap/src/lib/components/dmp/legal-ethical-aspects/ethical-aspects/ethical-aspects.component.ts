@@ -12,7 +12,6 @@ import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';
 import { InfoMessageComponent } from '../../../../widgets/info-message/info-message.component';
 import { InputWrapperComponent } from '../../../../shared/input-wrapper/input-wrapper.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-ethical-aspects',
@@ -30,7 +29,6 @@ import { TranslatePipeMock } from '../../../../testing/translate-testing/transla
     InfoMessageComponent,
     InputWrapperComponent,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class EthicalAspectsComponent implements OnInit {

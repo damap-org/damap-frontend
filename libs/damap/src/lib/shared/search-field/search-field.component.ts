@@ -18,7 +18,6 @@ import {
 import { MatInput } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-search-field',
@@ -35,7 +34,6 @@ import { TranslatePipeMock } from '../../testing/translate-testing/translate-tes
     MatSuffix,
     MatError,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class SearchFieldComponent {

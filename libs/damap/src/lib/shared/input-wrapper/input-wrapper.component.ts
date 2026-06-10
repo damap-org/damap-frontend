@@ -16,7 +16,6 @@ import {
 import { TooltipComponent } from '../../widgets/tooltip/tooltip.component';
 import { MatInput } from '@angular/material/input';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-input-wrapper [label] [control]',
@@ -33,7 +32,6 @@ import { TranslatePipeMock } from '../../testing/translate-testing/translate-tes
     MatHint,
     MatError,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class InputWrapperComponent implements OnInit {

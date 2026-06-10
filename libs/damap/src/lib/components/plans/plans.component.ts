@@ -24,7 +24,6 @@ import { DmpTableComponent } from '../../widgets/dmp-table/dmp-table.component';
 import { MatProgressBar } from '@angular/material/progress-bar';
 import { ErrorMessageComponent } from '../../widgets/error-message/error-message.component';
 import { AsyncPipe } from '@angular/common';
-import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-plan',
@@ -37,7 +36,6 @@ import { TranslatePipeMock } from '../../testing/translate-testing/translate-tes
     MatProgressBar,
     ErrorMessageComponent,
     AsyncPipe,
-    TranslatePipeMock,
   ],
 })
 export class PlansComponent implements OnInit {

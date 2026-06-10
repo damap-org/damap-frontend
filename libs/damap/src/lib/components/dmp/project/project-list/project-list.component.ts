@@ -32,7 +32,6 @@ import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-project-list',
@@ -50,7 +49,6 @@ import { TranslatePipeMock } from '../../../../testing/translate-testing/transla
     AsyncPipe,
     DatePipe,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class ProjectListComponent implements OnInit, AfterViewInit {

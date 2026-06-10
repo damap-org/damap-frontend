@@ -53,7 +53,6 @@ import {
 import { MatIcon } from '@angular/material/icon';
 import { NgClass } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
 
 type LoadingState = 'idle' | 'loading' | 'loaded' | 'failed';
 type EvalState = 'idle' | 'loading' | 'done' | 'failed';
@@ -92,7 +91,6 @@ type EvalState = 'idle' | 'loading' | 'done' | 'failed';
     MatIcon,
     NgClass,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class SummaryComponent implements OnInit {

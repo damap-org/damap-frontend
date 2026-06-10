@@ -45,7 +45,6 @@ import { MatProgressBar } from '@angular/material/progress-bar';
 import { TranslateModule } from '@ngx-translate/core';
 import { ErrorMessageComponent } from '../../../../widgets/error-message/error-message.component';
 import { KeyValuePipe } from '@angular/common';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-repo-table',
@@ -87,7 +86,6 @@ import { TranslatePipeMock } from '../../../../testing/translate-testing/transla
     TranslateModule,
     ErrorMessageComponent,
     KeyValuePipe,
-    TranslatePipeMock,
   ],
 })
 export class RepoTableComponent implements OnChanges, AfterViewInit {

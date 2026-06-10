@@ -21,7 +21,6 @@ import { SearchFieldComponent } from '../../shared/search-field/search-field.com
 import { MatButton } from '@angular/material/button';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-doi-search',
@@ -34,7 +33,6 @@ import { TranslatePipeMock } from '../../testing/translate-testing/translate-tes
     MatButton,
     ErrorMessageComponent,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class DoiSearchComponent implements OnChanges {
