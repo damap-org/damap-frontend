@@ -15,8 +15,8 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     MatGridListModule,
     LayoutModule,
+    ToggleButtonsComponent,
   ],
-  declarations: [ToggleButtonsComponent],
   exports: [CommonModule, ToggleButtonsComponent, TranslateModule],
 })
 export class ToggleButtonsModule {}

@@ -25,8 +25,8 @@ describe('DatasetTableComponent', () => {
         TranslateTestingModule,
         DatasetSourceModule,
         NoopAnimationsModule,
+        DatasetTableComponent,
       ],
-      declarations: [DatasetTableComponent],
     }).compileComponents();
   }));
 

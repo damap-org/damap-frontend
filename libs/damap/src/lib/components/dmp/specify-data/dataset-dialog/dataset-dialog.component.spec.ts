@@ -53,9 +53,9 @@ describe('DatasetDialogComponent', () => {
         ReactiveFormsModule,
         TranslateTestingModule,
         NoopAnimationsModule,
+        DatasetDialogComponent,
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [DatasetDialogComponent],
       providers: [
         { provide: MatDialogRef, useValue: { close: (value?: any) => value } },
         { provide: FormService, useValue: formServiceStub },

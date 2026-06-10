@@ -12,16 +12,66 @@ import {
 import { DmpListItem } from '../../domain/dmp-list-item';
 import { FunctionRole } from '../../domain/enum/function-role.enum';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatSort, MatSortHeader } from '@angular/material/sort';
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+  MatNoDataRow,
+} from '@angular/material/table';
 import { LoadingState } from '../../domain/enum/loading-state.enum';
 import { Observable } from 'rxjs';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
+import { MatIcon } from '@angular/material/icon';
+import { SearchFieldComponent } from '../../shared/search-field/search-field.component';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
+import { AsyncPipe, DatePipe } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-dmp-table',
   templateUrl: './dmp-table.component.html',
   styleUrls: ['./dmp-table.component.css'],
-  standalone: false,
+  imports: [
+    MatButton,
+    RouterLink,
+    MatIcon,
+    SearchFieldComponent,
+    MatTable,
+    MatSort,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatSortHeader,
+    MatCellDef,
+    MatCell,
+    MatTooltip,
+    MatIconButton,
+    MatMenuTrigger,
+    MatMenu,
+    MatMenuItem,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatNoDataRow,
+    MatPaginator,
+    AsyncPipe,
+    DatePipe,
+    TranslateModule,
+    TranslatePipeMock,
+  ],
 })
 export class DmpTableComponent implements OnChanges, AfterViewInit {
   @Input() dmps: DmpListItem[];

@@ -20,7 +20,6 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     RouterModule,
     TranslateModule,
-
     // Materials
     MatFormFieldModule,
     MatInputModule,
@@ -33,13 +32,12 @@ import { TranslateModule } from '@ngx-translate/core';
     MatSortModule,
     MatMenuModule,
     MatTooltipModule,
+    InternalStorageTranslationTableComponent,
   ],
-  declarations: [InternalStorageTranslationTableComponent],
   exports: [
     CommonModule,
     RouterModule,
     InternalStorageTranslationTableComponent,
-
     // Materials
     MatFormFieldModule,
     MatInputModule,

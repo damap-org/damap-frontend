@@ -1,12 +1,47 @@
 import { Component, Input } from '@angular/core';
-import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';
+import {
+  UntypedFormArray,
+  UntypedFormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { DataSource } from '../../../../domain/enum/data-source.enum';
+import {
+  MatAccordion,
+  MatExpansionPanel,
+  MatExpansionPanelHeader,
+  MatExpansionPanelTitle,
+} from '@angular/material/expansion';
+import { MatIcon } from '@angular/material/icon';
+import { InfoMessageComponent } from '../../../../widgets/info-message/info-message.component';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/autocomplete';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-retention-period',
   templateUrl: './retention-period.component.html',
   styleUrls: ['./retention-period.component.css'],
-  standalone: false,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatAccordion,
+    MatExpansionPanel,
+    MatExpansionPanelHeader,
+    MatExpansionPanelTitle,
+    MatIcon,
+    InfoMessageComponent,
+    MatTooltip,
+    MatFormField,
+    MatLabel,
+    MatSelect,
+    MatOption,
+    TranslateModule,
+    TranslatePipeMock,
+  ],
 })
 export class RetentionPeriodComponent {
   @Input() dmpForm: UntypedFormGroup;

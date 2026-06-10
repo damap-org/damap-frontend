@@ -17,9 +17,14 @@ describe('LegalEthicalAspectsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, MatRadioModule, TranslateTestingModule],
+      imports: [
+        ReactiveFormsModule,
+        MatRadioModule,
+        TranslateTestingModule,
+        LegalEthicalAspectsComponent,
+        StepIntroComponent,
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [LegalEthicalAspectsComponent, StepIntroComponent],
     }).compileComponents();
   }));
 

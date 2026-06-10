@@ -12,23 +12,20 @@ import { SearchFieldComponent } from './search-field/search-field.component';
 import { MatIconButton } from '@angular/material/button';
 
 @NgModule({
-  declarations: [
-    InputWrapperComponent,
-    TextareaWrapperComponent,
-    SearchFieldComponent,
-  ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,
     TooltipModule,
-
     // Materials
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
     MatIconButton,
+    InputWrapperComponent,
+    TextareaWrapperComponent,
+    SearchFieldComponent,
   ],
   exports: [
     CommonModule,
@@ -39,7 +36,6 @@ import { MatIconButton } from '@angular/material/button';
     TextareaWrapperComponent,
     TooltipModule,
     SearchFieldComponent,
-
     // Materials
     MatFormFieldModule,
     MatInputModule,

@@ -27,7 +27,6 @@ import { ToggleButtonsModule } from '../../../widgets/toggle-buttons/toggle-butt
     PersonSearchModule,
     InfoMessageModule,
     ToggleButtonsModule,
-
     // Materials
     MatCardModule,
     MatSelectModule,
@@ -35,8 +34,6 @@ import { ToggleButtonsModule } from '../../../widgets/toggle-buttons/toggle-butt
     MatButtonModule,
     MatDialogModule,
     MatCardModule,
-  ],
-  declarations: [
     PeopleComponent,
     ContributorManualComponent,
     ContributorFilterPipe,
@@ -50,7 +47,6 @@ import { ToggleButtonsModule } from '../../../widgets/toggle-buttons/toggle-butt
     PersonSearchModule,
     PeopleComponent,
     PeopleInstructionComponent,
-
     // Materials
     MatCardModule,
     MatSelectModule,

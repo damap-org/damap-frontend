@@ -14,10 +14,7 @@ import {
 } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
 
-@Pipe({
-  name: 'translate',
-  standalone: false,
-})
+@Pipe({ name: 'translate' })
 export class TranslatePipeMock implements PipeTransform {
   public name = 'translate';
 
@@ -60,8 +57,8 @@ export class TranslateServiceStub {
     TranslateModule.forRoot({
       loader: { provide: TranslateLoader, useClass: TranslateFakeLoader },
     }),
+    TranslatePipeMock,
   ],
-  declarations: [TranslatePipeMock],
   providers: [
     { provide: TranslateService, useClass: TranslateServiceStub },
     { provide: TranslatePipe, useClass: TranslatePipeMock },

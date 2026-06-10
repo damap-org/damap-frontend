@@ -23,9 +23,8 @@ describe('StorageComponent', () => {
     mockDialog = jasmine.createSpyObj('MatDialog', ['open']);
 
     TestBed.configureTestingModule({
-      imports: [TranslateTestingModule],
+      imports: [TranslateTestingModule, StorageComponent, StorageFilterPipe],
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [StorageComponent, StorageFilterPipe],
       providers: [
         provideMockStore({
           selectors: [

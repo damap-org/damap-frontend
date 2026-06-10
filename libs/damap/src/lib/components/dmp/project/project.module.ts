@@ -42,7 +42,6 @@ import { TranslateModule } from '@ngx-translate/core';
     SharedModule,
     InfoMessageModule,
     ToggleButtonsModule,
-
     // Materials
     MatCardModule,
     MatButtonModule,
@@ -54,8 +53,6 @@ import { TranslateModule } from '@ngx-translate/core';
     MatDatepickerModule,
     MatMomentDateModule,
     MatTabsModule,
-  ],
-  declarations: [
     ProjectComponent,
     ManualProjectInputComponent,
     ProjectListComponent,

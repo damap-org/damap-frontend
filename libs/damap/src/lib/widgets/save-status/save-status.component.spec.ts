@@ -10,8 +10,7 @@ describe('SaveStatusComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [MatIconModule, TranslateTestingModule],
-      declarations: [SaveStatusComponent],
+      imports: [MatIconModule, TranslateTestingModule, SaveStatusComponent],
     }).compileComponents();
   }));
 

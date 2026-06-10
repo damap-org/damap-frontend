@@ -3,8 +3,16 @@ import {
   UntypedFormControl,
   UntypedFormGroup,
   Validators,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogTitle,
+  MatDialogContent,
+  MatDialogActions,
+} from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { FormService } from '../../../services/form.service';
 import { InternalStorageTranslation } from '../../../domain/internal-storage';
@@ -12,12 +20,32 @@ import {
   isValidCode,
   LanguageCodeOption,
 } from '../../../domain/language-codes';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { LanguageCodeInputComponent } from '../../../shared/language-code-input/language-code-input.component';
+import { InputWrapperComponent } from '../../../shared/input-wrapper/input-wrapper.component';
+import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
+import { MatButton } from '@angular/material/button';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'internal-storage-translation-dialog',
   templateUrl: './internal-storage-translation-dialog.component.html',
   styleUrl: './internal-storage-translation-dialog.component.css',
-  standalone: false,
+  imports: [
+    MatDialogTitle,
+    CdkScrollable,
+    MatDialogContent,
+    FormsModule,
+    ReactiveFormsModule,
+    LanguageCodeInputComponent,
+    InputWrapperComponent,
+    TextareaWrapperComponent,
+    MatDialogActions,
+    MatButton,
+    TranslateModule,
+    TranslatePipeMock,
+  ],
 })
 export class InternalStorageTranslationDialogComponent {
   public mode = 'add';

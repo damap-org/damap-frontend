@@ -21,7 +21,6 @@ import { SharedModule } from '../../shared/shared.module';
     RouterModule,
     TranslateModule,
     SharedModule,
-
     // Materials
     MatFormFieldModule,
     MatInputModule,
@@ -35,14 +34,13 @@ import { SharedModule } from '../../shared/shared.module';
     MatMenuModule,
     MatTooltipModule,
     MatPaginatorModule,
+    DmpTableComponent,
   ],
-  declarations: [DmpTableComponent],
   exports: [
     CommonModule,
     RouterModule,
     DmpTableComponent,
     SharedModule,
-
     // Materials
     MatFormFieldModule,
     MatInputModule,

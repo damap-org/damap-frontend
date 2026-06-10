@@ -1,6 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';
+import {
+  UntypedFormArray,
+  UntypedFormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import {
   loadAllRepositories,
   loadRecommendedRepositories,
@@ -21,12 +26,50 @@ import { Dataset } from '../../../domain/dataset';
 import { LoadingState } from '../../../domain/enum/loading-state.enum';
 import { Observable } from 'rxjs';
 import { RepositoryDetails } from '../../../domain/repository-details';
+import { MatLabel, MatFormField } from '@angular/material/form-field';
+import { RetentionPeriodComponent } from './retention-period/retention-period.component';
+import { MatCard, MatCardContent } from '@angular/material/card';
+import { MatIconButton, MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/autocomplete';
+import { ErrorMessageComponent } from '../../../widgets/error-message/error-message.component';
+import { MatTabLabel } from '@angular/material/tabs';
+import { RepoRecommendationComponent } from './repo-recommendation/repo-recommendation.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { RepoTableComponent } from './repo-table/repo-table.component';
+import { AsyncPipe } from '@angular/common';
+import { DatasetSourcePipe } from '../../../pipes/dataset-source/dataset-source.pipe';
+import { RepoPipe } from './repo.pipe';
+import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-dmp-repo',
   templateUrl: './repo.component.html',
   styleUrls: ['./repo.component.css'],
-  standalone: false,
+  imports: [
+    MatLabel,
+    RetentionPeriodComponent,
+    FormsModule,
+    ReactiveFormsModule,
+    MatCard,
+    MatCardContent,
+    MatIconButton,
+    MatIcon,
+    MatFormField,
+    MatSelect,
+    MatOption,
+    ErrorMessageComponent,
+    MatTabLabel,
+    RepoRecommendationComponent,
+    TranslateModule,
+    MatButton,
+    RepoTableComponent,
+    AsyncPipe,
+    DatasetSourcePipe,
+    RepoPipe,
+    TranslatePipeMock,
+  ],
 })
 export class RepoComponent implements OnInit {
   repositoriesLoaded$: Observable<LoadingState>;

@@ -10,8 +10,7 @@ describe('ConsentComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [TranslateTestingModule],
-      declarations: [ConsentComponent],
+      imports: [TranslateTestingModule, ConsentComponent],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   }));

@@ -1,12 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { Dataset } from '../../../../domain/dataset';
 import { FormService } from '../../../../services/form.service';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-version-view-reuse',
   templateUrl: './version-view-reuse.component.html',
   styleUrls: [],
-  standalone: false,
+  imports: [TranslateModule, TranslatePipeMock],
 })
 export class VersionViewReuseComponent {
   @Input() targetAudience: string;

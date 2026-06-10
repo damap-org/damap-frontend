@@ -12,13 +12,11 @@ import { MatListModule } from '@angular/material/list';
 import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
-  declarations: [PersonSearchComponent],
   imports: [
     CommonModule,
     TranslateModule,
     FormsModule,
     SharedModule,
-
     // Materials
     MatFormFieldModule,
     MatInputModule,
@@ -26,6 +24,7 @@ import { SharedModule } from '../../shared/shared.module';
     MatAutocompleteModule,
     MatOptionModule,
     MatListModule,
+    PersonSearchComponent,
   ],
   exports: [
     CommonModule,
@@ -33,7 +32,6 @@ import { SharedModule } from '../../shared/shared.module';
     FormsModule,
     PersonSearchComponent,
     SharedModule,
-
     // Materials
     MatFormFieldModule,
     MatInputModule,

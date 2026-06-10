@@ -4,8 +4,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-  imports: [CommonModule, TranslateModule],
-  declarations: [CrisTagComponent],
+  imports: [CommonModule, TranslateModule, CrisTagComponent],
   exports: [CommonModule, TranslateModule, CrisTagComponent],
 })
 export class CrisTagModule {}

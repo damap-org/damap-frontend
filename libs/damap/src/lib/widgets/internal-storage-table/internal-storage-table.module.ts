@@ -21,7 +21,6 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     CommonModule,
     RouterModule,
     TranslateModule,
-
     // Materials
     MatFormFieldModule,
     MatInputModule,
@@ -35,13 +34,12 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatMenuModule,
     MatTooltipModule,
     MatSlideToggleModule,
+    InternalStorageTableComponent,
   ],
-  declarations: [InternalStorageTableComponent],
   exports: [
     CommonModule,
     RouterModule,
     InternalStorageTableComponent,
-
     // Materials
     MatFormFieldModule,
     MatInputModule,

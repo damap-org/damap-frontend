@@ -32,8 +32,8 @@ import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
     MatPaginatorModule,
     MatSelectModule,
     InfoCardComponent,
+    PlansComponent,
   ],
-  declarations: [PlansComponent],
   exports: [
     CommonModule,
     TranslateModule,
@@ -42,7 +42,6 @@ import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
     ErrorMessageModule,
     PlansComponent,
     ExportWarningModule,
-
     // Materials
     MatIconModule,
     MatButtonModule,

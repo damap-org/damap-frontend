@@ -13,11 +13,9 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
-  declarations: [TreeSelectFormFieldComponent],
   imports: [
     CommonModule,
     TranslateModule,
-
     // Materials
     MatFormFieldModule,
     MatChipsModule,
@@ -28,12 +26,12 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatButtonModule,
     MatCheckboxModule,
     MatIconModule,
+    TreeSelectFormFieldComponent,
   ],
   exports: [
     CommonModule,
     TranslateModule,
     TreeSelectFormFieldComponent,
-
     // Materials
     MatFormFieldModule,
     MatChipsModule,

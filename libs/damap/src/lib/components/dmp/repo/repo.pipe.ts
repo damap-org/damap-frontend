@@ -2,10 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { RepositoryDetails } from '../../../domain/repository-details';
 import { Repository } from '../../../domain/repository';
 
-@Pipe({
-  name: 'repo',
-  standalone: false,
-})
+@Pipe({ name: 'repo' })
 export class RepoPipe implements PipeTransform {
   transform(
     repos: RepositoryDetails[],

@@ -16,11 +16,10 @@ import { MatSelectModule } from '@angular/material/select';
     StepIntroModule,
     TooltipModule,
     SharedModule,
-
     // Materials
     MatSelectModule,
+    DocDataQualityComponent,
   ],
-  declarations: [DocDataQualityComponent],
   exports: [
     CommonModule,
     TranslateModule,
@@ -29,7 +28,6 @@ import { MatSelectModule } from '@angular/material/select';
     TooltipModule,
     SharedModule,
     DocDataQualityComponent,
-
     // Materials
     MatSelectModule,
   ],

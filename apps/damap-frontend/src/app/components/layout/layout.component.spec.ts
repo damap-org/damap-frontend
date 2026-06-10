@@ -18,7 +18,12 @@ import { ImageThemeService } from '../../services/image-theme.service';
 
 @Component({
   template: '',
-  standalone: false,
+  imports: [
+    TranslateTestingModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatMenuModule,
+  ],
 })
 class DummyComponent {}
 
@@ -92,8 +97,9 @@ describe('LayoutComponent', () => {
         MatMenuModule,
         NoopAnimationsModule,
         RouterModule.forRoot([]),
+        LayoutComponent,
+        DummyComponent,
       ],
-      declarations: [LayoutComponent, DummyComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: OAuthService, useValue: oauthSpy },

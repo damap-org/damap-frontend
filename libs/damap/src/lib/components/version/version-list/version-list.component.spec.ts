@@ -23,8 +23,11 @@ describe('VersionListComponent', () => {
     authSpy.isAdmin.and.returnValue(false);
     backendSpy = jasmine.createSpyObj('BackendService', ['getDmpVersions']);
     TestBed.configureTestingModule({
-      imports: [RouterModule.forRoot([]), TranslateTestingModule],
-      declarations: [VersionListComponent],
+      imports: [
+        RouterModule.forRoot([]),
+        TranslateTestingModule,
+        VersionListComponent,
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         { provide: AuthService, useValue: authSpy },

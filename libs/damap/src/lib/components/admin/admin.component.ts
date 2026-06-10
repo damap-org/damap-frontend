@@ -17,12 +17,27 @@ import { DeleteStorageWarningDialogComponent } from '../../widgets/internal-stor
 import { DeleteBannerWarningDialogComponent } from './banner-dialog/delete-banner-warning-dialog.component';
 import validator from 'validator';
 import { InstanceConfig } from '../../domain/instance-config';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { InternalStorageTableComponent } from '../../widgets/internal-storage-table/internal-storage-table.component';
+import { InternalStorageTranslationTableComponent } from '../../widgets/internal-storage-translation-table/internal-storage-translation-table.component';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
+import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'damap-admin',
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css',
-  standalone: false,
+  imports: [
+    TranslateModule,
+    MatButton,
+    MatIcon,
+    InternalStorageTableComponent,
+    InternalStorageTranslationTableComponent,
+    MatSlideToggle,
+    TranslatePipeMock,
+  ],
 })
 export class AdminComponent implements OnInit {
   constructor(

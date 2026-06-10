@@ -6,20 +6,18 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
 
 @NgModule({
-  declarations: [AppBannerComponent],
   imports: [
     CommonModule,
     TranslateModule,
-
     // Materials
     MatCardModule,
     MatIcon,
+    AppBannerComponent,
   ],
   exports: [
     CommonModule,
     TranslateModule,
     AppBannerComponent,
-
     // Materials
     MatCardModule,
   ],

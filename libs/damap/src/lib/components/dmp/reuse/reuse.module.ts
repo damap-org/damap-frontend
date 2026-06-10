@@ -15,22 +15,19 @@ import { SharedModule } from '../../../shared/shared.module';
     TranslateModule,
     ReactiveFormsModule,
     StepIntroModule,
-
     // Materials
     MatFormFieldModule,
     MatAutocompleteModule,
     MatInputModule,
     SharedModule,
+    ReuseComponent,
   ],
-  declarations: [ReuseComponent],
   exports: [
     CommonModule,
     TranslateModule,
     ReactiveFormsModule,
     StepIntroModule,
-
     ReuseComponent,
-
     // Materials
     MatFormFieldModule,
     MatAutocompleteModule,

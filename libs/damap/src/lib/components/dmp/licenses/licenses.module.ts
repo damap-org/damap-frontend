@@ -28,13 +28,12 @@ import {
     LicenseWizardModule,
     StepIntroModule,
     DataDeletionModule,
-
     // Materials
     MatSelectModule,
     MatDatepickerModule,
     MatMomentDateModule,
+    LicensesComponent,
   ],
-  declarations: [LicensesComponent],
   exports: [
     CommonModule,
     TranslateModule,
@@ -43,7 +42,6 @@ import {
     StepIntroModule,
     DataDeletionModule,
     LicensesComponent,
-
     // Materials
     MatSelectModule,
     MatDatepickerModule,

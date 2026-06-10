@@ -15,7 +15,6 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     TranslateModule,
     FormsModule,
-
     // Materials
     MatButtonModule,
     MatSelectModule,
@@ -23,6 +22,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatDialogModule,
     MatInputModule,
     ReactiveFormsModule,
+    ExportWarningDialogComponent,
   ],
   providers: [
     {
@@ -30,8 +30,6 @@ import { TranslateModule } from '@ngx-translate/core';
       useValue: {},
     },
   ],
-  declarations: [ExportWarningDialogComponent],
-
   exports: [
     CommonModule,
     MatButtonModule,

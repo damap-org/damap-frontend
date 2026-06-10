@@ -30,8 +30,9 @@ describe('PersonSearchComponent', () => {
         MatIconModule,
         MatListModule,
         NoopAnimationsModule,
+        PersonSearchComponent,
+        SearchFieldComponent,
       ],
-      declarations: [PersonSearchComponent, SearchFieldComponent],
     }).compileComponents();
   }));
   beforeEach(() => {
