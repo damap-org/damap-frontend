@@ -1,18 +1,13 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import {
-  selectInternalStorages,
-  selectInternalStoragesLoaded,
-} from '../../../../store/selectors/internal-storage.selectors';
+import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
 
-import { LoadingState } from '../../../../domain/enum/loading-state.enum';
 import { MatDialog } from '@angular/material/dialog';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { StorageComponent } from './storage.component';
 import { StorageFilterPipe } from './storage-filter.pipe';
 import { StorageInfoDialogComponent } from '../storage-dialog/storage-info-dialog.component';
 import { TranslateTestingModule } from '../../../../testing/translate-testing/translate-testing.module';
 import { mockInternalStorage } from '../../../../mocks/storage-mocks';
-import { provideMockStore } from '@ngrx/store/testing';
+import { InternalStorageStore } from '../../../../data-access/internal-storage.store';
 
 describe('StorageComponent', () => {
   let component: StorageComponent;
@@ -26,15 +21,10 @@ describe('StorageComponent', () => {
       imports: [TranslateTestingModule, StorageComponent, StorageFilterPipe],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
-        provideMockStore({
-          selectors: [
-            {
-              selector: selectInternalStoragesLoaded,
-              value: LoadingState.LOADED,
-            },
-            { selector: selectInternalStorages, value: [mockInternalStorage] },
-          ],
-        }),
+        {
+          provide: InternalStorageStore,
+          useValue: { internalStorages: signal([mockInternalStorage]) },
+        },
         { provide: MatDialog, useValue: mockDialog },
       ],
     }).compileComponents();
