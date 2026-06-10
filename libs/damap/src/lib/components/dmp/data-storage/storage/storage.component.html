@@ -4,7 +4,7 @@
 <section class="tu-storage">
   <div class="storage-grid">
     @for (
-      element of activeStorages | storageFilter: storageStep?.getRawValue();
+      element of activeStorages() | storageFilter: storageStep?.getRawValue();
       track element.id
     ) {
       <mat-card appearance="raised" class="storage-card card-shadow">
