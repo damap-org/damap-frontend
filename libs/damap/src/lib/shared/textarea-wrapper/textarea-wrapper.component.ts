@@ -24,7 +24,6 @@ import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-textarea-wrapper [label] [control]',
@@ -45,7 +44,6 @@ import { TranslatePipeMock } from '../../testing/translate-testing/translate-tes
     MatOption,
     MatError,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class TextareaWrapperComponent implements OnInit {

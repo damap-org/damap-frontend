@@ -6,7 +6,6 @@ import {
   MatCardContent,
 } from '@angular/material/card';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-env-banner',
@@ -18,7 +17,6 @@ import { TranslatePipeMock } from '../../testing/translate-testing/translate-tes
     MatCardTitle,
     MatCardContent,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class EnvBannerComponent {}

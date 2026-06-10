@@ -43,7 +43,6 @@ import { RouterLinkActive, RouterLink } from '@angular/router';
 import { SaveStatusComponent } from '../../../widgets/save-status/save-status.component';
 import { MatTooltip } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { InputWrapperComponent } from '../../../shared/input-wrapper/input-wrapper.component';
 
@@ -62,7 +61,6 @@ import { InputWrapperComponent } from '../../../shared/input-wrapper/input-wrapp
     SaveStatusComponent,
     MatTooltip,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class DmpActionsComponent implements OnInit, OnDestroy {
@@ -242,7 +240,6 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
     MatButton,
     MatDialogClose,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class SaveVersionDialogComponent {

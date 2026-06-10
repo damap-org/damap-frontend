@@ -9,7 +9,6 @@ import { ReusedDataComponent } from './reused-data/reused-data.component';
 import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
 import { MatHint } from '@angular/material/form-field';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-dmp-specify-data',
@@ -21,7 +20,6 @@ import { TranslatePipeMock } from '../../../testing/translate-testing/translate-
     TextareaWrapperComponent,
     MatHint,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class SpecifyDataComponent extends AbstractBaseDataComponent {

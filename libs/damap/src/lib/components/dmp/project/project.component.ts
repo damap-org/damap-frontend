@@ -16,7 +16,6 @@ import { ProjectListComponent } from './project-list/project-list.component';
 import { ManualProjectInputComponent } from './manual-project-input/manual-project-input.component';
 import { DatePipe } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-dmp-project',
@@ -34,7 +33,6 @@ import { TranslatePipeMock } from '../../../testing/translate-testing/translate-
     ManualProjectInputComponent,
     DatePipe,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class ProjectComponent {

@@ -41,7 +41,6 @@ import { RepoTableComponent } from './repo-table/repo-table.component';
 import { AsyncPipe } from '@angular/common';
 import { DatasetSourcePipe } from '../../../pipes/dataset-source/dataset-source.pipe';
 import { RepoPipe } from './repo.pipe';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-dmp-repo',
@@ -68,7 +67,6 @@ import { TranslatePipeMock } from '../../../testing/translate-testing/translate-
     AsyncPipe,
     DatasetSourcePipe,
     RepoPipe,
-    TranslatePipeMock,
   ],
 })
 export class RepoComponent implements OnInit {

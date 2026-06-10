@@ -12,7 +12,6 @@ import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/autocomplete';
 import { KeyValuePipe } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-data-access',
@@ -29,7 +28,6 @@ import { TranslatePipeMock } from '../../../../testing/translate-testing/transla
     MatOption,
     KeyValuePipe,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class DataAccessComponent {

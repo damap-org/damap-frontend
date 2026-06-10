@@ -39,7 +39,6 @@ import { MatIconButton } from '@angular/material/button';
 import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
 import { MatIcon } from '@angular/material/icon';
 import { MatDivider } from '@angular/material/divider';
-import { TranslatePipeMock } from '../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'damap-internal-storage-table',
@@ -68,7 +67,6 @@ import { TranslatePipeMock } from '../../testing/translate-testing/translate-tes
     MatNoDataRow,
     MatPaginator,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class InternalStorageTableComponent implements AfterViewInit, OnChanges {

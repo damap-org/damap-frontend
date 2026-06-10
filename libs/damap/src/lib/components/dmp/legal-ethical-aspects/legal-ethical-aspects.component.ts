@@ -22,7 +22,6 @@ import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/texta
 import { EthicalAspectsComponent } from './ethical-aspects/ethical-aspects.component';
 import { KeyValuePipe } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslatePipeMock } from '../../../testing/translate-testing/translate-testing.module';
 
 @Component({
   selector: 'app-dmp-legal-ethical-aspects',
@@ -47,7 +46,6 @@ import { TranslatePipeMock } from '../../../testing/translate-testing/translate-
     EthicalAspectsComponent,
     KeyValuePipe,
     TranslateModule,
-    TranslatePipeMock,
   ],
 })
 export class LegalEthicalAspectsComponent {
