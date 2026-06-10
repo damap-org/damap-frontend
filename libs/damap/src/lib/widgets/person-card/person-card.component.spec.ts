@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { OrcidModule } from '../orcid/orcid.module';
+import { OrcidComponent } from '../orcid/orcid.component';
 import { PersonCardComponent } from './person-card.component';
 import { TranslateTestingModule } from '../../testing/translate-testing/translate-testing.module';
 import { mockContributor1 } from '../../mocks/contributor-mocks';
@@ -18,7 +18,7 @@ describe('PersonCardComponent', () => {
         TranslateTestingModule,
         MatCardModule,
         MatIconModule,
-        OrcidModule,
+        OrcidComponent,
       ],
     }).compileComponents();
 
