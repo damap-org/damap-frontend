@@ -12,14 +12,14 @@
       </div>
       <div><strong translate>gdpr.user-info.id</strong>: {{ userId }}</div>
     </mat-expansion-panel>
-    @for (item of gdpr$ | async; track item) {
+    @for (item of gdpr$ | async; track item.entity) {
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
             {{ item.entity }}
           </mat-panel-title>
         </mat-expansion-panel-header>
-        @for (entry of item.entries; track entry; let last = $last) {
+        @for (entry of item.entries; track $index; let last = $last) {
           <div>
             @for (property of entry | keyvalue; track property.key) {
               <div>
