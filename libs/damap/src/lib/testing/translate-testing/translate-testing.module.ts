@@ -53,6 +53,10 @@ export class TranslateServiceStub {
   public getBrowserLang(): any {
     return 'en';
   }
+
+  public getTranslation(lang?: string): Observable<any> {
+    return of({});
+  }
 }
 
 @NgModule({
