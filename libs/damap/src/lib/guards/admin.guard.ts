@@ -9,7 +9,6 @@ export class AdminGuard implements CanActivate {
   private authService = inject(AuthService);
   private router = inject(Router);
 
-
   canActivate(): boolean {
     if (this.authService.isAdmin()) {
       return true;

@@ -11,7 +11,6 @@ export class FeedbackService {
   protected translate = inject(TranslateService);
   protected loggerService = inject(LoggerService);
 
-
   error(message: string, error?: Error, timeInMs: number = 20000) {
     this.translate.get(message).subscribe(translation =>
       this._snackBar.open(translation, 'x', {

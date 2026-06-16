@@ -9,7 +9,6 @@ export class AuthService {
   private oAuthService = inject(OAuthService);
   private configService = inject(ConfigService);
 
-
   getDisplayName(): string {
     const claims = this.oAuthService.getIdentityClaims();
     let given_name = claims[this.configService.getGivenNameClaim()];

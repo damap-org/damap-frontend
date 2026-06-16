@@ -28,7 +28,6 @@ export class DatasetDialogUploadComponent {
   dialogRef = inject<MatDialogRef<DatasetDialogUploadComponent>>(MatDialogRef);
   data = inject(MAT_DIALOG_DATA);
 
-
   onNoClick(): void {
     this.dialogRef.close();
   }

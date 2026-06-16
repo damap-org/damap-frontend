@@ -33,7 +33,7 @@ export class DatasetInformationComponent {
   data = inject<{
     dataset: Dataset;
     sourceType: DataSource;
-}>(MAT_DIALOG_DATA);
+  }>(MAT_DIALOG_DATA);
 
   dataset: Dataset;
   readonly FILE_SIZES = FILE_SIZES;

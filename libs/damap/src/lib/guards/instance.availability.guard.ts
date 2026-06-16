@@ -9,7 +9,6 @@ export class InstanceAvailabilityGuard implements CanActivate {
   private configService = inject(ConfigService);
   private router = inject(Router);
 
-
   canActivate(): boolean | UrlTree {
     if (this.authService.isAdmin() || this.configService.isPublicAvailable()) {
       return true;

@@ -22,7 +22,6 @@ const STEP_KEYS: Record<number, string> = {
 export class InfoLabelService {
   private translate = inject(TranslateService);
 
-
   getInfo(index: number): InfoBoxDetails {
     const prefix = STEP_KEYS[index] ?? STEP_KEYS[0];
     return {

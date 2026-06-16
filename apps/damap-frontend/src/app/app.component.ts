@@ -14,7 +14,6 @@ export class AppComponent implements OnInit {
   private titleService = inject(Title);
   private configService = inject(ConfigService);
 
-
   ngOnInit(): void {
     const appTitle = this.configService.getAppTitle();
 
