@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, computed, OnInit, signal } from '@angular/core';
 import { BackendService } from '../../../services/backend.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Version } from '../../../domain/version';
-import { Store } from '@ngrx/store';
-import { selectDmpById } from '../../../store/selectors/dmp.selectors';
-import { AppState } from '../../../store/states/app.state';
 import { DmpListItem } from '../../../domain/dmp-list-item';
-import { loadDmps } from '../../../store/actions/dmp.actions';
 import { AuthService } from '../../../auth/auth.service';
 import { Dmp } from '../../../domain/dmp';
+import { DmpStore } from '../../../data-access/dmp.store';
 import { VersionTableComponent } from '../version-table/version-table.component';
 import { AsyncPipe } from '@angular/common';
 
@@ -21,24 +18,34 @@ import { AsyncPipe } from '@angular/common';
 })
 export class VersionListComponent implements OnInit {
   versions$: Observable<Version[]>;
-  dmp$: Observable<DmpListItem | Dmp>;
+  private readonly dmpId = signal<number | null>(null);
+  private readonly adminDmp = signal<Dmp | null>(null);
+  private readonly storedDmp = computed(() => {
+    const id = this.dmpId();
+    return id ? this.dmpStore.dmpById(id) : null;
+  });
+  readonly dmp = computed<DmpListItem | Dmp | null>(
+    () => this.adminDmp() ?? this.storedDmp() ?? null,
+  );
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private backendService: BackendService,
-    private store: Store<AppState>,
+    private dmpStore: DmpStore,
     private auth: AuthService,
   ) {}
 
   ngOnInit(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     if (id) {
+      this.dmpId.set(id);
       if (this.auth.isAdmin()) {
-        this.dmp$ = this.backendService.getDmpById(id);
+        this.backendService
+          .getDmpById(id)
+          .subscribe(dmp => this.adminDmp.set(dmp));
       } else {
         this.getDmpList();
-        this.dmp$ = this.store.select(selectDmpById({ id: id }));
       }
       this.getVersions(id);
     } else {
@@ -47,7 +54,7 @@ export class VersionListComponent implements OnInit {
   }
 
   getDmpList() {
-    this.store.dispatch(loadDmps(false));
+    this.dmpStore.loadDmps(false);
   }
 
   getVersions(id: number) {

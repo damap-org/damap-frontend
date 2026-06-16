@@ -5,8 +5,7 @@ import {
   ResourceStatus,
   signal,
 } from '@angular/core';
-import { httpResource, HttpClient } from '@angular/common/http';
-import { catchError, EMPTY } from 'rxjs';
+import { httpResource } from '@angular/common/http';
 
 import { LoadingState } from '../domain/enum/loading-state.enum';
 import { RepositoryDetails } from '../domain/repository-details';
@@ -19,12 +18,9 @@ function hasActiveFilters(filter: RepositoryFilter): boolean {
 @Injectable()
 export class RepositoryStore {
   private readonly api = inject(RepositoryApi);
-  private readonly http = inject(HttpClient);
 
   private readonly filterState = signal<RepositoryFilter>({});
-  private readonly repositoryDetails = signal<
-    Record<string, RepositoryDetails>
-  >({});
+  private readonly detailId = signal<string | null>(null);
 
   private readonly recommendedRepositoriesResource = httpResource<
     RepositoryDetails[]
@@ -47,14 +43,21 @@ export class RepositoryStore {
     { defaultValue: [] },
   );
 
+  private readonly repositoryDetailResource = httpResource<RepositoryDetails>(
+    () => {
+      const id = this.detailId();
+      return id ? this.api.byId(id) : undefined;
+    },
+  );
+
   readonly recommendedRepositories = computed(() =>
     this.recommendedRepositoriesResource.value(),
   );
   readonly repositories = computed(() => {
-    const details = this.repositoryDetails();
+    const detail = this.repositoryDetailResource.value();
 
     return this.repositoriesResource.value().map(repository => {
-      return details[repository.id] ?? repository;
+      return detail?.id === repository.id ? detail : repository;
     });
   });
 
@@ -83,19 +86,12 @@ export class RepositoryStore {
   }
 
   loadDetails(id: string): void {
-    if (this.repositoryDetails()[id]) {
+    const detail = this.repositoryDetailResource.value();
+    if (detail?.id === id) {
       return;
     }
 
-    this.http
-      .get<RepositoryDetails>(this.api.byId(id))
-      .pipe(catchError(() => EMPTY))
-      .subscribe(repository => {
-        this.repositoryDetails.update(details => ({
-          ...details,
-          [id]: repository,
-        }));
-      });
+    this.detailId.set(id);
   }
 
   private toLoadingState(status: ResourceStatus): LoadingState {

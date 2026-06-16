@@ -65,15 +65,6 @@ export class BackendService {
     return contentDisposition.substring(start + 9);
   }
 
-  getDmps(): Observable<DmpListItem[]> {
-    return this.http
-      .get<DmpListItem[]>(`${this.dmpBackendUrl}/list`)
-      .pipe(
-        retry(3),
-        catchError(this.handleError('http.error.plans.load.yours')),
-      );
-  }
-
   getAllDmps(): Observable<DmpListItem[]> {
     return this.http
       .get<DmpListItem[]>(`${this.dmpBackendUrl}/all`)
@@ -90,28 +81,6 @@ export class BackendService {
         retry(3),
         catchError(this.handleError('http.error.plans.load.one')),
       );
-  }
-
-  createDmp(dmp: Dmp): Observable<Dmp> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-    };
-    return this.http
-      .post<Dmp>(this.dmpBackendUrl, dmp, httpOptions)
-      .pipe(retry(3), catchError(this.handleError('http.error.plans.save')));
-  }
-
-  editDmp(dmp: Dmp): Observable<Dmp> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-    };
-    return this.http
-      .put<Dmp>(`${this.dmpBackendUrl}/${dmp.id}`, dmp, httpOptions)
-      .pipe(retry(3), catchError(this.handleError('http.error.plans.update')));
   }
 
   deleteDmp(id: number): Observable<Dmp> {
@@ -142,17 +111,6 @@ export class BackendService {
     return this.http
       .get<Version[]>(`${this.versionBackendUrl}/list/${id}`)
       .pipe(retry(3), catchError(this.handleError('http.error.versions.load')));
-  }
-
-  saveDmpVersion(version: Version): Observable<Version> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-    };
-    return this.http
-      .put<Version>(this.versionBackendUrl, version, httpOptions)
-      .pipe(retry(3), catchError(this.handleError('http.error.versions.save')));
   }
 
   getAccess(dmpId: number): Observable<Access[]> {
@@ -294,18 +252,6 @@ export class BackendService {
       .pipe(retry(3), catchError(this.handleError()));
   }
 
-  exportDmpTemplate(dmpId: number, template: number): void {
-    this.http
-      .get(`${this.backendUrl}document/${dmpId}/export?template=${template}`, {
-        responseType: 'blob',
-        observe: 'response',
-      })
-      .pipe(catchError(this.handleError('http.error.document')))
-      .subscribe({
-        next: response => this.downloadFile(response),
-      });
-  }
-
   getPreviewPDF(dmpId: number, template: number): Observable<Blob> {
     return this.http
       .get(
@@ -315,18 +261,6 @@ export class BackendService {
         },
       )
       .pipe(catchError(this.handleError('http.error.document')));
-  }
-
-  getDmpDocument(id: number): void {
-    this.http
-      .get(`${this.backendUrl}document/${id}/export`, {
-        responseType: 'blob',
-        observe: 'response',
-      })
-      .pipe(catchError(this.handleError('http.error.document')))
-      .subscribe({
-        next: response => this.downloadFile(response),
-      });
   }
 
   getMaDmpJsonFile(id: number): void {

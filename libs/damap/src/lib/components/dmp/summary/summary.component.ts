@@ -7,13 +7,7 @@ import {
   signal,
 } from '@angular/core';
 import { Dmp } from '../../../domain/dmp';
-import { select, Store } from '@ngrx/store';
-import {
-  selectForm,
-  selectFormContact,
-} from '../../../store/selectors/form.selectors';
-import { Observable } from 'rxjs';
-import { AppState } from '../../../store/states/app.state';
+import { DmpFormStore } from '../../../data-access/dmp-form.store';
 import { Contributor } from '../../../domain/contributor';
 import { SummaryService } from '../../../services/summary.service';
 import { MatStepper } from '@angular/material/stepper';
@@ -96,7 +90,6 @@ type EvalState = 'idle' | 'loading' | 'done' | 'failed';
 export class SummaryComponent implements OnInit {
   private readonly DEFAULT_BENCHMARK_ID = '69ef5cdfcde500798dbd1af8'; // FWF Benchmark
 
-  form$: Observable<Dmp>;
   dmpForm: Dmp;
   dataSource;
   contact: Contributor;
@@ -138,9 +131,18 @@ export class SummaryComponent implements OnInit {
   });
 
   constructor(
-    public store: Store<AppState>,
+    private formStore: DmpFormStore,
     private backendService: BackendService,
   ) {
+    effect(() => {
+      this.contact = this.formStore.contact();
+      const value = this.formStore.dmp();
+      if (value) {
+        this.dmpForm = value;
+        this.dataSource = SummaryService.dmpSummary(value);
+      }
+    });
+
     // Auto-select benchmark once loaded: FWF benchmark by default, first otherwise
     effect(() => {
       const benchmarks = this.benchmarks();
@@ -166,17 +168,6 @@ export class SummaryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store
-      .pipe(select(selectFormContact))
-      .subscribe(val => (this.contact = val));
-    this.form$ = this.store.pipe(select(selectForm));
-    this.form$.subscribe(value => {
-      if (value) {
-        this.dmpForm = value;
-        this.dataSource = SummaryService.dmpSummary(value);
-      }
-    });
-
     this.backendService.loadServiceConfig().subscribe({
       next: config => {
         this.evaluationEnabled.set(config.evaluationAvailable);

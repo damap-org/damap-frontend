@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import { deleteDmp, loadDmps } from '../../store/actions/dmp.actions';
-import {
-  selectDmps,
-  selectDmpsLoaded,
-} from '../../store/selectors/dmp.selectors';
+import { Component, inject, OnInit } from '@angular/core';
 
-import { AppState } from '../../store/states/app.state';
 import { AuthService } from '../../auth/auth.service';
 import { BackendService } from '../../services/backend.service';
 import { DeleteWarningDialogComponent } from '../../widgets/delete-warning-dialog/delete-warning-dialog.component';
+import { DmpApi } from '../../data-access/dmp.api';
+import { DmpStore } from '../../data-access/dmp.store';
 import { DmpListItem } from '../../domain/dmp-list-item';
 import { ExportWarningDialogComponent } from '../../widgets/export-warning-dialog/export-warning-dialog.component';
 import { FormGroup } from '@angular/forms';
@@ -38,8 +33,10 @@ import { AsyncPipe } from '@angular/common';
   ],
 })
 export class PlansComponent implements OnInit {
-  dmps$: Observable<DmpListItem[]>;
-  dmpsLoaded$: Observable<LoadingState>;
+  private readonly dmpStore = inject(DmpStore);
+
+  readonly dmps = this.dmpStore.dmps;
+  readonly dmpsLoaded = this.dmpStore.dmpsLoaded;
   LoadingState = LoadingState;
   exportDmpType: number;
   dmpForm: FormGroup;
@@ -47,14 +44,12 @@ export class PlansComponent implements OnInit {
   allDmps$: Observable<DmpListItem[]>;
 
   constructor(
-    private store: Store<AppState>,
     private backendService: BackendService,
+    private dmpApi: DmpApi,
     private authService: AuthService,
     private formService: FormService,
     private dialog: MatDialog,
   ) {
-    this.dmps$ = this.store.pipe(select(selectDmps));
-    this.dmpsLoaded$ = this.store.pipe(select(selectDmpsLoaded));
     this.dmpForm = this.formService.dmpForm;
   }
 
@@ -71,7 +66,7 @@ export class PlansComponent implements OnInit {
   }
 
   getDmps() {
-    this.store.dispatch(loadDmps(false));
+    this.dmpStore.loadDmps(false);
   }
 
   getDocument(id: number) {
@@ -92,9 +87,9 @@ export class PlansComponent implements OnInit {
       if (!funderSupported) {
         const template = result;
         this.exportDmpType = template;
-        this.backendService.exportDmpTemplate(id, this.exportDmpType);
+        this.dmpApi.exportDmpTemplate(id, this.exportDmpType).subscribe();
       } else {
-        this.backendService.getDmpDocument(id);
+        this.dmpApi.exportDmp(id).subscribe();
       }
     });
   }
@@ -115,7 +110,7 @@ export class PlansComponent implements OnInit {
                 if (this.isAdmin()) {
                   this.getAllDmps();
                 }
-                return this.store.dispatch(deleteDmp({ id }));
+                this.dmpStore.removeDmp(id);
               },
             });
           }
