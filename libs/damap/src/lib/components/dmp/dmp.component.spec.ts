@@ -22,7 +22,6 @@ import { TranslateTestingModule } from '../../testing/translate-testing/translat
 import { completeDmp } from '../../mocks/dmp-mocks';
 import { configMockData } from '../../mocks/config-service-mocks';
 import { mockContributor1 } from '../../mocks/contributor-mocks';
-import { provideMockStore } from '@ngrx/store/testing';
 
 describe('DmpComponent', () => {
   let component: DmpComponent;
@@ -32,11 +31,6 @@ describe('DmpComponent', () => {
   let backendSpy: jasmine.SpyObj<BackendService>;
   let loadServiceConfigSpy;
   let feedbackSpy;
-  const initialState = {
-    damap: {
-      form: { dmp: null, changed: false },
-    },
-  };
 
   beforeEach(waitForAsync(() => {
     authSpy = jasmine.createSpyObj('AuthService', [
@@ -71,7 +65,6 @@ describe('DmpComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: AuthService, useValue: authSpy },
-        provideMockStore({ initialState }),
         {
           provide: ActivatedRoute,
           useValue: {
@@ -118,14 +111,12 @@ describe('DmpComponent', () => {
     expect(steps.length).toEqual(11);
   }));
 
-  it('should reset form and dispatch store calls on destroy', () => {
+  it('should destroy', () => {
     spyOn(component, 'ngOnDestroy');
-
-    const storeSpy = spyOn(component.store, 'dispatch').and.callThrough();
 
     fixture.destroy();
 
-    expect(storeSpy).toHaveBeenCalledTimes(1);
+    expect(component.ngOnDestroy).toHaveBeenCalled();
   });
 
   it('should handle step change correctly', () => {

@@ -1,27 +1,17 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import {
-  selectForm,
-  selectFormContact,
-} from '../../../store/selectors/form.selectors';
 
+import { DmpFormStore } from '../../../data-access/dmp-form.store';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableModule } from '@angular/material/table';
 import { SummaryComponent } from './summary.component';
 import { TranslateTestingModule } from '../../../testing/translate-testing/translate-testing.module';
-import { completeDmp } from '../../../mocks/dmp-mocks';
-import { mockContact } from '../../../mocks/contributor-mocks';
-import { provideMockStore } from '@ngrx/store/testing';
 import { BackendService } from '../../../services/backend.service';
 import { of } from 'rxjs';
-import { Benchmark } from '../../../domain/benchmark';
 
 describe('SummaryComponent', () => {
   let component: SummaryComponent;
   let fixture: ComponentFixture<SummaryComponent>;
   let backendSpy: jasmine.SpyObj<BackendService>;
-  const initialState = {
-    form: { dmp: null, changed: false },
-  };
 
   beforeEach(waitForAsync(() => {
     backendSpy = jasmine.createSpyObj('BackendService', [
@@ -42,13 +32,7 @@ describe('SummaryComponent', () => {
       ],
       providers: [
         { provide: BackendService, useValue: backendSpy },
-        provideMockStore({
-          initialState,
-          selectors: [
-            { selector: selectForm, value: completeDmp },
-            { selector: selectFormContact, value: mockContact },
-          ],
-        }),
+        DmpFormStore,
       ],
     }).compileComponents();
   }));
