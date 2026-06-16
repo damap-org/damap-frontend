@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormArray,
   FormControl,
@@ -68,6 +68,13 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
 })
 export class DatasetDialogComponent {
+  dialogRef = inject<MatDialogRef<DatasetDialogComponent>>(MatDialogRef);
+  private formService = inject(FormService);
+  data = inject<{
+    dataset: Dataset;
+    mode: string;
+}>(MAT_DIALOG_DATA);
+
   readonly FILE_TYPES = FILE_TYPES;
   readonly FILE_SIZES = FILE_SIZES;
   readonly datasetSource: any = DataSource;
@@ -83,11 +90,9 @@ export class DatasetDialogComponent {
 
   originalOrder = (): number => 0;
 
-  constructor(
-    public dialogRef: MatDialogRef<DatasetDialogComponent>,
-    private formService: FormService,
-    @Inject(MAT_DIALOG_DATA) public data: { dataset: Dataset; mode: string },
-  ) {
+  constructor() {
+    const data = this.data;
+
     this.dataset = this.formService.mapDatasetToFormGroup(this.data.dataset);
     this.mode = data.mode ?? this.mode;
     if (data.dataset.datasetId) {

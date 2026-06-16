@@ -1,14 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Inject,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild, inject } from '@angular/core';
 import {
   UntypedFormArray,
   UntypedFormControl,
@@ -89,6 +79,12 @@ import { CdkScrollable } from '@angular/cdk/scrolling';
   ],
 })
 export class PeopleComponent implements OnInit, OnDestroy {
+  private backendService = inject(BackendService);
+  private cdr = inject(ChangeDetectorRef);
+  dialog = inject(MatDialog);
+  private feedbackService = inject(FeedbackService);
+  private contributorFilter = inject(ContributorFilterPipe);
+
   @ViewChild(PersonSearchComponent) personSearch: PersonSearchComponent;
 
   @Input() config$: Observable<Config>;
@@ -126,14 +122,6 @@ export class PeopleComponent implements OnInit, OnDestroy {
   });
 
   selectedView: 'primaryView' | 'secondaryView' = 'primaryView';
-
-  constructor(
-    private backendService: BackendService,
-    private cdr: ChangeDetectorRef,
-    public dialog: MatDialog,
-    private feedbackService: FeedbackService,
-    private contributorFilter: ContributorFilterPipe,
-  ) {}
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -309,5 +297,5 @@ export class PeopleComponent implements OnInit, OnDestroy {
   ],
 })
 export class ConfirmDeletionDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Dataset[]) {}
+  data = inject(MAT_DIALOG_DATA);
 }

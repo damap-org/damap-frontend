@@ -6,14 +6,14 @@
 }
 
 .color-icon {
-  color: var(--mdc-theme-primary);
+  color: var(--mat-theme-primary);
 }
 
 .dataset-title-text {
   font-weight: bold;
   margin-top: -1em;
   margin-bottom: 0.5em;
-  color: var(--mdc-theme-primary);
+  color: var(--mat-theme-primary);
 }
 
 .retention-wrapper {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -10,7 +10,9 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
 })
 export class InstanceLockedComponent {
-  constructor(private translate: TranslateService) {
+  private translate = inject(TranslateService);
+
+  constructor() {
     const lang = localStorage.getItem('lang') ?? 'en';
     if (!this.translate.currentLang) {
       this.translate.use(lang);

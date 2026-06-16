@@ -20,20 +20,18 @@ import { TranslateService } from '@ngx-translate/core';
   providedIn: 'root',
 })
 export class ConfigService {
+  private http = inject(HttpClient);
+  private oauthService = inject(OAuthService);
+  private router = inject(Router);
+  private feedbackService = inject(FeedbackService);
+  private translate = inject(TranslateService);
+
   private colorThemeService = inject(ColorThemeService);
   private imageThemeService = inject(ImageThemeService);
 
   private config: Config;
   private backendDown$ = new BehaviorSubject<boolean>(true);
   private firstAttempt = true;
-
-  constructor(
-    private http: HttpClient,
-    private oauthService: OAuthService,
-    private router: Router,
-    private feedbackService: FeedbackService,
-    private translate: TranslateService,
-  ) {}
 
   public initializeApp(): Promise<boolean> {
     return this.loadConfig()

@@ -52,6 +52,13 @@ import { InputWrapperComponent } from '../../../shared/input-wrapper/input-wrapp
   ],
 })
 export class DmpActionsComponent implements OnInit, OnDestroy {
+  private formService = inject(FormService);
+  private dialog = inject(MatDialog);
+  private location = inject(Location);
+  private backendService = inject(BackendService);
+  private feedbackService = inject(FeedbackService);
+  private configService = inject(ConfigService);
+
   private readonly formStore = inject(DmpFormStore);
   private readonly dmpStore = inject(DmpStore);
 
@@ -68,14 +75,7 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription[] = [];
 
-  constructor(
-    private formService: FormService,
-    private dialog: MatDialog,
-    private location: Location,
-    private backendService: BackendService,
-    private feedbackService: FeedbackService,
-    private configService: ConfigService,
-  ) {
+  constructor() {
     this.dmpForm = this.formService.dmpForm;
   }
 
@@ -228,10 +228,10 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
   ],
 })
 export class SaveVersionDialogComponent {
+  dialogRef = inject<MatDialogRef<SaveVersionDialogComponent>>(MatDialogRef);
+
   versionName = '';
   mockControl = new UntypedFormControl();
-
-  constructor(public dialogRef: MatDialogRef<SaveVersionDialogComponent>) {}
 
   onNoClick(): void {
     this.dialogRef.close();

@@ -16,7 +16,7 @@
 }
 
 .ls-item:hover {
-  border: 1px solid var(--mdc-theme-primary);
+  border: 1px solid var(--mat-theme-primary);
 }
 
 .ls-item-header {

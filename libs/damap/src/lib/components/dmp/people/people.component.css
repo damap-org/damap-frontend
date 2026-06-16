@@ -1,8 +1,8 @@
 .projectRoleTag {
   padding: 5px 7px;
   border-radius: 4px;
-  background: var(--mdc-theme-tertiary-container);
-  color: var(--mdc-theme-on-tertiary-container);
+  background: var(--mat-theme-tertiary-container);
+  color: var(--mat-theme-on-tertiary-container);
   font-size: 10pt;
 }
 
@@ -188,6 +188,6 @@ mat-form-field {
 }
 
 .white-button {
-  --mdc-protected-button-container-color: var(--custom-primary-lightest);
-  --mdc-protected-button-label-text-color: var(--mdc-theme-primary);
+  --mat-button-protected-container-color: var(--custom-primary-lightest);
+  --mat-button-protected-label-text-color: var(--mat-theme-primary);
 }

@@ -1,6 +1,5 @@
-import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { effect, inject, Injectable, signal } from '@angular/core';
+import { DOCUMENT, effect, inject, Injectable, signal } from '@angular/core';
 import { Config, ColorTheme } from '@damap/core';
 import {
   argbFromHex,
@@ -144,61 +143,63 @@ export class ColorThemeService {
       '--custom-surface-dim': hexFromArgb(palette.n1.tone(87)),
       '--custom-surface-bright': hexFromArgb(palette.n1.tone(98)),
       '--custom-surface-container-lowest': hexFromArgb(palette.n1.tone(100)),
+      '--custom-surface-container-low': hexFromArgb(palette.n1.tone(96)),
       '--custom-surface-container': hexFromArgb(palette.n1.tone(94)),
       '--custom-surface-container-high': hexFromArgb(palette.n1.tone(92)),
       '--custom-surface-container-highest': hexFromArgb(palette.n1.tone(90)),
 
       // Material Tokens used by Angular Material
-      '--mdc-theme-primary': primaryVal,
+      '--mat-theme-primary': primaryVal,
       '--mat-sys-primary': primaryVal,
       '--mat-focus-indicator-border-color': primaryVal,
-      '--mdc-theme-on-primary': hexFromArgb(scheme.onPrimary),
-      '--mdc-theme-primary-container': getContainerColor(
+      '--mat-theme-on-primary': hexFromArgb(scheme.onPrimary),
+      '--mat-theme-primary-container': getContainerColor(
         colors.primaryContainer,
         scheme.primaryContainer,
       ),
-      '--mdc-theme-on-primary-container': hexFromArgb(
+      '--mat-theme-on-primary-container': hexFromArgb(
         scheme.onPrimaryContainer,
       ),
 
-      '--mdc-theme-secondary': secondaryVal,
-      '--mdc-theme-on-secondary': hexFromArgb(scheme.onSecondary),
-      '--mdc-theme-secondary-container': getContainerColor(
+      '--mat-theme-secondary': secondaryVal,
+      '--mat-theme-on-secondary': hexFromArgb(scheme.onSecondary),
+      '--mat-theme-secondary-container': getContainerColor(
         colors.secondaryContainer,
         scheme.secondaryContainer,
       ),
-      '--mdc-theme-on-secondary-container': hexFromArgb(
+      '--mat-theme-on-secondary-container': hexFromArgb(
         scheme.onSecondaryContainer,
       ),
 
-      '--mdc-theme-tertiary': tertiaryVal,
-      '--mdc-theme-on-tertiary': hexFromArgb(scheme.onTertiary),
-      '--mdc-theme-tertiary-container': getContainerColor(
+      '--mat-theme-tertiary': tertiaryVal,
+      '--mat-theme-on-tertiary': hexFromArgb(scheme.onTertiary),
+      '--mat-theme-tertiary-container': getContainerColor(
         colors.tertiaryContainer,
         scheme.tertiaryContainer,
       ),
-      '--mdc-theme-on-tertiary-container': hexFromArgb(
+      '--mat-theme-on-tertiary-container': hexFromArgb(
         scheme.onTertiaryContainer,
       ),
 
-      '--mdc-theme-error': hexFromArgb(scheme.error),
-      '--mdc-theme-on-error': hexFromArgb(scheme.onError),
-      '--mdc-theme-error-container': hexFromArgb(scheme.errorContainer),
-      '--mdc-theme-on-error-container': hexFromArgb(scheme.onErrorContainer),
+      '--mat-theme-error': hexFromArgb(scheme.error),
+      '--mat-theme-on-error': hexFromArgb(scheme.onError),
+      '--mat-theme-error-container': hexFromArgb(scheme.errorContainer),
+      '--mat-theme-on-error-container': hexFromArgb(scheme.onErrorContainer),
 
-      '--mdc-theme-background': hexFromArgb(scheme.background),
-      '--mdc-theme-on-background': hexFromArgb(scheme.onBackground),
-      '--mdc-theme-surface': hexFromArgb(scheme.surface),
-      '--mdc-theme-on-surface': hexFromArgb(scheme.onSurface),
-      '--mdc-theme-surface-variant': hexFromArgb(scheme.surfaceVariant),
-      '--mdc-theme-on-surface-variant': hexFromArgb(scheme.onSurfaceVariant),
-      '--mdc-theme-outline': hexFromArgb(scheme.outline),
-      '--mdc-theme-outline-variant': hexFromArgb(scheme.outlineVariant),
-      '--mdc-theme-shadow': hexFromArgb(scheme.shadow),
-      '--mdc-theme-scrim': hexFromArgb(scheme.scrim),
-      '--mdc-theme-inverse-surface': hexFromArgb(scheme.inverseSurface),
-      '--mdc-theme-inverse-on-surface': hexFromArgb(scheme.inverseOnSurface),
-      '--mdc-theme-inverse-primary': hexFromArgb(scheme.inversePrimary),
+      '--mat-theme-background': hexFromArgb(scheme.background),
+      '--mat-theme-on-background': hexFromArgb(scheme.onBackground),
+      '--mat-theme-surface': hexFromArgb(scheme.surface),
+      '--mat-theme-surface-container-low': hexFromArgb(palette.n1.tone(96)),
+      '--mat-theme-on-surface': hexFromArgb(scheme.onSurface),
+      '--mat-theme-surface-variant': hexFromArgb(scheme.surfaceVariant),
+      '--mat-theme-on-surface-variant': hexFromArgb(scheme.onSurfaceVariant),
+      '--mat-theme-outline': hexFromArgb(scheme.outline),
+      '--mat-theme-outline-variant': hexFromArgb(scheme.outlineVariant),
+      '--mat-theme-shadow': hexFromArgb(scheme.shadow),
+      '--mat-theme-scrim': hexFromArgb(scheme.scrim),
+      '--mat-theme-inverse-surface': hexFromArgb(scheme.inverseSurface),
+      '--mat-theme-inverse-on-surface': hexFromArgb(scheme.inverseOnSurface),
+      '--mat-theme-inverse-primary': hexFromArgb(scheme.inversePrimary),
     };
 
     Object.entries(tokens).forEach(([key, val]) =>

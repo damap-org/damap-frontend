@@ -1,12 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild, inject } from '@angular/core';
 
 import {
   InternalStorage,
@@ -72,12 +64,11 @@ import { MatDivider } from '@angular/material/divider';
 export class InternalStorageTranslationTableComponent
   implements AfterViewInit, OnChanges
 {
-  constructor(
-    private backendService: BackendService,
-    private feedbackService: FeedbackService,
-    private dialog: MatDialog,
-    private translateService: TranslateService,
-  ) {}
+  private backendService = inject(BackendService);
+  private feedbackService = inject(FeedbackService);
+  private dialog = inject(MatDialog);
+  private translateService = inject(TranslateService);
+
 
   @Input() internalStorageTranslations: InternalStorageTranslation[] = [];
   @Input() selectedInternalStorageId: number;

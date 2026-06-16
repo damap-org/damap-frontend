@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { ConfigService } from '../../../../../apps/damap-frontend/src/app/services/config.service';
 
@@ -6,10 +6,9 @@ import { ConfigService } from '../../../../../apps/damap-frontend/src/app/servic
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(
-    private oAuthService: OAuthService,
-    private configService: ConfigService,
-  ) {}
+  private oAuthService = inject(OAuthService);
+  private configService = inject(ConfigService);
+
 
   getDisplayName(): string {
     const claims = this.oAuthService.getIdentityClaims();

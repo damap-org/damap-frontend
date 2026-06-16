@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogRef,
@@ -28,16 +28,20 @@ import { MatButton } from '@angular/material/button';
   ],
 })
 export class DatasetInformationComponent {
+  dialogRef = inject<MatDialogRef<DatasetDialogComponent>>(MatDialogRef);
+  private translate = inject(TranslateService);
+  data = inject<{
+    dataset: Dataset;
+    sourceType: DataSource;
+}>(MAT_DIALOG_DATA);
+
   dataset: Dataset;
   readonly FILE_SIZES = FILE_SIZES;
   readonly datasetSource = DataSource;
 
-  constructor(
-    public dialogRef: MatDialogRef<DatasetDialogComponent>,
-    private translate: TranslateService,
-    @Inject(MAT_DIALOG_DATA)
-    public data: { dataset: Dataset; sourceType: DataSource },
-  ) {
+  constructor() {
+    const data = this.data;
+
     this.dataset = data.dataset;
   }
 

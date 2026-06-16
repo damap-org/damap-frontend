@@ -1,11 +1,4 @@
-import {
-  Component,
-  computed,
-  effect,
-  Input,
-  OnInit,
-  signal,
-} from '@angular/core';
+import { Component, computed, effect, Input, OnInit, signal, inject } from '@angular/core';
 import { Dmp } from '../../../domain/dmp';
 import { DmpFormStore } from '../../../data-access/dmp-form.store';
 import { Contributor } from '../../../domain/contributor';
@@ -88,6 +81,9 @@ type EvalState = 'idle' | 'loading' | 'done' | 'failed';
   ],
 })
 export class SummaryComponent implements OnInit {
+  private formStore = inject(DmpFormStore);
+  private backendService = inject(BackendService);
+
   private readonly DEFAULT_BENCHMARK_ID = '69ef5cdfcde500798dbd1af8'; // FWF Benchmark
 
   dmpForm: Dmp;
@@ -130,10 +126,7 @@ export class SummaryComponent implements OnInit {
     return this.benchmarks().find(b => b.identifier === id)?.title ?? '';
   });
 
-  constructor(
-    private formStore: DmpFormStore,
-    private backendService: BackendService,
-  ) {
+  constructor() {
     effect(() => {
       this.contact = this.formStore.contact();
       const value = this.formStore.dmp();

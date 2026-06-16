@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { FlipCardComponent } from '../../widgets/flip-card/flip-card.component';
@@ -18,9 +18,11 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
 })
 export class DashboardComponent {
+  readonly breakpointObserver = inject(BreakpointObserver);
+
   isSmallScreen = false;
 
-  constructor(readonly breakpointObserver: BreakpointObserver) {
+  constructor() {
     this.breakpointObserver
       .observe([Breakpoints.Handset, Breakpoints.Tablet])
       .subscribe(result => {

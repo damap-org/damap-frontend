@@ -1,11 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
 import { AuthService, BackendService } from '@damap/core';
 import {
   NavigationEnd,
@@ -72,6 +65,15 @@ import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
   ],
 })
 export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
+  private auth = inject(AuthService);
+  private translate = inject(TranslateService);
+  private backendService = inject(BackendService);
+  private configService = inject(ConfigService);
+  private imageThemeService = inject(ImageThemeService);
+  private observer = inject(BreakpointObserver);
+  private router = inject(Router);
+  private cdr = inject(ChangeDetectorRef);
+
   @ViewChild('sidenav', { static: true }) sidenav!: MatSidenav;
   @ViewChild('outlet') outlet: RouterOutlet | null;
 
@@ -95,16 +97,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
   readonly env: string;
 
-  constructor(
-    private auth: AuthService,
-    private translate: TranslateService,
-    private backendService: BackendService,
-    private configService: ConfigService,
-    private imageThemeService: ImageThemeService,
-    private observer: BreakpointObserver,
-    private router: Router,
-    private cdr: ChangeDetectorRef,
-  ) {
+  constructor() {
     this.env = this.configService.getEnvironment();
     this.logoUrl = this.imageThemeService.getImage(IMAGE_KEYS.LOGO);
   }

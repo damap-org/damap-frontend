@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { LoggerService } from './logger.service';
@@ -7,11 +7,10 @@ import { LoggerService } from './logger.service';
   providedIn: 'root',
 })
 export class FeedbackService {
-  constructor(
-    protected _snackBar: MatSnackBar,
-    protected translate: TranslateService,
-    protected loggerService: LoggerService,
-  ) {}
+  protected _snackBar = inject(MatSnackBar);
+  protected translate = inject(TranslateService);
+  protected loggerService = inject(LoggerService);
+
 
   error(message: string, error?: Error, timeInMs: number = 20000) {
     this.translate.get(message).subscribe(translation =>

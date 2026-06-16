@@ -39,6 +39,11 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
 })
 export class LivePreviewComponent implements OnInit {
+  dialogRef = inject<MatDialogRef<ExportWarningDialogComponent>>(MatDialogRef);
+  private backendService = inject(BackendService);
+  private formService = inject(FormService);
+  private sanitizer = inject(DomSanitizer);
+
   @Input() selectedTemplate: number | null = null;
 
   dmpForm: FormGroup;
@@ -50,12 +55,7 @@ export class LivePreviewComponent implements OnInit {
     this.configService.getActiveTemplates(),
   );
 
-  constructor(
-    public dialogRef: MatDialogRef<ExportWarningDialogComponent>,
-    private backendService: BackendService,
-    private formService: FormService,
-    private sanitizer: DomSanitizer,
-  ) {
+  constructor() {
     this.dmpForm = this.formService.dmpForm;
   }
 

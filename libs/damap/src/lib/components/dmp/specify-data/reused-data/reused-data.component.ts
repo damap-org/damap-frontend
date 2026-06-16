@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { Subject, Subscription, switchMap } from 'rxjs';
 import { Dataset } from '../../../../domain/dataset';
@@ -31,6 +31,9 @@ export class ReusedDataComponent
   extends AbstractBaseDataComponent
   implements OnInit, OnDestroy
 {
+  private backendService = inject(BackendService);
+  dialog = inject(MatDialog);
+
   private searchTerms = new Subject<string>();
   private searchResult: Subscription;
   loading: LoadingState = LoadingState.NOT_LOADED;
@@ -39,13 +42,6 @@ export class ReusedDataComponent
   duplicate = false;
 
   readonly tableHeaders: string[] = ['dataset', 'license', 'source', 'actions'];
-
-  constructor(
-    private backendService: BackendService,
-    public dialog: MatDialog,
-  ) {
-    super();
-  }
 
   ngOnInit(): void {
     this.searchResult = this.searchTerms

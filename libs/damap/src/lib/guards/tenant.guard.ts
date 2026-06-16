@@ -1,15 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { CanActivate, Router, UrlTree } from '@angular/router';
 import { AuthService } from '@damap/core';
 import { ConfigService } from '../../../../../apps/damap-frontend/src/app/services/config.service';
 
 @Injectable()
 export class TenantGuard implements CanActivate {
-  constructor(
-    private configService: ConfigService,
-    private authService: AuthService,
-    private router: Router,
-  ) {}
+  private configService = inject(ConfigService);
+  private authService = inject(AuthService);
+  private router = inject(Router);
+
 
   canActivate(): boolean | UrlTree {
     if (this.authService.isUserAffiliatedWithATenant()) {

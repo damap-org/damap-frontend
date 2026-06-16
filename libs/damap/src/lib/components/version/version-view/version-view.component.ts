@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { BackendService } from '../../../services/backend.service';
 import { Observable } from 'rxjs';
@@ -53,6 +53,9 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
 })
 export class VersionViewComponent implements OnInit {
+  private route = inject(ActivatedRoute);
+  private backendService = inject(BackendService);
+
   @ViewChild(MatAccordion) accordion: MatAccordion;
 
   versions$: Observable<Version[]>;
@@ -61,11 +64,6 @@ export class VersionViewComponent implements OnInit {
   revision: number;
 
   readonly dataKind = DataKind;
-
-  constructor(
-    private route: ActivatedRoute,
-    private backendService: BackendService,
-  ) {}
 
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id');

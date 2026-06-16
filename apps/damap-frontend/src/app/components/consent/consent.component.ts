@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { Consent } from '@damap/core';
 import { CdkScrollable } from '@angular/cdk/scrolling';
@@ -23,10 +23,10 @@ import { MatButton } from '@angular/material/button';
   ],
 })
 export class ConsentComponent {
+  private translate = inject(TranslateService);
+
   public lang = 'EN';
   public consent: Consent;
-
-  constructor(private translate: TranslateService) {}
 
   useLanguage(language: string): void {
     this.lang = language.toUpperCase();

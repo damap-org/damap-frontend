@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { BackendService } from '../../services/backend.service';
 import { AuthService } from '../../auth/auth.service';
 import {
@@ -38,12 +38,11 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
   ],
 })
 export class AdminComponent implements OnInit {
-  constructor(
-    private backendService: BackendService,
-    private dialog: MatDialog,
-    private feedbackService: FeedbackService,
-    private router: Router,
-  ) {}
+  private backendService = inject(BackendService);
+  private dialog = inject(MatDialog);
+  private feedbackService = inject(FeedbackService);
+  private router = inject(Router);
+
 
   showOnlyActive = true;
   internalStorages: InternalStorage[] = [];

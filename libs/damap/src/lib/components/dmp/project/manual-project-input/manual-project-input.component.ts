@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, inject } from '@angular/core';
 import {
   UntypedFormControl,
   UntypedFormGroup,
@@ -60,6 +53,8 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
 })
 export class ManualProjectInputComponent implements OnChanges {
+  private feedbackService = inject(FeedbackService);
+
   @Input() project: Project;
   @Output() projectUpdate = new EventEmitter<Project>();
 
@@ -74,8 +69,6 @@ export class ManualProjectInputComponent implements OnChanges {
     end: new UntypedFormControl(null),
     acronym: new UntypedFormControl('', [Validators.maxLength(255)]),
   });
-
-  constructor(private feedbackService: FeedbackService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.project && !this.project?.universityId) {

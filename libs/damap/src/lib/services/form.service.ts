@@ -28,7 +28,7 @@ import { DataSource } from '../domain/enum/data-source.enum';
 import { Dataset } from '../domain/dataset';
 import { Dmp } from '../domain/dmp';
 import { ExternalStorage } from '../domain/external-storage';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { InternalStorage } from '../domain/internal-storage';
 import { Repository } from '../domain/repository';
 import { Storage } from '../domain/storage';
@@ -42,16 +42,16 @@ import { urlValidator } from '../validators/url.validator';
   providedIn: 'root',
 })
 export class FormService {
+  private formBuilder = inject(UntypedFormBuilder);
+  private fb = inject(FormBuilder);
+
   private TEXT_MAX_LENGTH = 4000;
   private TEXT_SHORT_LENGTH = 255;
   private readonly DEFAULT_BANNER_COLOR = '#E6F3FF';
   private readonly form: UntypedFormGroup;
   private readonly initialFormValue;
 
-  constructor(
-    private formBuilder: UntypedFormBuilder,
-    private fb: FormBuilder,
-  ) {
+  constructor() {
     this.form = this.createDmpForm();
     this.initialFormValue = this.form.getRawValue();
   }
