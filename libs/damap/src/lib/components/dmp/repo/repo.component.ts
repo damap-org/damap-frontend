@@ -1,31 +1,16 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import {
   UntypedFormArray,
   UntypedFormGroup,
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import {
-  loadAllRepositories,
-  loadRecommendedRepositories,
-  loadRepository,
-  setRepositoryFilter,
-} from '../../../store/actions/repository.actions';
-import {
-  selectFilters,
-  selectRecommendedRepositories,
-  selectRecommendedRepositoriesLoaded,
-  selectRepositories,
-  selectRepositoriesLoaded,
-} from '../../../store/selectors/repository.selectors';
 
-import { AppState } from '../../../store/states/app.state';
 import { DataSource } from '../../../domain/enum/data-source.enum';
 import { Dataset } from '../../../domain/dataset';
 import { LoadingState } from '../../../domain/enum/loading-state.enum';
-import { Observable } from 'rxjs';
 import { RepositoryDetails } from '../../../domain/repository-details';
+import { RepositoryStore } from '../../../data-access/repository.store';
 import { MatLabel, MatFormField } from '@angular/material/form-field';
 import { RetentionPeriodComponent } from './retention-period/retention-period.component';
 import { MatCard, MatCardContent } from '@angular/material/card';
@@ -38,7 +23,6 @@ import { MatTabLabel } from '@angular/material/tabs';
 import { RepoRecommendationComponent } from './repo-recommendation/repo-recommendation.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { RepoTableComponent } from './repo-table/repo-table.component';
-import { AsyncPipe } from '@angular/common';
 import { DatasetSourcePipe } from '../../../pipes/dataset-source/dataset-source.pipe';
 import { RepoPipe } from './repo.pipe';
 
@@ -46,6 +30,7 @@ import { RepoPipe } from './repo.pipe';
   selector: 'app-dmp-repo',
   templateUrl: './repo.component.html',
   styleUrls: ['./repo.component.css'],
+  providers: [RepositoryStore],
   imports: [
     MatLabel,
     RetentionPeriodComponent,
@@ -64,17 +49,12 @@ import { RepoPipe } from './repo.pipe';
     TranslateModule,
     MatButton,
     RepoTableComponent,
-    AsyncPipe,
     DatasetSourcePipe,
     RepoPipe,
   ],
 })
-export class RepoComponent implements OnInit {
-  repositoriesLoaded$: Observable<LoadingState>;
-  repositories$: Observable<RepositoryDetails[]>; // Repo list loaded from backend
-  recommendedLoaded$: Observable<LoadingState>;
-  recommended$: Observable<RepositoryDetails[]>;
-  filters$: Observable<{ [key: string]: { id: string; label: string }[] }>;
+export class RepoComponent {
+  private readonly store = inject(RepositoryStore);
 
   @Input() dmpForm: UntypedFormGroup;
   @Input() repoStep: UntypedFormArray;
@@ -83,27 +63,17 @@ export class RepoComponent implements OnInit {
   @Output() repositoryToAdd = new EventEmitter<any>();
   @Output() repositoryToRemove = new EventEmitter<any>();
 
-  LoadingState = LoadingState;
   readonly datasetSource: any = DataSource;
+  readonly LoadingState = LoadingState;
 
   selectedTabIndex = 0;
   selectedView: 'primaryView' | 'secondaryView' = 'primaryView';
 
-  constructor(public store: Store<AppState>) {}
-
-  ngOnInit() {
-    this.repositoriesLoaded$ = this.store.pipe(
-      select(selectRepositoriesLoaded),
-    );
-    this.repositories$ = this.store.pipe(select(selectRepositories));
-    this.filters$ = this.store.pipe(select(selectFilters));
-    this.recommendedLoaded$ = this.store.pipe(
-      select(selectRecommendedRepositoriesLoaded),
-    );
-    this.recommended$ = this.store.pipe(select(selectRecommendedRepositories));
-    this.store.dispatch(loadRecommendedRepositories());
-    this.store.dispatch(loadAllRepositories(true));
-  }
+  readonly recommended = this.store.recommendedRepositories;
+  readonly recommendedLoaded = this.store.recommendedRepositoriesLoaded;
+  readonly repositories = this.store.repositories;
+  readonly repositoriesLoaded = this.store.repositoriesLoaded;
+  readonly filters = this.store.filters;
 
   addRepository(repo: RepositoryDetails) {
     this.repositoryToAdd.emit(repo);
@@ -115,7 +85,7 @@ export class RepoComponent implements OnInit {
 
   getRepositoryDetails(repo: RepositoryDetails) {
     if (!repo.description) {
-      this.store.dispatch(loadRepository({ id: repo.id }));
+      this.store.loadDetails(repo.id);
     }
   }
 
@@ -123,9 +93,9 @@ export class RepoComponent implements OnInit {
     filter: { [key: string]: { id: string; label: string }[] } | null,
   ) {
     if (filter) {
-      this.store.dispatch(setRepositoryFilter({ filter }));
+      this.store.setFilter(filter);
     } else {
-      this.store.dispatch(loadAllRepositories());
+      this.store.setFilter({});
     }
   }
 

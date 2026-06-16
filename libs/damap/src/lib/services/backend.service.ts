@@ -256,12 +256,6 @@ export class BackendService {
       .pipe(retry(3), catchError(this.handleError()));
   }
 
-  getRecommendedRepositories(): Observable<RepositoryDetails[]> {
-    return this.http
-      .get<RepositoryDetails[]>(`${this.repositoryBackendUrl}/recommended`)
-      .pipe(retry(3), catchError(this.handleError()));
-  }
-
   getRepositoryById(
     id: string,
   ): Observable<{ id: string; changes: RepositoryDetails }> {
@@ -272,22 +266,6 @@ export class BackendService {
         retry(3),
         catchError(this.handleError()),
       );
-  }
-
-  searchRepository(filters: {
-    [key: string]: { id: string; label: string }[];
-  }): Observable<RepositoryDetails[]> {
-    let params = new HttpParams();
-    for (const key in filters) {
-      if (filters.hasOwnProperty(key)) {
-        filters[key]?.forEach(item => (params = params.append(key, item.id)));
-      }
-    }
-    return this.http
-      .get<RepositoryDetails[]>(`${this.repositoryBackendUrl}/search`, {
-        params,
-      })
-      .pipe(catchError(this.handleError()));
   }
 
   analyseFileData(file: FormData): Observable<HttpEvent<any>> {
