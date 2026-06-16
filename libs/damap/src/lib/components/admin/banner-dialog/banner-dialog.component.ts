@@ -1,19 +1,45 @@
 import { Component, Inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import {
   FormControl,
   UntypedFormControl,
   UntypedFormGroup,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogTitle,
+  MatDialogContent,
+  MatDialogActions,
+} from '@angular/material/dialog';
 import { FormService } from '../../../services/form.service';
 import { Banner } from '../../../domain/banner';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { InputWrapperComponent } from '../../../shared/input-wrapper/input-wrapper.component';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { MatButton } from '@angular/material/button';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'damap-banner-dialog',
   templateUrl: './banner-dialog.component.html',
   styleUrl: './banner-dialog.component.css',
-  standalone: false,
+  imports: [
+    MatDialogTitle,
+    CdkScrollable,
+    MatDialogContent,
+    FormsModule,
+    ReactiveFormsModule,
+    InputWrapperComponent,
+    MatTooltip,
+    MatCheckbox,
+    MatDialogActions,
+    MatButton,
+    TranslateModule,
+  ],
 })
 export class BannerDialogComponent {
   public mode = 'add';

@@ -10,8 +10,7 @@ describe('LegalEthicalInstructionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LegalEthicalInstructionComponent],
-      imports: [TranslateModule.forRoot()],
+      imports: [TranslateModule.forRoot(), LegalEthicalInstructionComponent],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 

@@ -2,12 +2,47 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Version } from '../../../domain/version';
 import { DmpListItem } from '../../../domain/dmp-list-item';
 import { Dmp } from '../../../domain/dmp';
+import { MatButton } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
+import { MatIcon } from '@angular/material/icon';
+import {
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+  MatNoDataRow,
+} from '@angular/material/table';
+import { DatePipe } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-version-table',
   templateUrl: './version-table.component.html',
   styleUrls: ['./version-table.component.css'],
-  standalone: false,
+  imports: [
+    MatButton,
+    RouterLink,
+    MatIcon,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatNoDataRow,
+    DatePipe,
+    TranslateModule,
+  ],
 })
 export class VersionTableComponent {
   displayedColumns: string[] = ['version', 'name', 'date', 'editor'];

@@ -3,16 +3,16 @@
   {{'export-dialog.message' | translate}}
   <div class="container">
     <ng-container>
-      <mat-form-field *ngIf="!funderSupported">
+      @if (!funderSupported) {
+      <mat-form-field>
         <mat-label>{{ 'export-dialog.field.type' | translate }}</mat-label>
         <mat-select [(value)]="selectedTemplate">
-          <mat-option
-            *ngFor="let template of activeTemplates()"
-            [value]="template.id">
-            {{ template.name }}
-          </mat-option>
+          @for (template of activeTemplates(); track template.id) {
+          <mat-option [value]="template.id"> {{ template.name }} </mat-option>
+          }
         </mat-select>
       </mat-form-field>
+      }
     </ng-container>
     <div class="button-group">
       <button

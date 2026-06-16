@@ -6,7 +6,7 @@ import {
   UntypedFormGroup,
 } from '@angular/forms';
 
-import { DatasetSourceModule } from '../../../../pipes/dataset-source/dataset-source.module';
+import { DatasetSourcePipe } from '../../../../pipes/dataset-source/dataset-source.pipe';
 import { DatasetTableComponent } from './dataset-table.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateTestingModule } from '../../../../testing/translate-testing/translate-testing.module';
@@ -23,10 +23,10 @@ describe('DatasetTableComponent', () => {
       imports: [
         MatDialogModule,
         TranslateTestingModule,
-        DatasetSourceModule,
+        DatasetSourcePipe,
         NoopAnimationsModule,
+        DatasetTableComponent,
       ],
-      declarations: [DatasetTableComponent],
     }).compileComponents();
   }));
 

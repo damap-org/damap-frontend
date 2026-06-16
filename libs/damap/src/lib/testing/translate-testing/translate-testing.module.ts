@@ -14,10 +14,7 @@ import {
 } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
 
-@Pipe({
-  name: 'translate',
-  standalone: false,
-})
+@Pipe({ name: 'translate' })
 export class TranslatePipeMock implements PipeTransform {
   public name = 'translate';
 
@@ -42,6 +39,10 @@ export class TranslateServiceStub {
     return of(key);
   }
 
+  public getTranslation(lang: string): Observable<any> {
+    return of({});
+  }
+
   public use(key: string): void {
     this._currentLang = key;
   }
@@ -60,8 +61,8 @@ export class TranslateServiceStub {
     TranslateModule.forRoot({
       loader: { provide: TranslateLoader, useClass: TranslateFakeLoader },
     }),
+    TranslatePipeMock,
   ],
-  declarations: [TranslatePipeMock],
   providers: [
     { provide: TranslateService, useClass: TranslateServiceStub },
     { provide: TranslatePipe, useClass: TranslatePipeMock },

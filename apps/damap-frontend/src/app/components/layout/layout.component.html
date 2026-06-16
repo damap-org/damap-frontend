@@ -26,18 +26,20 @@
             id="damap-logo"
             class="mat-focus-indicator"
             [routerLink]="'/dashboard'">
-            <span *ngIf="!isCollapsed">{{
-              "sidebar.header.title" | translate
-            }}</span>
+            @if (!isCollapsed) {
+              <span>{{ "sidebar.header.title" | translate }}</span>
+            }
           </a>
         </div>
       </div>
     </div>
 
     <div id="user">
-      <div *ngIf="!isCollapsed" class="user-name mat-title-small">
-        {{ name }}
-      </div>
+      @if (!isCollapsed) {
+        <div class="user-name mat-title-small">
+          {{ name }}
+        </div>
+      }
       <div class="languageElement-desktop">
         <button
           mat-button
@@ -46,16 +48,17 @@
           {{ lang }}
         </button>
         <mat-menu #language="matMenu">
-          <button
-            mat-menu-item
-            *ngFor="let language of availableLanguages"
-            (click)="useLanguage(language)"
-            [disabled]="language.toUpperCase() === lang">
-            @if (language.toUpperCase() === lang) {
-              <mat-icon style="transform: scale(0.85)">check</mat-icon>
-            }
-            {{ language.toUpperCase() }}
-          </button>
+          @for (language of availableLanguages; track language) {
+            <button
+              mat-menu-item
+              (click)="useLanguage(language)"
+              [disabled]="language.toUpperCase() === lang">
+              @if (language.toUpperCase() === lang) {
+                <mat-icon style="transform: scale(0.85)">check</mat-icon>
+              }
+              {{ language.toUpperCase() }}
+            </button>
+          }
         </mat-menu>
       </div>
     </div>
@@ -68,9 +71,11 @@
           routerLinkActive="active-icon material-icon-primary"
           [routerLinkActiveOptions]="{ exact: true }">
           <mat-icon class="menu-icon-size outline">home</mat-icon>
-          <span *ngIf="!isCollapsed" class="menu-icon-text">{{
-            "sidebar.navigation.home" | translate
-          }}</span>
+          @if (!isCollapsed) {
+            <span class="menu-icon-text">{{
+              "sidebar.navigation.home" | translate
+            }}</span>
+          }
         </a>
         <a
           mat-list-item
@@ -78,21 +83,26 @@
           routerLinkActive="active-icon material-icon-primary"
           [routerLinkActiveOptions]="{ exact: true }">
           <mat-icon class="menu-icon-size outline">table_view</mat-icon>
-          <span *ngIf="!isCollapsed" class="menu-icon-text">{{
-            "sidebar.navigation.dmps" | translate
-          }}</span>
+          @if (!isCollapsed) {
+            <span class="menu-icon-text">{{
+              "sidebar.navigation.dmps" | translate
+            }}</span>
+          }
         </a>
-        <a
-          *ngIf="isAdmin()"
-          mat-list-item
-          [routerLink]="'/admin'"
-          routerLinkActive="active-icon material-icon-primary"
-          [routerLinkActiveOptions]="{ exact: true }">
-          <mat-icon class="menu-icon-size outline">shield_person</mat-icon>
-          <span *ngIf="!isCollapsed" class="menu-icon-text">{{
-            "sidebar.navigation.admin" | translate
-          }}</span>
-        </a>
+        @if (isAdmin()) {
+          <a
+            mat-list-item
+            [routerLink]="'/admin'"
+            routerLinkActive="active-icon material-icon-primary"
+            [routerLinkActiveOptions]="{ exact: true }">
+            <mat-icon class="menu-icon-size outline">shield_person</mat-icon>
+            @if (!isCollapsed) {
+              <span class="menu-icon-text">{{
+                "sidebar.navigation.admin" | translate
+              }}</span>
+            }
+          </a>
+        }
       </div>
       <mat-divider></mat-divider>
     </mat-nav-list>
@@ -108,47 +118,55 @@
         </button>
       </div>
     </div>
-    <div *ngIf="!isCollapsed" class="footer mat-title-small">
-      <div class="info">
-        <a
-          [href]="'sidebar.footer.impressum.link' | translate"
-          rel="noopener"
-          target="_blank">
-          {{ "sidebar.footer.impressum.label" | translate }}
-        </a>
-        <a
-          [href]="'sidebar.footer.terms-and-conditions.link' | translate"
-          rel="noopener"
-          target="_blank">
-          {{ "sidebar.footer.terms-and-conditions.label" | translate }}
-        </a>
-        <a
-          [href]="'sidebar.footer.data-protection-declaration.link' | translate"
-          rel="noopener"
-          target="_blank">
-          {{ "sidebar.footer.data-protection-declaration.label" | translate }}
-        </a>
+    @if (!isCollapsed) {
+      <div class="footer mat-title-small">
+        <div class="info">
+          <a
+            [href]="'sidebar.footer.impressum.link' | translate"
+            rel="noopener"
+            target="_blank">
+            {{ "sidebar.footer.impressum.label" | translate }}
+          </a>
+          <a
+            [href]="'sidebar.footer.terms-and-conditions.link' | translate"
+            rel="noopener"
+            target="_blank">
+            {{ "sidebar.footer.terms-and-conditions.label" | translate }}
+          </a>
+          <a
+            [href]="
+              'sidebar.footer.data-protection-declaration.link' | translate
+            "
+            rel="noopener"
+            target="_blank">
+            {{ "sidebar.footer.data-protection-declaration.label" | translate }}
+          </a>
+        </div>
+        <div class="version-information">
+          <a [routerLink]="'/gdpr'" rel="noopener">{{
+            "sidebar.footer.gdpr-info" | translate
+          }}</a>
+          <span class="version-text"
+            >{{ "sidebar.footer.version" | translate }}: {{ version }}</span
+          >
+        </div>
       </div>
-      <div class="version-information">
-        <a [routerLink]="'/gdpr'" rel="noopener">{{
-          "sidebar.footer.gdpr-info" | translate
-        }}</a>
-        <span class="version-text"
-          >{{ "sidebar.footer.version" | translate }}: {{ version }}</span
-        >
+    }
+    @if (isCollapsed) {
+      <div class="footer-icon">
+        <button
+          mat-icon-button
+          [matTooltip]="'sidebar.footer.collapsed.hint' | translate"
+          [aria-label]="'sidebar.footer.collapsed.hint' | translate">
+          <mat-icon class="md-light outline">data_alert</mat-icon>
+        </button>
       </div>
-    </div>
-    <div *ngIf="isCollapsed" class="footer-icon">
-      <button
-        mat-icon-button
-        [matTooltip]="'sidebar.footer.collapsed.hint' | translate"
-        [aria-label]="'sidebar.footer.collapsed.hint' | translate">
-        <mat-icon class="md-light outline">data_alert</mat-icon>
-      </button>
-    </div>
+    }
   </mat-sidenav>
   <mat-sidenav-content class="mat-sidenav-content">
-    <app-env-banner *ngIf="env === 'DEV'"></app-env-banner>
+    @if (env === "DEV") {
+      <app-env-banner></app-env-banner>
+    }
     <app-banner></app-banner>
     <mat-toolbar class="toolbar">
       <mat-toolbar-row id="mainHeader">

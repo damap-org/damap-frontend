@@ -21,8 +21,8 @@ describe('ExportWarningDialogComponent', () => {
         MatButtonModule,
         MatDialogModule,
         NoopAnimationsModule,
+        ExportWarningDialogComponent,
       ],
-      declarations: [ExportWarningDialogComponent],
       providers: [
         provideMockStore(),
         { provide: MatDialogRef, useValue: fakeMatDialogRef },

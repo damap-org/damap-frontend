@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { By } from '@angular/platform-browser';
@@ -18,7 +19,12 @@ import { ImageThemeService } from '../../services/image-theme.service';
 
 @Component({
   template: '',
-  standalone: false,
+  imports: [
+    TranslateTestingModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatMenuModule,
+  ],
 })
 class DummyComponent {}
 
@@ -92,10 +98,13 @@ describe('LayoutComponent', () => {
         MatMenuModule,
         NoopAnimationsModule,
         RouterModule.forRoot([]),
+        LayoutComponent,
+        DummyComponent,
       ],
-      declarations: [LayoutComponent, DummyComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
+        provideHttpClient(withFetch()),
+        provideHttpClientTesting(),
         { provide: OAuthService, useValue: oauthSpy },
         { provide: AuthService, useValue: authServiceSpy },
         { provide: ConfigService, useValue: configSpy },

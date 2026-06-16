@@ -10,9 +10,8 @@ describe('ExternalStorageComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [TranslateTestingModule],
+      imports: [TranslateTestingModule, ExternalStorageComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ExternalStorageComponent],
     }).compileComponents();
   }));
 

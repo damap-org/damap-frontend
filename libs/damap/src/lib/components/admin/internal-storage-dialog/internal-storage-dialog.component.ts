@@ -3,20 +3,48 @@ import {
   UntypedFormControl,
   UntypedFormGroup,
   Validators,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogTitle,
+  MatDialogContent,
+  MatDialogActions,
+} from '@angular/material/dialog';
 import { InternalStorage } from '../../../domain/internal-storage';
 import {
   isValidCode,
   LANGUAGE_CODE_OPTIONS,
 } from '../../../domain/language-codes';
 import { FormService } from '../../../services/form.service';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { InputWrapperComponent } from '../../../shared/input-wrapper/input-wrapper.component';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { LanguageCodeInputComponent } from '../../../shared/language-code-input/language-code-input.component';
+import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
+import { MatButton } from '@angular/material/button';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'damap-internal-storage-dialog',
   templateUrl: './internal-storage-dialog.component.html',
   styleUrl: './internal-storage-dialog.component.css',
-  standalone: false,
+  imports: [
+    MatDialogTitle,
+    CdkScrollable,
+    MatDialogContent,
+    FormsModule,
+    ReactiveFormsModule,
+    InputWrapperComponent,
+    MatCheckbox,
+    LanguageCodeInputComponent,
+    TextareaWrapperComponent,
+    MatDialogActions,
+    MatButton,
+    TranslateModule,
+  ],
 })
 export class InternalStorageDialogComponent {
   public mode = 'add';

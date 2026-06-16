@@ -18,12 +18,25 @@ import { FormService } from '../../services/form.service';
 import { LoadingState } from '../../domain/enum/loading-state.enum';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { DmpTableComponent } from '../../widgets/dmp-table/dmp-table.component';
+import { MatProgressBar } from '@angular/material/progress-bar';
+import { ErrorMessageComponent } from '../../widgets/error-message/error-message.component';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-plan',
   templateUrl: './plans.component.html',
   styleUrls: ['./plans.component.css'],
-  standalone: false,
+  imports: [
+    InfoCardComponent,
+    TranslateModule,
+    DmpTableComponent,
+    MatProgressBar,
+    ErrorMessageComponent,
+    AsyncPipe,
+  ],
 })
 export class PlansComponent implements OnInit {
   dmps$: Observable<DmpListItem[]>;

@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import { DamapInfoComponent } from './components/damap-info/damap-info.component';
 import { DamapStoreModule } from './store/damap-store.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { DashboardModule } from './components/dashboard/dashboard.module';
+
 import { DmpInstructionsComponent } from './components/dmp-instructions/dmp-instructions.component';
 import { EditImagesPageComponent } from './components/admin/edit-images-page/edit-images-page.component';
 import { EditRepositoriesPageComponent } from './components/admin/edit-repositories-page/edit-repositories-page.component';
@@ -80,7 +80,7 @@ export const DAMAP_ROUTES: Route[] = [
   },
 ];
 
-const MODULES = [DashboardModule, PlansModule, AdminModule];
+const MODULES = [PlansModule, AdminModule];
 
 @NgModule({
   imports: [

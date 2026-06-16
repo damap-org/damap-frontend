@@ -11,7 +11,7 @@ import { ExportWarningModule } from '../../../widgets/export-warning-dialog/expo
 import { FormTestingModule } from '../../../testing/form-testing/form-testing.module';
 import { FormsModule } from '@angular/forms';
 import { HarnessLoader } from '@angular/cdk/testing';
-import { LivePreviewModule } from '../live-preview/live-preview.module';
+import { LivePreviewComponent } from '../live-preview/live-preview.component';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogHarness } from '@angular/material/dialog/testing';
@@ -55,9 +55,10 @@ describe('DmpActionsComponent', () => {
         NoopAnimationsModule,
         TranslateTestingModule,
         FormTestingModule,
-        LivePreviewModule,
+        LivePreviewComponent,
+        DmpActionsComponent,
+        SaveVersionDialogComponent,
       ],
-      declarations: [DmpActionsComponent, SaveVersionDialogComponent],
       providers: [
         provideMockStore({ initialState }),
         { provide: BackendService, useValue: backendSpy },

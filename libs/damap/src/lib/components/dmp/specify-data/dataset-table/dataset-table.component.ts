@@ -7,13 +7,47 @@ import { DatasetDialogComponent } from '../dataset-dialog/dataset-dialog.compone
 import { FILE_SIZES } from '../data-specs';
 import { MatDialog } from '@angular/material/dialog';
 import { DatasetInformationComponent } from '../dataset-information/dataset-information.component';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { StepIntroComponent } from '../../../../widgets/step-intro/step-intro.component';
+import {
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { DatasetSourcePipe } from '../../../../pipes/dataset-source/dataset-source.pipe';
+import { LimitStringPipe } from '../../../../pipes/limit-string/limitString.pipe';
 
 @Component({
   selector: 'app-dataset-table',
   templateUrl: './dataset-table.component.html',
   styleUrls: ['./dataset-table.component.css'],
-  standalone: false,
+  imports: [
+    StepIntroComponent,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatIconButton,
+    MatIcon,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    TranslateModule,
+    DatasetSourcePipe,
+    LimitStringPipe,
+  ],
 })
 export class DatasetTableComponent {
   readonly FILE_SIZES = FILE_SIZES;

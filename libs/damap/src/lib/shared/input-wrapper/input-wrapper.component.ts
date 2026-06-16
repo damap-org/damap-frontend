@@ -1,12 +1,38 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { UntypedFormControl, Validators } from '@angular/forms';
-import { MatFormFieldAppearance } from '@angular/material/form-field';
+import {
+  UntypedFormControl,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import {
+  MatFormFieldAppearance,
+  MatFormField,
+  MatLabel,
+  MatPrefix,
+  MatHint,
+  MatError,
+} from '@angular/material/form-field';
+import { TooltipComponent } from '../../widgets/tooltip/tooltip.component';
+import { MatInput } from '@angular/material/input';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-input-wrapper [label] [control]',
   templateUrl: './input-wrapper.component.html',
   styleUrls: ['./input-wrapper.component.css'],
-  standalone: false,
+  imports: [
+    MatFormField,
+    MatLabel,
+    TooltipComponent,
+    MatPrefix,
+    MatInput,
+    FormsModule,
+    ReactiveFormsModule,
+    MatHint,
+    MatError,
+    TranslateModule,
+  ],
 })
 export class InputWrapperComponent implements OnInit {
   @Input() label: string;

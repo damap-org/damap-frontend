@@ -3,17 +3,50 @@ import {
   UntypedFormArray,
   UntypedFormControl,
   UntypedFormGroup,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
 
 import { Agreement } from '../../../domain/enum/agreement.enum';
 import { ComplianceType } from '../../../domain/enum/compliance-type.enum';
 import { SecurityMeasure } from '../../../domain/enum/security-measure.enum';
+import { MatLabel, MatFormField, MatHint } from '@angular/material/form-field';
+import { MatCard, MatCardContent } from '@angular/material/card';
+import { CrisTagComponent } from '../../../widgets/cris-tag/cris-tag.component';
+import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/autocomplete';
+import { TooltipComponent } from '../../../widgets/tooltip/tooltip.component';
+import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
+import { EthicalAspectsComponent } from './ethical-aspects/ethical-aspects.component';
+import { KeyValuePipe } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dmp-legal-ethical-aspects',
   templateUrl: './legal-ethical-aspects.component.html',
   styleUrls: ['./legal-ethical-aspects.component.css'],
-  standalone: false,
+  imports: [
+    MatLabel,
+    MatCard,
+    MatCardContent,
+    FormsModule,
+    ReactiveFormsModule,
+    CrisTagComponent,
+    MatRadioGroup,
+    MatRadioButton,
+    MatCheckbox,
+    MatFormField,
+    MatSelect,
+    MatOption,
+    TooltipComponent,
+    TextareaWrapperComponent,
+    MatHint,
+    EthicalAspectsComponent,
+    KeyValuePipe,
+    TranslateModule,
+  ],
 })
 export class LegalEthicalAspectsComponent {
   @Input() dmpForm: UntypedFormGroup;

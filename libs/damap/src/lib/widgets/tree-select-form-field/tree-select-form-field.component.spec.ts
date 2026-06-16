@@ -36,8 +36,8 @@ describe('TreeSelectFormFieldComponent', () => {
         MatIconModule,
         TranslateTestingModule,
         NoopAnimationsModule,
+        TreeSelectFormFieldComponent,
       ],
-      declarations: [TreeSelectFormFieldComponent],
     }).compileComponents();
     fixture = TestBed.createComponent(TreeSelectFormFieldComponent);
     component = fixture.componentInstance;

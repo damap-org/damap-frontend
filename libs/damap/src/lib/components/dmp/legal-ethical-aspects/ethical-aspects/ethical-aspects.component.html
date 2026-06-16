@@ -20,36 +20,37 @@
           </mat-radio-button>
         </mat-radio-group>
       </div>
-      <app-info-message
-        *ngIf="legalEthicalStep.controls.humanParticipants.value">
-        {{ "dmp.steps.legal.info.humanParticipants.prefix" | translate }}
-        <a
-          href="{{
-            'dmp.steps.legal.info.humanParticipants.researchEthicsCoordination.link'
-              | translate
-          }}"
-          target="_blank"
-          rel="noopener"
-          >{{
-            "dmp.steps.legal.info.humanParticipants.researchEthicsCoordination.text"
-              | translate
-          }}</a
-        >
-        {{ "dmp.steps.legal.info.humanParticipants.middle" | translate }}
-        <a
-          href="{{
-            'dmp.steps.legal.info.humanParticipants.researchEthics.link'
-              | translate
-          }}"
-          target="_blank"
-          rel="noopener"
-          >{{
-            "dmp.steps.legal.info.humanParticipants.researchEthics.text"
-              | translate
-          }}</a
-        >
-        .
-      </app-info-message>
+      @if (legalEthicalStep.controls.humanParticipants.value) {
+        <app-info-message>
+          {{ "dmp.steps.legal.info.humanParticipants.prefix" | translate }}
+          <a
+            href="{{
+              'dmp.steps.legal.info.humanParticipants.researchEthicsCoordination.link'
+                | translate
+            }}"
+            target="_blank"
+            rel="noopener"
+            >{{
+              "dmp.steps.legal.info.humanParticipants.researchEthicsCoordination.text"
+                | translate
+            }}</a
+          >
+          {{ "dmp.steps.legal.info.humanParticipants.middle" | translate }}
+          <a
+            href="{{
+              'dmp.steps.legal.info.humanParticipants.researchEthics.link'
+                | translate
+            }}"
+            target="_blank"
+            rel="noopener"
+            >{{
+              "dmp.steps.legal.info.humanParticipants.researchEthics.text"
+                | translate
+            }}</a
+          >
+          .
+        </app-info-message>
+      }
 
       <label id="ethicalIssues">
         {{ "dmp.steps.legal.question.ethicalIssues" | translate }}
@@ -70,20 +71,24 @@
           </mat-radio-button>
         </mat-radio-group>
       </div>
-      <app-info-message *ngIf="legalEthicalStep.controls.ethicalIssues.value">
-        {{ "dmp.steps.legal.info.ethicalIssues.text" | translate }}
-        <a
-          href="{{
-            'dmp.steps.legal.info.ethicalIssues.researchEthics.link' | translate
-          }}"
-          target="_blank"
-          rel="noopener"
-          >{{
-            "dmp.steps.legal.info.ethicalIssues.researchEthics.text" | translate
-          }}</a
-        >
-        .
-      </app-info-message>
+      @if (legalEthicalStep.controls.ethicalIssues.value) {
+        <app-info-message>
+          {{ "dmp.steps.legal.info.ethicalIssues.text" | translate }}
+          <a
+            href="{{
+              'dmp.steps.legal.info.ethicalIssues.researchEthics.link'
+                | translate
+            }}"
+            target="_blank"
+            rel="noopener"
+            >{{
+              "dmp.steps.legal.info.ethicalIssues.researchEthics.text"
+                | translate
+            }}</a
+          >
+          .
+        </app-info-message>
+      }
 
       <label id="committeeReviewed">
         {{ "dmp.steps.legal.question.committeeReviewed.prefix" | translate }}
@@ -115,16 +120,17 @@
           </mat-radio-button>
         </mat-radio-group>
       </div>
-      <div
-        *ngIf="
-          legalEthicalStep.controls.committeeReviewed.value &&
-          ethicalReportEnabled
-        ">
-        <app-input-wrapper
-          [label]="'dmp.steps.legal.question.ethicalIssueReport'"
-          [maxLength]="255"
-          [control]="ethicalIssuesReport"></app-input-wrapper>
-      </div>
+      @if (
+        legalEthicalStep.controls.committeeReviewed.value &&
+        ethicalReportEnabled
+      ) {
+        <div>
+          <app-input-wrapper
+            [label]="'dmp.steps.legal.question.ethicalIssueReport'"
+            [maxLength]="255"
+            [control]="ethicalIssuesReport"></app-input-wrapper>
+        </div>
+      }
       <app-info-message>
         {{ "dmp.steps.legal.info.committeeReviewed.prefix" | translate }}
         <a

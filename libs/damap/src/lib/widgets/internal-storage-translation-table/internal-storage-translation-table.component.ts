@@ -7,14 +7,27 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import {
   InternalStorage,
   InternalStorageTranslation,
 } from '../../domain/internal-storage';
-import { MatTableDataSource } from '@angular/material/table';
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+  MatNoDataRow,
+} from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, MatSortHeader } from '@angular/material/sort';
 import { BackendService } from '../../services/backend.service';
 import { FeedbackService } from '../../services/feedback.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -22,13 +35,39 @@ import { InternalStorageDialogComponent } from '../../components/admin/internal-
 import { InternalStorageTranslationDialogComponent } from '../../components/admin/internal-storage-translation-dialog/internal-storage-translation-dialog.component';
 import { DeleteWarningDialogComponent } from '../delete-warning-dialog/delete-warning-dialog.component';
 import { DeleteStorageTranslationWarningDialogComponent } from './dialog/delete-storage-translation-warning-dialog.component';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { MatIconButton } from '@angular/material/button';
+import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
+import { MatIcon } from '@angular/material/icon';
+import { MatDivider } from '@angular/material/divider';
 
 @Component({
   selector: 'damap-internal-storage-translation-table',
   templateUrl: './internal-storage-translation-table.component.html',
   styleUrls: ['./internal-storage-translation-table.component.css'],
-  standalone: false,
+  imports: [
+    MatTable,
+    MatSort,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatSortHeader,
+    MatCellDef,
+    MatCell,
+    MatIconButton,
+    MatMenuTrigger,
+    MatIcon,
+    MatMenu,
+    MatMenuItem,
+    MatDivider,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatNoDataRow,
+    MatPaginator,
+    TranslateModule,
+  ],
 })
 export class InternalStorageTranslationTableComponent
   implements AfterViewInit, OnChanges

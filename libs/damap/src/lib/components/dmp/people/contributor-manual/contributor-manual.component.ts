@@ -3,17 +3,37 @@ import {
   UntypedFormControl,
   UntypedFormGroup,
   Validators,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
 
 import { IdentifierType } from '../../../../domain/enum/identifier-type.enum';
 import { notEmptyValidator } from '../../../../validators/not-empty.validator';
 import { orcidValidator } from '../../../../validators/orcid.validator';
+import { MatLabel } from '@angular/material/form-field';
+import { MatCard, MatCardContent } from '@angular/material/card';
+import { InputWrapperComponent } from '../../../../shared/input-wrapper/input-wrapper.component';
+import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { NgClass } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-contributor-manual',
   templateUrl: './contributor-manual.component.html',
   styleUrls: ['./contributor-manual.component.css'],
-  standalone: false,
+  imports: [
+    MatLabel,
+    MatCard,
+    MatCardContent,
+    FormsModule,
+    ReactiveFormsModule,
+    InputWrapperComponent,
+    MatButton,
+    MatIcon,
+    NgClass,
+    TranslateModule,
+  ],
 })
 export class ContributorManualComponent {
   @Output() contactPerson = new EventEmitter<any>();

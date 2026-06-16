@@ -1,29 +1,19 @@
 // Modules
 export * from './lib/damap.module';
 export * from './lib/testing/translate-testing/translate-testing.module';
-export * from './lib/widgets/env-banner/env-banner.module';
+
 export * from './lib/widgets/env-banner/env-banner.component';
 export * from './lib/components/dashboard';
 export * from './lib/components/dmp/dmp.module';
 
 export * from './lib/store/damap-store.module';
-export * from './lib/store/reducers/login.reducer';
-export * from './lib/store/actions/login.actions';
 export * from './lib/store/effects/dmp.effects';
 export * from './lib/store/selectors/dmp.selectors';
 export * from './lib/store/reducers/dmp.reducer';
 export * from './lib/store/actions/dmp.actions';
-export * from './lib/store/effects/repository.effects';
-export * from './lib/store/selectors/repository.selectors';
-export * from './lib/store/reducers/repository.reducer';
-export * from './lib/store/actions/repository.actions';
 export * from './lib/store/selectors/form.selectors';
 export * from './lib/store/reducers/form.reducer';
 export * from './lib/store/actions/form.actions';
-export * from './lib/store/effects/internal-storage.effects';
-export * from './lib/store/selectors/internal-storage.selectors';
-export * from './lib/store/reducers/internal-storage.reducer';
-export * from './lib/store/actions/internal-storage.actions';
 
 // Services & Guards
 export * from './lib/guards/auth.guard';

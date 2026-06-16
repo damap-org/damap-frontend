@@ -16,9 +16,11 @@
     </button>
   </div>
 </form>
-<app-error-message
-  *ngIf="result === null"
-  message="dmp.steps.data.specify.doi.notFound"></app-error-message>
-<app-error-message
-  *ngIf="duplicate"
-  message="validation.error.doiDuplicate"></app-error-message>
+@if (result === null) {
+  <app-error-message
+    message="dmp.steps.data.specify.doi.notFound"></app-error-message>
+}
+@if (duplicate) {
+  <app-error-message
+    message="validation.error.doiDuplicate"></app-error-message>
+}

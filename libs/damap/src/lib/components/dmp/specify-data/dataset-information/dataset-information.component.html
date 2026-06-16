@@ -4,42 +4,53 @@
 
 <mat-dialog-content id="datasetDialog">
   <div>
-    <div class="info-section" *ngIf="data.sourceType === datasetSource.NEW">
-      <span class="label"
-        >{{ "dmp.steps.data.specify.dialog.type" | translate }}:</span
-      >
-      <span class="split-text">{{ getDataType(dataset) }}</span>
-    </div>
+    @if (data.sourceType === datasetSource.NEW) {
+      <div class="info-section">
+        <span class="label"
+          >{{ "dmp.steps.data.specify.dialog.type" | translate }}:</span
+        >
+        <span class="split-text">{{ getDataType(dataset) }}</span>
+      </div>
+    }
 
-    <div class="info-section" *ngIf="data.sourceType === datasetSource.NEW">
-      <span class="label"
-        >{{ "dmp.steps.data.specify.dialog.fileFormat" | translate }}:</span
-      >
-      <span class="split-text">{{ dataset.fileFormat }}</span>
-    </div>
+    @if (data.sourceType === datasetSource.NEW) {
+      <div class="info-section">
+        <span class="label"
+          >{{ "dmp.steps.data.specify.dialog.fileFormat" | translate }}:</span
+        >
+        <span class="split-text">{{ dataset.fileFormat }}</span>
+      </div>
+    }
 
-    <div class="info-section" *ngIf="data.sourceType === datasetSource.NEW">
-      <span class="label"
-        >{{ "dmp.steps.data.specify.dialog.size" | translate }}:
-      </span>
-      <span>{{ mapFileSize(dataset.size) }}</span>
-    </div>
+    @if (data.sourceType === datasetSource.NEW) {
+      <div class="info-section">
+        <span class="label"
+          >{{ "dmp.steps.data.specify.dialog.size" | translate }}:
+        </span>
+        <span>{{ mapFileSize(dataset.size) }}</span>
+      </div>
+    }
 
-    <div class="info-section" *ngIf="data.sourceType === datasetSource.REUSED">
-      <span class="label"
-        >{{ "dmp.steps.data.specify.dialog.source" | translate }}:
-      </span>
-      <span class="split-text"
-        >{{ dataset.datasetId?.type }} {{ dataset.datasetId?.identifier }}</span
-      >
-    </div>
+    @if (data.sourceType === datasetSource.REUSED) {
+      <div class="info-section">
+        <span class="label"
+          >{{ "dmp.steps.data.specify.dialog.source" | translate }}:
+        </span>
+        <span class="split-text"
+          >{{ dataset.datasetId?.type }}
+          {{ dataset.datasetId?.identifier }}</span
+        >
+      </div>
+    }
 
-    <div class="info-section" *ngIf="data.sourceType === datasetSource.REUSED">
-      <span class="label"
-        >{{ "dmp.steps.data.specify.dialog.license" | translate }}:
-      </span>
-      <p class="split-text">{{ dataset.license }}</p>
-    </div>
+    @if (data.sourceType === datasetSource.REUSED) {
+      <div class="info-section">
+        <span class="label"
+          >{{ "dmp.steps.data.specify.dialog.license" | translate }}:
+        </span>
+        <p class="split-text">{{ dataset.license }}</p>
+      </div>
+    }
   </div>
 
   <div class="description-section">
@@ -50,14 +61,18 @@
   </div>
 
   <div class="technical-resources">
-    <div
-      class="resource-box"
-      *ngFor="let resource of dataset.technicalResources; let i = index">
-      <span class="resource-title">{{
-        "Technical Resource " + (i + 1) + ":"
-      }}</span>
-      <p class="split-text">{{ resource.name }}</p>
-    </div>
+    @for (
+      resource of dataset.technicalResources;
+      track $index;
+      let i = $index
+    ) {
+      <div class="resource-box">
+        <span class="resource-title">{{
+          "Technical Resource " + (i + 1) + ":"
+        }}</span>
+        <p class="split-text">{{ resource.name }}</p>
+      </div>
+    }
   </div>
 </mat-dialog-content>
 

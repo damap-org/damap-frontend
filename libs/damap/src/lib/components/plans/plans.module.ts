@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { DmpTableModule } from '../../widgets/dmp-table/dmp-table.module';
-import { ErrorMessageModule } from '../../widgets/error-message/error-message.module';
+
 import { ExportWarningModule } from '../../widgets/export-warning-dialog/export-warning.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -20,8 +19,6 @@ import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
     CommonModule,
     TranslateModule,
     RouterModule,
-    DmpTableModule,
-    ErrorMessageModule,
     ExportWarningModule,
     // Materials
     MatIconModule,
@@ -32,17 +29,14 @@ import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
     MatPaginatorModule,
     MatSelectModule,
     InfoCardComponent,
+    PlansComponent,
   ],
-  declarations: [PlansComponent],
   exports: [
     CommonModule,
     TranslateModule,
     RouterModule,
-    DmpTableModule,
-    ErrorMessageModule,
     PlansComponent,
     ExportWarningModule,
-
     // Materials
     MatIconModule,
     MatButtonModule,

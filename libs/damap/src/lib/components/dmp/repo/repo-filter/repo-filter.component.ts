@@ -4,13 +4,22 @@ import {
   MAT_DIALOG_DATA,
   MatDialog,
   MatDialogRef,
+  MatDialogTitle,
+  MatDialogContent,
+  MatDialogActions,
+  MatDialogClose,
 } from '@angular/material/dialog';
+import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { TranslateModule } from '@ngx-translate/core';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { TreeSelectFormFieldComponent } from '../../../../widgets/tree-select-form-field/tree-select-form-field.component';
 
 @Component({
   selector: 'app-repo-filter',
   templateUrl: './repo-filter.component.html',
   styleUrls: ['./repo-filter.component.css'],
-  standalone: false,
+  imports: [MatButton, MatIcon, TranslateModule],
 })
 export class RepoFilterComponent {
   @Input() filters: { [key: string]: { id: string; label: string }[] };
@@ -41,7 +50,16 @@ export class RepoFilterComponent {
 @Component({
   selector: 'filter-dialog',
   templateUrl: './filter-dialog.html',
-  standalone: false,
+  imports: [
+    MatDialogTitle,
+    CdkScrollable,
+    MatDialogContent,
+    TreeSelectFormFieldComponent,
+    MatDialogActions,
+    MatButton,
+    MatDialogClose,
+    TranslateModule,
+  ],
 })
 export class FilterDialogComponent {
   readonly FILTER = REPO_FILTERS;

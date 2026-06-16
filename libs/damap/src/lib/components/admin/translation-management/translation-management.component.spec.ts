@@ -58,7 +58,6 @@ describe('TranslationManagementComponent', () => {
     backendServiceMock.getLanguages.and.returnValue(of(['en']));
     backendServiceMock.getTranslations.and.returnValue(of(sampleTranslations));
     await TestBed.configureTestingModule({
-      declarations: [TranslationManagementComponent],
       imports: [
         BrowserAnimationsModule,
         TranslateModule.forRoot(),
@@ -68,6 +67,7 @@ describe('TranslationManagementComponent', () => {
         MatButtonModule,
         MatIconModule,
         MatTooltipModule,
+        TranslationManagementComponent,
       ],
       providers: [
         { provide: BackendService, useValue: backendServiceMock },
