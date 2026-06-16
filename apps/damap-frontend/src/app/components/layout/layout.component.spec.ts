@@ -2,7 +2,8 @@ import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { By } from '@angular/platform-browser';
@@ -96,6 +97,8 @@ describe('LayoutComponent', () => {
       declarations: [LayoutComponent, DummyComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
         { provide: OAuthService, useValue: oauthSpy },
         { provide: AuthService, useValue: authServiceSpy },
         { provide: ConfigService, useValue: configSpy },
