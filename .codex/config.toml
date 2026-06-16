@@ -1,0 +1,6 @@
+[mcp_servers.angular-cli]
+command = "sh"
+args = [
+    "-c",
+    "npx -y @angular/cli mcp"
+]
