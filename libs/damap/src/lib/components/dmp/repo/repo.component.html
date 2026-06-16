@@ -71,7 +71,7 @@
   </div>
 }
 
-@if (recommended$ | async; as recommended) {
+@if (recommended(); as recommended) {
   @if (selectedView === "primaryView") {
     <div>
       <mat-card class="repository-recommendations-card card-shadow">
@@ -79,10 +79,13 @@
           <ng-template mat-tab-label>
             {{ "dmp.steps.repositories.recommended" | translate }}
           </ng-template>
-          @if ((recommended | repo: repoStep.value).length) {
+          @if (
+            recommendedLoaded() !== LoadingState.LOADED ||
+            (recommended | repo: repoStep.value).length
+          ) {
             <app-repo-recommendation
               [recommended]="recommended | repo: repoStep.value"
-              [loaded]="recommendedLoaded$ | async"
+              [loaded]="recommendedLoaded()"
               (repositoryToAdd)="addRepository($event)">
             </app-repo-recommendation>
           } @else {
@@ -104,10 +107,10 @@
       </ng-template>
       <div class="tab-content">
         <app-repo-table
-          [loaded]="repositoriesLoaded$ | async"
-          [filters]="filters$ | async"
+          [loaded]="repositoriesLoaded()"
+          [filters]="filters()"
           (filterChange)="filterRepositories($event)"
-          [repositories]="repositories$ | async"
+          [repositories]="repositories()"
           [selectedRepos]="repoStep.value"
           (repositoryToAdd)="addRepository($event)"
           (repositoryDetails)="getRepositoryDetails($event)"></app-repo-table>

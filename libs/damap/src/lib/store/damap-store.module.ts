@@ -5,7 +5,6 @@ import { config, reducers } from './main';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { DmpEffects } from './effects/dmp.effects';
-import { RepositoryEffects } from './effects/repository.effects';
 import { APP_ENV } from '../constants';
 
 @NgModule({
@@ -13,7 +12,7 @@ import { APP_ENV } from '../constants';
   imports: [
     CommonModule,
     StoreModule.forFeature('damap', reducers, config),
-    EffectsModule.forFeature([DmpEffects, RepositoryEffects]),
+    EffectsModule.forFeature([DmpEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: APP_ENV.production }),
   ],
 })
