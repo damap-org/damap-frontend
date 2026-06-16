@@ -33,6 +33,6 @@ app-dataset-table {
 }
 
 .button-color-primary {
-  background-color: var(--mdc-theme-primary);
-  color: var(--mdc-theme-on-primary);
+  background-color: var(--mat-theme-primary);
+  color: var(--mat-theme-on-primary);
 }

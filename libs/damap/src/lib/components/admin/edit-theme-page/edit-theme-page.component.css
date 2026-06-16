@@ -65,20 +65,20 @@
 
 .color-group {
   flex: 1 1 33.33%;
-  border: 1px solid var(--mdc-theme-outline-variant);
+  border: 1px solid var(--mat-theme-outline-variant);
   border-radius: 16px;
   padding: 20px;
-  background: var(--mdc-theme-surface);
+  background: var(--mat-theme-surface);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .color-group h3 {
   margin: 0 0 16px 0;
-  color: var(--mdc-theme-on-surface);
+  color: var(--mat-theme-on-surface);
   font-size: var(--mat-sys-title-medium-size);
   font-weight: var(--mat-sys-title-medium-weight);
   padding-bottom: 12px;
-  border-bottom: 1px solid var(--mdc-theme-outline-variant);
+  border-bottom: 1px solid var(--mat-theme-outline-variant);
 }
 
 .color-swatch {
@@ -88,7 +88,7 @@
   height: 56px;
   margin-bottom: 8px;
   border-radius: 8px;
-  border: 1px solid var(--mdc-theme-outline-variant);
+  border: 1px solid var(--mat-theme-outline-variant);
   font-size: var(--mat-sys-label-large-size);
   font-weight: var(--mat-sys-label-large-weight);
   text-align: center;
@@ -99,33 +99,33 @@
 }
 
 .color-swatch-primary {
-  background-color: var(--mdc-theme-primary);
-  color: var(--mdc-theme-on-primary);
+  background-color: var(--mat-theme-primary);
+  color: var(--mat-theme-on-primary);
 }
 
 .color-swatch-primary-container {
-  background-color: var(--mdc-theme-primary-container);
-  color: var(--mdc-theme-on-primary-container);
+  background-color: var(--mat-theme-primary-container);
+  color: var(--mat-theme-on-primary-container);
 }
 
 .color-swatch-secondary {
-  background-color: var(--mdc-theme-secondary);
-  color: var(--mdc-theme-on-secondary);
+  background-color: var(--mat-theme-secondary);
+  color: var(--mat-theme-on-secondary);
 }
 
 .color-swatch-secondary-container {
-  background-color: var(--mdc-theme-secondary-container);
-  color: var(--mdc-theme-on-secondary-container);
+  background-color: var(--mat-theme-secondary-container);
+  color: var(--mat-theme-on-secondary-container);
 }
 
 .color-swatch-tertiary {
-  background-color: var(--mdc-theme-tertiary);
-  color: var(--mdc-theme-on-tertiary);
+  background-color: var(--mat-theme-tertiary);
+  color: var(--mat-theme-on-tertiary);
 }
 
 .color-swatch-tertiary-container {
-  background-color: var(--mdc-theme-tertiary-container);
-  color: var(--mdc-theme-on-tertiary-container);
+  background-color: var(--mat-theme-tertiary-container);
+  color: var(--mat-theme-on-tertiary-container);
 }
 @media (max-width: 1200px) {
   .color-preview-section > div {

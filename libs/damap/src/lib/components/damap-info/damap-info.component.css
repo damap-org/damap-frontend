@@ -1,6 +1,6 @@
 h2 {
   font-weight: bold;
-  color: var(--mdc-theme-primary);
+  color: var(--mat-theme-primary);
 }
 
 .info-card {
@@ -13,7 +13,7 @@ h2 {
 }
 
 .mat-list-item::marker {
-  color: var(--mdc-theme-primary);
+  color: var(--mat-theme-primary);
 }
 
 .customLink {

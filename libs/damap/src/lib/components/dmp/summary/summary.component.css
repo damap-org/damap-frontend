@@ -95,15 +95,15 @@ td a {
 }
 
 .count.count-pass {
-  --mdc-chip-label-text-color: #94c11c;
+  --mat-chip-label-text-color: #94c11c;
 }
 
 .count.count-fail {
-  --mdc-chip-label-text-color: var(--mat-sys-error);
+  --mat-chip-label-text-color: var(--mat-sys-error);
 }
 
 .count.count-warn {
-  --mdc-chip-label-text-color: #bf6000;
+  --mat-chip-label-text-color: #bf6000;
 }
 
 /* Results list ---------------------------------------------------------- */

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SafeUrl } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
@@ -25,16 +25,16 @@ import { ImageThemeService } from '../../services/image-theme.service';
   standalone: true,
 })
 export class LandingPageComponent implements OnInit {
+  private translate = inject(TranslateService);
+  private imageThemeService = inject(ImageThemeService);
+  private configService = inject(ConfigService);
+
   public backendDown$: Observable<boolean>;
   logoUrl: SafeUrl;
   backgroundUrl: string;
   graphicUrl: SafeUrl;
 
-  constructor(
-    private translate: TranslateService,
-    private imageThemeService: ImageThemeService,
-    private configService: ConfigService,
-  ) {
+  constructor() {
     this.backgroundUrl = this.imageThemeService.getImageUrl(
       IMAGE_KEYS.LANDING_PAGE_BACKGROUND,
     );

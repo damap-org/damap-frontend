@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
@@ -10,12 +10,12 @@ import { MatIcon } from '@angular/material/icon';
   imports: [MatIcon],
 })
 export class FlipCardComponent {
+  private router = inject(Router);
+
   @Input() frontContent: string;
   @Input() backContent: string;
   @Input() navigateRoute: string;
   @Input() iconCard: string;
-
-  constructor(private router: Router) {}
 
   navigateTo() {
     if (this.navigateRoute) {

@@ -1,11 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import {
   Observable,
   Subject,
@@ -52,6 +45,9 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
 })
 export class ProjectListComponent implements OnInit, AfterViewInit {
+  private backendService = inject(BackendService);
+  dialog = inject(MatDialog);
+
   @Output() projectToSet = new EventEmitter<Project>();
   private _selectedProject: Project;
 
@@ -69,11 +65,6 @@ export class ProjectListComponent implements OnInit, AfterViewInit {
 
   private searchTerms = new Subject<string>();
   searchResult$: Observable<SearchResult<Project>>;
-
-  constructor(
-    private backendService: BackendService,
-    public dialog: MatDialog,
-  ) {}
 
   ngOnInit(): void {
     this.searchTerms

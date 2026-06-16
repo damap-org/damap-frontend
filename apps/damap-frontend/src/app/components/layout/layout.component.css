@@ -168,7 +168,7 @@ mat-nav-list {
 }
 
 .mm-navbars-top a {
-  color: var(--mdc-theme-on-primary);
+  color: var(--mat-theme-on-primary);
 }
 
 .mm-navbars-top {
@@ -193,8 +193,8 @@ mat-nav-list {
   padding: 0;
   border: none;
   position: relative;
-  background-color: var(--mdc-theme-primary);
-  color: var(--mdc-theme-on-primary);
+  background-color: var(--mat-theme-primary);
+  color: var(--mat-theme-on-primary);
   width: 100%;
   float: left;
   clear: both;
@@ -295,7 +295,7 @@ mat-nav-list {
 }
 
 .mainHeaderLeft {
-  background-color: var(--mdc-theme-secondary-container);
+  background-color: var(--mat-theme-secondary-container);
   padding: 5px;
 }
 

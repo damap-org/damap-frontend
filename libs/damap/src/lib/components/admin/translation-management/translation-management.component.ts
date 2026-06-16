@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   LanguageSummary,
   TranslationEntry,
@@ -44,6 +44,12 @@ import { NgClass, UpperCasePipe } from '@angular/common';
   ],
 })
 export class TranslationManagementComponent implements OnInit {
+  private backendService = inject(BackendService);
+  private feedbackService = inject(FeedbackService);
+  private dialog = inject(MatDialog);
+  private translationLoader = inject(TranslationLoaderService);
+  private translate = inject(TranslateService);
+
   pageSize = 5;
   pageIndex = 0;
 
@@ -67,14 +73,6 @@ export class TranslationManagementComponent implements OnInit {
   loading = false;
   saving = false;
   languageLoading = false;
-
-  constructor(
-    private backendService: BackendService,
-    private feedbackService: FeedbackService,
-    private dialog: MatDialog,
-    private translationLoader: TranslationLoaderService,
-    private translate: TranslateService,
-  ) {}
 
   ngOnInit(): void {
     this.searchControl.valueChanges

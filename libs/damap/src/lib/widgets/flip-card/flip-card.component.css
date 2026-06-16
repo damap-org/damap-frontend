@@ -23,7 +23,7 @@
 }
 
 .flip-card:focus {
-  outline: 2px solid var(--mdc-theme-primary);
+  outline: 2px solid var(--mat-theme-primary);
 }
 
 .flip-card-front,
@@ -41,15 +41,15 @@
 }
 
 .flip-card-front {
-  background-color: var(--mdc-theme-primary);
-  color: var(--mdc-theme-on-primary);
+  background-color: var(--mat-theme-primary);
+  color: var(--mat-theme-on-primary);
   z-index: 2;
   transform: rotateY(0deg);
 }
 
 .flip-card-back {
   background-color: white;
-  outline: 2px solid var(--mdc-theme-primary);
+  outline: 2px solid var(--mat-theme-primary);
   transform: rotateY(180deg);
   display: flex;
   justify-content: center;

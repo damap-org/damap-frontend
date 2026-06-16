@@ -33,6 +33,12 @@ import { AsyncPipe } from '@angular/common';
   ],
 })
 export class PlansComponent implements OnInit {
+  private backendService = inject(BackendService);
+  private dmpApi = inject(DmpApi);
+  private authService = inject(AuthService);
+  private formService = inject(FormService);
+  private dialog = inject(MatDialog);
+
   private readonly dmpStore = inject(DmpStore);
 
   readonly dmps = this.dmpStore.dmps;
@@ -43,13 +49,7 @@ export class PlansComponent implements OnInit {
 
   allDmps$: Observable<DmpListItem[]>;
 
-  constructor(
-    private backendService: BackendService,
-    private dmpApi: DmpApi,
-    private authService: AuthService,
-    private formService: FormService,
-    private dialog: MatDialog,
-  ) {
+  constructor() {
     this.dmpForm = this.formService.dmpForm;
   }
 

@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   UntypedFormControl,
   UntypedFormGroup,
@@ -46,19 +46,20 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
 })
 export class InternalStorageTranslationDialogComponent {
+  dialogRef = inject<MatDialogRef<InternalStorageTranslationDialogComponent>>(MatDialogRef);
+  private formService = inject(FormService);
+  data = inject<{
+    storageId: number;
+    translation: InternalStorageTranslation;
+    mode: string;
+}>(MAT_DIALOG_DATA);
+
   public mode = 'add';
   storageTranslation: UntypedFormGroup;
 
-  constructor(
-    public dialogRef: MatDialogRef<InternalStorageTranslationDialogComponent>,
-    private formService: FormService,
-    @Inject(MAT_DIALOG_DATA)
-    public data: {
-      storageId: number;
-      translation: InternalStorageTranslation;
-      mode: string;
-    },
-  ) {
+  constructor() {
+    const data = this.data;
+
     this.storageTranslation =
       this.formService.createInternalStorageTranslationFormGroup();
 

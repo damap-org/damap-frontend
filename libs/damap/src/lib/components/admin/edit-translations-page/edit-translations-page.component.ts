@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AdminModule } from '../admin.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -20,7 +20,8 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
 })
 export class EditTranslationsPageComponent {
-  constructor(private router: Router) {}
+  private router = inject(Router);
+
 
   navigateBack(): void {
     this.router.navigate(['/admin']);

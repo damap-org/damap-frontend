@@ -12,7 +12,6 @@ module.exports = function (config) {
       require('karma-junit-reporter'),
       require('karma-coverage'),
       require('karma-spec-reporter'),
-      require('@angular-devkit/build-angular/plugins/karma'),
     ],
     client: {
       jasmine: {

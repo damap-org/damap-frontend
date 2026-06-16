@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Banner } from '../../domain/banner';
 import { BackendService } from '../../services/backend.service';
 import {
@@ -24,7 +24,8 @@ import { MatIcon } from '@angular/material/icon';
   ],
 })
 export class AppBannerComponent implements OnInit {
-  constructor(private backendService: BackendService) {}
+  private backendService = inject(BackendService);
+
 
   banner: Banner | undefined;
 
