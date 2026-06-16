@@ -1,27 +1,28 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 import { AuthService } from '../../../auth/auth.service';
 import { BackendService } from '../../../services/backend.service';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { DmpStore } from '../../../data-access/dmp.store';
 import { RouterModule } from '@angular/router';
 import { TranslateTestingModule } from '../../../testing/translate-testing/translate-testing.module';
 import { VersionListComponent } from './version-list.component';
 import { completeDmp } from '../../../mocks/dmp-mocks';
-import { selectDmpById } from '../../../store/selectors/dmp.selectors';
+import { of } from 'rxjs';
 
 describe('VersionListComponent', () => {
   let component: VersionListComponent;
   let fixture: ComponentFixture<VersionListComponent>;
   let backendSpy;
-  const initialState = {
-    dmps: { entities: { 1: completeDmp } },
-  };
+  let dmpStoreSpy;
   const authSpy = jasmine.createSpyObj('AuthService', ['isAdmin']);
 
   beforeEach(waitForAsync(() => {
     authSpy.isAdmin.and.returnValue(false);
     backendSpy = jasmine.createSpyObj('BackendService', ['getDmpVersions']);
+    backendSpy.getDmpVersions.and.returnValue(of([]));
+    dmpStoreSpy = jasmine.createSpyObj('DmpStore', ['loadDmps', 'dmpById']);
+    dmpStoreSpy.dmpById.and.returnValue(completeDmp);
     TestBed.configureTestingModule({
       imports: [
         RouterModule.forRoot([]),
@@ -32,12 +33,7 @@ describe('VersionListComponent', () => {
       providers: [
         { provide: AuthService, useValue: authSpy },
         { provide: BackendService, useValue: backendSpy },
-        provideMockStore({
-          initialState,
-          selectors: [
-            { selector: selectDmpById({ id: 1 }), value: completeDmp },
-          ],
-        }),
+        { provide: DmpStore, useValue: dmpStoreSpy },
       ],
     }).compileComponents();
   }));
@@ -45,7 +41,6 @@ describe('VersionListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(VersionListComponent);
     component = fixture.componentInstance;
-    TestBed.inject(MockStore);
     fixture.detectChanges();
   });
 

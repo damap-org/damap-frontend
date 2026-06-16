@@ -7,7 +7,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateTestingModule } from '../../testing/translate-testing/translate-testing.module';
-import { provideMockStore } from '@ngrx/store/testing';
 
 describe('ExportWarningDialogComponent', () => {
   let component: ExportWarningDialogComponent;
@@ -23,10 +22,7 @@ describe('ExportWarningDialogComponent', () => {
         NoopAnimationsModule,
         ExportWarningDialogComponent,
       ],
-      providers: [
-        provideMockStore(),
-        { provide: MatDialogRef, useValue: fakeMatDialogRef },
-      ],
+      providers: [{ provide: MatDialogRef, useValue: fakeMatDialogRef }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
     fixture = TestBed.createComponent(ExportWarningDialogComponent);
