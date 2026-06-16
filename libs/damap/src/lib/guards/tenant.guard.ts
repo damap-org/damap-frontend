@@ -9,7 +9,6 @@ export class TenantGuard implements CanActivate {
   private authService = inject(AuthService);
   private router = inject(Router);
 
-
   canActivate(): boolean | UrlTree {
     if (this.authService.isUserAffiliatedWithATenant()) {
       return true;

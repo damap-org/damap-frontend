@@ -1,4 +1,12 @@
-import { Component, computed, effect, Input, OnInit, signal, inject } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  Input,
+  OnInit,
+  signal,
+  inject,
+} from '@angular/core';
 import { Dmp } from '../../../domain/dmp';
 import { DmpFormStore } from '../../../data-access/dmp-form.store';
 import { Contributor } from '../../../domain/contributor';

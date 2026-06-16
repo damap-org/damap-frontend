@@ -1,4 +1,13 @@
-import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild, inject } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+  inject,
+} from '@angular/core';
 
 import {
   InternalStorage,
@@ -68,7 +77,6 @@ export class InternalStorageTranslationTableComponent
   private feedbackService = inject(FeedbackService);
   private dialog = inject(MatDialog);
   private translateService = inject(TranslateService);
-
 
   @Input() internalStorageTranslations: InternalStorageTranslation[] = [];
   @Input() selectedInternalStorageId: number;

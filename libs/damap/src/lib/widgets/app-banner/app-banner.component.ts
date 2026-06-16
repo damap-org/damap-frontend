@@ -26,7 +26,6 @@ import { MatIcon } from '@angular/material/icon';
 export class AppBannerComponent implements OnInit {
   private backendService = inject(BackendService);
 
-
   banner: Banner | undefined;
 
   bannerVisible = false;
