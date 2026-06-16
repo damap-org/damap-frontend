@@ -1,0 +1,4 @@
+interface:
+  display_name: 'Angular Developer'
+  short_description: 'Generate Angular code and guide architecture, reactivity, forms, routing, accessibility, and testing'
+  default_prompt: 'Use $angular-developer when creating or changing Angular projects, components, services, routes, forms, signals, styling, accessibility, tests, or CLI workflows.'
