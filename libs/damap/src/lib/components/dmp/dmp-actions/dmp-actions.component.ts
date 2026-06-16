@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, UntypedFormControl } from '@angular/forms';
 import {
   MatDialog,
@@ -8,29 +8,17 @@ import {
   MatDialogActions,
   MatDialogClose,
 } from '@angular/material/dialog';
-import { Observable, Subject, Subscription, filter, take } from 'rxjs';
-import { Store, select } from '@ngrx/store';
-import {
-  createDmp,
-  exportDmp,
-  exportDmpTemplate,
-  saveDmpVersion,
-  updateDmp,
-} from '../../../store/actions/dmp.actions';
-import {
-  selectForm,
-  selectFormChanged,
-} from '../../../store/selectors/form.selectors';
+import { Subject, Subscription } from 'rxjs';
 
-import { AppState } from '../../../store/states/app.state';
 import { BackendService } from '../../../services/backend.service';
+import { DmpFormStore } from '../../../data-access/dmp-form.store';
+import { DmpStore } from '../../../data-access/dmp.store';
 import { ETemplateType } from '../../../domain/enum/export-template-type.enum';
 import { ExportWarningDialogComponent } from '../../../widgets/export-warning-dialog/export-warning-dialog.component';
 import { FeedbackService } from '../../../services/feedback.service';
 import { FormService } from '../../../services/form.service';
 import { LivePreviewComponent } from '../live-preview/live-preview.component';
 import { Location } from '@angular/common';
-import { selectDmpSaving } from '../../../store/selectors/dmp.selectors';
 import { ConfigService } from '../../../../../../../apps/damap-frontend/src/app/services/config.service';
 import {
   MatAccordion,
@@ -64,16 +52,17 @@ import { InputWrapperComponent } from '../../../shared/input-wrapper/input-wrapp
   ],
 })
 export class DmpActionsComponent implements OnInit, OnDestroy {
+  private readonly formStore = inject(DmpFormStore);
+  private readonly dmpStore = inject(DmpStore);
+
   @Input() stepChanged$: Subject<any>;
   @Input() admin = false;
   @Input() preview = false;
 
   dmpForm: FormGroup;
 
-  formChanged$: Observable<boolean>;
-  formChanged: boolean;
-  savingDmp$: Observable<boolean>;
-  savingDmp: boolean;
+  readonly formChanged = this.formStore.changed;
+  readonly savingDmp = this.dmpStore.savingDmp;
 
   exportDmpType: number;
 
@@ -82,7 +71,6 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
   constructor(
     private formService: FormService,
     private dialog: MatDialog,
-    private store: Store<AppState>,
     private location: Location,
     private backendService: BackendService,
     private feedbackService: FeedbackService,
@@ -92,14 +80,6 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.formChanged$ = this.store.pipe(select(selectFormChanged));
-    this.savingDmp$ = this.store.pipe(select(selectDmpSaving));
-    this.subscriptions.push(
-      this.formChanged$.subscribe(value => (this.formChanged = value)),
-    );
-    this.subscriptions.push(
-      this.savingDmp$.subscribe(value => (this.savingDmp = value)),
-    );
     // Prevent autosave for admins
     if (!this.admin) {
       this.subscriptions.push(this.stepChanged$.subscribe(_ => this.saveDmp()));
@@ -111,22 +91,19 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
   }
 
   saveDmp() {
-    if (this.dmpForm.valid && this.formChanged && !this.savingDmp) {
+    if (this.dmpForm.valid && this.formChanged() && !this.savingDmp()) {
       const dmp = this.formService.exportFormToDmp();
       if (this.dmpForm.value.id) {
-        this.store.dispatch(updateDmp({ dmp }));
+        this.dmpStore
+          .updateDmp(dmp)
+          .subscribe(savedDmp => this.formStore.setFormValue(savedDmp));
       } else {
-        this.store.dispatch(createDmp({ dmp }));
-        this.store
-          .select(selectForm)
-          .pipe(
-            filter(formState => !!formState?.id),
-            take(1),
-          )
-          .subscribe(formState => {
-            const newDmpId = formState?.id;
-            this.location.go(`/dmp/${newDmpId}`);
-          });
+        this.dmpStore.createDmp(dmp).subscribe(savedDmp => {
+          this.formStore.setFormValue(savedDmp);
+          if (savedDmp.id) {
+            this.location.go(`/dmp/${savedDmp.id}`);
+          }
+        });
       }
     }
   }
@@ -138,20 +115,23 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(versionName => {
       if (versionName && versionName.length <= 255) {
-        this.store.dispatch(
-          saveDmpVersion({
-            dmp: this.formService.exportFormToDmp(),
-            versionName,
-          }),
-        );
-      } else if (versionName.length > 255) {
+        this.dmpStore
+          .saveDmpVersion(this.formService.exportFormToDmp(), versionName)
+          .subscribe(savedDmp => this.formStore.setFormValue(savedDmp));
+      } else if (versionName?.length > 255) {
         this.feedbackService.error('Version name is too long');
       }
     });
   }
 
   dispatchExportDmp(): void {
-    this.store.dispatch(exportDmp({ dmp: this.formService.exportFormToDmp() }));
+    this.dmpStore
+      .exportDmp(this.formService.exportFormToDmp(), this.formChanged())
+      .subscribe(savedDmp => {
+        if (savedDmp) {
+          this.formStore.setFormValue(savedDmp);
+        }
+      });
   }
 
   exportDmpTemplate(): void {
@@ -182,12 +162,17 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
       if (result && result !== 'cancel') {
         const template = result;
         this.exportDmpType = template;
-        this.store.dispatch(
-          exportDmpTemplate({
-            dmp: this.formService.exportFormToDmp(),
-            dmpTemplateType: this.exportDmpType,
-          }),
-        );
+        this.dmpStore
+          .exportDmp(
+            this.formService.exportFormToDmp(),
+            this.formChanged(),
+            this.exportDmpType,
+          )
+          .subscribe(savedDmp => {
+            if (savedDmp) {
+              this.formStore.setFormValue(savedDmp);
+            }
+          });
       }
     });
   }

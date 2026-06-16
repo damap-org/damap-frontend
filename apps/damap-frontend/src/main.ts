@@ -18,7 +18,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { provideRouter } from '@angular/router';
 import { APP_ROUTES } from './app/app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { AppStoreModule } from './app/store/app-store.module';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -34,7 +33,6 @@ bootstrapApplication(AppComponent, {
       BrowserModule,
       HttpClientModule,
       ReactiveFormsModule,
-      AppStoreModule,
       OAuthModule.forRoot({
         resourceServer: {
           allowedUrls: [environment.backendurl],

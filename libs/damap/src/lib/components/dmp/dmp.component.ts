@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, Subject, Subscription, take } from 'rxjs';
 import {
   ChangeDetectorRef,
   Component,
+  effect,
   OnDestroy,
   OnInit,
   ViewChild,
@@ -12,13 +13,7 @@ import {
   UntypedFormControl,
   UntypedFormGroup,
 } from '@angular/forms';
-import {
-  formDiff,
-  resetFormValue,
-  setFormValue,
-} from '../../store/actions/form.actions';
 
-import { AppState } from '../../store/states/app.state';
 import { AuthService } from '../../auth/auth.service';
 import { BackendService } from '../../services/backend.service';
 import { Config } from '../../domain/config';
@@ -43,9 +38,8 @@ import {
   StepperSelectionEvent,
   STEPPER_GLOBAL_OPTIONS,
 } from '@angular/cdk/stepper';
-import { select, Store } from '@ngrx/store';
 import { Dmp } from '../../domain/dmp';
-import { selectForm } from '../../store/selectors/form.selectors';
+import { DmpFormStore } from '../../data-access/dmp-form.store';
 import { Completeness, SummaryService } from '../../services/summary.service';
 import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
 import { MatIcon } from '@angular/material/icon';
@@ -72,6 +66,7 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './dmp.component.html',
   styleUrls: ['./dmp.component.css'],
   providers: [
+    DmpFormStore,
     {
       provide: STEPPER_GLOBAL_OPTIONS,
       useValue: { displayDefaultIndicatorType: false },
@@ -133,7 +128,6 @@ export class DmpComponent implements OnInit, OnDestroy {
   formChanged: boolean;
 
   // Stepper icons
-  form$: Observable<Dmp>;
   dmpFormVal: Dmp;
   dataSource: Completeness[];
 
@@ -166,17 +160,17 @@ export class DmpComponent implements OnInit, OnDestroy {
     private logger: LoggerService,
     private auth: AuthService,
     private formService: FormService,
+    private formStore: DmpFormStore,
     private route: ActivatedRoute,
     private router: Router,
     private backendService: BackendService,
-    public store: Store<AppState>,
     private infoLabelService: InfoLabelService,
     private cdr: ChangeDetectorRef,
   ) {
     this.dmpForm = this.formService.dmpForm;
 
-    this.form$ = this.store.pipe(select(selectForm));
-    this.form$.subscribe(value => {
+    effect(() => {
+      const value = this.formStore.dmp();
       if (value) {
         this.dmpFormVal = value;
         this.dataSource = SummaryService.dmpSummary(value);
@@ -205,7 +199,7 @@ export class DmpComponent implements OnInit, OnDestroy {
       this.dmpForm.valueChanges.subscribe(() => this.cdr.detectChanges());
       this.dmpForm.valueChanges.subscribe(value => {
         this.logger.debug(value);
-        this.store.dispatch(formDiff({ newDmp: value }));
+        this.formStore.formDiff(value);
       });
 
       this.projectStep = this.dmpForm.get('project') as UntypedFormControl;
@@ -245,7 +239,7 @@ export class DmpComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.formService.resetForm();
-    this.store.dispatch(resetFormValue());
+    this.formStore.reset();
   }
 
   get showStepIfNewDatasets() {
@@ -398,7 +392,7 @@ export class DmpComponent implements OnInit, OnDestroy {
     this.backendService.getDmpById(id).subscribe(dmp => {
       if (dmp != null) {
         this.formService.mapDmpToForm(dmp);
-        this.store.dispatch(setFormValue({ dmp }));
+        this.formStore.setFormValue(dmp);
         if (dmp.project?.universityId) {
           this.getProjectMembers(dmp.project.universityId);
         }
