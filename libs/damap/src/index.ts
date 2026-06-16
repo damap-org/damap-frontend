@@ -6,15 +6,6 @@ export * from './lib/widgets/env-banner/env-banner.component';
 export * from './lib/components/dashboard';
 export * from './lib/components/dmp/dmp.module';
 
-export * from './lib/store/damap-store.module';
-export * from './lib/store/effects/dmp.effects';
-export * from './lib/store/selectors/dmp.selectors';
-export * from './lib/store/reducers/dmp.reducer';
-export * from './lib/store/actions/dmp.actions';
-export * from './lib/store/selectors/form.selectors';
-export * from './lib/store/reducers/form.reducer';
-export * from './lib/store/actions/form.actions';
-
 // Services & Guards
 export * from './lib/guards/auth.guard';
 export * from './lib/guards/tenant.guard';

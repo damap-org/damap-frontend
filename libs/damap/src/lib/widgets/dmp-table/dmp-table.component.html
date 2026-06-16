@@ -4,7 +4,7 @@
     {{ "plans.create.dmp" | translate }}
   </button>
 
-  @if ((dmpsLoaded | async) === LoadingState.LOADED) {
+  @if (dmpsLoaded === LoadingState.LOADED) {
     <app-search-field
       class="search-bar"
       [label]="'plans.table.search'"
@@ -150,7 +150,7 @@
           {{ "plans.table.empty" | translate }}
         </td>
       }
-      @if ((dmpsLoaded | async) === LoadingState.LOADED) {}
+      @if (dmpsLoaded === LoadingState.LOADED) {}
     </tr>
   </table>
   <mat-paginator

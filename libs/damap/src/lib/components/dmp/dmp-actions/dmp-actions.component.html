@@ -10,7 +10,7 @@
         class="action-button"
         mat-button
         [routerLink]="'/plans'"
-        [disabled]="!formChanged"
+        [disabled]="!formChanged()"
         routerLinkActive="active">
         {{ "actions-bar.buttons.discard" | translate }}
       </button>
@@ -18,21 +18,21 @@
         class="action-button"
         mat-flat-button
         (click)="saveDmp()"
-        [disabled]="dmpForm.invalid || !this.formChanged || this.savingDmp">
+        [disabled]="dmpForm.invalid || !formChanged() || savingDmp()">
         {{ "actions-bar.buttons.save" | translate }}
       </button>
       <button
         class="action-button"
         mat-flat-button
         (click)="saveDmpVersion()"
-        [disabled]="dmpForm.invalid || this.savingDmp">
+        [disabled]="dmpForm.invalid || savingDmp()">
         {{ "actions-bar.buttons.version" | translate }}
       </button>
       <button
         class="action-button"
         mat-flat-button
         (click)="exportDmpTemplate()"
-        [disabled]="dmpForm.invalid || this.savingDmp">
+        [disabled]="dmpForm.invalid || savingDmp()">
         {{ "actions-bar.buttons.export" | translate }}
       </button>
     </div>
@@ -40,13 +40,13 @@
 </mat-accordion>
 
 <div class="actions-bar desktop-actions">
-  <app-save-status [saved]="!formChanged"></app-save-status>
+  <app-save-status [saved]="!formChanged()"></app-save-status>
   <div id="save-dmp">
     <button
       class="action-button"
       mat-button
       [routerLink]="'/plans'"
-      [disabled]="!this.formChanged"
+      [disabled]="!formChanged()"
       routerLinkActive="active">
       {{ "actions-bar.buttons.discard" | translate }}
     </button>
@@ -54,14 +54,14 @@
       class="action-button"
       mat-flat-button
       (click)="saveDmp()"
-      [disabled]="dmpForm.invalid || !this.formChanged || this.savingDmp">
+      [disabled]="dmpForm.invalid || !formChanged() || savingDmp()">
       {{ "actions-bar.buttons.save" | translate }}
     </button>
     <button
       class="action-button"
       mat-flat-button
       (click)="saveDmpVersion()"
-      [disabled]="dmpForm.invalid || this.savingDmp">
+      [disabled]="dmpForm.invalid || savingDmp()">
       {{ "actions-bar.buttons.version" | translate }}
     </button>
     @if (preview) {
@@ -83,7 +83,7 @@
       class="action-button"
       mat-flat-button
       (click)="exportDmpTemplate()"
-      [disabled]="dmpForm.invalid || this.savingDmp">
+      [disabled]="dmpForm.invalid || savingDmp()">
       {{ "actions-bar.buttons.export" | translate }}
     </button>
   </div>

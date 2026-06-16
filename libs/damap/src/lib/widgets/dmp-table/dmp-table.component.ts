@@ -28,14 +28,13 @@ import {
   MatNoDataRow,
 } from '@angular/material/table';
 import { LoadingState } from '../../domain/enum/loading-state.enum';
-import { Observable } from 'rxjs';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { SearchFieldComponent } from '../../shared/search-field/search-field.component';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
-import { AsyncPipe, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
@@ -66,7 +65,6 @@ import { TranslateModule } from '@ngx-translate/core';
     MatRow,
     MatNoDataRow,
     MatPaginator,
-    AsyncPipe,
     DatePipe,
     TranslateModule,
   ],
@@ -74,7 +72,7 @@ import { TranslateModule } from '@ngx-translate/core';
 export class DmpTableComponent implements OnChanges, AfterViewInit {
   @Input() dmps: DmpListItem[];
   @Input() admin = false;
-  @Input() dmpsLoaded: Observable<LoadingState>;
+  @Input() dmpsLoaded: LoadingState;
   dataSource = new MatTableDataSource();
 
   @Output() createDocument = new EventEmitter<number>();

@@ -7,7 +7,6 @@ import { AdminGuard } from './guards/admin.guard';
 import { AdminModule } from './components/admin/admin.module';
 import { CommonModule } from '@angular/common';
 import { DamapInfoComponent } from './components/damap-info/damap-info.component';
-import { DamapStoreModule } from './store/damap-store.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { DmpInstructionsComponent } from './components/dmp-instructions/dmp-instructions.component';
@@ -85,7 +84,6 @@ const MODULES = [PlansModule, AdminModule];
 @NgModule({
   imports: [
     CommonModule,
-    DamapStoreModule,
     TranslateModule,
     RouterModule.forChild(DAMAP_ROUTES),
     ...MODULES,
