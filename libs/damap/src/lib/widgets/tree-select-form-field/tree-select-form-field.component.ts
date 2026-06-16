@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Injectable,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Injectable, Input, OnInit, Output, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import {
@@ -147,6 +140,8 @@ export class TreeDatabase {
   ],
 })
 export class TreeSelectFormFieldComponent implements OnInit {
+  private _database = inject(TreeDatabase);
+
   /** Map from flat node to nested node. This helps us find the nested node to be modified */
   flatNodeMap = new Map<TreeFlatNode, TreeNode>();
 
@@ -177,7 +172,7 @@ export class TreeSelectFormFieldComponent implements OnInit {
    */
   selectionList: TreeFlatNode[] = [];
 
-  constructor(private _database: TreeDatabase) {
+  constructor() {
     this.treeFlattener = new MatTreeFlattener(
       this.transformer,
       this.getLevel,

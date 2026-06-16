@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
 import {
   ccByNcSa,
   ccBySa,
@@ -34,9 +34,9 @@ import { LicenseFilterPipe } from './license-filter.pipe';
   imports: [MatButton, MatTooltip, TranslateModule],
 })
 export class LicenseWizardComponent {
-  @Output() selectedLicense = new EventEmitter<LicenseDetails>();
+  dialog = inject(MatDialog);
 
-  constructor(public dialog: MatDialog) {}
+  @Output() selectedLicense = new EventEmitter<LicenseDetails>();
 
   openDialog(): void {
     const dialogRef = this.dialog.open(LicenseSelectorDialogComponent, {
@@ -71,6 +71,8 @@ export class LicenseWizardComponent {
   ],
 })
 export class LicenseSelectorDialogComponent {
+  dialogRef = inject<MatDialogRef<LicenseSelectorDialogComponent>>(MatDialogRef);
+
   licenseList: LicenseDetails[] = [...LicenseDefinitions];
   softwareLicenses: LicenseDetails[] = SoftwareLicenses;
   dataLicenses = DataLicenses;
@@ -79,8 +81,6 @@ export class LicenseSelectorDialogComponent {
   options: LicenseDetails[][] = []; // compatible data licenses
   steps: Step[] = [QUESTION_TREE];
   searchTerm: string = '';
-
-  constructor(public dialogRef: MatDialogRef<LicenseSelectorDialogComponent>) {}
 
   searchChange(searchInput: string) {
     this.searchTerm = searchInput;

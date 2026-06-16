@@ -29,7 +29,7 @@ import { Dmp } from '../domain/dmp';
 import { DmpListItem } from '../domain/dmp-list-item';
 import { FeedbackService } from './feedback.service';
 import { Gdpr } from '../domain/gdpr';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Project } from '../domain/project';
 import { RecommendedRepository } from '../domain/recommended-repository';
 import { RepositoryDetails } from '../domain/repository-details';
@@ -43,19 +43,17 @@ import { AuthService } from '../auth/auth.service';
   providedIn: 'root',
 })
 export class BackendService {
+  private http = inject(HttpClient);
+  private feedbackService = inject(FeedbackService);
+  private translate = inject(TranslateService);
+  private authService = inject(AuthService);
+
   private backendUrl = APP_ENV.backendurl;
   private dmpBackendUrl = this.backendUrl + 'dmps';
   private versionBackendUrl = this.backendUrl + 'versions';
   private projectBackendUrl = this.backendUrl + 'projects';
   private repositoryBackendUrl = this.backendUrl + 'repositories';
   private evaluationBackendUrl = this.backendUrl + 'evaluation';
-
-  constructor(
-    private http: HttpClient,
-    private feedbackService: FeedbackService,
-    private translate: TranslateService,
-    private authService: AuthService,
-  ) {}
 
   private static getFilenameFromContentDisposition(
     contentDisposition: string,

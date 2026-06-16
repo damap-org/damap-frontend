@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -10,6 +10,8 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [MatButton, TranslateModule],
 })
 export class ToggleButtonsComponent implements OnInit {
+  private breakpointObserver = inject(BreakpointObserver);
+
   @Input() selectedView: 'primaryView' | 'secondaryView' = 'primaryView';
   @Input() primaryLabel: string;
   @Input() secondaryLabel: string;
@@ -19,7 +21,6 @@ export class ToggleButtonsComponent implements OnInit {
   >();
 
   cols: number = 2;
-  constructor(private breakpointObserver: BreakpointObserver) {}
 
   ngOnInit(): void {
     this.emitSelection('primaryView');

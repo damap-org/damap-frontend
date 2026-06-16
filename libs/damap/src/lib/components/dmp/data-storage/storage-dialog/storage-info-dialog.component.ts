@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogRef,
@@ -23,16 +23,14 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
 })
 export class StorageInfoDialogComponent {
-  constructor(
-    public dialogRef: MatDialogRef<StorageInfoDialogComponent>,
-    @Inject(MAT_DIALOG_DATA)
-    public data: {
-      title: string;
-      description: string;
-      link: string;
-      name: string;
-    },
-  ) {}
+  dialogRef = inject<MatDialogRef<StorageInfoDialogComponent>>(MatDialogRef);
+  data = inject<{
+    title: string;
+    description: string;
+    link: string;
+    name: string;
+}>(MAT_DIALOG_DATA);
+
 
   onNoClick(): void {
     this.dialogRef.close();

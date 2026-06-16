@@ -13,9 +13,9 @@
   align-items: center;
   gap: 12px;
   padding: 12px 16px;
-  border: 1px solid var(--mdc-theme-outline-variant);
+  border: 1px solid var(--mat-theme-outline-variant);
   border-radius: 12px;
-  background: var(--mdc-theme-surface);
+  background: var(--mat-theme-surface);
   transition: all 0.2s ease;
 }
 
@@ -24,7 +24,7 @@
 }
 
 .picker-controls:has(input:focus-visible) {
-  border-color: var(--mdc-theme-primary);
+  border-color: var(--mat-theme-primary);
   box-shadow: 0 0 0 3px rgba(98, 0, 238, 0.1);
 }
 
@@ -32,14 +32,14 @@
   flex: 1;
   font-weight: var(--mat-sys-label-large-weight, 500);
   font-size: var(--mat-sys-label-large-size, 0.875rem);
-  color: var(--mdc-theme-on-surface);
+  color: var(--mat-theme-on-surface);
   transition: color 0.2s ease;
 }
 
 input[type="color"] {
   width: 48px;
   height: 48px;
-  border: 2px solid var(--mdc-theme-outline-variant);
+  border: 2px solid var(--mat-theme-outline-variant);
   border-radius: 8px;
   cursor: pointer;
   background: transparent;
@@ -47,23 +47,23 @@ input[type="color"] {
 }
 
 input[type="color"]:hover:not(:disabled) {
-  border-color: var(--mdc-theme-primary);
+  border-color: var(--mat-theme-primary);
   transform: scale(1.05);
 }
 
 input[type="color"]:focus-visible {
   outline: 3px solid rgba(98, 0, 238, 0.3);
   outline-offset: 2px;
-  border-color: var(--mdc-theme-primary);
+  border-color: var(--mat-theme-primary);
 }
 
 .color-picker.disabled .picker-controls {
-  background: var(--mdc-theme-surface-variant);
+  background: var(--mat-theme-surface-variant);
   opacity: 0.7;
 }
 
 .color-picker.disabled .picker-label {
-  color: var(--mdc-theme-on-surface-variant);
+  color: var(--mat-theme-on-surface-variant);
 }
 
 .color-picker.disabled input[type="color"] {
@@ -74,12 +74,12 @@ input[type="color"]:focus-visible {
 
 .color-picker.disabled input[type="color"]:hover {
   transform: none;
-  border-color: var(--mdc-theme-outline-variant);
+  border-color: var(--mat-theme-outline-variant);
 }
 
 .helper-text {
   margin-left: 16px;
-  color: var(--mdc-theme-on-surface-variant);
+  color: var(--mat-theme-on-surface-variant);
   font-size: var(--mat-sys-body-small-size);
   font-style: italic;
 }

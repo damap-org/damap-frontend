@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Access, UserDo } from '../../domain/access';
 import { BackendService } from '../../services/backend.service';
@@ -67,6 +67,11 @@ import { TooltipComponent } from '../../widgets/tooltip/tooltip.component';
   standalone: true,
 })
 export class AccessComponent implements OnInit {
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private backendService = inject(BackendService);
+  private authService = inject(AuthService);
+
   private accessesSubject = new BehaviorSubject<Access[]>([]);
   accesses$ = this.accessesSubject.asObservable();
   isOwner$: Observable<boolean>;
@@ -78,13 +83,6 @@ export class AccessComponent implements OnInit {
 
   userSearchControl = new FormControl('');
   searchResult$: Observable<UserDo[]>;
-
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private backendService: BackendService,
-    private authService: AuthService,
-  ) {}
 
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id');

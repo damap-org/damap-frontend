@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogRef,
@@ -33,13 +33,15 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
 })
 export class AddLanguageDialogComponent {
+  private dialogRef = inject<MatDialogRef<AddLanguageDialogComponent>>(MatDialogRef);
+  data = inject<{
+    existing: string[];
+}>(MAT_DIALOG_DATA);
+  private formBuilder = inject(FormBuilder);
+
   readonly form: FormGroup;
 
-  constructor(
-    private dialogRef: MatDialogRef<AddLanguageDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { existing: string[] },
-    private formBuilder: FormBuilder,
-  ) {
+  constructor() {
     this.form = this.formBuilder.group({
       language: [
         '',

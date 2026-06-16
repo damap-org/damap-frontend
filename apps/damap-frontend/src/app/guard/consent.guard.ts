@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
@@ -11,15 +11,15 @@ import { ConfigService } from '../services/config.service';
 
 @Injectable()
 export class ConsentGuard implements CanActivate {
+  private backendService = inject(BackendService);
+  private dialog = inject(MatDialog);
+  private authService = inject(AuthService);
+  private configService = inject(ConfigService);
+
   public consentGiven: boolean;
   public consent;
 
-  constructor(
-    private backendService: BackendService,
-    private dialog: MatDialog,
-    private authService: AuthService,
-    private configService: ConfigService,
-  ) {
+  constructor() {
     this.consentGiven = true;
   }
 

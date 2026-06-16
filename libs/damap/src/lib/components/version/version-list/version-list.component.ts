@@ -1,4 +1,4 @@
-import { Component, computed, OnInit, signal } from '@angular/core';
+import { Component, computed, OnInit, signal, inject } from '@angular/core';
 import { BackendService } from '../../../services/backend.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -17,6 +17,12 @@ import { AsyncPipe } from '@angular/common';
   imports: [VersionTableComponent, AsyncPipe],
 })
 export class VersionListComponent implements OnInit {
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private backendService = inject(BackendService);
+  private dmpStore = inject(DmpStore);
+  private auth = inject(AuthService);
+
   versions$: Observable<Version[]>;
   private readonly dmpId = signal<number | null>(null);
   private readonly adminDmp = signal<Dmp | null>(null);
@@ -27,14 +33,6 @@ export class VersionListComponent implements OnInit {
   readonly dmp = computed<DmpListItem | Dmp | null>(
     () => this.adminDmp() ?? this.storedDmp() ?? null,
   );
-
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private backendService: BackendService,
-    private dmpStore: DmpStore,
-    private auth: AuthService,
-  ) {}
 
   ngOnInit(): void {
     const id = +this.route.snapshot.paramMap.get('id');

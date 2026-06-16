@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BackendService } from '../../services/backend.service';
 import { Observable } from 'rxjs';
@@ -15,15 +15,13 @@ import { AuthService } from '../../auth/auth.service';
   standalone: true,
 })
 export class GdprComponent implements OnInit {
+  private backendService = inject(BackendService);
+  private authService = inject(AuthService);
+
   gdpr$: Observable<Gdpr[]>;
   userName: string;
   userEmail: string;
   userId: string;
-
-  constructor(
-    private backendService: BackendService,
-    private authService: AuthService,
-  ) {}
 
   ngOnInit(): void {
     this.gdpr$ = this.backendService.getGdpr();

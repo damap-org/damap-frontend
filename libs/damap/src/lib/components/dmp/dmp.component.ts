@@ -1,13 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subject, Subscription, take } from 'rxjs';
-import {
-  ChangeDetectorRef,
-  Component,
-  effect,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, effect, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
 import {
   UntypedFormArray,
   UntypedFormControl,
@@ -103,6 +96,16 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
 })
 export class DmpComponent implements OnInit, OnDestroy {
+  private logger = inject(LoggerService);
+  private auth = inject(AuthService);
+  private formService = inject(FormService);
+  private formStore = inject(DmpFormStore);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private backendService = inject(BackendService);
+  private infoLabelService = inject(InfoLabelService);
+  private cdr = inject(ChangeDetectorRef);
+
   config$: Observable<Config> = new Observable<Config>();
   @ViewChild('projectComponent') projectComponent: ProjectComponent;
   @ViewChild('peopleComponent') peopleComponent: PeopleComponent;
@@ -156,17 +159,7 @@ export class DmpComponent implements OnInit, OnDestroy {
   infoInstruction: InfoBoxDetails = {};
   selectedStep: number = 0;
 
-  constructor(
-    private logger: LoggerService,
-    private auth: AuthService,
-    private formService: FormService,
-    private formStore: DmpFormStore,
-    private route: ActivatedRoute,
-    private router: Router,
-    private backendService: BackendService,
-    private infoLabelService: InfoLabelService,
-    private cdr: ChangeDetectorRef,
-  ) {
+  constructor() {
     this.dmpForm = this.formService.dmpForm;
 
     effect(() => {

@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogRef,
@@ -25,10 +25,9 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
 })
 export class DatasetDialogUploadComponent {
-  constructor(
-    public dialogRef: MatDialogRef<DatasetDialogUploadComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-  ) {}
+  dialogRef = inject<MatDialogRef<DatasetDialogUploadComponent>>(MatDialogRef);
+  data = inject(MAT_DIALOG_DATA);
+
 
   onNoClick(): void {
     this.dialogRef.close();

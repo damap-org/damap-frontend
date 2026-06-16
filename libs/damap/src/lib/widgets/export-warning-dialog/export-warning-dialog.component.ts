@@ -34,6 +34,8 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
 })
 export class ExportWarningDialogComponent {
+  dialogRef = inject<MatDialogRef<ExportWarningDialogComponent>>(MatDialogRef);
+
   @Input() dmpForm: UntypedFormGroup;
   @Input() project: UntypedFormGroup;
   @Input() funderSupported: boolean;
@@ -45,6 +47,4 @@ export class ExportWarningDialogComponent {
   );
 
   selectedTemplate: number | null = null;
-
-  constructor(public dialogRef: MatDialogRef<ExportWarningDialogComponent>) {}
 }

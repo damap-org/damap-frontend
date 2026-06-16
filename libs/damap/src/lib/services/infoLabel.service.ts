@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { InfoBoxDetails } from '../domain/infoBox-details';
 
@@ -20,7 +20,8 @@ const STEP_KEYS: Record<number, string> = {
   providedIn: 'root',
 })
 export class InfoLabelService {
-  constructor(private translate: TranslateService) {}
+  private translate = inject(TranslateService);
+
 
   getInfo(index: number): InfoBoxDetails {
     const prefix = STEP_KEYS[index] ?? STEP_KEYS[0];

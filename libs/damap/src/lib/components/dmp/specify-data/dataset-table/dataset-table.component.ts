@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';
 
 import { DataSource } from '../../../../domain/enum/data-source.enum';
@@ -50,6 +50,9 @@ import { LimitStringPipe } from '../../../../pipes/limit-string/limitString.pipe
   ],
 })
 export class DatasetTableComponent {
+  dialog = inject(MatDialog);
+  private translate = inject(TranslateService);
+
   readonly FILE_SIZES = FILE_SIZES;
   @Input() datasets: UntypedFormArray;
   @Input() sourceType: DataSource = DataSource.NEW;
@@ -65,11 +68,6 @@ export class DatasetTableComponent {
   }>();
 
   readonly datasetSource: any = DataSource;
-
-  constructor(
-    public dialog: MatDialog,
-    private translate: TranslateService,
-  ) {}
 
   getSizeLabel(size: number): string {
     if (size === -1) {

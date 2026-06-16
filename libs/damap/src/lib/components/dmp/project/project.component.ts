@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 
 import { Project } from '../../../domain/project';
 import { UntypedFormControl } from '@angular/forms';
@@ -36,12 +36,14 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
 })
 export class ProjectComponent {
+  private configService = inject(ConfigService);
+
   @Input() projectStep: UntypedFormControl;
   @Output() project = new EventEmitter<Project>();
 
   selectedView: 'primaryView' | 'secondaryView' = 'primaryView';
 
-  constructor(private configService: ConfigService) {
+  constructor() {
     if (this.configService.getProjectService() === 'disabled') {
       this.selectedView = 'secondaryView';
     }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 import { ConfigService } from './services/config.service';
 import { Title } from '@angular/platform-browser';
@@ -11,10 +11,9 @@ import { RouterOutlet } from '@angular/router';
   imports: [RouterOutlet],
 })
 export class AppComponent implements OnInit {
-  constructor(
-    private titleService: Title,
-    private configService: ConfigService,
-  ) {}
+  private titleService = inject(Title);
+  private configService = inject(ConfigService);
+
 
   ngOnInit(): void {
     const appTitle = this.configService.getAppTitle();

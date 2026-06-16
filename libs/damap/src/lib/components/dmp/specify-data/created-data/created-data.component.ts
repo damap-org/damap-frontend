@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 
 import { AbstractBaseDataComponent } from '../abstract-base-data.component';
 import { Config } from '../../../../domain/config';
@@ -28,6 +28,8 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
 })
 export class CreatedDataComponent extends AbstractBaseDataComponent {
+  dialog = inject(MatDialog);
+
   @Input() fileUpload: { file: File; progress: number; finalized: boolean }[];
   @Input() config$: Observable<Config>;
 
@@ -42,10 +44,6 @@ export class CreatedDataComponent extends AbstractBaseDataComponent {
     'description',
     'actions',
   ];
-
-  constructor(public dialog: MatDialog) {
-    super();
-  }
 
   openDatasetDialog() {
     const dialogRef = this.dialog.open(DatasetDialogComponent, {

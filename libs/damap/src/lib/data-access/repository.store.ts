@@ -2,7 +2,7 @@ import {
   computed,
   inject,
   Injectable,
-  ResourceStatus,
+  type ResourceStatus,
   signal,
 } from '@angular/core';
 import { httpResource } from '@angular/common/http';
@@ -96,15 +96,15 @@ export class RepositoryStore {
 
   private toLoadingState(status: ResourceStatus): LoadingState {
     switch (status) {
-      case ResourceStatus.Error:
+      case 'error':
         return LoadingState.FAILED;
-      case ResourceStatus.Loading:
-      case ResourceStatus.Reloading:
+      case 'loading':
+      case 'reloading':
         return LoadingState.LOADING;
-      case ResourceStatus.Resolved:
-      case ResourceStatus.Local:
+      case 'resolved':
+      case 'local':
         return LoadingState.LOADED;
-      case ResourceStatus.Idle:
+      case 'idle':
         return LoadingState.NOT_LOADED;
       default:
         return LoadingState.NOT_LOADED;

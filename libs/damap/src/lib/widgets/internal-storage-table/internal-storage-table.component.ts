@@ -1,14 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  SimpleChanges,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild, inject } from '@angular/core';
 
 import { InternalStorage } from '../../domain/internal-storage';
 import {
@@ -70,14 +60,12 @@ import { MatDivider } from '@angular/material/divider';
   ],
 })
 export class InternalStorageTableComponent implements AfterViewInit, OnChanges {
-  @Output() selectInternalStorage = new EventEmitter<number>();
+  private backendService = inject(BackendService);
+  private feedbackService = inject(FeedbackService);
+  private dialog = inject(MatDialog);
+  private translateService = inject(TranslateService);
 
-  constructor(
-    private backendService: BackendService,
-    private feedbackService: FeedbackService,
-    private dialog: MatDialog,
-    private translateService: TranslateService,
-  ) {}
+  @Output() selectInternalStorage = new EventEmitter<number>();
 
   @Input() internalStorages: InternalStorage[] = [];
   dataSource = new MatTableDataSource<InternalStorage>();

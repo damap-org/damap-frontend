@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import {
   FormControl,
@@ -42,15 +42,19 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
 })
 export class BannerDialogComponent {
+  dialogRef = inject<MatDialogRef<BannerDialogComponent>>(MatDialogRef);
+  private formService = inject(FormService);
+  data = inject<{
+    banner: Banner;
+    mode: string;
+}>(MAT_DIALOG_DATA);
+
   public mode = 'add';
   banner: UntypedFormGroup;
 
-  constructor(
-    public dialogRef: MatDialogRef<BannerDialogComponent>,
-    private formService: FormService,
-    @Inject(MAT_DIALOG_DATA)
-    public data: { banner: Banner; mode: string },
-  ) {
+  constructor() {
+    const data = this.data;
+
     this.banner = this.formService.createBannerFormGroup();
 
     if (data.banner) {
