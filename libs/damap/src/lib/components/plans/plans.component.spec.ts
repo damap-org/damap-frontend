@@ -5,11 +5,13 @@ import {
   tick,
   waitForAsync,
 } from '@angular/core/testing';
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { signal } from '@angular/core';
 
 import { AuthService } from '../../auth/auth.service';
 import { BackendService } from '../../services/backend.service';
 import { DeleteWarningDialogComponent } from '../../widgets/delete-warning-dialog/delete-warning-dialog.component';
+import { DmpApi } from '../../data-access/dmp.api';
+import { DmpStore } from '../../data-access/dmp.store';
 import { FormService } from '../../services/form.service';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { MatButtonHarness } from '@angular/material/button/testing';
@@ -23,6 +25,7 @@ import { PlansComponent } from './plans.component';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { TranslateTestingModule } from '../../testing/translate-testing/translate-testing.module';
 import { UntypedFormBuilder } from '@angular/forms';
+import { LoadingState } from '../../domain/enum/loading-state.enum';
 import { mockDmpList } from '../../mocks/dmp-list-mocks';
 import { of } from 'rxjs';
 
@@ -32,22 +35,27 @@ describe('PlansComponent', () => {
   let loader: HarnessLoader;
   let authSpy;
   let backendSpy;
-  let store: MockStore;
-  const initialState = {
-    damap: { dmps: { loaded: true, entities: mockDmpList, ids: [1] } },
-  };
+  let dmpStoreSpy;
+  let dmpApiSpy;
 
   beforeEach(waitForAsync(
     waitForAsync(() => {
       backendSpy = jasmine.createSpyObj('BackendService', [
-        'getDmpDocument',
         'getMaDmpJsonFile',
         'getDmpById',
         'getAllDmps',
         'deleteDmp',
-        'exportDmpTemplate',
       ]);
       backendSpy.getAllDmps.and.returnValue(of(mockDmpList));
+      dmpStoreSpy = jasmine.createSpyObj('DmpStore', ['loadDmps', 'removeDmp']);
+      dmpStoreSpy.dmps = signal(mockDmpList);
+      dmpStoreSpy.dmpsLoaded = signal(LoadingState.LOADED);
+      dmpApiSpy = jasmine.createSpyObj('DmpApi', [
+        'exportDmp',
+        'exportDmpTemplate',
+      ]);
+      dmpApiSpy.exportDmp.and.returnValue(of(undefined));
+      dmpApiSpy.exportDmpTemplate.and.returnValue(of(undefined));
       authSpy = jasmine.createSpyObj('AuthService', [
         'hasValidAccessToken',
         'isAdmin',
@@ -64,8 +72,9 @@ describe('PlansComponent', () => {
           PlansComponent,
         ],
         providers: [
-          provideMockStore({ initialState }),
           { provide: BackendService, useValue: backendSpy },
+          { provide: DmpStore, useValue: dmpStoreSpy },
+          { provide: DmpApi, useValue: dmpApiSpy },
           { provide: AuthService, useValue: authSpy },
           UntypedFormBuilder,
           FormService,
@@ -73,7 +82,6 @@ describe('PlansComponent', () => {
       }).compileComponents();
       fixture = TestBed.createComponent(PlansComponent);
       component = fixture.componentInstance;
-      store = TestBed.inject(MockStore);
       fixture.detectChanges();
       loader = TestbedHarnessEnvironment.documentRootLoader(fixture);
     }),
@@ -84,7 +92,6 @@ describe('PlansComponent', () => {
   });
 
   it('should remove dmps', waitForAsync(async () => {
-    spyOn(store, 'dispatch');
     authSpy.isAdmin.and.returnValue(true);
     backendSpy.deleteDmp.and.returnValue(of({ status: 204 }));
 
@@ -96,7 +103,7 @@ describe('PlansComponent', () => {
     await buttons[1].click();
 
     expect(backendSpy.deleteDmp).toHaveBeenCalledWith(1);
-    expect(store.dispatch).toHaveBeenCalledTimes(1);
+    expect(dmpStoreSpy.removeDmp).toHaveBeenCalledWith(1);
   }));
 
   it('should call getDmpDocument if funderSupported is true', fakeAsync(() => {
@@ -135,7 +142,7 @@ describe('PlansComponent', () => {
 
     expect(component.getDocument).toHaveBeenCalledTimes(1);
     expect(component.openExportWarningDialog).toHaveBeenCalledWith(false, id);
-    expect(backendSpy.exportDmpTemplate).toHaveBeenCalledWith(
+    expect(dmpApiSpy.exportDmpTemplate).toHaveBeenCalledWith(
       id,
       'some_template',
     );
