@@ -25,11 +25,11 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
 })
 export class DeleteRepositoryWarningDialogComponent extends DeleteWarningDialogComponent {
-  dialogRef = inject<MatDialogRef<DeleteRepositoryWarningDialogComponent>>(MatDialogRef);
+  dialogRef =
+    inject<MatDialogRef<DeleteRepositoryWarningDialogComponent>>(MatDialogRef);
   data = inject<{
     repository: RecommendedRepository;
-}>(MAT_DIALOG_DATA);
-
+  }>(MAT_DIALOG_DATA);
 
   override getDeleteContent(): string {
     return 'admin.recommended-repositories.delete-dialog.message';

@@ -22,7 +22,6 @@ import { TranslateModule } from '@ngx-translate/core';
 export class EditTranslationsPageComponent {
   private router = inject(Router);
 
-
   navigateBack(): void {
     this.router.navigate(['/admin']);
   }

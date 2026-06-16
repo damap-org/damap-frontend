@@ -71,7 +71,8 @@ export class LicenseWizardComponent {
   ],
 })
 export class LicenseSelectorDialogComponent {
-  dialogRef = inject<MatDialogRef<LicenseSelectorDialogComponent>>(MatDialogRef);
+  dialogRef =
+    inject<MatDialogRef<LicenseSelectorDialogComponent>>(MatDialogRef);
 
   licenseList: LicenseDetails[] = [...LicenseDefinitions];
   softwareLicenses: LicenseDetails[] = SoftwareLicenses;

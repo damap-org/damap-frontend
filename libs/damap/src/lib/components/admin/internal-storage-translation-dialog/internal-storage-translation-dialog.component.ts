@@ -46,13 +46,16 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
 })
 export class InternalStorageTranslationDialogComponent {
-  dialogRef = inject<MatDialogRef<InternalStorageTranslationDialogComponent>>(MatDialogRef);
+  dialogRef =
+    inject<MatDialogRef<InternalStorageTranslationDialogComponent>>(
+      MatDialogRef,
+    );
   private formService = inject(FormService);
   data = inject<{
     storageId: number;
     translation: InternalStorageTranslation;
     mode: string;
-}>(MAT_DIALOG_DATA);
+  }>(MAT_DIALOG_DATA);
 
   public mode = 'add';
   storageTranslation: UntypedFormGroup;

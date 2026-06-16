@@ -47,7 +47,7 @@ export class BannerDialogComponent {
   data = inject<{
     banner: Banner;
     mode: string;
-}>(MAT_DIALOG_DATA);
+  }>(MAT_DIALOG_DATA);
 
   public mode = 'add';
   banner: UntypedFormGroup;

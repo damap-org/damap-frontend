@@ -29,8 +29,7 @@ export class StorageInfoDialogComponent {
     description: string;
     link: string;
     name: string;
-}>(MAT_DIALOG_DATA);
-
+  }>(MAT_DIALOG_DATA);
 
   onNoClick(): void {
     this.dialogRef.close();

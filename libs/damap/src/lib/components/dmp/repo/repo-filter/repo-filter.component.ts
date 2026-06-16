@@ -65,10 +65,10 @@ export class FilterDialogComponent {
   dialogRef = inject<MatDialogRef<FilterDialogComponent>>(MatDialogRef);
   data = inject<{
     [key: string]: {
-        id: string;
-        label: string;
+      id: string;
+      label: string;
     }[];
-}>(MAT_DIALOG_DATA);
+  }>(MAT_DIALOG_DATA);
 
   readonly FILTER = REPO_FILTERS;
   filter = {};

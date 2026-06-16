@@ -21,9 +21,7 @@
               "base": "dist/damap-frontend"
             },
             "index": "apps/damap-frontend/src/index.html",
-            "polyfills": [
-              "apps/damap-frontend/src/polyfills.ts"
-            ],
+            "polyfills": ["apps/damap-frontend/src/polyfills.ts"],
             "tsConfig": "apps/damap-frontend/tsconfig.app.json",
             "assets": [
               "apps/damap-frontend/src/favicon.ico",
@@ -39,10 +37,7 @@
               "libs/damap/src/assets/styles.scss"
             ],
             "scripts": [],
-            "allowedCommonJsDependencies": [
-              "validator",
-              "moment"
-            ],
+            "allowedCommonJsDependencies": ["validator", "moment"],
             "browser": "apps/damap-frontend/src/main.ts"
           },
           "configurations": {
@@ -123,9 +118,7 @@
           "builder": "@angular/build:karma",
           "options": {
             "main": "apps/damap-frontend/src/test.ts",
-            "polyfills": [
-              "apps/damap-frontend/src/polyfills.ts"
-            ],
+            "polyfills": ["apps/damap-frontend/src/polyfills.ts"],
             "tsConfig": "apps/damap-frontend/tsconfig.spec.json",
             "karmaConfig": "apps/damap-frontend/karma.conf.js",
             "assets": [

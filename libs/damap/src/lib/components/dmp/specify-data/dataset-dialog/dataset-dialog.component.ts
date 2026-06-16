@@ -73,7 +73,7 @@ export class DatasetDialogComponent {
   data = inject<{
     dataset: Dataset;
     mode: string;
-}>(MAT_DIALOG_DATA);
+  }>(MAT_DIALOG_DATA);
 
   readonly FILE_TYPES = FILE_TYPES;
   readonly FILE_SIZES = FILE_SIZES;

@@ -43,7 +43,6 @@ export class AdminComponent implements OnInit {
   private feedbackService = inject(FeedbackService);
   private router = inject(Router);
 
-
   showOnlyActive = true;
   internalStorages: InternalStorage[] = [];
   internalStorageTranslations: InternalStorageTranslation[] = [];
