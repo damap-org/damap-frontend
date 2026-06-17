@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 import { Dataset } from '../../../../domain/dataset';
 import { FormService } from '../../../../services/form.service';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -11,20 +11,20 @@ import { TranslatePipe } from '@ngx-translate/core';
   imports: [TranslatePipe],
 })
 export class VersionViewReuseComponent {
-  @Input() targetAudience: string;
-  @Input() tools: string;
-  @Input() restrictedDataAccess: string;
-  @Input() restrictedAccessInfo: string;
-  @Input() closedAccessInfo: string;
-  @Input() datasets: Dataset[];
+  readonly targetAudience = input<string>(undefined);
+  readonly tools = input<string>(undefined);
+  readonly restrictedDataAccess = input<string>(undefined);
+  readonly restrictedAccessInfo = input<string>(undefined);
+  readonly closedAccessInfo = input<string>(undefined);
+  readonly datasets = input<Dataset[]>(undefined);
 
   get hasRestrictedDatasets(): boolean {
-    return this.datasets
-      ? FormService.restrictedDatasets(this.datasets)
-      : false;
+    const datasets = this.datasets();
+    return datasets ? FormService.restrictedDatasets(datasets) : false;
   }
 
   get hasClosedDatasets(): boolean {
-    return this.datasets ? FormService.closedDatasets(this.datasets) : false;
+    const datasets = this.datasets();
+    return datasets ? FormService.closedDatasets(datasets) : false;
   }
 }

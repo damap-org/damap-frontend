@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 import {
   UntypedFormControl,
   FormsModule,
@@ -24,9 +24,9 @@ import { TranslatePipe } from '@ngx-translate/core';
   ],
 })
 export class DataMcComponent {
-  @Input() control: UntypedFormControl;
-  @Input() questionLabel = 'dmp.steps.data.specify.question.kind';
-  @Input() answerLabelNone = 'dmp.steps.data.specify.answer.none';
+  readonly control = input<UntypedFormControl>(undefined);
+  readonly questionLabel = input('dmp.steps.data.specify.question.kind');
+  readonly answerLabelNone = input('dmp.steps.data.specify.answer.none');
 
   readonly dataKind: any = DataKind;
 }

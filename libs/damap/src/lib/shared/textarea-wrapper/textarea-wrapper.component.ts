@@ -4,6 +4,7 @@ import {
   OnInit,
   ViewChild,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 import {
   UntypedFormControl,
@@ -55,17 +56,17 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class TextareaWrapperComponent implements OnInit {
   @Input() label: string;
-  @Input() longLabel: string;
+  readonly longLabel = input<string>(undefined);
   @Input() labelSuffix: string;
-  @Input() labelDatasets: Dataset[];
+  readonly labelDatasets = input<Dataset[]>(undefined);
   @Input() control: UntypedFormControl;
-  @Input() placeholder: string;
+  readonly placeholder = input<string>(undefined);
   @Input() autocompleteOptions: string[];
-  @Input() appearance: MatFormFieldAppearance = 'fill';
-  @Input() maxLength = 4000;
-  @Input() showLength = true;
-  @Input() minRows = 5;
-  @Input() maxRows = 9;
+  readonly appearance = input<MatFormFieldAppearance>('fill');
+  readonly maxLength = input(4000);
+  readonly showLength = input(true);
+  readonly minRows = input(5);
+  readonly maxRows = input(9);
   @ViewChild(MatAutocompleteTrigger)
   autocompleteTrigger: MatAutocompleteTrigger;
 

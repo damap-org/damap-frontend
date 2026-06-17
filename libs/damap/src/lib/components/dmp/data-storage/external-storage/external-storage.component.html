@@ -9,7 +9,11 @@
   </div>
   <div class="storage-selected">
     <ng-container>
-      @for (item of externalStorageStep?.controls; track item; let i = $index) {
+      @for (
+        item of externalStorageStep()?.controls;
+        track item;
+        let i = $index
+      ) {
         <mat-card class="card-shadow" appearance="raised">
           <div class="storage-card-top">
             <mat-card-header>
@@ -43,7 +47,7 @@
                   <mat-select
                     multiple
                     [formControl]="getFormControl(i, 'datasets')">
-                    @for (dataset of datasets?.controls; track dataset) {
+                    @for (dataset of datasets()?.controls; track dataset) {
                       <mat-option [value]="dataset.value.referenceHash">
                         {{ dataset.value.title }}
                       </mat-option>
@@ -88,12 +92,12 @@
         </mat-card>
       }
     </ng-container>
-    @if (externalStorageStep?.controls.length && anyNonInternalStorage()) {
+    @if (externalStorageStep()?.controls.length && anyNonInternalStorage()) {
       <div class="storage-textarea">
         <app-textarea-wrapper
           [label]="'dmp.steps.storage.external.question.short.info'"
           [longLabel]="'dmp.steps.storage.external.question.long.info'"
-          [control]="externalStorageInfo">
+          [control]="externalStorageInfo()">
         </app-textarea-wrapper>
       </div>
     }

@@ -27,7 +27,7 @@
 <!-- FILES -->
 <div>
   @for (
-    upload of fileUpload;
+    upload of fileUpload();
     track upload.file.name + upload.file.size + upload.file.lastModified;
     let i = $index
   ) {

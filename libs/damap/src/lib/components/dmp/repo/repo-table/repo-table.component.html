@@ -34,7 +34,7 @@
         </div>
       }
 
-      @if (loaded === LoadingState.LOADED) {
+      @if (loaded() === LoadingState.LOADED) {
         <table
           mat-table
           [dataSource]="dataSource"
@@ -122,11 +122,11 @@
           showFirstLastButtons="true"></mat-paginator>
       }
 
-      @if (loaded === LoadingState.LOADING) {
+      @if (loaded() === LoadingState.LOADING) {
         <p translate>dmp.steps.repositories.loading.load.all</p>
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>
       }
-      @if (loaded === LoadingState.FAILED) {
+      @if (loaded() === LoadingState.FAILED) {
         <app-error-message
           message="{{
             'dmp.steps.repositories.loading.failed.all' | translate

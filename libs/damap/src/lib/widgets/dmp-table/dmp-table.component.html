@@ -4,7 +4,7 @@
     {{ "plans.create.dmp" | translate }}
   </button>
 
-  @if (dmpsLoaded === LoadingState.LOADED) {
+  @if (dmpsLoaded() === LoadingState.LOADED) {
     <app-search-field
       class="search-bar"
       [label]="'plans.table.search'"
@@ -109,7 +109,7 @@
           #menu="matMenu"
           xPosition="before"
           class="mat-menu-secondary-container">
-          @if (element.accessType === FUNCTION_ROLES.OWNER || admin) {
+          @if (element.accessType === FUNCTION_ROLES.OWNER || admin()) {
             <button mat-menu-item routerLink="/dmp/{{ element.id }}/access">
               <mat-icon>admin_panel_settings</mat-icon>
               {{ "plans.table.actions.access" | translate }}
@@ -127,7 +127,7 @@
             <mat-icon>history</mat-icon>
             {{ "plans.table.actions.history" | translate }}
           </button>
-          @if (element.accessType === FUNCTION_ROLES.OWNER || admin) {
+          @if (element.accessType === FUNCTION_ROLES.OWNER || admin()) {
             <button mat-menu-item (click)="deleteDmp(element.id)">
               <mat-icon>delete</mat-icon>
               {{ "plans.table.actions.delete" | translate }}
@@ -150,7 +150,7 @@
           {{ "plans.table.empty" | translate }}
         </td>
       }
-      @if (dmpsLoaded === LoadingState.LOADED) {}
+      @if (dmpsLoaded() === LoadingState.LOADED) {}
     </tr>
   </table>
   <mat-paginator

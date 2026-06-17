@@ -3,6 +3,7 @@ import {
   Input,
   OnInit,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 import {
   UntypedFormControl,
@@ -39,7 +40,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class EthicalAspectsComponent implements OnInit {
   @Input() legalEthicalStep: UntypedFormGroup;
-  @Input() ethicalReportEnabled: boolean;
+  readonly ethicalReportEnabled = input<boolean>(undefined);
 
   get ethicalIssuesReport(): UntypedFormControl {
     return this.legalEthicalStep.get(

@@ -1,11 +1,11 @@
 import {
   Component,
-  Input,
   Output,
   EventEmitter,
   ViewChild,
   ElementRef,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckbox } from '@angular/material/checkbox';
@@ -20,10 +20,10 @@ import { TranslatePipe } from '@ngx-translate/core';
   imports: [MatCheckbox, ReactiveFormsModule, TranslatePipe],
 })
 export class ColorPickerComponent {
-  @Input({ required: true }) control!: FormControl;
-  @Input({ required: true }) colorTitle!: string;
-  @Input({ required: true }) controlName!: string;
-  @Input() canDisable = true;
+  readonly control = input.required<FormControl>();
+  readonly colorTitle = input.required<string>();
+  readonly controlName = input.required<string>();
+  readonly canDisable = input(true);
 
   @Output() changedEnableStatus = new EventEmitter<{
     controlName: string;
@@ -35,7 +35,7 @@ export class ColorPickerComponent {
 
   onToggleEnabled(checked: boolean): void {
     this.changedEnableStatus.emit({
-      controlName: this.controlName,
+      controlName: this.controlName(),
       enabled: checked,
     });
     event?.stopPropagation();
@@ -48,6 +48,6 @@ export class ColorPickerComponent {
   }
 
   get isDisabled(): boolean {
-    return this.control.disabled;
+    return this.control().disabled;
   }
 }

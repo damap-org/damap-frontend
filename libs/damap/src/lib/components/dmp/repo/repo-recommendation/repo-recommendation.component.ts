@@ -4,6 +4,7 @@ import {
   Input,
   Output,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 
 import { LoadingState } from '../../../../domain/enum/loading-state.enum';
@@ -40,7 +41,7 @@ import { ErrorMessageComponent } from '../../../../widgets/error-message/error-m
 })
 export class RepoRecommendationComponent {
   @Input() recommended: RepositoryDetails[];
-  @Input() loaded: LoadingState;
+  readonly loaded = input<LoadingState>(undefined);
 
   readonly LoadingState = LoadingState;
 

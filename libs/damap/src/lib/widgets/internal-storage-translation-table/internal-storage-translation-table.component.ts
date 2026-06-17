@@ -8,6 +8,7 @@ import {
   ViewChild,
   inject,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 
 import {
@@ -81,7 +82,7 @@ export class InternalStorageTranslationTableComponent
   private translateService = inject(TranslateService);
 
   @Input() internalStorageTranslations: InternalStorageTranslation[] = [];
-  @Input() selectedInternalStorageId: number;
+  readonly selectedInternalStorageId = input<number>(undefined);
 
   dataSource = new MatTableDataSource<InternalStorageTranslation>();
 
@@ -163,7 +164,7 @@ export class InternalStorageTranslationTableComponent
         data: {
           translation: { ...translation },
           mode: 'edit',
-          storageId: this.selectedInternalStorageId,
+          storageId: this.selectedInternalStorageId(),
         },
       },
     );

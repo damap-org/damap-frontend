@@ -5,7 +5,7 @@
   <div class="storage-grid">
     @for (
       element of activeStorages()
-        | storageFilter: $safeNavigationMigration(storageStep?.getRawValue());
+        | storageFilter: $safeNavigationMigration(storageStep()?.getRawValue());
       track element.id
     ) {
       <mat-card appearance="raised" class="storage-card card-shadow">
@@ -27,9 +27,9 @@
       </mat-card>
     }
   </div>
-  <div class="storage-selected" [formGroup]="dmpForm">
+  <div class="storage-selected" [formGroup]="dmpForm()">
     <ng-container formArrayName="storage">
-      @for (item of storageStep?.controls; track item; let i = $index) {
+      @for (item of storageStep()?.controls; track item; let i = $index) {
         <mat-card appearance="raised" class="selected-storage-card card-shadow">
           <mat-card-header>
             <mat-card-title-group>
@@ -51,7 +51,7 @@
                     "dmp.steps.storage.question.datasets" | translate
                   }}</mat-label>
                   <mat-select multiple formControlName="datasets">
-                    @for (dataset of datasets?.controls; track dataset) {
+                    @for (dataset of datasets()?.controls; track dataset) {
                       <mat-option
                         panelClass="mat-option-text"
                         [value]="dataset.value.referenceHash">

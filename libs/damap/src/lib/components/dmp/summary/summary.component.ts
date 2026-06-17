@@ -2,11 +2,11 @@ import {
   Component,
   computed,
   effect,
-  Input,
   OnInit,
   signal,
   inject,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 import { Dmp } from '../../../domain/dmp';
 import { DmpFormStore } from '../../../data-access/dmp-form.store';
@@ -100,7 +100,7 @@ export class SummaryComponent implements OnInit {
   dataSource;
   contact: Contributor;
 
-  @Input() stepper: MatStepper;
+  readonly stepper = input<MatStepper>(undefined);
 
   readonly summaryTableHeaders: string[] = ['step', 'completeness', 'status'];
 
@@ -193,7 +193,7 @@ export class SummaryComponent implements OnInit {
   }
 
   navigateToStep(stepIndex: number): void {
-    this.stepper.selectedIndex = stepIndex;
+    this.stepper().selectedIndex = stepIndex;
   }
 
   runEvaluation(): void {

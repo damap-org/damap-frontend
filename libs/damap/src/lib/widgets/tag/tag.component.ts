@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 
 @Component({
   selector: 'app-tag',
@@ -7,5 +7,5 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./tag.component.css'],
 })
 export class TagComponent {
-  @Input() background = 'var(--custom-blue-tag)';
+  readonly background = input('var(--custom-blue-tag)');
 }

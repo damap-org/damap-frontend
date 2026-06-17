@@ -5,6 +5,7 @@ import {
   OnDestroy,
   OnInit,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 import { FormGroup, UntypedFormControl } from '@angular/forms';
 import {
@@ -71,8 +72,8 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
   private readonly dmpStore = inject(DmpStore);
 
   @Input() stepChanged$: Subject<any>;
-  @Input() admin = false;
-  @Input() preview = false;
+  readonly admin = input(false);
+  readonly preview = input(false);
 
   dmpForm: FormGroup;
 
@@ -89,7 +90,7 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // Prevent autosave for admins
-    if (!this.admin) {
+    if (!this.admin()) {
       this.subscriptions.push(this.stepChanged$.subscribe(_ => this.saveDmp()));
     }
   }

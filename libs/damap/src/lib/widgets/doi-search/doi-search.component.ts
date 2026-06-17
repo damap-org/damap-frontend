@@ -6,6 +6,7 @@ import {
   Output,
   SimpleChanges,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 import {
   UntypedFormControl,
@@ -39,7 +40,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class DoiSearchComponent implements OnChanges {
   @Input() result: Dataset = undefined;
-  @Input() duplicate: boolean = false;
+  readonly duplicate = input<boolean>(false);
   @Input() loading: LoadingState;
   @Output() termToSearch = new EventEmitter<string>();
   @Output() datasetToAdd = new EventEmitter<Dataset>();

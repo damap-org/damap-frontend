@@ -4,6 +4,7 @@ import {
   Input,
   Output,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 import {
   MatFormFieldAppearance,
@@ -46,7 +47,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class SearchFieldComponent {
   @Input() label: string = '';
   @Input() placeholder: string = '';
-  @Input() appearance: MatFormFieldAppearance = 'outline';
+  readonly appearance = input<MatFormFieldAppearance>('outline');
   @Input() control: UntypedFormControl = new UntypedFormControl();
   @Input() errorMessage: string = '';
   @Output() searchChange: EventEmitter<string> = new EventEmitter<string>();

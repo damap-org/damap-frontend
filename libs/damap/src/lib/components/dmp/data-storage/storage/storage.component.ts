@@ -1,11 +1,11 @@
 import {
   Component,
   EventEmitter,
-  Input,
   Output,
   computed,
   inject,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 import {
   UntypedFormArray,
@@ -62,9 +62,9 @@ import { StorageFilterPipe } from './storage-filter.pipe';
   ],
 })
 export class StorageComponent {
-  @Input() dmpForm: UntypedFormGroup;
-  @Input() storageStep: UntypedFormArray;
-  @Input() datasets: UntypedFormArray;
+  readonly dmpForm = input<UntypedFormGroup>(undefined);
+  readonly storageStep = input<UntypedFormArray>(undefined);
+  readonly datasets = input<UntypedFormArray>(undefined);
 
   @Output() storageToAdd = new EventEmitter<InternalStorage>();
   @Output() storageToRemove = new EventEmitter<number>();

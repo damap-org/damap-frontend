@@ -4,6 +4,7 @@ import {
   inject,
   Input,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 
 import { ETemplateType } from '../../domain/enum/export-template-type.enum';
@@ -43,8 +44,8 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class ExportWarningDialogComponent {
   dialogRef = inject<MatDialogRef<ExportWarningDialogComponent>>(MatDialogRef);
 
-  @Input() dmpForm: UntypedFormGroup;
-  @Input() project: UntypedFormGroup;
+  readonly dmpForm = input<UntypedFormGroup>(undefined);
+  readonly project = input<UntypedFormGroup>(undefined);
   @Input() funderSupported: boolean;
 
   private configService = inject(ConfigService);
