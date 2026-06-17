@@ -56,6 +56,12 @@ div > div > button {
   gap: 15px;
 }
 
+.mat-column-add {
+  width: 1%;
+  white-space: nowrap;
+  text-align: right;
+}
+
 @media (max-width: 860px) {
   .scrollable-repo-content {
     max-height: 300px;
