@@ -18,10 +18,10 @@ import {
 } from '@angular/router';
 import { Subscription, filter, take } from 'rxjs';
 
-import { AdminComponent } from '../../../../../../libs/damap/src/lib/components/admin/admin.component'; // eslint-disable-line
+import { AdminComponent } from '../../../../../../libs/damap/src/lib/components/admin/admin.component';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ConfigService } from '../../services/config.service';
-import { DmpComponent } from '../../../../../../libs/damap/src/lib/components/dmp/dmp.component'; // eslint-disable-line
+import { DmpComponent } from '../../../../../../libs/damap/src/lib/components/dmp/dmp.component';
 import {
   MatSidenav,
   MatSidenavContainer,
@@ -29,7 +29,7 @@ import {
 } from '@angular/material/sidenav';
 import { SafeUrl } from '@angular/platform-browser';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import pkg from '../../../../../../package.json'; // eslint-disable-line
+import pkg from '../../../../../../package.json';
 import { ImageThemeService } from '../../services/image-theme.service';
 import { IMAGE_KEYS } from '../../../../../../libs/damap/src/lib/domain/image-keys';
 import { NgClass, NgStyle } from '@angular/common';
