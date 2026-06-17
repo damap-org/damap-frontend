@@ -17,7 +17,8 @@ import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
 @NgModule({
   imports: [
     CommonModule,
-    TranslatePipe, TranslateDirective,
+    TranslatePipe,
+    TranslateDirective,
     RouterModule,
     ExportWarningModule,
     // Materials
@@ -33,7 +34,8 @@ import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
   ],
   exports: [
     CommonModule,
-    TranslatePipe, TranslateDirective,
+    TranslatePipe,
+    TranslateDirective,
     RouterModule,
     PlansComponent,
     ExportWarningModule,

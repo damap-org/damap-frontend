@@ -21,7 +21,8 @@ describe('DmpInstructionsComponent', () => {
       imports: [
         RouterTestingModule.withRoutes([]),
         DmpInstructionsComponent,
-        TranslatePipe, TranslateDirective,
+        TranslatePipe,
+        TranslateDirective,
         MatCardModule,
         MatIconModule,
         MatButtonModule,

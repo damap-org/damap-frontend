@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import {
   UntypedFormArray,
   UntypedFormGroup,
@@ -24,6 +24,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-retention-period',
   templateUrl: './retention-period.component.html',
   styleUrls: ['./retention-period.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     ReactiveFormsModule,
@@ -38,7 +39,8 @@ import { TranslatePipe } from '@ngx-translate/core';
     MatLabel,
     MatSelect,
     MatOption,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class RetentionPeriodComponent {
   @Input() dmpForm: UntypedFormGroup;

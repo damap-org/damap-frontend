@@ -1,4 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Access, UserDo } from '../../domain/access';
 import { BackendService } from '../../services/backend.service';
@@ -60,9 +65,11 @@ import { TooltipComponent } from '../../widgets/tooltip/tooltip.component';
     MatOption,
     ReactiveFormsModule,
     MatInputModule,
-    SearchFieldComponent],
+    SearchFieldComponent,
+  ],
   templateUrl: './access.component.html',
   styleUrls: ['./access.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 export class AccessComponent implements OnInit {

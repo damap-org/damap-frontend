@@ -143,7 +143,7 @@
 
   <div class="instance-config-section">
     <mat-slide-toggle
-      [checked]="instanceConfig?.publicAvailable"
+      [checked]="$safeNavigationMigration(instanceConfig?.publicAvailable)"
       (change)="onPublicAvailabilityToggle($event.checked)">
       {{ "admin.instance-config.public-available" | translate }}
     </mat-slide-toggle>
@@ -158,7 +158,7 @@
     </p>
 
     <mat-slide-toggle
-      [checked]="instanceConfig?.consentFormEnabled"
+      [checked]="$safeNavigationMigration(instanceConfig?.consentFormEnabled)"
       (change)="onConsentFormEnabledToggle($event.checked)">
       {{ "admin.instance-config.consent-form-enabled" | translate }}
     </mat-slide-toggle>

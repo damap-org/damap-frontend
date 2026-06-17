@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -6,6 +6,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-error-message',
   templateUrl: './error-message.component.html',
   styleUrls: ['./error-message.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MatIcon, TranslatePipe],
 })
 export class ErrorMessageComponent {

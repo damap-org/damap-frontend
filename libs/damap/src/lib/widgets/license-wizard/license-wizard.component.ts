@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Output, inject } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Output,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   ccByNcSa,
   ccBySa,
@@ -31,6 +37,7 @@ import { LicenseFilterPipe } from './license-filter.pipe';
   selector: 'app-license-wizard',
   templateUrl: './license-wizard.component.html',
   styleUrls: ['./license-wizard.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MatButton, MatTooltip, TranslatePipe],
 })
 export class LicenseWizardComponent {
@@ -53,6 +60,7 @@ export class LicenseWizardComponent {
   selector: 'app-license-wizard-dialog',
   templateUrl: 'license-wizard-dialog.html',
   styleUrls: ['./license-wizard.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
     InfoMessageComponent,

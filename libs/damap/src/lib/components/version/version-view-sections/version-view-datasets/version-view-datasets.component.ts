@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Dataset } from '../../../../domain/dataset';
 import { DataKind } from '../../../../domain/enum/data-kind.enum';
 import { DataAccessType } from '../../../../domain/enum/data-access-type.enum';
@@ -11,6 +11,7 @@ import { BytePipe } from '../../../../pipes/byte/byte.pipe';
   selector: 'app-version-view-datasets',
   templateUrl: './version-view-datasets.component.html',
   styleUrls: ['./version-view-datasets.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [TagComponent, DatePipe, TranslatePipe, BytePipe],
 })
 export class VersionViewDatasetsComponent {

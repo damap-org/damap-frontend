@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   UntypedFormArray,
   UntypedFormControl,
@@ -33,6 +39,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-dmp-costs',
   templateUrl: './costs.component.html',
   styleUrls: ['./costs.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatLabel,
     MatCard,
@@ -58,7 +65,8 @@ import { TranslatePipe } from '@ngx-translate/core';
     TextareaWrapperComponent,
     CurrencyPipe,
     KeyValuePipe,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class CostsComponent {
   @Input() costsStep: UntypedFormGroup;

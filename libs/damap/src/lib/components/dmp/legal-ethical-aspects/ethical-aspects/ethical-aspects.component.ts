@@ -1,4 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   UntypedFormControl,
   UntypedFormGroup,
@@ -17,6 +22,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-ethical-aspects',
   templateUrl: './ethical-aspects.component.html',
   styleUrls: ['./ethical-aspects.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatCard,
     MatCardContent,

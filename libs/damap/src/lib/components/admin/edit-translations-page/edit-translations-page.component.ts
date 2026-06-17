@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { AdminModule } from '../admin.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -11,12 +11,14 @@ import { TranslatePipe } from '@ngx-translate/core';
   templateUrl: './edit-translations-page.component.html',
   styleUrl: './edit-translations-page.component.css',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminModule,
     MatButtonModule,
     MatCardModule,
     MatIconModule,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class EditTranslationsPageComponent {
   private router = inject(Router);

@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 import { Project } from '../../../domain/project';
 import { UntypedFormControl } from '@angular/forms';
@@ -21,6 +28,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-dmp-project',
   templateUrl: './project.component.html',
   styleUrls: [],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatLabel,
     MatCard,
@@ -32,7 +40,8 @@ import { TranslatePipe } from '@ngx-translate/core';
     ProjectListComponent,
     ManualProjectInputComponent,
     DatePipe,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class ProjectComponent {
   private configService = inject(ConfigService);

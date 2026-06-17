@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   UntypedFormArray,
   UntypedFormControl,
@@ -27,6 +33,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-dmp-external-storage',
   templateUrl: './external-storage.component.html',
   styleUrls: ['./external-storage.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatButton,
     MatCard,

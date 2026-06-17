@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Contributor } from '../../../../domain/contributor';
 import { IdentifierType } from '../../../../domain/enum/identifier-type.enum';
 import { MatIcon } from '@angular/material/icon';
@@ -10,6 +10,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-version-view-contributors',
   templateUrl: './version-view-contributors.component.html',
   styleUrls: ['./version-view-contributors.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MatIcon, OrcidComponent, TagComponent, TranslatePipe],
 })
 export class VersionViewContributorsComponent {

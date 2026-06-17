@@ -17,7 +17,8 @@ describe('InfoCardComponent', () => {
         MatCardModule,
         MatIconModule,
         MatButtonModule,
-        TranslatePipe, TranslateDirective,
+        TranslatePipe,
+        TranslateDirective,
         InfoCardComponent,
       ],
     }).compileComponents();

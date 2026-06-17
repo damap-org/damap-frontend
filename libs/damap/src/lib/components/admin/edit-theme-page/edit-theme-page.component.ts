@@ -31,7 +31,8 @@ import { FormService } from '../../../services/form.service';
     MatIconModule,
     MatSidenavModule,
     ColorPickerComponent,
-    TranslatePipe],
+    TranslatePipe,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditThemePageComponent implements OnInit {

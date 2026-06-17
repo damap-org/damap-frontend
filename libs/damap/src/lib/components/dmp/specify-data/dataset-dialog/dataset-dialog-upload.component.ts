@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogRef,
@@ -14,6 +14,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-dataset-dialog-upload',
   templateUrl: './dataset-dialog-upload.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
     CdkScrollable,
@@ -21,7 +22,8 @@ import { TranslatePipe } from '@ngx-translate/core';
     FileUploadComponent,
     MatDialogActions,
     MatButton,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class DatasetDialogUploadComponent {
   dialogRef = inject<MatDialogRef<DatasetDialogUploadComponent>>(MatDialogRef);

@@ -92,6 +92,15 @@
                 }
               ],
               "outputHashing": "all"
+            },
+            "testing": {
+              "aot": false,
+              "optimization": false,
+              "extractLicenses": false,
+              "assets": [
+                "apps/damap-frontend/src/favicon.ico",
+                "apps/damap-frontend/src/assets"
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -115,21 +124,14 @@
           }
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "main": "apps/damap-frontend/src/test.ts",
-            "polyfills": ["apps/damap-frontend/src/polyfills.ts"],
             "tsConfig": "apps/damap-frontend/tsconfig.spec.json",
-            "karmaConfig": "apps/damap-frontend/karma.conf.js",
-            "assets": [
-              "apps/damap-frontend/src/favicon.ico",
-              "apps/damap-frontend/src/assets"
-            ],
-            "styles": [
-              "apps/damap-frontend/src/styles.scss",
-              "libs/damap/src/assets/styles.scss"
-            ],
-            "scripts": []
+            "reporters": ["default", "junit"],
+            "coverageReporters": ["html", "text-summary", "lcov"],
+            "setupFiles": ["apps/damap-frontend/src/test.ts"],
+            "buildTarget": ":build:testing",
+            "runner": "vitest"
           }
         },
         "lint": {

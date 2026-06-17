@@ -1,4 +1,10 @@
-import { Component, computed, inject, Input } from '@angular/core';
+import {
+  Component,
+  computed,
+  inject,
+  Input,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 import { ETemplateType } from '../../domain/enum/export-template-type.enum';
 import {
@@ -20,6 +26,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'damap-export-warning-dialog',
   templateUrl: './export-warning-dialog.html',
   styleUrls: ['./export-warning-dialog.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
     CdkScrollable,
@@ -30,7 +37,8 @@ import { TranslatePipe } from '@ngx-translate/core';
     MatOption,
     MatButton,
     MatDialogClose,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class ExportWarningDialogComponent {
   dialogRef = inject<MatDialogRef<ExportWarningDialogComponent>>(MatDialogRef);

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import {
   UntypedFormControl,
   UntypedFormGroup,
@@ -31,6 +31,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'damap-internal-storage-dialog',
   templateUrl: './internal-storage-dialog.component.html',
   styleUrl: './internal-storage-dialog.component.css',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
     CdkScrollable,

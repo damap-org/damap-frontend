@@ -1,4 +1,9 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Output,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   UntypedFormControl,
   UntypedFormGroup,
@@ -22,6 +27,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-contributor-manual',
   templateUrl: './contributor-manual.component.html',
   styleUrls: ['./contributor-manual.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatLabel,
     MatCard,

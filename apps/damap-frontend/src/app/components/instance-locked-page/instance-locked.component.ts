@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './instance-locked.component.html',
   styleUrls: ['./instance-locked.component.scss'],
   imports: [TranslatePipe, MatIconModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 export class InstanceLockedComponent {

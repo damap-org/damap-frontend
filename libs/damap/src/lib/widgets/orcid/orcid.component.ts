@@ -1,4 +1,10 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  inject,
+  Input,
+  OnInit,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
 import { ImageThemeService } from 'apps/damap-frontend/src/app/services/image-theme.service';
 import { IMAGE_KEYS } from '../../domain/image-keys';
@@ -6,6 +12,7 @@ import { IMAGE_KEYS } from '../../domain/image-keys';
 @Component({
   selector: 'app-orcid',
   templateUrl: './orcid.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./orcid.component.css'],
 })
 export class OrcidComponent implements OnInit {

@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { Subject, Subscription, switchMap } from 'rxjs';
 import { Dataset } from '../../../../domain/dataset';
@@ -18,10 +24,12 @@ import { InfoMessageComponent } from '../../../../widgets/info-message/info-mess
   selector: 'app-reused-data',
   templateUrl: './reused-data.component.html',
   styleUrls: ['./reused-data.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DataMcComponent,
     MatButton,
-    TranslatePipe, TranslateDirective,
+    TranslatePipe,
+    TranslateDirective,
     DoiSearchComponent,
     DatasetTableComponent,
     InfoMessageComponent,

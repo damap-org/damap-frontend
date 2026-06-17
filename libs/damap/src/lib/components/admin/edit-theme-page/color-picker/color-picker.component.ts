@@ -5,6 +5,7 @@ import {
   EventEmitter,
   ViewChild,
   ElementRef,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckbox } from '@angular/material/checkbox';
@@ -15,6 +16,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   standalone: true,
   templateUrl: './color-picker.component.html',
   styleUrls: ['./color-picker.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MatCheckbox, ReactiveFormsModule, TranslatePipe],
 })
 export class ColorPickerComponent {

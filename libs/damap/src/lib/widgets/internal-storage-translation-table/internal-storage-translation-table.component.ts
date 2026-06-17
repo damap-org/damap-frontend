@@ -7,6 +7,7 @@ import {
   SimpleChanges,
   ViewChild,
   inject,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import {
@@ -46,6 +47,7 @@ import { MatDivider } from '@angular/material/divider';
   selector: 'damap-internal-storage-translation-table',
   templateUrl: './internal-storage-translation-table.component.html',
   styleUrls: ['./internal-storage-translation-table.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatTable,
     MatSort,
@@ -67,7 +69,8 @@ import { MatDivider } from '@angular/material/divider';
     MatRow,
     MatNoDataRow,
     MatPaginator,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class InternalStorageTranslationTableComponent
   implements AfterViewInit, OnChanges
@@ -87,7 +90,8 @@ export class InternalStorageTranslationTableComponent
     'title',
     'description',
     'backupFrequency',
-    'actions'];
+    'actions',
+  ];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

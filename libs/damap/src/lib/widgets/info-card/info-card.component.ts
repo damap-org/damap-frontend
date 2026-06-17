@@ -1,4 +1,10 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,9 +19,11 @@ import { TranslatePipe } from '@ngx-translate/core';
     MatCardModule,
     MatIconModule,
     MatButtonModule,
-    TranslatePipe],
+    TranslatePipe,
+  ],
   templateUrl: './info-card.component.html',
   styleUrl: './info-card.component.css',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 export class InfoCardComponent implements OnInit, OnChanges {

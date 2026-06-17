@@ -1,4 +1,8 @@
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import {
+  Component,
+  NO_ERRORS_SCHEMA,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
@@ -19,6 +23,7 @@ import { ImageThemeService } from '../../services/image-theme.service';
 
 @Component({
   template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     TranslateTestingModule,
     MatSidenavModule,

@@ -8,7 +8,11 @@
         [tooltip]="'dmp.steps.legal.help.humanParticipants'"></app-tooltip>
       <div class="flex-radio">
         <app-cris-tag
-          [cris]="legalEthicalStep?.value.humanParticipantsCris"></app-cris-tag>
+          [cris]="
+            $safeNavigationMigration(
+              legalEthicalStep?.value.humanParticipantsCris
+            )
+          "></app-cris-tag>
         <mat-radio-group
           aria-labelledby="humanParticipants"
           formControlName="humanParticipants">
@@ -62,7 +66,11 @@
           aria-labelledby="ethicalIssues"
           formControlName="ethicalIssues">
           <app-cris-tag
-            [cris]="legalEthicalStep?.value.ethicalIssuesCris"></app-cris-tag>
+            [cris]="
+              $safeNavigationMigration(
+                legalEthicalStep?.value.ethicalIssuesCris
+              )
+            "></app-cris-tag>
           <mat-radio-button class="boolean-mat-radio-button" [value]="true">
             {{ "dmp.steps.legal.question.answer.yes" | translate }}
           </mat-radio-button>
@@ -108,7 +116,11 @@
       </label>
       <div class="flex-radio">
         <app-cris-tag
-          [cris]="legalEthicalStep?.value.committeeReviewedCris"></app-cris-tag>
+          [cris]="
+            $safeNavigationMigration(
+              legalEthicalStep?.value.committeeReviewedCris
+            )
+          "></app-cris-tag>
         <mat-radio-group
           aria-labelledby="committeeReviewed"
           formControlName="committeeReviewed">

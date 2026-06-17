@@ -31,7 +31,9 @@
                 </label>
                 <app-cris-tag
                   [cris]="
-                    legalEthicalStep?.value.sensitiveDataCris
+                    $safeNavigationMigration(
+                      legalEthicalStep?.value.sensitiveDataCris
+                    )
                   "></app-cris-tag>
                 <mat-radio-group
                   aria-labelledby="sensitiveData"

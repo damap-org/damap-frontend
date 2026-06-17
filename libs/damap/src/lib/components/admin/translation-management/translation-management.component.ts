@@ -1,4 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   LanguageSummary,
   TranslationEntry,
@@ -27,6 +32,7 @@ import { NgClass, UpperCasePipe } from '@angular/common';
   selector: 'damap-translation-management',
   templateUrl: './translation-management.component.html',
   styleUrl: './translation-management.component.css',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatFormField,
     MatLabel,

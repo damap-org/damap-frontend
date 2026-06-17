@@ -1,4 +1,11 @@
-import { Component, computed, OnInit, signal, inject } from '@angular/core';
+import {
+  Component,
+  computed,
+  OnInit,
+  signal,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { BackendService } from '../../../services/backend.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -14,6 +21,7 @@ import { AsyncPipe } from '@angular/common';
   selector: 'app-version-list',
   templateUrl: './version-list.component.html',
   styleUrls: [],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [VersionTableComponent, AsyncPipe],
 })
 export class VersionListComponent implements OnInit {

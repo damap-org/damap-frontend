@@ -17,7 +17,10 @@
         <mat-icon class="mat-icon-style outline">mail</mat-icon>
         {{ person.mbox }}
         @if (personId?.identifier && personId?.type === identifierType.ORCID) {
-          <app-orcid [orcidId]="personId?.identifier"></app-orcid>
+          <app-orcid
+            [orcidId]="
+              $safeNavigationMigration(personId?.identifier)
+            "></app-orcid>
         }
       </div>
       <ng-content></ng-content>

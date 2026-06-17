@@ -108,8 +108,10 @@
       <mat-step
         label="{{ 'dmp.steps.project.view.button.choose' | translate }}"
         [completed]="
-          completenessLabel('dmp.steps.project.view.button.choose')
-            ?.completeness > 0
+          $safeNavigationMigration(
+            completenessLabel('dmp.steps.project.view.button.choose')
+              ?.completeness
+          ) > 0
         ">
         @if (selectedStep === 0) {
           <app-project-instruction
@@ -122,7 +124,9 @@
         class="label-container"
         label="{{ 'dmp.steps.people.label' | translate }}"
         [completed]="
-          completenessLabel('dmp.steps.people.label')?.completeness > 0
+          $safeNavigationMigration(
+            completenessLabel('dmp.steps.people.label')?.completeness
+          ) > 0
         ">
         @if (selectedStep === 1) {
           <app-people-instruction
@@ -134,7 +138,9 @@
       <mat-step
         label="{{ 'dmp.steps.data.specify.label' | translate }}"
         [completed]="
-          completenessLabel('dmp.steps.data.specify.label')?.completeness > 0
+          $safeNavigationMigration(
+            completenessLabel('dmp.steps.data.specify.label')?.completeness
+          ) > 0
         ">
         @if (selectedStep === 2) {
           <app-specify-data-instruction
@@ -146,13 +152,17 @@
       <mat-step
         label="{{ 'dmp.steps.documentation.label' | translate }}"
         [completed]="
-          completenessLabel('dmp.steps.documentation.label')?.completeness > 0
+          $safeNavigationMigration(
+            completenessLabel('dmp.steps.documentation.label')?.completeness
+          ) > 0
         ">
       </mat-step>
       <mat-step
         label="{{ 'dmp.steps.storage.label' | translate }}"
         [completed]="
-          completenessLabel('dmp.steps.storage.label')?.completeness > 0
+          $safeNavigationMigration(
+            completenessLabel('dmp.steps.storage.label')?.completeness
+          ) > 0
         ">
         @if (selectedStep === 4) {
           <app-data-storage-instruction
@@ -163,7 +173,9 @@
       <mat-step
         label="{{ 'dmp.steps.legal.label' | translate }}"
         [completed]="
-          completenessLabel('dmp.steps.legal.label')?.completeness > 0
+          $safeNavigationMigration(
+            completenessLabel('dmp.steps.legal.label')?.completeness
+          ) > 0
         ">
         @if (selectedStep === 5) {
           <app-legal-ethical-instruction
@@ -175,13 +187,17 @@
       <mat-step
         label="{{ 'dmp.steps.licensing.label' | translate }}"
         [completed]="
-          completenessLabel('dmp.steps.licensing.label')?.completeness > 0
+          $safeNavigationMigration(
+            completenessLabel('dmp.steps.licensing.label')?.completeness
+          ) > 0
         ">
       </mat-step>
       <mat-step
         label="{{ 'dmp.steps.repositories.label' | translate }}"
         [completed]="
-          completenessLabel('dmp.steps.repositories.label')?.completeness > 0
+          $safeNavigationMigration(
+            completenessLabel('dmp.steps.repositories.label')?.completeness
+          ) > 0
         ">
         @if (selectedStep === 7) {
           <app-repo-instruction
@@ -192,13 +208,17 @@
       <mat-step
         label="{{ 'dmp.steps.data.reuse.label' | translate }}"
         [completed]="
-          completenessLabel('dmp.steps.data.reuse.label')?.completeness > 0
+          $safeNavigationMigration(
+            completenessLabel('dmp.steps.data.reuse.label')?.completeness
+          ) > 0
         ">
       </mat-step>
       <mat-step
         label="{{ 'dmp.steps.costs.label' | translate }}"
         [completed]="
-          completenessLabel('dmp.steps.costs.label')?.completeness > 0
+          $safeNavigationMigration(
+            completenessLabel('dmp.steps.costs.label')?.completeness
+          ) > 0
         "></mat-step>
       <mat-step
         label="{{ 'dmp.steps.end.label' | translate }}"

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import {
   FormArray,
   FormControl,
@@ -45,6 +45,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-dataset-dialog',
   templateUrl: './dataset-dialog.component.html',
   styleUrls: ['./dataset-dialog.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
     CdkScrollable,
@@ -64,7 +65,8 @@ import { TranslatePipe } from '@ngx-translate/core';
     MatButton,
     MatDialogActions,
     KeyValuePipe,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class DatasetDialogComponent {
   dialogRef = inject<MatDialogRef<DatasetDialogComponent>>(MatDialogRef);

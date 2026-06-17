@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogRef,
@@ -22,6 +22,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'damap-add-language-dialog',
   templateUrl: './add-language-dialog.component.html',
   styleUrl: './add-language-dialog.component.css',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
     CdkScrollable,
