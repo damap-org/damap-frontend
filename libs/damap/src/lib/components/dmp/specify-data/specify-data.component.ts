@@ -1,10 +1,9 @@
 import { Observable } from 'rxjs';
 import {
   Component,
-  EventEmitter,
-  Output,
   ChangeDetectionStrategy,
   input,
+  output,
 } from '@angular/core';
 
 import { AbstractBaseDataComponent } from './abstract-base-data.component';
@@ -39,8 +38,8 @@ export class SpecifyDataComponent extends AbstractBaseDataComponent {
   >(undefined);
   readonly config$ = input<Observable<Config>>(undefined);
 
-  @Output() fileToAnalyse = new EventEmitter<File>();
-  @Output() uploadToCancel = new EventEmitter<number>();
+  readonly fileToAnalyse = output<File>();
+  readonly uploadToCancel = output<number>();
 
   selectedView: 'primaryView' | 'secondaryView' = 'primaryView';
 

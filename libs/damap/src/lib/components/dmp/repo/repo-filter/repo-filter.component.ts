@@ -1,10 +1,9 @@
 import {
   Component,
-  EventEmitter,
-  Output,
   inject,
   ChangeDetectionStrategy,
   input,
+  output,
 } from '@angular/core';
 import { REPO_FILTERS } from '../repo-filters';
 import {
@@ -38,8 +37,11 @@ export class RepoFilterComponent {
       label: string;
     }[];
   }>(undefined);
-  @Output() filterChange = new EventEmitter<{
-    [key: string]: { id: string; label: string }[];
+  readonly filterChange = output<{
+    [key: string]: {
+      id: string;
+      label: string;
+    }[];
   }>();
 
   openDialog(): void {

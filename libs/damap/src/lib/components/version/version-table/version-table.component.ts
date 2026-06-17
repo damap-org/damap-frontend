@@ -1,9 +1,8 @@
 import {
   Component,
-  EventEmitter,
   Input,
-  Output,
   ChangeDetectionStrategy,
+  output,
 } from '@angular/core';
 import { Version } from '../../../domain/version';
 import { DmpListItem } from '../../../domain/dmp-list-item';
@@ -56,7 +55,7 @@ export class VersionTableComponent {
 
   @Input() dmp: DmpListItem | Dmp;
   @Input() versions: Version[];
-  @Output() versionToView = new EventEmitter<number>();
+  readonly versionToView = output<number>();
 
   viewVersion(revision: number) {
     this.versionToView.emit(revision);

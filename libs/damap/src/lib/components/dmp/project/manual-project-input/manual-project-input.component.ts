@@ -1,12 +1,11 @@
 import {
   Component,
-  EventEmitter,
   Input,
   OnChanges,
-  Output,
   SimpleChanges,
   inject,
   ChangeDetectionStrategy,
+  output,
 } from '@angular/core';
 import {
   UntypedFormControl,
@@ -66,7 +65,7 @@ export class ManualProjectInputComponent implements OnChanges {
   private feedbackService = inject(FeedbackService);
 
   @Input() project: Project;
-  @Output() projectUpdate = new EventEmitter<Project>();
+  readonly projectUpdate = output<Project>();
 
   form = new UntypedFormGroup({
     id: new UntypedFormControl(null),

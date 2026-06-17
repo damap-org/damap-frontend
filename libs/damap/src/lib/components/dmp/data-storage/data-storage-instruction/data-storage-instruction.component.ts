@@ -1,9 +1,8 @@
 import {
   Component,
-  EventEmitter,
   OnInit,
-  Output,
   ChangeDetectionStrategy,
+  output,
 } from '@angular/core';
 import { ToggleButtonsComponent } from '../../../../widgets/toggle-buttons/toggle-buttons.component';
 
@@ -14,9 +13,7 @@ import { ToggleButtonsComponent } from '../../../../widgets/toggle-buttons/toggl
   imports: [ToggleButtonsComponent],
 })
 export class DataStorageInstructionComponent implements OnInit {
-  @Output() selectionChange = new EventEmitter<
-    'primaryView' | 'secondaryView'
-  >();
+  readonly selectionChange = output<'primaryView' | 'secondaryView'>();
 
   selectedView: 'primaryView' | 'secondaryView' = 'primaryView';
 

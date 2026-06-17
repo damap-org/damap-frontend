@@ -1,9 +1,8 @@
 import {
   Component,
-  EventEmitter,
   Input,
-  Output,
   ChangeDetectionStrategy,
+  output,
 } from '@angular/core';
 import {
   UntypedFormArray,
@@ -71,8 +70,8 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class CostsComponent {
   @Input() costsStep: UntypedFormGroup;
 
-  @Output() costToAdd = new EventEmitter();
-  @Output() costToRemove = new EventEmitter<number>();
+  readonly costToAdd = output();
+  readonly costToRemove = output<number>();
 
   costType: any = CostType;
   costTypeObject = Object.values(CostType);

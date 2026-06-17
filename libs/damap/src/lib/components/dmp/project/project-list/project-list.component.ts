@@ -1,12 +1,11 @@
 import {
   AfterViewInit,
   Component,
-  EventEmitter,
   Input,
   OnInit,
-  Output,
   inject,
   ChangeDetectionStrategy,
+  output,
 } from '@angular/core';
 import {
   Observable,
@@ -58,7 +57,7 @@ export class ProjectListComponent implements OnInit, AfterViewInit {
   private backendService = inject(BackendService);
   dialog = inject(MatDialog);
 
-  @Output() projectToSet = new EventEmitter<Project>();
+  readonly projectToSet = output<Project>();
   private _selectedProject: Project;
 
   @Input()

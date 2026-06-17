@@ -1,9 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Output,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy, output } from '@angular/core';
 import {
   UntypedFormControl,
   UntypedFormGroup,
@@ -42,8 +37,8 @@ import { TranslatePipe } from '@ngx-translate/core';
   ],
 })
 export class ContributorManualComponent {
-  @Output() contactPerson = new EventEmitter<any>();
-  @Output() contributorToAdd = new EventEmitter<any>();
+  readonly contactPerson = output<any>();
+  readonly contributorToAdd = output<any>();
 
   show = false;
 

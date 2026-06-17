@@ -1,11 +1,10 @@
 import {
   Component,
-  Output,
-  EventEmitter,
   ViewChild,
   ElementRef,
   ChangeDetectionStrategy,
   input,
+  output,
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckbox } from '@angular/material/checkbox';
@@ -25,7 +24,7 @@ export class ColorPickerComponent {
   readonly controlName = input.required<string>();
   readonly canDisable = input(true);
 
-  @Output() changedEnableStatus = new EventEmitter<{
+  readonly changedEnableStatus = output<{
     controlName: string;
     enabled: boolean;
   }>();

@@ -1,14 +1,13 @@
 import {
   AfterViewInit,
   Component,
-  EventEmitter,
   Input,
   OnChanges,
-  Output,
   SimpleChanges,
   ViewChild,
   ChangeDetectionStrategy,
   input,
+  output,
 } from '@angular/core';
 import {
   MatTableDataSource,
@@ -99,10 +98,13 @@ export class RepoTableComponent implements OnChanges, AfterViewInit {
   readonly repositories = input<RepositoryDetails[]>(undefined); // Repo list loaded from backend
   repoList: any = []; // Filtered repo list (repo list minus selected repos)
 
-  @Output() repositoryToAdd = new EventEmitter<any>();
-  @Output() repositoryDetails = new EventEmitter<any>();
-  @Output() filterChange = new EventEmitter<{
-    [key: string]: { id: string; label: string }[];
+  readonly repositoryToAdd = output<any>();
+  readonly repositoryDetails = output<any>();
+  readonly filterChange = output<{
+    [key: string]: {
+      id: string;
+      label: string;
+    }[];
   }>();
 
   readonly LoadingState = LoadingState;

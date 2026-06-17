@@ -1,10 +1,9 @@
 import {
   Component,
-  EventEmitter,
   inject,
   OnInit,
-  Output,
   ChangeDetectionStrategy,
+  output,
 } from '@angular/core';
 import { ConfigService } from '../../../../../../../../apps/damap-frontend/src/app/services/config.service';
 import { ToggleButtonsComponent } from '../../../../widgets/toggle-buttons/toggle-buttons.component';
@@ -16,9 +15,7 @@ import { ToggleButtonsComponent } from '../../../../widgets/toggle-buttons/toggl
   imports: [ToggleButtonsComponent],
 })
 export class ProjectInstructionComponent implements OnInit {
-  @Output() selectionChange = new EventEmitter<
-    'primaryView' | 'secondaryView'
-  >();
+  readonly selectionChange = output<'primaryView' | 'secondaryView'>();
 
   selectedView: 'primaryView' | 'secondaryView' = 'primaryView';
   configService = inject(ConfigService);

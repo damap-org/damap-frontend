@@ -1,10 +1,9 @@
 import {
   Component,
-  EventEmitter,
   Input,
-  Output,
   inject,
   ChangeDetectionStrategy,
+  output,
 } from '@angular/core';
 
 import { Project } from '../../../domain/project';
@@ -47,7 +46,7 @@ export class ProjectComponent {
   private configService = inject(ConfigService);
 
   @Input() projectStep: UntypedFormControl;
-  @Output() project = new EventEmitter<Project>();
+  readonly project = output<Project>();
 
   selectedView: 'primaryView' | 'secondaryView' = 'primaryView';
 
