@@ -1,4 +1,4 @@
-<app-data-mc [control]="kind"></app-data-mc>
+<app-data-mc [control]="kind" />
 @if (kind.value === dataKind.SPECIFY) {
   <section>
     <div class="example-button-column">
@@ -26,8 +26,7 @@
           [datasets]="datasets"
           [tableHeaders]="tableHeaders"
           (updateDataset)="update($event)"
-          (removeDataset)="remove($event)">
-        </app-dataset-table>
+          (removeDataset)="remove($event)" />
       </div>
     }
   </div>

@@ -34,7 +34,7 @@
                     $safeNavigationMigration(
                       legalEthicalStep?.value.sensitiveDataCris
                     )
-                  "></app-cris-tag>
+                  " />
                 <mat-radio-group
                   aria-labelledby="sensitiveData"
                   formControlName="sensitiveData">
@@ -105,8 +105,7 @@
                       <app-tooltip
                         [tooltip]="
                           'dmp.steps.legal.help.sensitiveDataSecurity'
-                        ">
-                      </app-tooltip>
+                        " />
                     </div>
                     @if (isOtherMeasureSelected) {
                       <app-textarea-wrapper
@@ -117,7 +116,7 @@
                           'dmp.steps.legal.question.long.otherDataSecurityMeasures'
                         "
                         [control]="otherDataSecurityMeasures"
-                        [maxLength]="4000"></app-textarea-wrapper>
+                        [maxLength]="4000" />
                     }
                     <app-textarea-wrapper
                       [label]="
@@ -128,7 +127,7 @@
                       "
                       [control]="sensitiveDataAccess"
                       [maxLength]="4000"
-                      appearance="fill"></app-textarea-wrapper>
+                      appearance="fill" />
                   </div>
                 }
                 <hr />
@@ -144,9 +143,7 @@
                     question.label | translate
                   }}</label>
                   <app-cris-tag
-                    [cris]="
-                      legalEthicalStep.value[question.cris]
-                    "></app-cris-tag>
+                    [cris]="legalEthicalStep.value[question.cris]" />
                   <mat-radio-group
                     formControlName="{{ question.model }}"
                     aria-labelledby="{{ question.label }}">
@@ -229,7 +226,7 @@
                             'dmp.steps.legal.question.long.otherPersonalDataCompliance'
                           "
                           [control]="otherPersonalDataCompliance"
-                          [maxLength]="4000"></app-textarea-wrapper>
+                          [maxLength]="4000" />
                       }
                     </div>
                   }
@@ -273,7 +270,7 @@
                           'dmp.steps.legal.question.long.legalRestrictionsComment'
                         "
                         [control]="legalRestrictionsComment"
-                        [maxLength]="4000"></app-textarea-wrapper>
+                        [maxLength]="4000" />
                     </div>
                     <mat-form-field class="full-width">
                       <mat-label>{{
@@ -305,9 +302,7 @@
                           'dmp.steps.legal.question.long.otherLegalRestrictionsDocuments'
                         "
                         [maxLength]="4000"
-                        [control]="
-                          otherLegalRestrictionsDocuments
-                        "></app-textarea-wrapper>
+                        [control]="otherLegalRestrictionsDocuments" />
                     }
                   }
                   @if (!last) {
@@ -323,7 +318,7 @@
                   'dmp.steps.legal.question.long.dataRightsAndAccessControl'
                 "
                 [maxLength]="4000"
-                [control]="dataRightsAndAccessControl"></app-textarea-wrapper>
+                [control]="dataRightsAndAccessControl" />
             </div>
           </div>
         }
@@ -340,6 +335,6 @@
     >
     <app-ethical-aspects
       [legalEthicalStep]="legalEthicalStep"
-      [ethicalReportEnabled]="ethicalReportEnabled()"></app-ethical-aspects>
+      [ethicalReportEnabled]="ethicalReportEnabled()" />
   </div>
 }

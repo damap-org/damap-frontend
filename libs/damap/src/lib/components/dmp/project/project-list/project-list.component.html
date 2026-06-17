@@ -8,7 +8,7 @@
 @if (!selectedProject) {
   <app-search-field
     [label]="'dmp.steps.project.search' | translate"
-    (searchChange)="search($event)"></app-search-field>
+    (searchChange)="search($event)" />
   @if (!selectedProject) {
     <div class="list-container">
       <mat-selection-list

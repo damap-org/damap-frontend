@@ -28,9 +28,7 @@
           {{ "dmp.steps.summary.table.header.completeness" | translate }}
         </th>
         <td mat-cell *matCellDef="let element">
-          <mat-progress-bar
-            mode="determinate"
-            [value]="element.completeness"></mat-progress-bar>
+          <mat-progress-bar mode="determinate" [value]="element.completeness" />
         </td>
       </ng-container>
       <ng-container matColumnDef="status">
@@ -85,7 +83,7 @@
             [disabled]="!canEvaluate"
             (click)="runEvaluation()">
             @if (evaluating() === "loading") {
-              <mat-spinner diameter="16" class="btn-spinner"></mat-spinner>
+              <mat-spinner diameter="16" class="btn-spinner" />
             }
             {{
               hasResults

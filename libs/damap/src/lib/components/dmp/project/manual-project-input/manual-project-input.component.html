@@ -8,15 +8,11 @@
         <app-input-wrapper
           class="input-full"
           [control]="title"
-          label="{{
-            'dmp.steps.project.input.title' | translate
-          }}"></app-input-wrapper>
+          label="{{ 'dmp.steps.project.input.title' | translate }}" />
         <app-input-wrapper
           class="input-fill"
           [control]="acronym"
-          label="{{
-            'dmp.steps.project.input.acronym' | translate
-          }}"></app-input-wrapper>
+          label="{{ 'dmp.steps.project.input.acronym' | translate }}" />
         <mat-form-field class="input-fill">
           <mat-label>{{
             "dmp.steps.project.input.date" | translate
@@ -31,17 +27,14 @@
           <mat-hint>{{
             "dmp.steps.project.input.datehint" | translate
           }}</mat-hint>
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="picker"></mat-datepicker-toggle>
-          <mat-date-range-picker #picker></mat-date-range-picker>
+          <mat-datepicker-toggle matSuffix [for]="picker" />
+          <mat-date-range-picker #picker />
         </mat-form-field>
       </div>
       <app-textarea-wrapper
         [control]="description"
         [label]="'dmp.steps.project.input.short.description'"
-        [longLabel]="'dmp.steps.project.input.long.description'">
-      </app-textarea-wrapper>
+        [longLabel]="'dmp.steps.project.input.long.description'" />
       <button
         class="button-position-left"
         mat-flat-button

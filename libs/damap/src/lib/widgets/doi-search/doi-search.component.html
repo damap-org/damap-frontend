@@ -6,7 +6,7 @@
       [placeholder]="'10.5281/zenodo.3885730'"
       [control]="form.get('doi')"
       [errorMessage]="'validation.error.doi'"
-      (searchChange)="searchChange($event)"></app-search-field>
+      (searchChange)="searchChange($event)" />
     <button
       mat-flat-button
       type="submit"
@@ -17,10 +17,8 @@
   </div>
 </form>
 @if (result === null) {
-  <app-error-message
-    message="dmp.steps.data.specify.doi.notFound"></app-error-message>
+  <app-error-message message="dmp.steps.data.specify.doi.notFound" />
 }
 @if (duplicate()) {
-  <app-error-message
-    message="validation.error.doiDuplicate"></app-error-message>
+  <app-error-message message="validation.error.doiDuplicate" />
 }

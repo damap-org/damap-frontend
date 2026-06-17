@@ -14,23 +14,19 @@
             [label]="'dmp.steps.documentation.question.short.structure'"
             [longLabel]="'dmp.steps.documentation.question.long.structure'"
             [control]="structure"
-            [autocompleteOptions]="optionsStructureAndVersioning">
-          </app-textarea-wrapper>
+            [autocompleteOptions]="optionsStructureAndVersioning" />
           <div class="form-field-hint">
             <app-textarea-wrapper
               [label]="'dmp.steps.documentation.question.short.metadata'"
               [longLabel]="'dmp.steps.documentation.question.long.metadata'"
               [control]="metadata"
-              [autocompleteOptions]="optionsMetadata">
-            </app-textarea-wrapper>
-            <app-tooltip
-              [tooltip]="'dmp.steps.documentation.info.metadata'"></app-tooltip>
+              [autocompleteOptions]="optionsMetadata" />
+            <app-tooltip [tooltip]="'dmp.steps.documentation.info.metadata'" />
           </div>
           <app-textarea-wrapper
             [label]="'dmp.steps.documentation.question.short.documentation'"
             [longLabel]="'dmp.steps.documentation.question.long.documentation'"
-            [control]="documentation">
-          </app-textarea-wrapper>
+            [control]="documentation" />
           <div class="data-quality-question">
             <mat-hint>{{
               "dmp.steps.documentation.question.long.dataQuality" | translate
@@ -65,7 +61,7 @@
               [longLabel]="
                 'dmp.steps.documentation.question.long.otherDataQuality'
               "
-              [control]="otherDataQuality"></app-textarea-wrapper>
+              [control]="otherDataQuality" />
           }
         </div>
       </mat-card-content>

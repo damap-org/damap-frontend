@@ -10,13 +10,13 @@
   <div [formGroup]="storage">
     <app-input-wrapper
       [label]="'admin.internalStorage.dialog.field.url' | translate"
-      [control]="url"></app-input-wrapper>
+      [control]="url" />
     <app-input-wrapper
       [label]="'admin.internalStorage.dialog.field.storageLocation' | translate"
-      [control]="storageLocation"></app-input-wrapper>
+      [control]="storageLocation" />
     <app-input-wrapper
       [label]="'admin.internalStorage.dialog.field.backupLocation' | translate"
-      [control]="backupLocation"></app-input-wrapper>
+      [control]="backupLocation" />
     <mat-checkbox formControlName="active">
       {{ "admin.internalStorage.dialog.field.active" | translate }}
     </mat-checkbox>
@@ -42,26 +42,25 @@
             [errorMessageInvalid]="
               'admin.internalStorage.translation.dialog.field.languageCodeInvalid'
                 | translate
-            ">
-          </app-language-code-input>
+            " />
           <app-input-wrapper
             [label]="
               'admin.internalStorage.translation.dialog.field.title' | translate
             "
-            [control]="title"></app-input-wrapper>
+            [control]="title" />
           <app-textarea-wrapper
             [label]="
               'admin.internalStorage.translation.dialog.field.description'
                 | translate
             "
             [control]="description"
-            [maxLength]="4000"></app-textarea-wrapper>
+            [maxLength]="4000" />
           <app-input-wrapper
             [label]="
               'admin.internalStorage.translation.dialog.field.backupFrequency'
                 | translate
             "
-            [control]="backupFrequency"></app-input-wrapper>
+            [control]="backupFrequency" />
         </div>
       </div>
     }

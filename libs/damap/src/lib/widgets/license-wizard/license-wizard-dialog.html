@@ -53,7 +53,7 @@
   <div id="ls-search">
     <app-search-field
       [label]="'license-wizard.search'"
-      (searchChange)="searchChange($event)"></app-search-field>
+      (searchChange)="searchChange($event)" />
   </div>
   <div class="ls-list">
     @for (license of (licenseList | licenseFilter:searchTerm); track license.id)

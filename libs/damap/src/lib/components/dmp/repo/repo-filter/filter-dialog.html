@@ -4,57 +4,57 @@
     [label]="'Subjects'"
     [treeData]="FILTER.subjects"
     [state]="data['subjects']"
-    (params)="onFilterChange('subjects', $event)"></app-tree-select-form-field>
+    (params)="onFilterChange('subjects', $event)" />
   <app-tree-select-form-field
     [label]="'Content types'"
     [treeData]="FILTER.contentTypes"
     [state]="data['contentTypes']"
-    (params)="onFilterChange('contentTypes', $event)"></app-tree-select-form-field>
+    (params)="onFilterChange('contentTypes', $event)" />
   <app-tree-select-form-field
     [label]="'Countries'"
     [treeData]="FILTER.countries"
     [state]="data['countries']"
-    (params)="onFilterChange('countries', $event)"></app-tree-select-form-field>
+    (params)="onFilterChange('countries', $event)" />
   <app-tree-select-form-field
     [label]="'Certificates'"
     [treeData]="FILTER.certificates"
     [state]="data['certificates']"
-    (params)="onFilterChange('certificates', $event)"></app-tree-select-form-field>
+    (params)="onFilterChange('certificates', $event)" />
   <app-tree-select-form-field
     [label]="'PID systems'"
     [treeData]="FILTER.pidSystems"
     [state]="data['pidSystems']"
-    (params)="onFilterChange('pidSystems', $event)"></app-tree-select-form-field>
+    (params)="onFilterChange('pidSystems', $event)" />
   <app-tree-select-form-field
     [label]="'Data access'"
     [treeData]="FILTER.dataAccessTypes"
     [state]="data['dataAccess']"
-    (params)="onFilterChange('dataAccess', $event)"></app-tree-select-form-field>
+    (params)="onFilterChange('dataAccess', $event)" />
   <app-tree-select-form-field
     [label]="'Data upload'"
     [treeData]="FILTER.accessTypes"
     [state]="data['dataUpload']"
-    (params)="onFilterChange('dataUpload', $event)"></app-tree-select-form-field>
+    (params)="onFilterChange('dataUpload', $event)" />
   <app-tree-select-form-field
     [label]="'Data licenses'"
     [treeData]="FILTER.dataLicenses"
     [state]="data['dataLicenses']"
-    (params)="onFilterChange('dataLicenses', $event)"></app-tree-select-form-field>
+    (params)="onFilterChange('dataLicenses', $event)" />
   <app-tree-select-form-field
     [label]="'Repository types'"
     [treeData]="FILTER.repositoryTypes"
     [state]="data['repositoryTypes']"
-    (params)="onFilterChange('repositoryTypes', $event)"></app-tree-select-form-field>
+    (params)="onFilterChange('repositoryTypes', $event)" />
   <app-tree-select-form-field
     [label]="'Institution types'"
     [treeData]="FILTER.institutionTypes"
     [state]="data['institutionTypes']"
-    (params)="onFilterChange('institutionTypes', $event)"></app-tree-select-form-field>
+    (params)="onFilterChange('institutionTypes', $event)" />
   <app-tree-select-form-field
     [label]="'Metadata standards'"
     [treeData]="FILTER.metadataStandards"
     [state]="data['metadataStandards']"
-    (params)="onFilterChange('metadataStandards', $event)"></app-tree-select-form-field>
+    (params)="onFilterChange('metadataStandards', $event)" />
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="onNoClick()">

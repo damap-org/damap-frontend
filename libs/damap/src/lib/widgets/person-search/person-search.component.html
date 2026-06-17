@@ -3,7 +3,7 @@
     #contributorSearchField
     class="search-field"
     [label]="'dmp.steps.people.search.field'"
-    (searchChange)="search($event)"></app-search-field>
+    (searchChange)="search($event)" />
   @if (currentSearchTerm && result.length > 0) {
     <div class="result-list">
       <mat-selection-list

@@ -29,8 +29,7 @@
               {{ "dmp.versions.view.project.heading" | translate }}
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <app-version-view-project
-            [project]="dmp.project"></app-version-view-project>
+          <app-version-view-project [project]="dmp.project" />
         </mat-expansion-panel>
       }
       <!-- Contributors-->
@@ -41,8 +40,7 @@
               {{ "dmp.versions.view.contributors.heading" | translate }}
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <app-version-view-contributors
-            [contributors]="dmp.contributors"></app-version-view-contributors>
+          <app-version-view-contributors [contributors]="dmp.contributors" />
         </mat-expansion-panel>
       }
       <!-- Datasets -->
@@ -52,14 +50,14 @@
             <mat-panel-title>
               {{ "dmp.versions.view.datasets.heading" | translate }}
             </mat-panel-title>
-            <mat-panel-description> </mat-panel-description>
+            <mat-panel-description />
           </mat-expansion-panel-header>
           <app-version-view-datasets
             [dataKind]="dmp.dataKind"
             [reusedDataKind]="dmp.reusedDataKind"
             [dataGeneration]="dmp.dataGeneration"
             [noDataExplanation]="dmp.noDataExplanation"
-            [datasets]="dmp.datasets"></app-version-view-datasets>
+            [datasets]="dmp.datasets" />
         </mat-expansion-panel>
       }
       <!-- Only display sections if datasets are defined -->
@@ -74,10 +72,9 @@
             <mat-panel-title>
               {{ "dmp.versions.view.documentation.heading" | translate }}
             </mat-panel-title>
-            <mat-panel-description> </mat-panel-description>
+            <mat-panel-description />
           </mat-expansion-panel-header>
-          <app-version-view-doc-data-quality
-            [dmp]="dmp"></app-version-view-doc-data-quality>
+          <app-version-view-doc-data-quality [dmp]="dmp" />
         </mat-expansion-panel>
         <!-- Legal -->
         <mat-expansion-panel>
@@ -85,10 +82,9 @@
             <mat-panel-title>
               {{ "dmp.versions.view.legal.heading" | translate }}
             </mat-panel-title>
-            <mat-panel-description> </mat-panel-description>
+            <mat-panel-description />
           </mat-expansion-panel-header>
-          <app-version-view-legal-ethical-aspects
-            [dmp]="dmp"></app-version-view-legal-ethical-aspects>
+          <app-version-view-legal-ethical-aspects [dmp]="dmp" />
         </mat-expansion-panel>
         <!-- Storages -->
         <mat-expansion-panel>
@@ -96,12 +92,12 @@
             <mat-panel-title>
               {{ "dmp.versions.view.storage.heading" | translate }}
             </mat-panel-title>
-            <mat-panel-description> </mat-panel-description>
+            <mat-panel-description />
           </mat-expansion-panel-header>
           <app-version-view-storages
             [storages]="dmp.storage"
             [externalStorages]="dmp.externalStorage"
-            [datasets]="dmp.datasets"></app-version-view-storages>
+            [datasets]="dmp.datasets" />
         </mat-expansion-panel>
         <!-- Repositories -->
         <mat-expansion-panel>
@@ -109,11 +105,11 @@
             <mat-panel-title>
               {{ "dmp.versions.view.repositories.heading" | translate }}
             </mat-panel-title>
-            <mat-panel-description> </mat-panel-description>
+            <mat-panel-description />
           </mat-expansion-panel-header>
           <app-version-view-repositories
             [repositories]="dmp.repositories"
-            [datasets]="dmp.datasets"></app-version-view-repositories>
+            [datasets]="dmp.datasets" />
         </mat-expansion-panel>
         <!-- Reuse -->
         <mat-expansion-panel>
@@ -121,7 +117,7 @@
             <mat-panel-title>
               {{ "dmp.versions.view.reuse.heading" | translate }}
             </mat-panel-title>
-            <mat-panel-description> </mat-panel-description>
+            <mat-panel-description />
           </mat-expansion-panel-header>
           <app-version-view-reuse
             [targetAudience]="dmp.targetAudience"
@@ -129,8 +125,7 @@
             [restrictedDataAccess]="dmp.restrictedDataAccess"
             [restrictedAccessInfo]="dmp.restrictedAccessInfo"
             [closedAccessInfo]="dmp.closedAccessInfo"
-            [datasets]="dmp.datasets">
-          </app-version-view-reuse>
+            [datasets]="dmp.datasets" />
         </mat-expansion-panel>
         <!-- Costs -->
         <mat-expansion-panel>
@@ -138,11 +133,11 @@
             <mat-panel-title>
               {{ "dmp.versions.view.costs.heading" | translate }}
             </mat-panel-title>
-            <mat-panel-description> </mat-panel-description>
+            <mat-panel-description />
           </mat-expansion-panel-header>
           <app-version-view-costs
             [costsExist]="dmp.costsExist"
-            [costs]="dmp.costs"></app-version-view-costs>
+            [costs]="dmp.costs" />
         </mat-expansion-panel>
       }
     </mat-accordion>

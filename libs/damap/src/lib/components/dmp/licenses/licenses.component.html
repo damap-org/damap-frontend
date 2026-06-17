@@ -74,9 +74,7 @@
                     </mat-select>
                   </mat-form-field>
                   <app-license-wizard
-                    (selectedLicense)="
-                      setLicenseSelectorResult($event, i)
-                    "></app-license-wizard>
+                    (selectedLicense)="setLicenseSelectorResult($event, i)" />
                 </div>
               }
             </mat-card-content>
@@ -90,10 +88,8 @@
                     matInput
                     formControlName="startDate"
                     [matDatepicker]="picker" />
-                  <mat-datepicker-toggle
-                    matSuffix
-                    [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
+                  <mat-datepicker-toggle matSuffix [for]="picker" />
+                  <mat-datepicker #picker />
                 </mat-form-field>
               </mat-card-content>
             }
@@ -101,7 +97,7 @@
               @if (dataset.value.dataAccess === accessType.CLOSED) {
                 <app-data-deletion
                   [dataset]="getFormGroup(i)"
-                  [dmpForm]="dmpForm()"></app-data-deletion>
+                  [dmpForm]="dmpForm()" />
               }
             </mat-card-content>
           </ng-container>
@@ -118,8 +114,7 @@
         [longLabel]="'dmp.steps.licensing.question.long.restrictedAccessInfo'"
         [labelDatasets]="restricted"
         [control]="restrictedAccessInfo"
-        [maxLength]="4000">
-      </app-textarea-wrapper>
+        [maxLength]="4000" />
     }
 
     @if (closed?.length > 0) {
@@ -128,8 +123,7 @@
         [longLabel]="'dmp.steps.licensing.question.long.closedAccessInfo'"
         [labelDatasets]="closed"
         [control]="closedAccessInfo"
-        [maxLength]="4000">
-      </app-textarea-wrapper>
+        [maxLength]="4000" />
     }
   </div>
 </div>

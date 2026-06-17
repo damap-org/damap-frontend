@@ -27,7 +27,7 @@
               <div class="storage-card-top">
                 <app-input-wrapper
                   [label]="'dmp.steps.storage.external.question.name'"
-                  [control]="getFormControl(i, 'title')"></app-input-wrapper>
+                  [control]="getFormControl(i, 'title')" />
               </div>
               <button
                 mat-icon-button
@@ -56,9 +56,7 @@
                 </mat-form-field>
                 <app-input-wrapper
                   [label]="'dmp.steps.storage.external.question.location'"
-                  [control]="
-                    getFormControl(i, 'storageLocation')
-                  "></app-input-wrapper>
+                  [control]="getFormControl(i, 'storageLocation')" />
               </div>
             </div>
             <div class="form-row">
@@ -67,16 +65,12 @@
                   [label]="
                     'dmp.steps.storage.external.question.backup.frequency'
                   "
-                  [control]="
-                    getFormControl(i, 'backupFrequency')
-                  "></app-input-wrapper>
+                  [control]="getFormControl(i, 'backupFrequency')" />
                 <app-input-wrapper
                   [label]="
                     'dmp.steps.storage.external.question.backup.location'
                   "
-                  [control]="
-                    getFormControl(i, 'backupLocation')
-                  "></app-input-wrapper>
+                  [control]="getFormControl(i, 'backupLocation')" />
               </div>
             </div>
           </mat-card-content>
@@ -97,8 +91,7 @@
         <app-textarea-wrapper
           [label]="'dmp.steps.storage.external.question.short.info'"
           [longLabel]="'dmp.steps.storage.external.question.long.info'"
-          [control]="externalStorageInfo()">
-        </app-textarea-wrapper>
+          [control]="externalStorageInfo()" />
       </div>
     }
   </div>

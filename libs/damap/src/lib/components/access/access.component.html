@@ -23,8 +23,7 @@
         style="width: 100%; display: block; margin-top: 1rem"
         label="access.search.label"
         [control]="userSearchControl"
-        [autocomplete]="auto">
-      </app-search-field>
+        [autocomplete]="auto" />
       <mat-autocomplete
         #auto="matAutocomplete"
         (optionSelected)="addNewAccess($event)">
@@ -68,9 +67,7 @@
                     <mat-radio-button [value]="role">
                       <span class="role-text">{{ role }}</span>
                       <app-tooltip
-                        [tooltip]="
-                          'access.' + role.toLocaleLowerCase()
-                        "></app-tooltip>
+                        [tooltip]="'access.' + role.toLocaleLowerCase()" />
                     </mat-radio-button>
                   }
                 </mat-radio-group>
