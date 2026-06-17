@@ -12,7 +12,7 @@ import {
   MatCardTitle,
   MatCardContent,
 } from '@angular/material/card';
-import { NgStyle } from '@angular/common';
+
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
@@ -20,14 +20,7 @@ import { MatIcon } from '@angular/material/icon';
   templateUrl: './app-banner.component.html',
   styleUrls: ['./app-banner.component.css'],
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    MatCard,
-    NgStyle,
-    MatCardHeader,
-    MatCardTitle,
-    MatIcon,
-    MatCardContent,
-  ],
+  imports: [MatCard, MatCardHeader, MatCardTitle, MatIcon, MatCardContent],
 })
 export class AppBannerComponent implements OnInit {
   private backendService = inject(BackendService);
