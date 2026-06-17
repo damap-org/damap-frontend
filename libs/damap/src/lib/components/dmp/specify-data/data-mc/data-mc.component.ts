@@ -7,7 +7,7 @@ import {
 import { DataKind } from '../../../../domain/enum/data-kind.enum';
 import { MatLabel } from '@angular/material/form-field';
 import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-data-mc',
@@ -19,8 +19,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatRadioGroup,
     ReactiveFormsModule,
     MatRadioButton,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class DataMcComponent {
   @Input() control: UntypedFormControl;

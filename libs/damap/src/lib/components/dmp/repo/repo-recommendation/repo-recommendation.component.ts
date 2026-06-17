@@ -10,7 +10,7 @@ import {
 } from '@angular/material/card';
 import { RepoDetailsComponent } from '../repo-details/repo-details.component';
 import { MatButton } from '@angular/material/button';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { MatProgressBar } from '@angular/material/progress-bar';
 import { ErrorMessageComponent } from '../../../../widgets/error-message/error-message.component';
 
@@ -25,7 +25,7 @@ import { ErrorMessageComponent } from '../../../../widgets/error-message/error-m
     RepoDetailsComponent,
     MatCardActions,
     MatButton,
-    TranslateModule,
+    TranslatePipe, TranslateDirective,
     MatProgressBar,
     ErrorMessageComponent,
   ],

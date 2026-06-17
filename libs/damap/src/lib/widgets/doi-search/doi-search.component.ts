@@ -20,7 +20,7 @@ import { doiValidator } from '../../validators/doi.validator';
 import { SearchFieldComponent } from '../../shared/search-field/search-field.component';
 import { MatButton } from '@angular/material/button';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-doi-search',
@@ -32,8 +32,7 @@ import { TranslateModule } from '@ngx-translate/core';
     SearchFieldComponent,
     MatButton,
     ErrorMessageComponent,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class DoiSearchComponent implements OnChanges {
   @Input() result: Dataset = undefined;

@@ -1,13 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { Repository } from '../../../../domain/repository';
 import { Dataset } from '../../../../domain/dataset';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-version-view-repositories',
   templateUrl: './version-view-repositories.component.html',
   styleUrls: [],
-  imports: [TranslateModule],
+  imports: [TranslatePipe],
 })
 export class VersionViewRepositoriesComponent {
   @Input() repositories: Repository[];

@@ -18,7 +18,7 @@ import {
 } from '@angular/material/dialog';
 import { MatButton, MatAnchor } from '@angular/material/button';
 import { MatTooltip } from '@angular/material/tooltip';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { InfoMessageComponent } from '../info-message/info-message.component';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { MatIcon } from '@angular/material/icon';
@@ -31,7 +31,7 @@ import { LicenseFilterPipe } from './license-filter.pipe';
   selector: 'app-license-wizard',
   templateUrl: './license-wizard.component.html',
   styleUrls: ['./license-wizard.component.css'],
-  imports: [MatButton, MatTooltip, TranslateModule],
+  imports: [MatButton, MatTooltip, TranslatePipe],
 })
 export class LicenseWizardComponent {
   dialog = inject(MatDialog);
@@ -66,7 +66,7 @@ export class LicenseWizardComponent {
     MatCardContent,
     MatDialogClose,
     MatAnchor,
-    TranslateModule,
+    TranslatePipe,
     LicenseFilterPipe,
   ],
 })

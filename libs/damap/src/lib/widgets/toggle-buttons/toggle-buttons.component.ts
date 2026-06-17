@@ -8,13 +8,13 @@ import {
   inject,
 } from '@angular/core';
 import { MatButton } from '@angular/material/button';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-toggle-buttons',
   templateUrl: './toggle-buttons.component.html',
   styleUrls: ['./toggle-buttons.component.css'],
-  imports: [MatButton, TranslateModule],
+  imports: [MatButton, TranslatePipe],
 })
 export class ToggleButtonsComponent implements OnInit {
   private breakpointObserver = inject(BreakpointObserver);

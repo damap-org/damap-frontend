@@ -21,7 +21,7 @@ import { TooltipComponent } from '../../../widgets/tooltip/tooltip.component';
 import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
 import { EthicalAspectsComponent } from './ethical-aspects/ethical-aspects.component';
 import { KeyValuePipe } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dmp-legal-ethical-aspects',
@@ -45,7 +45,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatHint,
     EthicalAspectsComponent,
     KeyValuePipe,
-    TranslateModule,
+    TranslatePipe,
   ],
 })
 export class LegalEthicalAspectsComponent {

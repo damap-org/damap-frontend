@@ -4,14 +4,14 @@ import { DataKind } from '../../../../domain/enum/data-kind.enum';
 import { DataAccessType } from '../../../../domain/enum/data-access-type.enum';
 import { TagComponent } from '../../../../widgets/tag/tag.component';
 import { DatePipe } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { BytePipe } from '../../../../pipes/byte/byte.pipe';
 
 @Component({
   selector: 'app-version-view-datasets',
   templateUrl: './version-view-datasets.component.html',
   styleUrls: ['./version-view-datasets.component.css'],
-  imports: [TagComponent, DatePipe, TranslateModule, BytePipe],
+  imports: [TagComponent, DatePipe, TranslatePipe, BytePipe],
 })
 export class VersionViewDatasetsComponent {
   @Input() dataKind: DataKind;

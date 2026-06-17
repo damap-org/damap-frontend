@@ -12,7 +12,7 @@ import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { DatasetTableComponent } from '../dataset-table/dataset-table.component';
 import { InfoMessageComponent } from '../../../../widgets/info-message/info-message.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-created-data',
@@ -24,8 +24,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatIcon,
     DatasetTableComponent,
     InfoMessageComponent,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class CreatedDataComponent extends AbstractBaseDataComponent {
   dialog = inject(MatDialog);
@@ -42,8 +41,7 @@ export class CreatedDataComponent extends AbstractBaseDataComponent {
     'fileFormat',
     'size',
     'description',
-    'actions',
-  ];
+    'actions'];
 
   openDatasetDialog() {
     const dialogRef = this.dialog.open(DatasetDialogComponent, {

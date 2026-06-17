@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LegalEthicalInstructionComponent } from './legal-ethical-instruction.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 
 describe('LegalEthicalInstructionComponent', () => {
   let component: LegalEthicalInstructionComponent;
@@ -10,7 +10,7 @@ describe('LegalEthicalInstructionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslateModule.forRoot(), LegalEthicalInstructionComponent],
+      imports: [TranslatePipe, TranslateDirective, LegalEthicalInstructionComponent],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 

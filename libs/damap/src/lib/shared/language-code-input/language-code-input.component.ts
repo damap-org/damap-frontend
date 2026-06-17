@@ -24,7 +24,6 @@ import {
 import { BehaviorSubject, map, Observable, startWith } from 'rxjs';
 import { MatLabel } from '@angular/material/form-field';
 import { filter, switchMap } from 'rxjs/operators';
-import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-language-code-input',
@@ -43,9 +42,7 @@ import { TranslateModule } from '@ngx-translate/core';
     UpperCasePipe,
     AsyncPipe,
     FormsModule,
-    ReactiveFormsModule,
-    TranslateModule,
-  ],
+    ReactiveFormsModule],
 })
 export class LanguageCodeInputComponent implements OnChanges {
   @Input() label: string = '';

@@ -33,7 +33,7 @@ import { FeedbackService } from '../../services/feedback.service';
 import { MatDialog } from '@angular/material/dialog';
 import { InternalStorageDialogComponent } from '../../components/admin/internal-storage-dialog/internal-storage-dialog.component';
 import { DeleteStorageWarningDialogComponent } from './dialog/delete-storage-warning-dialog.component';
-import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import validator from 'validator';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatIconButton } from '@angular/material/button';
@@ -67,8 +67,7 @@ import { MatDivider } from '@angular/material/divider';
     MatRow,
     MatNoDataRow,
     MatPaginator,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class InternalStorageTableComponent implements AfterViewInit, OnChanges {
   private backendService = inject(BackendService);
@@ -86,8 +85,7 @@ export class InternalStorageTableComponent implements AfterViewInit, OnChanges {
     'storageLocation',
     'backupLocation',
     'active',
-    'actions',
-  ];
+    'actions'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

@@ -3,7 +3,7 @@ import { InfoCardComponent } from './info-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 
 describe('InfoCardComponent', () => {
@@ -17,7 +17,7 @@ describe('InfoCardComponent', () => {
         MatCardModule,
         MatIconModule,
         MatButtonModule,
-        TranslateModule.forRoot(),
+        TranslatePipe, TranslateDirective,
         InfoCardComponent,
       ],
     }).compileComponents();

@@ -24,7 +24,7 @@ import { VersionViewRepositoriesComponent } from '../version-view-sections/versi
 import { VersionViewReuseComponent } from '../version-view-sections/version-view-reuse/version-view-reuse.component';
 import { VersionViewCostsComponent } from '../version-view-sections/version-view-costs/version-view-costs.component';
 import { AsyncPipe } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-version-view',
@@ -49,8 +49,7 @@ import { TranslateModule } from '@ngx-translate/core';
     VersionViewReuseComponent,
     VersionViewCostsComponent,
     AsyncPipe,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class VersionViewComponent implements OnInit {
   private route = inject(ActivatedRoute);

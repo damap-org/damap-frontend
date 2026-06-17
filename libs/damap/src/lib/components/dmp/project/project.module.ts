@@ -30,12 +30,12 @@ import { ProjectComponent } from './project.component';
 import { ProjectInstructionComponent } from './project-instruction/project-instruction.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
-    TranslateModule,
+    TranslatePipe, TranslateDirective,
     // Materials
     MatCardModule,
     MatButtonModule,
@@ -54,7 +54,7 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
   exports: [
     CommonModule,
-    TranslateModule,
+    TranslatePipe, TranslateDirective,
     ProjectComponent,
     ProjectComponent,
     ProjectInstructionComponent,

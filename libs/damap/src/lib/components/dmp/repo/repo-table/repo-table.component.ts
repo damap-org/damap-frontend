@@ -42,7 +42,7 @@ import { TagComponent } from '../../../../widgets/tag/tag.component';
 import { MatDivider } from '@angular/material/divider';
 import { RepoDetailsComponent } from '../repo-details/repo-details.component';
 import { MatProgressBar } from '@angular/material/progress-bar';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { ErrorMessageComponent } from '../../../../widgets/error-message/error-message.component';
 import { KeyValuePipe } from '@angular/common';
 
@@ -83,7 +83,7 @@ import { KeyValuePipe } from '@angular/common';
     MatRow,
     MatNoDataRow,
     MatPaginator,
-    TranslateModule,
+    TranslatePipe, TranslateDirective,
     ErrorMessageComponent,
     KeyValuePipe,
   ],

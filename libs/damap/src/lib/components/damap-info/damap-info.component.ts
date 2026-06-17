@@ -6,12 +6,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'damap-damap-info',
   imports: [
-    TranslateModule,
+    TranslatePipe, TranslateDirective,
     RouterModule,
     MatIconModule,
     MatButtonModule,

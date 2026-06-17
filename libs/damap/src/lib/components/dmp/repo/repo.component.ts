@@ -21,7 +21,7 @@ import { MatOption } from '@angular/material/autocomplete';
 import { ErrorMessageComponent } from '../../../widgets/error-message/error-message.component';
 import { MatTabLabel } from '@angular/material/tabs';
 import { RepoRecommendationComponent } from './repo-recommendation/repo-recommendation.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { RepoTableComponent } from './repo-table/repo-table.component';
 import { DatasetSourcePipe } from '../../../pipes/dataset-source/dataset-source.pipe';
 import { RepoPipe } from './repo.pipe';
@@ -46,7 +46,7 @@ import { RepoPipe } from './repo.pipe';
     ErrorMessageComponent,
     MatTabLabel,
     RepoRecommendationComponent,
-    TranslateModule,
+    TranslatePipe, TranslateDirective,
     MatButton,
     RepoTableComponent,
     DatasetSourcePipe,

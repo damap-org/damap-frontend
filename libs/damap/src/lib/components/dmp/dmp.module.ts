@@ -1,4 +1,4 @@
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 
 import { AccessComponent } from '../access/access.component';
 import { CommonModule } from '@angular/common';
@@ -29,7 +29,7 @@ import { MatIconModule } from '@angular/material/icon';
     FormsModule,
     ProjectModule,
     MatButtonToggleModule,
-    TranslateModule.forChild({ extend: true }),
+    TranslatePipe, TranslateDirective,
     AccessComponent,
     // Steps
     ProjectModule,

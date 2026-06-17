@@ -21,7 +21,7 @@ import { RecommendedRepository } from '../../../domain/recommended-repository';
 
 import { RepositoryDetails } from '../../../domain/repository-details';
 import { Router } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { firstValueFrom } from 'rxjs';
 import { RepoTableComponent } from '../../dmp/repo/repo-table/repo-table.component';
 
@@ -36,8 +36,7 @@ import { RepoTableComponent } from '../../dmp/repo/repo-table/repo-table.compone
     MatIconModule,
     MatTooltipModule,
     RepoTableComponent,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class EditRepositoriesPageComponent implements OnInit {
   private readonly backendService = inject(BackendService);

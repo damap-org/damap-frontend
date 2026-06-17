@@ -60,7 +60,7 @@ import { ReuseComponent } from './reuse/reuse.component';
 import { CostsComponent } from './costs/costs.component';
 import { SummaryComponent } from './summary/summary.component';
 import { DmpActionsComponent } from './dmp-actions/dmp-actions.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dmp',
@@ -100,7 +100,7 @@ import { TranslateModule } from '@ngx-translate/core';
     CostsComponent,
     SummaryComponent,
     DmpActionsComponent,
-    TranslateModule,
+    TranslatePipe,
   ],
 })
 export class DmpComponent implements OnInit, OnDestroy {

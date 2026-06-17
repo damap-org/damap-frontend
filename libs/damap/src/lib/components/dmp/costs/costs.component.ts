@@ -27,7 +27,7 @@ import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/autocomplete';
 import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
 import { CurrencyPipe, KeyValuePipe } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dmp-costs',
@@ -58,8 +58,7 @@ import { TranslateModule } from '@ngx-translate/core';
     TextareaWrapperComponent,
     CurrencyPipe,
     KeyValuePipe,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class CostsComponent {
   @Input() costsStep: UntypedFormGroup;

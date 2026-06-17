@@ -36,7 +36,7 @@ import {
 import { DataDeletionComponent } from '../data-deletion/data-deletion.component';
 import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
 import { KeyValuePipe } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dmp-licenses',
@@ -63,8 +63,7 @@ import { TranslateModule } from '@ngx-translate/core';
     DataDeletionComponent,
     TextareaWrapperComponent,
     KeyValuePipe,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class LicensesComponent {
   @Input() dmpForm: UntypedFormGroup;

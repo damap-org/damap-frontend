@@ -25,7 +25,7 @@ import { LanguageCodeInputComponent } from '../../../shared/language-code-input/
 import { InputWrapperComponent } from '../../../shared/input-wrapper/input-wrapper.component';
 import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
 import { MatButton } from '@angular/material/button';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'internal-storage-translation-dialog',
@@ -42,7 +42,7 @@ import { TranslateModule } from '@ngx-translate/core';
     TextareaWrapperComponent,
     MatDialogActions,
     MatButton,
-    TranslateModule,
+    TranslatePipe,
   ],
 })
 export class InternalStorageTranslationDialogComponent {

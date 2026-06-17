@@ -11,7 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import {
   MAT_MOMENT_DATE_ADAPTER_OPTIONS,
   MAT_MOMENT_DATE_FORMATS,
@@ -23,7 +23,7 @@ import {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    TranslateModule,
+    TranslatePipe, TranslateDirective,
     // Materials
     MatSelectModule,
     MatDatepickerModule,
@@ -32,7 +32,7 @@ import {
   ],
   exports: [
     CommonModule,
-    TranslateModule,
+    TranslatePipe, TranslateDirective,
     ReactiveFormsModule,
     LicensesComponent,
     // Materials

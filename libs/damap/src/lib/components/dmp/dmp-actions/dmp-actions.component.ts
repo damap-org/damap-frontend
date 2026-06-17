@@ -30,7 +30,7 @@ import { MatButton } from '@angular/material/button';
 import { RouterLinkActive, RouterLink } from '@angular/router';
 import { SaveStatusComponent } from '../../../widgets/save-status/save-status.component';
 import { MatTooltip } from '@angular/material/tooltip';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { InputWrapperComponent } from '../../../shared/input-wrapper/input-wrapper.component';
 
@@ -48,7 +48,7 @@ import { InputWrapperComponent } from '../../../shared/input-wrapper/input-wrapp
     RouterLink,
     SaveStatusComponent,
     MatTooltip,
-    TranslateModule,
+    TranslatePipe,
   ],
 })
 export class DmpActionsComponent implements OnInit, OnDestroy {
@@ -224,7 +224,7 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
     MatDialogActions,
     MatButton,
     MatDialogClose,
-    TranslateModule,
+    TranslatePipe,
   ],
 })
 export class SaveVersionDialogComponent {

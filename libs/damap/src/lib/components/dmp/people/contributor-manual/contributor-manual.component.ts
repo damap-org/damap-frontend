@@ -16,7 +16,7 @@ import { InputWrapperComponent } from '../../../../shared/input-wrapper/input-wr
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { NgClass } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-contributor-manual',
@@ -32,7 +32,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatButton,
     MatIcon,
     NgClass,
-    TranslateModule,
+    TranslatePipe,
   ],
 })
 export class ContributorManualComponent {

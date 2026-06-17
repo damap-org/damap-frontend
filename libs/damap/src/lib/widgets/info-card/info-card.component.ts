@@ -4,7 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { InfoBoxDetails } from '../../domain/infoBox-details';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-info-card',
@@ -13,8 +13,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatCardModule,
     MatIconModule,
     MatButtonModule,
-    TranslateModule,
-  ],
+    TranslatePipe],
   templateUrl: './info-card.component.html',
   styleUrl: './info-card.component.css',
   standalone: true,

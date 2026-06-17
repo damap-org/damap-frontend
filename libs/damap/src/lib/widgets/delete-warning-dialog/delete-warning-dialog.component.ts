@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'damap-delete-warning-dialog',
-  imports: [TranslateModule, MatDialogModule, MatButtonModule],
+  imports: [TranslatePipe, MatDialogModule, MatButtonModule],
   template: `
     <h1 mat-dialog-title>{{ 'delete.dialog.title' | translate }}</h1>
     <mat-dialog-content>{{
