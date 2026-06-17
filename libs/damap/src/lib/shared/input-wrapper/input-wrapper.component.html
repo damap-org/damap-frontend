@@ -1,22 +1,24 @@
-<mat-form-field [appearance]="appearance" subscriptSizing="dynamic">
+<mat-form-field [appearance]="appearance()" subscriptSizing="dynamic">
   <mat-label>
     {{ label | translate }}
     @if (info?.length) {
       <app-tooltip [tooltip]="info"></app-tooltip>
     }
   </mat-label>
-  <span matTextPrefix>{{ prefix }}</span>
+  <span matTextPrefix>{{ prefix() }}</span>
   <input
     matInput
     [formControl]="control"
-    [placeholder]="placeholder"
-    [type]="type || 'text'"
+    [placeholder]="placeholder()"
+    [type]="type() || 'text'"
     [required]="required"
-    [step]="type === 'number' ? stepSize : null"
-    [maxLength]="maxLength"
+    [step]="type() === 'number' ? stepSize() : null"
+    [maxLength]="maxLength()"
     (input)="onInputChange(message.value)"
     #message />
-  <mat-hint align="end">{{ message.value.length }} / {{ maxLength }}</mat-hint>
+  <mat-hint align="end"
+    >{{ message.value.length }} / {{ maxLength() }}</mat-hint
+  >
   @if (!control?.errors?.required && control?.errors?.empty) {
     <mat-error>
       {{ "validation.error.invalidValue" | translate }}

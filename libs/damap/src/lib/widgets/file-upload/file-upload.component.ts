@@ -1,9 +1,9 @@
 import {
   Component,
   EventEmitter,
-  Input,
   Output,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 import { DragdropDirective } from './dragdrop.directive';
 import { MatIcon } from '@angular/material/icon';
@@ -26,7 +26,13 @@ import { TranslatePipe } from '@ngx-translate/core';
   ],
 })
 export class FileUploadComponent {
-  @Input() fileUpload: { file: File; progress: number; finalized: boolean }[];
+  readonly fileUpload = input<
+    {
+      file: File;
+      progress: number;
+      finalized: boolean;
+    }[]
+  >(undefined);
 
   @Output() fileToUpload = new EventEmitter<File>();
   @Output() uploadToCancel = new EventEmitter<number>();

@@ -5,6 +5,7 @@ import {
   Output,
   inject,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 import {
   UntypedFormArray,
@@ -65,7 +66,7 @@ import { RepoPipe } from './repo.pipe';
 export class RepoComponent {
   private readonly store = inject(RepositoryStore);
 
-  @Input() dmpForm: UntypedFormGroup;
+  readonly dmpForm = input<UntypedFormGroup>(undefined);
   @Input() repoStep: UntypedFormArray;
   @Input() datasets: UntypedFormArray;
 

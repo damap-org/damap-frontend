@@ -8,6 +8,7 @@ import {
   SimpleChanges,
   ViewChild,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 import {
   MatTableDataSource,
@@ -92,10 +93,10 @@ import { KeyValuePipe } from '@angular/common';
   ],
 })
 export class RepoTableComponent implements OnChanges, AfterViewInit {
-  @Input() selectedRepos: Repository[];
-  @Input() loaded: LoadingState;
+  readonly selectedRepos = input<Repository[]>(undefined);
+  readonly loaded = input<LoadingState>(undefined);
   @Input() filters: { [key: string]: { id: string; label: string }[] } = {};
-  @Input() repositories: RepositoryDetails[]; // Repo list loaded from backend
+  readonly repositories = input<RepositoryDetails[]>(undefined); // Repo list loaded from backend
   repoList: any = []; // Filtered repo list (repo list minus selected repos)
 
   @Output() repositoryToAdd = new EventEmitter<any>();
@@ -152,8 +153,8 @@ export class RepoTableComponent implements OnChanges, AfterViewInit {
 
   // Filter selected repos from repo list
   private filterRepos(): void {
-    this.repoList = Object.assign([], this.repositories);
-    for (const entry of this.selectedRepos) {
+    this.repoList = Object.assign([], this.repositories());
+    for (const entry of this.selectedRepos()) {
       this.repoList = this.repoList.filter(e => e.id !== entry.repositoryId);
     }
     this.dataSource.paginator = this.paginator;

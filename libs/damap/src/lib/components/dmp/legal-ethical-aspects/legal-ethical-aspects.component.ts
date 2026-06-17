@@ -1,4 +1,9 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  ChangeDetectionStrategy,
+  input,
+} from '@angular/core';
 import {
   UntypedFormArray,
   UntypedFormControl,
@@ -50,10 +55,10 @@ import { TranslatePipe } from '@ngx-translate/core';
   ],
 })
 export class LegalEthicalAspectsComponent {
-  @Input() dmpForm: UntypedFormGroup;
+  readonly dmpForm = input<UntypedFormGroup>(undefined);
   @Input() legalEthicalStep: UntypedFormGroup;
   @Input() datasets: UntypedFormArray;
-  @Input() ethicalReportEnabled: boolean;
+  readonly ethicalReportEnabled = input<boolean>(undefined);
 
   translateAgreementPrefixEnum = 'enum.agreement.';
   translateCompliancePrefixEnum = 'enum.compliance.';

@@ -2,12 +2,12 @@ import {
   AfterViewInit,
   Component,
   EventEmitter,
-  Input,
   OnChanges,
   Output,
   SimpleChanges,
   ViewChild,
   ChangeDetectionStrategy,
+  input,
   inject,
 } from '@angular/core';
 
@@ -76,9 +76,9 @@ import { TranslatePipe } from '@ngx-translate/core';
   ],
 })
 export class DmpTableComponent implements OnChanges, AfterViewInit {
-  @Input() dmps: DmpListItem[];
-  @Input() admin = false;
-  @Input() dmpsLoaded: LoadingState;
+  readonly dmps = input<DmpListItem[]>(undefined);
+  readonly admin = input(false);
+  readonly dmpsLoaded = input<LoadingState>(undefined);
   dataSource = new MatTableDataSource();
 
   @Output() createDocument = new EventEmitter<number>();
@@ -90,6 +90,7 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
 
   length: number;
   searchTerm: string = '';
+  // Refactor this into a signal together with the import function in backendservice
   importInProgress = false;
 
   readonly tableHeaders: string[] = [
@@ -106,7 +107,7 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.dmps) {
-      this.dataSource.data = this.dmps || [];
+      this.dataSource.data = this.dmps() || [];
     }
   }
 

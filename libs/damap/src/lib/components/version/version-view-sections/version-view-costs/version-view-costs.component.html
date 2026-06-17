@@ -1,6 +1,6 @@
-@if (costsExist) {
+@if (costsExist()) {
   {{ "dmp.steps.costs.question.exist.yes" | translate }}
-  @for (cost of costs; track cost.id) {
+  @for (cost of costs(); track cost.id) {
     <div>
       <hr />
       <h3>{{ cost.title }}</h3>

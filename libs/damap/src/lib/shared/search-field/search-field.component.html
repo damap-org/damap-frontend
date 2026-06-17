@@ -1,4 +1,4 @@
-<mat-form-field [appearance]="appearance" class="search-field focus-icon">
+<mat-form-field [appearance]="appearance()" class="search-field focus-icon">
   <!-- translate has to happen here, if it is done outside label is rendered as empty string always-->
   @if (label) {
     <mat-label>{{ label | translate }}</mat-label>

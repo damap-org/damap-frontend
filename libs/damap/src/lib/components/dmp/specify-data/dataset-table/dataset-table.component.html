@@ -1,6 +1,6 @@
 @if ((datasets.value | datasetSource: sourceType).length) {
   <div>
-    <app-step-intro>{{ tableIntro | translate }} </app-step-intro>
+    <app-step-intro>{{ tableIntro() | translate }} </app-step-intro>
     @if (tableHeading) {
       <h2>{{ tableHeading | translate }}</h2>
     }
@@ -88,10 +88,10 @@
           </button>
         </td>
       </ng-container>
-      <tr mat-header-row *matHeaderRowDef="tableHeaders"></tr>
+      <tr mat-header-row *matHeaderRowDef="tableHeaders()"></tr>
       <tr
         mat-row
-        *matRowDef="let element; columns: tableHeaders"
+        *matRowDef="let element; columns: tableHeaders()"
         class="element-row"></tr>
     </table>
   </div>

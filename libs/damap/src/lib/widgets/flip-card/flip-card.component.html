@@ -6,13 +6,13 @@
   (keypress)="onKeyPress($event)">
   <div class="flip-card-inner">
     <div class="flip-card-front">
-      <div class="title mat-title-medium">{{ frontContent }}</div>
+      <div class="title mat-title-medium">{{ frontContent() }}</div>
       @if (iconCard) {
         <mat-icon class="outline">{{ iconCard }}</mat-icon>
       }
     </div>
     <div class="flip-card-back">
-      <div class="description mat-body-medium">{{ backContent }}</div>
+      <div class="description mat-body-medium">{{ backContent() }}</div>
     </div>
   </div>
 </div>

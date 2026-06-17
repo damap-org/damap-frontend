@@ -1,4 +1,9 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  ChangeDetectionStrategy,
+  input,
+} from '@angular/core';
 import {
   UntypedFormArray,
   UntypedFormControl,
@@ -30,7 +35,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class ReuseComponent {
   @Input() reuseStep: UntypedFormGroup;
-  @Input() datasets: UntypedFormArray;
+  readonly datasets = input<UntypedFormArray>(undefined);
 
   optionsTargetAudience: string[] = [
     'Members of the scientific community',
@@ -41,7 +46,7 @@ export class ReuseComponent {
   ];
 
   get restricted() {
-    return this.datasets?.value.filter(
+    return this.datasets()?.value.filter(
       item =>
         item.dataAccess === DataAccessType.RESTRICTED &&
         item.source === DataSource.NEW,

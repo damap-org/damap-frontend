@@ -3,13 +3,13 @@
     <span class="headings"
       >{{ "dmp.versions.view.reuse.target.audience" | translate }}:</span
     >
-    {{ targetAudience }}
+    {{ targetAudience() }}
   </div>
   <div>
     <span class="headings"
       >{{ "dmp.versions.view.reuse.tools" | translate }}:</span
     >
-    {{ tools }}
+    {{ tools() }}
   </div>
   @if (hasRestrictedDatasets) {
     <div>
@@ -17,14 +17,14 @@
         >{{
           "dmp.versions.view.reuse.restricted.data.access" | translate
         }}: </span
-      >{{ restrictedDataAccess }}
+      >{{ restrictedDataAccess() }}
     </div>
     <div>
       <span class="headings"
         >{{
           "dmp.versions.view.reuse.access.info.restricted" | translate
         }}: </span
-      >{{ restrictedAccessInfo }}
+      >{{ restrictedAccessInfo() }}
     </div>
   }
   @if (hasClosedDatasets) {
@@ -32,7 +32,7 @@
       <span class="headings"
         >{{ "dmp.versions.view.reuse.access.info.closed" | translate }}:</span
       >
-      {{ closedAccessInfo }}
+      {{ closedAccessInfo() }}
     </div>
   }
 </div>

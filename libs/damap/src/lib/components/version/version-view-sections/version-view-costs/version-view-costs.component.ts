@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 import { Cost } from '../../../../domain/cost';
 import { CostType } from '../../../../domain/enum/cost-type.enum';
 import { CurrencyPipe } from '@angular/common';
@@ -12,8 +12,8 @@ import { TranslatePipe } from '@ngx-translate/core';
   imports: [CurrencyPipe, TranslatePipe],
 })
 export class VersionViewCostsComponent {
-  @Input() costs: Cost[];
-  @Input() costsExist: boolean;
+  readonly costs = input<Cost[]>(undefined);
+  readonly costsExist = input<boolean>(undefined);
 
   readonly costType = CostType;
 }

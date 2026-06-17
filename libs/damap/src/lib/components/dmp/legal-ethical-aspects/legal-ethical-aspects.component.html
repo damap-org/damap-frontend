@@ -55,7 +55,7 @@
                   <div>
                     <section
                       class="dataset-checkbox-section"
-                      [formGroup]="dmpForm">
+                      [formGroup]="dmpForm()">
                       {{
                         "dmp.steps.legal.question.dataset.sensitiveData"
                           | translate
@@ -170,7 +170,7 @@
                     <div>
                       <section
                         class="dataset-checkbox-section"
-                        [formGroup]="dmpForm">
+                        [formGroup]="dmpForm()">
                         {{
                           "dmp.steps.legal.question.dataset.personalData"
                             | translate
@@ -242,7 +242,7 @@
                     <div>
                       <section
                         class="dataset-checkbox-section"
-                        [formGroup]="dmpForm">
+                        [formGroup]="dmpForm()">
                         {{
                           "dmp.steps.legal.question.dataset.legalRestrictions"
                             | translate
@@ -340,6 +340,6 @@
     >
     <app-ethical-aspects
       [legalEthicalStep]="legalEthicalStep"
-      [ethicalReportEnabled]="ethicalReportEnabled"></app-ethical-aspects>
+      [ethicalReportEnabled]="ethicalReportEnabled()"></app-ethical-aspects>
   </div>
 }

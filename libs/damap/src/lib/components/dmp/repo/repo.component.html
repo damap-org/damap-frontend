@@ -9,13 +9,13 @@
   </div>
 } @else {
   <app-retention-period
-    [dmpForm]="dmpForm"
+    [dmpForm]="dmpForm()"
     [datasets]="datasets"></app-retention-period>
 }
 <!-- RETENTION PERIOD-->
 
 @if (repoStep.controls.length) {
-  <div [formGroup]="dmpForm">
+  <div [formGroup]="dmpForm()">
     <mat-label
       class="label-title mat-title-large"
       id="example-radio-group-label"

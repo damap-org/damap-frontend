@@ -3,6 +3,7 @@ import {
   Input,
   inject,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 
 import { Router } from '@angular/router';
@@ -18,8 +19,8 @@ import { MatIcon } from '@angular/material/icon';
 export class FlipCardComponent {
   private router = inject(Router);
 
-  @Input() frontContent: string;
-  @Input() backContent: string;
+  readonly frontContent = input<string>(undefined);
+  readonly backContent = input<string>(undefined);
   @Input() navigateRoute: string;
   @Input() iconCard: string;
 

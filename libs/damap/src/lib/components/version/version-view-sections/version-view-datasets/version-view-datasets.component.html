@@ -1,8 +1,9 @@
 @if (
-  dataKind === dataKindType.SPECIFY || reusedDataKind === dataKindType.SPECIFY
+  dataKind() === dataKindType.SPECIFY ||
+  reusedDataKind() === dataKindType.SPECIFY
 ) {
   <div>
-    @for (dataset of datasets; track dataset.id) {
+    @for (dataset of datasets(); track dataset.id) {
       <div>
         <div>
           <span class="title">{{ dataset.title }}</span>
@@ -155,26 +156,29 @@
           "dmp.versions.view.documentation.data.generation" | translate
         }}:</span
       >
-      {{ dataGeneration }}
+      {{ dataGeneration() }}
     </div>
   </div>
 }
 
-@if (dataKind === dataKindType.NONE && reusedDataKind === dataKindType.NONE) {
+@if (
+  dataKind() === dataKindType.NONE && reusedDataKind() === dataKindType.NONE
+) {
   <div>
     <div>
       <span class="headings"
         >{{ "dmp.versions.view.datasets.data.none" | translate }}:</span
       >
     </div>
-    {{ noDataExplanation }}
+    {{ noDataExplanation() }}
   </div>
 }
 
 @if (
-  (dataKind === dataKindType.UNKNOWN &&
-    reusedDataKind !== dataKindType.SPECIFY) ||
-  (dataKind !== dataKindType.SPECIFY && reusedDataKind === dataKindType.UNKNOWN)
+  (dataKind() === dataKindType.UNKNOWN &&
+    reusedDataKind() !== dataKindType.SPECIFY) ||
+  (dataKind() !== dataKindType.SPECIFY &&
+    reusedDataKind() === dataKindType.UNKNOWN)
 ) {
   <div>
     {{ "dmp.versions.view.datasets.data.unknown" | translate }}

@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 import { Repository } from '../../../../domain/repository';
 import { Dataset } from '../../../../domain/dataset';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -11,11 +11,11 @@ import { TranslatePipe } from '@ngx-translate/core';
   imports: [TranslatePipe],
 })
 export class VersionViewRepositoriesComponent {
-  @Input() repositories: Repository[];
-  @Input() datasets: Dataset[];
+  readonly repositories = input<Repository[]>(undefined);
+  readonly datasets = input<Dataset[]>(undefined);
 
   getDatasetsForRepository(repo: Repository): Dataset[] {
-    return this.datasets?.filter(item =>
+    return this.datasets()?.filter(item =>
       repo.datasets.includes(item.referenceHash),
     );
   }

@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 import { Contributor } from '../../../../domain/contributor';
 import { IdentifierType } from '../../../../domain/enum/identifier-type.enum';
 import { MatIcon } from '@angular/material/icon';
@@ -14,6 +14,6 @@ import { TranslatePipe } from '@ngx-translate/core';
   imports: [MatIcon, OrcidComponent, TagComponent, TranslatePipe],
 })
 export class VersionViewContributorsComponent {
-  @Input() contributors: Contributor[];
+  readonly contributors = input<Contributor[]>(undefined);
   readonly identifierType = IdentifierType;
 }
