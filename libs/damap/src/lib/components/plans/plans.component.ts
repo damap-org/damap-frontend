@@ -14,7 +14,7 @@ import { LoadingState } from '../../domain/enum/loading-state.enum';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { DmpTableComponent } from '../../widgets/dmp-table/dmp-table.component';
 import { MatProgressBar } from '@angular/material/progress-bar';
 import { ErrorMessageComponent } from '../../widgets/error-message/error-message.component';
@@ -26,7 +26,7 @@ import { AsyncPipe } from '@angular/common';
   styleUrls: ['./plans.component.css'],
   imports: [
     InfoCardComponent,
-    TranslateModule,
+    TranslatePipe, TranslateDirective,
     DmpTableComponent,
     MatProgressBar,
     ErrorMessageComponent,

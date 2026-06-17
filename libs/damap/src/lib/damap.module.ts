@@ -17,7 +17,7 @@ import { EditTranslationsPageComponent } from './components/admin/edit-translati
 import { GdprComponent } from './components/gdpr/gdpr.component';
 import { PlansComponent } from './components/plans/plans.component';
 import { PlansModule } from './components/plans/plans.module';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { EditTemplatesPageComponent } from './components/admin/edit-templates-page/edit-templates-page.component';
 
 export const DAMAP_ROUTES: Route[] = [
@@ -84,7 +84,7 @@ const MODULES = [PlansModule, AdminModule];
 @NgModule({
   imports: [
     CommonModule,
-    TranslateModule,
+    TranslatePipe, TranslateDirective,
     RouterModule.forChild(DAMAP_ROUTES),
     ...MODULES,
   ],

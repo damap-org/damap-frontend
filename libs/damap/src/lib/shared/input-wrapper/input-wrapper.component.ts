@@ -15,7 +15,7 @@ import {
 } from '@angular/material/form-field';
 import { TooltipComponent } from '../../widgets/tooltip/tooltip.component';
 import { MatInput } from '@angular/material/input';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-input-wrapper [label] [control]',
@@ -31,8 +31,7 @@ import { TranslateModule } from '@ngx-translate/core';
     ReactiveFormsModule,
     MatHint,
     MatError,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class InputWrapperComponent implements OnInit {
   @Input() label: string;

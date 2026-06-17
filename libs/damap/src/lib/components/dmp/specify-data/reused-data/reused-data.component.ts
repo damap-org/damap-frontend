@@ -9,7 +9,7 @@ import { DatasetDialogComponent } from '../dataset-dialog/dataset-dialog.compone
 import { MatDialog } from '@angular/material/dialog';
 import { DataMcComponent } from '../data-mc/data-mc.component';
 import { MatButton } from '@angular/material/button';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { DoiSearchComponent } from '../../../../widgets/doi-search/doi-search.component';
 import { DatasetTableComponent } from '../dataset-table/dataset-table.component';
 import { InfoMessageComponent } from '../../../../widgets/info-message/info-message.component';
@@ -21,7 +21,7 @@ import { InfoMessageComponent } from '../../../../widgets/info-message/info-mess
   imports: [
     DataMcComponent,
     MatButton,
-    TranslateModule,
+    TranslatePipe, TranslateDirective,
     DoiSearchComponent,
     DatasetTableComponent,
     InfoMessageComponent,

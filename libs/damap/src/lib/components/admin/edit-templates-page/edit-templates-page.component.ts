@@ -8,7 +8,7 @@ import {
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { Router } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -33,7 +33,7 @@ import { ConfigService } from '../../../../../../../apps/damap-frontend/src/app/
     MatButtonModule,
     MatIconModule,
     MatCheckboxModule,
-    TranslateModule,
+    TranslatePipe,
     MatInputModule,
     MatFormFieldModule,
     MatSlideToggleModule,

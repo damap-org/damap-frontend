@@ -3,7 +3,7 @@ import { DragdropDirective } from './dragdrop.directive';
 import { MatIcon } from '@angular/material/icon';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatProgressBar } from '@angular/material/progress-bar';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-file-upload',
@@ -15,8 +15,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatButton,
     MatIconButton,
     MatProgressBar,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class FileUploadComponent {
   @Input() fileUpload: { file: File; progress: number; finalized: boolean }[];

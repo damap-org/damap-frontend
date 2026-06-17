@@ -27,7 +27,7 @@ import {
   MatSidenavContent,
 } from '@angular/material/sidenav';
 import { SafeUrl } from '@angular/platform-browser';
-import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import pkg from '../../../../../../package.json'; // eslint-disable-line
 import { ImageThemeService } from '../../services/image-theme.service';
 import { IMAGE_KEYS } from '../../../../../../libs/damap/src/lib/domain/image-keys';
@@ -69,7 +69,7 @@ import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
     MatToolbar,
     MatToolbarRow,
     RouterOutlet,
-    TranslateModule,
+    TranslatePipe,
   ],
 })
 export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
@@ -134,8 +134,9 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
       },
       error: () => {
         const browserLang = this.translate.getBrowserLang();
-        this.translate.use(browserLang?.match(/en/) ? browserLang : 'en');
-        this.lang = this.translate.currentLang.toUpperCase();
+        const selected = browserLang?.match(/en/) ? browserLang : 'en';
+        this.translate.use(selected);
+        this.lang = selected.toUpperCase();
       },
     });
 

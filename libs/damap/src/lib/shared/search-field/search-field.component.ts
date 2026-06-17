@@ -17,7 +17,7 @@ import {
 } from '@angular/material/autocomplete';
 import { MatInput } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-search-field',
@@ -33,7 +33,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatIcon,
     MatSuffix,
     MatError,
-    TranslateModule,
+    TranslatePipe,
   ],
 })
 export class SearchFieldComponent {

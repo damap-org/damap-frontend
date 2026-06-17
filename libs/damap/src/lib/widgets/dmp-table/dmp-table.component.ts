@@ -35,7 +35,7 @@ import { SearchFieldComponent } from '../../shared/search-field/search-field.com
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
 import { DatePipe } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dmp-table',
@@ -66,8 +66,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatNoDataRow,
     MatPaginator,
     DatePipe,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class DmpTableComponent implements OnChanges, AfterViewInit {
   @Input() dmps: DmpListItem[];
@@ -91,8 +90,7 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
     'created',
     'modified',
     'contact',
-    'edit',
-  ];
+    'edit'];
   readonly FUNCTION_ROLES = FunctionRole;
 
   ngOnChanges(changes: SimpleChanges) {

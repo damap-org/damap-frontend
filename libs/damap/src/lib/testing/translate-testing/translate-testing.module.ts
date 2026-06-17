@@ -4,11 +4,10 @@ import {
   NgModule,
   Pipe,
   PipeTransform,
+  signal,
 } from '@angular/core';
 import {
-  TranslateFakeLoader,
-  TranslateLoader,
-  TranslateModule,
+  TranslateDirective,
   TranslatePipe,
   TranslateService,
 } from '@ngx-translate/core';
@@ -30,9 +29,20 @@ export class TranslateServiceStub {
   public onLangChange: EventEmitter<any> = new EventEmitter();
 
   private _currentLang = 'en';
+  public currentLang = signal<string | null>(this._currentLang);
+  public fallbackLang = signal<string | null>('en');
+  public isLoading = signal(false);
 
-  get currentLang(): string {
+  public getCurrentLang(): string {
     return this._currentLang;
+  }
+
+  public getFallbackLang(): string {
+    return 'en';
+  }
+
+  public getLangs(): readonly string[] {
+    return ['en'];
   }
 
   public get(key: any): Observable<any> {
@@ -43,8 +53,26 @@ export class TranslateServiceStub {
     return of({});
   }
 
-  public use(key: string): void {
+  public getTranslations(_lang: string): Record<string, never> {
+    return {};
+  }
+
+  public reloadLang(_lang: string): Observable<Record<string, never>> {
+    return of({});
+  }
+
+  public translate(key: string): any {
+    return signal(key);
+  }
+
+  public stream(key: any): Observable<any> {
+    return of(key);
+  }
+
+  public use(key: string): Observable<Record<string, never>> {
     this._currentLang = key;
+    this.currentLang.set(key);
+    return of({});
   }
 
   public instant(key: any): any {
@@ -57,16 +85,11 @@ export class TranslateServiceStub {
 }
 
 @NgModule({
-  imports: [
-    TranslateModule.forRoot({
-      loader: { provide: TranslateLoader, useClass: TranslateFakeLoader },
-    }),
-    TranslatePipeMock,
-  ],
+  imports: [TranslateDirective, TranslatePipeMock],
   providers: [
     { provide: TranslateService, useClass: TranslateServiceStub },
     { provide: TranslatePipe, useClass: TranslatePipeMock },
   ],
-  exports: [TranslatePipeMock],
+  exports: [TranslateDirective, TranslatePipeMock],
 })
 export class TranslateTestingModule {}

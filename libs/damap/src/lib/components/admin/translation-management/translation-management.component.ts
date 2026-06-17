@@ -13,7 +13,7 @@ import { FeedbackService } from '../../../services/feedback.service';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
-import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { TranslationLoaderService } from '@damap/core';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatSelect } from '@angular/material/select';
@@ -40,7 +40,7 @@ import { NgClass, UpperCasePipe } from '@angular/common';
     NgClass,
     MatPaginator,
     UpperCasePipe,
-    TranslateModule,
+    TranslatePipe,
   ],
 })
 export class TranslationManagementComponent implements OnInit {
@@ -89,7 +89,7 @@ export class TranslationManagementComponent implements OnInit {
       const list =
         details.length > 0 ? details : [{ language: 'en', active: true }];
       this.applyLanguageDetails(list);
-      const currentLang = this.translate.currentLang ?? 'en';
+      const currentLang = this.translate.getCurrentLang() ?? 'en';
       this.selectedLanguage = this.languages.includes(currentLang)
         ? currentLang
         : this.languages[0];
@@ -392,7 +392,7 @@ export class TranslationManagementComponent implements OnInit {
         .pipe(finalize(() => (this.languageLoading = false)))
         .subscribe({
           next: () => {
-            if (this.translate.currentLang === language) {
+            if (this.translate.getCurrentLang() === language) {
               this.translate.use('en');
             }
             this.feedbackService.success(

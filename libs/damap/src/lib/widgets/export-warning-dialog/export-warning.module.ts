@@ -8,12 +8,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { NgModule } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
-    TranslateModule,
+    TranslatePipe, TranslateDirective,
     FormsModule,
     // Materials
     MatButtonModule,

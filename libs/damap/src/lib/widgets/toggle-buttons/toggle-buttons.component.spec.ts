@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ToggleButtonsComponent } from './toggle-buttons.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 
 describe('ToggleButtonsComponent', () => {
   let component: ToggleButtonsComponent;
@@ -10,7 +10,7 @@ describe('ToggleButtonsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslateModule.forRoot(), ToggleButtonsComponent],
+      imports: [TranslatePipe, TranslateDirective, ToggleButtonsComponent],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 

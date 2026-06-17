@@ -10,7 +10,7 @@ import { RecommendedRepository } from '../../../domain/recommended-repository';
 import { DeleteWarningDialogComponent } from '../../../widgets/delete-warning-dialog/delete-warning-dialog.component';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { MatButton } from '@angular/material/button';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-delete-repository-warning-dialog',
@@ -21,8 +21,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatDialogContent,
     MatDialogActions,
     MatButton,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class DeleteRepositoryWarningDialogComponent extends DeleteWarningDialogComponent {
   dialogRef =

@@ -5,7 +5,7 @@ import { IdentifierType } from '../../domain/enum/identifier-type.enum';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Access } from '@damap/core';
 import { OrcidComponent } from '../orcid/orcid.component';
 
@@ -17,7 +17,7 @@ import { OrcidComponent } from '../orcid/orcid.component';
  */
 @Component({
   selector: 'damap-person-card',
-  imports: [TranslateModule, MatCardModule, MatIconModule, OrcidComponent],
+  imports: [TranslatePipe, MatCardModule, MatIconModule, OrcidComponent],
   templateUrl: './person-card.component.html',
   styleUrls: [],
   standalone: true,

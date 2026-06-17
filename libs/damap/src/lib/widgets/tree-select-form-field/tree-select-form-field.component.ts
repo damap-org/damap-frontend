@@ -36,7 +36,7 @@ import {
 } from '@angular/material/autocomplete';
 import { MatIconButton } from '@angular/material/button';
 import { MatCheckbox } from '@angular/material/checkbox';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 /**
  * Tree data
@@ -144,8 +144,7 @@ export class TreeDatabase {
     MatTreeNodePadding,
     MatIconButton,
     MatCheckbox,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class TreeSelectFormFieldComponent implements OnInit {
   private _database = inject(TreeDatabase);

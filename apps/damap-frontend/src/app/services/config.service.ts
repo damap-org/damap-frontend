@@ -78,7 +78,7 @@ export class ConfigService {
                 console.log(this.config);
                 this.colorThemeService.applyTheming(tenantConfig);
                 this.imageThemeService.applyTheming(tenantConfig);
-                for (const lang of this.translate.langs) {
+                for (const lang of this.translate.getLangs()) {
                   this.translate.resetLang(lang);
                 }
                 const appTitle = config.appTitle;

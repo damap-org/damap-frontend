@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-instance-locked',
   templateUrl: './instance-locked.component.html',
   styleUrls: ['./instance-locked.component.scss'],
-  imports: [TranslateModule, MatIconModule],
+  imports: [TranslatePipe, MatIconModule],
   standalone: true,
 })
 export class InstanceLockedComponent {
@@ -14,7 +14,7 @@ export class InstanceLockedComponent {
 
   constructor() {
     const lang = localStorage.getItem('lang') ?? 'en';
-    if (!this.translate.currentLang) {
+    if (!this.translate.getCurrentLang()) {
       this.translate.use(lang);
     }
   }

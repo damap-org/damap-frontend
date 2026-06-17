@@ -9,7 +9,7 @@ import {
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { FileUploadComponent } from '../../../../widgets/file-upload/file-upload.component';
 import { MatButton } from '@angular/material/button';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dataset-dialog-upload',
@@ -21,8 +21,7 @@ import { TranslateModule } from '@ngx-translate/core';
     FileUploadComponent,
     MatDialogActions,
     MatButton,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class DatasetDialogUploadComponent {
   dialogRef = inject<MatDialogRef<DatasetDialogUploadComponent>>(MatDialogRef);

@@ -3,7 +3,7 @@ import { LivePreviewComponent } from './live-preview.component';
 import { of } from 'rxjs';
 import { MatDialogRef } from '@angular/material/dialog';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 describe('LivePreviewComponent', () => {
   let component: LivePreviewComponent;
@@ -18,7 +18,7 @@ describe('LivePreviewComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
-        TranslateModule.forRoot(),
+        TranslatePipe, TranslateDirective,
         LivePreviewComponent,
       ],
       providers: [{ provide: MatDialogRef, useValue: matDialogRefMock }],

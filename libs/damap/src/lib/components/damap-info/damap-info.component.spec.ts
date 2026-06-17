@@ -4,7 +4,7 @@ import { DamapInfoComponent } from './damap-info.component';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
@@ -21,7 +21,7 @@ describe('DamapInfoComponent', () => {
       imports: [
         DamapInfoComponent,
         RouterTestingModule.withRoutes([]),
-        TranslateModule.forRoot(),
+        TranslatePipe, TranslateDirective,
         MatCardModule,
         MatIconModule,
         MatButtonModule,

@@ -17,7 +17,7 @@ import { DeleteStorageWarningDialogComponent } from '../../widgets/internal-stor
 import { DeleteBannerWarningDialogComponent } from './banner-dialog/delete-banner-warning-dialog.component';
 import validator from 'validator';
 import { InstanceConfig } from '../../domain/instance-config';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { InternalStorageTableComponent } from '../../widgets/internal-storage-table/internal-storage-table.component';
@@ -29,7 +29,7 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css',
   imports: [
-    TranslateModule,
+    TranslatePipe, TranslateDirective,
     MatButton,
     MatIcon,
     InternalStorageTableComponent,

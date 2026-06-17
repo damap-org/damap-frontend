@@ -11,7 +11,7 @@ import {
 } from '@angular/material/dialog';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { TreeSelectFormFieldComponent } from '../../../../widgets/tree-select-form-field/tree-select-form-field.component';
 
@@ -19,7 +19,7 @@ import { TreeSelectFormFieldComponent } from '../../../../widgets/tree-select-fo
   selector: 'app-repo-filter',
   templateUrl: './repo-filter.component.html',
   styleUrls: ['./repo-filter.component.css'],
-  imports: [MatButton, MatIcon, TranslateModule],
+  imports: [MatButton, MatIcon, TranslatePipe],
 })
 export class RepoFilterComponent {
   dialog = inject(MatDialog);
@@ -58,8 +58,7 @@ export class RepoFilterComponent {
     MatDialogActions,
     MatButton,
     MatDialogClose,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class FilterDialogComponent {
   dialogRef = inject<MatDialogRef<FilterDialogComponent>>(MatDialogRef);

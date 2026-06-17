@@ -23,7 +23,7 @@ import { MatInput } from '@angular/material/input';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-textarea-wrapper [label] [control]',
@@ -43,7 +43,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatAutocomplete,
     MatOption,
     MatError,
-    TranslateModule,
+    TranslatePipe,
   ],
 })
 export class TextareaWrapperComponent implements OnInit {

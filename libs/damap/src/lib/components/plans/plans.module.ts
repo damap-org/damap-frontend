@@ -11,13 +11,13 @@ import { MatTableModule } from '@angular/material/table';
 import { NgModule } from '@angular/core';
 import { PlansComponent } from './plans.component';
 import { RouterModule } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    TranslateModule,
+    TranslatePipe, TranslateDirective,
     RouterModule,
     ExportWarningModule,
     // Materials
@@ -33,7 +33,7 @@ import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
   ],
   exports: [
     CommonModule,
-    TranslateModule,
+    TranslatePipe, TranslateDirective,
     RouterModule,
     PlansComponent,
     ExportWarningModule,

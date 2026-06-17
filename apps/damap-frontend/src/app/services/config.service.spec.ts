@@ -10,7 +10,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Router } from '@angular/router';
 import { TestBed } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { environment } from '../../environments/environment';
 
 describe('ConfigService', () => {
@@ -80,7 +80,7 @@ describe('ConfigService', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
-        TranslateModule.forRoot(),
+        TranslatePipe, TranslateDirective,
         MatSnackBarModule,
       ],
       schemas: [NO_ERRORS_SCHEMA],

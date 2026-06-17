@@ -11,7 +11,7 @@ import { DataSource } from '../../../domain/enum/data-source.enum';
 import { MatLabel } from '@angular/material/form-field';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dmp-reuse',
@@ -24,8 +24,7 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     ReactiveFormsModule,
     TextareaWrapperComponent,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class ReuseComponent {
   @Input() reuseStep: UntypedFormGroup;
@@ -36,8 +35,7 @@ export class ReuseComponent {
     'Officers of local/national governments',
     'Decision makers in industry',
     'Students and general public',
-    'Others: ',
-  ];
+    'Others: '];
 
   get restricted() {
     return this.datasets?.value.filter(

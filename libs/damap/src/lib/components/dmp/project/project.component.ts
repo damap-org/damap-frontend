@@ -15,7 +15,7 @@ import { MatIconButton } from '@angular/material/button';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { ManualProjectInputComponent } from './manual-project-input/manual-project-input.component';
 import { DatePipe } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dmp-project',
@@ -32,8 +32,7 @@ import { TranslateModule } from '@ngx-translate/core';
     ProjectListComponent,
     ManualProjectInputComponent,
     DatePipe,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class ProjectComponent {
   private configService = inject(ConfigService);

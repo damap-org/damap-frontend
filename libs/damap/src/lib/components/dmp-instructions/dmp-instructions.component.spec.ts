@@ -9,7 +9,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('DmpInstructionsComponent', () => {
@@ -21,7 +21,7 @@ describe('DmpInstructionsComponent', () => {
       imports: [
         RouterTestingModule.withRoutes([]),
         DmpInstructionsComponent,
-        TranslateModule.forRoot(),
+        TranslatePipe, TranslateDirective,
         MatCardModule,
         MatIconModule,
         MatButtonModule,
