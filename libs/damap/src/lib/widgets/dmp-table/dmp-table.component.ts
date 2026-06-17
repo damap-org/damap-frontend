@@ -7,6 +7,7 @@ import {
   Output,
   SimpleChanges,
   ViewChild,
+  ChangeDetectionStrategy,
   inject,
 } from '@angular/core';
 
@@ -45,6 +46,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-dmp-table',
   templateUrl: './dmp-table.component.html',
   styleUrls: ['./dmp-table.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatButton,
     RouterLink,
@@ -70,7 +72,8 @@ import { TranslatePipe } from '@ngx-translate/core';
     MatNoDataRow,
     MatPaginator,
     DatePipe,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class DmpTableComponent implements OnChanges, AfterViewInit {
   @Input() dmps: DmpListItem[];
@@ -95,7 +98,8 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
     'created',
     'modified',
     'contact',
-    'edit'];
+    'edit',
+  ];
   readonly FUNCTION_ROLES = FunctionRole;
   private backendService = inject(BackendService);
   private router = inject(Router);

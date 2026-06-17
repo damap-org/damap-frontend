@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
@@ -11,7 +11,8 @@ import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'damap-damap-info',
   imports: [
-    TranslatePipe, TranslateDirective,
+    TranslatePipe,
+    TranslateDirective,
     RouterModule,
     MatIconModule,
     MatButtonModule,
@@ -22,6 +23,7 @@ import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
   ],
   templateUrl: './damap-info.component.html',
   styleUrl: './damap-info.component.css',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 export class DamapInfoComponent {

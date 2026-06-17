@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import {
   UntypedFormArray,
   UntypedFormControl,
@@ -42,6 +42,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-dmp-licenses',
   templateUrl: './licenses.component.html',
   styleUrls: ['./licenses.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     ReactiveFormsModule,
@@ -63,7 +64,8 @@ import { TranslatePipe } from '@ngx-translate/core';
     DataDeletionComponent,
     TextareaWrapperComponent,
     KeyValuePipe,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class LicensesComponent {
   @Input() dmpForm: UntypedFormGroup;

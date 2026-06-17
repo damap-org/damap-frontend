@@ -5,6 +5,7 @@ import {
   OnChanges,
   Output,
   SimpleChanges,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   UntypedFormControl,
@@ -26,13 +27,15 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-doi-search',
   templateUrl: './doi-search.component.html',
   styleUrls: ['./doi-search.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     ReactiveFormsModule,
     SearchFieldComponent,
     MatButton,
     ErrorMessageComponent,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class DoiSearchComponent implements OnChanges {
   @Input() result: Dataset = undefined;

@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   UntypedFormArray,
   UntypedFormGroup,
@@ -31,6 +38,7 @@ import { RepoPipe } from './repo.pipe';
   templateUrl: './repo.component.html',
   styleUrls: ['./repo.component.css'],
   providers: [RepositoryStore],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatLabel,
     RetentionPeriodComponent,
@@ -46,7 +54,8 @@ import { RepoPipe } from './repo.pipe';
     ErrorMessageComponent,
     MatTabLabel,
     RepoRecommendationComponent,
-    TranslatePipe, TranslateDirective,
+    TranslatePipe,
+    TranslateDirective,
     MatButton,
     RepoTableComponent,
     DatasetSourcePipe,

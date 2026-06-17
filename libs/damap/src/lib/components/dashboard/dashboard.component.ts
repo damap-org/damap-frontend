@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { FlipCardComponent } from '../../widgets/flip-card/flip-card.component';
@@ -9,6 +9,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     InfoCardComponent,
     MatCard,

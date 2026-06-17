@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   MatFormFieldAppearance,
   MatFormField,
@@ -23,6 +29,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-search-field',
   templateUrl: './search-field.component.html',
   styleUrl: './search-field.component.css',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatFormField,
     MatLabel,

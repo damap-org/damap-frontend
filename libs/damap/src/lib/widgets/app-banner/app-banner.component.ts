@@ -1,4 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { Banner } from '../../domain/banner';
 import { BackendService } from '../../services/backend.service';
 import {
@@ -14,6 +19,7 @@ import { MatIcon } from '@angular/material/icon';
   selector: 'app-banner',
   templateUrl: './app-banner.component.html',
   styleUrls: ['./app-banner.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatCard,
     NgStyle,

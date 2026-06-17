@@ -22,7 +22,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { ConfigService } from '../../../../../../../apps/damap-frontend/src/app/services/config.service';
 import {
   ImageKey,
@@ -54,7 +58,8 @@ const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
     MatProgressSpinnerModule,
     MatTooltipModule,
     MatCheckboxModule,
-    TranslatePipe, TranslateDirective,
+    TranslatePipe,
+    TranslateDirective,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

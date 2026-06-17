@@ -5,6 +5,7 @@ import {
   Output,
   computed,
   inject,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   UntypedFormArray,
@@ -38,6 +39,7 @@ import { StorageFilterPipe } from './storage-filter.pipe';
   selector: 'app-dmp-storage',
   templateUrl: './storage.component.html',
   styleUrls: ['./storage.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatLabel,
     MatCard,

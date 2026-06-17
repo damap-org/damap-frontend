@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { REPO_FILTERS } from '../repo-filters';
 import {
   MAT_DIALOG_DATA,
@@ -19,6 +26,7 @@ import { TreeSelectFormFieldComponent } from '../../../../widgets/tree-select-fo
   selector: 'app-repo-filter',
   templateUrl: './repo-filter.component.html',
   styleUrls: ['./repo-filter.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MatButton, MatIcon, TranslatePipe],
 })
 export class RepoFilterComponent {
@@ -50,6 +58,7 @@ export class RepoFilterComponent {
 @Component({
   selector: 'filter-dialog',
   templateUrl: './filter-dialog.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
     CdkScrollable,
@@ -58,7 +67,8 @@ export class RepoFilterComponent {
     MatDialogActions,
     MatButton,
     MatDialogClose,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class FilterDialogComponent {
   dialogRef = inject<MatDialogRef<FilterDialogComponent>>(MatDialogRef);

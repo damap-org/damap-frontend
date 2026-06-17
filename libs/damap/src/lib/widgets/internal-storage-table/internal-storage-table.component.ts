@@ -9,6 +9,7 @@ import {
   SimpleChanges,
   ViewChild,
   inject,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { InternalStorage } from '../../domain/internal-storage';
@@ -45,6 +46,7 @@ import { MatDivider } from '@angular/material/divider';
   selector: 'damap-internal-storage-table',
   templateUrl: './internal-storage-table.component.html',
   styleUrls: ['./internal-storage-table.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatTable,
     MatSort,
@@ -67,7 +69,8 @@ import { MatDivider } from '@angular/material/divider';
     MatRow,
     MatNoDataRow,
     MatPaginator,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class InternalStorageTableComponent implements AfterViewInit, OnChanges {
   private backendService = inject(BackendService);
@@ -85,7 +88,8 @@ export class InternalStorageTableComponent implements AfterViewInit, OnChanges {
     'storageLocation',
     'backupLocation',
     'active',
-    'actions'];
+    'actions',
+  ];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

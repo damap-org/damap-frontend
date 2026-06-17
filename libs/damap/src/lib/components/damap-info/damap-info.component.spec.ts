@@ -21,7 +21,8 @@ describe('DamapInfoComponent', () => {
       imports: [
         DamapInfoComponent,
         RouterTestingModule.withRoutes([]),
-        TranslatePipe, TranslateDirective,
+        TranslatePipe,
+        TranslateDirective,
         MatCardModule,
         MatIconModule,
         MatButtonModule,

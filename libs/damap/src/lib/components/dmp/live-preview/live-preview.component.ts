@@ -1,4 +1,11 @@
-import { Component, computed, inject, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  computed,
+  inject,
+  Input,
+  OnInit,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { ExportWarningDialogComponent } from '../../../widgets/export-warning-dialog/export-warning-dialog.component';
 import {
   MatDialogRef,
@@ -24,6 +31,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'damap-live-preview',
   templateUrl: './live-preview.component.html',
   styleUrl: './live-preview.component.css',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
     MatButton,
@@ -35,7 +43,8 @@ import { TranslatePipe } from '@ngx-translate/core';
     MatLabel,
     MatSelect,
     MatOption,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class LivePreviewComponent implements OnInit {
   dialogRef = inject<MatDialogRef<ExportWarningDialogComponent>>(MatDialogRef);

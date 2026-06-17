@@ -35,7 +35,8 @@ import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 @NgModule({
   imports: [
     CommonModule,
-    TranslatePipe, TranslateDirective,
+    TranslatePipe,
+    TranslateDirective,
     // Materials
     MatCardModule,
     MatButtonModule,
@@ -54,7 +55,8 @@ import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
   ],
   exports: [
     CommonModule,
-    TranslatePipe, TranslateDirective,
+    TranslatePipe,
+    TranslateDirective,
     ProjectComponent,
     ProjectComponent,
     ProjectInstructionComponent,

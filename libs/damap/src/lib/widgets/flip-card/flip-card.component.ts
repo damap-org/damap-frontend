@@ -1,4 +1,9 @@
-import { Component, Input, inject } from '@angular/core';
+import {
+  Component,
+  Input,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 import { Router } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
@@ -7,6 +12,7 @@ import { MatIcon } from '@angular/material/icon';
   selector: 'app-flip-card',
   templateUrl: './flip-card.component.html',
   styleUrls: ['./flip-card.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MatIcon],
 })
 export class FlipCardComponent {

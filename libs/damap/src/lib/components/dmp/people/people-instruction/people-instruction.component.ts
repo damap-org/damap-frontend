@@ -1,9 +1,15 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Output,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { ToggleButtonsComponent } from '../../../../widgets/toggle-buttons/toggle-buttons.component';
 
 @Component({
   selector: 'app-people-instruction',
   templateUrl: './people-instruction.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ToggleButtonsComponent],
 })
 export class PeopleInstructionComponent {

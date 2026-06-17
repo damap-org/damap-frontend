@@ -1,5 +1,9 @@
-import { Component, inject } from '@angular/core';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { Consent } from '@damap/core';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import {
@@ -13,10 +17,12 @@ import { MatButton } from '@angular/material/button';
   selector: 'app-consent',
   templateUrl: './consent.component.html',
   styleUrls: [],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CdkScrollable,
     MatDialogContent,
-    TranslatePipe, TranslateDirective,
+    TranslatePipe,
+    TranslateDirective,
     MatDialogActions,
     MatButton,
     MatDialogClose,

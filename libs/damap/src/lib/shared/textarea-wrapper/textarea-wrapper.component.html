@@ -99,7 +99,12 @@
     <mat-error>
       {{
         "validation.error.maxLength"
-          | translate: { value: control.errors.maxlength?.requiredLength }
+          | translate
+            : {
+                value: $safeNavigationMigration(
+                  control.errors.maxlength?.requiredLength
+                ),
+              }
       }}
       <!-- "maxlength": { "requiredLength": 255, "actualLength": 273 } -->
     </mat-error>

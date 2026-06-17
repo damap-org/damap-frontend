@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   MatCard,
   MatCardHeader,
@@ -11,12 +11,14 @@ import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
   selector: 'app-env-banner',
   templateUrl: './env-banner.component.html',
   styleUrls: ['./env-banner.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatCard,
     MatCardHeader,
     MatCardTitle,
     MatCardContent,
-    TranslatePipe, TranslateDirective,
+    TranslatePipe,
+    TranslateDirective,
   ],
 })
 export class EnvBannerComponent {}

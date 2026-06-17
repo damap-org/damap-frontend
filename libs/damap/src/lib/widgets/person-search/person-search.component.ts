@@ -4,6 +4,7 @@ import {
   Input,
   Output,
   ViewChild,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { Contributor } from '../../domain/contributor';
@@ -22,6 +23,7 @@ import { MatIcon } from '@angular/material/icon';
   selector: 'app-person-search',
   templateUrl: './person-search.component.html',
   styleUrls: ['./person-search.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     SearchFieldComponent,

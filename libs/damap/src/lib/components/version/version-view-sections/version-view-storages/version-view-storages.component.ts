@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Storage } from '../../../../domain/storage';
 import { Dataset } from '../../../../domain/dataset';
 import { ExternalStorage } from '../../../../domain/external-storage';
@@ -9,6 +9,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-version-view-storages',
   templateUrl: './version-view-storages.component.html',
   styleUrls: [],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [TranslatePipe],
 })
 export class VersionViewStoragesComponent {

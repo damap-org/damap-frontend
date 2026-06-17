@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogRef,
@@ -15,13 +15,15 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-delete-repository-warning-dialog',
   templateUrl: './delete-repository-warning-dialog.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
     CdkScrollable,
     MatDialogContent,
     MatDialogActions,
     MatButton,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class DeleteRepositoryWarningDialogComponent extends DeleteWarningDialogComponent {
   dialogRef =

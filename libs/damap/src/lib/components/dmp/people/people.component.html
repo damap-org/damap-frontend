@@ -175,7 +175,9 @@
                     ) {
                       <app-orcid
                         [orcidId]="
-                          contributor.value.personId?.identifier
+                          $safeNavigationMigration(
+                            contributor.value.personId?.identifier
+                          )
                         "></app-orcid>
                     }
                   </div>
@@ -326,7 +328,9 @@
                       ) {
                         <app-orcid
                           [orcidId]="
-                            contributor.value.personId?.identifier
+                            $safeNavigationMigration(
+                              contributor.value.personId?.identifier
+                            )
                           "></app-orcid>
                       }
                     </div>

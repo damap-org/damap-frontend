@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogRef,
@@ -18,13 +18,15 @@ import { MatButton } from '@angular/material/button';
   selector: 'app-information-component',
   templateUrl: './dataset-information.component.html',
   styleUrls: ['./dataset-information.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
     CdkScrollable,
     MatDialogContent,
     MatDialogActions,
     MatButton,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class DatasetInformationComponent {
   dialogRef = inject<MatDialogRef<DatasetDialogComponent>>(MatDialogRef);

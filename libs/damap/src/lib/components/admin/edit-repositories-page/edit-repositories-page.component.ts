@@ -30,13 +30,15 @@ import { RepoTableComponent } from '../../dmp/repo/repo-table/repo-table.compone
   templateUrl: './edit-repositories-page.component.html',
   styleUrls: ['./edit-repositories-page.component.css'],
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatButtonModule,
     MatCardModule,
     MatIconModule,
     MatTooltipModule,
     RepoTableComponent,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class EditRepositoriesPageComponent implements OnInit {
   private readonly backendService = inject(BackendService);

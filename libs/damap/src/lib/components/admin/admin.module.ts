@@ -40,7 +40,8 @@ import { LanguageCodeInputComponent } from '../../shared/language-code-input/lan
 @NgModule({
   imports: [
     CommonModule,
-    TranslatePipe, TranslateDirective,
+    TranslatePipe,
+    TranslateDirective,
     RouterModule,
     ExportWarningModule,
     FormsModule,
@@ -76,7 +77,8 @@ import { LanguageCodeInputComponent } from '../../shared/language-code-input/lan
   ],
   exports: [
     CommonModule,
-    TranslatePipe, TranslateDirective,
+    TranslatePipe,
+    TranslateDirective,
     RouterModule,
     AdminComponent,
     ExportWarningModule,

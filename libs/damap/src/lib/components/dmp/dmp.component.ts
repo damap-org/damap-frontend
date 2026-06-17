@@ -8,6 +8,7 @@ import {
   OnInit,
   ViewChild,
   inject,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   UntypedFormArray,
@@ -73,6 +74,7 @@ import { TranslatePipe } from '@ngx-translate/core';
       useValue: { displayDefaultIndicatorType: false },
     },
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     InfoCardComponent,
     MatStepper,

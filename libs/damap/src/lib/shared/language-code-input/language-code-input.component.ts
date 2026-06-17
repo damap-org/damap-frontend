@@ -1,4 +1,9 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   ReactiveFormsModule,
   FormsModule,
@@ -30,6 +35,7 @@ import { filter, switchMap } from 'rxjs/operators';
   templateUrl: './language-code-input.component.html',
   styleUrl: './language-code-input.component.css',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatHint,
     MatError,
@@ -42,7 +48,8 @@ import { filter, switchMap } from 'rxjs/operators';
     UpperCasePipe,
     AsyncPipe,
     FormsModule,
-    ReactiveFormsModule],
+    ReactiveFormsModule,
+  ],
 })
 export class LanguageCodeInputComponent implements OnChanges {
   @Input() label: string = '';

@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { Dataset } from '../../../domain/dataset';
 import { DataSource } from '../../../domain/enum/data-source.enum';
 import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';
@@ -8,6 +14,7 @@ import { DataKind } from '../../../domain/enum/data-kind.enum';
 @Component({
   selector: 'app-base-data',
   template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export abstract class AbstractBaseDataComponent {

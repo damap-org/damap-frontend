@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import {
   UntypedFormControl,
   UntypedFormGroup,
@@ -31,6 +31,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-data-deletion',
   templateUrl: './data-deletion.component.html',
   styleUrls: ['./data-deletion.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     ReactiveFormsModule,
@@ -45,7 +46,8 @@ import { TranslatePipe } from '@ngx-translate/core';
     MatSuffix,
     MatDatepicker,
     TextareaWrapperComponent,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class DataDeletionComponent {
   @Input() dataset: UntypedFormGroup;

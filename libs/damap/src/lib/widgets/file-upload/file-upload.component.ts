@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { DragdropDirective } from './dragdrop.directive';
 import { MatIcon } from '@angular/material/icon';
 import { MatButton, MatIconButton } from '@angular/material/button';
@@ -9,13 +15,15 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-file-upload',
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DragdropDirective,
     MatIcon,
     MatButton,
     MatIconButton,
     MatProgressBar,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class FileUploadComponent {
   @Input() fileUpload: { file: File; progress: number; finalized: boolean }[];

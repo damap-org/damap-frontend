@@ -1,9 +1,16 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { ToggleButtonsComponent } from '../../../../widgets/toggle-buttons/toggle-buttons.component';
 
 @Component({
   selector: 'app-data-storage-instruction',
   templateUrl: './data-storage-instruction.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ToggleButtonsComponent],
 })
 export class DataStorageInstructionComponent implements OnInit {

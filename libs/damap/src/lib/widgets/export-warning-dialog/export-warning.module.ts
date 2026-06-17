@@ -13,7 +13,8 @@ import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 @NgModule({
   imports: [
     CommonModule,
-    TranslatePipe, TranslateDirective,
+    TranslatePipe,
+    TranslateDirective,
     FormsModule,
     // Materials
     MatButtonModule,

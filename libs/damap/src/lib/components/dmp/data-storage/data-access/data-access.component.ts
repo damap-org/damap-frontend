@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import {
   UntypedFormArray,
   UntypedFormGroup,
@@ -17,6 +17,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-data-access',
   templateUrl: './data-access.component.html',
   styleUrls: ['./data-access.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatLabel,
     MatCard,
@@ -27,7 +28,8 @@ import { TranslatePipe } from '@ngx-translate/core';
     MatSelect,
     MatOption,
     KeyValuePipe,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class DataAccessComponent {
   @Input() dmpForm: UntypedFormGroup;

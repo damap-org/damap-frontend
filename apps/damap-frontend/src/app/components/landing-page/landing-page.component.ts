@@ -1,4 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SafeUrl } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
@@ -18,9 +23,11 @@ import { ImageThemeService } from '../../services/image-theme.service';
     MatButtonModule,
     MatAnchor,
     MatIcon,
-    TranslatePipe],
+    TranslatePipe,
+  ],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.css',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 export class LandingPageComponent implements OnInit {

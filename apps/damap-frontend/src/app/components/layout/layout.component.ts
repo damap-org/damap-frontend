@@ -6,6 +6,7 @@ import {
   OnInit,
   ViewChild,
   inject,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { AuthService, BackendService } from '@damap/core';
 import {
@@ -46,6 +47,7 @@ import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatSidenavContainer,
     MatSidenav,
