@@ -41,7 +41,7 @@
     "@material/material-color-utilities": "^0.3.0",
     "@ngx-translate/core": "15.0.0",
     "@ngx-translate/http-loader": "8.0.0",
-    "angular-oauth2-oidc": "17.0.2",
+    "angular-oauth2-oidc": "^20.0.3",
     "cors": "2.8.5",
     "deepmerge-ts": "^7.0.3",
     "glob": "10.5.0",
