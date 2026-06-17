@@ -1,9 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Output,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy, output } from '@angular/core';
 import { ToggleButtonsComponent } from '../../../../widgets/toggle-buttons/toggle-buttons.component';
 
 @Component({
@@ -13,9 +8,7 @@ import { ToggleButtonsComponent } from '../../../../widgets/toggle-buttons/toggl
   imports: [ToggleButtonsComponent],
 })
 export class SpecifyDataInstructionComponent {
-  @Output() selectionChange = new EventEmitter<
-    'primaryView' | 'secondaryView'
-  >();
+  readonly selectionChange = output<'primaryView' | 'secondaryView'>();
 
   selectedView: 'primaryView' | 'secondaryView' = 'primaryView';
 

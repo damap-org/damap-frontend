@@ -1,15 +1,14 @@
 import {
   AfterViewInit,
   Component,
-  EventEmitter,
   Input,
   OnChanges,
   OnInit,
-  Output,
   SimpleChanges,
   ViewChild,
   inject,
   ChangeDetectionStrategy,
+  output,
 } from '@angular/core';
 
 import { InternalStorage } from '../../domain/internal-storage';
@@ -78,7 +77,7 @@ export class InternalStorageTableComponent implements AfterViewInit, OnChanges {
   private dialog = inject(MatDialog);
   private translateService = inject(TranslateService);
 
-  @Output() selectInternalStorage = new EventEmitter<number>();
+  readonly selectInternalStorage = output<number>();
 
   @Input() internalStorages: InternalStorage[] = [];
   dataSource = new MatTableDataSource<InternalStorage>();

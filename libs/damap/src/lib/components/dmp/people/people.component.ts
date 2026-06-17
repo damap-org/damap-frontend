@@ -1,14 +1,13 @@
 import {
   ChangeDetectorRef,
   Component,
-  EventEmitter,
   Input,
   OnDestroy,
   OnInit,
-  Output,
   ViewChild,
   inject,
   ChangeDetectionStrategy,
+  output,
 } from '@angular/core';
 import {
   UntypedFormArray,
@@ -103,10 +102,10 @@ export class PeopleComponent implements OnInit, OnDestroy {
   @Input() projectMembers: Contributor[];
   @Input() dmpForm: UntypedFormGroup;
 
-  @Output() contactPerson = new EventEmitter<any>();
-  @Output() contributorToAdd = new EventEmitter<any>();
-  @Output() contributorToRemove = new EventEmitter<any>();
-  @Output() contributorToUpdate = new EventEmitter<any>();
+  readonly contactPerson = output<any>();
+  readonly contributorToAdd = output<any>();
+  readonly contributorToRemove = output<any>();
+  readonly contributorToUpdate = output<any>();
 
   readonly roles: any = ContributorRole;
   readonly identifierType = IdentifierType;

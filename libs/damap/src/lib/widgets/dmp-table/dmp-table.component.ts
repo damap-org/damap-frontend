@@ -1,13 +1,12 @@
 import {
   AfterViewInit,
   Component,
-  EventEmitter,
   OnChanges,
-  Output,
   SimpleChanges,
   ViewChild,
   ChangeDetectionStrategy,
   input,
+  output,
 } from '@angular/core';
 
 import { DmpListItem } from '../../domain/dmp-list-item';
@@ -77,9 +76,9 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
   readonly dmpsLoaded = input<LoadingState>(undefined);
   dataSource = new MatTableDataSource();
 
-  @Output() createDocument = new EventEmitter<number>();
-  @Output() createJsonFile = new EventEmitter<number>();
-  @Output() dmpToDelete = new EventEmitter<number>();
+  readonly createDocument = output<number>();
+  readonly createJsonFile = output<number>();
+  readonly dmpToDelete = output<number>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

@@ -1,9 +1,8 @@
 import {
   Component,
-  EventEmitter,
-  Output,
   ChangeDetectionStrategy,
   input,
+  output,
 } from '@angular/core';
 import {
   UntypedFormArray,
@@ -62,8 +61,8 @@ export class ExternalStorageComponent {
     new UntypedFormControl(),
   );
 
-  @Output() externalStorageToAdd = new EventEmitter();
-  @Output() externalStorageToRemove = new EventEmitter<number>();
+  readonly externalStorageToAdd = output();
+  readonly externalStorageToRemove = output<number>();
 
   getFormControl(index: number, controlName: string): UntypedFormControl {
     return (this.externalStorageStep()?.at(index) as UntypedFormGroup)

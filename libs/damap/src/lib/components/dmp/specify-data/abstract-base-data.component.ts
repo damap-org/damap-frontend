@@ -1,9 +1,8 @@
 import {
   Component,
-  EventEmitter,
   Input,
-  Output,
   ChangeDetectionStrategy,
+  output,
 } from '@angular/core';
 import { Dataset } from '../../../domain/dataset';
 import { DataSource } from '../../../domain/enum/data-source.enum';
@@ -21,12 +20,12 @@ export abstract class AbstractBaseDataComponent {
   @Input() specifyDataStep: UntypedFormGroup;
   @Input() datasets: UntypedFormArray;
 
-  @Output() datasetToAdd = new EventEmitter<Dataset>();
-  @Output() updateDataset = new EventEmitter<{
+  readonly datasetToAdd = output<Dataset>();
+  readonly updateDataset = output<{
     index: number;
     update: Dataset;
   }>();
-  @Output() removeDataset = new EventEmitter<number>();
+  readonly removeDataset = output<number>();
 
   readonly dataKind: any = DataKind;
   readonly datasetSource: any = DataSource;

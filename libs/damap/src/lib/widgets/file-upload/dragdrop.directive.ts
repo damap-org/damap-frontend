@@ -1,16 +1,10 @@
-import {
-  Directive,
-  EventEmitter,
-  HostBinding,
-  HostListener,
-  Output,
-} from '@angular/core';
+import { Directive, HostBinding, HostListener, output } from '@angular/core';
 
 @Directive({ selector: '[appDragdrop]' })
 export class DragdropDirective {
   @HostBinding('class.fileover') fileOver: boolean;
 
-  @Output() fileDropped = new EventEmitter<any>();
+  readonly fileDropped = output<any>();
 
   @HostListener('dragover', ['$event'])
   public onDragOver(event) {

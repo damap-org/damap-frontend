@@ -1,9 +1,8 @@
 import {
   Component,
-  EventEmitter,
-  Output,
   ChangeDetectionStrategy,
   input,
+  output,
 } from '@angular/core';
 import { DragdropDirective } from './dragdrop.directive';
 import { MatIcon } from '@angular/material/icon';
@@ -34,8 +33,8 @@ export class FileUploadComponent {
     }[]
   >(undefined);
 
-  @Output() fileToUpload = new EventEmitter<File>();
-  @Output() uploadToCancel = new EventEmitter<number>();
+  readonly fileToUpload = output<File>();
+  readonly uploadToCancel = output<number>();
 
   onFileDropped(files: FileList) {
     for (let i = 0; i < files.length; i++) {

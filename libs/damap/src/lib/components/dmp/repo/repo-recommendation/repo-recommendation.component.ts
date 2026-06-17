@@ -1,10 +1,9 @@
 import {
   Component,
-  EventEmitter,
   Input,
-  Output,
   ChangeDetectionStrategy,
   input,
+  output,
 } from '@angular/core';
 
 import { LoadingState } from '../../../../domain/enum/loading-state.enum';
@@ -45,7 +44,7 @@ export class RepoRecommendationComponent {
 
   readonly LoadingState = LoadingState;
 
-  @Output() repositoryToAdd = new EventEmitter<any>();
+  readonly repositoryToAdd = output<any>();
 
   addRepository(repo: RepositoryDetails) {
     this.repositoryToAdd.emit(repo);

@@ -1,9 +1,8 @@
 import {
   Component,
-  EventEmitter,
-  Output,
   inject,
   ChangeDetectionStrategy,
+  output,
 } from '@angular/core';
 import {
   ccByNcSa,
@@ -43,7 +42,7 @@ import { LicenseFilterPipe } from './license-filter.pipe';
 export class LicenseWizardComponent {
   dialog = inject(MatDialog);
 
-  @Output() selectedLicense = new EventEmitter<LicenseDetails>();
+  readonly selectedLicense = output<LicenseDetails>();
 
   openDialog(): void {
     const dialogRef = this.dialog.open(LicenseSelectorDialogComponent, {

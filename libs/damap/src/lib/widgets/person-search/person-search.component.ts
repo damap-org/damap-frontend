@@ -1,10 +1,9 @@
 import {
   Component,
-  EventEmitter,
   Input,
-  Output,
   ViewChild,
   ChangeDetectionStrategy,
+  output,
 } from '@angular/core';
 
 import { Contributor } from '../../domain/contributor';
@@ -36,8 +35,8 @@ import { MatIcon } from '@angular/material/icon';
 })
 export class PersonSearchComponent {
   @Input() result: Contributor[] = [];
-  @Output() termToSearch = new EventEmitter<string>();
-  @Output() personToAdd = new EventEmitter<Contributor>();
+  readonly termToSearch = output<string>();
+  readonly personToAdd = output<Contributor>();
 
   @ViewChild('contributorSearchField') searchField!: SearchFieldComponent;
 
