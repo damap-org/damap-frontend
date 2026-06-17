@@ -1,11 +1,10 @@
 import {
   Component,
-  EventEmitter,
   Input,
-  Output,
   inject,
   ChangeDetectionStrategy,
   input,
+  output,
 } from '@angular/core';
 import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';
 
@@ -70,8 +69,8 @@ export class DatasetTableComponent {
   @Input() tableHeading: string;
   readonly tableIntro = input('dmp.steps.data.specify.intro.default');
 
-  @Output() removeDataset = new EventEmitter<number>();
-  @Output() updateDataset = new EventEmitter<{
+  readonly removeDataset = output<number>();
+  readonly updateDataset = output<{
     index: number;
     update: Dataset;
   }>();

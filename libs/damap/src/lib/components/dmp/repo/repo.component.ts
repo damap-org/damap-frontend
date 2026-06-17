@@ -1,11 +1,10 @@
 import {
   Component,
-  EventEmitter,
   Input,
-  Output,
   inject,
   ChangeDetectionStrategy,
   input,
+  output,
 } from '@angular/core';
 import {
   UntypedFormArray,
@@ -70,8 +69,8 @@ export class RepoComponent {
   @Input() repoStep: UntypedFormArray;
   @Input() datasets: UntypedFormArray;
 
-  @Output() repositoryToAdd = new EventEmitter<any>();
-  @Output() repositoryToRemove = new EventEmitter<any>();
+  readonly repositoryToAdd = output<any>();
+  readonly repositoryToRemove = output<any>();
 
   readonly datasetSource: any = DataSource;
   readonly LoadingState = LoadingState;

@@ -1,12 +1,11 @@
 import { Observable } from 'rxjs';
 import {
   Component,
-  EventEmitter,
   Input,
-  Output,
   inject,
   ChangeDetectionStrategy,
   input,
+  output,
 } from '@angular/core';
 
 import { AbstractBaseDataComponent } from '../abstract-base-data.component';
@@ -48,8 +47,8 @@ export class CreatedDataComponent extends AbstractBaseDataComponent {
   >(undefined);
   @Input() config$: Observable<Config>;
 
-  @Output() fileToAnalyse = new EventEmitter<File>();
-  @Output() uploadToCancel = new EventEmitter<number>();
+  readonly fileToAnalyse = output<File>();
+  readonly uploadToCancel = output<number>();
 
   readonly tableHeaders: string[] = [
     'dataset',

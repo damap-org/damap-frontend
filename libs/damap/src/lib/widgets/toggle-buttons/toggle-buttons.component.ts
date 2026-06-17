@@ -1,13 +1,12 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import {
   Component,
-  EventEmitter,
   Input,
   OnInit,
-  Output,
   inject,
   ChangeDetectionStrategy,
   input,
+  output,
 } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -26,9 +25,7 @@ export class ToggleButtonsComponent implements OnInit {
   readonly primaryLabel = input<string>(undefined);
   readonly secondaryLabel = input<string>(undefined);
 
-  @Output() selectionChange = new EventEmitter<
-    'primaryView' | 'secondaryView'
-  >();
+  readonly selectionChange = output<'primaryView' | 'secondaryView'>();
 
   cols: number = 2;
 

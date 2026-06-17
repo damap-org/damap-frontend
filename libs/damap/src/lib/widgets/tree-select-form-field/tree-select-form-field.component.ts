@@ -1,12 +1,11 @@
 import {
   Component,
-  EventEmitter,
   Injectable,
   Input,
   OnInit,
-  Output,
   inject,
   ChangeDetectionStrategy,
+  output,
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { FlatTreeControl } from '@angular/cdk/tree';
@@ -172,7 +171,7 @@ export class TreeSelectFormFieldComponent implements OnInit {
   @Input() state: TreeNodeItem[];
 
   /** Outputs all currently selected values (used for GET query) */
-  @Output() params = new EventEmitter<TreeNodeItem[]>();
+  readonly params = output<TreeNodeItem[]>();
 
   /** The selection for checklist */
   checklistSelection = new SelectionModel<TreeFlatNode>(true /* multiple */);

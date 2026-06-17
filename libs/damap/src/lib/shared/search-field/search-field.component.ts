@@ -1,10 +1,9 @@
 import {
   Component,
-  EventEmitter,
   Input,
-  Output,
   ChangeDetectionStrategy,
   input,
+  output,
 } from '@angular/core';
 import {
   MatFormFieldAppearance,
@@ -50,7 +49,7 @@ export class SearchFieldComponent {
   readonly appearance = input<MatFormFieldAppearance>('outline');
   @Input() control: UntypedFormControl = new UntypedFormControl();
   @Input() errorMessage: string = '';
-  @Output() searchChange: EventEmitter<string> = new EventEmitter<string>();
+  readonly searchChange = output<string>();
   @Input() autocomplete: MatAutocomplete | null = null;
 
   onSearchChange(value: string): void {

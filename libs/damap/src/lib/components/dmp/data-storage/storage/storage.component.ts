@@ -1,11 +1,10 @@
 import {
   Component,
-  EventEmitter,
-  Output,
   computed,
   inject,
   ChangeDetectionStrategy,
   input,
+  output,
 } from '@angular/core';
 import {
   UntypedFormArray,
@@ -66,8 +65,8 @@ export class StorageComponent {
   readonly storageStep = input<UntypedFormArray>(undefined);
   readonly datasets = input<UntypedFormArray>(undefined);
 
-  @Output() storageToAdd = new EventEmitter<InternalStorage>();
-  @Output() storageToRemove = new EventEmitter<number>();
+  readonly storageToAdd = output<InternalStorage>();
+  readonly storageToRemove = output<number>();
 
   showAdditionalStorage: boolean = false;
 

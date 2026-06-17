@@ -1,11 +1,10 @@
 import {
   Component,
-  EventEmitter,
   Input,
   OnInit,
-  Output,
   ChangeDetectionStrategy,
   input,
+  output,
 } from '@angular/core';
 import {
   UntypedFormControl,
@@ -53,7 +52,7 @@ export class InputWrapperComponent implements OnInit {
   readonly maxLength = input(255);
   @Input() info: string;
   readonly stepSize = input(100);
-  @Output() inputChange: EventEmitter<string> = new EventEmitter<string>();
+  readonly inputChange = output<string>();
 
   required = false;
 

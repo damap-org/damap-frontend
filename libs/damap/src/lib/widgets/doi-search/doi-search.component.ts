@@ -1,12 +1,11 @@
 import {
   Component,
-  EventEmitter,
   Input,
   OnChanges,
-  Output,
   SimpleChanges,
   ChangeDetectionStrategy,
   input,
+  output,
 } from '@angular/core';
 import {
   UntypedFormControl,
@@ -42,8 +41,8 @@ export class DoiSearchComponent implements OnChanges {
   @Input() result: Dataset = undefined;
   readonly duplicate = input<boolean>(false);
   @Input() loading: LoadingState;
-  @Output() termToSearch = new EventEmitter<string>();
-  @Output() datasetToAdd = new EventEmitter<Dataset>();
+  readonly termToSearch = output<string>();
+  readonly datasetToAdd = output<Dataset>();
 
   form = new UntypedFormGroup({
     doi: new UntypedFormControl('', {
