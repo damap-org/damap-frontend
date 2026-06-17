@@ -23,7 +23,8 @@ import {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    TranslatePipe, TranslateDirective,
+    TranslatePipe,
+    TranslateDirective,
     // Materials
     MatSelectModule,
     MatDatepickerModule,
@@ -32,7 +33,8 @@ import {
   ],
   exports: [
     CommonModule,
-    TranslatePipe, TranslateDirective,
+    TranslatePipe,
+    TranslateDirective,
     ReactiveFormsModule,
     LicensesComponent,
     // Materials

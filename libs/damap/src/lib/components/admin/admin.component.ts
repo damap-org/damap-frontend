@@ -1,4 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { BackendService } from '../../services/backend.service';
 import { AuthService } from '../../auth/auth.service';
 import {
@@ -28,8 +33,10 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
   selector: 'damap-admin',
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    TranslatePipe, TranslateDirective,
+    TranslatePipe,
+    TranslateDirective,
     MatButton,
     MatIcon,
     InternalStorageTableComponent,

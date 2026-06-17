@@ -1,4 +1,11 @@
-import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { FormGroup, UntypedFormControl } from '@angular/forms';
 import {
   MatDialog,
@@ -38,6 +45,7 @@ import { InputWrapperComponent } from '../../../shared/input-wrapper/input-wrapp
   selector: 'app-actions',
   templateUrl: './dmp-actions.component.html',
   styleUrls: ['./dmp-actions.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatAccordion,
     MatExpansionPanel,
@@ -216,6 +224,7 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
   selector: 'app-save-version-dialog',
   templateUrl: 'save-version-dialog.html',
   styleUrls: ['./dmp-actions.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
     CdkScrollable,

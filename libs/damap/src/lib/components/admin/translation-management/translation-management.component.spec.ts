@@ -60,7 +60,8 @@ describe('TranslationManagementComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
-        TranslatePipe, TranslateDirective,
+        TranslatePipe,
+        TranslateDirective,
         MatFormFieldModule,
         MatInputModule,
         MatSelectModule,

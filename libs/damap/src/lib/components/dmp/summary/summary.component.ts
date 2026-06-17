@@ -6,6 +6,7 @@ import {
   OnInit,
   signal,
   inject,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Dmp } from '../../../domain/dmp';
 import { DmpFormStore } from '../../../data-access/dmp-form.store';
@@ -56,6 +57,7 @@ type EvalState = 'idle' | 'loading' | 'done' | 'failed';
   selector: 'app-dmp-summary',
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatLabel,
     MatCard,

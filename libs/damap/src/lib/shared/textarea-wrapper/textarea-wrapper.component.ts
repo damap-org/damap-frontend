@@ -1,4 +1,10 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   UntypedFormControl,
   Validators,
@@ -29,6 +35,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-textarea-wrapper [label] [control]',
   templateUrl: './textarea-wrapper.component.html',
   styleUrls: ['./textarea-wrapper.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatFormField,
     MatLabel,

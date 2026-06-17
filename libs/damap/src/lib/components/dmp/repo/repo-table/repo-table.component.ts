@@ -7,6 +7,7 @@ import {
   Output,
   SimpleChanges,
   ViewChild,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   MatTableDataSource,
@@ -60,6 +61,7 @@ import { KeyValuePipe } from '@angular/common';
       ),
     ]),
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatCard,
     MatCardContent,
@@ -83,7 +85,8 @@ import { KeyValuePipe } from '@angular/common';
     MatRow,
     MatNoDataRow,
     MatPaginator,
-    TranslatePipe, TranslateDirective,
+    TranslatePipe,
+    TranslateDirective,
     ErrorMessageComponent,
     KeyValuePipe,
   ],

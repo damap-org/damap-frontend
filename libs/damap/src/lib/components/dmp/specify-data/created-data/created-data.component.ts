@@ -1,5 +1,12 @@
 import { Observable } from 'rxjs';
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 import { AbstractBaseDataComponent } from '../abstract-base-data.component';
 import { Config } from '../../../../domain/config';
@@ -18,13 +25,15 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-created-data',
   templateUrl: './created-data.component.html',
   styleUrls: ['./created-data.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DataMcComponent,
     MatButton,
     MatIcon,
     DatasetTableComponent,
     InfoMessageComponent,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class CreatedDataComponent extends AbstractBaseDataComponent {
   dialog = inject(MatDialog);
@@ -41,7 +50,8 @@ export class CreatedDataComponent extends AbstractBaseDataComponent {
     'fileFormat',
     'size',
     'description',
-    'actions'];
+    'actions',
+  ];
 
   openDatasetDialog() {
     const dialogRef = this.dialog.open(DatasetDialogComponent, {

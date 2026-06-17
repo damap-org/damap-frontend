@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import {
   UntypedFormArray,
   UntypedFormControl,
@@ -17,6 +17,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-dmp-reuse',
   templateUrl: './reuse.component.html',
   styleUrls: ['./reuse.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatLabel,
     MatCard,
@@ -24,7 +25,8 @@ import { TranslatePipe } from '@ngx-translate/core';
     FormsModule,
     ReactiveFormsModule,
     TextareaWrapperComponent,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class ReuseComponent {
   @Input() reuseStep: UntypedFormGroup;
@@ -35,7 +37,8 @@ export class ReuseComponent {
     'Officers of local/national governments',
     'Decision makers in industry',
     'Students and general public',
-    'Others: '];
+    'Others: ',
+  ];
 
   get restricted() {
     return this.datasets?.value.filter(

@@ -29,7 +29,8 @@ import { MatIconModule } from '@angular/material/icon';
     FormsModule,
     ProjectModule,
     MatButtonToggleModule,
-    TranslatePipe, TranslateDirective,
+    TranslatePipe,
+    TranslateDirective,
     AccessComponent,
     // Steps
     ProjectModule,

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogRef,
@@ -13,13 +13,15 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-storage-info-dialog',
   templateUrl: './storage-info-dialog.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
     CdkScrollable,
     MatDialogContent,
     MatDialogActions,
     MatButton,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class StorageInfoDialogComponent {
   dialogRef = inject<MatDialogRef<StorageInfoDialogComponent>>(MatDialogRef);

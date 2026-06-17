@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 import { LoadingState } from '../../../../domain/enum/loading-state.enum';
 import { RepositoryDetails } from '../../../../domain/repository-details';
@@ -18,6 +24,7 @@ import { ErrorMessageComponent } from '../../../../widgets/error-message/error-m
   selector: 'app-repo-recommendation',
   templateUrl: './repo-recommendation.component.html',
   styleUrls: ['./repo-recommendation.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatCard,
     MatCardHeader,
@@ -25,7 +32,8 @@ import { ErrorMessageComponent } from '../../../../widgets/error-message/error-m
     RepoDetailsComponent,
     MatCardActions,
     MatButton,
-    TranslatePipe, TranslateDirective,
+    TranslatePipe,
+    TranslateDirective,
     MatProgressBar,
     ErrorMessageComponent,
   ],

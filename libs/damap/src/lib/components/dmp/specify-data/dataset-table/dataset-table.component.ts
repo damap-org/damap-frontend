@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';
 
 import { DataSource } from '../../../../domain/enum/data-source.enum';
@@ -30,6 +37,7 @@ import { LimitStringPipe } from '../../../../pipes/limit-string/limitString.pipe
   selector: 'app-dataset-table',
   templateUrl: './dataset-table.component.html',
   styleUrls: ['./dataset-table.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     StepIntroComponent,
     MatTable,

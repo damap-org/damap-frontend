@@ -8,6 +8,7 @@ import {
   Output,
   ViewChild,
   inject,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   UntypedFormArray,
@@ -63,6 +64,7 @@ import { CdkScrollable } from '@angular/cdk/scrolling';
   templateUrl: './people.component.html',
   styleUrls: ['./people.component.css'],
   providers: [ContributorFilterPipe],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatLabel,
     FormsModule,
@@ -296,6 +298,7 @@ export class PeopleComponent implements OnInit, OnDestroy {
 @Component({
   selector: 'app-confirm-deletion-dialog',
   templateUrl: 'confirm-deletion-dialog.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
     CdkScrollable,

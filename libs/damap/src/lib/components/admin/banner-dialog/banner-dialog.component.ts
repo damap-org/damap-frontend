@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 
 import {
   FormControl,
@@ -27,6 +27,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'damap-banner-dialog',
   templateUrl: './banner-dialog.component.html',
   styleUrl: './banner-dialog.component.css',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
     CdkScrollable,
@@ -38,7 +39,8 @@ import { TranslatePipe } from '@ngx-translate/core';
     MatCheckbox,
     MatDialogActions,
     MatButton,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class BannerDialogComponent {
   dialogRef = inject<MatDialogRef<BannerDialogComponent>>(MatDialogRef);

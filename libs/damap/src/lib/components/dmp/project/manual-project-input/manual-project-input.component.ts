@@ -6,6 +6,7 @@ import {
   Output,
   SimpleChanges,
   inject,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   UntypedFormControl,
@@ -40,6 +41,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-manual-project-input',
   templateUrl: './manual-project-input.component.html',
   styleUrls: ['./manual-project-input.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatLabel,
     MatCard,

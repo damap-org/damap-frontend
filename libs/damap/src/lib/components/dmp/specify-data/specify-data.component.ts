@@ -1,5 +1,11 @@
 import { Observable } from 'rxjs';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 import { AbstractBaseDataComponent } from './abstract-base-data.component';
 import { Config } from '../../../domain/config';
@@ -14,12 +20,14 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-dmp-specify-data',
   templateUrl: './specify-data.component.html',
   styleUrls: ['./specify-data.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CreatedDataComponent,
     ReusedDataComponent,
     TextareaWrapperComponent,
     MatHint,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class SpecifyDataComponent extends AbstractBaseDataComponent {
   @Input() fileUpload: { file: File; progress: number; finalized: boolean }[];

@@ -1,4 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnInit,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 import { AuthService } from '../../auth/auth.service';
 import { BackendService } from '../../services/backend.service';
@@ -24,9 +29,11 @@ import { AsyncPipe } from '@angular/common';
   selector: 'app-plan',
   templateUrl: './plans.component.html',
   styleUrls: ['./plans.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     InfoCardComponent,
-    TranslatePipe, TranslateDirective,
+    TranslatePipe,
+    TranslateDirective,
     DmpTableComponent,
     MatProgressBar,
     ErrorMessageComponent,

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import {
   UntypedFormControl,
   FormsModule,
@@ -13,13 +13,15 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-data-mc',
   templateUrl: './data-mc.component.html',
   styleUrls: ['./data-mc.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     MatLabel,
     MatRadioGroup,
     ReactiveFormsModule,
     MatRadioButton,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class DataMcComponent {
   @Input() control: UntypedFormControl;

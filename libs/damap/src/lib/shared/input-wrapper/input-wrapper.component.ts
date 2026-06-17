@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   UntypedFormControl,
   Validators,
@@ -21,6 +28,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-input-wrapper [label] [control]',
   templateUrl: './input-wrapper.component.html',
   styleUrls: ['./input-wrapper.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatFormField,
     MatLabel,
@@ -31,7 +39,8 @@ import { TranslatePipe } from '@ngx-translate/core';
     ReactiveFormsModule,
     MatHint,
     MatError,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class InputWrapperComponent implements OnInit {
   @Input() label: string;

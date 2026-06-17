@@ -5,7 +5,7 @@ import { LandingPageComponent } from './landing-page.component';
 import { TranslateTestingModule } from '@damap/core';
 import { of } from 'rxjs';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withXhr } from '@angular/common/http';
 import { ConfigService } from '../../services/config.service';
 
 describe('LandingPageComponent', () => {
@@ -21,7 +21,7 @@ describe('LandingPageComponent', () => {
     await TestBed.configureTestingModule({
       imports: [LandingPageComponent, TranslateTestingModule],
       providers: [
-        provideHttpClient(),
+        provideHttpClient(withXhr()),
         provideHttpClientTesting(),
         { provide: ConfigService, useValue: configServiceSpy },
         {

@@ -6,6 +6,7 @@ import {
   OnInit,
   Output,
   inject,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -14,6 +15,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-toggle-buttons',
   templateUrl: './toggle-buttons.component.html',
   styleUrls: ['./toggle-buttons.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MatButton, TranslatePipe],
 })
 export class ToggleButtonsComponent implements OnInit {

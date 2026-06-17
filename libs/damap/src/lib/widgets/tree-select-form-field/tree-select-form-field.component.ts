@@ -6,6 +6,7 @@ import {
   OnInit,
   Output,
   inject,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { FlatTreeControl } from '@angular/cdk/tree';
@@ -125,6 +126,7 @@ export class TreeDatabase {
   templateUrl: './tree-select-form-field.component.html',
   styleUrls: ['./tree-select-form-field.component.css'],
   providers: [TreeDatabase],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatFormField,
     MatLabel,
@@ -144,7 +146,8 @@ export class TreeDatabase {
     MatTreeNodePadding,
     MatIconButton,
     MatCheckbox,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class TreeSelectFormFieldComponent implements OnInit {
   private _database = inject(TreeDatabase);

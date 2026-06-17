@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { BackendService } from '../../../services/backend.service';
 import { Observable } from 'rxjs';
@@ -30,6 +36,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-version-view',
   templateUrl: './version-view.component.html',
   styleUrls: ['./version-view.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatButton,
     RouterLink,
@@ -49,7 +56,8 @@ import { TranslatePipe } from '@ngx-translate/core';
     VersionViewReuseComponent,
     VersionViewCostsComponent,
     AsyncPipe,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class VersionViewComponent implements OnInit {
   private route = inject(ActivatedRoute);

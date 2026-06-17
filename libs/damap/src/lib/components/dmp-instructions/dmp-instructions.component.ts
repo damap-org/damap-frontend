@@ -1,4 +1,9 @@
-import { Component, signal, viewChild } from '@angular/core';
+import {
+  Component,
+  signal,
+  viewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
@@ -12,7 +17,8 @@ import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'damap-dmp-instructions',
   imports: [
-    TranslatePipe, TranslateDirective,
+    TranslatePipe,
+    TranslateDirective,
     RouterModule,
     MatIconModule,
     MatButtonModule,
@@ -25,6 +31,7 @@ import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
   ],
   templateUrl: './dmp-instructions.component.html',
   styleUrl: './dmp-instructions.component.css',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 export class DmpInstructionsComponent {

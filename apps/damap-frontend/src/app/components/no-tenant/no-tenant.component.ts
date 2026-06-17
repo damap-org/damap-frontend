@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 
 import { MatIcon } from '@angular/material/icon';
 import { MatAnchor } from '@angular/material/button';
@@ -9,6 +9,7 @@ import { AuthService } from '@damap/core';
   imports: [MatIcon, MatAnchor],
   templateUrl: './no-tenant.component.html',
   styleUrl: './no-tenant.component.css',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 export class NoTenantComponent {

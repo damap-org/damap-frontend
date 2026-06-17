@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { Version } from '../../../domain/version';
 import { DmpListItem } from '../../../domain/dmp-list-item';
 import { Dmp } from '../../../domain/dmp';
@@ -25,6 +31,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-version-table',
   templateUrl: './version-table.component.html',
   styleUrls: ['./version-table.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatButton,
     RouterLink,
@@ -41,7 +48,8 @@ import { TranslatePipe } from '@ngx-translate/core';
     MatRow,
     MatNoDataRow,
     DatePipe,
-    TranslatePipe],
+    TranslatePipe,
+  ],
 })
 export class VersionTableComponent {
   displayedColumns: string[] = ['version', 'name', 'date', 'editor'];

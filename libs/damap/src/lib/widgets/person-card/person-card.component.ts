@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { Contributor } from '../../domain/contributor';
 import { IdentifierType } from '../../domain/enum/identifier-type.enum';
@@ -20,6 +20,7 @@ import { OrcidComponent } from '../orcid/orcid.component';
   imports: [TranslatePipe, MatCardModule, MatIconModule, OrcidComponent],
   templateUrl: './person-card.component.html',
   styleUrls: [],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 export class PersonCardComponent {

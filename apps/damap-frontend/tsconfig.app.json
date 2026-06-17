@@ -4,7 +4,7 @@
     "outDir": "../../dist/out-tsc"
   },
   "angularCompilerOptions": {
-    "types": ["node", "jasmine"]
+    "strictTemplates": false
   },
   "files": ["src/main.ts", "src/polyfills.ts"]
 }

@@ -84,7 +84,8 @@ const MODULES = [PlansModule, AdminModule];
 @NgModule({
   imports: [
     CommonModule,
-    TranslatePipe, TranslateDirective,
+    TranslatePipe,
+    TranslateDirective,
     RouterModule.forChild(DAMAP_ROUTES),
     ...MODULES,
   ],
