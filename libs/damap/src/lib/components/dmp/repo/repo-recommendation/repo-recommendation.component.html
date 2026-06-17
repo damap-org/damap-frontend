@@ -5,7 +5,7 @@
         <mat-card-header>
           <mat-card-title>{{ repo.name }}</mat-card-title>
         </mat-card-header>
-        <app-repo-details [repo]="repo"></app-repo-details>
+        <app-repo-details [repo]="repo" />
         <mat-card-actions align="end">
           <button mat-flat-button (click)="addRepository(repo)">
             Use repository
@@ -16,12 +16,12 @@
   }
   @if (loaded() === LoadingState.LOADING) {
     <p translate>dmp.steps.repositories.loading.load.recommended</p>
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    <mat-progress-bar mode="indeterminate" />
   }
   @if (loaded() === LoadingState.FAILED) {
     <app-error-message
       message="{{
         'dmp.steps.repositories.loading.failed.recommended' | translate
-      }}"></app-error-message>
+      }}" />
   }
 </div>

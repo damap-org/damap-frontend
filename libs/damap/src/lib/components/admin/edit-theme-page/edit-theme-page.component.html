@@ -36,23 +36,19 @@
           [controlName]="'primary'"
           [control]="colorsForm.get('primary')!"
           [colorTitle]="'admin.theme.colors.primary' | translate"
-          [canDisable]="false"></app-color-picker>
+          [canDisable]="false" />
 
         <app-color-picker
           [control]="colorsForm.get('secondary')!"
           [colorTitle]="'admin.theme.colors.secondary' | translate"
           [controlName]="'secondary'"
-          (changedEnableStatus)="
-            onColorEnabledChange($event)
-          "></app-color-picker>
+          (changedEnableStatus)="onColorEnabledChange($event)" />
 
         <app-color-picker
           [control]="colorsForm.get('tertiary')!"
           [colorTitle]="'admin.theme.colors.tertiary' | translate"
           [controlName]="'tertiary'"
-          (changedEnableStatus)="
-            onColorEnabledChange($event)
-          "></app-color-picker>
+          (changedEnableStatus)="onColorEnabledChange($event)" />
       </div>
       @if (advancedModeSignal()) {
         <div>
@@ -60,25 +56,19 @@
             [controlName]="'primaryContainer'"
             [control]="colorsForm.get('primaryContainer')!"
             [colorTitle]="'admin.theme.colors.primary-container' | translate"
-            (changedEnableStatus)="
-              onColorEnabledChange($event)
-            "></app-color-picker>
+            (changedEnableStatus)="onColorEnabledChange($event)" />
 
           <app-color-picker
             [controlName]="'secondaryContainer'"
             [control]="colorsForm.get('secondaryContainer')!"
             [colorTitle]="'admin.theme.colors.secondary-container' | translate"
-            (changedEnableStatus)="
-              onColorEnabledChange($event)
-            "></app-color-picker>
+            (changedEnableStatus)="onColorEnabledChange($event)" />
 
           <app-color-picker
             [controlName]="'tertiaryContainer'"
             [control]="colorsForm.get('tertiaryContainer')!"
             [colorTitle]="'admin.theme.colors.tertiary-container' | translate"
-            (changedEnableStatus)="
-              onColorEnabledChange($event)
-            "></app-color-picker>
+            (changedEnableStatus)="onColorEnabledChange($event)" />
         </div>
       }
     </form>

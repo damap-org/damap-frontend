@@ -1,4 +1,4 @@
-<app-info-card [infoLabel]="infoInstruction"></app-info-card>
+<app-info-card [infoLabel]="infoInstruction" />
 <div class="dmp-container">
   <div class="steps-container">
     <mat-vertical-stepper
@@ -115,9 +115,7 @@
         ">
         @if (selectedStep === 0) {
           <app-project-instruction
-            (selectionChange)="
-              projectComponent?.onViewChange($event)
-            "></app-project-instruction>
+            (selectionChange)="projectComponent?.onViewChange($event)" />
         }
       </mat-step>
       <mat-step
@@ -130,9 +128,7 @@
         ">
         @if (selectedStep === 1) {
           <app-people-instruction
-            (selectionChange)="
-              peopleComponent?.onViewChange($event)
-            "></app-people-instruction>
+            (selectionChange)="peopleComponent?.onViewChange($event)" />
         }
       </mat-step>
       <mat-step
@@ -144,9 +140,7 @@
         ">
         @if (selectedStep === 2) {
           <app-specify-data-instruction
-            (selectionChange)="
-              specifyDataComponent?.onViewChange($event)
-            "></app-specify-data-instruction>
+            (selectionChange)="specifyDataComponent?.onViewChange($event)" />
         }
       </mat-step>
       <mat-step
@@ -155,8 +149,7 @@
           $safeNavigationMigration(
             completenessLabel('dmp.steps.documentation.label')?.completeness
           ) > 0
-        ">
-      </mat-step>
+        " />
       <mat-step
         label="{{ 'dmp.steps.storage.label' | translate }}"
         [completed]="
@@ -166,8 +159,7 @@
         ">
         @if (selectedStep === 4) {
           <app-data-storage-instruction
-            (selectionChange)="onViewChangeStorage($event)">
-          </app-data-storage-instruction>
+            (selectionChange)="onViewChangeStorage($event)" />
         }
       </mat-step>
       <mat-step
@@ -181,7 +173,7 @@
           <app-legal-ethical-instruction
             (selectionChange)="
               legalEthicalAspectsComponent?.onViewChange($event)
-            "></app-legal-ethical-instruction>
+            " />
         }
       </mat-step>
       <mat-step
@@ -190,8 +182,7 @@
           $safeNavigationMigration(
             completenessLabel('dmp.steps.licensing.label')?.completeness
           ) > 0
-        ">
-      </mat-step>
+        " />
       <mat-step
         label="{{ 'dmp.steps.repositories.label' | translate }}"
         [completed]="
@@ -201,8 +192,7 @@
         ">
         @if (selectedStep === 7) {
           <app-repo-instruction
-            (selectionChange)="repoComponent?.onViewChange($event)">
-          </app-repo-instruction>
+            (selectionChange)="repoComponent?.onViewChange($event)" />
         }
       </mat-step>
       <mat-step
@@ -211,19 +201,17 @@
           $safeNavigationMigration(
             completenessLabel('dmp.steps.data.reuse.label')?.completeness
           ) > 0
-        ">
-      </mat-step>
+        " />
       <mat-step
         label="{{ 'dmp.steps.costs.label' | translate }}"
         [completed]="
           $safeNavigationMigration(
             completenessLabel('dmp.steps.costs.label')?.completeness
           ) > 0
-        "></mat-step>
+        " />
       <mat-step
         label="{{ 'dmp.steps.end.label' | translate }}"
-        [completed]="checkCompletenessForm() === 'completed'">
-      </mat-step>
+        [completed]="checkCompletenessForm() === 'completed'" />
     </mat-vertical-stepper>
   </div>
 
@@ -232,7 +220,7 @@
       <app-dmp-project
         #projectComponent
         [projectStep]="projectStep"
-        (project)="changeProject($event)"></app-dmp-project>
+        (project)="changeProject($event)" />
     }
     @if (selectedStep === 1) {
       <app-dmp-people
@@ -243,8 +231,7 @@
         (contactPerson)="changeContactPerson($event)"
         (contributorToAdd)="addContributor($event)"
         (contributorToRemove)="removeContributor($event)"
-        (contributorToUpdate)="updateContributorDetails($event)">
-      </app-dmp-people>
+        (contributorToUpdate)="updateContributorDetails($event)" />
     }
     @if (selectedStep === 2) {
       @if (selectedStep === 2) {
@@ -258,8 +245,7 @@
           (updateDataset)="updateDataset($event)"
           (fileToAnalyse)="analyseFile($event)"
           (uploadToCancel)="cancelFileUpload($event)"
-          (removeDataset)="removeDataset($event)">
-        </app-dmp-specify-data>
+          (removeDataset)="removeDataset($event)" />
       }
       @if (specifyDataStep.invalid || datasets.invalid) {
         <div class="error-message">
@@ -269,8 +255,7 @@
     }
     @if (selectedStep === 3) {
       @if (showStep) {
-        <app-dmp-doc-data-quality [docDataStep]="docDataStep">
-        </app-dmp-doc-data-quality>
+        <app-dmp-doc-data-quality [docDataStep]="docDataStep" />
       } @else {
         <a href="javascript:void(0)" (click)="onNewDatasetClick()">
           {{ "dmp.nodatasets" | translate }}
@@ -286,9 +271,7 @@
       @if (showStep) {
         @if (selectedViewStorage === "primaryView") {
           <div>
-            <app-data-access
-              [dmpForm]="dmpForm"
-              [datasets]="datasets"></app-data-access>
+            <app-data-access [dmpForm]="dmpForm" [datasets]="datasets" />
           </div>
         }
         @if (selectedViewStorage === "secondaryView") {
@@ -298,16 +281,14 @@
               [storageStep]="storageStep"
               [datasets]="datasets"
               (storageToAdd)="addStorage($event)"
-              (storageToRemove)="removeStorage($event)">
-            </app-dmp-storage>
-            <mat-divider></mat-divider>
+              (storageToRemove)="removeStorage($event)" />
+            <mat-divider />
             <app-dmp-external-storage
               [externalStorageStep]="externalStorageStep"
               [externalStorageInfo]="externalStorageInfo"
               [datasets]="datasets"
               (externalStorageToAdd)="addExternalStorage()"
-              (externalStorageToRemove)="removeExternalStorage($event)">
-            </app-dmp-external-storage>
+              (externalStorageToRemove)="removeExternalStorage($event)" />
           </div>
         }
         @if (
@@ -332,8 +313,7 @@
           [dmpForm]="dmpForm"
           [legalEthicalStep]="legalEthicalStep"
           [datasets]="datasets"
-          [ethicalReportEnabled]="ethicalReportEnabled">
-        </app-dmp-legal-ethical-aspects>
+          [ethicalReportEnabled]="ethicalReportEnabled" />
       } @else {
         <a href="javascript:void(0)" (click)="onNewDatasetClick()">
           {{ "dmp.nodatasets" | translate }}
@@ -342,9 +322,7 @@
     }
     @if (selectedStep === 6) {
       @if (showStepIfNewDatasets) {
-        <app-dmp-licenses
-          [dmpForm]="dmpForm"
-          [datasets]="datasets"></app-dmp-licenses>
+        <app-dmp-licenses [dmpForm]="dmpForm" [datasets]="datasets" />
         @if (datasets.invalid) {
           <div class="error-message">
             {{ "dmp.steps.licensing.error" | translate }}
@@ -364,8 +342,7 @@
           [repoStep]="repoStep"
           [datasets]="datasets"
           (repositoryToAdd)="addRepository($event)"
-          (repositoryToRemove)="removeRepository($event)">
-        </app-dmp-repo>
+          (repositoryToRemove)="removeRepository($event)" />
         @if (repoStep.invalid) {
           <div class="error-message">
             {{ "dmp.steps.repositories.error" | translate }}
@@ -379,9 +356,7 @@
     }
     @if (selectedStep === 8) {
       @if (showStepIfNewDatasets) {
-        <app-dmp-reuse
-          [reuseStep]="reuseStep"
-          [datasets]="datasets"></app-dmp-reuse>
+        <app-dmp-reuse [reuseStep]="reuseStep" [datasets]="datasets" />
         @if (reuseStep.invalid) {
           <div class="error-message">
             {{ "dmp.steps.reuse.error" | translate }}
@@ -398,8 +373,7 @@
         <app-dmp-costs
           [costsStep]="costsStep"
           (costToAdd)="addCost()"
-          (costToRemove)="removeCost($event)">
-        </app-dmp-costs>
+          (costToRemove)="removeCost($event)" />
       } @else {
         <a href="javascript:void(0)" (click)="onNewDatasetClick()">
           {{ "dmp.nodatasets" | translate }}
@@ -407,7 +381,7 @@
       }
     }
     @if (selectedStep === 10) {
-      <app-dmp-summary [stepper]="stepper"></app-dmp-summary>
+      <app-dmp-summary [stepper]="stepper" />
     }
   </div>
 </div>
@@ -416,4 +390,4 @@
   class="dmp-actions"
   [stepChanged$]="stepChanged$"
   [admin]="admin"
-  [preview]="livePreviewEnabled"></app-actions>
+  [preview]="livePreviewEnabled" />

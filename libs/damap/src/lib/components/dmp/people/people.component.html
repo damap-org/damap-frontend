@@ -16,8 +16,7 @@
                   | contributorFilter: dmpForm.controls.contributors.value
               "
               (termToSearch)="searchContributor($event)"
-              (personToAdd)="addContributor($event)">
-            </app-person-search>
+              (personToAdd)="addContributor($event)" />
           </div>
           <div class="service-select-container">
             <mat-form-field>
@@ -134,7 +133,7 @@
   <div>
     <app-contributor-manual
       (contactPerson)="changeContactPerson($event)"
-      (contributorToAdd)="addContributor($event)"></app-contributor-manual>
+      (contributorToAdd)="addContributor($event)" />
   </div>
 }
 
@@ -178,7 +177,7 @@
                           $safeNavigationMigration(
                             contributor.value.personId?.identifier
                           )
-                        "></app-orcid>
+                        " />
                     }
                   </div>
                   <div [formGroupName]="i">
@@ -233,12 +232,12 @@
                   [label]="
                     'dmp.steps.people.manual.input.question.mbox' | translate
                   "
-                  [control]="mbox()"></app-input-wrapper>
+                  [control]="mbox()" />
                 <app-input-wrapper
                   [label]="
                     'dmp.steps.people.manual.input.question.orcid' | translate
                   "
-                  [control]="identifier()"></app-input-wrapper>
+                  [control]="identifier()" />
               </div>
               <div class="form-buttons">
                 <button
@@ -331,7 +330,7 @@
                             $safeNavigationMigration(
                               contributor.value.personId?.identifier
                             )
-                          "></app-orcid>
+                          " />
                       }
                     </div>
                     <div [formGroupName]="i">
@@ -390,12 +389,12 @@
                     [label]="
                       'dmp.steps.people.manual.input.question.mbox' | translate
                     "
-                    [control]="mbox()"></app-input-wrapper>
+                    [control]="mbox()" />
                   <app-input-wrapper
                     [label]="
                       'dmp.steps.people.manual.input.question.orcid' | translate
                     "
-                    [control]="identifier()"></app-input-wrapper>
+                    [control]="identifier()" />
                 </div>
                 <div class="form-buttons">
                   <button

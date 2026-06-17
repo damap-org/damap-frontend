@@ -16,7 +16,7 @@
     <mat-icon class="mat-icon-style outline">mail</mat-icon>
     {{ contributor.mbox }}
     @if (contributor.personId?.type === identifierType.ORCID) {
-      <app-orcid [orcidId]="contributor.personId.identifier"> </app-orcid>
+      <app-orcid [orcidId]="contributor.personId.identifier" />
     }
     <div>
       @if (contributor.role) {

@@ -28,28 +28,27 @@
       [errorMessageInvalid]="
         'admin.internalStorage.translation.dialog.field.languageCodeInvalid'
           | translate
-      ">
-    </app-language-code-input>
+      " />
 
     <app-input-wrapper
       [label]="
         'admin.internalStorage.translation.dialog.field.title' | translate
       "
-      [control]="title"></app-input-wrapper>
+      [control]="title" />
 
     <app-textarea-wrapper
       [label]="
         'admin.internalStorage.translation.dialog.field.description' | translate
       "
       [control]="description"
-      [maxLength]="4000"></app-textarea-wrapper>
+      [maxLength]="4000" />
 
     <app-input-wrapper
       [label]="
         'admin.internalStorage.translation.dialog.field.backupFrequency'
           | translate
       "
-      [control]="backupFrequency"></app-input-wrapper>
+      [control]="backupFrequency" />
   </div>
 </mat-dialog-content>
 

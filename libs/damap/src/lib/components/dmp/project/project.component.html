@@ -37,8 +37,7 @@
   <div>
     <app-project-list
       [selectedProject]="$safeNavigationMigration(projectStep?.value)"
-      (projectToSet)="changeProject($event)">
-    </app-project-list>
+      (projectToSet)="changeProject($event)" />
   </div>
 }
 
@@ -46,7 +45,6 @@
   <div>
     <app-manual-project-input
       [project]="$safeNavigationMigration(projectStep?.value)"
-      (projectUpdate)="changeProject($event)">
-    </app-manual-project-input>
+      (projectUpdate)="changeProject($event)" />
   </div>
 }

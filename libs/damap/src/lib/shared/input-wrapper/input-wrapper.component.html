@@ -2,7 +2,7 @@
   <mat-label>
     {{ label | translate }}
     @if (info?.length) {
-      <app-tooltip [tooltip]="info"></app-tooltip>
+      <app-tooltip [tooltip]="info" />
     }
   </mat-label>
   <span matTextPrefix>{{ prefix() }}</span>

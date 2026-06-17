@@ -17,9 +17,7 @@
   </button>
   <damap-internal-storage-table
     [internalStorages]="internalStorages"
-    (selectInternalStorage)="
-      selectStorage($event)
-    "></damap-internal-storage-table>
+    (selectInternalStorage)="selectStorage($event)" />
   <h2 class="selected-storage">
     {{
       selectedInternalStorageUrl !== null
@@ -52,9 +50,7 @@
       </button>
       <damap-internal-storage-translation-table
         [internalStorageTranslations]="internalStorageTranslations"
-        [selectedInternalStorageId]="
-          selectedInternalStorageId
-        "></damap-internal-storage-translation-table>
+        [selectedInternalStorageId]="selectedInternalStorageId" />
     </div>
   }
   <hr />

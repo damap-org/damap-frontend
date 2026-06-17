@@ -8,9 +8,7 @@
     {{ "dmps.nodatasets" | translate }}
   </div>
 } @else {
-  <app-retention-period
-    [dmpForm]="dmpForm()"
-    [datasets]="datasets"></app-retention-period>
+  <app-retention-period [dmpForm]="dmpForm()" [datasets]="datasets" />
 }
 <!-- RETENTION PERIOD-->
 
@@ -58,9 +56,7 @@
                 @if (getDatasetsMarkedForDeletion(i).length > 0) {
                   <app-error-message
                     [data]="getDatasetsMarkedForDeletionAsString(i)"
-                    [message]="
-                      'dmp.steps.repositories.warning.deletion'
-                    "></app-error-message>
+                    [message]="'dmp.steps.repositories.warning.deletion'" />
                 }
               </div>
             </div>
@@ -86,8 +82,7 @@
             <app-repo-recommendation
               [recommended]="recommended | repo: repoStep.value"
               [loaded]="recommendedLoaded()"
-              (repositoryToAdd)="addRepository($event)">
-            </app-repo-recommendation>
+              (repositoryToAdd)="addRepository($event)" />
           } @else {
             <p translate>dmp.steps.repositories.recommended.none</p>
             <button mat-flat-button (click)="selectedTabIndex = 1">
@@ -113,7 +108,7 @@
           [repositories]="repositories()"
           [selectedRepos]="repoStep.value"
           (repositoryToAdd)="addRepository($event)"
-          (repositoryDetails)="getRepositoryDetails($event)"></app-repo-table>
+          (repositoryDetails)="getRepositoryDetails($event)" />
       </div>
     </div>
   }

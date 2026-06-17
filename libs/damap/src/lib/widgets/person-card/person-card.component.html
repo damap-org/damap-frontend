@@ -18,12 +18,10 @@
         {{ person.mbox }}
         @if (personId?.identifier && personId?.type === identifierType.ORCID) {
           <app-orcid
-            [orcidId]="
-              $safeNavigationMigration(personId?.identifier)
-            "></app-orcid>
+            [orcidId]="$safeNavigationMigration(personId?.identifier)" />
         }
       </div>
-      <ng-content></ng-content>
+      <ng-content />
     </div>
   </mat-card-content>
 </mat-card>

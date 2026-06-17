@@ -10,7 +10,7 @@
   <div [formGroup]="dataset">
     <app-input-wrapper
       [label]="'dmp.steps.data.specify.dialog.field.title' | translate"
-      [control]="title"></app-input-wrapper>
+      [control]="title" />
     @if (dataset.controls.source.value === datasetSource.NEW) {
       <div class="dialogRow">
         <mat-form-field>
@@ -47,7 +47,7 @@
       <app-input-wrapper
         [label]="'dmp.steps.data.specify.dialog.fileFormat.label' | translate"
         [info]="'dmp.steps.data.specify.dialog.fileFormat.info' | translate"
-        [control]="fileFormat"></app-input-wrapper>
+        [control]="fileFormat" />
     }
     @if (dataset.controls.source.value === datasetSource.NEW) {
       <div class="dialogRow">
@@ -82,15 +82,14 @@
         </mat-form-field>
         <app-license-wizard
           style="margin-top: 5px"
-          (selectedLicense)="setLicenseSelectorResult($event)">
-        </app-license-wizard>
+          (selectedLicense)="setLicenseSelectorResult($event)" />
       </div>
     }
 
     <app-textarea-wrapper
       [label]="'dmp.steps.data.specify.dialog.description' | translate"
       [control]="description"
-      [maxLength]="4000"></app-textarea-wrapper>
+      [maxLength]="4000" />
     @if (dataset.controls.source.value === datasetSource.NEW) {
       <div class="dialogRow">
         <div formArrayName="technicalResources">
@@ -105,7 +104,7 @@
                 [label]="'dmp.steps.data.specify.dialog.technicalResource'"
                 [labelSuffix]="' ' + (i + 1)"
                 [control]="resource.get('name')"
-                [maxLength]="255"></app-textarea-wrapper>
+                [maxLength]="255" />
               <button mat-icon-button (click)="removeTechnicalResource(i)">
                 <mat-icon>delete</mat-icon>
               </button>
