@@ -1,8 +1,7 @@
 <app-data-mc
   [control]="reusedKind"
   questionLabel="dmp.steps.data.specify.question.reused"
-  answerLabelNone="dmp.steps.data.specify.answer.kind.reuse.none]">
-</app-data-mc>
+  answerLabelNone="dmp.steps.data.specify.answer.kind.reuse.none]" />
 
 @if (reusedKind.value === dataKind.SPECIFY) {
   <button class="button-position" mat-flat-button (click)="openDatasetDialog()">
@@ -14,7 +13,7 @@
     [loading]="loading"
     [duplicate]="duplicate"
     (termToSearch)="searchDataset($event)"
-    (datasetToAdd)="add($event)"></app-doi-search>
+    (datasetToAdd)="add($event)" />
   <!-- TABLE -->
   @if (datasets.controls.length) {
     <app-dataset-table
@@ -23,8 +22,7 @@
       [tableHeaders]="tableHeaders"
       [sourceType]="datasetSource.REUSED"
       (updateDataset)="update($event)"
-      (removeDataset)="remove($event)">
-    </app-dataset-table>
+      (removeDataset)="remove($event)" />
   }
 }
 

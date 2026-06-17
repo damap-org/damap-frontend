@@ -1,4 +1,4 @@
-<app-info-card></app-info-card>
+<app-info-card />
 <div [class]="isSmallScreen ? 'flex-grid-small' : 'flex-grid-large'">
   <div class="flex-grid-item">
     <mat-card appearance="outlined" class="dashboard-card mat-icon-shadow">
@@ -10,8 +10,9 @@
             frontContent="{{
               'dashboard.cards.my-dmps.front-side' | translate
             }}"
-            backContent="{{ 'dashboard.cards.my-dmps.back-side' | translate }}">
-          </app-flip-card>
+            backContent="{{
+              'dashboard.cards.my-dmps.back-side' | translate
+            }}" />
 
           <app-flip-card
             [navigateRoute]="'/dmp'"
@@ -21,8 +22,7 @@
             }}"
             backContent="{{
               'dashboard.cards.create-new-dmp.back-side' | translate
-            }}">
-          </app-flip-card>
+            }}" />
         </div>
       </mat-card-content>
     </mat-card>
@@ -39,8 +39,7 @@
             iconCard="contact_support"
             backContent="{{
               'dashboard.cards.how-to-create.back-side' | translate
-            }}">
-          </app-flip-card>
+            }}" />
 
           <app-flip-card
             [navigateRoute]="'info/damap'"
@@ -48,8 +47,7 @@
             frontContent="{{ 'info.how-to-create.tool.heading' | translate }}"
             backContent="{{
               'dashboard.cards.about-damap.back-side' | translate
-            }}">
-          </app-flip-card>
+            }}" />
         </div>
       </mat-card-content>
     </mat-card>

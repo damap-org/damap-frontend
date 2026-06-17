@@ -6,8 +6,7 @@
     <app-file-upload
       [fileUpload]="data.fileUpload"
       (fileToUpload)="data.analyseFile($event)"
-      (uploadToCancel)="data.cancelUpload($event)">
-    </app-file-upload>
+      (uploadToCancel)="data.cancelUpload($event)" />
   </mat-dialog-content>
   <mat-dialog-actions>
     <button mat-button (click)="onNoClick()">

@@ -4,15 +4,14 @@
       <label id="humanParticipants">
         {{ "dmp.steps.legal.question.humanParticipants" | translate }}
       </label>
-      <app-tooltip
-        [tooltip]="'dmp.steps.legal.help.humanParticipants'"></app-tooltip>
+      <app-tooltip [tooltip]="'dmp.steps.legal.help.humanParticipants'" />
       <div class="flex-radio">
         <app-cris-tag
           [cris]="
             $safeNavigationMigration(
               legalEthicalStep?.value.humanParticipantsCris
             )
-          "></app-cris-tag>
+          " />
         <mat-radio-group
           aria-labelledby="humanParticipants"
           formControlName="humanParticipants">
@@ -59,8 +58,7 @@
       <label id="ethicalIssues">
         {{ "dmp.steps.legal.question.ethicalIssues" | translate }}
       </label>
-      <app-tooltip
-        [tooltip]="'dmp.steps.legal.help.ethicalIssues'"></app-tooltip>
+      <app-tooltip [tooltip]="'dmp.steps.legal.help.ethicalIssues'" />
       <div class="flex-radio">
         <mat-radio-group
           aria-labelledby="ethicalIssues"
@@ -70,7 +68,7 @@
               $safeNavigationMigration(
                 legalEthicalStep?.value.ethicalIssuesCris
               )
-            "></app-cris-tag>
+            " />
           <mat-radio-button class="boolean-mat-radio-button" [value]="true">
             {{ "dmp.steps.legal.question.answer.yes" | translate }}
           </mat-radio-button>
@@ -120,7 +118,7 @@
             $safeNavigationMigration(
               legalEthicalStep?.value.committeeReviewedCris
             )
-          "></app-cris-tag>
+          " />
         <mat-radio-group
           aria-labelledby="committeeReviewed"
           formControlName="committeeReviewed">
@@ -140,7 +138,7 @@
           <app-input-wrapper
             [label]="'dmp.steps.legal.question.ethicalIssueReport'"
             [maxLength]="255"
-            [control]="ethicalIssuesReport"></app-input-wrapper>
+            [control]="ethicalIssuesReport" />
         </div>
       }
       <app-info-message>

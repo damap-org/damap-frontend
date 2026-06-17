@@ -8,15 +8,13 @@
         [label]="'dmp.steps.data.reuse.question.short.targetAudience'"
         [longLabel]="'dmp.steps.data.reuse.question.long.targetAudience'"
         [control]="targetAudience"
-        [autocompleteOptions]="optionsTargetAudience">
-      </app-textarea-wrapper>
+        [autocompleteOptions]="optionsTargetAudience" />
 
       <app-textarea-wrapper
         [label]="'dmp.steps.data.reuse.question.short.tools'"
         [longLabel]="'dmp.steps.data.reuse.question.long.tools'"
         [control]="tools"
-        [maxLength]="4000">
-      </app-textarea-wrapper>
+        [maxLength]="4000" />
 
       @if (restricted?.length > 0) {
         <app-textarea-wrapper
@@ -26,8 +24,7 @@
           "
           [labelDatasets]="restricted"
           [control]="restrictedDataAccess"
-          [maxLength]="4000">
-        </app-textarea-wrapper>
+          [maxLength]="4000" />
       }
     </div>
   </mat-card-content>

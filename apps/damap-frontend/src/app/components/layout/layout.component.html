@@ -104,7 +104,7 @@
           </a>
         }
       </div>
-      <mat-divider></mat-divider>
+      <mat-divider />
     </mat-nav-list>
     <div class="bottom-section">
       <div class="logout-container">
@@ -165,9 +165,9 @@
   </mat-sidenav>
   <mat-sidenav-content class="mat-sidenav-content">
     @if (env === "DEV") {
-      <app-env-banner></app-env-banner>
+      <app-env-banner />
     }
-    <app-banner></app-banner>
+    <app-banner />
     <mat-toolbar class="toolbar">
       <mat-toolbar-row id="mainHeader">
         <div class="header-container">
@@ -194,6 +194,6 @@
       </mat-toolbar-row>
     </mat-toolbar>
 
-    <router-outlet #outlet="outlet"></router-outlet>
+    <router-outlet #outlet="outlet" />
   </mat-sidenav-content>
 </mat-sidenav-container>

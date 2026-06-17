@@ -19,7 +19,7 @@
           <mat-select
             formControlName="deletionPerson"
             [compareWith]="getSelection">
-            <mat-option [value]="null"></mat-option>
+            <mat-option [value]="null" />
             @for (contributor of contributors; track contributor.id) {
               <mat-option [value]="contributor">
                 {{ contributor.firstName + " " + contributor.lastName }}
@@ -35,17 +35,14 @@
             matInput
             formControlName="dateOfDeletion"
             [matDatepicker]="picker" />
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
+          <mat-datepicker-toggle matSuffix [for]="picker" />
+          <mat-datepicker #picker />
         </mat-form-field>
       </div>
       <app-textarea-wrapper
         [label]="'dmp.steps.data.deletion.question.reason'"
         [control]="reasonForDeletion"
-        [maxLength]="4000">
-      </app-textarea-wrapper>
+        [maxLength]="4000" />
     </div>
   }
 </div>

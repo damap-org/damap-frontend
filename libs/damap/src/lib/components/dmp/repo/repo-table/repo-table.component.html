@@ -4,7 +4,7 @@
       <app-search-field
         [label]="'dmp.steps.repositories.filters'"
         [placeholder]="'Search Repository'"
-        (searchChange)="applyFilter($event)"></app-search-field>
+        (searchChange)="applyFilter($event)" />
       <span class="repo-filter-container">
         <button
           class="w-full"
@@ -16,7 +16,7 @@
         </button>
         <app-repo-filter
           [filters]="filters"
-          (filterChange)="onFilterChange($event)"></app-repo-filter>
+          (filterChange)="onFilterChange($event)" />
       </span>
     </div>
 
@@ -82,10 +82,10 @@
                   element.id === expandedElement ? 'expanded' : 'collapsed'
                 ">
                 @if (element.description) {
-                  <mat-divider></mat-divider>
-                  <app-repo-details [repo]="element"></app-repo-details>
+                  <mat-divider />
+                  <app-repo-details [repo]="element" />
                 } @else {
-                  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                  <mat-progress-bar mode="indeterminate" />
                 }
               </div>
             </td>
@@ -119,18 +119,18 @@
           class="mat-elevation-z8"
           [pageSize]="10"
           [pageSizeOptions]="[10, 15, 20]"
-          showFirstLastButtons="true"></mat-paginator>
+          showFirstLastButtons="true" />
       }
 
       @if (loaded() === LoadingState.LOADING) {
         <p translate>dmp.steps.repositories.loading.load.all</p>
-        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        <mat-progress-bar mode="indeterminate" />
       }
       @if (loaded() === LoadingState.FAILED) {
         <app-error-message
           message="{{
             'dmp.steps.repositories.loading.failed.all' | translate
-          }}"></app-error-message>
+          }}" />
       }
     </div>
   </mat-card-content>

@@ -8,7 +8,7 @@
     <app-search-field
       class="search-bar"
       [label]="'plans.table.search'"
-      (searchChange)="applyFilter($event)"></app-search-field>
+      (searchChange)="applyFilter($event)" />
   }
 </div>
 
@@ -158,5 +158,5 @@
     [pageSize]="10"
     [pageSizeOptions]="[10, 15, 20]"
     [length]="length"
-    showFirstLastButtons="true"></mat-paginator>
+    showFirstLastButtons="true" />
 </div>
