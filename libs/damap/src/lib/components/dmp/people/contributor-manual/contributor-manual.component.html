@@ -33,10 +33,7 @@
           [disabled]="form.invalid"
           (click)="changeContactPerson()"
           title="{{ 'dmp.steps.people.contact.add' | translate }}">
-          <mat-icon
-            [ngClass]="{
-              'material-icon-on-secondary-container': form.invalid,
-            }"
+          <mat-icon [class.material-icon-on-secondary-container]="form.invalid"
             >contact_mail</mat-icon
           >
           {{ "dmp.steps.people.contact.add" | translate }}
@@ -47,10 +44,7 @@
           [disabled]="form.invalid"
           (click)="addContributor()"
           title="{{ 'dmp.steps.people.contributor.add' | translate }}">
-          <mat-icon
-            [ngClass]="{
-              'material-icon-on-secondary-container': form.invalid,
-            }"
+          <mat-icon [class.material-icon-on-secondary-container]="form.invalid"
             >person_add</mat-icon
           >
           {{ "dmp.steps.people.contributor.add" | translate }}

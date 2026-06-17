@@ -5,7 +5,7 @@ import {
   OnInit,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,13 +14,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-info-card',
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatIconModule,
-    MatButtonModule,
-    TranslatePipe,
-  ],
+  imports: [MatCardModule, MatIconModule, MatButtonModule, TranslatePipe],
   templateUrl: './info-card.component.html',
   styleUrl: './info-card.component.css',
   changeDetection: ChangeDetectionStrategy.Eager,

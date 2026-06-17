@@ -26,7 +26,7 @@ import { MatOption } from '@angular/material/autocomplete';
 import { MatButton } from '@angular/material/button';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatInput } from '@angular/material/input';
-import { NgClass, UpperCasePipe } from '@angular/common';
+import { UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'damap-translation-management',
@@ -43,7 +43,6 @@ import { NgClass, UpperCasePipe } from '@angular/common';
     MatInput,
     FormsModule,
     ReactiveFormsModule,
-    NgClass,
     MatPaginator,
     UpperCasePipe,
     TranslatePipe,

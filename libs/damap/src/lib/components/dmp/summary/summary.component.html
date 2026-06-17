@@ -140,8 +140,7 @@
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <mat-icon
-                      class="result-icon"
-                      [ngClass]="getResultIconClass(r.value)">
+                      [class]="'result-icon ' + getResultIconClass(r.value)">
                       {{ getResultIcon(r.value) }}
                     </mat-icon>
                     <span class="result-title">{{ r.title }}</span>
