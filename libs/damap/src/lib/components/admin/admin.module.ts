@@ -32,7 +32,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { TranslationManagementComponent } from './translation-management/translation-management.component';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { LanguageCodeInputComponent } from '../../shared/language-code-input/language-code-input.component';
@@ -40,7 +40,7 @@ import { LanguageCodeInputComponent } from '../../shared/language-code-input/lan
 @NgModule({
   imports: [
     CommonModule,
-    TranslateModule,
+    TranslatePipe, TranslateDirective,
     RouterModule,
     ExportWarningModule,
     FormsModule,
@@ -76,7 +76,7 @@ import { LanguageCodeInputComponent } from '../../shared/language-code-input/lan
   ],
   exports: [
     CommonModule,
-    TranslateModule,
+    TranslatePipe, TranslateDirective,
     RouterModule,
     AdminComponent,
     ExportWarningModule,

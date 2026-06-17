@@ -47,7 +47,7 @@ import {
 } from '@angular/material/expansion';
 import { MatIcon } from '@angular/material/icon';
 import { NgClass } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 type LoadingState = 'idle' | 'loading' | 'loaded' | 'failed';
 type EvalState = 'idle' | 'loading' | 'done' | 'failed';
@@ -85,7 +85,7 @@ type EvalState = 'idle' | 'loading' | 'done' | 'failed';
     MatExpansionPanelTitle,
     MatIcon,
     NgClass,
-    TranslateModule,
+    TranslatePipe,
   ],
 })
 export class SummaryComponent implements OnInit {

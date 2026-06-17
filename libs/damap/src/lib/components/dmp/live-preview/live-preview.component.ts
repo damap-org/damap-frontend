@@ -18,7 +18,7 @@ import { MatIcon } from '@angular/material/icon';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatOption } from '@angular/material/autocomplete';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'damap-live-preview',
@@ -35,8 +35,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatLabel,
     MatSelect,
     MatOption,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class LivePreviewComponent implements OnInit {
   dialogRef = inject<MatDialogRef<ExportWarningDialogComponent>>(MatDialogRef);

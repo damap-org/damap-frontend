@@ -25,7 +25,7 @@ import { MatCheckbox } from '@angular/material/checkbox';
 import { LanguageCodeInputComponent } from '../../../shared/language-code-input/language-code-input.component';
 import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
 import { MatButton } from '@angular/material/button';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'damap-internal-storage-dialog',
@@ -43,7 +43,7 @@ import { TranslateModule } from '@ngx-translate/core';
     TextareaWrapperComponent,
     MatDialogActions,
     MatButton,
-    TranslateModule,
+    TranslatePipe,
   ],
 })
 export class InternalStorageDialogComponent {

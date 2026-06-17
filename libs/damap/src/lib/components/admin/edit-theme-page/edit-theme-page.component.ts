@@ -14,7 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { ColorThemeService } from '../../../../../../../apps/damap-frontend/src/app/services/color-theme.service';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { FeedbackService } from '../../../services/feedback.service';
 import { FormService } from '../../../services/form.service';
 
@@ -31,8 +31,7 @@ import { FormService } from '../../../services/form.service';
     MatIconModule,
     MatSidenavModule,
     ColorPickerComponent,
-    TranslateModule,
-  ],
+    TranslatePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditThemePageComponent implements OnInit {

@@ -5,7 +5,7 @@ import {
   MatCardTitle,
   MatCardContent,
 } from '@angular/material/card';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-env-banner',
@@ -16,7 +16,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatCardHeader,
     MatCardTitle,
     MatCardContent,
-    TranslateModule,
+    TranslatePipe, TranslateDirective,
   ],
 })
 export class EnvBannerComponent {}

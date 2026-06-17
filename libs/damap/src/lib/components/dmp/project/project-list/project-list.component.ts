@@ -32,7 +32,7 @@ import { SearchFieldComponent } from '../../../../shared/search-field/search-fie
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { AsyncPipe, DatePipe } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-project-list',
@@ -49,7 +49,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatTooltip,
     AsyncPipe,
     DatePipe,
-    TranslateModule,
+    TranslatePipe,
   ],
 })
 export class ProjectListComponent implements OnInit, AfterViewInit {

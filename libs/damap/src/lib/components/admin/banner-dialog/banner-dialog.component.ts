@@ -21,7 +21,7 @@ import { InputWrapperComponent } from '../../../shared/input-wrapper/input-wrapp
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { MatButton } from '@angular/material/button';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'damap-banner-dialog',
@@ -38,8 +38,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatCheckbox,
     MatDialogActions,
     MatButton,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class BannerDialogComponent {
   dialogRef = inject<MatDialogRef<BannerDialogComponent>>(MatDialogRef);

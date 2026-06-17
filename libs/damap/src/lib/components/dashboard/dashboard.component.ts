@@ -3,7 +3,7 @@ import { Component, inject } from '@angular/core';
 import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { FlipCardComponent } from '../../widgets/flip-card/flip-card.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +14,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatCard,
     MatCardContent,
     FlipCardComponent,
-    TranslateModule,
+    TranslatePipe,
   ],
 })
 export class DashboardComponent {

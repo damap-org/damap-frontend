@@ -16,7 +16,7 @@ import {
 import { InternalStorage } from '../../../../domain/internal-storage';
 import { MatDialog } from '@angular/material/dialog';
 import { StorageInfoDialogComponent } from '../storage-dialog/storage-info-dialog.component';
-import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { InternalStorageStore } from '../../../../data-access/internal-storage.store';
 import { MatLabel, MatFormField } from '@angular/material/form-field';
 import {
@@ -55,7 +55,7 @@ import { StorageFilterPipe } from './storage-filter.pipe';
     MatFormField,
     MatSelect,
     MatOption,
-    TranslateModule,
+    TranslatePipe,
     StorageFilterPipe,
   ],
 })
@@ -89,9 +89,9 @@ export class StorageComponent {
 
   public getStorageTitle(storage: InternalStorage): string {
     const currentLanguage =
-      this.translateService.currentLang ||
+      this.translateService.getCurrentLang() ||
       localStorage.getItem('lang') ||
-      this.translateService.defaultLang ||
+      this.translateService.getFallbackLang() ||
       'en';
 
     const translation =

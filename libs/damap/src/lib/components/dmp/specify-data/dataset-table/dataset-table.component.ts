@@ -7,7 +7,7 @@ import { DatasetDialogComponent } from '../dataset-dialog/dataset-dialog.compone
 import { FILE_SIZES } from '../data-specs';
 import { MatDialog } from '@angular/material/dialog';
 import { DatasetInformationComponent } from '../dataset-information/dataset-information.component';
-import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { StepIntroComponent } from '../../../../widgets/step-intro/step-intro.component';
 import {
   MatTable,
@@ -44,7 +44,7 @@ import { LimitStringPipe } from '../../../../pipes/limit-string/limitString.pipe
     MatHeaderRow,
     MatRowDef,
     MatRow,
-    TranslateModule,
+    TranslatePipe,
     DatasetSourcePipe,
     LimitStringPipe,
   ],

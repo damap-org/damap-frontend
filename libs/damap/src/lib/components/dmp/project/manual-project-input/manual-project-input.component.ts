@@ -34,7 +34,7 @@ import {
 } from '@angular/material/datepicker';
 import { TextareaWrapperComponent } from '../../../../shared/textarea-wrapper/textarea-wrapper.component';
 import { MatButton } from '@angular/material/button';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-manual-project-input',
@@ -57,7 +57,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatDateRangePicker,
     TextareaWrapperComponent,
     MatButton,
-    TranslateModule,
+    TranslatePipe,
   ],
 })
 export class ManualProjectInputComponent implements OnChanges {

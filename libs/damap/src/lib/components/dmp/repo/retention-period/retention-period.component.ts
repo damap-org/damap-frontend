@@ -18,7 +18,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/autocomplete';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-retention-period',
@@ -38,8 +38,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatLabel,
     MatSelect,
     MatOption,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class RetentionPeriodComponent {
   @Input() dmpForm: UntypedFormGroup;

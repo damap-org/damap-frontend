@@ -11,7 +11,7 @@ import { CrisTagComponent } from '../../../../widgets/cris-tag/cris-tag.componen
 import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';
 import { InfoMessageComponent } from '../../../../widgets/info-message/info-message.component';
 import { InputWrapperComponent } from '../../../../shared/input-wrapper/input-wrapper.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-ethical-aspects',
@@ -28,7 +28,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatRadioButton,
     InfoMessageComponent,
     InputWrapperComponent,
-    TranslateModule,
+    TranslatePipe,
   ],
 })
 export class EthicalAspectsComponent implements OnInit {

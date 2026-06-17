@@ -11,7 +11,7 @@ import { MatCard, MatCardContent } from '@angular/material/card';
 import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/autocomplete';
 import { KeyValuePipe } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-data-access',
@@ -27,8 +27,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatSelect,
     MatOption,
     KeyValuePipe,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class DataAccessComponent {
   @Input() dmpForm: UntypedFormGroup;

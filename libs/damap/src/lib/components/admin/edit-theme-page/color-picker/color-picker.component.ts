@@ -8,14 +8,14 @@ import {
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckbox } from '@angular/material/checkbox';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-color-picker',
   standalone: true,
   templateUrl: './color-picker.component.html',
   styleUrls: ['./color-picker.component.css'],
-  imports: [MatCheckbox, ReactiveFormsModule, TranslateModule],
+  imports: [MatCheckbox, ReactiveFormsModule, TranslatePipe],
 })
 export class ColorPickerComponent {
   @Input({ required: true }) control!: FormControl;

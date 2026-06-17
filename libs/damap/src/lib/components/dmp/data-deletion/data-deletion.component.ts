@@ -25,7 +25,7 @@ import {
   MatDatepicker,
 } from '@angular/material/datepicker';
 import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-data-deletion',
@@ -45,8 +45,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatSuffix,
     MatDatepicker,
     TextareaWrapperComponent,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class DataDeletionComponent {
   @Input() dataset: UntypedFormGroup;

@@ -36,7 +36,7 @@ import { InternalStorageDialogComponent } from '../../components/admin/internal-
 import { InternalStorageTranslationDialogComponent } from '../../components/admin/internal-storage-translation-dialog/internal-storage-translation-dialog.component';
 import { DeleteWarningDialogComponent } from '../delete-warning-dialog/delete-warning-dialog.component';
 import { DeleteStorageTranslationWarningDialogComponent } from './dialog/delete-storage-translation-warning-dialog.component';
-import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
 import { MatIcon } from '@angular/material/icon';
@@ -67,8 +67,7 @@ import { MatDivider } from '@angular/material/divider';
     MatRow,
     MatNoDataRow,
     MatPaginator,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class InternalStorageTranslationTableComponent
   implements AfterViewInit, OnChanges
@@ -88,8 +87,7 @@ export class InternalStorageTranslationTableComponent
     'title',
     'description',
     'backupFrequency',
-    'actions',
-  ];
+    'actions'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-admin-translations',
@@ -16,8 +16,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatButtonModule,
     MatCardModule,
     MatIconModule,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class EditTranslationsPageComponent {
   private router = inject(Router);

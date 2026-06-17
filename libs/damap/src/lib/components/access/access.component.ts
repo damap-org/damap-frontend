@@ -8,7 +8,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { PersonCardComponent } from '../../widgets/person-card/person-card.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Dmp } from '../../domain/dmp';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -45,7 +45,7 @@ import { TooltipComponent } from '../../widgets/tooltip/tooltip.component';
   selector: 'damap-access',
   imports: [
     CommonModule,
-    TranslateModule,
+    TranslatePipe,
     RouterModule,
     PersonCardComponent,
     MatCheckboxModule,
@@ -60,8 +60,7 @@ import { TooltipComponent } from '../../widgets/tooltip/tooltip.component';
     MatOption,
     ReactiveFormsModule,
     MatInputModule,
-    SearchFieldComponent,
-  ],
+    SearchFieldComponent],
   templateUrl: './access.component.html',
   styleUrls: ['./access.component.css'],
   standalone: true,

@@ -14,7 +14,7 @@ import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/autocomplete';
 import { MatButton } from '@angular/material/button';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'damap-export-warning-dialog',
@@ -30,8 +30,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatOption,
     MatButton,
     MatDialogClose,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class ExportWarningDialogComponent {
   dialogRef = inject<MatDialogRef<ExportWarningDialogComponent>>(MatDialogRef);

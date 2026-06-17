@@ -10,7 +10,7 @@ import { Dataset } from '../../../../domain/dataset';
 import { DataSource } from '../../../../domain/enum/data-source.enum';
 import { DatasetDialogComponent } from '../dataset-dialog/dataset-dialog.component';
 import { FILE_SIZES } from '../data-specs';
-import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { MatButton } from '@angular/material/button';
 
@@ -24,8 +24,7 @@ import { MatButton } from '@angular/material/button';
     MatDialogContent,
     MatDialogActions,
     MatButton,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class DatasetInformationComponent {
   dialogRef = inject<MatDialogRef<DatasetDialogComponent>>(MatDialogRef);

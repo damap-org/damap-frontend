@@ -39,7 +39,7 @@ import { TextareaWrapperComponent } from '../../../../shared/textarea-wrapper/te
 import { MatIconButton, MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { KeyValuePipe } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dataset-dialog',
@@ -64,8 +64,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatButton,
     MatDialogActions,
     KeyValuePipe,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class DatasetDialogComponent {
   dialogRef = inject<MatDialogRef<DatasetDialogComponent>>(MatDialogRef);

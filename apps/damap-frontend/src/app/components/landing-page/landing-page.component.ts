@@ -4,7 +4,7 @@ import { SafeUrl } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { MatAnchor, MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { IMAGE_KEYS } from '../../../../../../libs/damap/src/lib/domain/image-keys';
 import { ConfigService } from '../../services/config.service';
 import { map, Observable } from 'rxjs';
@@ -18,8 +18,7 @@ import { ImageThemeService } from '../../services/image-theme.service';
     MatButtonModule,
     MatAnchor,
     MatIcon,
-    TranslateModule,
-  ],
+    TranslatePipe],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.css',
   standalone: true,
@@ -52,7 +51,7 @@ export class LandingPageComponent implements OnInit {
     // TODO: The fallback doesnt work when english has been deactivated
     const preferredLang =
       localStorage.getItem('lang') || this.translate.getBrowserLang() || 'en';
-    this.translate.getTranslation(preferredLang).subscribe(translations => {
+    this.translate.reloadLang(preferredLang).subscribe(translations => {
       const languageToUse =
         translations && Object.keys(translations).length > 0
           ? preferredLang

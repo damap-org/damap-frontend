@@ -21,7 +21,7 @@ import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/autocomplete';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { TextareaWrapperComponent } from '../../../../shared/textarea-wrapper/textarea-wrapper.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dmp-external-storage',
@@ -45,7 +45,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatCardActions,
     MatSlideToggle,
     TextareaWrapperComponent,
-    TranslateModule,
+    TranslatePipe,
   ],
 })
 export class ExternalStorageComponent {

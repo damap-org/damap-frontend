@@ -8,7 +8,7 @@ import { CreatedDataComponent } from './created-data/created-data.component';
 import { ReusedDataComponent } from './reused-data/reused-data.component';
 import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
 import { MatHint } from '@angular/material/form-field';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dmp-specify-data',
@@ -19,8 +19,7 @@ import { TranslateModule } from '@ngx-translate/core';
     ReusedDataComponent,
     TextareaWrapperComponent,
     MatHint,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class SpecifyDataComponent extends AbstractBaseDataComponent {
   @Input() fileUpload: { file: File; progress: number; finalized: boolean }[];

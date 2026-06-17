@@ -19,7 +19,7 @@ import {
   MatNoDataRow,
 } from '@angular/material/table';
 import { DatePipe } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-version-table',
@@ -41,8 +41,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatRow,
     MatNoDataRow,
     DatePipe,
-    TranslateModule,
-  ],
+    TranslatePipe],
 })
 export class VersionTableComponent {
   displayedColumns: string[] = ['version', 'name', 'date', 'editor'];
