@@ -32,7 +32,7 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import pkg from '../../../../../../package.json';
 import { ImageThemeService } from '../../services/image-theme.service';
 import { IMAGE_KEYS } from '../../../../../../libs/damap/src/lib/domain/image-keys';
-import { NgClass, NgStyle } from '@angular/common';
+
 import { MatIconButton, MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
@@ -51,8 +51,6 @@ import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
   imports: [
     MatSidenavContainer,
     MatSidenav,
-    NgClass,
-    NgStyle,
     MatIconButton,
     MatIcon,
     RouterLink,

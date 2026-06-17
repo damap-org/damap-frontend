@@ -1,7 +1,5 @@
 @if (bannerVisible) {
-  <mat-card
-    appearance="raised"
-    [ngStyle]="{ 'background-color': banner.color }">
+  <mat-card appearance="raised" [style.background-color]="banner.color">
     <mat-card-header>
       <mat-card-title>
         <strong> {{ banner.title }} </strong>

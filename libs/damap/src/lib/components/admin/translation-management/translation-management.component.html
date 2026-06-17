@@ -119,7 +119,7 @@
                 </div>
                 <div
                   class="custom-cell"
-                  [ngClass]="{ custom: isCustomValue(translation) }"
+                  [class.custom]="isCustomValue(translation)"
                   [matTooltip]="translation.custom || translation.defaultValue">
                   {{ translation.custom || translation.defaultValue }}
                 </div>
