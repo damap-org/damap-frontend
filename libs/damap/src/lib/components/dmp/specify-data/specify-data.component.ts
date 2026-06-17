@@ -2,9 +2,9 @@ import { Observable } from 'rxjs';
 import {
   Component,
   EventEmitter,
-  Input,
   Output,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 
 import { AbstractBaseDataComponent } from './abstract-base-data.component';
@@ -30,8 +30,14 @@ import { TranslatePipe } from '@ngx-translate/core';
   ],
 })
 export class SpecifyDataComponent extends AbstractBaseDataComponent {
-  @Input() fileUpload: { file: File; progress: number; finalized: boolean }[];
-  @Input() config$: Observable<Config>;
+  readonly fileUpload = input<
+    {
+      file: File;
+      progress: number;
+      finalized: boolean;
+    }[]
+  >(undefined);
+  readonly config$ = input<Observable<Config>>(undefined);
 
   @Output() fileToAnalyse = new EventEmitter<File>();
   @Output() uploadToCancel = new EventEmitter<number>();

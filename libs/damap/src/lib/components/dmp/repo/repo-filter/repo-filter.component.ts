@@ -1,10 +1,10 @@
 import {
   Component,
   EventEmitter,
-  Input,
   Output,
   inject,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 import { REPO_FILTERS } from '../repo-filters';
 import {
@@ -32,7 +32,12 @@ import { TreeSelectFormFieldComponent } from '../../../../widgets/tree-select-fo
 export class RepoFilterComponent {
   dialog = inject(MatDialog);
 
-  @Input() filters: { [key: string]: { id: string; label: string }[] };
+  readonly filters = input<{
+    [key: string]: {
+      id: string;
+      label: string;
+    }[];
+  }>(undefined);
   @Output() filterChange = new EventEmitter<{
     [key: string]: { id: string; label: string }[];
   }>();
@@ -40,7 +45,7 @@ export class RepoFilterComponent {
   openDialog(): void {
     const dialogRef = this.dialog.open(FilterDialogComponent, {
       width: '1000px',
-      data: this.filters,
+      data: this.filters(),
     });
 
     dialogRef

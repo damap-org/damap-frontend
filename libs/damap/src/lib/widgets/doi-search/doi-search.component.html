@@ -20,7 +20,7 @@
   <app-error-message
     message="dmp.steps.data.specify.doi.notFound"></app-error-message>
 }
-@if (duplicate) {
+@if (duplicate()) {
   <app-error-message
     message="validation.error.doiDuplicate"></app-error-message>
 }

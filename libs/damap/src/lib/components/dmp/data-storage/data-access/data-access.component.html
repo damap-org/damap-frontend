@@ -4,7 +4,7 @@
 <mat-card class="data-access-card card-shadow">
   <mat-card-content>
     <ng-container>
-      <div class="wrapper" [formGroup]="dmpForm">
+      <div class="wrapper" [formGroup]="dmpForm()">
         <ng-container formArrayName="datasets">
           @if (datasets?.controls.length) {
             <div class="one bold">

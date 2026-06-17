@@ -3,6 +3,7 @@ import {
   Input,
   OnChanges,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 import {
   ReactiveFormsModule,
@@ -52,9 +53,9 @@ import { filter, switchMap } from 'rxjs/operators';
   ],
 })
 export class LanguageCodeInputComponent implements OnChanges {
-  @Input() label: string = '';
-  @Input() hint: string = '';
-  @Input() control!: FormControl;
+  readonly label = input<string>('');
+  readonly hint = input<string>('');
+  readonly control = input.required<FormControl>();
   @Input() errorMessageRequired: string = undefined;
   @Input() errorMessageInvalid: string = undefined;
   @Input() errorMessageAlreadyExists: string = undefined;
@@ -63,10 +64,11 @@ export class LanguageCodeInputComponent implements OnChanges {
   filteredLanguageOptions$!: Observable<LanguageCodeOption[]>;
 
   ngOnChanges() {
-    if (!this.control) return;
+    const control = this.control();
+    if (!control) return;
 
-    this.filteredLanguageOptions$ = this.control.valueChanges.pipe(
-      startWith(this.control.value ?? ''),
+    this.filteredLanguageOptions$ = control.valueChanges.pipe(
+      startWith(control.value ?? ''),
       map(value => {
         const v = typeof value === 'string' ? value : value?.code ?? '';
 

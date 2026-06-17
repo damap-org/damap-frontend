@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 import {
   UntypedFormArray,
   UntypedFormControl,
@@ -68,8 +68,8 @@ import { TranslatePipe } from '@ngx-translate/core';
   ],
 })
 export class LicensesComponent {
-  @Input() dmpForm: UntypedFormGroup;
-  @Input() datasets: UntypedFormArray;
+  readonly dmpForm = input<UntypedFormGroup>(undefined);
+  readonly datasets = input<UntypedFormArray>(undefined);
 
   licenses: LicenseDetails[] = LicenseDefinitions;
   accessType: any = DataAccessType;
@@ -79,25 +79,26 @@ export class LicensesComponent {
   readonly datasetSource: any = DataSource;
 
   setLicenseSelectorResult(event, index: number) {
-    const dataset = this.datasets.at(index);
+    const dataset = this.datasets().at(index);
     if (event) {
       dataset.patchValue({ license: event.id });
     }
   }
 
   get isAnonymisedOrPseudonymised() {
+    const dmpForm = this.dmpForm();
     return (
-      this.dmpForm?.value.legal.personalDataCompliance?.includes(
+      dmpForm?.value.legal.personalDataCompliance?.includes(
         ComplianceType.ANONYMISATION,
       ) ||
-      this.dmpForm?.value.legal.personalDataCompliance?.includes(
+      dmpForm?.value.legal.personalDataCompliance?.includes(
         ComplianceType.PSEUDONYMISATION,
       )
     );
   }
 
   get restricted() {
-    return this.datasets?.value.filter(
+    return this.datasets()?.value.filter(
       item =>
         item.dataAccess === DataAccessType.RESTRICTED &&
         item.source === DataSource.NEW,
@@ -105,7 +106,7 @@ export class LicensesComponent {
   }
 
   get closed() {
-    return this.datasets?.value.filter(
+    return this.datasets()?.value.filter(
       item =>
         item.dataAccess === DataAccessType.CLOSED &&
         item.source === DataSource.NEW,
@@ -113,14 +114,14 @@ export class LicensesComponent {
   }
 
   getFormGroup(index: number): UntypedFormGroup {
-    return this.datasets.at(index) as UntypedFormGroup;
+    return this.datasets().at(index) as UntypedFormGroup;
   }
 
   get restrictedAccessInfo(): UntypedFormControl {
-    return this.dmpForm.get('restrictedAccessInfo') as UntypedFormControl;
+    return this.dmpForm().get('restrictedAccessInfo') as UntypedFormControl;
   }
 
   get closedAccessInfo(): UntypedFormControl {
-    return this.dmpForm.get('closedAccessInfo') as UntypedFormControl;
+    return this.dmpForm().get('closedAccessInfo') as UntypedFormControl;
   }
 }

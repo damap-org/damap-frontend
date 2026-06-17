@@ -1,4 +1,9 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  ChangeDetectionStrategy,
+  input,
+} from '@angular/core';
 import {
   UntypedFormArray,
   UntypedFormGroup,
@@ -32,7 +37,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   ],
 })
 export class DataAccessComponent {
-  @Input() dmpForm: UntypedFormGroup;
+  readonly dmpForm = input<UntypedFormGroup>(undefined);
   @Input() datasets: UntypedFormArray;
 
   accessRight = AccessRight;

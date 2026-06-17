@@ -1,10 +1,10 @@
-<div [formGroup]="dmpForm">
+<div [formGroup]="dmpForm()">
   <mat-label
     class="label-title mat-title-large"
     id="example-radio-group-label"
     >{{ "dmp.steps.licensing.sectionTitle" | translate }}</mat-label
   >
-  @for (dataset of datasets?.controls; track dataset; let i = $index) {
+  @for (dataset of datasets()?.controls; track dataset; let i = $index) {
     <ng-container formArrayName="datasets">
       @if (dataset.value.source === datasetSource.NEW) {
         <mat-card appearance="raised" class="card-selected">
@@ -101,7 +101,7 @@
               @if (dataset.value.dataAccess === accessType.CLOSED) {
                 <app-data-deletion
                   [dataset]="getFormGroup(i)"
-                  [dmpForm]="dmpForm"></app-data-deletion>
+                  [dmpForm]="dmpForm()"></app-data-deletion>
               }
             </mat-card-content>
           </ng-container>
@@ -111,7 +111,7 @@
   }
 </div>
 <div class="summary-container">
-  <div [formGroup]="dmpForm">
+  <div [formGroup]="dmpForm()">
     @if (restricted?.length > 0) {
       <app-textarea-wrapper
         [label]="'dmp.steps.licensing.question.short.restrictedAccessInfo'"

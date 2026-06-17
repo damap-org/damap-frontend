@@ -5,6 +5,7 @@ import {
   OnInit,
   Output,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 import {
   UntypedFormControl,
@@ -45,13 +46,13 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class InputWrapperComponent implements OnInit {
   @Input() label: string;
   @Input() control: UntypedFormControl;
-  @Input() prefix: string;
-  @Input() type: string;
-  @Input() placeholder: string;
-  @Input() appearance: MatFormFieldAppearance = 'outline';
-  @Input() maxLength = 255;
+  readonly prefix = input<string>(undefined);
+  readonly type = input<string>(undefined);
+  readonly placeholder = input<string>(undefined);
+  readonly appearance = input<MatFormFieldAppearance>('outline');
+  readonly maxLength = input(255);
   @Input() info: string;
-  @Input() stepSize = 100;
+  readonly stepSize = input(100);
   @Output() inputChange: EventEmitter<string> = new EventEmitter<string>();
 
   required = false;

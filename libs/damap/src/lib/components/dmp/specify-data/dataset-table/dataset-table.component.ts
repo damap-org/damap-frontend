@@ -5,6 +5,7 @@ import {
   Output,
   inject,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';
 
@@ -65,9 +66,9 @@ export class DatasetTableComponent {
   @Input() datasets: UntypedFormArray;
   @Input() sourceType: DataSource = DataSource.NEW;
 
-  @Input() tableHeaders: string[] = ['dataset', 'actions'];
+  readonly tableHeaders = input<string[]>(['dataset', 'actions']);
   @Input() tableHeading: string;
-  @Input() tableIntro = 'dmp.steps.data.specify.intro.default';
+  readonly tableIntro = input('dmp.steps.data.specify.intro.default');
 
   @Output() removeDataset = new EventEmitter<number>();
   @Output() updateDataset = new EventEmitter<{

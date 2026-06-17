@@ -1,9 +1,9 @@
 import {
   Component,
   EventEmitter,
-  Input,
   Output,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 import {
   UntypedFormArray,
@@ -56,17 +56,18 @@ import { TranslatePipe } from '@ngx-translate/core';
   ],
 })
 export class ExternalStorageComponent {
-  @Input() externalStorageStep: UntypedFormArray;
-  @Input() datasets: UntypedFormArray;
-  @Input() externalStorageInfo: UntypedFormControl = new UntypedFormControl();
+  readonly externalStorageStep = input<UntypedFormArray>(undefined);
+  readonly datasets = input<UntypedFormArray>(undefined);
+  readonly externalStorageInfo = input<UntypedFormControl>(
+    new UntypedFormControl(),
+  );
 
   @Output() externalStorageToAdd = new EventEmitter();
   @Output() externalStorageToRemove = new EventEmitter<number>();
 
   getFormControl(index: number, controlName: string): UntypedFormControl {
-    return (this.externalStorageStep?.at(index) as UntypedFormGroup)?.controls[
-      controlName
-    ] as UntypedFormControl;
+    return (this.externalStorageStep()?.at(index) as UntypedFormGroup)
+      ?.controls[controlName] as UntypedFormControl;
   }
 
   addExternalStorage() {
@@ -79,7 +80,7 @@ export class ExternalStorageComponent {
 
   anyNonInternalStorage(): boolean {
     let result = false;
-    for (let control of this.externalStorageStep.controls) {
+    for (let control of this.externalStorageStep().controls) {
       if (!(control as UntypedFormGroup).controls.isManagedInternally.value) {
         result = true;
         break;

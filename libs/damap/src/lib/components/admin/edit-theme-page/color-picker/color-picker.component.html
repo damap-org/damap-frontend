@@ -1,24 +1,24 @@
 <div class="color-picker" [class.disabled]="isDisabled">
   <div class="picker-controls" (click)="onPickerControlsClick($event)">
-    @if (canDisable) {
+    @if (canDisable()) {
       <mat-checkbox
         [checked]="!isDisabled"
         (change)="onToggleEnabled($event.checked)"
-        [aria-label]="'Enable ' + colorTitle + ' color'"
+        [aria-label]="'Enable ' + colorTitle() + ' color'"
         >Enable</mat-checkbox
       >
     }
-    <label class="picker-label" [for]="colorTitle + '-input'">{{
-      colorTitle
+    <label class="picker-label" [for]="colorTitle() + '-input'">{{
+      colorTitle()
     }}</label>
     <input
       #colorInput
-      [id]="colorTitle + '-input'"
+      [id]="colorTitle() + '-input'"
       type="color"
-      [formControl]="control"
+      [formControl]="control()"
       [attr.aria-disabled]="isDisabled" />
   </div>
-  @if (isDisabled && canDisable) {
+  @if (isDisabled && canDisable()) {
     <small class="helper-text">
       {{ "admin.theme.color-picker.helper-text" | translate }}
     </small>

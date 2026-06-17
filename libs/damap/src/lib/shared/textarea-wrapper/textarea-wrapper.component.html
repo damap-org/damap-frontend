@@ -1,6 +1,6 @@
 <div class="question-long-hint">
-  {{ longLabel | translate }}
-  @for (set of labelDatasets; track set.id; let last = $last) {
+  {{ longLabel() | translate }}
+  @for (set of labelDatasets(); track set.id; let last = $last) {
     "{{ set.title }}"
     @if (!last) {
       <span>, </span>
@@ -14,7 +14,7 @@
   }
 </div>
 <mat-form-field
-  [appearance]="appearance"
+  [appearance]="appearance()"
   class="mat-textarea-density"
   subscriptSizing="dynamic"
   floatLabel="auto">
@@ -27,19 +27,19 @@
     <textarea
       matInput
       [formControl]="control"
-      [placeholder]="placeholder"
+      [placeholder]="placeholder()"
       type="text"
       [matAutocomplete]="auto"
       [required]="required"
       cdkTextareaAutosize
-      cdkAutosizeMinRows="{{ minRows }}"
-      cdkAutosizeMaxRows="{{ maxRows }}"
+      cdkAutosizeMinRows="{{ minRows() }}"
+      cdkAutosizeMaxRows="{{ maxRows() }}"
       class="no-resize"
       (input)="this.updateAutocompletePosition()"
       #message></textarea>
-    @if (showLength) {
+    @if (showLength()) {
       <mat-hint align="end"
-        >{{ message.value.length }} / {{ maxLength }}</mat-hint
+        >{{ message.value.length }} / {{ maxLength() }}</mat-hint
       >
     }
     <span class="suggestion-label">
@@ -67,20 +67,20 @@
     <textarea
       matInput
       [formControl]="control"
-      [placeholder]="placeholder"
+      [placeholder]="placeholder()"
       type="text"
       [required]="required"
-      [maxLength]="maxLength"
+      [maxLength]="maxLength()"
       cdkTextareaAutosize
-      cdkAutosizeMinRows="{{ minRows }}"
-      cdkAutosizeMaxRows="{{ maxRows }}"
+      cdkAutosizeMinRows="{{ minRows() }}"
+      cdkAutosizeMaxRows="{{ maxRows() }}"
       class="no-resize"
       #message
       (click)="openAutocomplete()">
     </textarea>
-    @if (showLength) {
+    @if (showLength()) {
       <mat-hint align="end"
-        >{{ message.value.length }} / {{ maxLength }}
+        >{{ message.value.length }} / {{ maxLength() }}
       </mat-hint>
     }
   }

@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 import { Dataset } from '../../../../domain/dataset';
 import { DataKind } from '../../../../domain/enum/data-kind.enum';
 import { DataAccessType } from '../../../../domain/enum/data-access-type.enum';
@@ -15,11 +15,11 @@ import { BytePipe } from '../../../../pipes/byte/byte.pipe';
   imports: [TagComponent, DatePipe, TranslatePipe, BytePipe],
 })
 export class VersionViewDatasetsComponent {
-  @Input() dataKind: DataKind;
-  @Input() reusedDataKind: DataKind;
-  @Input() dataGeneration: string;
-  @Input() noDataExplanation: string;
-  @Input() datasets: Dataset[];
+  readonly dataKind = input<DataKind>(undefined);
+  readonly reusedDataKind = input<DataKind>(undefined);
+  readonly dataGeneration = input<string>(undefined);
+  readonly noDataExplanation = input<string>(undefined);
+  readonly datasets = input<Dataset[]>(undefined);
 
   readonly dataKindType = DataKind;
   readonly dataAccessType = DataAccessType;

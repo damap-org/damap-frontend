@@ -1,4 +1,9 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  ChangeDetectionStrategy,
+  input,
+} from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -10,6 +15,6 @@ import { TranslatePipe } from '@ngx-translate/core';
   imports: [MatIcon, TranslatePipe],
 })
 export class ErrorMessageComponent {
-  @Input() message: string;
+  readonly message = input<string>(undefined);
   @Input() data: any;
 }

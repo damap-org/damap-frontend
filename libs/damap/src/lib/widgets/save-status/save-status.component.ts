@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { TranslateDirective } from '@ngx-translate/core';
 
@@ -10,5 +10,5 @@ import { TranslateDirective } from '@ngx-translate/core';
   imports: [MatIcon, TranslateDirective],
 })
 export class SaveStatusComponent {
-  @Input() saved: boolean;
+  readonly saved = input<boolean>(undefined);
 }

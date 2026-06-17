@@ -1,5 +1,5 @@
 <div class="scrollable-recommendation-content">
-  @if (loaded === LoadingState.LOADED) {
+  @if (loaded() === LoadingState.LOADED) {
     @for (repo of recommended; track repo.id) {
       <mat-card appearance="raised" class="recommendation-card">
         <mat-card-header>
@@ -14,11 +14,11 @@
       </mat-card>
     }
   }
-  @if (loaded === LoadingState.LOADING) {
+  @if (loaded() === LoadingState.LOADING) {
     <p translate>dmp.steps.repositories.loading.load.recommended</p>
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   }
-  @if (loaded === LoadingState.FAILED) {
+  @if (loaded() === LoadingState.FAILED) {
     <app-error-message
       message="{{
         'dmp.steps.repositories.loading.failed.recommended' | translate

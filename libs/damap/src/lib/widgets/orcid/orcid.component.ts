@@ -1,9 +1,9 @@
 import {
   Component,
   inject,
-  Input,
   OnInit,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
 import { ImageThemeService } from 'apps/damap-frontend/src/app/services/image-theme.service';
@@ -17,7 +17,7 @@ import { IMAGE_KEYS } from '../../domain/image-keys';
 })
 export class OrcidComponent implements OnInit {
   private readonly imageThemeService = inject(ImageThemeService);
-  @Input() orcidId: string;
+  readonly orcidId = input<string>(undefined);
 
   logoUrl: SafeUrl;
 

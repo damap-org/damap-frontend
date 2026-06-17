@@ -6,6 +6,7 @@ import {
   Output,
   inject,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 
 import { AbstractBaseDataComponent } from '../abstract-base-data.component';
@@ -38,7 +39,13 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class CreatedDataComponent extends AbstractBaseDataComponent {
   dialog = inject(MatDialog);
 
-  @Input() fileUpload: { file: File; progress: number; finalized: boolean }[];
+  readonly fileUpload = input<
+    {
+      file: File;
+      progress: number;
+      finalized: boolean;
+    }[]
+  >(undefined);
   @Input() config$: Observable<Config>;
 
   @Output() fileToAnalyse = new EventEmitter<File>();
@@ -72,7 +79,7 @@ export class CreatedDataComponent extends AbstractBaseDataComponent {
       width: '75%',
       maxWidth: '800px',
       data: {
-        fileUpload: this.fileUpload,
+        fileUpload: this.fileUpload(),
         analyseFile: (file: File) => this.analyseFile(file),
         cancelUpload: (index: number) => this.cancelUpload(index),
       },

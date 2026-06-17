@@ -1,4 +1,4 @@
-@for (repo of repositories; track repo.repositoryId; let last = $last) {
+@for (repo of repositories(); track repo.repositoryId; let last = $last) {
   <div>
     <h3>{{ repo.title }}</h3>
     <div>

@@ -2,12 +2,12 @@ import {
   AfterViewInit,
   Component,
   EventEmitter,
-  Input,
   OnChanges,
   Output,
   SimpleChanges,
   ViewChild,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 
 import { DmpListItem } from '../../domain/dmp-list-item';
@@ -72,9 +72,9 @@ import { TranslatePipe } from '@ngx-translate/core';
   ],
 })
 export class DmpTableComponent implements OnChanges, AfterViewInit {
-  @Input() dmps: DmpListItem[];
-  @Input() admin = false;
-  @Input() dmpsLoaded: LoadingState;
+  readonly dmps = input<DmpListItem[]>(undefined);
+  readonly admin = input(false);
+  readonly dmpsLoaded = input<LoadingState>(undefined);
   dataSource = new MatTableDataSource();
 
   @Output() createDocument = new EventEmitter<number>();
@@ -99,7 +99,7 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.dmps) {
-      this.dataSource.data = this.dmps || [];
+      this.dataSource.data = this.dmps() || [];
     }
   }
 
