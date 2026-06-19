@@ -11,16 +11,20 @@
           <div
             [class]="{
               'info-icon-background': icon === 'info',
-              'number-icon-background': icon > 0,
+              'number-icon-background': isNumberIcon,
             }">
-            <mat-icon
-              class="page-info-icon"
-              [class]="{
-                'material-icon-primary outline': icon === 'info',
-                'material-icon-white-background-primary number-icon': icon > 0,
-              }">
-              {{ icon }}
-            </mat-icon>
+            @if (icon === "info") {
+              <mat-icon
+                class="page-info-icon material-icon-primary outline"
+                aria-hidden="true">
+                {{ icon }}
+              </mat-icon>
+            } @else if (isNumberIcon) {
+              <span
+                class="page-info-icon material-icon-white-background-primary number-icon">
+                {{ icon }}
+              </span>
+            }
           </div>
         </section>
         <div class="info-box-container mat-title-medium">
