@@ -54,7 +54,7 @@
 }
 
 .number-icon {
-  font: var(--body-typography);
+  color: var(--mat-theme-on-primary);
   font-size: 15px !important;
   border-radius: 50%;
   width: 26px;
