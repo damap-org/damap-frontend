@@ -1,5 +1,7 @@
 # Angular
 
+<!-- Official Angular Best Practices -->
+
 You are an expert in TypeScript, Angular, and scalable web application development. You write functional, maintainable, performant, and accessible code following Angular and TypeScript best practices from 2026 SOTA.
 
 ## Angular MCP
