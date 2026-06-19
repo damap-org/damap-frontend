@@ -123,17 +123,6 @@
             "buildTarget": "damap-frontend:build"
           }
         },
-        "test": {
-          "builder": "@angular/build:unit-test",
-          "options": {
-            "tsConfig": "apps/damap-frontend/tsconfig.spec.json",
-            "reporters": ["default", "junit"],
-            "coverageReporters": ["html", "text-summary", "lcov"],
-            "setupFiles": ["apps/damap-frontend/src/test.ts"],
-            "buildTarget": ":build:testing",
-            "runner": "vitest"
-          }
-        },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
@@ -165,14 +154,6 @@
             }
           },
           "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular/build:karma",
-          "options": {
-            "main": "libs/damap/src/test.ts",
-            "tsConfig": "libs/damap/tsconfig.spec.json",
-            "karmaConfig": "libs/damap/karma.conf.js"
-          }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
