@@ -1,10 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import {
-  MatCard,
-  MatCardHeader,
-  MatCardTitle,
-  MatCardContent,
-} from '@angular/material/card';
+import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 
 @Component({

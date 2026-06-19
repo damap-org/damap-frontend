@@ -5,16 +5,9 @@ import {
   HttpHeaders,
   HttpParams,
 } from '@angular/common/http';
-import {
-  InternalStorage,
-  InternalStorageTranslation,
-} from '../domain/internal-storage';
+import { InternalStorage, InternalStorageTranslation } from '../domain/internal-storage';
 import { Observable, of, throwError } from 'rxjs';
-import {
-  LanguageSummary,
-  TranslationEntry,
-  TranslationUpdatePayload,
-} from '../domain/translation';
+import { LanguageSummary, TranslationEntry, TranslationUpdatePayload } from '../domain/translation';
 import { catchError, map, retry, shareReplay } from 'rxjs/operators';
 import { APP_ENV } from '../constants';
 import { Access, UserDo } from '../domain/access';
@@ -55,9 +48,7 @@ export class BackendService {
   private repositoryBackendUrl = this.backendUrl + 'repositories';
   private evaluationBackendUrl = this.backendUrl + 'evaluation';
 
-  private static getFilenameFromContentDisposition(
-    contentDisposition: string,
-  ): string {
+  private static getFilenameFromContentDisposition(contentDisposition: string): string {
     const start = contentDisposition.lastIndexOf('filename=');
     return contentDisposition.substring(start + 9);
   }
@@ -65,19 +56,13 @@ export class BackendService {
   getAllDmps(): Observable<DmpListItem[]> {
     return this.http
       .get<DmpListItem[]>(`${this.dmpBackendUrl}/all`)
-      .pipe(
-        retry(3),
-        catchError(this.handleError('http.error.plans.load.all')),
-      );
+      .pipe(retry(3), catchError(this.handleError('http.error.plans.load.all')));
   }
 
   getDmpById(id: number): Observable<Dmp> {
     return this.http
       .get<Dmp>(`${this.dmpBackendUrl}/${id}`)
-      .pipe(
-        retry(3),
-        catchError(this.handleError('http.error.plans.load.one')),
-      );
+      .pipe(retry(3), catchError(this.handleError('http.error.plans.load.one')));
   }
 
   deleteDmp(id: number): Observable<Dmp> {
@@ -89,10 +74,7 @@ export class BackendService {
   getDmpByIdAndRevision(id: number, revision: number): Observable<Dmp> {
     return this.http
       .get<Dmp>(`${this.dmpBackendUrl}/${id}/${revision}`)
-      .pipe(
-        retry(3),
-        catchError(this.handleError('http.error.versions.revision')),
-      );
+      .pipe(retry(3), catchError(this.handleError('http.error.versions.revision')));
   }
 
   getDmpVersions(id: number): Observable<Version[]> {
@@ -125,20 +107,16 @@ export class BackendService {
   }
 
   getRecommendedProjects(): Observable<SearchResult<Project>> {
-    return this.http
-      .get<SearchResult<Project>>(`${this.projectBackendUrl}/recommended`)
-      .pipe(
-        retry(3),
-        // errorkey is left in for backwards compatibility
-        // remove when the complete error handling rework is done
-        catchError(this.handleError('http.error.projects')),
-        shareReplay(1),
-      );
+    return this.http.get<SearchResult<Project>>(`${this.projectBackendUrl}/recommended`).pipe(
+      retry(3),
+      // errorkey is left in for backwards compatibility
+      // remove when the complete error handling rework is done
+      catchError(this.handleError('http.error.projects')),
+      shareReplay(1),
+    );
   }
 
-  getProjectSearchResult(
-    searchTerm: string,
-  ): Observable<SearchResult<Project>> {
+  getProjectSearchResult(searchTerm: string): Observable<SearchResult<Project>> {
     let queryParams = new HttpParams({
       fromObject: {
         q: searchTerm,
@@ -158,14 +136,12 @@ export class BackendService {
   }
 
   getProjectMembers(projectId: number): Observable<Contributor[]> {
-    return this.http
-      .get<Contributor[]>(`${this.projectBackendUrl}/${projectId}/staff`)
-      .pipe(
-        retry(3),
-        // errorkey is left in for backwards compatibility
-        // remove when the complete error handling rework is done
-        catchError(this.handleError('http.error.projectmembers')),
-      );
+    return this.http.get<Contributor[]>(`${this.projectBackendUrl}/${projectId}/staff`).pipe(
+      retry(3),
+      // errorkey is left in for backwards compatibility
+      // remove when the complete error handling rework is done
+      catchError(this.handleError('http.error.projectmembers')),
+    );
   }
 
   getPersonSearchResult(
@@ -183,13 +159,8 @@ export class BackendService {
     );
   }
 
-  updateOrcidContributorAffiliations(
-    contributor: Contributor,
-  ): Observable<Contributor> {
-    return this.http.post<Contributor>(
-      `${this.backendUrl}orcid/affiliation`,
-      contributor,
-    );
+  updateOrcidContributorAffiliations(contributor: Contributor): Observable<Contributor> {
+    return this.http.post<Contributor>(`${this.backendUrl}orcid/affiliation`, contributor);
   }
 
   loadServiceConfig(): Observable<Config> {
@@ -200,9 +171,7 @@ export class BackendService {
   getInternalStorages(): Observable<InternalStorage[]> {
     const langCode = 'eng'; // TODO: Replace with template lang in the future
     return this.http
-      .get<
-        InternalStorage[]
-      >(`${this.backendUrl}storages?languageCode=${langCode}`)
+      .get<InternalStorage[]>(`${this.backendUrl}storages?languageCode=${langCode}`)
       .pipe(retry(3), catchError(this.handleError('http.error.storages')));
   }
 
@@ -212,16 +181,12 @@ export class BackendService {
       .pipe(retry(3), catchError(this.handleError()));
   }
 
-  getRepositoryById(
-    id: string,
-  ): Observable<{ id: string; changes: RepositoryDetails }> {
-    return this.http
-      .get<RepositoryDetails>(`${this.repositoryBackendUrl}/${id}`)
-      .pipe(
-        map(repo => ({ id, changes: repo })),
-        retry(3),
-        catchError(this.handleError()),
-      );
+  getRepositoryById(id: string): Observable<{ id: string; changes: RepositoryDetails }> {
+    return this.http.get<RepositoryDetails>(`${this.repositoryBackendUrl}/${id}`).pipe(
+      map((repo) => ({ id, changes: repo })),
+      retry(3),
+      catchError(this.handleError()),
+    );
   }
 
   analyseFileData(file: FormData): Observable<HttpEvent<any>> {
@@ -257,7 +222,7 @@ export class BackendService {
         observe: 'response',
       })
       .pipe(catchError(this.handleError('http.error.document')))
-      .subscribe(async response => {
+      .subscribe(async (response) => {
         try {
           /*
                       The backend supplies the DMP together with the id.
@@ -279,16 +244,14 @@ export class BackendService {
           });
         } catch (e) {
           console.error('Failed to prettify and download maDMP JSON file', e);
-          this.feedbackService.error(
-            this.translate.instant('http.error.document'),
-          );
+          this.feedbackService.error(this.translate.instant('http.error.document'));
         }
       });
   }
 
   getConsentGiven(): Observable<boolean> {
     return this.http.get<Consent>(`${this.backendUrl}consent`).pipe(
-      map(details => details.consentGiven),
+      map((details) => details.consentGiven),
       retry(3),
       catchError(this.handleError('http.error.consent.one')),
     );
@@ -311,10 +274,7 @@ export class BackendService {
   }
 
   createInternalStorage(storage: InternalStorage): Observable<InternalStorage> {
-    return this.http.post<InternalStorage>(
-      `${this.backendUrl}storages`,
-      storage,
-    );
+    return this.http.post<InternalStorage>(`${this.backendUrl}storages`, storage);
   }
 
   getInternalStorage(id: number): Observable<InternalStorage> {
@@ -322,16 +282,11 @@ export class BackendService {
   }
 
   updateInternalStorage(storage: InternalStorage): Observable<InternalStorage> {
-    return this.http.put<InternalStorage>(
-      `${this.backendUrl}storages/${storage.id}`,
-      storage,
-    );
+    return this.http.put<InternalStorage>(`${this.backendUrl}storages/${storage.id}`, storage);
   }
 
   deleteInternalStorage(id: number): Observable<InternalStorage> {
-    return this.http.delete<InternalStorage>(
-      `${this.backendUrl}storages/${id}`,
-    );
+    return this.http.delete<InternalStorage>(`${this.backendUrl}storages/${id}`);
   }
 
   searchInternalStorage(queryParams: {
@@ -340,15 +295,12 @@ export class BackendService {
     let params = new HttpParams();
     for (const key in queryParams) {
       if (queryParams.hasOwnProperty(key)) {
-        queryParams[key]?.forEach(item => (params = params.append(key, item)));
+        queryParams[key]?.forEach((item) => (params = params.append(key, item)));
       }
     }
-    return this.http.get<SearchResult<InternalStorage>>(
-      `${this.backendUrl}storages`,
-      {
-        params,
-      },
-    );
+    return this.http.get<SearchResult<InternalStorage>>(`${this.backendUrl}storages`, {
+      params,
+    });
   }
 
   createInternalStorageTranslation(
@@ -360,9 +312,7 @@ export class BackendService {
     );
   }
 
-  getInternalStorageTranslations(
-    id: number,
-  ): Observable<InternalStorageTranslation[]> {
+  getInternalStorageTranslations(id: number): Observable<InternalStorageTranslation[]> {
     return this.http.get<InternalStorageTranslation[]>(
       `${this.backendUrl}storages/${id}/translations/`,
     );
@@ -406,42 +356,28 @@ export class BackendService {
       return request.pipe(catchError(() => of([])));
     }
 
-    return request.pipe(
-      catchError(this.handleError('http.error.translations.load')),
-    );
+    return request.pipe(catchError(this.handleError('http.error.translations.load')));
   }
 
-  updateTranslation(
-    translation: TranslationUpdatePayload,
-  ): Observable<TranslationEntry> {
+  updateTranslation(translation: TranslationUpdatePayload): Observable<TranslationEntry> {
     return this.http
       .patch<TranslationEntry>(
         `${this.backendUrl}languages/${translation.language}/translations/${encodeURIComponent(translation.translationKey)}`,
         { custom: translation.custom, active: translation.active },
       )
-      .pipe(
-        retry(3),
-        catchError(this.handleError('http.error.translations.update')),
-      );
+      .pipe(retry(3), catchError(this.handleError('http.error.translations.update')));
   }
 
-  createLanguage(
-    language: string,
-    options?: { silent?: boolean },
-  ): Observable<void> {
+  createLanguage(language: string, options?: { silent?: boolean }): Observable<void> {
     const request = this.http
       .post<void>(`${this.backendUrl}languages`, { language })
       .pipe(retry(3));
 
     if (options?.silent) {
-      return request.pipe(
-        catchError((error: HttpErrorResponse) => throwError(() => error)),
-      );
+      return request.pipe(catchError((error: HttpErrorResponse) => throwError(() => error)));
     }
 
-    return request.pipe(
-      catchError(this.handleError('http.error.translations.language.create')),
-    );
+    return request.pipe(catchError(this.handleError('http.error.translations.language.create')));
   }
 
   getLanguages(): Observable<string[]> {
@@ -453,32 +389,22 @@ export class BackendService {
   }
 
   getLanguageDetails(): Observable<LanguageSummary[]> {
-    return this.http
-      .get<LanguageSummary[]>(`${this.backendUrl}languages/details`)
-      .pipe(
-        retry(3),
-        catchError(() => of([{ language: 'en', active: true }])),
-      );
+    return this.http.get<LanguageSummary[]>(`${this.backendUrl}languages/details`).pipe(
+      retry(3),
+      catchError(() => of([{ language: 'en', active: true }])),
+    );
   }
 
   setLanguageActive(language: string, active: boolean): Observable<void> {
     return this.http
       .patch<void>(`${this.backendUrl}languages/${language}`, { active })
-      .pipe(
-        retry(3),
-        catchError(
-          this.handleError('http.error.translations.language.activate'),
-        ),
-      );
+      .pipe(retry(3), catchError(this.handleError('http.error.translations.language.activate')));
   }
 
   deleteLanguage(language: string): Observable<void> {
     return this.http
       .delete<void>(`${this.backendUrl}languages/${language}`)
-      .pipe(
-        retry(3),
-        catchError(this.handleError('http.error.translations.language.delete')),
-      );
+      .pipe(retry(3), catchError(this.handleError('http.error.translations.language.delete')));
   }
 
   getAppBanner(): Observable<Banner> {
@@ -505,15 +431,8 @@ export class BackendService {
 
   getAdminRecommendedRepositories(): Observable<RecommendedRepository[]> {
     return this.http
-      .get<
-        RecommendedRepository[]
-      >(`${this.backendUrl}admin/recommended-repositories`)
-      .pipe(
-        retry(3),
-        catchError(
-          this.handleError('http.error.recommended-repositories.load'),
-        ),
-      );
+      .get<RecommendedRepository[]>(`${this.backendUrl}admin/recommended-repositories`)
+      .pipe(retry(3), catchError(this.handleError('http.error.recommended-repositories.load')));
   }
 
   createAdminRecommendedRepository(
@@ -530,41 +449,25 @@ export class BackendService {
         repository,
         httpOptions,
       )
-      .pipe(
-        retry(3),
-        catchError(
-          this.handleError('http.error.recommended-repositories.save'),
-        ),
-      );
+      .pipe(retry(3), catchError(this.handleError('http.error.recommended-repositories.save')));
   }
 
   deleteAdminRecommendedRepository(id: number): Observable<void> {
     return this.http
       .delete<void>(`${this.backendUrl}admin/recommended-repositories/${id}`)
-      .pipe(
-        retry(3),
-        catchError(
-          this.handleError('http.error.recommended-repositories.delete'),
-        ),
-      );
+      .pipe(retry(3), catchError(this.handleError('http.error.recommended-repositories.delete')));
   }
 
   uploadImageTheme(imageKey: string, file: FormData): Observable<any> {
     return this.http
       .put(`${this.backendUrl}admin/image-theme`, file)
-      .pipe(
-        retry(3),
-        catchError(this.handleError('http.error.admin.image.upload')),
-      );
+      .pipe(retry(3), catchError(this.handleError('http.error.admin.image.upload')));
   }
 
   deleteImageTheme(imageKey: string): Observable<any> {
     return this.http
       .delete(`${this.backendUrl}admin/image-theme?imageKey=${imageKey}`)
-      .pipe(
-        retry(3),
-        catchError(this.handleError('http.error.admin.image.delete')),
-      );
+      .pipe(retry(3), catchError(this.handleError('http.error.admin.image.delete')));
   }
 
   uploadExportTemplate(payload: FormData): Observable<any> {
@@ -572,10 +475,7 @@ export class BackendService {
   }
 
   toggleExportTemplateActive(id: number): Observable<any> {
-    return this.http.patch(
-      `${this.backendUrl}admin/export-templates/${id}/toggle-active`,
-      {},
-    );
+    return this.http.patch(`${this.backendUrl}admin/export-templates/${id}/toggle-active`, {});
   }
 
   deleteExportTemplate(id: number): Observable<any> {
@@ -585,15 +485,10 @@ export class BackendService {
   getInstanceConfig(): Observable<InstanceConfig> {
     return this.http
       .get<InstanceConfig>(`${this.backendUrl}admin/instance-config`)
-      .pipe(
-        retry(3),
-        catchError(this.handleError('http.error.admin.instance-config.load')),
-      );
+      .pipe(retry(3), catchError(this.handleError('http.error.admin.instance-config.load')));
   }
 
-  updateInstanceConfig(
-    instanceConfig: InstanceConfig,
-  ): Observable<InstanceConfig> {
+  updateInstanceConfig(instanceConfig: InstanceConfig): Observable<InstanceConfig> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -601,30 +496,17 @@ export class BackendService {
     };
 
     return this.http
-      .put<InstanceConfig>(
-        `${this.backendUrl}admin/instance-config`,
-        instanceConfig,
-        httpOptions,
-      )
-      .pipe(
-        retry(3),
-        catchError(this.handleError('http.error.admin.instance-config.update')),
-      );
+      .put<InstanceConfig>(`${this.backendUrl}admin/instance-config`, instanceConfig, httpOptions)
+      .pipe(retry(3), catchError(this.handleError('http.error.admin.instance-config.update')));
   }
 
   getBenchmarks(): Observable<Benchmark[]> {
     return this.http
       .get<Benchmark[]>(`${this.evaluationBackendUrl}/benchmarks`)
-      .pipe(
-        retry(3),
-        catchError(this.handleError('http.error.evaluation.benchmarks.load')),
-      );
+      .pipe(retry(3), catchError(this.handleError('http.error.evaluation.benchmarks.load')));
   }
 
-  runEvaluation(
-    dmpId: number,
-    benchmarkId: string,
-  ): Observable<EvaluationResult[]> {
+  runEvaluation(dmpId: number, benchmarkId: string): Observable<EvaluationResult[]> {
     return this.http
       .post<
         EvaluationResult[]
@@ -651,9 +533,7 @@ export class BackendService {
       let errorPayload = error.error;
       if (errorPayload.errorCode) {
         // means we are using the new system
-        message = this.translate.instant(
-          'http.error.errorCodes.' + errorPayload.errorCode,
-        );
+        message = this.translate.instant('http.error.errorCodes.' + errorPayload.errorCode);
         console.log(error);
         console.log(
           'An error occured: ' +
@@ -674,8 +554,7 @@ export class BackendService {
     const url = URL || webkitURL;
     const contentDisposition = response.headers.get('content-disposition');
     a.href = url.createObjectURL(response.body);
-    a.download =
-      BackendService.getFilenameFromContentDisposition(contentDisposition);
+    a.download = BackendService.getFilenameFromContentDisposition(contentDisposition);
     // start download
     a.click();
     url.revokeObjectURL(a.href);

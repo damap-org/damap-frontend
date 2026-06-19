@@ -1,20 +1,14 @@
 <div class="button-row">
   <section class="button-section">
-    @if (selectedView === "primaryView") {
+    @if (selectedView === 'primaryView') {
       <button mat-flat-button (click)="emitSelection('primaryView')">
         {{ primaryLabel() | translate }}
       </button>
-      <button
-        mat-button
-        class="empty-button-with-border"
-        (click)="emitSelection('secondaryView')">
+      <button mat-button class="empty-button-with-border" (click)="emitSelection('secondaryView')">
         {{ secondaryLabel() | translate }}
       </button>
     } @else {
-      <button
-        mat-button
-        class="empty-button-with-border"
-        (click)="emitSelection('primaryView')">
+      <button mat-button class="empty-button-with-border" (click)="emitSelection('primaryView')">
         {{ primaryLabel() | translate }}
       </button>
       <button mat-flat-button (click)="emitSelection('secondaryView')">

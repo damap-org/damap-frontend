@@ -22,7 +22,7 @@ export class RepositoryApi {
   searchParams(filter: RepositoryFilter): HttpParams {
     let params = new HttpParams();
     for (const key in filter) {
-      filter[key]?.forEach(item => (params = params.append(key, item.id)));
+      filter[key]?.forEach((item) => (params = params.append(key, item.id)));
     }
     return params;
   }

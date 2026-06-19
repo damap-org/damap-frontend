@@ -8,19 +8,18 @@
         >Enable</mat-checkbox
       >
     }
-    <label class="picker-label" [for]="colorTitle() + '-input'">{{
-      colorTitle()
-    }}</label>
+    <label class="picker-label" [for]="colorTitle() + '-input'">{{ colorTitle() }}</label>
     <input
       #colorInput
       [id]="colorTitle() + '-input'"
       type="color"
       [formControl]="control()"
-      [attr.aria-disabled]="isDisabled" />
+      [attr.aria-disabled]="isDisabled"
+    />
   </div>
   @if (isDisabled && canDisable()) {
     <small class="helper-text">
-      {{ "admin.theme.color-picker.helper-text" | translate }}
+      {{ 'admin.theme.color-picker.helper-text' | translate }}
     </small>
   }
 </div>

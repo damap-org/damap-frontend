@@ -1,36 +1,35 @@
 <mat-label class="label-title mat-title-large" id="example-radio-group-label">
-  {{ "dmp.steps.costs.sectionTitle" | translate }}
+  {{ 'dmp.steps.costs.sectionTitle' | translate }}
 </mat-label>
 <mat-card class="data-management-costs-card card-shadow">
   <mat-card-content>
     <app-info-message>
-      {{ "dmp.steps.costs.infoBox.description" | translate }}
+      {{ 'dmp.steps.costs.infoBox.description' | translate }}
       <a
         class="info-link-custom"
         [href]="'dmp.steps.costs.infoBox.link.url' | translate"
-        target="_blank">
-        {{ "dmp.steps.costs.infoBox.link.title" | translate }}
+        target="_blank"
+      >
+        {{ 'dmp.steps.costs.infoBox.link.title' | translate }}
       </a>
-      {{ "dmp.steps.costs.infoBox.link.text" | translate }}
+      {{ 'dmp.steps.costs.infoBox.link.text' | translate }}
     </app-info-message>
     <div [formGroup]="costsStep" class="flex-radio">
-      <label id="costsFormGroup">{{
-        "dmp.steps.costs.question.exist.label" | translate
-      }}</label>
+      <label id="costsFormGroup">{{ 'dmp.steps.costs.question.exist.label' | translate }}</label>
       <mat-radio-group aria-labelledby="costsFormGroup" formControlName="exist">
         <app-cris-tag [cris]="costsStep.value.existCris" />
         <mat-radio-button [value]="false">
-          {{ "dmp.steps.costs.question.exist.no" | translate }}
+          {{ 'dmp.steps.costs.question.exist.no' | translate }}
         </mat-radio-button>
         <mat-radio-button [value]="true">
-          {{ "dmp.steps.costs.question.exist.yes" | translate }}
+          {{ 'dmp.steps.costs.question.exist.yes' | translate }}
         </mat-radio-button>
       </mat-radio-group>
     </div>
     @if (costsStep.controls.exist.value) {
       <button mat-flat-button class="add-cost-container" (click)="addCost()">
         <mat-icon>add_circle</mat-icon>
-        {{ "dmp.steps.costs.addButton" | translate }}
+        {{ 'dmp.steps.costs.addButton' | translate }}
       </button>
       <div [formGroup]="costsStep" class="scrollable-cost-list">
         <mat-accordion formArrayName="list">
@@ -47,7 +46,8 @@
                   mat-icon-button
                   class="remove-button"
                   aria-label="Remove cost"
-                  (click)="removeCost(i)">
+                  (click)="removeCost(i)"
+                >
                   <mat-icon>cancel</mat-icon>
                 </button>
               </mat-expansion-panel-header>
@@ -56,7 +56,8 @@
                   <div class="form-row-group">
                     <app-input-wrapper
                       [label]="'dmp.steps.costs.question.name'"
-                      [control]="getFormControl(i, 'title')" />
+                      [control]="getFormControl(i, 'title')"
+                    />
                   </div>
                 </div>
                 <div class="form-row">
@@ -67,16 +68,12 @@
                       [placeholder]="'1000.00'"
                       [stepSize]="100"
                       [type]="'number'"
-                      [control]="getFormControl(i, 'value')" />
+                      [control]="getFormControl(i, 'value')"
+                    />
                     <mat-form-field class="costType">
-                      <mat-label>{{
-                        "dmp.steps.costs.question.type" | translate
-                      }}</mat-label>
+                      <mat-label>{{ 'dmp.steps.costs.question.type' | translate }}</mat-label>
                       <mat-select formControlName="type">
-                        @for (
-                          type of costTypeObject | keyvalue;
-                          track type.key
-                        ) {
+                        @for (type of costTypeObject | keyvalue; track type.key) {
                           <mat-option [value]="type.value">
                             {{ translateEnumPrefix + type.value | translate }}
                           </mat-option>
@@ -87,7 +84,8 @@
                       <app-input-wrapper
                         [label]="'dmp.steps.costs.question.specifyType'"
                         [type]="'text'"
-                        [control]="getFormControl(i, 'customType')" />
+                        [control]="getFormControl(i, 'customType')"
+                      />
                     }
                   </div>
                 </div>
@@ -95,7 +93,8 @@
                   <div class="form-row-group">
                     <app-textarea-wrapper
                       [label]="'dmp.steps.costs.question.description'"
-                      [control]="getFormControl(i, 'description')" />
+                      [control]="getFormControl(i, 'description')"
+                    />
                   </div>
                 </div>
               </div>

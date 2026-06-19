@@ -22,10 +22,7 @@ export const mockInternalStorage: InternalStorage = {
 };
 
 export const mockStorage: Storage = {
-  datasets: [
-    closedDatasetMock.referenceHash,
-    restrictedDatasetMock.referenceHash,
-  ],
+  datasets: [closedDatasetMock.referenceHash, restrictedDatasetMock.referenceHash],
   id: -2,
   internalStorageId: -1,
   title: 'Internal storage mock',

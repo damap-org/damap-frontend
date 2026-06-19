@@ -1,6 +1,7 @@
 <div
   class="background"
-  [style.background-image]="backgroundUrl ? 'url(' + backgroundUrl + ')' : ''">
+  [style.background-image]="backgroundUrl ? 'url(' + backgroundUrl + ')' : ''"
+>
   <div class="container">
     <div class="logo-info-bar fadeInTop">
       <img class="logo" [src]="logoUrl" alt="Logo" />
@@ -16,16 +17,17 @@
     <div class="double-items">
       <div class="left-side-container">
         <div class="title-typography fadeInTop">
-          {{ "landing.title" | translate }}
+          {{ 'landing.title' | translate }}
         </div>
         <div class="double-items fadeInLeft">
           @if ((backendDown$ | async) === false) {
             <button
               mat-flat-button
               class="pulse-button button-color-primary"
-              routerLink="/dashboard">
+              routerLink="/dashboard"
+            >
               <mat-icon>play_arrow</mat-icon>
-              <span>{{ "landing.start" | translate }}</span>
+              <span>{{ 'landing.start' | translate }}</span>
             </button>
           }
 
@@ -34,10 +36,9 @@
             class="empty-button-with-border play-video-btn"
             href="https://www.youtube.com/watch?v=IxQzqy26ZO4"
             target="_blank"
-            rel="noopener noreferrer">
-            <mat-icon class="material-icon-primary"
-              >cast_for_education</mat-icon
-            >
+            rel="noopener noreferrer"
+          >
+            <mat-icon class="material-icon-primary">cast_for_education</mat-icon>
             <span>Introduction</span>
           </a>
         </div>

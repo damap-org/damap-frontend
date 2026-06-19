@@ -1,17 +1,5 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  ChangeDetectionStrategy,
-  input,
-  output,
-} from '@angular/core';
-import {
-  UntypedFormControl,
-  Validators,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { Component, Input, OnInit, ChangeDetectionStrategy, input, output } from '@angular/core';
+import { UntypedFormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatFormFieldAppearance,
   MatFormField,

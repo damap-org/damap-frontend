@@ -1,8 +1,5 @@
 import { Config } from '@damap-frontend-core';
-import {
-  THEME_IMAGE_DEFINITIONS,
-  IMAGE_KEYS,
-} from '@damap-frontend-core/app/domain/image-keys';
+import { THEME_IMAGE_DEFINITIONS, IMAGE_KEYS } from '@damap-frontend-core/app/domain/image-keys';
 
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Injectable, inject, SecurityContext } from '@angular/core';
@@ -33,8 +30,7 @@ export class ImageThemeService {
     for (const image of config.images) {
       if (image.data) {
         const url = `data:${image.mimeType};base64,${image.data}`;
-        this.images[image.imageKey] =
-          this.sanitizer.bypassSecurityTrustUrl(url);
+        this.images[image.imageKey] = this.sanitizer.bypassSecurityTrustUrl(url);
       }
     }
 
@@ -44,9 +40,7 @@ export class ImageThemeService {
   public resetToDefaults(): void {
     const defaultImages: { [key: string]: SafeUrl } = {};
     for (const image of THEME_IMAGE_DEFINITIONS) {
-      defaultImages[image.key] = this.sanitizer.bypassSecurityTrustUrl(
-        image.defaultUrl,
-      );
+      defaultImages[image.key] = this.sanitizer.bypassSecurityTrustUrl(image.defaultUrl);
     }
     this.images = defaultImages;
     this.updateFavicon();
@@ -74,9 +68,7 @@ export class ImageThemeService {
     if (safeUrl) {
       const faviconUrl = this.sanitizer.sanitize(SecurityContext.URL, safeUrl);
       if (faviconUrl) {
-        let faviconLink = document.querySelector(
-          'link[rel="icon"]',
-        ) as HTMLLinkElement;
+        let faviconLink = document.querySelector('link[rel="icon"]') as HTMLLinkElement;
         if (!faviconLink) {
           faviconLink = document.createElement('link');
           faviconLink.rel = 'icon';

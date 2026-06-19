@@ -18,8 +18,6 @@ export class VersionViewStoragesComponent {
   readonly datasets = input<Dataset[]>(undefined);
 
   getDatasetsForStorage(storage: Host): Dataset[] {
-    return this.datasets().filter(item =>
-      storage.datasets.includes(item.referenceHash),
-    );
+    return this.datasets().filter((item) => storage.datasets.includes(item.referenceHash));
   }
 }

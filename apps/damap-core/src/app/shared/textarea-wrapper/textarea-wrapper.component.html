@@ -17,7 +17,8 @@
   [appearance]="appearance()"
   class="mat-textarea-density"
   subscriptSizing="dynamic"
-  floatLabel="auto">
+  floatLabel="auto"
+>
   <!-- inline style is a temporary solution for an issue where the * for required would be rendered after a line break -->
   <!-- this will hopefully be fixed with the next angular version, lets pray -->
   <mat-label style="display: inline-flex">{{ label | translate }} </mat-label>
@@ -36,19 +37,15 @@
       cdkAutosizeMaxRows="{{ maxRows() }}"
       class="no-resize"
       (input)="this.updateAutocompletePosition()"
-      #message></textarea>
+      #message
+    ></textarea>
     @if (showLength()) {
-      <mat-hint align="end"
-        >{{ message.value.length }} / {{ maxLength() }}</mat-hint
-      >
+      <mat-hint align="end">{{ message.value.length }} / {{ maxLength() }}</mat-hint>
     }
     <span class="suggestion-label">
       <span class="suggestions-label">Suggestions</span>
       @if (isAutocompleteOpen) {
-        <button
-          (click)="closeAutocomplete()"
-          mat-icon-button
-          class="close-button-dp">
+        <button (click)="closeAutocomplete()" mat-icon-button class="close-button-dp">
           <mat-icon class="material-icon-primary">keyboard_arrow_up</mat-icon>
         </button>
       }
@@ -56,7 +53,8 @@
     <mat-autocomplete
       #auto="matAutocomplete"
       (optionSelected)="closeAutocomplete()"
-      (closed)="closeAutocomplete()">
+      (closed)="closeAutocomplete()"
+    >
       @for (option of autocompleteOptions; track option) {
         <mat-option value="{{ option | translate }}">
           {{ option | translate }}
@@ -76,34 +74,31 @@
       cdkAutosizeMaxRows="{{ maxRows() }}"
       class="no-resize"
       #message
-      (click)="openAutocomplete()">
+      (click)="openAutocomplete()"
+    >
     </textarea>
     @if (showLength()) {
-      <mat-hint align="end"
-        >{{ message.value.length }} / {{ maxLength() }}
-      </mat-hint>
+      <mat-hint align="end">{{ message.value.length }} / {{ maxLength() }} </mat-hint>
     }
   }
   <!-- ERROR -->
   @if (!control?.errors?.required && control?.errors?.empty) {
     <mat-error>
-      {{ "validation.error.invalidValue" | translate }}
+      {{ 'validation.error.invalidValue' | translate }}
     </mat-error>
   }
   @if (control?.errors?.required) {
     <mat-error>
-      {{ "validation.error.required" | translate }}
+      {{ 'validation.error.required' | translate }}
     </mat-error>
   }
   @if (control?.errors?.maxlength) {
     <mat-error>
       {{
-        "validation.error.maxLength"
+        'validation.error.maxLength'
           | translate
             : {
-                value: $safeNavigationMigration(
-                  control.errors.maxlength?.requiredLength
-                ),
+                value: $safeNavigationMigration(control.errors.maxlength?.requiredLength),
               }
       }}
       <!-- "maxlength": { "requiredLength": 255, "actualLength": 273 } -->
@@ -111,7 +106,7 @@
   }
   @if (control?.errors?.pattern) {
     <mat-error>
-      {{ "validation.error.currencyFormat" | translate }}
+      {{ 'validation.error.currencyFormat' | translate }}
       <!-- { "pattern": { "requiredPattern": "^[0-9]*.?[0-9]{0,2}$", "actualValue": "123,345" } } false -->
     </mat-error>
   }

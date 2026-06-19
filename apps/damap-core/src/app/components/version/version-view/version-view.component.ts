@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  inject,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, OnInit, ViewChild, inject, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { BackendService } from '../../../services/backend.service';
 import { Observable } from 'rxjs';
@@ -88,7 +82,6 @@ export class VersionViewComponent implements OnInit {
   }
 
   getVersionName(versions: Version[]): string {
-    return versions.find(item => item.revisionNumber === this.revision)
-      ?.versionName;
+    return versions.find((item) => item.revisionNumber === this.revision)?.versionName;
   }
 }

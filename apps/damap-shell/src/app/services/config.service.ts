@@ -1,11 +1,5 @@
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
-import {
-  BehaviorSubject,
-  catchError,
-  Observable,
-  lastValueFrom,
-  throwError,
-} from 'rxjs';
+import { BehaviorSubject, catchError, Observable, lastValueFrom, throwError } from 'rxjs';
 import { inject, Injectable, isDevMode } from '@angular/core';
 
 import { Config } from '@damap-frontend-core';
@@ -42,7 +36,7 @@ export class ConfigService {
         this.backendDown$.next(false);
         if (!config) {
           console.warn('Config is missing!');
-          return new Promise<boolean>(resolve => resolve(false));
+          return new Promise<boolean>((resolve) => resolve(false));
         } else {
           console.log(config);
           this.config = config;
@@ -67,10 +61,7 @@ export class ConfigService {
           return this.oauthService
             .loadDiscoveryDocumentAndTryLogin()
             .then(async () => {
-              if (
-                this.oauthService.hasValidIdToken() &&
-                this.oauthService.hasValidAccessToken()
-              ) {
+              if (this.oauthService.hasValidIdToken() && this.oauthService.hasValidAccessToken()) {
                 const tenantConfig = await this.loadConfig();
                 this.config = tenantConfig;
                 console.log(this.config);
@@ -91,7 +82,7 @@ export class ConfigService {
               }
               return true;
             })
-            .catch(error => {
+            .catch((error) => {
               // TODO: Use the same error handling mechanism as the main config call
 
               console.error(
@@ -102,10 +93,8 @@ export class ConfigService {
             });
         }
       })
-      .catch(error => {
-        console.error(
-          'Failed to load config - please make sure your backend is up and running!',
-        );
+      .catch((error) => {
+        console.error('Failed to load config - please make sure your backend is up and running!');
 
         console.log('Backend: ' + environment.backendurl);
         console.error(error);
@@ -190,12 +179,12 @@ export class ConfigService {
 
     return lastValueFrom(
       this.http.get<Config>(`${host}config`).pipe(
-        catchError(err => {
+        catchError((err) => {
           this.feedbackService.error('landing.servers-down');
           return throwError(() => err);
         }),
       ),
-    ).then(rawConfig => {
+    ).then((rawConfig) => {
       this.config = rawConfig;
       return rawConfig;
     });
@@ -210,7 +199,7 @@ export class ConfigService {
   }
 
   public getActiveTemplates(): any[] {
-    return this.config?.templates?.filter(t => t.active) || [];
+    return this.config?.templates?.filter((t) => t.active) || [];
   }
 
   public isPublicAvailable(): boolean {

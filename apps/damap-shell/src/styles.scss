@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-@use "@angular/material" as mat;
-@use "themes/custom-theme" as *;
+@use '@angular/material' as mat;
+@use 'themes/custom-theme' as *;
 
 /* Theme colors as CSS variables */
 :root {
@@ -9,71 +9,22 @@
   They are not used by Angular Material. They are also overridden by the custom-theme service.
   If possible, we should use the Angular Material tokens instead of defining/using our own.
   */
-  --custom-user-navbar-color: #{mat.get-theme-color(
-      $app-light-theme,
-      neutral,
-      25
-    )};
+  --custom-user-navbar-color: #{mat.get-theme-color($app-light-theme, neutral, 25)};
   --custom-background-body: #f6f6f6;
-  --custom-surface-container-low: #{mat.get-theme-color(
-      $app-light-theme,
-      surface-container-low
-    )};
-  --custom-primary-lightest: #{mat.get-theme-color(
-      $app-light-theme,
-      primary,
-      100
-    )};
-  --custom-primary-lightest-shadow: #{mat.get-theme-color(
-      $app-light-theme,
-      primary,
-      95
-    )};
-  --custom-accent-color-lighter: #{mat.get-theme-color(
-      $app-light-theme,
-      primary,
-      60
-    )};
-  --custom-accent-color-very-light: #{mat.get-theme-color(
-      $app-light-theme,
-      primary,
-      98
-    )};
-  --custom-secondary-fixed-dim: #{mat.get-theme-color(
-      $app-light-theme,
-      secondary-fixed-dim
-    )};
-  --custom-tertiary-color-very-light: #{mat.get-theme-color(
-      $app-light-theme,
-      tertiary,
-      98
-    )};
-  --custom-surface-container-high: #{mat.get-theme-color(
-      $app-light-theme,
-      surface-container-high
-    )};
-  --custom-neutral-color-medium-light: #{mat.get-theme-color(
-      $app-light-theme,
-      neutral,
-      70
-    )};
-  --custom-step-intro-color: #{mat.get-theme-color(
-      $app-light-theme,
-      neutral-variant,
-      60
-    )};
-  --custom-landing-page-info-bar-color: #{mat.get-theme-color(
-      $app-light-theme,
-      neutral,
-      40
-    )};
+  --custom-surface-container-low: #{mat.get-theme-color($app-light-theme, surface-container-low)};
+  --custom-primary-lightest: #{mat.get-theme-color($app-light-theme, primary, 100)};
+  --custom-primary-lightest-shadow: #{mat.get-theme-color($app-light-theme, primary, 95)};
+  --custom-accent-color-lighter: #{mat.get-theme-color($app-light-theme, primary, 60)};
+  --custom-accent-color-very-light: #{mat.get-theme-color($app-light-theme, primary, 98)};
+  --custom-secondary-fixed-dim: #{mat.get-theme-color($app-light-theme, secondary-fixed-dim)};
+  --custom-tertiary-color-very-light: #{mat.get-theme-color($app-light-theme, tertiary, 98)};
+  --custom-surface-container-high: #{mat.get-theme-color($app-light-theme, surface-container-high)};
+  --custom-neutral-color-medium-light: #{mat.get-theme-color($app-light-theme, neutral, 70)};
+  --custom-step-intro-color: #{mat.get-theme-color($app-light-theme, neutral-variant, 60)};
+  --custom-landing-page-info-bar-color: #{mat.get-theme-color($app-light-theme, neutral, 40)};
 
   --custom-success-container: #e9f5d2;
-  --custom-success-icon-color: #{mat.get-theme-color(
-      $app-light-theme,
-      tertiary,
-      70
-    )};
+  --custom-success-icon-color: #{mat.get-theme-color($app-light-theme, tertiary, 70)};
   --custom-on-success-container: black;
   --custom-warning-bg: #fff4cb;
   --custom-blue-tag: aliceblue;
@@ -81,11 +32,7 @@
   --custom-golden-tag: palegoldenrod;
   --custom-lavender-tag: lavender;
 
-  --body-typography: #{mat.get-theme-typography(
-      $app-light-theme,
-      body-medium,
-      font
-    )};
+  --body-typography: #{mat.get-theme-typography($app-light-theme, body-medium, font)};
 }
 
 .w-full {

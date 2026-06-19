@@ -4,7 +4,7 @@
       <mat-icon>arrow_back</mat-icon>
     </button>
     <h2 class="mat-h2 mat-title">
-      {{ "admin.theme.title" | translate }}
+      {{ 'admin.theme.title' | translate }}
     </h2>
   </section>
 
@@ -12,15 +12,15 @@
     <mat-checkbox
       (change)="exactColorModeSignal.set($event.checked)"
       [checked]="exactColorModeSignal()"
-      >{{ "admin.theme.exact-colors" | translate }}</mat-checkbox
+      >{{ 'admin.theme.exact-colors' | translate }}</mat-checkbox
     >
     <mat-checkbox
       (change)="advancedModeSignal.set($event.checked)"
       [checked]="advancedModeSignal()"
-      >{{ "admin.theme.advanced" | translate }}</mat-checkbox
+      >{{ 'admin.theme.advanced' | translate }}</mat-checkbox
     >
     <button mat-flat-button (click)="onSave()">
-      {{ "admin.color-theme.buttons.save" | translate }}
+      {{ 'admin.color-theme.buttons.save' | translate }}
     </button>
   </section>
 
@@ -28,7 +28,7 @@
 
   <section class="color-picker-section">
     <h2 class="mat-h2 mat-title">
-      {{ "admin.theme.color-picker.title" | translate }}
+      {{ 'admin.theme.color-picker.title' | translate }}
     </h2>
     <form [formGroup]="colorsForm">
       <div>
@@ -36,19 +36,22 @@
           [controlName]="'primary'"
           [control]="colorsForm.get('primary')!"
           [colorTitle]="'admin.theme.colors.primary' | translate"
-          [canDisable]="false" />
+          [canDisable]="false"
+        />
 
         <app-color-picker
           [control]="colorsForm.get('secondary')!"
           [colorTitle]="'admin.theme.colors.secondary' | translate"
           [controlName]="'secondary'"
-          (changedEnableStatus)="onColorEnabledChange($event)" />
+          (changedEnableStatus)="onColorEnabledChange($event)"
+        />
 
         <app-color-picker
           [control]="colorsForm.get('tertiary')!"
           [colorTitle]="'admin.theme.colors.tertiary' | translate"
           [controlName]="'tertiary'"
-          (changedEnableStatus)="onColorEnabledChange($event)" />
+          (changedEnableStatus)="onColorEnabledChange($event)"
+        />
       </div>
       @if (advancedModeSignal()) {
         <div>
@@ -56,19 +59,22 @@
             [controlName]="'primaryContainer'"
             [control]="colorsForm.get('primaryContainer')!"
             [colorTitle]="'admin.theme.colors.primary-container' | translate"
-            (changedEnableStatus)="onColorEnabledChange($event)" />
+            (changedEnableStatus)="onColorEnabledChange($event)"
+          />
 
           <app-color-picker
             [controlName]="'secondaryContainer'"
             [control]="colorsForm.get('secondaryContainer')!"
             [colorTitle]="'admin.theme.colors.secondary-container' | translate"
-            (changedEnableStatus)="onColorEnabledChange($event)" />
+            (changedEnableStatus)="onColorEnabledChange($event)"
+          />
 
           <app-color-picker
             [controlName]="'tertiaryContainer'"
             [control]="colorsForm.get('tertiaryContainer')!"
             [colorTitle]="'admin.theme.colors.tertiary-container' | translate"
-            (changedEnableStatus)="onColorEnabledChange($event)" />
+            (changedEnableStatus)="onColorEnabledChange($event)"
+          />
         </div>
       }
     </form>
@@ -76,11 +82,11 @@
 
   <section class="color-preview-section">
     <h2 class="mat-h2 mat-title">
-      {{ "admin.theme.color-preview.title" | translate }}
+      {{ 'admin.theme.color-preview.title' | translate }}
     </h2>
     <div class="color-preview-grid">
       <div class="color-group">
-        <h3>{{ "admin.theme.color-preview.primary" | translate }}</h3>
+        <h3>{{ 'admin.theme.color-preview.primary' | translate }}</h3>
         <div class="color-swatch color-swatch-primary">
           <span>--mat-theme-primary</span>
         </div>
@@ -92,7 +98,7 @@
       </div>
 
       <div class="color-group">
-        <h3>{{ "admin.theme.color-preview.secondary" | translate }}</h3>
+        <h3>{{ 'admin.theme.color-preview.secondary' | translate }}</h3>
         <div class="color-swatch color-swatch-secondary">
           <span>--mat-theme-secondary</span>
         </div>
@@ -104,7 +110,7 @@
       </div>
 
       <div class="color-group">
-        <h3>{{ "admin.theme.color-preview.tertiary" | translate }}</h3>
+        <h3>{{ 'admin.theme.color-preview.tertiary' | translate }}</h3>
         <div class="color-swatch color-swatch-tertiary">
           <span>--mat-theme-tertiary</span>
         </div>

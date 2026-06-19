@@ -4,26 +4,26 @@
       <app-search-field
         [label]="'dmp.steps.repositories.filters'"
         [placeholder]="'Search Repository'"
-        (searchChange)="applyFilter($event)" />
+        (searchChange)="applyFilter($event)"
+      />
       <span class="repo-filter-container">
         <button
           class="w-full"
           mat-raised-button
           (click)="resetFilter()"
-          [disabled]="!filtersActive()">
-          {{ "dmp.steps.repositories.filter.reset" | translate }}
+          [disabled]="!filtersActive()"
+        >
+          {{ 'dmp.steps.repositories.filter.reset' | translate }}
           <mat-icon iconPositionEnd>cached</mat-icon>
         </button>
-        <app-repo-filter
-          [filters]="filters"
-          (filterChange)="onFilterChange($event)" />
+        <app-repo-filter [filters]="filters" (filterChange)="onFilterChange($event)" />
       </span>
     </div>
 
     <div class="scrollable-repo-content">
       @if ((filters | keyvalue).length) {
         <div>
-          {{ "dmp.steps.repositories.filters" | translate }}:
+          {{ 'dmp.steps.repositories.filters' | translate }}:
           @for (filter of filters | keyvalue; track filter.key) {
             @for (item of filter.value; track item.id) {
               <app-tag background="var(--custom-green-tag)">
@@ -39,7 +39,8 @@
           mat-table
           [dataSource]="dataSource"
           multiTemplateDataRows="true"
-          aria-label="Table of data repositories">
+          aria-label="Table of data repositories"
+        >
           <ng-container matColumnDef="expand">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element" (click)="expandRow(element)">
@@ -53,7 +54,7 @@
           </ng-container>
           <ng-container matColumnDef="title">
             <th mat-header-cell *matHeaderCellDef>
-              {{ "dmp.steps.repositories.table.header.title" | translate }}
+              {{ 'dmp.steps.repositories.table.header.title' | translate }}
             </th>
             <td mat-cell *matCellDef="let element" (click)="expandRow(element)">
               <h3>{{ element.name }}</h3>
@@ -61,26 +62,20 @@
           </ng-container>
           <ng-container matColumnDef="add">
             <th mat-header-cell *matHeaderCellDef>
-              <span class="sr-only">{{
-                "dmp.steps.repositories.add" | translate
-              }}</span>
+              <span class="sr-only">{{ 'dmp.steps.repositories.add' | translate }}</span>
             </th>
             <td mat-cell *matCellDef="let element">
               <button mat-flat-button (click)="addRepository(element)">
-                {{ "dmp.steps.repositories.use" | translate }}
+                {{ 'dmp.steps.repositories.use' | translate }}
               </button>
             </td>
           </ng-container>
           <ng-container matColumnDef="expandedDetail">
-            <td
-              mat-cell
-              *matCellDef="let element"
-              [attr.colspan]="tableHeaders.length">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="tableHeaders.length">
               <div
                 class="element-detail"
-                [@detailExpand]="
-                  element.id === expandedElement ? 'expanded' : 'collapsed'
-                ">
+                [@detailExpand]="element.id === expandedElement ? 'expanded' : 'collapsed'"
+              >
                 @if (element.description) {
                   <mat-divider />
                   <app-repo-details [repo]="element" />
@@ -95,22 +90,17 @@
             mat-row
             *matRowDef="let element; columns: tableHeaders"
             class="element-row"
-            [class.expanded-row]="expandedElement === element.id"></tr>
-          <tr
-            mat-row
-            *matRowDef="let row; columns: ['expandedDetail']"
-            class="detail-row"></tr>
+            [class.expanded-row]="expandedElement === element.id"
+          ></tr>
+          <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
           <tr class="mat-row" *matNoDataRow>
             @if (this.input.length > 0) {
               <td class="mat-cell" colspan="4">
-                {{
-                  "dmp.steps.repositories.nodatafilter"
-                    | translate: { value: this.input }
-                }}"
+                {{ 'dmp.steps.repositories.nodatafilter' | translate: { value: this.input } }}"
               </td>
             } @else {
               <td class="mat-cell" colspan="4">
-                {{ "dmp.steps.repositories.norepositories" | translate }}
+                {{ 'dmp.steps.repositories.norepositories' | translate }}
               </td>
             }
           </tr>
@@ -119,7 +109,8 @@
           class="mat-elevation-z8"
           [pageSize]="10"
           [pageSizeOptions]="[10, 15, 20]"
-          showFirstLastButtons="true" />
+          showFirstLastButtons="true"
+        />
       }
 
       @if (loaded() === LoadingState.LOADING) {
@@ -128,9 +119,8 @@
       }
       @if (loaded() === LoadingState.FAILED) {
         <app-error-message
-          message="{{
-            'dmp.steps.repositories.loading.failed.all' | translate
-          }}" />
+          message="{{ 'dmp.steps.repositories.loading.failed.all' | translate }}"
+        />
       }
     </div>
   </mat-card-content>

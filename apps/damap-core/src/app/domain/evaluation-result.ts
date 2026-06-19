@@ -1,10 +1,5 @@
 // Note: 'INDERTERMINATED' matches the upstream API literal (typo in the API)
-export type EvaluationValue =
-  | 'PASS'
-  | 'FAIL'
-  | 'ERROR'
-  | 'INDERTERMINATED'
-  | 'NOT_APPLICABLE';
+export type EvaluationValue = 'PASS' | 'FAIL' | 'ERROR' | 'INDERTERMINATED' | 'NOT_APPLICABLE';
 
 export interface EvaluationGuidanceIssue {
   dataset: string;

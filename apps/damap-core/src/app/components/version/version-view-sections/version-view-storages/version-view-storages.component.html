@@ -2,9 +2,7 @@
   <div>
     <h3>{{ storage.title }}</h3>
     <div>
-      <span class="headings"
-        >{{ "dmp.versions.view.storage.datasets" | translate }}:</span
-      >
+      <span class="headings">{{ 'dmp.versions.view.storage.datasets' | translate }}:</span>
       <ul>
         @for (dataset of getDatasetsForStorage(storage); track dataset.id) {
           <li>
@@ -23,33 +21,23 @@
   <div>
     <h3>{{ storage.title }}</h3>
     <div>
-      <span class="headings"
-        >{{ "dmp.versions.view.storage.url" | translate }}:</span
-      >
+      <span class="headings">{{ 'dmp.versions.view.storage.url' | translate }}:</span>
       {{ storage.url }}
     </div>
     <div>
-      <span class="headings"
-        >{{ "dmp.versions.view.storage.backup.frequency" | translate }}:</span
-      >
+      <span class="headings">{{ 'dmp.versions.view.storage.backup.frequency' | translate }}:</span>
       {{ storage.backupFrequency }}
     </div>
     <div>
-      <span class="headings"
-        >{{ "dmp.versions.view.storage.location" | translate }}:</span
-      >
+      <span class="headings">{{ 'dmp.versions.view.storage.location' | translate }}:</span>
       {{ storage.storageLocation }}
     </div>
     <div>
-      <span class="headings"
-        >{{ "dmp.versions.view.storage.backup.location" | translate }}:</span
-      >
+      <span class="headings">{{ 'dmp.versions.view.storage.backup.location' | translate }}:</span>
       {{ storage.backupLocation }}
     </div>
     <div>
-      <span class="headings"
-        >{{ "dmp.versions.view.storage.datasets" | translate }}:</span
-      >
+      <span class="headings">{{ 'dmp.versions.view.storage.datasets' | translate }}:</span>
       <ul>
         @for (dataset of getDatasetsForStorage(storage); track dataset.id) {
           <li>

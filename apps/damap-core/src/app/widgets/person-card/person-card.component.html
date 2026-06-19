@@ -6,19 +6,14 @@
           <mat-icon class="mat-icon-style">person</mat-icon>
           {{ person.firstName }} {{ person.lastName }}
           @if (contact) {
-            <mat-icon class="mat-icon-contact button-color-primary">
-              contact_mail
-            </mat-icon>
+            <mat-icon class="mat-icon-contact button-color-primary"> contact_mail </mat-icon>
           }
-          <span class="sr-only">{{
-            "dmp.steps.people.contact.person" | translate
-          }}</span>
+          <span class="sr-only">{{ 'dmp.steps.people.contact.person' | translate }}</span>
         </div>
         <mat-icon class="mat-icon-style outline">mail</mat-icon>
         {{ person.mbox }}
         @if (personId?.identifier && personId?.type === identifierType.ORCID) {
-          <app-orcid
-            [orcidId]="$safeNavigationMigration(personId?.identifier)" />
+          <app-orcid [orcidId]="$safeNavigationMigration(personId?.identifier)" />
         }
       </div>
       <ng-content />

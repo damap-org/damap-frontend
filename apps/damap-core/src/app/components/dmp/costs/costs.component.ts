@@ -1,9 +1,4 @@
-import {
-  Component,
-  Input,
-  ChangeDetectionStrategy,
-  output,
-} from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, output } from '@angular/core';
 import {
   UntypedFormArray,
   UntypedFormControl,
@@ -83,9 +78,7 @@ export class CostsComponent {
   }
 
   getFormControl(index: number, controlName: string): UntypedFormControl {
-    return (this.list.at(index) as UntypedFormGroup)?.controls[
-      controlName
-    ] as UntypedFormControl;
+    return (this.list.at(index) as UntypedFormGroup)?.controls[controlName] as UntypedFormControl;
   }
 
   addCost() {

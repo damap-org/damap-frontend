@@ -11,31 +11,23 @@ export class BackendTranslateLoader implements TranslateLoader {
   constructor(private readonly backendUrl: string) {}
 
   getTranslation(lang: string): Observable<Record<string, any>> {
-    return this.httpClient
-      .get<TranslationEntry[]>(`${this.backendUrl}languages/${lang}`)
-      .pipe(
-        map(entries => this.entriesToNested(entries)),
-        catchError(() => of({})),
-      );
+    return this.httpClient.get<TranslationEntry[]>(`${this.backendUrl}languages/${lang}`).pipe(
+      map((entries) => this.entriesToNested(entries)),
+      catchError(() => of({})),
+    );
   }
 
   private entriesToNested(entries: TranslationEntry[]): Record<string, any> {
     const result: Record<string, any> = {};
     for (const entry of entries) {
-      const custom = entry.active
-        ? entry.custom || entry.defaultValue
-        : entry.custom;
+      const custom = entry.active ? entry.custom || entry.defaultValue : entry.custom;
       if (!custom) continue;
       this.setNestedValue(result, entry.translationKey, custom);
     }
     return result;
   }
 
-  private setNestedValue(
-    obj: Record<string, any>,
-    key: string,
-    value: string,
-  ): void {
+  private setNestedValue(obj: Record<string, any>, key: string, value: string): void {
     const parts = key.split('.');
     let current = obj;
     for (let i = 0; i < parts.length - 1; i++) {

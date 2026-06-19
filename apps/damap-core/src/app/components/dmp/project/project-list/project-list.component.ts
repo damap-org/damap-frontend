@@ -7,14 +7,7 @@ import {
   ChangeDetectionStrategy,
   output,
 } from '@angular/core';
-import {
-  Observable,
-  Subject,
-  debounceTime,
-  distinctUntilChanged,
-  of,
-  switchMap,
-} from 'rxjs';
+import { Observable, Subject, debounceTime, distinctUntilChanged, of, switchMap } from 'rxjs';
 
 import { BackendService } from '../../../../services/backend.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -92,7 +85,7 @@ export class ProjectListComponent implements OnInit, AfterViewInit {
             : this.backendService.getProjectSearchResult(term),
         ),
       )
-      .subscribe(results => (this.searchResult$ = of(results)));
+      .subscribe((results) => (this.searchResult$ = of(results)));
   }
 
   ngAfterViewInit(): void {

@@ -114,9 +114,7 @@ td a {
 }
 
 .eval-result {
-  --mat-expansion-container-background-color: var(
-    --mat-sys-surface-container-low
-  );
+  --mat-expansion-container-background-color: var(--mat-sys-surface-container-low);
   background: var(--mat-sys-surface-container-low);
 }
 

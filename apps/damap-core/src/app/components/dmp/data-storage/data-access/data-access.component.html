@@ -1,5 +1,5 @@
 <mat-label class="label-title mat-title-large" id="example-radio-group-label">{{
-  "dmp.steps.storage.view.button.access" | translate
+  'dmp.steps.storage.view.button.access' | translate
 }}</mat-label>
 <mat-card class="data-access-card card-shadow">
   <mat-card-content>
@@ -8,16 +8,16 @@
         <ng-container formArrayName="datasets">
           @if (datasets?.controls.length) {
             <div class="one bold">
-              {{ "dmp.steps.data.access.question.dataset" | translate }}
+              {{ 'dmp.steps.data.access.question.dataset' | translate }}
             </div>
             <div class="two bold">
-              {{ "dmp.steps.data.access.question.selected" | translate }}
+              {{ 'dmp.steps.data.access.question.selected' | translate }}
             </div>
             <div class="three bold">
-              {{ "dmp.steps.data.access.question.other" | translate }}
+              {{ 'dmp.steps.data.access.question.other' | translate }}
             </div>
             <div class="four bold">
-              {{ "dmp.steps.data.access.question.public" | translate }}
+              {{ 'dmp.steps.data.access.question.public' | translate }}
             </div>
             @for (dataset of datasets.controls; track dataset; let j = $index) {
               <ng-container [formGroupName]="j">
@@ -25,15 +25,14 @@
                   {{ dataset.value.title }}
                 </div>
                 <mat-form-field class="two">
-                  <mat-label>{{
-                    "dmp.steps.data.access.question.right" | translate
-                  }}</mat-label>
+                  <mat-label>{{ 'dmp.steps.data.access.question.right' | translate }}</mat-label>
                   <mat-select
                     aria-label="{{
                       'dmp.steps.data.access.aria.selected'
                         | translate: { dataset: dataset.value.title }
                     }}"
-                    formControlName="selectedProjectMembersAccess">
+                    formControlName="selectedProjectMembersAccess"
+                  >
                     @for (right of accessRight | keyvalue; track right.key) {
                       <mat-option [value]="right.key">
                         {{ translatePrefixEnum + right.value | translate }}
@@ -42,15 +41,14 @@
                   </mat-select>
                 </mat-form-field>
                 <mat-form-field class="three">
-                  <mat-label>{{
-                    "dmp.steps.data.access.question.right" | translate
-                  }}</mat-label>
+                  <mat-label>{{ 'dmp.steps.data.access.question.right' | translate }}</mat-label>
                   <mat-select
                     aria-label="{{
                       'dmp.steps.data.access.aria.other'
                         | translate: { dataset: dataset.value.title }
                     }}"
-                    formControlName="otherProjectMembersAccess">
+                    formControlName="otherProjectMembersAccess"
+                  >
                     @for (right of accessRight | keyvalue; track right.key) {
                       <mat-option [value]="right.key">
                         {{ translatePrefixEnum + right.value | translate }}
@@ -59,15 +57,14 @@
                   </mat-select>
                 </mat-form-field>
                 <mat-form-field class="four">
-                  <mat-label>{{
-                    "dmp.steps.data.access.question.right" | translate
-                  }}</mat-label>
+                  <mat-label>{{ 'dmp.steps.data.access.question.right' | translate }}</mat-label>
                   <mat-select
                     aria-label="{{
                       'dmp.steps.data.access.aria.public'
                         | translate: { dataset: dataset.value.title }
                     }}"
-                    formControlName="publicAccess">
+                    formControlName="publicAccess"
+                  >
                     @for (right of accessRight | keyvalue; track right.key) {
                       <mat-option [value]="right.key">
                         {{ translatePrefixEnum + right.value | translate }}

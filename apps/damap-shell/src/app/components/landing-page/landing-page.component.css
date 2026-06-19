@@ -181,18 +181,15 @@
 @keyframes pulse {
   0% {
     transform: scale(1);
-    box-shadow: 0 0 0 0
-      color-mix(in srgb, var(--mat-sys-primary) 70%, transparent);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--mat-sys-primary) 70%, transparent);
   }
   70% {
     transform: scale(1.05);
-    box-shadow: 0 0 0 20px
-      color-mix(in srgb, var(--mat-sys-primary) 0%, transparent);
+    box-shadow: 0 0 0 20px color-mix(in srgb, var(--mat-sys-primary) 0%, transparent);
   }
   100% {
     transform: scale(1);
-    box-shadow: 0 0 0 0
-      color-mix(in srgb, var(--mat-sys-primary) 0%, transparent);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--mat-sys-primary) 0%, transparent);
   }
 }
 

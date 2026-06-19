@@ -1,9 +1,4 @@
-import {
-  Component,
-  Input,
-  ChangeDetectionStrategy,
-  input,
-} from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, input } from '@angular/core';
 import {
   UntypedFormArray,
   UntypedFormControl,
@@ -66,9 +61,7 @@ export class LegalEthicalAspectsComponent {
 
   selectedView: 'primaryView' | 'secondaryView' = 'primaryView';
 
-  optionsLinksEthics: string[] = [
-    'Guidelines on Safeguarding Good Scientific Practice',
-  ];
+  optionsLinksEthics: string[] = ['Guidelines on Safeguarding Good Scientific Practice'];
 
   questions = [
     {
@@ -90,39 +83,27 @@ export class LegalEthicalAspectsComponent {
   originalOrder = (): number => 0;
 
   get sensitiveDataAccess(): UntypedFormControl {
-    return this.legalEthicalStep.get(
-      'sensitiveDataAccess',
-    ) as UntypedFormControl;
+    return this.legalEthicalStep.get('sensitiveDataAccess') as UntypedFormControl;
   }
 
   get otherPersonalDataCompliance(): UntypedFormControl {
-    return this.legalEthicalStep?.get(
-      'otherPersonalDataCompliance',
-    ) as UntypedFormControl;
+    return this.legalEthicalStep?.get('otherPersonalDataCompliance') as UntypedFormControl;
   }
 
   get otherDataSecurityMeasures(): UntypedFormControl {
-    return this.legalEthicalStep.get(
-      'otherDataSecurityMeasures',
-    ) as UntypedFormControl;
+    return this.legalEthicalStep.get('otherDataSecurityMeasures') as UntypedFormControl;
   }
 
   get legalRestrictionsComment(): UntypedFormControl {
-    return this.legalEthicalStep?.get(
-      'legalRestrictionsComment',
-    ) as UntypedFormControl;
+    return this.legalEthicalStep?.get('legalRestrictionsComment') as UntypedFormControl;
   }
 
   get otherLegalRestrictionsDocuments(): UntypedFormControl {
-    return this.legalEthicalStep.get(
-      'otherLegalRestrictionsDocuments',
-    ) as UntypedFormControl;
+    return this.legalEthicalStep.get('otherLegalRestrictionsDocuments') as UntypedFormControl;
   }
 
   get dataRightsAndAccessControl(): UntypedFormControl {
-    return this.legalEthicalStep.get(
-      'dataRightsAndAccessControl',
-    ) as UntypedFormControl;
+    return this.legalEthicalStep.get('dataRightsAndAccessControl') as UntypedFormControl;
   }
 
   get isOtherSelected() {

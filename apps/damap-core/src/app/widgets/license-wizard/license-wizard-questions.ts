@@ -83,11 +83,7 @@ const licenseInteropSoftware: Step = {
         step(list: LicenseDetails[]) {
           if (has(list, 'copyleft') && has(list, 'permissive')) {
             return copyleft;
-          } else if (
-            has(list, 'copyleft') &&
-            has(list, 'strong') &&
-            has(list, 'weak')
-          ) {
+          } else if (has(list, 'copyleft') && has(list, 'strong') && has(list, 'weak')) {
             return strongCopyleft;
           }
           return end;
@@ -348,9 +344,9 @@ const root: Step = {
 export const QUESTION_TREE = root;
 
 function has(list: LicenseDetails[], category: string): boolean {
-  return list.some(license => license.categories.includes(category));
+  return list.some((license) => license.categories.includes(category));
 }
 
 function only(list: LicenseDetails[], category: string): boolean {
-  return list.every(license => license.categories.includes(category));
+  return list.every((license) => license.categories.includes(category));
 }

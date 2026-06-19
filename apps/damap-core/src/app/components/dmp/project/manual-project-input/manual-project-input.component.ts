@@ -17,12 +17,7 @@ import {
 
 import { Project } from '../../../../domain/project';
 import { FeedbackService } from '../../../../services/feedback.service';
-import {
-  MatLabel,
-  MatFormField,
-  MatHint,
-  MatSuffix,
-} from '@angular/material/form-field';
+import { MatLabel, MatFormField, MatHint, MatSuffix } from '@angular/material/form-field';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { InputWrapperComponent } from '../../../../shared/input-wrapper/input-wrapper.component';
 import {
@@ -69,10 +64,7 @@ export class ManualProjectInputComponent implements OnChanges {
 
   form = new UntypedFormGroup({
     id: new UntypedFormControl(null),
-    title: new UntypedFormControl('', [
-      Validators.required,
-      Validators.maxLength(255),
-    ]),
+    title: new UntypedFormControl('', [Validators.required, Validators.maxLength(255)]),
     description: new UntypedFormControl(''),
     start: new UntypedFormControl(null),
     end: new UntypedFormControl(null),

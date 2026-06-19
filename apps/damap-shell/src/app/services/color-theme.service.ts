@@ -1,12 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { DOCUMENT, effect, inject, Injectable, signal } from '@angular/core';
 import { Config, ColorTheme } from '@damap-frontend-core';
-import {
-  argbFromHex,
-  CorePalette,
-  hexFromArgb,
-  Scheme,
-} from '@material/material-color-utilities';
+import { argbFromHex, CorePalette, hexFromArgb, Scheme } from '@material/material-color-utilities';
 import { APP_ENV } from '@damap-frontend-core/app/constants';
 import { Observable, tap } from 'rxjs';
 
@@ -31,20 +26,13 @@ export class ColorThemeService {
 
   constructor() {
     effect(() => {
-      this.applyMaterial3Tokens(
-        this.colorsSignal(),
-        this.exactColorModeSignal(),
-      );
+      this.applyMaterial3Tokens(this.colorsSignal(), this.exactColorModeSignal());
     });
   }
 
   public applyTheming(config: Config): void {
     let newColors: Colors;
-    if (
-      !config.colorTheme ||
-      !config.colorTheme.colors ||
-      !config.colorTheme.colors['primary']
-    ) {
+    if (!config.colorTheme || !config.colorTheme.colors || !config.colorTheme.colors['primary']) {
       newColors = this.generateDefaultColorScheme();
     } else {
       newColors = {
@@ -52,10 +40,8 @@ export class ColorThemeService {
         secondary: config.colorTheme.colors['secondary'] ?? null,
         tertiary: config.colorTheme.colors['tertiary'] ?? null,
         primaryContainer: config.colorTheme.colors['primaryContainer'] ?? null,
-        secondaryContainer:
-          config.colorTheme.colors['secondaryContainer'] ?? null,
-        tertiaryContainer:
-          config.colorTheme.colors['tertiaryContainer'] ?? null,
+        secondaryContainer: config.colorTheme.colors['secondaryContainer'] ?? null,
+        tertiaryContainer: config.colorTheme.colors['tertiaryContainer'] ?? null,
       };
     }
 
@@ -89,9 +75,7 @@ export class ColorThemeService {
     const palette = CorePalette.fromColors({
       primary: argbFromHex(colors.primary || '#006699'),
       secondary: colors.secondary ? argbFromHex(colors.secondary) : undefined,
-      tertiary: colors.tertiary
-        ? argbFromHex(colors.tertiary || '#373737')
-        : undefined,
+      tertiary: colors.tertiary ? argbFromHex(colors.tertiary || '#373737') : undefined,
     });
     const scheme = Scheme.lightFromCorePalette(palette);
 
@@ -157,9 +141,7 @@ export class ColorThemeService {
         colors.primaryContainer,
         scheme.primaryContainer,
       ),
-      '--mat-theme-on-primary-container': hexFromArgb(
-        scheme.onPrimaryContainer,
-      ),
+      '--mat-theme-on-primary-container': hexFromArgb(scheme.onPrimaryContainer),
 
       '--mat-theme-secondary': secondaryVal,
       '--mat-theme-on-secondary': hexFromArgb(scheme.onSecondary),
@@ -167,9 +149,7 @@ export class ColorThemeService {
         colors.secondaryContainer,
         scheme.secondaryContainer,
       ),
-      '--mat-theme-on-secondary-container': hexFromArgb(
-        scheme.onSecondaryContainer,
-      ),
+      '--mat-theme-on-secondary-container': hexFromArgb(scheme.onSecondaryContainer),
 
       '--mat-theme-tertiary': tertiaryVal,
       '--mat-theme-on-tertiary': hexFromArgb(scheme.onTertiary),
@@ -177,9 +157,7 @@ export class ColorThemeService {
         colors.tertiaryContainer,
         scheme.tertiaryContainer,
       ),
-      '--mat-theme-on-tertiary-container': hexFromArgb(
-        scheme.onTertiaryContainer,
-      ),
+      '--mat-theme-on-tertiary-container': hexFromArgb(scheme.onTertiaryContainer),
 
       '--mat-theme-error': hexFromArgb(scheme.error),
       '--mat-theme-on-error': hexFromArgb(scheme.onError),

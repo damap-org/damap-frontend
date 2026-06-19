@@ -6,13 +6,13 @@
         <div class="example-button-container">
           <button mat-flat-button (click)="openDatasetDialog()">
             <mat-icon>edit</mat-icon>
-            {{ "dmp.steps.data.specify.button.addManual" | translate }}
+            {{ 'dmp.steps.data.specify.button.addManual' | translate }}
           </button>
         </div>
         <div class="example-button-container">
           <button mat-flat-button (click)="openUploadDialog()">
             <mat-icon>cloud_upload</mat-icon>
-            {{ "dmp.steps.data.specify.button.upload" | translate }}
+            {{ 'dmp.steps.data.specify.button.upload' | translate }}
           </button>
         </div>
       </div>
@@ -26,7 +26,8 @@
           [datasets]="datasets"
           [tableHeaders]="tableHeaders"
           (updateDataset)="update($event)"
-          (removeDataset)="remove($event)" />
+          (removeDataset)="remove($event)"
+        />
       </div>
     }
   </div>
@@ -38,6 +39,6 @@
 }
 @if (kind.value === dataKind.UNKNOWN) {
   <app-info-message>
-    {{ "info.dataset.unknown" | translate }}
+    {{ 'info.dataset.unknown' | translate }}
   </app-info-message>
 }

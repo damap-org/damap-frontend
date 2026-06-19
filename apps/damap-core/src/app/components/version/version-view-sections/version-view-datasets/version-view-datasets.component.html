@@ -1,7 +1,4 @@
-@if (
-  dataKind() === dataKindType.SPECIFY ||
-  reusedDataKind() === dataKindType.SPECIFY
-) {
+@if (dataKind() === dataKindType.SPECIFY || reusedDataKind() === dataKindType.SPECIFY) {
   <div>
     @for (dataset of datasets(); track dataset.id) {
       <div>
@@ -13,31 +10,22 @@
           >
         </div>
         <div>
-          <span class="headings"
-            >{{ "dmp.versions.view.datasets.size" | translate }}:</span
-          >
+          <span class="headings">{{ 'dmp.versions.view.datasets.size' | translate }}:</span>
           {{ dataset.size | byte }}
         </div>
         <div>
-          <span class="headings"
-            >{{ "dmp.versions.view.datasets.description" | translate }}:</span
-          >
+          <span class="headings">{{ 'dmp.versions.view.datasets.description' | translate }}:</span>
           {{ dataset.description }}
         </div>
         @if (dataset.dataAccess !== dataAccessType.CLOSED) {
           <div>
             <div>
-              <span class="headings"
-                >{{ "dmp.versions.view.datasets.license" | translate }}:</span
-              >
+              <span class="headings">{{ 'dmp.versions.view.datasets.license' | translate }}:</span>
               {{ dataset.license }}
             </div>
             <div>
               <span class="headings"
-                >{{
-                  "dmp.versions.view.datasets.retention.period" | translate
-                }}
-                :</span
+                >{{ 'dmp.versions.view.datasets.retention.period' | translate }} :</span
               >
               {{ dataset.retentionPeriod }}
             </div>
@@ -47,25 +35,19 @@
           <div>
             <div>
               <span class="headings"
-                >{{
-                  "dmp.versions.view.datasets.deletion.date" | translate
-                }}:</span
+                >{{ 'dmp.versions.view.datasets.deletion.date' | translate }}:</span
               >
               {{ dataset.dateOfDeletion | date }}
             </div>
             <div>
               <span class="headings"
-                >{{
-                  "dmp.versions.view.datasets.deletion.reason" | translate
-                }}:</span
+                >{{ 'dmp.versions.view.datasets.deletion.reason' | translate }}:</span
               >
               {{ dataset.reasonForDeletion }}
             </div>
             <div>
               <span class="headings"
-                >{{
-                  "dmp.versions.view.datasets.deletion.person" | translate
-                }}:</span
+                >{{ 'dmp.versions.view.datasets.deletion.person' | translate }}:</span
               >
               {{ dataset.deletionPerson?.firstName }}
               {{ dataset.deletionPerson?.lastName }}
@@ -74,61 +56,42 @@
         }
         <div>
           <span class="headings"
-            >{{
-              "dmp.versions.view.datasets.restrictions.label" | translate
-            }}:</span
+            >{{ 'dmp.versions.view.datasets.restrictions.label' | translate }}:</span
           >
           <ul>
             @if (dataset.sensitiveData) {
               <li>
-                {{
-                  "dmp.versions.view.datasets.restrictions.sensitive"
-                    | translate
-                }}
+                {{ 'dmp.versions.view.datasets.restrictions.sensitive' | translate }}
               </li>
             }
             @if (dataset.personalData) {
               <li>
-                {{
-                  "dmp.versions.view.datasets.restrictions.personal" | translate
-                }}
+                {{ 'dmp.versions.view.datasets.restrictions.personal' | translate }}
               </li>
             }
             @if (dataset.legalRestrictions) {
               <li>
-                {{
-                  "dmp.versions.view.datasets.restrictions.legal" | translate
-                }}
+                {{ 'dmp.versions.view.datasets.restrictions.legal' | translate }}
               </li>
             }
           </ul>
         </div>
         <div>
           <span class="headings"
-            >{{
-              "dmp.versions.view.datasets.data.access.label" | translate
-            }}:</span
+            >{{ 'dmp.versions.view.datasets.data.access.label' | translate }}:</span
           >
           <ul>
             <li>
-              {{ "dmp.versions.view.datasets.data.access.public" | translate }}:
-              {{ "enum.accessright." + dataset.publicAccess | translate }}
+              {{ 'dmp.versions.view.datasets.data.access.public' | translate }}:
+              {{ 'enum.accessright.' + dataset.publicAccess | translate }}
             </li>
             <li>
-              {{
-                "dmp.versions.view.datasets.data.access.selected" | translate
-              }}:
-              {{
-                "enum.accessright." + dataset.selectedProjectMembersAccess
-                  | translate
-              }}
+              {{ 'dmp.versions.view.datasets.data.access.selected' | translate }}:
+              {{ 'enum.accessright.' + dataset.selectedProjectMembersAccess | translate }}
             </li>
             <li>
-              {{ "dmp.versions.view.datasets.data.access.other" | translate }}:
-              {{
-                "enum.accessright." + dataset.otherProjectMembersAccess
-                  | translate
-              }}
+              {{ 'dmp.versions.view.datasets.data.access.other' | translate }}:
+              {{ 'enum.accessright.' + dataset.otherProjectMembersAccess | translate }}
             </li>
           </ul>
         </div>
@@ -144,7 +107,7 @@
         }
         <div>
           @for (type of dataset.type; track type) {
-            <app-tag> {{ "enum.dataset.type." + type | translate }}</app-tag>
+            <app-tag> {{ 'enum.dataset.type.' + type | translate }}</app-tag>
           }
         </div>
         <hr />
@@ -152,35 +115,27 @@
     }
     <div>
       <span class="headings"
-        >{{
-          "dmp.versions.view.documentation.data.generation" | translate
-        }}:</span
+        >{{ 'dmp.versions.view.documentation.data.generation' | translate }}:</span
       >
       {{ dataGeneration() }}
     </div>
   </div>
 }
 
-@if (
-  dataKind() === dataKindType.NONE && reusedDataKind() === dataKindType.NONE
-) {
+@if (dataKind() === dataKindType.NONE && reusedDataKind() === dataKindType.NONE) {
   <div>
     <div>
-      <span class="headings"
-        >{{ "dmp.versions.view.datasets.data.none" | translate }}:</span
-      >
+      <span class="headings">{{ 'dmp.versions.view.datasets.data.none' | translate }}:</span>
     </div>
     {{ noDataExplanation() }}
   </div>
 }
 
 @if (
-  (dataKind() === dataKindType.UNKNOWN &&
-    reusedDataKind() !== dataKindType.SPECIFY) ||
-  (dataKind() !== dataKindType.SPECIFY &&
-    reusedDataKind() === dataKindType.UNKNOWN)
+  (dataKind() === dataKindType.UNKNOWN && reusedDataKind() !== dataKindType.SPECIFY) ||
+  (dataKind() !== dataKindType.SPECIFY && reusedDataKind() === dataKindType.UNKNOWN)
 ) {
   <div>
-    {{ "dmp.versions.view.datasets.data.unknown" | translate }}
+    {{ 'dmp.versions.view.datasets.data.unknown' | translate }}
   </div>
 }

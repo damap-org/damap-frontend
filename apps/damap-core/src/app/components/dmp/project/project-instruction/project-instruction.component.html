@@ -1,6 +1,7 @@
-@if (configService.getProjectService() !== "disabled") {
+@if (configService.getProjectService() !== 'disabled') {
   <app-toggle-buttons
     [primaryLabel]="'dmp.steps.project.view.button.choose'"
     [secondaryLabel]="'dmp.steps.project.view.button.manual'"
-    (selectionChange)="emitSelection($event)" />
+    (selectionChange)="emitSelection($event)"
+  />
 }

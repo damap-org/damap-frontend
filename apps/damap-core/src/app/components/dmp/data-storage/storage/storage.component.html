@@ -1,5 +1,5 @@
 <mat-label class="label-title label-title" id="example-radio-group-label">{{
-  "dmp.steps.storage.intro" | translate
+  'dmp.steps.storage.intro' | translate
 }}</mat-label>
 <section class="tu-storage">
   <div class="storage-grid">
@@ -9,9 +9,7 @@
       track element.id
     ) {
       <mat-card appearance="raised" class="storage-card card-shadow">
-        <mat-card-header
-          (click)="addStorage(element)"
-          (keydown.enter)="addStorage(element)">
+        <mat-card-header (click)="addStorage(element)" (keydown.enter)="addStorage(element)">
           <div mat-card-avatar>
             <mat-icon>folder_open</mat-icon>
           </div>
@@ -20,7 +18,7 @@
         @if (element.url) {
           <mat-card-content>
             <button mat-button (click)="openStorageInfo(element)">
-              {{ "dmp.steps.storage.link" | translate }}
+              {{ 'dmp.steps.storage.link' | translate }}
             </button>
           </mat-card-content>
         }
@@ -38,7 +36,8 @@
                 mat-icon-button
                 class="button-color-primary"
                 aria-label="{{ 'dmp.steps.storage.remove' | translate }}"
-                (click)="removeStorage(i)">
+                (click)="removeStorage(i)"
+              >
                 <mat-icon>cancel</mat-icon>
               </button>
             </mat-card-title-group>
@@ -47,14 +46,13 @@
             <div [formGroupName]="i">
               <div class="form-row">
                 <mat-form-field class="full-width">
-                  <mat-label>{{
-                    "dmp.steps.storage.question.datasets" | translate
-                  }}</mat-label>
+                  <mat-label>{{ 'dmp.steps.storage.question.datasets' | translate }}</mat-label>
                   <mat-select multiple formControlName="datasets">
                     @for (dataset of datasets()?.controls; track dataset) {
                       <mat-option
                         panelClass="mat-option-text"
-                        [value]="dataset.value.referenceHash">
+                        [value]="dataset.value.referenceHash"
+                      >
                         {{ dataset.value.title }}
                       </mat-option>
                     }

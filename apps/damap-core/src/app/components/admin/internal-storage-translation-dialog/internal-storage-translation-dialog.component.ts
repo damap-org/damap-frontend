@@ -16,10 +16,7 @@ import {
 import { Observable } from 'rxjs';
 import { FormService } from '../../../services/form.service';
 import { InternalStorageTranslation } from '../../../domain/internal-storage';
-import {
-  isValidCode,
-  LanguageCodeOption,
-} from '../../../domain/language-codes';
+import { isValidCode, LanguageCodeOption } from '../../../domain/language-codes';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { LanguageCodeInputComponent } from '../../../shared/language-code-input/language-code-input.component';
 import { InputWrapperComponent } from '../../../shared/input-wrapper/input-wrapper.component';
@@ -47,10 +44,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   ],
 })
 export class InternalStorageTranslationDialogComponent {
-  dialogRef =
-    inject<MatDialogRef<InternalStorageTranslationDialogComponent>>(
-      MatDialogRef,
-    );
+  dialogRef = inject<MatDialogRef<InternalStorageTranslationDialogComponent>>(MatDialogRef);
   private formService = inject(FormService);
   data = inject<{
     storageId: number;
@@ -64,8 +58,7 @@ export class InternalStorageTranslationDialogComponent {
   constructor() {
     const data = this.data;
 
-    this.storageTranslation =
-      this.formService.createInternalStorageTranslationFormGroup();
+    this.storageTranslation = this.formService.createInternalStorageTranslationFormGroup();
 
     if (data.translation) {
       this.storageTranslation.patchValue({

@@ -1,21 +1,6 @@
-import {
-  computed,
-  inject,
-  Injectable,
-  type ResourceStatus,
-  signal,
-} from '@angular/core';
+import { computed, inject, Injectable, type ResourceStatus, signal } from '@angular/core';
 import { httpResource } from '@angular/common/http';
-import {
-  catchError,
-  EMPTY,
-  finalize,
-  map,
-  Observable,
-  of,
-  switchMap,
-  tap,
-} from 'rxjs';
+import { catchError, EMPTY, finalize, map, Observable, of, switchMap, tap } from 'rxjs';
 
 import { DmpApi } from './dmp.api';
 import { Dmp } from '../domain/dmp';
@@ -39,13 +24,11 @@ export class DmpStore {
   );
 
   readonly dmps = computed(() => this.dmpsResource.value());
-  readonly dmpsLoaded = computed(() =>
-    this.toLoadingState(this.dmpsResource.status()),
-  );
+  readonly dmpsLoaded = computed(() => this.toLoadingState(this.dmpsResource.status()));
   readonly savingDmp = this.savingDmpState.asReadonly();
 
   dmpById(id: number): DmpListItem | undefined {
-    return this.dmps().find(dmp => dmp.id === id);
+    return this.dmps().find((dmp) => dmp.id === id);
   }
 
   loadDmps(skipIfPresent: boolean = true): void {
@@ -62,13 +45,13 @@ export class DmpStore {
   }
 
   removeDmp(id: number): void {
-    this.dmpsResource.update(dmps => dmps.filter(dmp => dmp.id !== id));
+    this.dmpsResource.update((dmps) => dmps.filter((dmp) => dmp.id !== id));
   }
 
   createDmp(dmp: Dmp): Observable<Dmp> {
     this.savingDmpState.set(true);
     return this.api.createDmp(dmp).pipe(
-      tap(savedDmp => {
+      tap((savedDmp) => {
         this.formService.mapDmpToForm(savedDmp);
         this.feedbackService.success('dmp.success.save');
         this.loadDmps(false);
@@ -84,7 +67,7 @@ export class DmpStore {
   updateDmp(dmp: Dmp): Observable<Dmp> {
     this.savingDmpState.set(true);
     return this.api.updateDmp(dmp).pipe(
-      tap(savedDmp => {
+      tap((savedDmp) => {
         this.formService.mapDmpToForm(savedDmp);
         this.feedbackService.success('dmp.success.update');
       }),
@@ -101,7 +84,7 @@ export class DmpStore {
     const saveDmp$ = dmp.id ? this.api.updateDmp(dmp) : this.api.createDmp(dmp);
 
     return saveDmp$.pipe(
-      switchMap(savedDmp => {
+      switchMap((savedDmp) => {
         const version = {
           id: undefined,
           revisionNumber: undefined,
@@ -113,7 +96,7 @@ export class DmpStore {
 
         return this.api.saveDmpVersion(version).pipe(map(() => savedDmp));
       }),
-      tap(savedDmp => {
+      tap((savedDmp) => {
         this.formService.mapDmpToForm(savedDmp);
         this.feedbackService.success('dmp.success.version.save');
         this.loadDmps(true);
@@ -126,11 +109,7 @@ export class DmpStore {
     );
   }
 
-  exportDmp(
-    dmp: Dmp,
-    changed: boolean | undefined,
-    templateType?: number,
-  ): Observable<Dmp | null> {
+  exportDmp(dmp: Dmp, changed: boolean | undefined, templateType?: number): Observable<Dmp | null> {
     const exportSavedDmp = (savedDmp: Dmp): void => {
       const export$ =
         templateType !== undefined
@@ -149,12 +128,10 @@ export class DmpStore {
 
     if (changed !== false) {
       this.savingDmpState.set(true);
-      const saveDmp$ = dmp.id
-        ? this.api.updateDmp(dmp)
-        : this.api.createDmp(dmp);
+      const saveDmp$ = dmp.id ? this.api.updateDmp(dmp) : this.api.createDmp(dmp);
 
       return saveDmp$.pipe(
-        tap(savedDmp => {
+        tap((savedDmp) => {
           this.formService.mapDmpToForm(savedDmp);
           exportSavedDmp(savedDmp);
         }),

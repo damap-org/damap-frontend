@@ -25,19 +25,12 @@ export const APP_ROUTES: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    canActivate: [
-      AuthGuard,
-      TenantGuard,
-      InstanceAvailabilityGuard,
-      ConsentGuard,
-    ],
+    canActivate: [AuthGuard, TenantGuard, InstanceAvailabilityGuard, ConsentGuard],
     children: [
       {
         path: '',
         loadChildren: () =>
-          import('@damap-frontend-core/app/damap.routes').then(
-            m => m.DAMAP_ROUTES,
-          ),
+          import('@damap-frontend-core/app/damap.routes').then((m) => m.DAMAP_ROUTES),
       },
     ],
   },

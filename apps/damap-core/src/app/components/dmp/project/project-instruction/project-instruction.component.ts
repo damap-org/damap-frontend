@@ -1,10 +1,4 @@
-import {
-  Component,
-  inject,
-  OnInit,
-  ChangeDetectionStrategy,
-  output,
-} from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectionStrategy, output } from '@angular/core';
 import { ConfigService } from '@damap-frontend-shell/app/services/config.service';
 import { ToggleButtonsComponent } from '../../../../widgets/toggle-buttons/toggle-buttons.component';
 

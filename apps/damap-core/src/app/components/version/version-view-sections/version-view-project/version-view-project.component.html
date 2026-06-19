@@ -3,9 +3,7 @@
     <h3>{{ project.title }}</h3>
     <div>{{ project.start | date }} - {{ project.end | date }}</div>
     <div>{{ project.description }}</div>
-    <div>
-      {{ project.funding?.fundingProgram }} {{ project.funding?.fundingName }}
-    </div>
+    <div>{{ project.funding?.fundingProgram }} {{ project.funding?.fundingName }}</div>
     @if (project.funding?.fundingStatus) {
       <div>
         <app-tag>{{ project.funding.fundingStatus }}</app-tag>

@@ -1,9 +1,9 @@
-@use "@angular/material" as mat;
-@use "sass:map";
+@use '@angular/material' as mat;
+@use 'sass:map';
 // Plus imports for other components in your app.
 // Depending on your layout you will want to include your own palettes or import an
 // Angular Material prebuilt theme of your choice.
-@use "custom-palettes" as palettes;
+@use 'custom-palettes' as palettes;
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
@@ -67,10 +67,9 @@ $app-light-theme: mat.define-theme(
 }
 
 @font-face {
-  font-family: "Material Icons";
+  font-family: 'Material Icons';
   font-style: normal;
-  src: url(../assets/icons/material/MaterialSymbolsOutlined.ttf)
-    format("truetype");
+  src: url(../assets/icons/material/MaterialSymbolsOutlined.ttf) format('truetype');
 }
 
 // Angular Material v19 theming approach
@@ -96,19 +95,16 @@ html {
     (
       selected-focus-track-color: var(--mat-theme-primary),
       selected-pressed-track-color: var(--mat-theme-primary),
-      selected-hover-handle-color:
-        color-mix(in srgb, var(--mat-theme-primary) 30%, white),
-      selected-focus-handle-color:
-        color-mix(in srgb, var(--mat-theme-primary) 30%, white),
+      selected-hover-handle-color: color-mix(in srgb, var(--mat-theme-primary) 30%, white),
+      selected-focus-handle-color: color-mix(in srgb, var(--mat-theme-primary) 30%, white),
       selected-focus-state-layer-color: var(--mat-theme-primary),
-      selected-pressed-handle-color:
-        color-mix(in srgb, var(--mat-theme-primary) 60%, white),
+      selected-pressed-handle-color: color-mix(in srgb, var(--mat-theme-primary) 60%, white),
     )
   );
 }
 
 .material-icons {
-  font-family: "Material Icons";
+  font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
   font-size: 24px;
@@ -129,13 +125,13 @@ html {
   -moz-osx-font-smoothing: grayscale;
 
   /* Support for IE. */
-  font-feature-settings: "liga";
+  font-feature-settings: 'liga';
 
   /* Set default icons to filled */
-  font-variation-settings: "FILL" 1;
+  font-variation-settings: 'FILL' 1;
 
   &.outline {
-    font-variation-settings: "FILL" 0;
+    font-variation-settings: 'FILL' 0;
   }
   // https://developers.google.com/fonts/docs/material_icons#setup_method_2_self_hosting
   &.md-18 {

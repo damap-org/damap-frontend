@@ -7,9 +7,7 @@
         </mat-card-header>
         <app-repo-details [repo]="repo" />
         <mat-card-actions align="end">
-          <button mat-flat-button (click)="addRepository(repo)">
-            Use repository
-          </button>
+          <button mat-flat-button (click)="addRepository(repo)">Use repository</button>
         </mat-card-actions>
       </mat-card>
     }
@@ -20,8 +18,7 @@
   }
   @if (loaded() === LoadingState.FAILED) {
     <app-error-message
-      message="{{
-        'dmp.steps.repositories.loading.failed.recommended' | translate
-      }}" />
+      message="{{ 'dmp.steps.repositories.loading.failed.recommended' | translate }}"
+    />
   }
 </div>

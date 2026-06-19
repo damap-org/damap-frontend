@@ -2,9 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-export function instructionTestHelper<T>(componentClass: {
-  new (...args: any[]): T;
-}) {
+export function instructionTestHelper<T>(componentClass: { new (...args: any[]): T }) {
   let fixture: ComponentFixture<T>;
   let component: any;
 
@@ -33,9 +31,7 @@ export function instructionTestHelper<T>(componentClass: {
         spyOn(component.selectionChange, 'emit');
         component.onSelectionChange('secondaryView');
         expect(component.selectedView).toBe('secondaryView');
-        expect(component.selectionChange.emit).toHaveBeenCalledWith(
-          'secondaryView',
-        );
+        expect(component.selectionChange.emit).toHaveBeenCalledWith('secondaryView');
       }
     });
 
@@ -44,9 +40,7 @@ export function instructionTestHelper<T>(componentClass: {
         spyOn(component.selectionChange, 'emit');
         component.onSelectionChange('primaryView');
         expect(component.selectedView).toBe('primaryView');
-        expect(component.selectionChange.emit).toHaveBeenCalledWith(
-          'primaryView',
-        );
+        expect(component.selectionChange.emit).toHaveBeenCalledWith('primaryView');
       }
     });
   });
