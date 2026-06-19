@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist/out-tsc/app"
+  },
+  "files": [
+    "apps/damap-shell/src/main.ts",
+    "apps/damap-shell/src/polyfills.ts"
+  ],
+  "angularCompilerOptions": {
+    "strictTemplates": false
+  }
+}

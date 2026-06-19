@@ -20,7 +20,9 @@
     "module": "ES2022",
     "lib": ["ES2022", "dom"],
     "paths": {
-      "@damap/core": ["libs/damap/src/index.ts"]
+      "@damap-frontend-core": ["apps/damap-core/src/index.ts"],
+      "@damap-frontend-core/*": ["apps/damap-core/src/*"],
+      "@damap-frontend-shell/*": ["apps/damap-shell/src/*"]
     },
     "rootDir": "."
   },
