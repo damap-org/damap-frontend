@@ -1,5 +1,4 @@
 const angular = require('angular-eslint');
-const cypress = require('eslint-plugin-cypress');
 const tseslint = require('typescript-eslint');
 
 const tsFiles = ['**/*.ts'];
@@ -19,7 +18,6 @@ module.exports = [
       '**/node_modules/**',
       '**/tmp/**',
       '**/*.js',
-      '!cypress.config.js',
     ],
   },
   ...withFiles(angular.configs.tsRecommended, tsFiles),
@@ -73,19 +71,4 @@ module.exports = [
     },
   },
   ...withFiles(angular.configs.templateRecommended, htmlFiles),
-  {
-    files: ['apps/damap-frontend-e2e/**/*.ts'],
-    plugins: {
-      cypress,
-    },
-    languageOptions: {
-      globals: cypress.environments.globals.globals,
-      parserOptions: cypress.environments.globals.parserOptions,
-    },
-    rules: {
-      ...cypress.configs.recommended.rules,
-      '@typescript-eslint/no-namespace': 'off',
-      '@typescript-eslint/no-unused-vars': 'off',
-    },
-  },
 ];

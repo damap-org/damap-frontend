@@ -6,7 +6,7 @@ Angular 22 uses `ChangeDetectionStrategy.OnPush` as the default for components.
 Existing components may still explicitly declare:
 
 ```ts
-changeDetection: ChangeDetectionStrategy.Eager
+changeDetection: ChangeDetectionStrategy.Eager;
 ```
 
 This was added by the Angular migration to preserve the previous behavior for
