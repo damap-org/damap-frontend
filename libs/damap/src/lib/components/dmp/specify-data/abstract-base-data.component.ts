@@ -9,7 +9,6 @@ import { DataSource } from '../../../domain/enum/data-source.enum';
 import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';
 import { DataKind } from '../../../domain/enum/data-kind.enum';
 
-/* Tested in specify-data.component.spec.ts */
 @Component({
   selector: 'app-base-data',
   template: '',
