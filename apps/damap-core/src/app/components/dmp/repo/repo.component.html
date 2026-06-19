@@ -1,11 +1,11 @@
 <!-- SELECTED REPOS-->
 <mat-label class="label-title mat-title-large" id="example-radio-group-label">{{
-  "dmp.steps.repositories.heading" | translate
+  'dmp.steps.repositories.heading' | translate
 }}</mat-label>
 
 @if (!datasets.controls.length) {
   <div>
-    {{ "dmps.nodatasets" | translate }}
+    {{ 'dmps.nodatasets' | translate }}
   </div>
 } @else {
   <app-retention-period [dmpForm]="dmpForm()" [datasets]="datasets" />
@@ -14,11 +14,9 @@
 
 @if (repoStep.controls.length) {
   <div [formGroup]="dmpForm()">
-    <mat-label
-      class="label-title mat-title-large"
-      id="example-radio-group-label"
-      >{{ "dmp.steps.repositories.selected" | translate }}</mat-label
-    >
+    <mat-label class="label-title mat-title-large" id="example-radio-group-label">{{
+      'dmp.steps.repositories.selected' | translate
+    }}</mat-label>
     @for (repo of repoStep.controls; track repo; let i = $index) {
       <mat-card appearance="raised" class="card-selected">
         <mat-card-content>
@@ -37,12 +35,11 @@
               <div class="mat-card-container">
                 <mat-form-field>
                   <mat-label>{{
-                    "dmp.steps.repositories.question.datasets" | translate
+                    'dmp.steps.repositories.question.datasets' | translate
                   }}</mat-label>
                   <mat-select multiple formControlName="datasets">
                     @for (
-                      dataset of datasets.value
-                        | datasetSource: datasetSource.NEW;
+                      dataset of datasets.value | datasetSource: datasetSource.NEW;
                       track dataset.referenceHash
                     ) {
                       <mat-option [value]="dataset.referenceHash">
@@ -56,7 +53,8 @@
                 @if (getDatasetsMarkedForDeletion(i).length > 0) {
                   <app-error-message
                     [data]="getDatasetsMarkedForDeletionAsString(i)"
-                    [message]="'dmp.steps.repositories.warning.deletion'" />
+                    [message]="'dmp.steps.repositories.warning.deletion'"
+                  />
                 }
               </div>
             </div>
@@ -68,12 +66,12 @@
 }
 
 @if (recommended(); as recommended) {
-  @if (selectedView === "primaryView") {
+  @if (selectedView === 'primaryView') {
     <div>
       <mat-card class="repository-recommendations-card card-shadow">
         <mat-card-content>
           <ng-template mat-tab-label>
-            {{ "dmp.steps.repositories.recommended" | translate }}
+            {{ 'dmp.steps.repositories.recommended' | translate }}
           </ng-template>
           @if (
             recommendedLoaded() !== LoadingState.LOADED ||
@@ -82,11 +80,12 @@
             <app-repo-recommendation
               [recommended]="recommended | repo: repoStep.value"
               [loaded]="recommendedLoaded()"
-              (repositoryToAdd)="addRepository($event)" />
+              (repositoryToAdd)="addRepository($event)"
+            />
           } @else {
             <p translate>dmp.steps.repositories.recommended.none</p>
             <button mat-flat-button (click)="selectedTabIndex = 1">
-              {{ "dmp.steps.repositories.find.other" | translate }}
+              {{ 'dmp.steps.repositories.find.other' | translate }}
               <mat-icon iconPositionEnd>search</mat-icon>
             </button>
           }
@@ -94,11 +93,11 @@
       </mat-card>
     </div>
   }
-  @if (selectedView === "secondaryView") {
+  @if (selectedView === 'secondaryView') {
     <div>
       <!-- Repository list -->
       <ng-template mat-tab-label>
-        {{ "dmp.steps.repositories.find" | translate }}
+        {{ 'dmp.steps.repositories.find' | translate }}
       </ng-template>
       <div class="tab-content">
         <app-repo-table
@@ -108,7 +107,8 @@
           [repositories]="repositories()"
           [selectedRepos]="repoStep.value"
           (repositoryToAdd)="addRepository($event)"
-          (repositoryDetails)="getRepositoryDetails($event)" />
+          (repositoryDetails)="getRepositoryDetails($event)"
+        />
       </div>
     </div>
   }

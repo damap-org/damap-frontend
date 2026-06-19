@@ -1,9 +1,4 @@
-import {
-  Component,
-  inject,
-  ChangeDetectionStrategy,
-  output,
-} from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy, output } from '@angular/core';
 import {
   ccByNcSa,
   ccBySa,
@@ -49,7 +44,7 @@ export class LicenseWizardComponent {
       width: '800px',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       this.selectedLicense.emit(result);
     });
   }
@@ -78,8 +73,7 @@ export class LicenseWizardComponent {
   ],
 })
 export class LicenseSelectorDialogComponent {
-  dialogRef =
-    inject<MatDialogRef<LicenseSelectorDialogComponent>>(MatDialogRef);
+  dialogRef = inject<MatDialogRef<LicenseSelectorDialogComponent>>(MatDialogRef);
 
   licenseList: LicenseDetails[] = [...LicenseDefinitions];
   softwareLicenses: LicenseDetails[] = SoftwareLicenses;
@@ -113,9 +107,7 @@ export class LicenseSelectorDialogComponent {
       this.matrix = [];
     }
     if (this.options.length) {
-      this.steps.push(
-        next.step(this.licenseList, this.dataLicenseCompatibility()),
-      );
+      this.steps.push(next.step(this.licenseList, this.dataLicenseCompatibility()));
       this.options = [];
       return;
     }
@@ -123,20 +115,18 @@ export class LicenseSelectorDialogComponent {
   }
 
   changeLicenseMatrix(licenseCode: string) {
-    if (this.matrix.find(item => item === licenseCode) === undefined) {
+    if (this.matrix.find((item) => item === licenseCode) === undefined) {
       this.matrix.push(licenseCode);
     } else {
-      this.matrix = this.matrix.filter(item => item !== licenseCode);
+      this.matrix = this.matrix.filter((item) => item !== licenseCode);
     }
   }
 
   changeLicenseOptions(i: number) {
-    if (
-      this.options.find(item => item === this.dataLicenses[i]) === undefined
-    ) {
+    if (this.options.find((item) => item === this.dataLicenses[i]) === undefined) {
       this.options.push(this.dataLicenses[i]);
     } else {
-      this.options = this.options.filter(item => item !== this.dataLicenses[i]);
+      this.options = this.options.filter((item) => item !== this.dataLicenses[i]);
     }
   }
 
@@ -153,11 +143,9 @@ export class LicenseSelectorDialogComponent {
 
   private filterByCategory(include: string[], exclude: string[]) {
     if (include) {
-      this.licenseList = this.licenseList.filter(license => {
+      this.licenseList = this.licenseList.filter((license) => {
         for (const category of include) {
-          if (
-            license.categories.find(item => item === category) === undefined
-          ) {
+          if (license.categories.find((item) => item === category) === undefined) {
             return false;
           }
         }
@@ -166,9 +154,9 @@ export class LicenseSelectorDialogComponent {
     }
     if (exclude) {
       this.licenseList = this.licenseList.filter(
-        license =>
+        (license) =>
           license.categories.find(
-            category => exclude.find(item => item === category) !== undefined,
+            (category) => exclude.find((item) => item === category) !== undefined,
           ) === undefined,
       );
     }
@@ -177,7 +165,7 @@ export class LicenseSelectorDialogComponent {
   private softwareLicenseCompatibility() {
     const newLicenseList: LicenseDetails[] = [...LicenseDefinitions];
     for (const code of this.matrix) {
-      const license = LicenseDefinitions.find(item => item.code === code);
+      const license = LicenseDefinitions.find((item) => item.code === code);
       for (let i = newLicenseList.length - 1; i >= 0; i--) {
         const item = newLicenseList[i];
         if (!item.code || !license.compatibility?.includes(item.code)) {

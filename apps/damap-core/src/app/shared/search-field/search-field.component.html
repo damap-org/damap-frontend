@@ -12,7 +12,8 @@
       placeholder="{{ placeholder }}"
       [formControl]="control"
       (input)="onSearchChange(input.value)"
-      #input />
+      #input
+    />
   }
   @if (autocomplete) {
     <input
@@ -22,7 +23,8 @@
       placeholder="{{ placeholder }}"
       [formControl]="control"
       (input)="onSearchChange(input.value)"
-      #input />
+      #input
+    />
   }
   <mat-icon matIconSuffix>search</mat-icon>
   @if (errorMessage) {

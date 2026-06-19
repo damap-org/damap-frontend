@@ -1,19 +1,19 @@
 <h2 mat-dialog-title>
-  {{'dmp.steps.people.delete.dialog.heading' | translate}}
+  {{ 'dmp.steps.people.delete.dialog.heading' | translate }}
 </h2>
 <mat-dialog-content>
-  {{'dmp.steps.people.delete.dialog.question' | translate}}
+  {{ 'dmp.steps.people.delete.dialog.question' | translate }}
   <ul>
     @for (dataset of data; track dataset.id) {
-    <li>{{dataset.title}}</li>
+      <li>{{ dataset.title }}</li>
     }
   </ul>
 </mat-dialog-content>
 <mat-dialog-actions align="start">
   <button mat-button [mat-dialog-close]="false">
-    {{'dmp.steps.people.delete.dialog.button.cancel' | translate}}
+    {{ 'dmp.steps.people.delete.dialog.button.cancel' | translate }}
   </button>
   <button mat-raised-button [mat-dialog-close]="true">
-    {{'dmp.steps.people.delete.dialog.button.confirm' | translate}}
+    {{ 'dmp.steps.people.delete.dialog.button.confirm' | translate }}
   </button>
 </mat-dialog-actions>

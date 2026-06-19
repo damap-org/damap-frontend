@@ -1,11 +1,4 @@
-import {
-  Component,
-  Input,
-  inject,
-  ChangeDetectionStrategy,
-  input,
-  output,
-} from '@angular/core';
+import { Component, Input, inject, ChangeDetectionStrategy, input, output } from '@angular/core';
 import {
   UntypedFormArray,
   UntypedFormGroup,
@@ -98,9 +91,7 @@ export class RepoComponent {
     }
   }
 
-  filterRepositories(
-    filter: { [key: string]: { id: string; label: string }[] } | null,
-  ) {
+  filterRepositories(filter: { [key: string]: { id: string; label: string }[] } | null) {
     if (filter) {
       this.store.setFilter(filter);
     } else {
@@ -111,7 +102,7 @@ export class RepoComponent {
   getDatasetsMarkedForDeletion(index: number): Dataset[] {
     const repo = this.repoStep.at(index);
     return this.datasets.value.filter(
-      item => item.delete && repo.value.datasets.includes(item.referenceHash),
+      (item) => item.delete && repo.value.datasets.includes(item.referenceHash),
     );
   }
 

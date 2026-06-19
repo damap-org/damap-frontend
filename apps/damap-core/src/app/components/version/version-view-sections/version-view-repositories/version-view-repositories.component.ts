@@ -15,8 +15,6 @@ export class VersionViewRepositoriesComponent {
   readonly datasets = input<Dataset[]>(undefined);
 
   getDatasetsForRepository(repo: Repository): Dataset[] {
-    return this.datasets()?.filter(item =>
-      repo.datasets.includes(item.referenceHash),
-    );
+    return this.datasets()?.filter((item) => repo.datasets.includes(item.referenceHash));
   }
 }

@@ -1,10 +1,4 @@
-import {
-  computed,
-  inject,
-  Injectable,
-  type ResourceStatus,
-  signal,
-} from '@angular/core';
+import { computed, inject, Injectable, type ResourceStatus, signal } from '@angular/core';
 import { httpResource } from '@angular/common/http';
 
 import { LoadingState } from '../domain/enum/loading-state.enum';
@@ -12,7 +6,7 @@ import { RepositoryDetails } from '../domain/repository-details';
 import { RepositoryApi, RepositoryFilter } from './repository.api';
 
 function hasActiveFilters(filter: RepositoryFilter): boolean {
-  return Object.keys(filter).some(key => filter[key]?.length > 0);
+  return Object.keys(filter).some((key) => filter[key]?.length > 0);
 }
 
 @Injectable()
@@ -22,9 +16,10 @@ export class RepositoryStore {
   private readonly filterState = signal<RepositoryFilter>({});
   private readonly detailId = signal<string | null>(null);
 
-  private readonly recommendedRepositoriesResource = httpResource<
-    RepositoryDetails[]
-  >(() => this.api.recommended, { defaultValue: [] });
+  private readonly recommendedRepositoriesResource = httpResource<RepositoryDetails[]>(
+    () => this.api.recommended,
+    { defaultValue: [] },
+  );
 
   private readonly repositoriesResource = httpResource<RepositoryDetails[]>(
     () => {
@@ -43,20 +38,16 @@ export class RepositoryStore {
     { defaultValue: [] },
   );
 
-  private readonly repositoryDetailResource = httpResource<RepositoryDetails>(
-    () => {
-      const id = this.detailId();
-      return id ? this.api.byId(id) : undefined;
-    },
-  );
+  private readonly repositoryDetailResource = httpResource<RepositoryDetails>(() => {
+    const id = this.detailId();
+    return id ? this.api.byId(id) : undefined;
+  });
 
-  readonly recommendedRepositories = computed(() =>
-    this.recommendedRepositoriesResource.value(),
-  );
+  readonly recommendedRepositories = computed(() => this.recommendedRepositoriesResource.value());
   readonly repositories = computed(() => {
     const detail = this.repositoryDetailResource.value();
 
-    return this.repositoriesResource.value().map(repository => {
+    return this.repositoriesResource.value().map((repository) => {
       return detail?.id === repository.id ? detail : repository;
     });
   });
@@ -73,9 +64,7 @@ export class RepositoryStore {
   readonly recommendedRepositoriesError = computed(() =>
     this.recommendedRepositoriesResource.error(),
   );
-  readonly repositoriesError = computed(() =>
-    this.repositoriesResource.error(),
-  );
+  readonly repositoriesError = computed(() => this.repositoriesResource.error());
 
   setFilter(filter: RepositoryFilter): void {
     this.filterState.set(filter);

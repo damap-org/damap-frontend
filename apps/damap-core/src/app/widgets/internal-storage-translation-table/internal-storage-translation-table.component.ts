@@ -11,10 +11,7 @@ import {
   input,
 } from '@angular/core';
 
-import {
-  InternalStorage,
-  InternalStorageTranslation,
-} from '../../domain/internal-storage';
+import { InternalStorage, InternalStorageTranslation } from '../../domain/internal-storage';
 import {
   MatTableDataSource,
   MatTable,
@@ -73,9 +70,7 @@ import { MatDivider } from '@angular/material/divider';
     TranslatePipe,
   ],
 })
-export class InternalStorageTranslationTableComponent
-  implements AfterViewInit, OnChanges
-{
+export class InternalStorageTranslationTableComponent implements AfterViewInit, OnChanges {
   private backendService = inject(BackendService);
   private feedbackService = inject(FeedbackService);
   private dialog = inject(MatDialog);
@@ -107,10 +102,8 @@ export class InternalStorageTranslationTableComponent
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
 
-    this.dataSource.filterPredicate = (
-      data: InternalStorageTranslation,
-      filter: string,
-    ) => data.title?.toLowerCase().includes(filter.trim().toLowerCase());
+    this.dataSource.filterPredicate = (data: InternalStorageTranslation, filter: string) =>
+      data.title?.toLowerCase().includes(filter.trim().toLowerCase());
   }
 
   deleteStorageTranslation(id: number) {
@@ -118,29 +111,24 @@ export class InternalStorageTranslationTableComponent
       .open(DeleteStorageTranslationWarningDialogComponent)
       .afterClosed()
       .subscribe({
-        next: response => {
+        next: (response) => {
           if (response) {
-            const translation = this.internalStorageTranslations.find(
-              t => t.id === id,
-            );
+            const translation = this.internalStorageTranslations.find((t) => t.id === id);
             this.backendService
               .deleteInternalStorageTranslation(translation.storageId, id)
               .subscribe(
                 () => {
-                  this.internalStorageTranslations =
-                    this.internalStorageTranslations.filter(t => t.id !== id);
-                  this.dataSource.data = this.internalStorageTranslations;
-                  this.feedbackService.success(
-                    'http.success.storage.translations.delete',
+                  this.internalStorageTranslations = this.internalStorageTranslations.filter(
+                    (t) => t.id !== id,
                   );
+                  this.dataSource.data = this.internalStorageTranslations;
+                  this.feedbackService.success('http.success.storage.translations.delete');
                 },
-                error => {
+                (error) => {
                   // Check if HTTP code 400, if yes, last translation cannot be deleted
                   if (error.status === 400) {
                     this.feedbackService.error(
-                      this.translateService.instant(
-                        'http.error.storageErrors.lastTranslation',
-                      ),
+                      this.translateService.instant('http.error.storageErrors.lastTranslation'),
                     );
                     return;
                   } else {
@@ -154,45 +142,37 @@ export class InternalStorageTranslationTableComponent
   }
 
   editStorageTranslation(id: number) {
-    const translation = this.internalStorageTranslations.find(t => t.id === id);
+    const translation = this.internalStorageTranslations.find((t) => t.id === id);
 
-    const dialogRef = this.dialog.open(
-      InternalStorageTranslationDialogComponent,
-      {
-        width: '75%',
-        maxWidth: '800px',
-        data: {
-          translation: { ...translation },
-          mode: 'edit',
-          storageId: this.selectedInternalStorageId(),
-        },
+    const dialogRef = this.dialog.open(InternalStorageTranslationDialogComponent, {
+      width: '75%',
+      maxWidth: '800px',
+      data: {
+        translation: { ...translation },
+        mode: 'edit',
+        storageId: this.selectedInternalStorageId(),
       },
-    );
+    });
 
-    dialogRef.afterClosed().subscribe(translation => {
+    dialogRef.afterClosed().subscribe((translation) => {
       if (translation) {
-        this.backendService
-          .updateInternalStorageTranslation(translation)
-          .subscribe(
-            () => {
-              this.internalStorageTranslations =
-                this.internalStorageTranslations.map(t =>
-                  t.id === translation.id ? translation : t,
-                );
-              this.dataSource.data = this.internalStorageTranslations;
-              this.feedbackService.success(
-                'http.success.storage.translations.edit',
-              );
-            },
-            error => {
-              // Make sure to show the correct error message (depending on the response of the backend as we do not have a unified error message format right now)
-              if (error.error?.message) {
-                this.feedbackService.error(error.error.message);
-              } else {
-                this.feedbackService.error(error.message);
-              }
-            },
-          );
+        this.backendService.updateInternalStorageTranslation(translation).subscribe(
+          () => {
+            this.internalStorageTranslations = this.internalStorageTranslations.map((t) =>
+              t.id === translation.id ? translation : t,
+            );
+            this.dataSource.data = this.internalStorageTranslations;
+            this.feedbackService.success('http.success.storage.translations.edit');
+          },
+          (error) => {
+            // Make sure to show the correct error message (depending on the response of the backend as we do not have a unified error message format right now)
+            if (error.error?.message) {
+              this.feedbackService.error(error.error.message);
+            } else {
+              this.feedbackService.error(error.message);
+            }
+          },
+        );
       }
     });
   }

@@ -10,13 +10,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    InfoCardComponent,
-    MatCard,
-    MatCardContent,
-    FlipCardComponent,
-    TranslatePipe,
-  ],
+  imports: [InfoCardComponent, MatCard, MatCardContent, FlipCardComponent, TranslatePipe],
 })
 export class DashboardComponent {
   readonly breakpointObserver = inject(BreakpointObserver);
@@ -26,7 +20,7 @@ export class DashboardComponent {
   constructor() {
     this.breakpointObserver
       .observe([Breakpoints.Handset, Breakpoints.Tablet])
-      .subscribe(result => {
+      .subscribe((result) => {
         this.isSmallScreen = result.matches;
       });
   }

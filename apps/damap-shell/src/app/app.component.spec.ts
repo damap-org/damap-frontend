@@ -14,11 +14,7 @@ describe('AppComponent', () => {
 
     await TestBed.configureTestingModule({
       imports: [AppComponent],
-      providers: [
-        provideRouter([]),
-        Title,
-        { provide: ConfigService, useValue: configService },
-      ],
+      providers: [provideRouter([]), Title, { provide: ConfigService, useValue: configService }],
     }).compileComponents();
 
     const fixture = TestBed.createComponent(AppComponent);

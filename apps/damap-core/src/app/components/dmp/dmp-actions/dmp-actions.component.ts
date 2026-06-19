@@ -91,23 +91,21 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // Prevent autosave for admins
     if (!this.admin()) {
-      this.subscriptions.push(this.stepChanged$.subscribe(_ => this.saveDmp()));
+      this.subscriptions.push(this.stepChanged$.subscribe((_) => this.saveDmp()));
     }
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
   saveDmp() {
     if (this.dmpForm.valid && this.formChanged() && !this.savingDmp()) {
       const dmp = this.formService.exportFormToDmp();
       if (this.dmpForm.value.id) {
-        this.dmpStore
-          .updateDmp(dmp)
-          .subscribe(savedDmp => this.formStore.setFormValue(savedDmp));
+        this.dmpStore.updateDmp(dmp).subscribe((savedDmp) => this.formStore.setFormValue(savedDmp));
       } else {
-        this.dmpStore.createDmp(dmp).subscribe(savedDmp => {
+        this.dmpStore.createDmp(dmp).subscribe((savedDmp) => {
           this.formStore.setFormValue(savedDmp);
           if (savedDmp.id) {
             this.location.go(`/dmp/${savedDmp.id}`);
@@ -122,11 +120,11 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
       width: '350px',
     });
 
-    dialogRef.afterClosed().subscribe(versionName => {
+    dialogRef.afterClosed().subscribe((versionName) => {
       if (versionName && versionName.length <= 255) {
         this.dmpStore
           .saveDmpVersion(this.formService.exportFormToDmp(), versionName)
-          .subscribe(savedDmp => this.formStore.setFormValue(savedDmp));
+          .subscribe((savedDmp) => this.formStore.setFormValue(savedDmp));
       } else if (versionName?.length > 255) {
         this.feedbackService.error('Version name is too long');
       }
@@ -136,7 +134,7 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
   dispatchExportDmp(): void {
     this.dmpStore
       .exportDmp(this.formService.exportFormToDmp(), this.formChanged())
-      .subscribe(savedDmp => {
+      .subscribe((savedDmp) => {
         if (savedDmp) {
           this.formStore.setFormValue(savedDmp);
         }
@@ -149,35 +147,24 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
       this.dmpForm.controls.project?.getRawValue()?.funderSupported ?? false;
 
     if (funderSupported && this.dmpForm.value.id) {
-      this.backendService
-        .getTemplateType(this.dmpForm.value.id)
-        .subscribe(response => {
-          const templates = this.configService.getConfig()?.templates || [];
-          const activeMatch = templates.find(
-            t => t.templateCategory === response && t.active,
-          );
-          const fallbackId = templates.find(t => t.active)?.id || null;
-          dialogRef.componentInstance.selectedTemplate = activeMatch
-            ? activeMatch.id
-            : fallbackId;
-        });
+      this.backendService.getTemplateType(this.dmpForm.value.id).subscribe((response) => {
+        const templates = this.configService.getConfig()?.templates || [];
+        const activeMatch = templates.find((t) => t.templateCategory === response && t.active);
+        const fallbackId = templates.find((t) => t.active)?.id || null;
+        dialogRef.componentInstance.selectedTemplate = activeMatch ? activeMatch.id : fallbackId;
+      });
     } else {
       const templates = this.configService.getConfig()?.templates || [];
-      dialogRef.componentInstance.selectedTemplate =
-        templates.find(t => t.active)?.id || null;
+      dialogRef.componentInstance.selectedTemplate = templates.find((t) => t.active)?.id || null;
     }
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result && result !== 'cancel') {
         const template = result;
         this.exportDmpType = template;
         this.dmpStore
-          .exportDmp(
-            this.formService.exportFormToDmp(),
-            this.formChanged(),
-            this.exportDmpType,
-          )
-          .subscribe(savedDmp => {
+          .exportDmp(this.formService.exportFormToDmp(), this.formChanged(), this.exportDmpType)
+          .subscribe((savedDmp) => {
             if (savedDmp) {
               this.formStore.setFormValue(savedDmp);
             }
@@ -192,24 +179,18 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
 
   showPreview(): void {
     if (this.dmpForm.controls.project?.getRawValue()?.funderSupported) {
-      this.backendService
-        .getTemplateType(this.dmpForm.value.id)
-        .subscribe(response => {
-          const dialogRef = this.dialog.open(LivePreviewComponent, {
-            maxHeight: '90vh',
-            maxWidth: '70vw',
-            width: '70vw',
-            height: '90vh',
-          });
-          const templates = this.configService.getConfig()?.templates || [];
-          const activeMatch = templates.find(
-            t => t.templateCategory === response && t.active,
-          );
-          const fallbackId = templates.find(t => t.active)?.id || null;
-          dialogRef.componentInstance.selectedTemplate = activeMatch
-            ? activeMatch.id
-            : fallbackId;
+      this.backendService.getTemplateType(this.dmpForm.value.id).subscribe((response) => {
+        const dialogRef = this.dialog.open(LivePreviewComponent, {
+          maxHeight: '90vh',
+          maxWidth: '70vw',
+          width: '70vw',
+          height: '90vh',
         });
+        const templates = this.configService.getConfig()?.templates || [];
+        const activeMatch = templates.find((t) => t.templateCategory === response && t.active);
+        const fallbackId = templates.find((t) => t.active)?.id || null;
+        dialogRef.componentInstance.selectedTemplate = activeMatch ? activeMatch.id : fallbackId;
+      });
     } else {
       const dialogRef = this.dialog.open(LivePreviewComponent, {
         maxHeight: '90vh',

@@ -3,26 +3,22 @@
   <div>
     <div>
       <span class="headings"
-        >{{
-          "dmp.versions.view.legal.sensitive.data.present" | translate
-        }}:</span
+        >{{ 'dmp.versions.view.legal.sensitive.data.present' | translate }}:</span
       >
       @if (dmp.sensitiveData) {
-        {{ "dmp.versions.view.legal-ethical.yes" | translate }}
+        {{ 'dmp.versions.view.legal-ethical.yes' | translate }}
       } @else {
-        {{ "dmp.versions.view.legal-ethical.no" | translate }}
+        {{ 'dmp.versions.view.legal-ethical.no' | translate }}
       }
     </div>
     @if (dmp.sensitiveData) {
       <div>
         <span class="headings"
-          >{{
-            "dmp.versions.view.legal.sensitive.data.security" | translate
-          }}:</span
+          >{{ 'dmp.versions.view.legal.sensitive.data.security' | translate }}:</span
         >
         @for (item of dmp.sensitiveDataSecurity; track item; let last = $last) {
           <span>
-            {{ "enum.securitymeasure." + item | translate }}
+            {{ 'enum.securitymeasure.' + item | translate }}
             @if (!last) {
               <span>, </span>
             }
@@ -32,19 +28,14 @@
       @if (otherSecurityMeasure) {
         <div>
           <span class="headings"
-            >{{
-              "dmp.versions.view.legal.sensitive.data.other.security"
-                | translate
-            }}:</span
+            >{{ 'dmp.versions.view.legal.sensitive.data.other.security' | translate }}:</span
           >
           {{ dmp.otherDataSecurityMeasures }}
         </div>
       }
       <div>
         <span class="headings"
-          >{{
-            "dmp.versions.view.legal.sensitive.data.access" | translate
-          }}:</span
+          >{{ 'dmp.versions.view.legal.sensitive.data.access' | translate }}:</span
         >
         {{ dmp.sensitiveDataAccess }}
       </div>
@@ -54,30 +45,22 @@
   <div>
     <div>
       <span class="headings"
-        >{{
-          "dmp.versions.view.legal.personal.data.present" | translate
-        }}:</span
+        >{{ 'dmp.versions.view.legal.personal.data.present' | translate }}:</span
       >
       @if (dmp.personalData) {
-        {{ "dmp.versions.view.legal-ethical.yes" | translate }}
+        {{ 'dmp.versions.view.legal-ethical.yes' | translate }}
       } @else {
-        {{ "dmp.versions.view.legal-ethical.no" | translate }}
+        {{ 'dmp.versions.view.legal-ethical.no' | translate }}
       }
     </div>
     @if (dmp.personalData) {
       <div>
         <span class="headings"
-          >{{
-            "dmp.versions.view.legal.personal.data.compliance" | translate
-          }}:</span
+          >{{ 'dmp.versions.view.legal.personal.data.compliance' | translate }}:</span
         >
-        @for (
-          item of dmp.personalDataCompliance;
-          track item;
-          let last = $last
-        ) {
+        @for (item of dmp.personalDataCompliance; track item; let last = $last) {
           <span>
-            {{ "enum.compliance." + item | translate }}
+            {{ 'enum.compliance.' + item | translate }}
             @if (!last) {
               <span>, </span>
             }
@@ -87,10 +70,7 @@
       @if (otherCompliance) {
         <div>
           <span class="headings"
-            >{{
-              "dmp.versions.view.legal.personal.data.other.compliance"
-                | translate
-            }}:</span
+            >{{ 'dmp.versions.view.legal.personal.data.other.compliance' | translate }}:</span
           >
           {{ dmp.otherPersonalDataCompliance }}
         </div>
@@ -101,37 +81,29 @@
   <div>
     <div>
       <span class="headings"
-        >{{ "dmp.versions.view.legal.restrictions.present" | translate }}:</span
+        >{{ 'dmp.versions.view.legal.restrictions.present' | translate }}:</span
       >
       @if (dmp.legalRestrictions) {
-        {{ "dmp.versions.view.legal-ethical.yes" | translate }}
+        {{ 'dmp.versions.view.legal-ethical.yes' | translate }}
       } @else {
-        {{ "dmp.versions.view.legal-ethical.no" | translate }}
+        {{ 'dmp.versions.view.legal-ethical.no' | translate }}
       }
     </div>
     @if (dmp.legalRestrictions) {
       <div>
         <span class="headings"
-          >{{
-            "dmp.versions.view.legal.restrictions.comment" | translate
-          }}:</span
+          >{{ 'dmp.versions.view.legal.restrictions.comment' | translate }}:</span
         >
         {{ dmp.legalRestrictionsComment }}
       </div>
       @if (dmp.personalDataCompliance) {
         <div>
           <span class="headings"
-            >{{
-              "dmp.versions.view.legal.restrictions.documents" | translate
-            }}:</span
+            >{{ 'dmp.versions.view.legal.restrictions.documents' | translate }}:</span
           >
-          @for (
-            item of dmp.legalRestrictionsDocuments;
-            track item;
-            let last = $last
-          ) {
+          @for (item of dmp.legalRestrictionsDocuments; track item; let last = $last) {
             <span>
-              {{ "enum.agreement." + item | translate }}
+              {{ 'enum.agreement.' + item | translate }}
               @if (!last) {
                 <span>, </span>
               }
@@ -142,20 +114,14 @@
       @if (otherDocuments) {
         <div>
           <span class="headings"
-            >{{
-              "dmp.versions.view.legal.restrictions.other.documents"
-                | translate
-            }}:</span
+            >{{ 'dmp.versions.view.legal.restrictions.other.documents' | translate }}:</span
           >
           {{ dmp.otherLegalRestrictionsDocument }}
         </div>
       }
       <div>
         <span class="headings"
-          >{{
-            "dmp.versions.view.legal.restrictions.data.rights.access"
-              | translate
-          }}:</span
+          >{{ 'dmp.versions.view.legal.restrictions.data.rights.access' | translate }}:</span
         >
         {{ dmp.dataRightsAndAccessControl }}
       </div>
@@ -163,35 +129,29 @@
   </div>
   <!-- Human participants -->
   <div>
-    <span class="headings"
-      >{{ "dmp.versions.view.ethical.human.participants" | translate }}:</span
-    >
+    <span class="headings">{{ 'dmp.versions.view.ethical.human.participants' | translate }}:</span>
     @if (dmp.humanParticipants) {
-      {{ "dmp.versions.view.legal-ethical.yes" | translate }}
+      {{ 'dmp.versions.view.legal-ethical.yes' | translate }}
     } @else {
-      {{ "dmp.versions.view.legal-ethical.no" | translate }}
+      {{ 'dmp.versions.view.legal-ethical.no' | translate }}
     }
   </div>
   <!-- Ethical issues -->
   <div>
-    <span class="headings"
-      >{{ "dmp.versions.view.ethical.issues" | translate }}:</span
-    >
+    <span class="headings">{{ 'dmp.versions.view.ethical.issues' | translate }}:</span>
     @if (dmp.ethicalIssuesExist) {
-      {{ "dmp.versions.view.legal-ethical.yes" | translate }}
+      {{ 'dmp.versions.view.legal-ethical.yes' | translate }}
     } @else {
-      {{ "dmp.versions.view.legal-ethical.no" | translate }}
+      {{ 'dmp.versions.view.legal-ethical.no' | translate }}
     }
   </div>
   <!-- Ethics committee -->
   <div>
-    <span class="headings"
-      >{{ "dmp.versions.view.ethical.committee.reviewed" | translate }}:</span
-    >
+    <span class="headings">{{ 'dmp.versions.view.ethical.committee.reviewed' | translate }}:</span>
     @if (dmp.committeeReviewed) {
-      {{ "dmp.versions.view.legal-ethical.yes" | translate }}
+      {{ 'dmp.versions.view.legal-ethical.yes' | translate }}
     } @else {
-      {{ "dmp.versions.view.legal-ethical.no" | translate }}
+      {{ 'dmp.versions.view.legal-ethical.no' | translate }}
     }
   </div>
 }

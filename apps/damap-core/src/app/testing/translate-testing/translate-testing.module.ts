@@ -1,16 +1,5 @@
-import {
-  EventEmitter,
-  Injectable,
-  NgModule,
-  Pipe,
-  PipeTransform,
-  signal,
-} from '@angular/core';
-import {
-  TranslateDirective,
-  TranslatePipe,
-  TranslateService,
-} from '@ngx-translate/core';
+import { EventEmitter, Injectable, NgModule, Pipe, PipeTransform, signal } from '@angular/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
 
 @Pipe({ name: 'translate' })

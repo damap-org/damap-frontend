@@ -7,15 +7,8 @@ import {
 } from '@angular/forms';
 
 import { Contributor } from '../../../domain/contributor';
-import {
-  MatSlideToggleChange,
-  MatSlideToggle,
-} from '@angular/material/slide-toggle';
-import {
-  MatFormField,
-  MatLabel,
-  MatSuffix,
-} from '@angular/material/form-field';
+import { MatSlideToggleChange, MatSlideToggle } from '@angular/material/slide-toggle';
+import { MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field';
 import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/autocomplete';
 import { MatInput } from '@angular/material/input';
@@ -58,9 +51,7 @@ export class DataDeletionComponent {
 
   setDateOfDeletion($event: MatSlideToggleChange) {
     if ($event.checked) {
-      this.dataset.controls.dateOfDeletion.setValue(
-        this.dmpForm.value.project?.end,
-      );
+      this.dataset.controls.dateOfDeletion.setValue(this.dmpForm.value.project?.end);
     }
   }
 

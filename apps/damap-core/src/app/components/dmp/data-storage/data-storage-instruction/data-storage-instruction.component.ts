@@ -1,9 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  output,
-} from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, output } from '@angular/core';
 import { ToggleButtonsComponent } from '../../../../widgets/toggle-buttons/toggle-buttons.component';
 
 @Component({

@@ -54,7 +54,7 @@ export class DoiSearchComponent implements OnChanges {
   readonly loadingState: any = LoadingState;
 
   constructor() {
-    this.form.get('doi').valueChanges.subscribe(value => {
+    this.form.get('doi').valueChanges.subscribe((value) => {
       if (value && !this.form.get('doi').touched) {
         this.form.get('doi').markAsTouched();
       }

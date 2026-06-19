@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  ChangeDetectionStrategy,
-  input,
-  output,
-} from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, input, output } from '@angular/core';
 import {
   MatFormFieldAppearance,
   MatFormField,
@@ -12,15 +6,8 @@ import {
   MatSuffix,
   MatError,
 } from '@angular/material/form-field';
-import {
-  UntypedFormControl,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
-import {
-  MatAutocomplete,
-  MatAutocompleteTrigger,
-} from '@angular/material/autocomplete';
+import { UntypedFormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { MatInput } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { TranslatePipe } from '@ngx-translate/core';

@@ -12,22 +12,9 @@ import { DataAccessType } from '../../../domain/enum/data-access-type.enum';
 import { DataSource } from '../../../domain/enum/data-source.enum';
 import { LicenseDetails } from '../../../domain/license-details';
 import { LicenseDefinitions } from '../../../widgets/license-wizard/license-wizard-list';
-import {
-  DateAdapter,
-  MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE,
-} from '@angular/material/core';
-import {
-  MatLabel,
-  MatFormField,
-  MatSuffix,
-} from '@angular/material/form-field';
-import {
-  MatCard,
-  MatCardHeader,
-  MatCardTitle,
-  MatCardContent,
-} from '@angular/material/card';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatLabel, MatFormField, MatSuffix } from '@angular/material/form-field';
+import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/autocomplete';
 import { MatIcon } from '@angular/material/icon';
@@ -108,28 +95,20 @@ export class LicensesComponent {
   get isAnonymisedOrPseudonymised() {
     const dmpForm = this.dmpForm();
     return (
-      dmpForm?.value.legal.personalDataCompliance?.includes(
-        ComplianceType.ANONYMISATION,
-      ) ||
-      dmpForm?.value.legal.personalDataCompliance?.includes(
-        ComplianceType.PSEUDONYMISATION,
-      )
+      dmpForm?.value.legal.personalDataCompliance?.includes(ComplianceType.ANONYMISATION) ||
+      dmpForm?.value.legal.personalDataCompliance?.includes(ComplianceType.PSEUDONYMISATION)
     );
   }
 
   get restricted() {
     return this.datasets()?.value.filter(
-      item =>
-        item.dataAccess === DataAccessType.RESTRICTED &&
-        item.source === DataSource.NEW,
+      (item) => item.dataAccess === DataAccessType.RESTRICTED && item.source === DataSource.NEW,
     );
   }
 
   get closed() {
     return this.datasets()?.value.filter(
-      item =>
-        item.dataAccess === DataAccessType.CLOSED &&
-        item.source === DataSource.NEW,
+      (item) => item.dataAccess === DataAccessType.CLOSED && item.source === DataSource.NEW,
     );
   }
 

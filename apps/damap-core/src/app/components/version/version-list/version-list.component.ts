@@ -47,9 +47,7 @@ export class VersionListComponent implements OnInit {
     if (id) {
       this.dmpId.set(id);
       if (this.auth.isAdmin()) {
-        this.backendService
-          .getDmpById(id)
-          .subscribe(dmp => this.adminDmp.set(dmp));
+        this.backendService.getDmpById(id).subscribe((dmp) => this.adminDmp.set(dmp));
       } else {
         this.getDmpList();
       }

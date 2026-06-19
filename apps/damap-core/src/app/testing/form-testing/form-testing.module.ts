@@ -1,10 +1,5 @@
 import { Injectable, NgModule } from '@angular/core';
-import {
-  FormArray,
-  FormControl,
-  FormGroup,
-  UntypedFormBuilder,
-} from '@angular/forms';
+import { FormArray, FormControl, FormGroup, UntypedFormBuilder } from '@angular/forms';
 import { FormService } from '../../services/form.service';
 
 @Injectable()

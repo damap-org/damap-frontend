@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  inject,
-  ChangeDetectionStrategy,
-  input,
-} from '@angular/core';
+import { Component, Input, inject, ChangeDetectionStrategy, input } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';

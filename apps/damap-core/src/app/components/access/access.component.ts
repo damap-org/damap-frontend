@@ -1,9 +1,4 @@
-import {
-  Component,
-  OnInit,
-  inject,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Access, UserDo } from '../../domain/access';
 import { BackendService } from '../../services/backend.service';
@@ -18,19 +13,9 @@ import { Dmp } from '../../domain/dmp';
 import { MatButtonModule } from '@angular/material/button';
 
 import { AuthService } from '../../auth/auth.service';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  map,
-  switchMap,
-  tap,
-} from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
-import {
-  MatRadioButton,
-  MatRadioChange,
-  MatRadioGroup,
-} from '@angular/material/radio';
+import { MatRadioButton, MatRadioChange, MatRadioGroup } from '@angular/material/radio';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatFormField, MatInputModule } from '@angular/material/input';
@@ -101,10 +86,10 @@ export class AccessComponent implements OnInit {
     this.userId = this.authService.getId();
 
     this.isOwner$ = this.accesses$.pipe(
-      map(accesses =>
+      map((accesses) =>
         accesses
-          .filter(access => access.identifier === this.userId)
-          .some(access => access.role === FunctionRole.OWNER),
+          .filter((access) => access.identifier === this.userId)
+          .some((access) => access.role === FunctionRole.OWNER),
       ),
     );
 
@@ -114,13 +99,10 @@ export class AccessComponent implements OnInit {
       switchMap((term: string) => {
         if (term) {
           return this.backendService.searchAccessUsers(term).pipe(
-            map(users => {
+            map((users) => {
               const currentList = this.accessesSubject.getValue();
               return users.filter(
-                user =>
-                  !currentList.some(
-                    existing => existing.identifier === user.identifier,
-                  ),
+                (user) => !currentList.some((existing) => existing.identifier === user.identifier),
               );
             }),
           );
@@ -131,8 +113,8 @@ export class AccessComponent implements OnInit {
   }
 
   private getAccess(id: number) {
-    this.backendService.getAccess(id).subscribe(accesses => {
-      const formattedAccesses = accesses.map(access => {
+    this.backendService.getAccess(id).subscribe((accesses) => {
+      const formattedAccesses = accesses.map((access) => {
         if (access.role === null || access.role === undefined) {
           access.role = FunctionRole.NO_RIGHTS;
         }
@@ -151,7 +133,7 @@ export class AccessComponent implements OnInit {
       access.role = $event.value;
       this.backendService
         .createAccess(access)
-        .subscribe({ next: response => (access.id = response.id) });
+        .subscribe({ next: (response) => (access.id = response.id) });
     }
   }
 

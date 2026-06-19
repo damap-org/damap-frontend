@@ -6,99 +6,74 @@
       class="mat-stepper-font-size verticalStepper card-shadow"
       [linear]="false"
       orientation="vertical"
-      (selectionChange)="handleStepChange($event)">
+      (selectionChange)="handleStepChange($event)"
+    >
       <!-- The logic for the icons in the stepper  -->
 
       <ng-template matStepperIcon="done" let-index="index">
-        @if (iconsValidatorDone(index, "check")) {
-          <mat-icon
-            class="material-icon-white-background-primary custom-icon-step"
-            >check</mat-icon
-          >
+        @if (iconsValidatorDone(index, 'check')) {
+          <mat-icon class="material-icon-white-background-primary custom-icon-step">check</mat-icon>
         }
 
-        @if (iconsValidatorDone(index, "edit")) {
-          <mat-icon
-            class="material-icon-white-background-success custom-icon-step outline"
+        @if (iconsValidatorDone(index, 'edit')) {
+          <mat-icon class="material-icon-white-background-success custom-icon-step outline"
             >edit</mat-icon
           >
         }
 
-        @if (iconsValidatorDone(index, "lock")) {
+        @if (iconsValidatorDone(index, 'lock')) {
           <mat-icon class="custom-icon-step">lock</mat-icon>
         }
 
-        @if (iconsValidatorDone(index, "text_snippet")) {
-          <mat-icon
-            class="material-icon-white-background-primary custom-icon-step">
+        @if (iconsValidatorDone(index, 'text_snippet')) {
+          <mat-icon class="material-icon-white-background-primary custom-icon-step">
             text_snippet
           </mat-icon>
         }
       </ng-template>
 
       <ng-template matStepperIcon="edit" let-index="index">
-        @if (iconsValidatorEdit(index, "text_snippet")) {
-          <mat-icon
-            class="material-icon-white-background-success custom-icon-step">
+        @if (iconsValidatorEdit(index, 'text_snippet')) {
+          <mat-icon class="material-icon-white-background-success custom-icon-step">
             text_snippet
           </mat-icon>
         }
 
-        @if (iconsValidatorEdit(index, "edit")) {
-          <mat-icon
-            class="material-icon-white-background-primary custom-icon-step">
+        @if (iconsValidatorEdit(index, 'edit')) {
+          <mat-icon class="material-icon-white-background-primary custom-icon-step">
             edit
           </mat-icon>
         }
 
-        @if (iconsValidatorEdit(index, "lock")) {
-          <mat-icon
-            class="material-icon-white-background-primary custom-icon-step"
-            >lock</mat-icon
-          >
+        @if (iconsValidatorEdit(index, 'lock')) {
+          <mat-icon class="material-icon-white-background-primary custom-icon-step">lock</mat-icon>
         }
       </ng-template>
 
       <ng-template matStepperIcon="number" let-index="index">
-        @if (iconsValidatorNumber(index, "number", stepper.selectedIndex)) {
+        @if (iconsValidatorNumber(index, 'number', stepper.selectedIndex)) {
           <mat-icon class="custom-icon-step number-step-icon">
             {{ index + 1 }}
           </mat-icon>
         }
 
-        @if (iconsValidatorNumber(index, "edit", stepper.selectedIndex)) {
-          <mat-icon
-            class="material-icon-white-background-primary custom-icon-step">
+        @if (iconsValidatorNumber(index, 'edit', stepper.selectedIndex)) {
+          <mat-icon class="material-icon-white-background-primary custom-icon-step">
             edit
           </mat-icon>
         }
 
-        @if (
-          iconsValidatorNumber(
-            index,
-            "text_snippet",
-            stepper.selectedIndex,
-            "gray"
-          )
-        ) {
+        @if (iconsValidatorNumber(index, 'text_snippet', stepper.selectedIndex, 'gray')) {
           <mat-icon class="custom-icon-step"> text_snippet </mat-icon>
         }
 
-        @if (
-          iconsValidatorNumber(
-            index,
-            "text_snippet",
-            stepper.selectedIndex,
-            "success"
-          )
-        ) {
-          <mat-icon
-            class="material-icon-white-background-success custom-icon-step">
+        @if (iconsValidatorNumber(index, 'text_snippet', stepper.selectedIndex, 'success')) {
+          <mat-icon class="material-icon-white-background-success custom-icon-step">
             text_snippet
           </mat-icon>
         }
 
-        @if (iconsValidatorNumber(index, "lock", stepper.selectedIndex)) {
+        @if (iconsValidatorNumber(index, 'lock', stepper.selectedIndex)) {
           <mat-icon class="custom-icon-step">lock</mat-icon>
         }
       </ng-template>
@@ -109,26 +84,23 @@
         label="{{ 'dmp.steps.project.view.button.choose' | translate }}"
         [completed]="
           $safeNavigationMigration(
-            completenessLabel('dmp.steps.project.view.button.choose')
-              ?.completeness
+            completenessLabel('dmp.steps.project.view.button.choose')?.completeness
           ) > 0
-        ">
+        "
+      >
         @if (selectedStep === 0) {
-          <app-project-instruction
-            (selectionChange)="projectComponent?.onViewChange($event)" />
+          <app-project-instruction (selectionChange)="projectComponent?.onViewChange($event)" />
         }
       </mat-step>
       <mat-step
         class="label-container"
         label="{{ 'dmp.steps.people.label' | translate }}"
         [completed]="
-          $safeNavigationMigration(
-            completenessLabel('dmp.steps.people.label')?.completeness
-          ) > 0
-        ">
+          $safeNavigationMigration(completenessLabel('dmp.steps.people.label')?.completeness) > 0
+        "
+      >
         @if (selectedStep === 1) {
-          <app-people-instruction
-            (selectionChange)="peopleComponent?.onViewChange($event)" />
+          <app-people-instruction (selectionChange)="peopleComponent?.onViewChange($event)" />
         }
       </mat-step>
       <mat-step
@@ -137,10 +109,12 @@
           $safeNavigationMigration(
             completenessLabel('dmp.steps.data.specify.label')?.completeness
           ) > 0
-        ">
+        "
+      >
         @if (selectedStep === 2) {
           <app-specify-data-instruction
-            (selectionChange)="specifyDataComponent?.onViewChange($event)" />
+            (selectionChange)="specifyDataComponent?.onViewChange($event)"
+          />
         }
       </mat-step>
       <mat-step
@@ -149,69 +123,65 @@
           $safeNavigationMigration(
             completenessLabel('dmp.steps.documentation.label')?.completeness
           ) > 0
-        " />
+        "
+      />
       <mat-step
         label="{{ 'dmp.steps.storage.label' | translate }}"
         [completed]="
-          $safeNavigationMigration(
-            completenessLabel('dmp.steps.storage.label')?.completeness
-          ) > 0
-        ">
+          $safeNavigationMigration(completenessLabel('dmp.steps.storage.label')?.completeness) > 0
+        "
+      >
         @if (selectedStep === 4) {
-          <app-data-storage-instruction
-            (selectionChange)="onViewChangeStorage($event)" />
+          <app-data-storage-instruction (selectionChange)="onViewChangeStorage($event)" />
         }
       </mat-step>
       <mat-step
         label="{{ 'dmp.steps.legal.label' | translate }}"
         [completed]="
-          $safeNavigationMigration(
-            completenessLabel('dmp.steps.legal.label')?.completeness
-          ) > 0
-        ">
+          $safeNavigationMigration(completenessLabel('dmp.steps.legal.label')?.completeness) > 0
+        "
+      >
         @if (selectedStep === 5) {
           <app-legal-ethical-instruction
-            (selectionChange)="
-              legalEthicalAspectsComponent?.onViewChange($event)
-            " />
+            (selectionChange)="legalEthicalAspectsComponent?.onViewChange($event)"
+          />
         }
       </mat-step>
       <mat-step
         label="{{ 'dmp.steps.licensing.label' | translate }}"
         [completed]="
-          $safeNavigationMigration(
-            completenessLabel('dmp.steps.licensing.label')?.completeness
-          ) > 0
-        " />
+          $safeNavigationMigration(completenessLabel('dmp.steps.licensing.label')?.completeness) > 0
+        "
+      />
       <mat-step
         label="{{ 'dmp.steps.repositories.label' | translate }}"
         [completed]="
           $safeNavigationMigration(
             completenessLabel('dmp.steps.repositories.label')?.completeness
           ) > 0
-        ">
+        "
+      >
         @if (selectedStep === 7) {
-          <app-repo-instruction
-            (selectionChange)="repoComponent?.onViewChange($event)" />
+          <app-repo-instruction (selectionChange)="repoComponent?.onViewChange($event)" />
         }
       </mat-step>
       <mat-step
         label="{{ 'dmp.steps.data.reuse.label' | translate }}"
         [completed]="
-          $safeNavigationMigration(
-            completenessLabel('dmp.steps.data.reuse.label')?.completeness
-          ) > 0
-        " />
+          $safeNavigationMigration(completenessLabel('dmp.steps.data.reuse.label')?.completeness) >
+          0
+        "
+      />
       <mat-step
         label="{{ 'dmp.steps.costs.label' | translate }}"
         [completed]="
-          $safeNavigationMigration(
-            completenessLabel('dmp.steps.costs.label')?.completeness
-          ) > 0
-        " />
+          $safeNavigationMigration(completenessLabel('dmp.steps.costs.label')?.completeness) > 0
+        "
+      />
       <mat-step
         label="{{ 'dmp.steps.end.label' | translate }}"
-        [completed]="checkCompletenessForm() === 'completed'" />
+        [completed]="checkCompletenessForm() === 'completed'"
+      />
     </mat-vertical-stepper>
   </div>
 
@@ -220,7 +190,8 @@
       <app-dmp-project
         #projectComponent
         [projectStep]="projectStep"
-        (project)="changeProject($event)" />
+        (project)="changeProject($event)"
+      />
     }
     @if (selectedStep === 1) {
       <app-dmp-people
@@ -231,7 +202,8 @@
         (contactPerson)="changeContactPerson($event)"
         (contributorToAdd)="addContributor($event)"
         (contributorToRemove)="removeContributor($event)"
-        (contributorToUpdate)="updateContributorDetails($event)" />
+        (contributorToUpdate)="updateContributorDetails($event)"
+      />
     }
     @if (selectedStep === 2) {
       @if (selectedStep === 2) {
@@ -245,11 +217,12 @@
           (updateDataset)="updateDataset($event)"
           (fileToAnalyse)="analyseFile($event)"
           (uploadToCancel)="cancelFileUpload($event)"
-          (removeDataset)="removeDataset($event)" />
+          (removeDataset)="removeDataset($event)"
+        />
       }
       @if (specifyDataStep.invalid || datasets.invalid) {
         <div class="error-message">
-          {{ "dmp.steps.data.specify.error" | translate }}
+          {{ 'dmp.steps.data.specify.error' | translate }}
         </div>
       }
     }
@@ -258,51 +231,49 @@
         <app-dmp-doc-data-quality [docDataStep]="docDataStep" />
       } @else {
         <a href="javascript:void(0)" (click)="onNewDatasetClick()">
-          {{ "dmp.nodatasets" | translate }}
+          {{ 'dmp.nodatasets' | translate }}
         </a>
       }
       @if (docDataStep.invalid) {
         <div class="error-message">
-          {{ "dmp.steps.documentation.error" | translate }}
+          {{ 'dmp.steps.documentation.error' | translate }}
         </div>
       }
     }
     @if (selectedStep === 4) {
       @if (showStep) {
-        @if (selectedViewStorage === "primaryView") {
+        @if (selectedViewStorage === 'primaryView') {
           <div>
             <app-data-access [dmpForm]="dmpForm" [datasets]="datasets" />
           </div>
         }
-        @if (selectedViewStorage === "secondaryView") {
+        @if (selectedViewStorage === 'secondaryView') {
           <div>
             <app-dmp-storage
               [dmpForm]="dmpForm"
               [storageStep]="storageStep"
               [datasets]="datasets"
               (storageToAdd)="addStorage($event)"
-              (storageToRemove)="removeStorage($event)" />
+              (storageToRemove)="removeStorage($event)"
+            />
             <mat-divider />
             <app-dmp-external-storage
               [externalStorageStep]="externalStorageStep"
               [externalStorageInfo]="externalStorageInfo"
               [datasets]="datasets"
               (externalStorageToAdd)="addExternalStorage()"
-              (externalStorageToRemove)="removeExternalStorage($event)" />
+              (externalStorageToRemove)="removeExternalStorage($event)"
+            />
           </div>
         }
-        @if (
-          storageStep.invalid ||
-          externalStorageStep.invalid ||
-          externalStorageInfo.invalid
-        ) {
+        @if (storageStep.invalid || externalStorageStep.invalid || externalStorageInfo.invalid) {
           <div class="error-message">
-            {{ "dmp.steps.storage.error" | translate }}
+            {{ 'dmp.steps.storage.error' | translate }}
           </div>
         }
       } @else {
         <a href="javascript:void(0)" (click)="onNewDatasetClick()">
-          {{ "dmp.nodatasets" | translate }}
+          {{ 'dmp.nodatasets' | translate }}
         </a>
       }
     }
@@ -313,10 +284,11 @@
           [dmpForm]="dmpForm"
           [legalEthicalStep]="legalEthicalStep"
           [datasets]="datasets"
-          [ethicalReportEnabled]="ethicalReportEnabled" />
+          [ethicalReportEnabled]="ethicalReportEnabled"
+        />
       } @else {
         <a href="javascript:void(0)" (click)="onNewDatasetClick()">
-          {{ "dmp.nodatasets" | translate }}
+          {{ 'dmp.nodatasets' | translate }}
         </a>
       }
     }
@@ -325,12 +297,12 @@
         <app-dmp-licenses [dmpForm]="dmpForm" [datasets]="datasets" />
         @if (datasets.invalid) {
           <div class="error-message">
-            {{ "dmp.steps.licensing.error" | translate }}
+            {{ 'dmp.steps.licensing.error' | translate }}
           </div>
         }
       } @else {
         <a href="javascript:void(0)" (click)="onNewDatasetClick()">
-          {{ "dmp.nonewdataset" | translate }}
+          {{ 'dmp.nonewdataset' | translate }}
         </a>
       }
     }
@@ -342,15 +314,16 @@
           [repoStep]="repoStep"
           [datasets]="datasets"
           (repositoryToAdd)="addRepository($event)"
-          (repositoryToRemove)="removeRepository($event)" />
+          (repositoryToRemove)="removeRepository($event)"
+        />
         @if (repoStep.invalid) {
           <div class="error-message">
-            {{ "dmp.steps.repositories.error" | translate }}
+            {{ 'dmp.steps.repositories.error' | translate }}
           </div>
         }
       } @else {
         <a href="javascript:void(0)" (click)="onNewDatasetClick()">
-          {{ "dmp.nonewdataset" | translate }}
+          {{ 'dmp.nonewdataset' | translate }}
         </a>
       }
     }
@@ -359,12 +332,12 @@
         <app-dmp-reuse [reuseStep]="reuseStep" [datasets]="datasets" />
         @if (reuseStep.invalid) {
           <div class="error-message">
-            {{ "dmp.steps.reuse.error" | translate }}
+            {{ 'dmp.steps.reuse.error' | translate }}
           </div>
         }
       } @else {
         <a href="javascript:void(0)" (click)="onNewDatasetClick()">
-          {{ "dmp.nonewdataset" | translate }}
+          {{ 'dmp.nonewdataset' | translate }}
         </a>
       }
     }
@@ -373,10 +346,11 @@
         <app-dmp-costs
           [costsStep]="costsStep"
           (costToAdd)="addCost()"
-          (costToRemove)="removeCost($event)" />
+          (costToRemove)="removeCost($event)"
+        />
       } @else {
         <a href="javascript:void(0)" (click)="onNewDatasetClick()">
-          {{ "dmp.nodatasets" | translate }}
+          {{ 'dmp.nodatasets' | translate }}
         </a>
       }
     }
@@ -390,4 +364,5 @@
   class="dmp-actions"
   [stepChanged$]="stepChanged$"
   [admin]="admin"
-  [preview]="livePreviewEnabled" />
+  [preview]="livePreviewEnabled"
+/>

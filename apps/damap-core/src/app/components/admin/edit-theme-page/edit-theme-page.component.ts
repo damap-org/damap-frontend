@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  inject,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ColorPickerComponent } from './color-picker/color-picker.component';
@@ -64,17 +58,17 @@ export class EditThemePageComponent implements OnInit {
       this.advancedModeSignal(),
     );
 
-    this.colorsForm.valueChanges.subscribe(value => {
+    this.colorsForm.valueChanges.subscribe((value) => {
       this.colorsSignal.set(this.colorsForm.getRawValue());
     });
   }
 
   onSave() {
     this.colorThemeService.saveColors().subscribe({
-      next: response => {
+      next: (response) => {
         this.feedBackService.success('admin.theme.popup.success');
       },
-      error: error => {
+      error: (error) => {
         this.feedBackService.error('admin.theme.popup.error');
       },
     });

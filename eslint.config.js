@@ -5,20 +5,14 @@ const tsFiles = ['**/*.ts'];
 const htmlFiles = ['**/*.html'];
 
 const withFiles = (configs, files) =>
-  configs.map(config => ({
+  configs.map((config) => ({
     ...config,
     files,
   }));
 
 module.exports = [
   {
-    ignores: [
-      '**/coverage/**',
-      '**/dist/**',
-      '**/node_modules/**',
-      '**/tmp/**',
-      '**/*.js',
-    ],
+    ignores: ['**/coverage/**', '**/dist/**', '**/node_modules/**', '**/tmp/**', '**/*.js'],
   },
   ...withFiles(angular.configs.tsRecommended, tsFiles),
   {
@@ -68,6 +62,22 @@ module.exports = [
           style: 'kebab-case',
         },
       ],
+    },
+  },
+  {
+    files: ['apps/**/*store.ts', 'apps/**/*api.ts', '**/*.spec.ts'],
+    languageOptions: {
+      parserOptions: {
+        project: './tsconfig.strict.json',
+        tsconfigRootDir: __dirname,
+      },
+    },
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/no-unsafe-assignment': 'error',
+      '@typescript-eslint/no-unsafe-call': 'error',
+      '@typescript-eslint/no-unsafe-member-access': 'error',
+      '@typescript-eslint/no-unsafe-return': 'error',
     },
   },
   ...withFiles(angular.configs.templateRecommended, htmlFiles),

@@ -1,71 +1,41 @@
-@if (selectedView === "primaryView") {
+@if (selectedView === 'primaryView') {
   <div>
-    <mat-label
-      class="label-title mat-title-large"
-      id="example-radio-group-label"
-      >{{ "dmp.steps.legal.view.button.legal" | translate }}</mat-label
-    >
+    <mat-label class="label-title mat-title-large" id="example-radio-group-label">{{
+      'dmp.steps.legal.view.button.legal' | translate
+    }}</mat-label>
     <mat-card class="legal-ethical-card card-shadow">
       <mat-card-content>
-        @if (selectedView === "primaryView") {
+        @if (selectedView === 'primaryView') {
           <div>
             <div [formGroup]="legalEthicalStep">
               <!--Sensitive Data-->
               <div class="flex-radio">
                 <label id="sensitiveData"
-                  >{{
-                    "dmp.steps.legal.question.sensitiveData.prefix" | translate
-                  }}
+                  >{{ 'dmp.steps.legal.question.sensitiveData.prefix' | translate }}
                   <a
-                    href="{{
-                      'dmp.steps.legal.link.sensitiveData' | translate
-                    }}"
+                    href="{{ 'dmp.steps.legal.link.sensitiveData' | translate }}"
                     target="_blank"
                     rel="noopener"
-                    >{{
-                      "dmp.steps.legal.question.sensitiveData.link" | translate
-                    }}</a
-                  >{{
-                    "dmp.steps.legal.question.sensitiveData.suffix" | translate
-                  }}
+                    >{{ 'dmp.steps.legal.question.sensitiveData.link' | translate }}</a
+                  >{{ 'dmp.steps.legal.question.sensitiveData.suffix' | translate }}
                 </label>
                 <app-cris-tag
-                  [cris]="
-                    $safeNavigationMigration(
-                      legalEthicalStep?.value.sensitiveDataCris
-                    )
-                  " />
-                <mat-radio-group
-                  aria-labelledby="sensitiveData"
-                  formControlName="sensitiveData">
-                  <mat-radio-button
-                    class="boolean-mat-radio-button"
-                    [value]="true">
-                    {{ "dmp.steps.legal.question.answer.yes" | translate }}
+                  [cris]="$safeNavigationMigration(legalEthicalStep?.value.sensitiveDataCris)"
+                />
+                <mat-radio-group aria-labelledby="sensitiveData" formControlName="sensitiveData">
+                  <mat-radio-button class="boolean-mat-radio-button" [value]="true">
+                    {{ 'dmp.steps.legal.question.answer.yes' | translate }}
                   </mat-radio-button>
-                  <mat-radio-button
-                    class="boolean-mat-radio-button"
-                    [value]="false">
-                    {{ "dmp.steps.legal.question.answer.no" | translate }}
+                  <mat-radio-button class="boolean-mat-radio-button" [value]="false">
+                    {{ 'dmp.steps.legal.question.answer.no' | translate }}
                   </mat-radio-button>
                 </mat-radio-group>
-                @if (
-                  legalEthicalStep?.value.sensitiveData && datasets?.length
-                ) {
+                @if (legalEthicalStep?.value.sensitiveData && datasets?.length) {
                   <div>
-                    <section
-                      class="dataset-checkbox-section"
-                      [formGroup]="dmpForm()">
-                      {{
-                        "dmp.steps.legal.question.dataset.sensitiveData"
-                          | translate
-                      }}:
+                    <section class="dataset-checkbox-section" [formGroup]="dmpForm()">
+                      {{ 'dmp.steps.legal.question.dataset.sensitiveData' | translate }}:
                       <div formArrayName="datasets">
-                        @for (
-                          dataset of datasets?.controls;
-                          track dataset;
-                          let i = $index
-                        ) {
+                        @for (dataset of datasets?.controls; track dataset; let i = $index) {
                           <ng-container [formGroupName]="i">
                             <mat-checkbox
                               class="dataset-checkbox"
@@ -81,103 +51,67 @@
                     <div class="form-field-hint">
                       <mat-form-field class="full-width">
                         <mat-label
-                          >{{
-                            "dmp.steps.legal.question.sensitiveDataSecurity"
-                              | translate
-                          }}
+                          >{{ 'dmp.steps.legal.question.sensitiveDataSecurity' | translate }}
                         </mat-label>
-                        <mat-select
-                          formControlName="sensitiveDataSecurity"
-                          multiple>
+                        <mat-select formControlName="sensitiveDataSecurity" multiple>
                           @for (
                             option of securityOptions | keyvalue: originalOrder;
                             track option.key
                           ) {
                             <mat-option [value]="option.value">
-                              {{
-                                translateSecurityPrefixEnum + option.value
-                                  | translate
-                              }}
+                              {{ translateSecurityPrefixEnum + option.value | translate }}
                             </mat-option>
                           }
                         </mat-select>
                       </mat-form-field>
-                      <app-tooltip
-                        [tooltip]="
-                          'dmp.steps.legal.help.sensitiveDataSecurity'
-                        " />
+                      <app-tooltip [tooltip]="'dmp.steps.legal.help.sensitiveDataSecurity'" />
                     </div>
                     @if (isOtherMeasureSelected) {
                       <app-textarea-wrapper
-                        [label]="
-                          'dmp.steps.legal.question.short.otherDataSecurityMeasures'
-                        "
-                        [longLabel]="
-                          'dmp.steps.legal.question.long.otherDataSecurityMeasures'
-                        "
+                        [label]="'dmp.steps.legal.question.short.otherDataSecurityMeasures'"
+                        [longLabel]="'dmp.steps.legal.question.long.otherDataSecurityMeasures'"
                         [control]="otherDataSecurityMeasures"
-                        [maxLength]="4000" />
+                        [maxLength]="4000"
+                      />
                     }
                     <app-textarea-wrapper
-                      [label]="
-                        'dmp.steps.legal.question.short.sensitiveDataAccess'
-                      "
-                      [longLabel]="
-                        'dmp.steps.legal.question.long.sensitiveDataAccess'
-                      "
+                      [label]="'dmp.steps.legal.question.short.sensitiveDataAccess'"
+                      [longLabel]="'dmp.steps.legal.question.long.sensitiveDataAccess'"
                       [control]="sensitiveDataAccess"
                       [maxLength]="4000"
-                      appearance="fill" />
+                      appearance="fill"
+                    />
                   </div>
                 }
                 <hr />
               </div>
               <!-- Yes/No Questions-->
-              @for (
-                question of questions;
-                track question.label;
-                let last = $last
-              ) {
+              @for (question of questions; track question.label; let last = $last) {
                 <div class="flex-radio">
-                  <label id="{{ question.label }}">{{
-                    question.label | translate
-                  }}</label>
-                  <app-cris-tag
-                    [cris]="legalEthicalStep.value[question.cris]" />
+                  <label id="{{ question.label }}">{{ question.label | translate }}</label>
+                  <app-cris-tag [cris]="legalEthicalStep.value[question.cris]" />
                   <mat-radio-group
                     formControlName="{{ question.model }}"
-                    aria-labelledby="{{ question.label }}">
-                    <mat-radio-button
-                      class="boolean-mat-radio-button"
-                      [value]="true">
-                      {{ "dmp.steps.legal.question.answer.yes" | translate }}
+                    aria-labelledby="{{ question.label }}"
+                  >
+                    <mat-radio-button class="boolean-mat-radio-button" [value]="true">
+                      {{ 'dmp.steps.legal.question.answer.yes' | translate }}
                     </mat-radio-button>
-                    <mat-radio-button
-                      class="boolean-mat-radio-button"
-                      [value]="false">
-                      {{ "dmp.steps.legal.question.answer.no" | translate }}
+                    <mat-radio-button class="boolean-mat-radio-button" [value]="false">
+                      {{ 'dmp.steps.legal.question.answer.no' | translate }}
                     </mat-radio-button>
                   </mat-radio-group>
                   <!--Personal Data-->
                   @if (
-                    question.model === "personalData" &&
+                    question.model === 'personalData' &&
                     legalEthicalStep?.value.personalData &&
                     datasets?.length
                   ) {
                     <div>
-                      <section
-                        class="dataset-checkbox-section"
-                        [formGroup]="dmpForm()">
-                        {{
-                          "dmp.steps.legal.question.dataset.personalData"
-                            | translate
-                        }}:
+                      <section class="dataset-checkbox-section" [formGroup]="dmpForm()">
+                        {{ 'dmp.steps.legal.question.dataset.personalData' | translate }}:
                         <div formArrayName="datasets">
-                          @for (
-                            dataset of datasets?.controls;
-                            track dataset;
-                            let i = $index
-                          ) {
+                          @for (dataset of datasets?.controls; track dataset; let i = $index) {
                             <ng-container [formGroupName]="i">
                               <mat-checkbox
                                 class="dataset-checkbox"
@@ -192,64 +126,44 @@
                     <div>
                       <mat-form-field class="full-width">
                         <mat-label>{{
-                          "dmp.steps.legal.question.personalDataCompliance"
-                            | translate
+                          'dmp.steps.legal.question.personalDataCompliance' | translate
                         }}</mat-label>
-                        <mat-select
-                          formControlName="personalDataCompliance"
-                          multiple>
+                        <mat-select formControlName="personalDataCompliance" multiple>
                           @for (
-                            option of complianceOptions
-                              | keyvalue: originalOrder;
+                            option of complianceOptions | keyvalue: originalOrder;
                             track option.key
                           ) {
                             <mat-option [value]="option.key">
-                              {{
-                                translateCompliancePrefixEnum + option.value
-                                  | translate
-                              }}
+                              {{ translateCompliancePrefixEnum + option.value | translate }}
                             </mat-option>
                           }
                         </mat-select>
                         <mat-hint>{{
-                          "dmp.steps.legal.help.personalDataCompliance"
-                            | translate
+                          'dmp.steps.legal.help.personalDataCompliance' | translate
                         }}</mat-hint>
                       </mat-form-field>
                       <br /><br />
                       @if (isOtherSelected) {
                         <app-textarea-wrapper
-                          [label]="
-                            'dmp.steps.legal.question.short.otherPersonalDataCompliance'
-                          "
-                          [longLabel]="
-                            'dmp.steps.legal.question.long.otherPersonalDataCompliance'
-                          "
+                          [label]="'dmp.steps.legal.question.short.otherPersonalDataCompliance'"
+                          [longLabel]="'dmp.steps.legal.question.long.otherPersonalDataCompliance'"
                           [control]="otherPersonalDataCompliance"
-                          [maxLength]="4000" />
+                          [maxLength]="4000"
+                        />
                       }
                     </div>
                   }
                   <!--Legal Restrictions-->
                   @if (
-                    question.model === "legalRestrictions" &&
+                    question.model === 'legalRestrictions' &&
                     legalEthicalStep?.value.legalRestrictions &&
                     datasets?.length
                   ) {
                     <div>
-                      <section
-                        class="dataset-checkbox-section"
-                        [formGroup]="dmpForm()">
-                        {{
-                          "dmp.steps.legal.question.dataset.legalRestrictions"
-                            | translate
-                        }}
+                      <section class="dataset-checkbox-section" [formGroup]="dmpForm()">
+                        {{ 'dmp.steps.legal.question.dataset.legalRestrictions' | translate }}
                         <div formArrayName="datasets">
-                          @for (
-                            dataset of datasets?.controls;
-                            track dataset;
-                            let i = $index
-                          ) {
+                          @for (dataset of datasets?.controls; track dataset; let i = $index) {
                             <ng-container [formGroupName]="i">
                               <mat-checkbox
                                 class="dataset-checkbox"
@@ -263,46 +177,36 @@
                     </div>
                     <div>
                       <app-textarea-wrapper
-                        [label]="
-                          'dmp.steps.legal.question.short.legalRestrictionsComment'
-                        "
-                        [longLabel]="
-                          'dmp.steps.legal.question.long.legalRestrictionsComment'
-                        "
+                        [label]="'dmp.steps.legal.question.short.legalRestrictionsComment'"
+                        [longLabel]="'dmp.steps.legal.question.long.legalRestrictionsComment'"
                         [control]="legalRestrictionsComment"
-                        [maxLength]="4000" />
+                        [maxLength]="4000"
+                      />
                     </div>
                     <mat-form-field class="full-width">
                       <mat-label>{{
-                        "dmp.steps.legal.question.legalRestrictionsDocuments"
-                          | translate
+                        'dmp.steps.legal.question.legalRestrictionsDocuments' | translate
                       }}</mat-label>
-                      <mat-select
-                        formControlName="legalRestrictionsDocuments"
-                        multiple>
+                      <mat-select formControlName="legalRestrictionsDocuments" multiple>
                         @for (
                           option of agreementOptions | keyvalue: originalOrder;
                           track option.key
                         ) {
                           <mat-option [value]="option.key">
-                            {{
-                              translateAgreementPrefixEnum + option.value
-                                | translate
-                            }}
+                            {{ translateAgreementPrefixEnum + option.value | translate }}
                           </mat-option>
                         }
                       </mat-select>
                     </mat-form-field>
                     @if (isOtherDocumentSelected) {
                       <app-textarea-wrapper
-                        [label]="
-                          'dmp.steps.legal.question.short.otherLegalRestrictionsDocuments'
-                        "
+                        [label]="'dmp.steps.legal.question.short.otherLegalRestrictionsDocuments'"
                         [longLabel]="
                           'dmp.steps.legal.question.long.otherLegalRestrictionsDocuments'
                         "
                         [maxLength]="4000"
-                        [control]="otherLegalRestrictionsDocuments" />
+                        [control]="otherLegalRestrictionsDocuments"
+                      />
                     }
                   }
                   @if (!last) {
@@ -311,14 +215,11 @@
                 </div>
               }
               <app-textarea-wrapper
-                [label]="
-                  'dmp.steps.legal.question.short.dataRightsAndAccessControl'
-                "
-                [longLabel]="
-                  'dmp.steps.legal.question.long.dataRightsAndAccessControl'
-                "
+                [label]="'dmp.steps.legal.question.short.dataRightsAndAccessControl'"
+                [longLabel]="'dmp.steps.legal.question.long.dataRightsAndAccessControl'"
                 [maxLength]="4000"
-                [control]="dataRightsAndAccessControl" />
+                [control]="dataRightsAndAccessControl"
+              />
             </div>
           </div>
         }
@@ -326,15 +227,14 @@
     </mat-card>
   </div>
 }
-@if (selectedView === "secondaryView") {
+@if (selectedView === 'secondaryView') {
   <div>
-    <mat-label
-      class="label-title mat-title-large"
-      id="example-radio-group-label"
-      >{{ "dmp.steps.legal.view.button.ethical" | translate }}</mat-label
-    >
+    <mat-label class="label-title mat-title-large" id="example-radio-group-label">{{
+      'dmp.steps.legal.view.button.ethical' | translate
+    }}</mat-label>
     <app-ethical-aspects
       [legalEthicalStep]="legalEthicalStep"
-      [ethicalReportEnabled]="ethicalReportEnabled()" />
+      [ethicalReportEnabled]="ethicalReportEnabled()"
+    />
   </div>
 }

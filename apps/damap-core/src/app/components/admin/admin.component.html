@@ -2,83 +2,70 @@
   <h1 translate>admin.pageTitle</h1>
   <hr />
   <h2 translate>admin.appTranslations.title</h2>
-  <button
-    class="button-position"
-    mat-flat-button
-    (click)="navigateTo('/admin/translations')">
+  <button class="button-position" mat-flat-button (click)="navigateTo('/admin/translations')">
     <mat-icon>edit</mat-icon>
-    {{ "admin.edit.translations" | translate }}
+    {{ 'admin.edit.translations' | translate }}
   </button>
   <hr />
   <h2 translate>admin.internalStorage.sectionTitle</h2>
   <button class="button-position" mat-flat-button (click)="openStorageDialog()">
     <mat-icon>add</mat-icon>
-    {{ "admin.internalStorage.action.create" | translate }}
+    {{ 'admin.internalStorage.action.create' | translate }}
   </button>
   <damap-internal-storage-table
     [internalStorages]="internalStorages"
-    (selectInternalStorage)="selectStorage($event)" />
+    (selectInternalStorage)="selectStorage($event)"
+  />
   <h2 class="selected-storage">
     {{
       selectedInternalStorageUrl !== null
-        ? ("admin.internalStorage.translation.sectionTitle" | translate)
-        : ("admin.internal-storage-translations-no-selected" | translate)
+        ? ('admin.internalStorage.translation.sectionTitle' | translate)
+        : ('admin.internal-storage-translations-no-selected' | translate)
     }}
     {{ selectedInternalStorageUrl }}
   </h2>
   @if (selectedInternalStorageId === null) {
     <div>
       <p>
-        {{ "admin.internalStorage.translation.info" | translate }}
+        {{ 'admin.internalStorage.translation.info' | translate }}
       </p>
     </div>
   }
   @if (selectedInternalStorageId !== null) {
     <div>
-      <button
-        class="button-position"
-        mat-flat-button
-        (click)="openTranslationDialog()">
+      <button class="button-position" mat-flat-button (click)="openTranslationDialog()">
         <mat-icon>add</mat-icon>
-        {{ "admin.internalStorage.translation.action.create" | translate }}
+        {{ 'admin.internalStorage.translation.action.create' | translate }}
       </button>
-      <button
-        class="button-position"
-        mat-flat-button
-        (click)="resetStorageSelection()">
-        {{ "admin.internalStorage.selection.reset" | translate }}
+      <button class="button-position" mat-flat-button (click)="resetStorageSelection()">
+        {{ 'admin.internalStorage.selection.reset' | translate }}
       </button>
       <damap-internal-storage-translation-table
         [internalStorageTranslations]="internalStorageTranslations"
-        [selectedInternalStorageId]="selectedInternalStorageId" />
+        [selectedInternalStorageId]="selectedInternalStorageId"
+      />
     </div>
   }
   <hr />
   <h2 translate>admin.banner.sectionTitle</h2>
   @if (!appBanner) {
     <div>
-      <button
-        class="button-position"
-        mat-flat-button
-        (click)="openBannerDialog('add')">
+      <button class="button-position" mat-flat-button (click)="openBannerDialog('add')">
         <mat-icon>add</mat-icon>
-        {{ "admin.banner.action.create" | translate }}
+        {{ 'admin.banner.action.create' | translate }}
       </button>
       <p translate>admin.banner.state.missing</p>
     </div>
   }
   @if (appBanner) {
     <div>
-      <button
-        class="button-position"
-        mat-flat-button
-        (click)="openBannerDialog('edit')">
+      <button class="button-position" mat-flat-button (click)="openBannerDialog('edit')">
         <mat-icon>edit</mat-icon>
-        {{ "admin.banner.action.edit" | translate }}
+        {{ 'admin.banner.action.edit' | translate }}
       </button>
       <button class="button-position" mat-flat-button (click)="deleteBanner()">
         <mat-icon>delete</mat-icon>
-        {{ "admin.banner.action.delete" | translate }}
+        {{ 'admin.banner.action.delete' | translate }}
       </button>
       <div>
         <p>Title: {{ appBanner.title }}</p>
@@ -86,13 +73,9 @@
         <p style="display: flex; align-items: center">
           Color: {{ appBanner.color }}
           <span
-            style="
-              display: inline-block;
-              width: 20px;
-              height: 20px;
-              margin-left: 10px;
-            "
-            [style.background-color]="appBanner.color"></span>
+            style="display: inline-block; width: 20px; height: 20px; margin-left: 10px"
+            [style.background-color]="appBanner.color"
+          ></span>
         </p>
         <p>Dismissible: {{ appBanner.dismissible }}</p>
       </div>
@@ -100,39 +83,27 @@
   }
   <hr />
   <h2 translate>admin.theme.sectionTitle</h2>
-  <button
-    class="button-position"
-    mat-flat-button
-    (click)="navigateTo('/admin/theme')">
+  <button class="button-position" mat-flat-button (click)="navigateTo('/admin/theme')">
     <mat-icon>edit</mat-icon>
-    {{ "admin.edit.theme" | translate }}
+    {{ 'admin.edit.theme' | translate }}
   </button>
   <hr />
   <h2 translate>admin.images.sectionTitle</h2>
-  <button
-    class="button-position"
-    mat-flat-button
-    (click)="navigateTo('/admin/images')">
+  <button class="button-position" mat-flat-button (click)="navigateTo('/admin/images')">
     <mat-icon>edit</mat-icon>
-    {{ "admin.edit.images" | translate }}
+    {{ 'admin.edit.images' | translate }}
   </button>
   <hr />
   <h2 translate>admin.recommended-repositories.sectionTitle</h2>
-  <button
-    class="button-position"
-    mat-flat-button
-    (click)="navigateTo('/admin/repositories')">
+  <button class="button-position" mat-flat-button (click)="navigateTo('/admin/repositories')">
     <mat-icon>edit</mat-icon>
-    {{ "admin.edit.repositories" | translate }}
+    {{ 'admin.edit.repositories' | translate }}
   </button>
   <hr />
   <h2 translate>admin.templates.sectionTitle</h2>
-  <button
-    class="button-position"
-    mat-flat-button
-    (click)="navigateTo('/admin/templates')">
+  <button class="button-position" mat-flat-button (click)="navigateTo('/admin/templates')">
     <mat-icon>edit</mat-icon>
-    {{ "admin.edit.templates" | translate }}
+    {{ 'admin.edit.templates' | translate }}
   </button>
   <hr />
   <h2 translate>admin.instance-config.title</h2>
@@ -140,30 +111,32 @@
   <div class="instance-config-section">
     <mat-slide-toggle
       [checked]="$safeNavigationMigration(instanceConfig?.publicAvailable)"
-      (change)="onPublicAvailabilityToggle($event.checked)">
-      {{ "admin.instance-config.public-available" | translate }}
+      (change)="onPublicAvailabilityToggle($event.checked)"
+    >
+      {{ 'admin.instance-config.public-available' | translate }}
     </mat-slide-toggle>
 
     <p class="instance-config-hint">
       {{
         (instanceConfig?.publicAvailable
-          ? "admin.instance-config.public-available-enabled"
-          : "admin.instance-config.public-available-disabled"
+          ? 'admin.instance-config.public-available-enabled'
+          : 'admin.instance-config.public-available-disabled'
         ) | translate
       }}
     </p>
 
     <mat-slide-toggle
       [checked]="$safeNavigationMigration(instanceConfig?.consentFormEnabled)"
-      (change)="onConsentFormEnabledToggle($event.checked)">
-      {{ "admin.instance-config.consent-form-enabled" | translate }}
+      (change)="onConsentFormEnabledToggle($event.checked)"
+    >
+      {{ 'admin.instance-config.consent-form-enabled' | translate }}
     </mat-slide-toggle>
 
     <p class="instance-config-hint">
       {{
         (instanceConfig?.consentFormEnabled
-          ? "admin.instance-config.consent-form-enabled-on"
-          : "admin.instance-config.consent-form-enabled-off"
+          ? 'admin.instance-config.consent-form-enabled-on'
+          : 'admin.instance-config.consent-form-enabled-off'
         ) | translate
       }}
     </p>

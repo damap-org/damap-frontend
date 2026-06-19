@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  signal,
-  computed,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal, computed } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { Router } from '@angular/router';
@@ -52,9 +46,7 @@ export class EditTemplatesPageComponent {
 
   readonly localTemplates = signal<any[]>([]);
 
-  readonly activeCount = computed(
-    () => this.localTemplates().filter(t => t.active).length,
-  );
+  readonly activeCount = computed(() => this.localTemplates().filter((t) => t.active).length);
 
   uploadTemplate() {
     const file = this.selectedFile();
@@ -73,7 +65,7 @@ export class EditTemplatesPageComponent {
 
     this.backendService.uploadExportTemplate(payload).subscribe({
       next: () => {
-        this.configService.refreshConfig().then(newConfig => {
+        this.configService.refreshConfig().then((newConfig) => {
           this.localTemplates.set([...(newConfig?.templates || [])]);
           this.feedbackService.success('admin.templates.success.upload');
           this.clearFile();
@@ -102,10 +94,8 @@ export class EditTemplatesPageComponent {
       next: () => {
         this.configService
           .refreshConfig()
-          .then(newConfig => {
-            const sorted = [...(newConfig?.templates || [])].sort(
-              (a, b) => a.id - b.id,
-            );
+          .then((newConfig) => {
+            const sorted = [...(newConfig?.templates || [])].sort((a, b) => a.id - b.id);
             this.localTemplates.set(sorted);
             this.feedbackService.success('admin.templates.success.status');
             this.isProcessing.set(false);
@@ -124,8 +114,8 @@ export class EditTemplatesPageComponent {
   }
 
   private updateLocalActiveStatus(id: number, active: boolean) {
-    this.localTemplates.update(templates =>
-      templates.map(t => (t.id === id ? { ...t, active } : t)),
+    this.localTemplates.update((templates) =>
+      templates.map((t) => (t.id === id ? { ...t, active } : t)),
     );
   }
 
@@ -142,7 +132,7 @@ export class EditTemplatesPageComponent {
     ];
 
     const name = file.name.toLowerCase();
-    const isExtensionValid = allowedExtensions.some(ext => name.endsWith(ext));
+    const isExtensionValid = allowedExtensions.some((ext) => name.endsWith(ext));
     const isMimeValid = allowedMimeTypes.includes(file.type);
 
     return isExtensionValid || isMimeValid;
@@ -156,10 +146,8 @@ export class EditTemplatesPageComponent {
       next: () => {
         this.configService
           .refreshConfig()
-          .then(newConfig => {
-            const sorted = [...(newConfig?.templates || [])].sort(
-              (a, b) => a.id - b.id,
-            );
+          .then((newConfig) => {
+            const sorted = [...(newConfig?.templates || [])].sort((a, b) => a.id - b.id);
             this.localTemplates.set(sorted);
             this.feedbackService.success('admin.templates.success.delete');
             this.isProcessing.set(false);

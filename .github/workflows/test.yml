@@ -33,7 +33,7 @@ jobs:
       - name: Install dependencies
         run: npm run ci:install
 
-      - run: npm run format:check
+      - run: npm run ci:format
       - run: npm run ci:lint
 
       - name: Merge - Build all projects

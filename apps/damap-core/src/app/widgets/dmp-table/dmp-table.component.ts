@@ -92,14 +92,7 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
   // Refactor this into a signal together with the import function in backendservice
   importInProgress = false;
 
-  readonly tableHeaders: string[] = [
-    'title',
-    'version',
-    'created',
-    'modified',
-    'contact',
-    'edit',
-  ];
+  readonly tableHeaders: string[] = ['title', 'version', 'created', 'modified', 'contact', 'edit'];
   readonly FUNCTION_ROLES = FunctionRole;
   private backendService = inject(BackendService);
   private router = inject(Router);
@@ -117,10 +110,7 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
       data.latestVersionName?.toLowerCase().includes(filter) ||
       data.versionCount?.toString().includes(filter) ||
       data.id.toString().includes(filter);
-    this.dataSource.sortingDataAccessor = (
-      item: DmpListItem,
-      property: string,
-    ) => {
+    this.dataSource.sortingDataAccessor = (item: DmpListItem, property: string) => {
       switch (property) {
         case 'title':
           return item.project?.title || 'DMP ID: ' + item.id;

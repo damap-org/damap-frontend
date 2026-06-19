@@ -1,20 +1,18 @@
-<h1 mat-dialog-title>{{'version-save.dialog.title' | translate}}</h1>
+<h1 mat-dialog-title>{{ 'version-save.dialog.title' | translate }}</h1>
 <mat-dialog-content>
-  <p>{{'version-save.dialog.message' | translate}}:</p>
+  <p>{{ 'version-save.dialog.message' | translate }}:</p>
   <app-input-wrapper
     [label]="'version-save.dialog.field.versionName.label'"
     [control]="mockControl"
     [maxLength]="255"
-    (inputChange)="readInput($event)" />
+    (inputChange)="readInput($event)"
+  />
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="onNoClick()">
-    {{'version-save.dialog.button.cancel' | translate}}
+    {{ 'version-save.dialog.button.cancel' | translate }}
   </button>
-  <button
-    mat-flat-button
-    [disabled]="!versionName"
-    [mat-dialog-close]="versionName">
-    {{'version-save.dialog.button.save' | translate}}
+  <button mat-flat-button [disabled]="!versionName" [mat-dialog-close]="versionName">
+    {{ 'version-save.dialog.button.save' | translate }}
   </button>
 </mat-dialog-actions>

@@ -1,8 +1,8 @@
 <h1 mat-dialog-title>
-  @if (mode === "edit") {
-    {{ "admin.internalStorage.dialog.title.edit" | translate }}
+  @if (mode === 'edit') {
+    {{ 'admin.internalStorage.dialog.title.edit' | translate }}
   } @else {
-    {{ "admin.internalStorage.dialog.title.create" | translate }}
+    {{ 'admin.internalStorage.dialog.title.create' | translate }}
   }
 </h1>
 
@@ -10,57 +10,48 @@
   <div [formGroup]="storage">
     <app-input-wrapper
       [label]="'admin.internalStorage.dialog.field.url' | translate"
-      [control]="url" />
+      [control]="url"
+    />
     <app-input-wrapper
       [label]="'admin.internalStorage.dialog.field.storageLocation' | translate"
-      [control]="storageLocation" />
+      [control]="storageLocation"
+    />
     <app-input-wrapper
       [label]="'admin.internalStorage.dialog.field.backupLocation' | translate"
-      [control]="backupLocation" />
+      [control]="backupLocation"
+    />
     <mat-checkbox formControlName="active">
-      {{ "admin.internalStorage.dialog.field.active" | translate }}
+      {{ 'admin.internalStorage.dialog.field.active' | translate }}
     </mat-checkbox>
-    @if (mode === "add") {
+    @if (mode === 'add') {
       <div>
         <div [formGroup]="storageTranslation">
           <hr />
           <app-language-code-input
             class="dialogRow"
-            [label]="
-              'admin.internalStorage.translation.dialog.field.languageCode'
-                | translate
-            "
-            [hint]="
-              'admin.internalStorage.translation.dialog.field.languageCodeHint'
-                | translate
-            "
+            [label]="'admin.internalStorage.translation.dialog.field.languageCode' | translate"
+            [hint]="'admin.internalStorage.translation.dialog.field.languageCodeHint' | translate"
             [control]="languageCode"
             [errorMessageRequired]="
-              'admin.internalStorage.translation.dialog.field.languageCodeRequired'
-                | translate
+              'admin.internalStorage.translation.dialog.field.languageCodeRequired' | translate
             "
             [errorMessageInvalid]="
-              'admin.internalStorage.translation.dialog.field.languageCodeInvalid'
-                | translate
-            " />
-          <app-input-wrapper
-            [label]="
-              'admin.internalStorage.translation.dialog.field.title' | translate
+              'admin.internalStorage.translation.dialog.field.languageCodeInvalid' | translate
             "
-            [control]="title" />
+          />
+          <app-input-wrapper
+            [label]="'admin.internalStorage.translation.dialog.field.title' | translate"
+            [control]="title"
+          />
           <app-textarea-wrapper
-            [label]="
-              'admin.internalStorage.translation.dialog.field.description'
-                | translate
-            "
+            [label]="'admin.internalStorage.translation.dialog.field.description' | translate"
             [control]="description"
-            [maxLength]="4000" />
+            [maxLength]="4000"
+          />
           <app-input-wrapper
-            [label]="
-              'admin.internalStorage.translation.dialog.field.backupFrequency'
-                | translate
-            "
-            [control]="backupFrequency" />
+            [label]="'admin.internalStorage.translation.dialog.field.backupFrequency' | translate"
+            [control]="backupFrequency"
+          />
         </div>
       </div>
     }
@@ -69,14 +60,14 @@
 
 <mat-dialog-actions>
   <button mat-button (click)="onNoClick()">
-    {{ "admin.dialog.internal-storage.button.cancel" | translate }}
+    {{ 'admin.dialog.internal-storage.button.cancel' | translate }}
   </button>
   <button (click)="onDialogClose()" mat-flat-button [disabled]="isDisabled()">
-    @if (mode === "edit") {
-      {{ "admin.dialog.internal-storage.button.update" | translate }}
+    @if (mode === 'edit') {
+      {{ 'admin.dialog.internal-storage.button.update' | translate }}
     }
-    @if (mode === "add") {
-      {{ "admin.dialog.internal-storage.button.add" | translate }}
+    @if (mode === 'add') {
+      {{ 'admin.dialog.internal-storage.button.add' | translate }}
     }
   </button>
 </mat-dialog-actions>

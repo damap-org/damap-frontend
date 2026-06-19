@@ -1,11 +1,4 @@
-import {
-  Component,
-  Input,
-  inject,
-  ChangeDetectionStrategy,
-  input,
-  output,
-} from '@angular/core';
+import { Component, Input, inject, ChangeDetectionStrategy, input, output } from '@angular/core';
 import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';
 
 import { DataSource } from '../../../../domain/enum/data-source.enum';
@@ -81,7 +74,7 @@ export class DatasetTableComponent {
     if (size === -1) {
       return "I don't know yet";
     }
-    const foundSize = this.FILE_SIZES.find(option => size <= option.size);
+    const foundSize = this.FILE_SIZES.find((option) => size <= option.size);
     return foundSize ? foundSize.label : 'Size not defined';
   }
 
@@ -94,7 +87,7 @@ export class DatasetTableComponent {
       data: { dataset: datasetGroup.getRawValue(), mode: 'edit' },
     });
 
-    dialogRef.afterClosed().subscribe(update => {
+    dialogRef.afterClosed().subscribe((update) => {
       if (update) {
         this.updateDataset.emit({ index, update });
       }
@@ -122,19 +115,17 @@ export class DatasetTableComponent {
   getDataType(dataset: Dataset): string {
     let type = '';
     dataset.type.forEach((t, index) => {
-      this.translate
-        .get(`enum.dataset.type.${t}`)
-        .subscribe((translated: string) => {
-          type += translated;
-          if (index < dataset.type.length - 1) {
-            type += ', ';
-          }
-        });
+      this.translate.get(`enum.dataset.type.${t}`).subscribe((translated: string) => {
+        type += translated;
+        if (index < dataset.type.length - 1) {
+          type += ', ';
+        }
+      });
     });
     return type;
   }
   private findFormArrayIndex(dataset: Dataset): number {
-    return this.datasets.value.findIndex(d =>
+    return this.datasets.value.findIndex((d) =>
       d.id ? d.id === dataset.id : d.referenceHash === dataset.referenceHash,
     );
   }

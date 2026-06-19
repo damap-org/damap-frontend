@@ -4,7 +4,7 @@
       <mat-icon>arrow_back</mat-icon>
     </button>
     <h2 class="mat-h2 mat-title">
-      {{ "admin.recommended-repositories.title" | translate }}
+      {{ 'admin.recommended-repositories.title' | translate }}
     </h2>
   </section>
 
@@ -15,14 +15,15 @@
         [selectedRepos]="repositories()"
         [loaded]="loadingState()"
         (repositoryToAdd)="addRepository($event)"
-        (repositoryDetails)="getRepositoryDetails($event)" />
+        (repositoryDetails)="getRepositoryDetails($event)"
+      />
     </section>
 
     <section>
       <mat-card class="flex-card">
         <mat-card-header>
           <mat-card-title>
-            {{ "admin.recommended-repositories.current" | translate }}
+            {{ 'admin.recommended-repositories.current' | translate }}
           </mat-card-title>
         </mat-card-header>
         @for (repository of repositories(); track repository.id) {
@@ -41,7 +42,7 @@
           </mat-card>
         } @empty {
           <div class="empty-state">
-            {{ "admin.recommended-repositories.empty" | translate }}
+            {{ 'admin.recommended-repositories.empty' | translate }}
           </div>
         }
       </mat-card>

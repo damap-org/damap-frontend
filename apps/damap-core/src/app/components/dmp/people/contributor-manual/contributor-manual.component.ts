@@ -59,10 +59,7 @@ export class ContributorManualComponent {
     ]),
     personId: new UntypedFormGroup({
       type: new UntypedFormControl(IdentifierType.ORCID),
-      identifier: new UntypedFormControl('', [
-        orcidValidator(),
-        Validators.maxLength(19),
-      ]),
+      identifier: new UntypedFormControl('', [orcidValidator(), Validators.maxLength(19)]),
     }),
   });
 
@@ -98,8 +95,6 @@ export class ContributorManualComponent {
   resetForm() {
     this.show = false;
     this.form.reset();
-    (this.form.controls.personId as UntypedFormGroup).controls.type.setValue(
-      IdentifierType.ORCID,
-    );
+    (this.form.controls.personId as UntypedFormGroup).controls.type.setValue(IdentifierType.ORCID);
   }
 }

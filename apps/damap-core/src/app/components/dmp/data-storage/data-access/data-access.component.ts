@@ -1,9 +1,4 @@
-import {
-  Component,
-  Input,
-  ChangeDetectionStrategy,
-  input,
-} from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, input } from '@angular/core';
 import {
   UntypedFormArray,
   UntypedFormGroup,

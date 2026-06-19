@@ -1,16 +1,8 @@
 import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
-import {
-  TranslateDirective,
-  TranslatePipe,
-  TranslateService,
-} from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Consent } from '@damap-frontend-core';
 import { CdkScrollable } from '@angular/cdk/scrolling';
-import {
-  MatDialogContent,
-  MatDialogActions,
-  MatDialogClose,
-} from '@angular/material/dialog';
+import { MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
 import { MatButton } from '@angular/material/button';
 
 @Component({

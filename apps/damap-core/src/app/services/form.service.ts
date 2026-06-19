@@ -61,16 +61,11 @@ export class FormService {
   }
 
   public static restrictedDatasets(datasets: Dataset[]): boolean {
-    return (
-      datasets.find(item => item.dataAccess === DataAccessType.RESTRICTED) !=
-      null
-    );
+    return datasets.find((item) => item.dataAccess === DataAccessType.RESTRICTED) != null;
   }
 
   public static closedDatasets(datasets: Dataset[]): boolean {
-    return (
-      datasets.find(item => item.dataAccess === DataAccessType.CLOSED) != null
-    );
+    return datasets.find((item) => item.dataAccess === DataAccessType.CLOSED) != null;
   }
 
   private createDmpForm(): UntypedFormGroup {
@@ -100,33 +95,18 @@ export class FormService {
         personalData: [false],
         personalDataCris: [null],
         personalDataCompliance: [[]],
-        otherPersonalDataCompliance: [
-          '',
-          Validators.maxLength(this.TEXT_MAX_LENGTH),
-        ],
+        otherPersonalDataCompliance: ['', Validators.maxLength(this.TEXT_MAX_LENGTH)],
         sensitiveData: [false],
         sensitiveDataCris: [null],
         sensitiveDataSecurity: [[]],
-        otherDataSecurityMeasures: [
-          '',
-          Validators.maxLength(this.TEXT_MAX_LENGTH),
-        ],
+        otherDataSecurityMeasures: ['', Validators.maxLength(this.TEXT_MAX_LENGTH)],
         sensitiveDataAccess: ['', Validators.maxLength(this.TEXT_MAX_LENGTH)],
         legalRestrictions: [false],
         legalRestrictionsCris: [null],
         legalRestrictionsDocuments: [[]],
-        otherLegalRestrictionsDocuments: [
-          '',
-          Validators.maxLength(this.TEXT_MAX_LENGTH),
-        ],
-        legalRestrictionsComment: [
-          '',
-          Validators.maxLength(this.TEXT_MAX_LENGTH),
-        ],
-        dataRightsAndAccessControl: [
-          '',
-          Validators.maxLength(this.TEXT_MAX_LENGTH),
-        ],
+        otherLegalRestrictionsDocuments: ['', Validators.maxLength(this.TEXT_MAX_LENGTH)],
+        legalRestrictionsComment: ['', Validators.maxLength(this.TEXT_MAX_LENGTH)],
+        dataRightsAndAccessControl: ['', Validators.maxLength(this.TEXT_MAX_LENGTH)],
         humanParticipants: [false],
         humanParticipantsCris: [null],
         ethicalIssues: [false],
@@ -230,9 +210,7 @@ export class FormService {
       );
     }
     for (const storage of dmp.storage || []) {
-      (this.form.controls['storage'] as UntypedFormArray).push(
-        this.mapStorageToFormGroup(storage),
-      );
+      (this.form.controls['storage'] as UntypedFormArray).push(this.mapStorageToFormGroup(storage));
     }
     for (const externalStorage of dmp.externalStorage || []) {
       (this.form.controls['externalStorage'] as UntypedFormArray).push(
@@ -249,9 +227,7 @@ export class FormService {
       committeeReviewed: formValue.legal.committeeReviewed,
       committeeReviewedCris: formValue.legal.committeeReviewedCris,
       contributors: formValue.contributors,
-      costs: formValue.costs.exist
-        ? formValue.costs.list.map(this.mapFormGroupToCost)
-        : [],
+      costs: formValue.costs.exist ? formValue.costs.list.map(this.mapFormGroupToCost) : [],
       costsExist: formValue.costs.exist,
       costsExistCris: formValue.costs.existCris,
       dataGeneration: formValue.data.dataGeneration,
@@ -269,10 +245,8 @@ export class FormService {
       humanParticipantsCris: formValue.legal.humanParticipantsCris,
       legalRestrictions: formValue.legal.legalRestrictions,
       legalRestrictionsCris: formValue.legal.legalRestrictionsCris,
-      legalRestrictionsDocuments:
-        formValue.legal.legalRestrictionsDocuments || [],
-      otherLegalRestrictionsDocument:
-        formValue.legal.otherLegalRestrictionsDocuments,
+      legalRestrictionsDocuments: formValue.legal.legalRestrictionsDocuments || [],
+      otherLegalRestrictionsDocument: formValue.legal.otherLegalRestrictionsDocuments,
       legalRestrictionsComment: formValue.legal.legalRestrictionsComment,
       dataRightsAndAccessControl: formValue.legal.dataRightsAndAccessControl,
       metadata: formValue.documentation.metadata,
@@ -313,16 +287,12 @@ export class FormService {
 
   public changeContactPerson(contact: Contributor) {
     // Remove old contact
-    const contributorFormArray = this.form.get(
-      'contributors',
-    ) as UntypedFormArray;
-    contributorFormArray.controls.forEach(c =>
-      c.patchValue({ contact: false }),
-    );
+    const contributorFormArray = this.form.get('contributors') as UntypedFormArray;
+    contributorFormArray.controls.forEach((c) => c.patchValue({ contact: false }));
 
     // Add/set new contact
     if (contact) {
-      const existingContact = contributorFormArray.controls.find(c =>
+      const existingContact = contributorFormArray.controls.find((c) =>
         compareContributors(c.value, contact),
       );
       if (existingContact) {
@@ -336,9 +306,7 @@ export class FormService {
   public addContributorToForm(contributor: Contributor, contact = false) {
     contributor.contact = contact;
     const contributorFormGroup = this.mapContributorToFormGroup(contributor);
-    (this.form.get('contributors') as UntypedFormArray).push(
-      contributorFormGroup,
-    );
+    (this.form.get('contributors') as UntypedFormArray).push(contributorFormGroup);
   }
 
   public removeContributorFromForm(index: number) {
@@ -346,9 +314,7 @@ export class FormService {
   }
 
   public upadteContributorOfForm(index: number, contributor: Contributor) {
-    const contributor_ = (this.form.get('contributors') as UntypedFormArray).at(
-      index,
-    );
+    const contributor_ = (this.form.get('contributors') as UntypedFormArray).at(index);
 
     contributor_.patchValue(contributor);
   }
@@ -365,11 +331,9 @@ export class FormService {
     const dataset = (this.form.get('datasets') as UntypedFormArray).at(index);
     dataset.patchValue(update);
 
-    const technicalResourceArray = dataset.get(
-      'technicalResources',
-    ) as FormArray;
+    const technicalResourceArray = dataset.get('technicalResources') as FormArray;
     technicalResourceArray.clear();
-    update.technicalResources?.forEach(resource => {
+    update.technicalResources?.forEach((resource) => {
       technicalResourceArray.push(this.createTechnicalResource(resource.name));
     });
   }
@@ -386,12 +350,8 @@ export class FormService {
       return;
     }
 
-    const translation = storage.translations.find(
-      t => t.languageCode === 'eng',
-    );
-    const title: string = translation
-      ? translation.title
-      : storage.translations[0].title;
+    const translation = storage.translations.find((t) => t.languageCode === 'eng');
+    const title: string = translation ? translation.title : storage.translations[0].title;
 
     storageFormGroup.patchValue({
       internalStorageId: storage.id,
@@ -430,19 +390,13 @@ export class FormService {
 
   public addCostToForm() {
     const costFormGroup: UntypedFormGroup = this.createCostFormGroup();
-    (
-      (this.form.get('costs') as UntypedFormGroup).get(
-        'list',
-      ) as UntypedFormArray
-    ).push(costFormGroup);
+    ((this.form.get('costs') as UntypedFormGroup).get('list') as UntypedFormArray).push(
+      costFormGroup,
+    );
   }
 
   public removeCostFromForm(index: number) {
-    (
-      (this.form.get('costs') as UntypedFormGroup).get(
-        'list',
-      ) as UntypedFormArray
-    ).removeAt(index);
+    ((this.form.get('costs') as UntypedFormGroup).get('list') as UntypedFormArray).removeAt(index);
   }
 
   public createDatasetFormGroup(title: string): UntypedFormGroup {
@@ -450,11 +404,7 @@ export class FormService {
       id: [null, { disabled: true }],
       title: [
         title,
-        [
-          Validators.required,
-          Validators.maxLength(this.TEXT_SHORT_LENGTH),
-          notEmptyValidator(),
-        ],
+        [Validators.required, Validators.maxLength(this.TEXT_SHORT_LENGTH), notEmptyValidator()],
       ],
       license: [null],
       startDate: [null],
@@ -485,11 +435,7 @@ export class FormService {
     return this.formBuilder.group({
       name: [
         name,
-        [
-          Validators.required,
-          notEmptyValidator(),
-          Validators.maxLength(this.TEXT_SHORT_LENGTH),
-        ],
+        [Validators.required, notEmptyValidator(), Validators.maxLength(this.TEXT_SHORT_LENGTH)],
       ],
       description: [''],
     });
@@ -500,27 +446,15 @@ export class FormService {
       id: [null, { disabled: true }],
       url: [
         '',
-        [
-          Validators.required,
-          Validators.maxLength(this.TEXT_SHORT_LENGTH),
-          notEmptyValidator(),
-        ],
+        [Validators.required, Validators.maxLength(this.TEXT_SHORT_LENGTH), notEmptyValidator()],
       ],
       storageLocation: [
         '',
-        [
-          Validators.required,
-          Validators.maxLength(this.TEXT_SHORT_LENGTH),
-          notEmptyValidator(),
-        ],
+        [Validators.required, Validators.maxLength(this.TEXT_SHORT_LENGTH), notEmptyValidator()],
       ],
       backupLocation: [
         '',
-        [
-          Validators.required,
-          Validators.maxLength(this.TEXT_SHORT_LENGTH),
-          notEmptyValidator(),
-        ],
+        [Validators.required, Validators.maxLength(this.TEXT_SHORT_LENGTH), notEmptyValidator()],
       ],
       active: [true],
     });
@@ -530,28 +464,16 @@ export class FormService {
     return this.formBuilder.group({
       title: [
         '',
-        [
-          Validators.required,
-          Validators.maxLength(this.TEXT_SHORT_LENGTH),
-          notEmptyValidator(),
-        ],
+        [Validators.required, Validators.maxLength(this.TEXT_SHORT_LENGTH), notEmptyValidator()],
       ],
       description: [
         '',
-        [
-          Validators.required,
-          Validators.maxLength(this.TEXT_SHORT_LENGTH),
-          notEmptyValidator(),
-        ],
+        [Validators.required, Validators.maxLength(this.TEXT_SHORT_LENGTH), notEmptyValidator()],
       ],
       dismissible: [true],
       color: [
         this.DEFAULT_BANNER_COLOR,
-        [
-          Validators.required,
-          Validators.maxLength(this.TEXT_SHORT_LENGTH),
-          notEmptyValidator(),
-        ],
+        [Validators.required, Validators.maxLength(this.TEXT_SHORT_LENGTH), notEmptyValidator()],
       ],
     });
   }
@@ -562,19 +484,11 @@ export class FormService {
       storageId: [null, { disabled: true }],
       title: [
         '',
-        [
-          Validators.required,
-          Validators.maxLength(this.TEXT_SHORT_LENGTH),
-          notEmptyValidator(),
-        ],
+        [Validators.required, Validators.maxLength(this.TEXT_SHORT_LENGTH), notEmptyValidator()],
       ],
       languageCode: [
         '',
-        [
-          Validators.required,
-          Validators.maxLength(this.TEXT_SHORT_LENGTH),
-          notEmptyValidator(),
-        ],
+        [Validators.required, Validators.maxLength(this.TEXT_SHORT_LENGTH), notEmptyValidator()],
       ],
       description: ['', [Validators.maxLength(this.TEXT_MAX_LENGTH)]],
       backupFrequency: ['', [Validators.maxLength(this.TEXT_SHORT_LENGTH)]],
@@ -640,11 +554,9 @@ export class FormService {
     const formGroup = this.createDatasetFormGroup(dataset.title);
     formGroup.patchValue(dataset);
 
-    const technicalResourceArray = formGroup.get(
-      'technicalResources',
-    ) as FormArray;
+    const technicalResourceArray = formGroup.get('technicalResources') as FormArray;
     technicalResourceArray.clear();
-    dataset.technicalResources?.forEach(resource => {
+    dataset.technicalResources?.forEach((resource) => {
       technicalResourceArray.push(this.createTechnicalResource(resource.name));
     });
 
@@ -667,9 +579,7 @@ export class FormService {
     });
   }
 
-  private mapContributorToFormGroup(
-    contributor: Contributor,
-  ): UntypedFormGroup {
+  private mapContributorToFormGroup(contributor: Contributor): UntypedFormGroup {
     const formGroup = this.createContributorFormGroup();
 
     formGroup.patchValue({
@@ -686,11 +596,7 @@ export class FormService {
       internalStorageId: [null, { disabled: true }],
       title: [
         '',
-        [
-          Validators.required,
-          Validators.maxLength(this.TEXT_SHORT_LENGTH),
-          notEmptyValidator(),
-        ],
+        [Validators.required, Validators.maxLength(this.TEXT_SHORT_LENGTH), notEmptyValidator()],
       ],
       datasets: [[]],
     });
@@ -712,11 +618,7 @@ export class FormService {
       id: [null, { disabled: true }],
       title: [
         'Other',
-        [
-          Validators.required,
-          Validators.maxLength(this.TEXT_SHORT_LENGTH),
-          notEmptyValidator(),
-        ],
+        [Validators.required, Validators.maxLength(this.TEXT_SHORT_LENGTH), notEmptyValidator()],
       ],
       url: ['', Validators.maxLength(this.TEXT_SHORT_LENGTH)],
       storageLocation: ['', Validators.maxLength(this.TEXT_SHORT_LENGTH)],
@@ -727,9 +629,7 @@ export class FormService {
     });
   }
 
-  private mapExternalStorageToFormGroup(
-    externalStorage: ExternalStorage,
-  ): UntypedFormGroup {
+  private mapExternalStorageToFormGroup(externalStorage: ExternalStorage): UntypedFormGroup {
     const formGroup = this.createExternalStorageFormGroup();
     formGroup.setValue({
       id: externalStorage.id,
@@ -775,10 +675,7 @@ export class FormService {
         ],
       }),
       currencyCode: new FormControl<string>('EUR', {
-        validators: [
-          Validators.required,
-          Validators.maxLength(this.TEXT_SHORT_LENGTH),
-        ],
+        validators: [Validators.required, Validators.maxLength(this.TEXT_SHORT_LENGTH)],
       }),
       value: new FormControl<number>(0, { validators: [currencyValidator()] }),
       type: new FormControl<CostType>(null),
@@ -819,9 +716,7 @@ export class FormService {
   }
 
   private removeDatasetReferences(index: number) {
-    const dataset = (this.form.get('datasets') as UntypedFormArray).at(
-      index,
-    ) as UntypedFormGroup;
+    const dataset = (this.form.get('datasets') as UntypedFormArray).at(index) as UntypedFormGroup;
 
     // Storage
     const storageStep = this.form.get('storage') as UntypedFormArray;
@@ -836,15 +731,10 @@ export class FormService {
     this.removeDatasetReferenceInFormArray(repoStep, dataset);
   }
 
-  private removeDatasetReferenceInFormArray(
-    array: UntypedFormArray,
-    dataset: UntypedFormGroup,
-  ) {
+  private removeDatasetReferenceInFormArray(array: UntypedFormArray, dataset: UntypedFormGroup) {
     for (let i = 0; i < array.controls?.length; i++) {
       const item = array.at(i);
-      const datasets = item.value.datasets.filter(
-        entry => entry !== dataset.value.referenceHash,
-      );
+      const datasets = item.value.datasets.filter((entry) => entry !== dataset.value.referenceHash);
       item.patchValue({ datasets });
     }
   }

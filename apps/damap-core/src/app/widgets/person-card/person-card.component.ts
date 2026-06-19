@@ -29,15 +29,11 @@ export class PersonCardComponent {
 
   // Safely check if 'personId' exists
   get personId() {
-    return 'personId' in this.person
-      ? (this.person as Contributor).personId
-      : undefined;
+    return 'personId' in this.person ? (this.person as Contributor).personId : undefined;
   }
 
   // Safely check if 'contact' exists
   get contact() {
-    return 'contact' in this.person
-      ? (this.person as Contributor).contact
-      : undefined;
+    return 'contact' in this.person ? (this.person as Contributor).contact : undefined;
   }
 }

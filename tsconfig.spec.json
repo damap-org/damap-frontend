@@ -3,12 +3,7 @@
   "compilerOptions": {
     "outDir": "./dist/out-tsc/spec"
   },
-  "include": [
-    "apps/**/*.spec.ts",
-    "libs/**/*.spec.ts",
-    "apps/**/*.d.ts",
-    "libs/**/*.d.ts"
-  ],
+  "include": ["apps/**/*.spec.ts", "apps/**/*.d.ts"],
   "angularCompilerOptions": {
     "strictTemplates": false
   }

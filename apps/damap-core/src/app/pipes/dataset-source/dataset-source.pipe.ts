@@ -5,6 +5,6 @@ import { DataSource } from '../../domain/enum/data-source.enum';
 @Pipe({ name: 'datasetSource' })
 export class DatasetSourcePipe implements PipeTransform {
   transform(datasets: Dataset[], source: DataSource): unknown {
-    return datasets?.filter(item => item.source === source);
+    return datasets?.filter((item) => item.source === source);
   }
 }

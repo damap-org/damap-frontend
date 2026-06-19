@@ -1,11 +1,4 @@
-import {
-  Component,
-  computed,
-  inject,
-  Input,
-  OnInit,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, computed, inject, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ExportWarningDialogComponent } from '../../../widgets/export-warning-dialog/export-warning-dialog.component';
 import {
   MatDialogRef,
@@ -59,9 +52,7 @@ export class LivePreviewComponent implements OnInit {
 
   private configService = inject(ConfigService);
 
-  readonly activeTemplates = computed(() =>
-    this.configService.getActiveTemplates(),
-  );
+  readonly activeTemplates = computed(() => this.configService.getActiveTemplates());
 
   constructor() {
     this.dmpForm = this.formService.dmpForm;

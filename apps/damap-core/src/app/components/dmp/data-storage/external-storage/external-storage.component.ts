@@ -1,9 +1,4 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-  input,
-  output,
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output } from '@angular/core';
 import {
   UntypedFormArray,
   UntypedFormControl,
@@ -57,16 +52,15 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class ExternalStorageComponent {
   readonly externalStorageStep = input<UntypedFormArray>(undefined);
   readonly datasets = input<UntypedFormArray>(undefined);
-  readonly externalStorageInfo = input<UntypedFormControl>(
-    new UntypedFormControl(),
-  );
+  readonly externalStorageInfo = input<UntypedFormControl>(new UntypedFormControl());
 
   readonly externalStorageToAdd = output();
   readonly externalStorageToRemove = output<number>();
 
   getFormControl(index: number, controlName: string): UntypedFormControl {
-    return (this.externalStorageStep()?.at(index) as UntypedFormGroup)
-      ?.controls[controlName] as UntypedFormControl;
+    return (this.externalStorageStep()?.at(index) as UntypedFormGroup)?.controls[
+      controlName
+    ] as UntypedFormControl;
   }
 
   addExternalStorage() {

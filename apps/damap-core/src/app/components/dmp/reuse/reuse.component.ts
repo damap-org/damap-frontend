@@ -1,9 +1,4 @@
-import {
-  Component,
-  Input,
-  ChangeDetectionStrategy,
-  input,
-} from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, input } from '@angular/core';
 import {
   UntypedFormArray,
   UntypedFormControl,
@@ -47,9 +42,7 @@ export class ReuseComponent {
 
   get restricted() {
     return this.datasets()?.value.filter(
-      item =>
-        item.dataAccess === DataAccessType.RESTRICTED &&
-        item.source === DataSource.NEW,
+      (item) => item.dataAccess === DataAccessType.RESTRICTED && item.source === DataSource.NEW,
     );
   }
 

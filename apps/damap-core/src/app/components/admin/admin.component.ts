@@ -12,10 +12,7 @@ import {
 } from '@angular/forms';
 import { BackendService } from '../../services/backend.service';
 import { AuthService } from '../../auth/auth.service';
-import {
-  InternalStorage,
-  InternalStorageTranslation,
-} from '../../domain/internal-storage';
+import { InternalStorage, InternalStorageTranslation } from '../../domain/internal-storage';
 import { MatDialog } from '@angular/material/dialog';
 import { InternalStorageDialogComponent } from './internal-storage-dialog/internal-storage-dialog.component';
 import { FeedbackService } from '../../services/feedback.service';
@@ -81,23 +78,23 @@ export class AdminComponent implements OnInit {
     this.selectedInternalStorageId = null;
     this.selectedInternalStorageUrl = null;
 
-    this.backendService.searchInternalStorage({}).subscribe(data => {
+    this.backendService.searchInternalStorage({}).subscribe((data) => {
       this.internalStorages = data.items;
     });
 
-    this.backendService.getAppBanner().subscribe(banner => {
+    this.backendService.getAppBanner().subscribe((banner) => {
       this.appBanner = banner;
     });
 
     this.backendService.getInstanceConfig().subscribe({
-      next: config => {
+      next: (config) => {
         this.instanceConfig = config;
         this.footerAccessibilityEnabled = !!config.footerAccessibilityUrl;
         this.footerAccessibilityUrlControl.setValue(
           config.footerAccessibilityUrl ?? '',
         );
       },
-      error: error => {
+      error: (error) => {
         if (error.error?.message) {
           this.feedbackService.error(error.error.message);
         } else {
@@ -123,12 +120,12 @@ export class AdminComponent implements OnInit {
       this.backendService.createInternalStorage(storage).subscribe(
         () => {
           this.feedbackService.success('http.success.storage.add');
-          this.backendService.searchInternalStorage({}).subscribe(data => {
+          this.backendService.searchInternalStorage({}).subscribe((data) => {
             this.internalStorages = data.items;
-            this.selectStorage(data.items.find(s => s.url === storage.url).id);
+            this.selectStorage(data.items.find((s) => s.url === storage.url).id);
           });
         },
-        error => {
+        (error) => {
           if (error.error?.message) {
             this.feedbackService.error(error.error.message);
           } else {
@@ -146,7 +143,7 @@ export class AdminComponent implements OnInit {
       data: { mode: type, banner: this.appBanner },
     });
 
-    dialogRef.afterClosed().subscribe(banner => {
+    dialogRef.afterClosed().subscribe((banner) => {
       if (banner) {
         if (type === 'edit') {
           this.backendService.updateAppBanner(banner).subscribe(
@@ -155,7 +152,7 @@ export class AdminComponent implements OnInit {
               this.feedbackService.success('http.success.banner.edit');
               this.refreshPage();
             },
-            error => {
+            (error) => {
               if (error.error?.message) {
                 this.feedbackService.error(error.error.message);
               } else {
@@ -170,7 +167,7 @@ export class AdminComponent implements OnInit {
               this.feedbackService.success('http.success.banner.add');
               this.refreshPage();
             },
-            error => {
+            (error) => {
               if (error.error?.message) {
                 this.feedbackService.error(error.error.message);
               } else {
@@ -188,7 +185,7 @@ export class AdminComponent implements OnInit {
       .open(DeleteBannerWarningDialogComponent)
       .afterClosed()
       .subscribe({
-        next: response => {
+        next: (response) => {
           if (!response) {
             return;
           }
@@ -198,7 +195,7 @@ export class AdminComponent implements OnInit {
               this.feedbackService.success('http.success.banner.delete');
               this.refreshPage();
             },
-            error => {
+            (error) => {
               if (error.error?.message) {
                 this.feedbackService.error(error.error.message);
               } else {
@@ -222,40 +219,31 @@ export class AdminComponent implements OnInit {
   }
 
   openTranslationDialog() {
-    const dialogRef = this.dialog.open(
-      InternalStorageTranslationDialogComponent,
-      {
-        width: '75%',
-        maxWidth: '800px',
-        data: { mode: 'add', storageId: this.selectedInternalStorageId },
-      },
-    );
+    const dialogRef = this.dialog.open(InternalStorageTranslationDialogComponent, {
+      width: '75%',
+      maxWidth: '800px',
+      data: { mode: 'add', storageId: this.selectedInternalStorageId },
+    });
 
-    dialogRef.afterClosed().subscribe(translation => {
+    dialogRef.afterClosed().subscribe((translation) => {
       if (translation) {
-        this.backendService
-          .createInternalStorageTranslation(translation)
-          .subscribe(
-            () => {
-              this.backendService
-                .getAllInternalStorageTranslationsForStorage(
-                  this.selectedInternalStorageId,
-                )
-                .subscribe(data => {
-                  this.internalStorageTranslations = data;
-                  this.feedbackService.success(
-                    'http.success.storage.translations.add',
-                  );
-                });
-            },
-            error => {
-              if (error.error?.message) {
-                this.feedbackService.error(error.error.message);
-              } else {
-                this.feedbackService.error(error.message);
-              }
-            },
-          );
+        this.backendService.createInternalStorageTranslation(translation).subscribe(
+          () => {
+            this.backendService
+              .getAllInternalStorageTranslationsForStorage(this.selectedInternalStorageId)
+              .subscribe((data) => {
+                this.internalStorageTranslations = data;
+                this.feedbackService.success('http.success.storage.translations.add');
+              });
+          },
+          (error) => {
+            if (error.error?.message) {
+              this.feedbackService.error(error.error.message);
+            } else {
+              this.feedbackService.error(error.message);
+            }
+          },
+        );
       }
     });
   }
@@ -265,13 +253,11 @@ export class AdminComponent implements OnInit {
       this.resetStorageSelection();
       return;
     }
-    this.backendService.getInternalStorage(storageId).subscribe(storage => {
-      this.internalStorages = this.internalStorages.map(s =>
-        s.id === storageId ? storage : s,
-      );
+    this.backendService.getInternalStorage(storageId).subscribe((storage) => {
+      this.internalStorages = this.internalStorages.map((s) => (s.id === storageId ? storage : s));
       this.backendService
         .getAllInternalStorageTranslationsForStorage(storageId)
-        .subscribe(data => {
+        .subscribe((data) => {
           this.selectedInternalStorageId = storageId;
           this.internalStorageTranslations = data;
           this.selectedInternalStorageUrl = storage.url;
@@ -284,7 +270,7 @@ export class AdminComponent implements OnInit {
     this.internalStorageTranslations = [];
     this.selectedInternalStorageUrl = null;
 
-    this.backendService.searchInternalStorage({}).subscribe(data => {
+    this.backendService.searchInternalStorage({}).subscribe((data) => {
       this.internalStorages = data.items;
     });
   }
@@ -308,11 +294,11 @@ export class AdminComponent implements OnInit {
     };
 
     this.backendService.updateInstanceConfig(updatedConfig).subscribe({
-      next: config => {
+      next: (config) => {
         this.instanceConfig = config;
         this.feedbackService.success('http.success.instance-config.update');
       },
-      error: error => {
+      error: (error) => {
         if (error.error?.message) {
           this.feedbackService.error(error.error.message);
         } else {
@@ -338,11 +324,11 @@ export class AdminComponent implements OnInit {
     };
 
     this.backendService.updateInstanceConfig(updatedConfig).subscribe({
-      next: config => {
+      next: (config) => {
         this.instanceConfig = config;
         this.feedbackService.success('http.success.instance-config.update');
       },
-      error: error => {
+      error: (error) => {
         if (error.error?.message) {
           this.feedbackService.error(error.error.message);
         } else {

@@ -34,8 +34,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   ],
 })
 export class AddLanguageDialogComponent {
-  private dialogRef =
-    inject<MatDialogRef<AddLanguageDialogComponent>>(MatDialogRef);
+  private dialogRef = inject<MatDialogRef<AddLanguageDialogComponent>>(MatDialogRef);
   data = inject<{
     existing: string[];
   }>(MAT_DIALOG_DATA);

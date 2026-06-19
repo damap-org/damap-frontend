@@ -1,29 +1,27 @@
 @if (!selectedProject) {
-  <mat-label
-    class="label-title mat-title-large"
-    id="example-radio-group-label"
-    >{{ "dmp.steps.project.list" | translate }}</mat-label
-  >
+  <mat-label class="label-title mat-title-large" id="example-radio-group-label">{{
+    'dmp.steps.project.list' | translate
+  }}</mat-label>
 }
 @if (!selectedProject) {
   <app-search-field
     [label]="'dmp.steps.project.search' | translate"
-    (searchChange)="search($event)" />
+    (searchChange)="search($event)"
+  />
   @if (!selectedProject) {
     <div class="list-container">
       <mat-selection-list
         hideSingleSelectionIndicator
         [multiple]="false"
         style="overflow: hidden"
-        (selectionChange)="changeProject($event)">
-        @for (
-          project of (searchResult$ | async)?.items ?? [];
-          track project.title
-        ) {
+        (selectionChange)="changeProject($event)"
+      >
+        @for (project of (searchResult$ | async)?.items ?? []; track project.title) {
           <mat-list-option
             [style]="'height: auto;'"
             [selected]="project.universityId === selectedProject?.universityId"
-            [value]="project">
+            [value]="project"
+          >
             <div matListItemTitle>
               <strong>{{ project.title }}</strong>
             </div>
@@ -33,7 +31,8 @@
               @if (project.dmpExists) {
                 <mat-icon
                   matTooltip="{{ 'dmp.steps.project.warning.dmp' | translate }}"
-                  class="material-icon-warning mat-list-option-right">
+                  class="material-icon-warning mat-list-option-right"
+                >
                   warning
                 </mat-icon>
               }

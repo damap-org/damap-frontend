@@ -1,10 +1,8 @@
-@if (selectedView === "primaryView") {
+@if (selectedView === 'primaryView') {
   <div>
-    <mat-label
-      class="label-title mat-title-large title-search"
-      id="example-radio-group-label"
-      >{{ "dmp.steps.people.general.search" | translate }}</mat-label
-    >
+    <mat-label class="label-title mat-title-large title-search" id="example-radio-group-label">{{
+      'dmp.steps.people.general.search' | translate
+    }}</mat-label>
     <!-- SEARCH -->
     <div [formGroup]="dmpForm" class="mat-search-form-field">
       <div class="search-container">
@@ -16,17 +14,17 @@
                   | contributorFilter: dmpForm.controls.contributors.value
               "
               (termToSearch)="searchContributor($event)"
-              (personToAdd)="addContributor($event)" />
+              (personToAdd)="addContributor($event)"
+            />
           </div>
           <div class="service-select-container">
             <mat-form-field>
-              <mat-label>{{
-                "dmp.steps.people.search.service" | translate
-              }}</mat-label>
+              <mat-label>{{ 'dmp.steps.people.search.service' | translate }}</mat-label>
               <mat-select
                 id="serviceSelect"
                 [(value)]="serviceConfigType"
-                (selectionChange)="onServiceConfigChange($event.value)">
+                (selectionChange)="onServiceConfigChange($event.value)"
+              >
                 @for (service of serviceConfig$ | keyvalue; track service.key) {
                   <mat-option [value]="service.value">
                     {{ service.value.displayText | translate }}
@@ -40,40 +38,34 @@
     </div>
     @if (!projectMembers?.length) {
       <mat-label class="label-title mat-title-medium title-search">
-        {{ "dmp.steps.people.nopeople" | translate }}
+        {{ 'dmp.steps.people.nopeople' | translate }}
       </mat-label>
     }
     @if (
       projectMembers?.length > 0 &&
-      (projectMembers | contributorFilter: dmpForm.controls.contributors.value)
-        .length > 0
+      (projectMembers | contributorFilter: dmpForm.controls.contributors.value).length > 0
     ) {
       <mat-expansion-panel
         [expanded]="!isCollapsed"
         (opened)="isCollapsed = false"
-        class="white-background-panel">
+        class="white-background-panel"
+      >
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{ "dmp.steps.people.general.recommendations" | translate }}
+            {{ 'dmp.steps.people.general.recommendations' | translate }}
           </mat-panel-title>
         </mat-expansion-panel-header>
-        @if (
-          (
-            projectMembers
-            | contributorFilter: dmpForm.controls.contributors.value
-          ).length > 0
-        ) {
+        @if ((projectMembers | contributorFilter: dmpForm.controls.contributors.value).length > 0) {
           <div class="add-all-container">
             <button mat-button color="primary" (click)="addAllContributors()">
               <mat-icon>group_add</mat-icon>
-              {{ "dmp.steps.people.general.addAll" | translate }}
+              {{ 'dmp.steps.people.general.addAll' | translate }}
             </button>
           </div>
         }
         <div class="list-container">
           @for (
-            member of projectMembers
-              | contributorFilter: dmpForm.controls.contributors.value;
+            member of projectMembers | contributorFilter: dmpForm.controls.contributors.value;
             track member.personId
           ) {
             <mat-card appearance="raised">
@@ -83,9 +75,7 @@
                     <mat-icon class="mat-icon-style">person</mat-icon>
                     {{ member.firstName }} {{ member.lastName }}
                   </div>
-                  <mat-icon class="mat-icon-style outline"
-                    >mail_outline</mat-icon
-                  >
+                  <mat-icon class="mat-icon-style outline">mail_outline</mat-icon>
                   {{ member.mbox }}
                 </div>
                 <div class="mat-card-right">
@@ -94,22 +84,18 @@
                       mat-raised-button
                       class="white-button"
                       (click)="changeContactPerson(member)"
-                      title="{{ 'dmp.steps.people.contact.add' | translate }}">
-                      <mat-icon class="material-icon-primary"
-                        >contact_mail</mat-icon
-                      >
+                      title="{{ 'dmp.steps.people.contact.add' | translate }}"
+                    >
+                      <mat-icon class="material-icon-primary">contact_mail</mat-icon>
                     </button>
                   }
                   <button
                     mat-raised-button
                     class="white-button"
                     (click)="addContributor(member)"
-                    title="{{
-                      'dmp.steps.people.contributor.add' | translate
-                    }}">
-                    <mat-icon class="person-icon material-icon-primary"
-                      >person_add</mat-icon
-                    >
+                    title="{{ 'dmp.steps.people.contributor.add' | translate }}"
+                  >
+                    <mat-icon class="person-icon material-icon-primary">person_add</mat-icon>
                   </button>
                 </div>
               </div>
@@ -129,27 +115,24 @@
   </div>
 }
 
-@if (selectedView === "secondaryView") {
+@if (selectedView === 'secondaryView') {
   <div>
     <app-contributor-manual
       (contactPerson)="changeContactPerson($event)"
-      (contributorToAdd)="addContributor($event)" />
+      (contributorToAdd)="addContributor($event)"
+    />
   </div>
 }
 
 @if (contributors.length > 0) {
   <mat-label class="label-title mat-title-large contact-label">{{
-    "dmp.steps.people.contact.title" | translate
+    'dmp.steps.people.contact.title' | translate
   }}</mat-label>
 }
 <div [formGroup]="dmpForm">
   <ng-container formArrayName="contributors">
     <div>
-      @for (
-        contributor of contributors.controls;
-        track contributor;
-        let i = $index
-      ) {
+      @for (contributor of contributors.controls; track contributor; let i = $index) {
         <div>
           @if (contributor.value.contact) {
             <mat-card appearance="raised" class="card-selected-empty">
@@ -161,30 +144,23 @@
                       {{ contributor.value.firstName }}
                       {{ contributor.value.lastName }}
                       <span class="sr-only">{{
-                        "dmp.steps.people.contact.person" | translate
+                        'dmp.steps.people.contact.person' | translate
                       }}</span>
                     </div>
-                    <mat-icon class="mat-icon-style outline"
-                      >mail_outline</mat-icon
-                    >
+                    <mat-icon class="mat-icon-style outline">mail_outline</mat-icon>
                     {{ contributor.value.mbox }}
                     @if (
                       contributor.value.personId?.identifier &&
                       contributor.value.personId?.type === identifierType.ORCID
                     ) {
                       <app-orcid
-                        [orcidId]="
-                          $safeNavigationMigration(
-                            contributor.value.personId?.identifier
-                          )
-                        " />
+                        [orcidId]="$safeNavigationMigration(contributor.value.personId?.identifier)"
+                      />
                     }
                   </div>
                   <div [formGroupName]="i">
                     <mat-form-field>
-                      <mat-label>{{
-                        "dmp.steps.people.contributor.role" | translate
-                      }}</mat-label>
+                      <mat-label>{{ 'dmp.steps.people.contributor.role' | translate }}</mat-label>
                       <mat-select formControlName="roles" multiple>
                         @for (role of roles | keyvalue; track role.key) {
                           <mat-option [value]="role.key">
@@ -198,23 +174,22 @@
                     <button
                       mat-icon-button
                       (click)="changeContactPerson()"
-                      title="{{
-                        'dmp.steps.people.contact.remove' | translate
-                      }}">
+                      title="{{ 'dmp.steps.people.contact.remove' | translate }}"
+                    >
                       <mat-icon>stat_minus_2</mat-icon>
                     </button>
                     <button
                       mat-icon-button
                       (click)="triggerUpdateContributorDetails(i)"
-                      title="{{ 'dmp.steps.people.contact.edit' | translate }}">
+                      title="{{ 'dmp.steps.people.contact.edit' | translate }}"
+                    >
                       <mat-icon>edit</mat-icon>
                     </button>
                     <button
                       mat-icon-button
                       (click)="removeContributor(i)"
-                      title="{{
-                        'dmp.steps.people.contributor.remove' | translate
-                      }}">
+                      title="{{ 'dmp.steps.people.contributor.remove' | translate }}"
+                    >
                       <mat-icon>delete</mat-icon>
                     </button>
                   </div>
@@ -222,41 +197,36 @@
               </mat-card-content>
             </mat-card>
           }
-          @if (
-            currentUpdateContributorIdx === i &&
-            contributors.controls[i].value.contact
-          ) {
+          @if (currentUpdateContributorIdx === i && contributors.controls[i].value.contact) {
             <div [formGroupName]="i">
               <div class="form-fields">
                 <app-input-wrapper
-                  [label]="
-                    'dmp.steps.people.manual.input.question.mbox' | translate
-                  "
-                  [control]="mbox()" />
+                  [label]="'dmp.steps.people.manual.input.question.mbox' | translate"
+                  [control]="mbox()"
+                />
                 <app-input-wrapper
-                  [label]="
-                    'dmp.steps.people.manual.input.question.orcid' | translate
-                  "
-                  [control]="identifier()" />
+                  [label]="'dmp.steps.people.manual.input.question.orcid' | translate"
+                  [control]="identifier()"
+                />
               </div>
               <div class="form-buttons">
-                <button
-                  mat-icon-button
-                  title="{{ 'dmp.steps.people.contact.add' | translate }}">
+                <button mat-icon-button title="{{ 'dmp.steps.people.contact.add' | translate }}">
                   <mat-icon>contact_mail</mat-icon>
                 </button>
                 <button
                   class="button-position"
                   mat-flat-button
                   [disabled]="form.invalid"
-                  (click)="updateContributorDetails(i)">
-                  {{ "dmp.steps.people.contact.update" | translate }}
+                  (click)="updateContributorDetails(i)"
+                >
+                  {{ 'dmp.steps.people.contact.update' | translate }}
                 </button>
                 <button
                   class="button-position"
                   mat-flat-button
-                  (click)="cancelUpdateContributorDetails()">
-                  {{ "dmp.steps.people.contact.cancel" | translate }}
+                  (click)="cancelUpdateContributorDetails()"
+                >
+                  {{ 'dmp.steps.people.contact.cancel' | translate }}
                 </button>
               </div>
             </div>
@@ -272,7 +242,7 @@
     <mat-card appearance="raised" class="card-selected-empty">
       <mat-card-content>
         <mat-icon class="material-icon-primary outline">info</mat-icon>
-        {{ "dmp.steps.people.contact.info" | translate }}
+        {{ 'dmp.steps.people.contact.info' | translate }}
         <mat-icon>contact_mail</mat-icon>
       </mat-card-content>
     </mat-card>
@@ -280,22 +250,16 @@
 }
 
 @if (contributors.length > 0) {
-  <mat-label
-    class="label-title mat-title-large title-search"
-    id="example-radio-group-label"
-    >{{ "Contributors" | translate }}</mat-label
-  >
+  <mat-label class="label-title mat-title-large title-search" id="example-radio-group-label">{{
+    'Contributors' | translate
+  }}</mat-label>
 }
 
 <div [formGroup]="dmpForm">
   <ng-container formArrayName="contributors">
     @if (contributors.length > 0) {
       <div>
-        @for (
-          contributor of contributors.controls;
-          track contributor;
-          let i = $index
-        ) {
+        @for (contributor of contributors.controls; track contributor; let i = $index) {
           <div>
             @if (!contributor.value.contact) {
               <mat-card appearance="raised" class="card-selected">
@@ -307,37 +271,30 @@
                         {{ contributor.value.firstName }}
                         {{ contributor.value.lastName }}
                         @if (contributor.value.contact) {
-                          <mat-icon
-                            class="mat-icon-contact button-color-primary">
+                          <mat-icon class="mat-icon-contact button-color-primary">
                             contact_mail
                           </mat-icon>
                         }
                         <span class="sr-only">{{
-                          "dmp.steps.people.contact.person" | translate
+                          'dmp.steps.people.contact.person' | translate
                         }}</span>
                       </div>
-                      <mat-icon class="mat-icon-style outline"
-                        >mail_outline</mat-icon
-                      >
+                      <mat-icon class="mat-icon-style outline">mail_outline</mat-icon>
                       {{ contributor.value.mbox }}
                       @if (
                         contributor.value.personId?.identifier &&
-                        contributor.value.personId?.type ===
-                          identifierType.ORCID
+                        contributor.value.personId?.type === identifierType.ORCID
                       ) {
                         <app-orcid
                           [orcidId]="
-                            $safeNavigationMigration(
-                              contributor.value.personId?.identifier
-                            )
-                          " />
+                            $safeNavigationMigration(contributor.value.personId?.identifier)
+                          "
+                        />
                       }
                     </div>
                     <div [formGroupName]="i">
                       <mat-form-field>
-                        <mat-label>{{
-                          "dmp.steps.people.contributor.role" | translate
-                        }}</mat-label>
+                        <mat-label>{{ 'dmp.steps.people.contributor.role' | translate }}</mat-label>
                         <mat-select formControlName="roles" multiple>
                           @for (role of roles | keyvalue; track role.key) {
                             <mat-option [value]="role.key">
@@ -352,26 +309,23 @@
                         <button
                           mat-icon-button
                           (click)="changeContactPerson(contributor.value)"
-                          title="{{
-                            'dmp.steps.people.contact.add' | translate
-                          }}">
+                          title="{{ 'dmp.steps.people.contact.add' | translate }}"
+                        >
                           <mat-icon>contact_mail</mat-icon>
                         </button>
                       }
                       <button
                         mat-icon-button
                         (click)="triggerUpdateContributorDetails(i)"
-                        title="{{
-                          'dmp.steps.people.contact.editContributor' | translate
-                        }}">
+                        title="{{ 'dmp.steps.people.contact.editContributor' | translate }}"
+                      >
                         <mat-icon>edit</mat-icon>
                       </button>
                       <button
                         mat-icon-button
                         (click)="removeContributor(i)"
-                        title="{{
-                          'dmp.steps.people.contributor.remove' | translate
-                        }}">
+                        title="{{ 'dmp.steps.people.contributor.remove' | translate }}"
+                      >
                         <mat-icon>delete</mat-icon>
                       </button>
                     </div>
@@ -379,36 +333,33 @@
                 </mat-card-content>
               </mat-card>
             }
-            @if (
-              currentUpdateContributorIdx === i &&
-              !contributors.controls[i].value.contact
-            ) {
+            @if (currentUpdateContributorIdx === i && !contributors.controls[i].value.contact) {
               <div [formGroupName]="i">
                 <div class="form-fields">
                   <app-input-wrapper
-                    [label]="
-                      'dmp.steps.people.manual.input.question.mbox' | translate
-                    "
-                    [control]="mbox()" />
+                    [label]="'dmp.steps.people.manual.input.question.mbox' | translate"
+                    [control]="mbox()"
+                  />
                   <app-input-wrapper
-                    [label]="
-                      'dmp.steps.people.manual.input.question.orcid' | translate
-                    "
-                    [control]="identifier()" />
+                    [label]="'dmp.steps.people.manual.input.question.orcid' | translate"
+                    [control]="identifier()"
+                  />
                 </div>
                 <div class="form-buttons">
                   <button
                     class="button-position"
                     mat-flat-button
                     [disabled]="form.invalid"
-                    (click)="updateContributorDetails(i)">
-                    {{ "dmp.steps.people.contact.update" | translate }}
+                    (click)="updateContributorDetails(i)"
+                  >
+                    {{ 'dmp.steps.people.contact.update' | translate }}
                   </button>
                   <button
                     class="button-position"
                     mat-flat-button
-                    (click)="cancelUpdateContributorDetails()">
-                    {{ "dmp.steps.people.contact.cancel" | translate }}
+                    (click)="cancelUpdateContributorDetails()"
+                  >
+                    {{ 'dmp.steps.people.contact.cancel' | translate }}
                   </button>
                 </div>
               </div>

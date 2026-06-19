@@ -2,7 +2,7 @@
   <div class="action-buttons">
     <button mat-flat-button [routerLink]="'/dashboard'">
       <mat-icon class="outline">Home</mat-icon>
-      {{ "Home" | translate }}
+      {{ 'Home' | translate }}
     </button>
   </div>
 
@@ -14,35 +14,24 @@
     </mat-card-header>
     <mat-card-content class="scrollable-content">
       <p>
-        {{ "info.how-to-create.dmp.text.prefix" | translate }}
-        <a
-          [href]="'info.how-to-create.dmp.text.dmp.link' | translate"
-          target="_blank">
-          {{ "info.how-to-create.dmp.text.dmp.text" | translate }}</a
-        >{{ "info.how-to-create.dmp.text.middle" | translate }}
-        <a
-          [href]="'info.how-to-create.dmp.text.fairprinciples.link' | translate"
-          target="_blank">
-          {{ "info.how-to-create.dmp.text.fairprinciples.text" | translate }}</a
-        >{{ "info.how-to-create.dmp.text.suffix" | translate }}
+        {{ 'info.how-to-create.dmp.text.prefix' | translate }}
+        <a [href]="'info.how-to-create.dmp.text.dmp.link' | translate" target="_blank">
+          {{ 'info.how-to-create.dmp.text.dmp.text' | translate }}</a
+        >{{ 'info.how-to-create.dmp.text.middle' | translate }}
+        <a [href]="'info.how-to-create.dmp.text.fairprinciples.link' | translate" target="_blank">
+          {{ 'info.how-to-create.dmp.text.fairprinciples.text' | translate }}</a
+        >{{ 'info.how-to-create.dmp.text.suffix' | translate }}
       </p>
 
       <mat-card-subtitle>
-        <h4 class="middle" translate>
-          dashboard.cards.how-to-create.front-side
-        </h4>
+        <h4 class="middle" translate>dashboard.cards.how-to-create.front-side</h4>
       </mat-card-subtitle>
 
       <mat-accordion>
-        <mat-expansion-panel
-          [expanded]="step() === 0"
-          (opened)="setStep(0)"
-          hideToggle>
+        <mat-expansion-panel [expanded]="step() === 0" (opened)="setStep(0)" hideToggle>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <mat-icon class="list-icon material-icon-primary outline"
-                >list_alt</mat-icon
-              >
+              <mat-icon class="list-icon material-icon-primary outline">list_alt</mat-icon>
               <h4 translate>info.how-to-create.instructions.steps.heading</h4>
             </mat-panel-title>
           </mat-expansion-panel-header>
@@ -51,15 +40,10 @@
             <button mat-button (click)="nextStep()">Next</button>
           </mat-action-row>
         </mat-expansion-panel>
-        <mat-expansion-panel
-          [expanded]="step() === 1"
-          (opened)="setStep(1)"
-          hideToggle>
+        <mat-expansion-panel [expanded]="step() === 1" (opened)="setStep(1)" hideToggle>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <mat-icon class="list-icon material-icon-primary outline"
-                >export_notes</mat-icon
-              >
+              <mat-icon class="list-icon material-icon-primary outline">export_notes</mat-icon>
               <h4 translate>info.how-to-create.instructions.export.heading</h4>
             </mat-panel-title>
           </mat-expansion-panel-header>
@@ -69,18 +53,11 @@
             <button mat-button (click)="nextStep()">Next</button>
           </mat-action-row>
         </mat-expansion-panel>
-        <mat-expansion-panel
-          [expanded]="step() === 2"
-          (opened)="setStep(2)"
-          hideToggle>
+        <mat-expansion-panel [expanded]="step() === 2" (opened)="setStep(2)" hideToggle>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <mat-icon class="list-icon material-icon-primary outline"
-                >edit_document</mat-icon
-              >
-              <h4 translate>
-                info.how-to-create.instructions.finalise.heading
-              </h4>
+              <mat-icon class="list-icon material-icon-primary outline">edit_document</mat-icon>
+              <h4 translate>info.how-to-create.instructions.finalise.heading</h4>
             </mat-panel-title>
           </mat-expansion-panel-header>
           <p translate>info.how-to-create.instructions.finalise.body</p>
@@ -89,15 +66,10 @@
             <button mat-button (click)="nextStep()">Next</button>
           </mat-action-row>
         </mat-expansion-panel>
-        <mat-expansion-panel
-          [expanded]="step() === 3"
-          (opened)="setStep(3)"
-          hideToggle>
+        <mat-expansion-panel [expanded]="step() === 3" (opened)="setStep(3)" hideToggle>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <mat-icon class="list-icon material-icon-primary outline"
-                >add_notes</mat-icon
-              >
+              <mat-icon class="list-icon material-icon-primary outline">add_notes</mat-icon>
               <h4 translate>info.how-to-create.instructions.update.heading</h4>
             </mat-panel-title>
           </mat-expansion-panel-header>

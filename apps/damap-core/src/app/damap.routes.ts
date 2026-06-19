@@ -44,8 +44,7 @@ export const DAMAP_ROUTES: Route[] = [
   },
   {
     path: 'dmp',
-    loadChildren: () =>
-      import('./components/dmp/dmp.routes').then(m => m.DMP_ROUTES),
+    loadChildren: () => import('./components/dmp/dmp.routes').then((m) => m.DMP_ROUTES),
   },
   {
     path: 'gdpr',

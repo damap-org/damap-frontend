@@ -1,10 +1,4 @@
-import {
-  Component,
-  inject,
-  ChangeDetectionStrategy,
-  input,
-  output,
-} from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy, input, output } from '@angular/core';
 import { REPO_FILTERS } from '../repo-filters';
 import {
   MAT_DIALOG_DATA,
@@ -52,13 +46,11 @@ export class RepoFilterComponent {
 
     dialogRef
       .afterClosed()
-      .subscribe(
-        (result: { [key: string]: { id: string; label: string }[] }) => {
-          if (result) {
-            this.filterChange.emit(result);
-          }
-        },
-      );
+      .subscribe((result: { [key: string]: { id: string; label: string }[] }) => {
+        if (result) {
+          this.filterChange.emit(result);
+        }
+      });
   }
 }
 

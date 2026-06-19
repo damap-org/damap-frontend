@@ -1,9 +1,4 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-  input,
-  output,
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output } from '@angular/core';
 import { DragdropDirective } from './dragdrop.directive';
 import { MatIcon } from '@angular/material/icon';
 import { MatButton, MatIconButton } from '@angular/material/button';
@@ -15,14 +10,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.css'],
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    DragdropDirective,
-    MatIcon,
-    MatButton,
-    MatIconButton,
-    MatProgressBar,
-    TranslatePipe,
-  ],
+  imports: [DragdropDirective, MatIcon, MatButton, MatIconButton, MatProgressBar, TranslatePipe],
 })
 export class FileUploadComponent {
   readonly fileUpload = input<

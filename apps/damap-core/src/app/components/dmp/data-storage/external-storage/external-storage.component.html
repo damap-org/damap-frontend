@@ -3,17 +3,14 @@
     <button
       mat-flat-button
       (click)="addExternalStorage()"
-      [style]="'margin: 5px; font-weight: normal'">
-      {{ "dmp.steps.storage.external.add" | translate }}
+      [style]="'margin: 5px; font-weight: normal'"
+    >
+      {{ 'dmp.steps.storage.external.add' | translate }}
     </button>
   </div>
   <div class="storage-selected">
     <ng-container>
-      @for (
-        item of externalStorageStep()?.controls;
-        track item;
-        let i = $index
-      ) {
+      @for (item of externalStorageStep()?.controls; track item; let i = $index) {
         <mat-card class="card-shadow" appearance="raised">
           <div class="storage-card-top">
             <mat-card-header>
@@ -27,26 +24,22 @@
               <div class="storage-card-top">
                 <app-input-wrapper
                   [label]="'dmp.steps.storage.external.question.name'"
-                  [control]="getFormControl(i, 'title')" />
+                  [control]="getFormControl(i, 'title')"
+                />
               </div>
               <button
                 mat-icon-button
-                aria-label="{{
-                  'dmp.steps.storage.external.remove' | translate
-                }}"
-                (click)="removeExternalStorage(i)">
+                aria-label="{{ 'dmp.steps.storage.external.remove' | translate }}"
+                (click)="removeExternalStorage(i)"
+              >
                 <mat-icon class="material-icon-primary">cancel</mat-icon>
               </button>
             </div>
             <div class="form-row">
               <div class="storage-card-container">
                 <mat-form-field class="full-width">
-                  <mat-label>{{
-                    "dmp.steps.storage.question.datasets" | translate
-                  }}</mat-label>
-                  <mat-select
-                    multiple
-                    [formControl]="getFormControl(i, 'datasets')">
+                  <mat-label>{{ 'dmp.steps.storage.question.datasets' | translate }}</mat-label>
+                  <mat-select multiple [formControl]="getFormControl(i, 'datasets')">
                     @for (dataset of datasets()?.controls; track dataset) {
                       <mat-option [value]="dataset.value.referenceHash">
                         {{ dataset.value.title }}
@@ -56,31 +49,26 @@
                 </mat-form-field>
                 <app-input-wrapper
                   [label]="'dmp.steps.storage.external.question.location'"
-                  [control]="getFormControl(i, 'storageLocation')" />
+                  [control]="getFormControl(i, 'storageLocation')"
+                />
               </div>
             </div>
             <div class="form-row">
               <div class="storage-card-top">
                 <app-input-wrapper
-                  [label]="
-                    'dmp.steps.storage.external.question.backup.frequency'
-                  "
-                  [control]="getFormControl(i, 'backupFrequency')" />
+                  [label]="'dmp.steps.storage.external.question.backup.frequency'"
+                  [control]="getFormControl(i, 'backupFrequency')"
+                />
                 <app-input-wrapper
-                  [label]="
-                    'dmp.steps.storage.external.question.backup.location'
-                  "
-                  [control]="getFormControl(i, 'backupLocation')" />
+                  [label]="'dmp.steps.storage.external.question.backup.location'"
+                  [control]="getFormControl(i, 'backupLocation')"
+                />
               </div>
             </div>
           </mat-card-content>
           <mat-card-actions>
-            <mat-slide-toggle
-              [formControl]="getFormControl(i, 'isManagedInternally')">
-              {{
-                "dmp.steps.storage.external.question.isManagedInternally"
-                  | translate
-              }}
+            <mat-slide-toggle [formControl]="getFormControl(i, 'isManagedInternally')">
+              {{ 'dmp.steps.storage.external.question.isManagedInternally' | translate }}
             </mat-slide-toggle>
           </mat-card-actions>
         </mat-card>
@@ -91,7 +79,8 @@
         <app-textarea-wrapper
           [label]="'dmp.steps.storage.external.question.short.info'"
           [longLabel]="'dmp.steps.storage.external.question.long.info'"
-          [control]="externalStorageInfo()" />
+          [control]="externalStorageInfo()"
+        />
       </div>
     }
   </div>

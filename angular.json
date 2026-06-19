@@ -98,10 +98,7 @@
               "optimization": false,
               "extractLicenses": false,
               "polyfills": [],
-              "assets": [
-                "apps/damap-shell/src/favicon.ico",
-                "apps/damap-shell/src/assets"
-              ]
+              "assets": ["apps/damap-shell/src/favicon.ico", "apps/damap-shell/src/assets"]
             }
           },
           "defaultConfiguration": "production"

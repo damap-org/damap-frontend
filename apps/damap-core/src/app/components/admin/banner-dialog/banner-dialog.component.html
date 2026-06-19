@@ -1,19 +1,18 @@
 <h1 mat-dialog-title>
-  @if (mode === "edit") {
-    {{ "admin.banner.dialog.title.edit" | translate }}
+  @if (mode === 'edit') {
+    {{ 'admin.banner.dialog.title.edit' | translate }}
   } @else {
-    {{ "admin.banner.dialog.title.create" | translate }}
+    {{ 'admin.banner.dialog.title.create' | translate }}
   }
 </h1>
 
 <mat-dialog-content id="datasetDialog">
   <div [formGroup]="banner">
-    <app-input-wrapper
-      [label]="'admin.banner.dialog.field.title' | translate"
-      [control]="title" />
+    <app-input-wrapper [label]="'admin.banner.dialog.field.title' | translate" [control]="title" />
     <app-input-wrapper
       [label]="'admin.banner.dialog.field.description' | translate"
-      [control]="description" />
+      [control]="description"
+    />
     <div class="color-picker-wrapper">
       <input
         id="backgroundColor"
@@ -21,27 +20,28 @@
         [formControl]="color"
         class="color-picker-input"
         [matTooltip]="'admin.banner.dialog.help.backgroundColor' | translate"
-        matTooltipPosition="above" />
+        matTooltipPosition="above"
+      />
       <label for="backgroundColor" class="color-picker-label">
-        {{ "admin.banner.dialog.field.backgroundColor" | translate }}
+        {{ 'admin.banner.dialog.field.backgroundColor' | translate }}
       </label>
     </div>
     <mat-checkbox formControlName="dismissible">
-      {{ "admin.banner.dialog.field.dismissible" | translate }}
+      {{ 'admin.banner.dialog.field.dismissible' | translate }}
     </mat-checkbox>
   </div>
 </mat-dialog-content>
 
 <mat-dialog-actions>
   <button mat-button (click)="onNoClick()">
-    {{ "admin.banner.dialog.button.cancel" | translate }}
+    {{ 'admin.banner.dialog.button.cancel' | translate }}
   </button>
   <button (click)="onDialogClose()" mat-raised-button [disabled]="isDisabled()">
-    @if (mode === "edit") {
-      {{ "admin.banner.dialog.button.update" | translate }}
+    @if (mode === 'edit') {
+      {{ 'admin.banner.dialog.button.update' | translate }}
     }
-    @if (mode === "add") {
-      {{ "admin.banner.dialog.button.add" | translate }}
+    @if (mode === 'add') {
+      {{ 'admin.banner.dialog.button.add' | translate }}
     }
   </button>
 </mat-dialog-actions>

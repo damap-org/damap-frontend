@@ -15,29 +15,26 @@
     [step]="type() === 'number' ? stepSize() : null"
     [maxLength]="maxLength()"
     (input)="onInputChange(message.value)"
-    #message />
-  <mat-hint align="end"
-    >{{ message.value.length }} / {{ maxLength() }}</mat-hint
-  >
+    #message
+  />
+  <mat-hint align="end">{{ message.value.length }} / {{ maxLength() }}</mat-hint>
   @if (!control?.errors?.required && control?.errors?.empty) {
     <mat-error>
-      {{ "validation.error.invalidValue" | translate }}
+      {{ 'validation.error.invalidValue' | translate }}
     </mat-error>
   }
   @if (control?.errors?.required) {
     <mat-error>
-      {{ "validation.error.required" | translate }}
+      {{ 'validation.error.required' | translate }}
     </mat-error>
   }
   @if (control?.errors?.maxlength) {
     <mat-error>
       {{
-        "validation.error.maxLength"
+        'validation.error.maxLength'
           | translate
             : {
-                value: $safeNavigationMigration(
-                  control.errors.maxlength?.requiredLength
-                ),
+                value: $safeNavigationMigration(control.errors.maxlength?.requiredLength),
               }
       }}
       <!-- "maxlength": { "requiredLength": 255, "actualLength": 273 } -->
@@ -45,22 +42,22 @@
   }
   @if (control?.errors?.currency) {
     <mat-error>
-      {{ "validation.error.currencyFormat" | translate }}
+      {{ 'validation.error.currencyFormat' | translate }}
     </mat-error>
   }
   @if (control?.errors?.orcid) {
     <mat-error>
-      {{ "validation.error.orcid" | translate }}
+      {{ 'validation.error.orcid' | translate }}
     </mat-error>
   }
   @if (control?.errors?.url) {
     <mat-error>
-      {{ "validation.error.url" | translate }}
+      {{ 'validation.error.url' | translate }}
     </mat-error>
   }
   @if (control?.errors?.uri) {
     <mat-error>
-      {{ "validation.error.uri" | translate }}
+      {{ 'validation.error.uri' | translate }}
     </mat-error>
   }
 </mat-form-field>

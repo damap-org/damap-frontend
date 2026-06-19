@@ -1,15 +1,11 @@
 {
-  "tabWidth": 2,
-  "useTabs": false,
+  "printWidth": 100,
   "singleQuote": true,
-  "bracketSpacing": true,
-  "bracketSameLine": true,
-  "arrowParens": "avoid",
   "overrides": [
     {
-      "files": ["**/*.css", "**/*.scss", "**/*.html", "**/*.json", "**/*.yml"],
+      "files": "*.html",
       "options": {
-        "singleQuote": false
+        "parser": "angular"
       }
     }
   ]

@@ -24,8 +24,7 @@ interface Contributor {
 function compareContributors(c1: Contributor, c2: Contributor): boolean {
   if (!c1 || !c2) return false;
 
-  const universityId =
-    c1.universityId && c2.universityId && c1.universityId === c2.universityId;
+  const universityId = c1.universityId && c2.universityId && c1.universityId === c2.universityId;
   const personId =
     c1.personId &&
     c2.personId &&

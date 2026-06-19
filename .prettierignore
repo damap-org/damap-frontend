@@ -1,13 +1,18 @@
-# Add files here to ignore them from prettier formatting
+# Dependencies
+node_modules/
 
-/.angular
-/.vscode
-/coverage
-/dist
-/node_modules
-/tmp
+# Build and test output
+dist/
+coverage/
+tmp/
 
-# Test coverage files
-**/coverage/**
+# Tool caches and local editor state
+.angular/
+.agents/
+.claude/
+.codex/
+.nx/cache/
+.vscode/
 
-/.nx/cache
+# Generated package artifacts
+package-lock.json

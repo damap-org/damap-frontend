@@ -33,7 +33,7 @@ export class ToggleButtonsComponent implements OnInit {
     this.emitSelection('primaryView');
     this.breakpointObserver
       .observe([Breakpoints.XSmall, Breakpoints.XSmall])
-      .subscribe(result => {
+      .subscribe((result) => {
         // If matches handset or tablet, set 1 column, else 2 columns
         this.cols = result.matches ? 1 : 2;
       });

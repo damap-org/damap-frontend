@@ -23,11 +23,7 @@ class FeedbackServiceStub extends FeedbackService {
 
 @NgModule({
   imports: [TranslateTestingModule],
-  providers: [
-    MatSnackBar,
-    Overlay,
-    { provide: FeedbackService, useClass: FeedbackServiceStub },
-  ],
+  providers: [MatSnackBar, Overlay, { provide: FeedbackService, useClass: FeedbackServiceStub }],
 })
 class FeedbackTestingModule {}
 

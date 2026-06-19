@@ -73,7 +73,7 @@ function equals(a: unknown, b: unknown): boolean {
     return false;
   }
 
-  return aKeys.every(key => equals(a[key], b[key]));
+  return aKeys.every((key) => equals(a[key], b[key]));
 }
 
 @Injectable()
@@ -84,7 +84,7 @@ export class DmpFormStore {
   readonly dmp = this.dmpState.asReadonly();
   readonly changed = this.changedState.asReadonly();
   readonly contact = computed(() =>
-    this.dmpState().contributors?.find(contributor => contributor.contact),
+    this.dmpState().contributors?.find((contributor) => contributor.contact),
   );
 
   setFormValue(dmp: Dmp): void {

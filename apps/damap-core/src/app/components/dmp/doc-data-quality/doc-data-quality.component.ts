@@ -72,9 +72,7 @@ export class DocDataQualityComponent {
   }
 
   get isOtherDataQualitySelected() {
-    return this.docDataStep.controls.dataQuality.value?.includes(
-      DataQualityType.OTHERS,
-    );
+    return this.docDataStep.controls.dataQuality.value?.includes(DataQualityType.OTHERS);
   }
 
   get otherDataQuality(): UntypedFormControl {

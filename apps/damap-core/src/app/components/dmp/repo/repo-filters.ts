@@ -1369,8 +1369,7 @@ export const REPO_FILTERS: { [key: string]: TreeData[] } = {
                 },
                 {
                   id: '10403 Typology, Non-European Languages, Historical Linguistics',
-                  label:
-                    'Typology, Non-European Languages, Historical Linguistics',
+                  label: 'Typology, Non-European Languages, Historical Linguistics',
                 },
               ],
             },
@@ -1392,8 +1391,7 @@ export const REPO_FILTERS: { [key: string]: TreeData[] } = {
                 },
                 {
                   id: '10504 General and Comparative Literature and Cultural Studies',
-                  label:
-                    'General and Comparative Literature and Cultural Studies',
+                  label: 'General and Comparative Literature and Cultural Studies',
                 },
               ],
             },
@@ -1404,8 +1402,7 @@ export const REPO_FILTERS: { [key: string]: TreeData[] } = {
               children: [
                 {
                   id: '10601 Social and Cultural Anthropology and Ethnology/Folklore',
-                  label:
-                    'Social and Cultural Anthropology and Ethnology/Folklore',
+                  label: 'Social and Cultural Anthropology and Ethnology/Folklore',
                 },
                 {
                   id: '10602 Asian Studies',
@@ -1477,8 +1474,7 @@ export const REPO_FILTERS: { [key: string]: TreeData[] } = {
                 },
                 {
                   id: '10903 Research on Socialization and Educational Institutions and Professions',
-                  label:
-                    'Research on Socialization and Educational Institutions and Professions',
+                  label: 'Research on Socialization and Educational Institutions and Professions',
                 },
               ],
             },
@@ -1496,8 +1492,7 @@ export const REPO_FILTERS: { [key: string]: TreeData[] } = {
                 },
                 {
                   id: '11003 Social Psychology, Industrial and Organisational Psychology',
-                  label:
-                    'Social Psychology, Industrial and Organisational Psychology',
+                  label: 'Social Psychology, Industrial and Organisational Psychology',
                 },
                 {
                   id: '11004 Differential Psychology, Clinical Psychology, Medical Psychology, Methodology',
@@ -1564,8 +1559,7 @@ export const REPO_FILTERS: { [key: string]: TreeData[] } = {
               children: [
                 {
                   id: '11301 Legal and Political Philosophy, Legal History, Legal Theory',
-                  label:
-                    'Legal and Political Philosophy, Legal History, Legal Theory',
+                  label: 'Legal and Political Philosophy, Legal History, Legal Theory',
                 },
                 {
                   id: '11302 Private Law',
@@ -1711,8 +1705,7 @@ export const REPO_FILTERS: { [key: string]: TreeData[] } = {
               children: [
                 {
                   id: '20401 Metabolism, Biochemistry and Genetics of Microorganisms',
-                  label:
-                    'Metabolism, Biochemistry and Genetics of Microorganisms',
+                  label: 'Metabolism, Biochemistry and Genetics of Microorganisms',
                 },
                 {
                   id: '20402 Microbial Ecology and Applied Microbiology',
@@ -1742,8 +1735,7 @@ export const REPO_FILTERS: { [key: string]: TreeData[] } = {
                 },
                 {
                   id: '20502 Public Health, Health Services Research, Social Medicine',
-                  label:
-                    'Public Health, Health Services Research, Social Medicine',
+                  label: 'Public Health, Health Services Research, Social Medicine',
                 },
                 {
                   id: '20503 Human Genetics',
@@ -1787,8 +1779,7 @@ export const REPO_FILTERS: { [key: string]: TreeData[] } = {
                 },
                 {
                   id: '20513 Pneumology, Clinical Infectiology Intensive Care Medicine',
-                  label:
-                    'Pneumology, Clinical Infectiology Intensive Care Medicine',
+                  label: 'Pneumology, Clinical Infectiology Intensive Care Medicine',
                 },
                 {
                   id: '20514 Hematology, Oncology, Transfusion Medicine',
@@ -1886,8 +1877,7 @@ export const REPO_FILTERS: { [key: string]: TreeData[] } = {
                 },
                 {
                   id: '20604 Systemic Neuroscience, Computational Neuroscience, Behaviour',
-                  label:
-                    'Systemic Neuroscience, Computational Neuroscience, Behaviour',
+                  label: 'Systemic Neuroscience, Computational Neuroscience, Behaviour',
                 },
                 {
                   id: '20605 Comparative Neurobiology',
@@ -1928,8 +1918,7 @@ export const REPO_FILTERS: { [key: string]: TreeData[] } = {
           children: [
             {
               id: '207 Agriculture, Forestry, Horticulture and Veterinary Medicine',
-              label:
-                'Agriculture, Forestry, Horticulture and Veterinary Medicine',
+              label: 'Agriculture, Forestry, Horticulture and Veterinary Medicine',
               children: [
                 {
                   id: '20701 Soil Sciences',
@@ -2022,13 +2011,11 @@ export const REPO_FILTERS: { [key: string]: TreeData[] } = {
               children: [
                 {
                   id: '30201 Solid State and Surface Chemistry, Material Synthesis',
-                  label:
-                    'Solid State and Surface Chemistry, Material Synthesis',
+                  label: 'Solid State and Surface Chemistry, Material Synthesis',
                 },
                 {
                   id: '30202 Physical Chemistry of Solids and Surfaces, Material Characterisation',
-                  label:
-                    'Physical Chemistry of Solids and Surfaces, Material Characterisation',
+                  label: 'Physical Chemistry of Solids and Surfaces, Material Characterisation',
                 },
                 {
                   id: '30203 Theory and Modelling',
@@ -2115,8 +2102,7 @@ export const REPO_FILTERS: { [key: string]: TreeData[] } = {
             },
             {
               id: '308 Optics, Quantum Optics and Physics of Atoms, Molecules and Plasmas',
-              label:
-                'Optics, Quantum Optics and Physics of Atoms, Molecules and Plasmas',
+              label: 'Optics, Quantum Optics and Physics of Atoms, Molecules and Plasmas',
               children: [
                 {
                   id: '30801 Optics, Quantum Optics, Atoms, Molecules, Plasmas',
@@ -2136,13 +2122,11 @@ export const REPO_FILTERS: { [key: string]: TreeData[] } = {
             },
             {
               id: '310 Statistical Physics, Soft Matter, Biological Physics, Nonlinear Dynamics',
-              label:
-                'Statistical Physics, Soft Matter, Biological Physics, Nonlinear Dynamics',
+              label: 'Statistical Physics, Soft Matter, Biological Physics, Nonlinear Dynamics',
               children: [
                 {
                   id: '31001 Statistical Physics, Soft Matter, Biological Physics, Nonlinear Dynamics',
-                  label:
-                    'Statistical Physics, Soft Matter, Biological Physics, Nonlinear Dynamics',
+                  label: 'Statistical Physics, Soft Matter, Biological Physics, Nonlinear Dynamics',
                 },
               ],
             },
@@ -2212,8 +2196,7 @@ export const REPO_FILTERS: { [key: string]: TreeData[] } = {
                 },
                 {
                   id: '31502 Geodesy, Photogrammetry, Remote Sensing, Geoinformatics, Cartogaphy',
-                  label:
-                    'Geodesy, Photogrammetry, Remote Sensing, Geoinformatics, Cartogaphy',
+                  label: 'Geodesy, Photogrammetry, Remote Sensing, Geoinformatics, Cartogaphy',
                 },
               ],
             },
@@ -2278,8 +2261,7 @@ export const REPO_FILTERS: { [key: string]: TreeData[] } = {
                 },
                 {
                   id: '40103 Micro-, Precision, Mounting, Joining, Separation Technology',
-                  label:
-                    'Micro-, Precision, Mounting, Joining, Separation Technology',
+                  label: 'Micro-, Precision, Mounting, Joining, Separation Technology',
                 },
                 {
                   id: '40104 Plastics Engineering',
@@ -2287,8 +2269,7 @@ export const REPO_FILTERS: { [key: string]: TreeData[] } = {
                 },
                 {
                   id: '40105 Production Automation, Factory Operation, Operations Manangement',
-                  label:
-                    'Production Automation, Factory Operation, Operations Manangement',
+                  label: 'Production Automation, Factory Operation, Operations Manangement',
                 },
               ],
             },
@@ -2344,8 +2325,7 @@ export const REPO_FILTERS: { [key: string]: TreeData[] } = {
             },
             {
               id: '404 Heat Energy Technology, Thermal Machines, Fluid Mechanics',
-              label:
-                'Heat Energy Technology, Thermal Machines, Fluid Mechanics',
+              label: 'Heat Energy Technology, Thermal Machines, Fluid Mechanics',
               children: [
                 {
                   id: '40401 Energy Process Engineering',
@@ -2462,8 +2442,7 @@ export const REPO_FILTERS: { [key: string]: TreeData[] } = {
               children: [
                 {
                   id: '40801 Electronic Semiconductors, Components, Circuits, Systems',
-                  label:
-                    'Electronic Semiconductors, Components, Circuits, Systems',
+                  label: 'Electronic Semiconductors, Components, Circuits, Systems',
                 },
                 {
                   id: '40802 Communication, High-Frequency and Network Technology, Theoretical Electrical Engineering',
@@ -2472,8 +2451,7 @@ export const REPO_FILTERS: { [key: string]: TreeData[] } = {
                 },
                 {
                   id: '40803 Electrical Energy Generation, Distribution, Application',
-                  label:
-                    'Electrical Energy Generation, Distribution, Application',
+                  label: 'Electrical Energy Generation, Distribution, Application',
                 },
               ],
             },
@@ -2495,8 +2473,7 @@ export const REPO_FILTERS: { [key: string]: TreeData[] } = {
                 },
                 {
                   id: '40904 Artificial Intelligence, Image and Language Processing',
-                  label:
-                    'Artificial Intelligence, Image and Language Processing',
+                  label: 'Artificial Intelligence, Image and Language Processing',
                 },
                 {
                   id: '40905 Computer Architecture and Embedded Systems',
@@ -2526,13 +2503,11 @@ export const REPO_FILTERS: { [key: string]: TreeData[] } = {
                 },
                 {
                   id: '41003 Construction Material Sciences, Chemistry, Building Physics',
-                  label:
-                    'Construction Material Sciences, Chemistry, Building Physics',
+                  label: 'Construction Material Sciences, Chemistry, Building Physics',
                 },
                 {
                   id: '41004 Structural Engineering, Building Informatics, Construction Operation',
-                  label:
-                    'Structural Engineering, Building Informatics, Construction Operation',
+                  label: 'Structural Engineering, Building Informatics, Construction Operation',
                 },
                 {
                   id: '41005 Applied Mechanics, Statics and Dynamics',
@@ -2621,8 +2596,7 @@ export const REPO_FILTERS: { [key: string]: TreeData[] } = {
     },
     {
       id: 'International Virtual Observatory Alliance Technical Specifications',
-      label:
-        'International Virtual Observatory Alliance Technical Specifications',
+      label: 'International Virtual Observatory Alliance Technical Specifications',
     },
     {
       id: 'ISA-Tab',
@@ -2634,8 +2608,7 @@ export const REPO_FILTERS: { [key: string]: TreeData[] } = {
     },
     {
       id: 'MIBBI - Minimum Information for Biological and Biomedical Investigations',
-      label:
-        'MIBBI - Minimum Information for Biological and Biomedical Investigations',
+      label: 'MIBBI - Minimum Information for Biological and Biomedical Investigations',
     },
     {
       id: 'MIDAS-Heritage',
