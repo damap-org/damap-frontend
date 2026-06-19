@@ -5,13 +5,9 @@
       {{ contributor.firstName }} {{ contributor.lastName }}
       <span class="affiliation">({{ contributor.affiliation }})</span>
       @if (contributor.contact) {
-        <mat-icon class="mat-icon-contact button-color-primary">
-          contact_mail
-        </mat-icon>
+        <mat-icon class="mat-icon-contact button-color-primary"> contact_mail </mat-icon>
       }
-      <span class="sr-only">{{
-        "dmp.steps.people.contact.person" | translate
-      }}</span>
+      <span class="sr-only">{{ 'dmp.steps.people.contact.person' | translate }}</span>
     </div>
     <mat-icon class="mat-icon-style outline">mail</mat-icon>
     {{ contributor.mbox }}
@@ -20,9 +16,7 @@
     }
     <div>
       @if (contributor.role) {
-        <app-tag>{{
-          "enum.contributor.role." + contributor.role | translate
-        }}</app-tag>
+        <app-tag>{{ 'enum.contributor.role.' + contributor.role | translate }}</app-tag>
       }
     </div>
     @if (!last) {

@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  ChangeDetectionStrategy,
-  input,
-} from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy, input } from '@angular/core';
 import {
   UntypedFormControl,
   UntypedFormGroup,
@@ -43,17 +37,13 @@ export class EthicalAspectsComponent implements OnInit {
   readonly ethicalReportEnabled = input<boolean>(undefined);
 
   get ethicalIssuesReport(): UntypedFormControl {
-    return this.legalEthicalStep.get(
-      'ethicalIssuesReport',
-    ) as UntypedFormControl;
+    return this.legalEthicalStep.get('ethicalIssuesReport') as UntypedFormControl;
   }
 
   ngOnInit(): void {
-    this.legalEthicalStep
-      .get('committeeReviewed')
-      .valueChanges.subscribe(value => {
-        // Set ethical Report URL to ""
-        this.ethicalIssuesReport.setValue(null);
-      });
+    this.legalEthicalStep.get('committeeReviewed').valueChanges.subscribe((value) => {
+      // Set ethical Report URL to ""
+      this.ethicalIssuesReport.setValue(null);
+    });
   }
 }

@@ -1,9 +1,4 @@
-import {
-  Component,
-  OnInit,
-  inject,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SafeUrl } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
@@ -17,14 +12,7 @@ import { ImageThemeService } from '../../services/image-theme.service';
 
 @Component({
   selector: 'app-landing-page',
-  imports: [
-    CommonModule,
-    RouterLink,
-    MatButtonModule,
-    MatAnchor,
-    MatIcon,
-    TranslatePipe,
-  ],
+  imports: [CommonModule, RouterLink, MatButtonModule, MatAnchor, MatIcon, TranslatePipe],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.css',
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -40,28 +28,19 @@ export class LandingPageComponent implements OnInit {
   graphicUrl: SafeUrl;
 
   constructor() {
-    this.backgroundUrl = this.imageThemeService.getImageUrl(
-      IMAGE_KEYS.LANDING_PAGE_BACKGROUND,
-    );
+    this.backgroundUrl = this.imageThemeService.getImageUrl(IMAGE_KEYS.LANDING_PAGE_BACKGROUND);
 
-    this.logoUrl = this.imageThemeService.getImage(
-      IMAGE_KEYS.LANDING_PAGE_LOGO,
-    );
+    this.logoUrl = this.imageThemeService.getImage(IMAGE_KEYS.LANDING_PAGE_LOGO);
 
-    this.graphicUrl = this.imageThemeService.getImage(
-      IMAGE_KEYS.LANDING_PAGE_GRAPHIC,
-    );
+    this.graphicUrl = this.imageThemeService.getImage(IMAGE_KEYS.LANDING_PAGE_GRAPHIC);
   }
 
   ngOnInit(): void {
     // TODO: The fallback doesnt work when english has been deactivated
-    const preferredLang =
-      localStorage.getItem('lang') || this.translate.getBrowserLang() || 'en';
-    this.translate.reloadLang(preferredLang).subscribe(translations => {
+    const preferredLang = localStorage.getItem('lang') || this.translate.getBrowserLang() || 'en';
+    this.translate.reloadLang(preferredLang).subscribe((translations) => {
       const languageToUse =
-        translations && Object.keys(translations).length > 0
-          ? preferredLang
-          : 'en';
+        translations && Object.keys(translations).length > 0 ? preferredLang : 'en';
 
       this.translate.use(languageToUse);
       localStorage.setItem('lang', languageToUse);

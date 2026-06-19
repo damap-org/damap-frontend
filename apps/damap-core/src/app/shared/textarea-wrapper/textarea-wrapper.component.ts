@@ -1,17 +1,5 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  ViewChild,
-  ChangeDetectionStrategy,
-  input,
-} from '@angular/core';
-import {
-  UntypedFormControl,
-  Validators,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { Component, Input, OnInit, ViewChild, ChangeDetectionStrategy, input } from '@angular/core';
+import { UntypedFormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
   MatFormFieldAppearance,
@@ -20,11 +8,7 @@ import {
   MatHint,
   MatError,
 } from '@angular/material/form-field';
-import {
-  MatAutocompleteTrigger,
-  MatAutocomplete,
-  MatOption,
-} from '@angular/material/autocomplete';
+import { MatAutocompleteTrigger, MatAutocomplete, MatOption } from '@angular/material/autocomplete';
 import { Dataset } from '../../domain/dataset';
 import { MatInput } from '@angular/material/input';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';

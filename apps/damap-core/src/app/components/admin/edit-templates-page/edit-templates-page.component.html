@@ -3,7 +3,7 @@
     <button mat-icon-button (click)="navigateBack()">
       <mat-icon>arrow_back</mat-icon>
     </button>
-    <h2 class="mat-h2 mat-title">{{ "admin.templates.title" | translate }}</h2>
+    <h2 class="mat-h2 mat-title">{{ 'admin.templates.title' | translate }}</h2>
   </section>
 
   <div class="current-and-upload">
@@ -11,22 +11,16 @@
     <section>
       <mat-card class="flex-card">
         <mat-card-header>
-          <mat-card-title>{{
-            "admin.templates.current" | translate
-          }}</mat-card-title>
+          <mat-card-title>{{ 'admin.templates.current' | translate }}</mat-card-title>
         </mat-card-header>
 
         <div class="current-grid">
           @for (template of localTemplates(); track template.id) {
-            <mat-card
-              class="template-card"
-              [class.inactive-card]="!template.active">
+            <mat-card class="template-card" [class.inactive-card]="!template.active">
               <div class="template-name">{{ template.name }}</div>
 
               <div class="template-preview-container">
-                <mat-icon
-                  class="template-type-icon"
-                  [class.active-blue]="template.active">
+                <mat-icon class="template-type-icon" [class.active-blue]="template.active">
                   description
                 </mat-icon>
               </div>
@@ -35,14 +29,11 @@
                 <mat-slide-toggle
                   [checked]="template.active"
                   (change)="toggleStatus(template)"
-                  [disabled]="
-                    isProcessing() || (template.active && activeCount() <= 1)
-                  ">
+                  [disabled]="isProcessing() || (template.active && activeCount() <= 1)"
+                >
                   {{
-                    (template.active
-                      ? "admin.templates.active"
-                      : "admin.templates.inactive"
-                    ) | translate
+                    (template.active ? 'admin.templates.active' : 'admin.templates.inactive')
+                      | translate
                   }}
                 </mat-slide-toggle>
 
@@ -50,9 +41,10 @@
                   <button
                     mat-button
                     [disabled]="isProcessing()"
-                    (click)="deleteTemplate(template.id)">
+                    (click)="deleteTemplate(template.id)"
+                  >
                     <mat-icon>delete</mat-icon>
-                    {{ "admin.templates.actions.delete" | translate }}
+                    {{ 'admin.templates.actions.delete' | translate }}
                   </button>
                 }
               </div>
@@ -66,34 +58,25 @@
     <section>
       <mat-card class="flex-card">
         <mat-card-header>
-          <mat-card-title>{{
-            "admin.templates.upload.title" | translate
-          }}</mat-card-title>
+          <mat-card-title>{{ 'admin.templates.upload.title' | translate }}</mat-card-title>
         </mat-card-header>
 
         <div class="form-field">
           <mat-form-field appearance="outline" class="full-width">
-            <mat-label>{{
-              "admin.templates.upload.name" | translate
-            }}</mat-label>
+            <mat-label>{{ 'admin.templates.upload.name' | translate }}</mat-label>
             <input
               matInput
               [(ngModel)]="templateName"
-              [placeholder]="
-                'admin.templates.upload.placeholder' | translate
-              " />
+              [placeholder]="'admin.templates.upload.placeholder' | translate"
+            />
           </mat-form-field>
         </div>
 
         <div class="form-field category-group">
-          <span class="label-large">{{
-            "admin.templates.upload.basis" | translate
-          }}</span>
+          <span class="label-large">{{ 'admin.templates.upload.basis' | translate }}</span>
           <p class="info-text">
-            {{ "admin.templates.upload.info" | translate }}
-            <a
-              href="https://damap.org/manual/customization/templates/"
-              target="_blank"
+            {{ 'admin.templates.upload.info' | translate }}
+            <a href="https://damap.org/manual/customization/templates/" target="_blank"
               >https://damap.org/manual/customization/templates/</a
             >.
           </p>
@@ -105,16 +88,18 @@
           (dragover)="onDragOver($event)"
           (dragleave)="onDragLeave()"
           (drop)="onDrop($event)"
-          (click)="fileInput.click()">
+          (click)="fileInput.click()"
+        >
           <input
             type="file"
             #fileInput
             accept=".docx"
             class="hidden-file-input"
-            (change)="onFileSelected($event)" />
+            (change)="onFileSelected($event)"
+          />
           <div class="upload-content">
             <mat-icon>upload_file</mat-icon>
-            <p>{{ "admin.templates.upload.dropzone" | translate }}</p>
+            <p>{{ 'admin.templates.upload.dropzone' | translate }}</p>
           </div>
         </div>
 
@@ -126,11 +111,8 @@
               <mat-icon>close</mat-icon>
             </button>
           </div>
-          <button
-            mat-raised-button
-            class="upload-save-btn"
-            (click)="uploadTemplate()">
-            {{ "admin.templates.upload.button" | translate }}
+          <button mat-raised-button class="upload-save-btn" (click)="uploadTemplate()">
+            {{ 'admin.templates.upload.button' | translate }}
           </button>
         }
       </mat-card>

@@ -122,21 +122,15 @@ export class PeopleComponent implements OnInit, OnDestroy {
 
   currentUpdateContributorIdx: number = -1;
   form = new UntypedFormGroup({
-    mbox: new UntypedFormControl('', [
-      notEmptyValidator(),
-      Validators.maxLength(4000),
-    ]),
-    personId: new UntypedFormControl('', [
-      orcidValidator(),
-      Validators.maxLength(19),
-    ]),
+    mbox: new UntypedFormControl('', [notEmptyValidator(), Validators.maxLength(4000)]),
+    personId: new UntypedFormControl('', [orcidValidator(), Validators.maxLength(19)]),
   });
 
   selectedView: 'primaryView' | 'secondaryView' = 'primaryView';
 
   ngOnInit(): void {
     setTimeout(() => {
-      this.configSubscription = this.config$.subscribe(config => {
+      this.configSubscription = this.config$.subscribe((config) => {
         setTimeout(() => {
           this.serviceConfig$ = config.personSearchServiceConfigs;
           this.serviceConfigType = config.personSearchServiceConfigs[0];
@@ -169,7 +163,7 @@ export class PeopleComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
     this.configSubscription.unsubscribe();
   }
 
@@ -223,9 +217,7 @@ export class PeopleComponent implements OnInit, OnDestroy {
   }
 
   removeContributor(index: number): void {
-    const contributor = (
-      this.dmpForm.controls.contributors as UntypedFormArray
-    ).at(index).value;
+    const contributor = (this.dmpForm.controls.contributors as UntypedFormArray).at(index).value;
     const datasets = this.getDatasetsForContributor(contributor);
     if (!datasets.length) {
       this.contributorToRemove.emit(index);
@@ -235,7 +227,7 @@ export class PeopleComponent implements OnInit, OnDestroy {
       const dialogRef = this.dialog.open(ConfirmDeletionDialogComponent, {
         data: datasets,
       });
-      dialogRef.afterClosed().subscribe(result => {
+      dialogRef.afterClosed().subscribe((result) => {
         if (result) {
           this.contributorToRemove.emit(index);
           this.currentUpdateContributorIdx = -1;
@@ -258,7 +250,7 @@ export class PeopleComponent implements OnInit, OnDestroy {
 
   private getDatasetsForContributor(contributor: Contributor): Dataset[] {
     const datasets = this.dmpForm.controls.datasets.value;
-    return datasets.filter(item => item.deletionPerson?.id === contributor?.id);
+    return datasets.filter((item) => item.deletionPerson?.id === contributor?.id);
   }
 
   addAllContributors(): void {
@@ -267,7 +259,7 @@ export class PeopleComponent implements OnInit, OnDestroy {
       this.dmpForm.get('contributors').value,
     );
 
-    filteredMembers.forEach(member => {
+    filteredMembers.forEach((member) => {
       this.contributorToAdd.emit(member);
     });
 
@@ -282,7 +274,7 @@ export class PeopleComponent implements OnInit, OnDestroy {
 
   doesContactExist(): boolean {
     const contributors = this.dmpForm.get('contributors') as UntypedFormArray;
-    return contributors.controls.some(contributor => contributor.value.contact);
+    return contributors.controls.some((contributor) => contributor.value.contact);
   }
 
   onViewChange(view: 'primaryView' | 'secondaryView'): void {

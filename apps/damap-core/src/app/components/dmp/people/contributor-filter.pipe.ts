@@ -21,8 +21,8 @@ export class ContributorFilterPipe implements PipeTransform {
       return newContributors || [];
     }
     return newContributors.filter(
-      entry =>
-        alreadyAddedContributors.find(c => {
+      (entry) =>
+        alreadyAddedContributors.find((c) => {
           return compareContributors(c, entry);
         }) === undefined,
     );

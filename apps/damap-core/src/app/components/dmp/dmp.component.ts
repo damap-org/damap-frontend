@@ -10,11 +10,7 @@ import {
   inject,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import {
-  UntypedFormArray,
-  UntypedFormControl,
-  UntypedFormGroup,
-} from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 import { AuthService } from '../../auth/auth.service';
 import { BackendService } from '../../services/backend.service';
@@ -36,10 +32,7 @@ import { Project } from '../../domain/project';
 import { ProjectComponent } from './project/project.component';
 import { RepoComponent } from './repo/repo.component';
 import { SpecifyDataComponent } from './specify-data/specify-data.component';
-import {
-  StepperSelectionEvent,
-  STEPPER_GLOBAL_OPTIONS,
-} from '@angular/cdk/stepper';
+import { StepperSelectionEvent, STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Dmp } from '../../domain/dmp';
 import { DmpFormStore } from '../../data-access/dmp-form.store';
 import { Completeness, SummaryService } from '../../services/summary.service';
@@ -194,32 +187,26 @@ export class DmpComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.getInstruction(0);
       this.config$ = this.backendService.loadServiceConfig();
-      this.config$.subscribe(config => {
+      this.config$.subscribe((config) => {
         this.livePreviewEnabled = config.livePreviewAvailable;
         this.ethicalReportEnabled = config.ethicalReportEnabled;
         this.cdr.detectChanges();
       });
       this.dmpForm.valueChanges.subscribe(() => this.cdr.detectChanges());
-      this.dmpForm.valueChanges.subscribe(value => {
+      this.dmpForm.valueChanges.subscribe((value) => {
         this.logger.debug(value);
         this.formStore.formDiff(value);
       });
 
       this.projectStep = this.dmpForm.get('project') as UntypedFormControl;
-      this.contributorStep = this.dmpForm.get(
-        'contributors',
-      ) as UntypedFormArray;
+      this.contributorStep = this.dmpForm.get('contributors') as UntypedFormArray;
       this.specifyDataStep = this.dmpForm.get('data') as UntypedFormGroup;
       this.datasets = this.dmpForm.get('datasets') as UntypedFormArray;
       this.docDataStep = this.dmpForm.get('documentation') as UntypedFormGroup;
       this.legalEthicalStep = this.dmpForm.get('legal') as UntypedFormGroup;
       this.storageStep = this.dmpForm.get('storage') as UntypedFormArray;
-      this.externalStorageStep = this.dmpForm.get(
-        'externalStorage',
-      ) as UntypedFormArray;
-      this.externalStorageInfo = this.dmpForm.get(
-        'externalStorageInfo',
-      ) as UntypedFormControl;
+      this.externalStorageStep = this.dmpForm.get('externalStorage') as UntypedFormArray;
+      this.externalStorageInfo = this.dmpForm.get('externalStorageInfo') as UntypedFormControl;
       this.repoStep = this.dmpForm.get('repositories') as UntypedFormArray;
       this.reuseStep = this.dmpForm.get('reuse') as UntypedFormGroup;
       this.costsStep = this.dmpForm.get('costs') as UntypedFormGroup;
@@ -248,7 +235,7 @@ export class DmpComponent implements OnInit, OnDestroy {
   get showStepIfNewDatasets() {
     return (
       this.specifyDataStep?.value.kind === DataKind.SPECIFY &&
-      this.datasets?.value.find(dataset => dataset.source == DataSource.NEW)
+      this.datasets?.value.find((dataset) => dataset.source == DataSource.NEW)
     );
   }
 
@@ -322,11 +309,9 @@ export class DmpComponent implements OnInit, OnDestroy {
     const upload = { file: event, progress: 0, finalized: false };
     this.fileUpload.push(upload);
     const uploadSub = this.backendService.analyseFileData(formData).subscribe({
-      next: response => {
+      next: (response) => {
         if (response.type === HttpEventType.UploadProgress) {
-          upload.progress = Math.round(
-            100 * (response.loaded / response.total),
-          );
+          upload.progress = Math.round(100 * (response.loaded / response.total));
         }
         if (response.type === HttpEventType.Response) {
           const dataset = response.body;
@@ -335,7 +320,7 @@ export class DmpComponent implements OnInit, OnDestroy {
           this.formService.addDatasetToForm(dataset);
         }
       },
-      error: _ => (upload.finalized = true),
+      error: (_) => (upload.finalized = true),
       complete: () => (upload.finalized = true),
     });
     this.fileUploadSubscription.push(uploadSub);
@@ -392,7 +377,7 @@ export class DmpComponent implements OnInit, OnDestroy {
     if (!id) return;
 
     this.logger.debug('Get DMP with ID: ' + id);
-    this.backendService.getDmpById(id).subscribe(dmp => {
+    this.backendService.getDmpById(id).subscribe((dmp) => {
       if (dmp != null) {
         this.formService.mapDmpToForm(dmp);
         this.formStore.setFormValue(dmp);
@@ -407,7 +392,7 @@ export class DmpComponent implements OnInit, OnDestroy {
   }
 
   private getProjectMembers(projectId: number) {
-    this.backendService.getProjectMembers(projectId).subscribe(members => {
+    this.backendService.getProjectMembers(projectId).subscribe((members) => {
       this.projectMembers = members ? members : [];
     });
   }
@@ -422,23 +407,20 @@ export class DmpComponent implements OnInit, OnDestroy {
   }
 
   completenessLabel(label: string) {
-    return this.dataSource?.find(value => value.step === label);
+    return this.dataSource?.find((value) => value.step === label);
   }
 
   showEditIcon(index: number) {
     if (index < 10) {
-      return (
-        this.dataSource[index]?.completeness > 0 &&
-        this.dataSource[index]?.completeness < 100
-      );
+      return this.dataSource[index]?.completeness > 0 && this.dataSource[index]?.completeness < 100;
     } else return true;
   }
 
   checkCompletenessForm() {
     let statusCompleteness;
     let statusEdit;
-    statusEdit = this.dataSource.find(step => step.completeness > 0);
-    statusCompleteness = this.dataSource.find(step => step.completeness < 100);
+    statusEdit = this.dataSource.find((step) => step.completeness > 0);
+    statusCompleteness = this.dataSource.find((step) => step.completeness < 100);
     if (statusEdit && statusCompleteness) {
       return 'editing';
     } else if (statusEdit && !statusCompleteness) {
@@ -453,15 +435,9 @@ export class DmpComponent implements OnInit, OnDestroy {
       this.dataSource[index]?.completeness === 100
     )
       return true;
-    if (
-      icon === 'edit' &&
-      (index < 3 || this.showStep) &&
-      index !== 10 &&
-      this.showEditIcon(index)
-    )
+    if (icon === 'edit' && (index < 3 || this.showStep) && index !== 10 && this.showEditIcon(index))
       return true;
-    if (icon === 'lock' && index >= 3 && !this.showStep && index !== 10)
-      return true;
+    if (icon === 'lock' && index >= 3 && !this.showStep && index !== 10) return true;
     if (
       icon === 'text_snippet' &&
       index === 10 &&
@@ -473,18 +449,13 @@ export class DmpComponent implements OnInit, OnDestroy {
   }
 
   iconsValidatorEdit(index: number, icon: string): boolean {
-    if (icon === 'lock' && index >= 3 && !this.showStep && index !== 10)
-      return true;
-    if (
-      icon === 'edit' &&
-      (index < 3 || (index >= 3 && this.showStep && index !== 10))
-    )
+    if (icon === 'lock' && index >= 3 && !this.showStep && index !== 10) return true;
+    if (icon === 'edit' && (index < 3 || (index >= 3 && this.showStep && index !== 10)))
       return true;
     if (
       icon === 'text_snippet' &&
       index === 10 &&
-      (this.checkCompletenessForm() === false ||
-        this.checkCompletenessForm() === 'editing')
+      (this.checkCompletenessForm() === false || this.checkCompletenessForm() === 'editing')
     )
       return true;
     return false;
@@ -522,12 +493,7 @@ export class DmpComponent implements OnInit, OnDestroy {
     ) {
       return true;
     }
-    if (
-      icon === 'text_snippet' &&
-      style == 'gray' &&
-      isSummaryStep &&
-      completeness === false
-    )
+    if (icon === 'text_snippet' && style == 'gray' && isSummaryStep && completeness === false)
       return true;
     if (
       icon === 'text_snippet' &&
@@ -539,9 +505,7 @@ export class DmpComponent implements OnInit, OnDestroy {
     if (
       icon === 'lock' &&
       (((isDocumentationStorageLegalSteps || isCostsStep) && !this.showStep) ||
-        (isLicensingRepoReuseSteps &&
-          !this.showStepIfNewDatasets &&
-          selectStep !== index))
+        (isLicensingRepoReuseSteps && !this.showStepIfNewDatasets && selectStep !== index))
     )
       return true;
     else return false;

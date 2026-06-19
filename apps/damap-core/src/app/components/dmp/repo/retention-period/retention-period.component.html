@@ -3,34 +3,29 @@
     <mat-expansion-panel hideToggle>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          {{ "dmp.steps.retentionPeriod.title" | translate }}
+          {{ 'dmp.steps.retentionPeriod.title' | translate }}
         </mat-panel-title>
         <mat-icon class="color-icon">edit_calendar</mat-icon>
       </mat-expansion-panel-header>
 
-      <app-info-message>{{
-        "dmp.steps.repositories.info.retention" | translate
-      }}</app-info-message>
+      <app-info-message>{{ 'dmp.steps.repositories.info.retention' | translate }}</app-info-message>
 
       <div class="retention-wrapper">
         @for (dataset of assignedDatasets; track dataset; let i = $index) {
           @if (dataset.value.source === datasetSource.NEW) {
             <div formArrayName="datasets">
-              <p
-                matTooltip="{{ dataset.value.title }}"
-                class="dataset-title-text">
+              <p matTooltip="{{ dataset.value.title }}" class="dataset-title-text">
                 {{ truncate(dataset.value.title, 20) }}
               </p>
               <mat-form-field appearance="fill" [formGroupName]="i">
                 <mat-label>{{
-                  "dmp.steps.retentionPeriod.question.retentionPeriod"
-                    | translate
+                  'dmp.steps.retentionPeriod.question.retentionPeriod' | translate
                 }}</mat-label>
                 <mat-select formControlName="retentionPeriod">
                   @for (option of options; track option) {
                     <mat-option [value]="option">
                       {{ option }}
-                      {{ "dmp.steps.retentionPeriod.years" | translate }}
+                      {{ 'dmp.steps.retentionPeriod.years' | translate }}
                     </mat-option>
                   }
                 </mat-select>

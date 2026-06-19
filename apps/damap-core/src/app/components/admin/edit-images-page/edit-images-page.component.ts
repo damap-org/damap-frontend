@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  signal,
-  computed,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal, computed } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ImageThemeService } from '@damap-frontend-shell/app/services/image-theme.service';
@@ -22,11 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
-import {
-  TranslateDirective,
-  TranslatePipe,
-  TranslateService,
-} from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ConfigService } from '@damap-frontend-shell/app/services/config.service';
 import {
   ImageKey,
@@ -76,11 +66,9 @@ export class EditImagesPageComponent {
     const backendImages = config?.images || [];
 
     return THEME_IMAGE_DEFINITIONS.filter(
-      imageDef => !(imageDef.multitenancyLocked && config.multitenancyEnabled),
-    ).map(imageDef => {
-      const backendImg = backendImages.find(
-        beImg => beImg.imageKey === imageDef.key,
-      );
+      (imageDef) => !(imageDef.multitenancyLocked && config.multitenancyEnabled),
+    ).map((imageDef) => {
+      const backendImg = backendImages.find((beImg) => beImg.imageKey === imageDef.key);
       if (backendImg) {
         return {
           ...imageDef,
@@ -133,34 +121,32 @@ export class EditImagesPageComponent {
     payload.append('imageKey', this.selectedImageKey());
     payload.append('file', this.selectedFile()!);
 
-    this.backendService
-      .uploadImageTheme(this.selectedImageKey(), payload)
-      .subscribe({
-        next: () => {
-          this.feedbackService.success('admin.images.upload.success');
-          this.selectedImageKey.set(this.themeImages()[0].key);
-          window.location.reload();
-        },
-        error: error => {
-          this.feedbackService.error('admin.images.upload.error');
-        },
-        complete: () => {
-          this.selectedFile.set(null);
-        },
-      });
+    this.backendService.uploadImageTheme(this.selectedImageKey(), payload).subscribe({
+      next: () => {
+        this.feedbackService.success('admin.images.upload.success');
+        this.selectedImageKey.set(this.themeImages()[0].key);
+        window.location.reload();
+      },
+      error: (error) => {
+        this.feedbackService.error('admin.images.upload.error');
+      },
+      complete: () => {
+        this.selectedFile.set(null);
+      },
+    });
   }
 
   deleteImage(imageId: string) {
     const dialogRef = this.dialog.open(DeleteImageWarningDialogComponent);
 
-    dialogRef.afterClosed().subscribe(confirmed => {
+    dialogRef.afterClosed().subscribe((confirmed) => {
       if (confirmed) {
         this.backendService.deleteImageTheme(imageId).subscribe({
           next: () => {
             this.feedbackService.success('admin.images.delete.success');
             window.location.reload();
           },
-          error: error => {
+          error: (error) => {
             this.feedbackService.error('admin.images.delete.error');
           },
         });
@@ -177,7 +163,7 @@ export class EditImagesPageComponent {
   }
 
   getImageRecommendation(imageKey: ImageKey): string {
-    const imageType = THEME_IMAGE_DEFINITIONS.find(t => t.key === imageKey);
+    const imageType = THEME_IMAGE_DEFINITIONS.find((t) => t.key === imageKey);
     return imageType ? imageType.recommendation : '';
   }
 
@@ -214,11 +200,7 @@ export class EditImagesPageComponent {
     this.isDragOver.set(false);
 
     const files = event.dataTransfer?.files;
-    if (
-      files &&
-      files.length > 0 &&
-      this.isValidFile(files[0], this.selectedImageKey())
-    ) {
+    if (files && files.length > 0 && this.isValidFile(files[0], this.selectedImageKey())) {
       this.selectedFile.set(files[0]);
     }
   }

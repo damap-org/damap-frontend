@@ -3,24 +3,21 @@
     #contributorSearchField
     class="search-field"
     [label]="'dmp.steps.people.search.field'"
-    (searchChange)="search($event)" />
+    (searchChange)="search($event)"
+  />
   @if (currentSearchTerm && result.length > 0) {
     <div class="result-list">
       <mat-selection-list
         hideSingleSelectionIndicator
         [multiple]="false"
-        (selectionChange)="selectPerson($event)">
+        (selectionChange)="selectPerson($event)"
+      >
         @for (person of result; track person.personId) {
-          <mat-list-option
-            [style]="'height: auto;'"
-            [selected]="false"
-            [value]="person">
+          <mat-list-option [style]="'height: auto;'" [selected]="false" [value]="person">
             <div class="list-option-container">
               <div>
                 <div matListItemTitle class="person-detail-content">
-                  <strong>
-                    {{ person.firstName }} {{ person.lastName }}
-                  </strong>
+                  <strong> {{ person.firstName }} {{ person.lastName }} </strong>
                 </div>
                 @if (person.mbox) {
                   <div matListItemLine class="person-detail-content">

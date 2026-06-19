@@ -7,27 +7,25 @@
     [style.width]="isCollapsed ? '90px' : '300px'"
     [fixedInViewport]="true"
     [disableClose]="true"
-    class="mat-sidenav">
+    class="mat-sidenav"
+  >
     <div class="mm-navbars-top mat-focus-indicator">
       <div class="mm-navbar">
         <button
           mat-icon-button
           title="{{ 'sidebar.header.button.hint' | translate }}"
           class="sidenav-btn"
-          (click)="toggleMenu()">
+          (click)="toggleMenu()"
+        >
           <mat-icon class="material-icon-white outline">{{
-            isCollapsed ? "menu" : "menu_open"
+            isCollapsed ? 'menu' : 'menu_open'
           }}</mat-icon>
         </button>
 
         <div class="logo mat-headline-large">
-          <a
-            title="Damap"
-            id="damap-logo"
-            class="mat-focus-indicator"
-            [routerLink]="'/dashboard'">
+          <a title="Damap" id="damap-logo" class="mat-focus-indicator" [routerLink]="'/dashboard'">
             @if (!isCollapsed) {
-              <span>{{ "sidebar.header.title" | translate }}</span>
+              <span>{{ 'sidebar.header.title' | translate }}</span>
             }
           </a>
         </div>
@@ -44,7 +42,8 @@
         <button
           mat-button
           class="h-full material-btn-text-primary-lightest"
-          [matMenuTriggerFor]="language">
+          [matMenuTriggerFor]="language"
+        >
           {{ lang }}
         </button>
         <mat-menu #language="matMenu">
@@ -52,7 +51,8 @@
             <button
               mat-menu-item
               (click)="useLanguage(language)"
-              [disabled]="language.toUpperCase() === lang">
+              [disabled]="language.toUpperCase() === lang"
+            >
               @if (language.toUpperCase() === lang) {
                 <mat-icon style="transform: scale(0.85)">check</mat-icon>
               }
@@ -69,24 +69,22 @@
           mat-list-item
           [routerLink]="'/dashboard'"
           routerLinkActive="active-icon material-icon-primary"
-          [routerLinkActiveOptions]="{ exact: true }">
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
           <mat-icon class="menu-icon-size outline">home</mat-icon>
           @if (!isCollapsed) {
-            <span class="menu-icon-text">{{
-              "sidebar.navigation.home" | translate
-            }}</span>
+            <span class="menu-icon-text">{{ 'sidebar.navigation.home' | translate }}</span>
           }
         </a>
         <a
           mat-list-item
           [routerLink]="'/plans'"
           routerLinkActive="active-icon material-icon-primary"
-          [routerLinkActiveOptions]="{ exact: true }">
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
           <mat-icon class="menu-icon-size outline">table_view</mat-icon>
           @if (!isCollapsed) {
-            <span class="menu-icon-text">{{
-              "sidebar.navigation.dmps" | translate
-            }}</span>
+            <span class="menu-icon-text">{{ 'sidebar.navigation.dmps' | translate }}</span>
           }
         </a>
         @if (isAdmin()) {
@@ -94,12 +92,11 @@
             mat-list-item
             [routerLink]="'/admin'"
             routerLinkActive="active-icon material-icon-primary"
-            [routerLinkActiveOptions]="{ exact: true }">
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
             <mat-icon class="menu-icon-size outline">shield_person</mat-icon>
             @if (!isCollapsed) {
-              <span class="menu-icon-text">{{
-                "sidebar.navigation.admin" | translate
-              }}</span>
+              <span class="menu-icon-text">{{ 'sidebar.navigation.admin' | translate }}</span>
             }
           </a>
         }
@@ -113,7 +110,8 @@
           id="logout"
           class="material-icon-on-secondary-container"
           [attr.aria-label]="'sidebar.navigation.logout' | translate"
-          (click)="logout()">
+          (click)="logout()"
+        >
           <mat-icon class="outline">logout</mat-icon>
         </button>
       </div>
@@ -121,33 +119,28 @@
     @if (!isCollapsed) {
       <div class="footer mat-title-small">
         <div class="info">
-          <a
-            [href]="'sidebar.footer.impressum.link' | translate"
-            rel="noopener"
-            target="_blank">
-            {{ "sidebar.footer.impressum.label" | translate }}
+          <a [href]="'sidebar.footer.impressum.link' | translate" rel="noopener" target="_blank">
+            {{ 'sidebar.footer.impressum.label' | translate }}
           </a>
           <a
             [href]="'sidebar.footer.terms-and-conditions.link' | translate"
             rel="noopener"
-            target="_blank">
-            {{ "sidebar.footer.terms-and-conditions.label" | translate }}
+            target="_blank"
+          >
+            {{ 'sidebar.footer.terms-and-conditions.label' | translate }}
           </a>
           <a
-            [href]="
-              'sidebar.footer.data-protection-declaration.link' | translate
-            "
+            [href]="'sidebar.footer.data-protection-declaration.link' | translate"
             rel="noopener"
-            target="_blank">
-            {{ "sidebar.footer.data-protection-declaration.label" | translate }}
+            target="_blank"
+          >
+            {{ 'sidebar.footer.data-protection-declaration.label' | translate }}
           </a>
         </div>
         <div class="version-information">
-          <a [routerLink]="'/gdpr'" rel="noopener">{{
-            "sidebar.footer.gdpr-info" | translate
-          }}</a>
+          <a [routerLink]="'/gdpr'" rel="noopener">{{ 'sidebar.footer.gdpr-info' | translate }}</a>
           <span class="version-text"
-            >{{ "sidebar.footer.version" | translate }}: {{ version }}</span
+            >{{ 'sidebar.footer.version' | translate }}: {{ version }}</span
           >
         </div>
       </div>
@@ -157,14 +150,15 @@
         <button
           mat-icon-button
           [matTooltip]="'sidebar.footer.collapsed.hint' | translate"
-          [aria-label]="'sidebar.footer.collapsed.hint' | translate">
+          [aria-label]="'sidebar.footer.collapsed.hint' | translate"
+        >
           <mat-icon class="md-light outline">data_alert</mat-icon>
         </button>
       </div>
     }
   </mat-sidenav>
   <mat-sidenav-content class="mat-sidenav-content">
-    @if (env === "DEV") {
+    @if (env === 'DEV') {
       <app-env-banner />
     }
     <app-banner />
@@ -182,13 +176,13 @@
             [title]="'layout.logo.text' | translate"
             [href]="'layout.logo.link' | translate"
             target="_blank"
-            rel="noopener">
+            rel="noopener"
+          >
             <img
               [src]="logoUrl"
               alt="Logo"
-              [class]="
-                isDefaultLogo(logoUrl) ? 'header-logo-default' : 'header-logo'
-              " />
+              [class]="isDefaultLogo(logoUrl) ? 'header-logo-default' : 'header-logo'"
+            />
           </a>
         </div>
       </mat-toolbar-row>

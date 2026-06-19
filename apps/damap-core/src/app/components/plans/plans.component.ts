@@ -1,9 +1,4 @@
-import {
-  Component,
-  inject,
-  OnInit,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { AuthService } from '../../auth/auth.service';
 import { BackendService } from '../../services/backend.service';
@@ -78,7 +73,7 @@ export class PlansComponent implements OnInit {
   }
 
   getDocument(id: number) {
-    this.backendService.getDmpById(id).subscribe(x => {
+    this.backendService.getDmpById(id).subscribe((x) => {
       this.openExportWarningDialog(x.project?.funderSupported, id);
     });
   }
@@ -87,7 +82,7 @@ export class PlansComponent implements OnInit {
     const dialogRef = this.dialog.open(ExportWarningDialogComponent, {});
     dialogRef.componentInstance.funderSupported = funderSupported;
 
-    dialogRef.beforeClosed().subscribe(result => {
+    dialogRef.beforeClosed().subscribe((result) => {
       if (result === undefined) {
         return;
       }
@@ -111,10 +106,10 @@ export class PlansComponent implements OnInit {
       .open(DeleteWarningDialogComponent)
       .afterClosed()
       .subscribe({
-        next: response => {
+        next: (response) => {
           if (response) {
             this.backendService.deleteDmp(id).subscribe({
-              next: _ => {
+              next: (_) => {
                 if (this.isAdmin()) {
                   this.getAllDmps();
                 }

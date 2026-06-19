@@ -1,9 +1,4 @@
-import {
-  Component,
-  Input,
-  ChangeDetectionStrategy,
-  output,
-} from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, output } from '@angular/core';
 import { Version } from '../../../domain/version';
 import { DmpListItem } from '../../../domain/dmp-list-item';
 import { Dmp } from '../../../domain/dmp';

@@ -25,15 +25,15 @@ export const ALLOWED_IMAGE_TYPES: AllowedImageType[] = [
 ];
 
 export function getAcceptAttribute(): string {
-  return ALLOWED_IMAGE_TYPES.map(t => t.extension).join(',');
+  return ALLOWED_IMAGE_TYPES.map((t) => t.extension).join(',');
 }
 
 export function getAllowedMimeTypes(): string[] {
-  return ALLOWED_IMAGE_TYPES.map(t => t.mimeType);
+  return ALLOWED_IMAGE_TYPES.map((t) => t.mimeType);
 }
 
 export function formatAllowedTypesForDisplay(): string {
-  const names = ALLOWED_IMAGE_TYPES.map(t => t.displayName);
+  const names = ALLOWED_IMAGE_TYPES.map((t) => t.displayName);
   if (names.length <= 1) return names[0] || '';
   const last = names.pop();
   return names.join(', ') + ', and ' + last;
@@ -74,8 +74,7 @@ export const THEME_IMAGE_DEFINITIONS: ThemeImageDefinition[] = [
     key: IMAGE_KEYS.LOGO,
     label: 'Logo',
     defaultUrl: 'assets/logo.svg',
-    recommendation:
-      'Recommended aspect ratio: Around 1.41:1 (A4 paper landscape)',
+    recommendation: 'Recommended aspect ratio: Around 1.41:1 (A4 paper landscape)',
     multitenancyLocked: false,
   },
   {

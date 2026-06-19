@@ -6,13 +6,15 @@
       [placeholder]="'10.5281/zenodo.3885730'"
       [control]="form.get('doi')"
       [errorMessage]="'validation.error.doi'"
-      (searchChange)="searchChange($event)" />
+      (searchChange)="searchChange($event)"
+    />
     <button
       mat-flat-button
       type="submit"
       (click)="search()"
-      [disabled]="form.invalid || loading === loadingState.LOADING">
-      {{ "dmp.steps.data.specify.button.addFromDoi" | translate }}
+      [disabled]="form.invalid || loading === loadingState.LOADING"
+    >
+      {{ 'dmp.steps.data.specify.button.addFromDoi' | translate }}
     </button>
   </div>
 </form>

@@ -1,11 +1,4 @@
-import {
-  Component,
-  computed,
-  inject,
-  ChangeDetectionStrategy,
-  input,
-  output,
-} from '@angular/core';
+import { Component, computed, inject, ChangeDetectionStrategy, input, output } from '@angular/core';
 import {
   UntypedFormArray,
   UntypedFormGroup,
@@ -77,7 +70,7 @@ export class StorageComponent {
   readonly activeStorages = computed(() =>
     this.store
       .internalStorages()
-      .filter(storage => storage.active && storage.translations.length > 0),
+      .filter((storage) => storage.active && storage.translations.length > 0),
   );
 
   addStorage(storage: InternalStorage) {
@@ -96,8 +89,8 @@ export class StorageComponent {
       'en';
 
     const translation =
-      storage.translations.find(t => t.languageCode === currentLanguage) ??
-      storage.translations.find(t => t.languageCode === 'en') ??
+      storage.translations.find((t) => t.languageCode === currentLanguage) ??
+      storage.translations.find((t) => t.languageCode === 'en') ??
       storage.translations[0];
 
     return translation?.title ?? '';
@@ -105,8 +98,7 @@ export class StorageComponent {
 
   openStorageInfo(storage: InternalStorage) {
     const translation =
-      storage.translations.find(t => t.languageCode === 'eng') ||
-      storage.translations[0];
+      storage.translations.find((t) => t.languageCode === 'eng') || storage.translations[0];
     this.dialog.open(StorageInfoDialogComponent, {
       width: '500px',
       data: {

@@ -1,26 +1,11 @@
-import {
-  Component,
-  inject,
-  Input,
-  ChangeDetectionStrategy,
-  output,
-} from '@angular/core';
+import { Component, inject, Input, ChangeDetectionStrategy, output } from '@angular/core';
 
 import { Project } from '../../../domain/project';
 import { UntypedFormControl } from '@angular/forms';
 import { ConfigService } from '@damap-frontend-shell/app/services/config.service';
-import {
-  DateAdapter,
-  MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE,
-} from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatLabel } from '@angular/material/form-field';
-import {
-  MatCard,
-  MatCardHeader,
-  MatCardTitle,
-  MatCardContent,
-} from '@angular/material/card';
+import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
 import { ProjectListComponent } from './project-list/project-list.component';

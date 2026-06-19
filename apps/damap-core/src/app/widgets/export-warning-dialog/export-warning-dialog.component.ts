@@ -1,11 +1,4 @@
-import {
-  Component,
-  computed,
-  inject,
-  Input,
-  ChangeDetectionStrategy,
-  input,
-} from '@angular/core';
+import { Component, computed, inject, Input, ChangeDetectionStrategy, input } from '@angular/core';
 
 import { ETemplateType } from '../../domain/enum/export-template-type.enum';
 import {
@@ -50,9 +43,7 @@ export class ExportWarningDialogComponent {
 
   private configService = inject(ConfigService);
 
-  readonly activeTemplates = computed(() =>
-    this.configService.getActiveTemplates(),
-  );
+  readonly activeTemplates = computed(() => this.configService.getActiveTemplates());
 
   selectedTemplate: number | null = null;
 }

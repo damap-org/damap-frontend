@@ -1,9 +1,7 @@
 <div [formGroup]="dmpForm()">
-  <mat-label
-    class="label-title mat-title-large"
-    id="example-radio-group-label"
-    >{{ "dmp.steps.licensing.sectionTitle" | translate }}</mat-label
-  >
+  <mat-label class="label-title mat-title-large" id="example-radio-group-label">{{
+    'dmp.steps.licensing.sectionTitle' | translate
+  }}</mat-label>
   @for (dataset of datasets()?.controls; track dataset; let i = $index) {
     <ng-container formArrayName="datasets">
       @if (dataset.value.source === datasetSource.NEW) {
@@ -16,9 +14,7 @@
             </mat-card-header>
             <mat-card-content>
               <mat-form-field>
-                <mat-label>{{
-                  "dmp.steps.licensing.question.dataAccess" | translate
-                }}</mat-label>
+                <mat-label>{{ 'dmp.steps.licensing.question.dataAccess' | translate }}</mat-label>
                 <mat-select formControlName="dataAccess">
                   @for (type of accessType | keyvalue; track type.key) {
                     <mat-option [value]="type.key">
@@ -38,22 +34,14 @@
                   <div class="warning-icon">
                     <mat-icon class="outline">error</mat-icon>
                   </div>
-                  @if (
-                    dataset.value.personalData || dataset.value.sensitiveData
-                  ) {
-                    {{ "dmp.steps.licensing.warning.personalData" | translate }}
+                  @if (dataset.value.personalData || dataset.value.sensitiveData) {
+                    {{ 'dmp.steps.licensing.warning.personalData' | translate }}
                     @if (!isAnonymisedOrPseudonymised) {
-                      {{
-                        "dmp.steps.licensing.warning.pseudonymisation"
-                          | translate
-                      }}
+                      {{ 'dmp.steps.licensing.warning.pseudonymisation' | translate }}
                     }
                   }
                   @if (dataset.value.legalRestrictions) {
-                    {{
-                      "dmp.steps.licensing.warning.legalRestrictions"
-                        | translate
-                    }}
+                    {{ 'dmp.steps.licensing.warning.legalRestrictions' | translate }}
                   }
                 </div>
               }
@@ -63,7 +51,7 @@
                 <div class="mat-card-container">
                   <mat-form-field class="full-width">
                     <mat-label>{{
-                      "dmp.steps.licensing.question.license.reused" | translate
+                      'dmp.steps.licensing.question.license.reused' | translate
                     }}</mat-label>
                     <mat-select formControlName="license">
                       @for (license of licenses; track license.id) {
@@ -73,21 +61,15 @@
                       }
                     </mat-select>
                   </mat-form-field>
-                  <app-license-wizard
-                    (selectedLicense)="setLicenseSelectorResult($event, i)" />
+                  <app-license-wizard (selectedLicense)="setLicenseSelectorResult($event, i)" />
                 </div>
               }
             </mat-card-content>
             @if (dataset.value.dataAccess !== accessType.CLOSED) {
               <mat-card-content class="card-content-estimation">
                 <mat-form-field style="min-width: 300px">
-                  <mat-label>{{
-                    "dmp.steps.licensing.question.startDate" | translate
-                  }}</mat-label>
-                  <input
-                    matInput
-                    formControlName="startDate"
-                    [matDatepicker]="picker" />
+                  <mat-label>{{ 'dmp.steps.licensing.question.startDate' | translate }}</mat-label>
+                  <input matInput formControlName="startDate" [matDatepicker]="picker" />
                   <mat-datepicker-toggle matSuffix [for]="picker" />
                   <mat-datepicker #picker />
                 </mat-form-field>
@@ -95,9 +77,7 @@
             }
             <mat-card-content>
               @if (dataset.value.dataAccess === accessType.CLOSED) {
-                <app-data-deletion
-                  [dataset]="getFormGroup(i)"
-                  [dmpForm]="dmpForm()" />
+                <app-data-deletion [dataset]="getFormGroup(i)" [dmpForm]="dmpForm()" />
               }
             </mat-card-content>
           </ng-container>
@@ -114,7 +94,8 @@
         [longLabel]="'dmp.steps.licensing.question.long.restrictedAccessInfo'"
         [labelDatasets]="restricted"
         [control]="restrictedAccessInfo"
-        [maxLength]="4000" />
+        [maxLength]="4000"
+      />
     }
 
     @if (closed?.length > 0) {
@@ -123,7 +104,8 @@
         [longLabel]="'dmp.steps.licensing.question.long.closedAccessInfo'"
         [labelDatasets]="closed"
         [control]="closedAccessInfo"
-        [maxLength]="4000" />
+        [maxLength]="4000"
+      />
     }
   </div>
 </div>

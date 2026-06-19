@@ -34,8 +34,7 @@ export class AuthService {
 
   isAuthenticated(route: string): boolean {
     const isAuthenticated =
-      this.oAuthService.hasValidIdToken() &&
-      this.oAuthService.hasValidAccessToken();
+      this.oAuthService.hasValidIdToken() && this.oAuthService.hasValidAccessToken();
     if (!isAuthenticated) {
       this.oAuthService.initLoginFlow(route);
     }
@@ -67,19 +66,18 @@ export class AuthService {
     }
     const parts: string[] = this.oAuthService.getAccessToken().split('.');
     const tokenBody: any = JSON.parse('' + window.atob(parts[1]));
-    const affiliations: string[] =
-      tokenBody[this.configService.getAffiliationClaim()];
+    const affiliations: string[] = tokenBody[this.configService.getAffiliationClaim()];
     if (!affiliations || affiliations.length === 0) {
       return null;
     }
-    const sanitizedAffiliations: string[] = affiliations.map(aff =>
+    const sanitizedAffiliations: string[] = affiliations.map((aff) =>
       aff
         .split('@')[1]
         .replace(/[^a-zA-Z0-9_]+/g, '_')
         .replace(/_+/g, '_'),
     );
     // check if only affiliations to one tenant are present
-    if (!sanitizedAffiliations.every(aff => aff === sanitizedAffiliations[0])) {
+    if (!sanitizedAffiliations.every((aff) => aff === sanitizedAffiliations[0])) {
       return null;
     }
     return sanitizedAffiliations[0];
@@ -90,9 +88,7 @@ export class AuthService {
     if (!this.configService.isMultitenancyEnabled()) {
       return true;
     }
-    return (
-      this.configService.getTenants()?.includes(this.getAffiliation()) ?? false
-    );
+    return this.configService.getTenants()?.includes(this.getAffiliation()) ?? false;
   }
 
   logout() {

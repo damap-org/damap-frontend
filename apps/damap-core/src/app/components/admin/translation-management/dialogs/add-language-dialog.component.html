@@ -1,10 +1,10 @@
 <h1 mat-dialog-title>
-  {{ "admin.appTranslations.addLanguage" | translate }}
+  {{ 'admin.appTranslations.addLanguage' | translate }}
 </h1>
 
 <mat-dialog-content class="dialog-content">
   <p class="hint">
-    {{ "admin.appTranslations.addLanguageHint" | translate }}
+    {{ 'admin.appTranslations.addLanguageHint' | translate }}
   </p>
 
   <app-language-code-input
@@ -12,20 +12,15 @@
     [label]="'admin.appTranslations.languageCode' | translate"
     [hint]="'admin.appTranslations.languageCodeHint' | translate"
     [control]="form.controls.language"
-    [errorMessageRequired]="
-      'admin.appTranslations.languageCodeRequired' | translate
-    "
-    [errorMessageInvalid]="
-      'admin.appTranslations.languageCodeInvalid' | translate
-    "
-    [errorMessageAlreadyExists]="
-      'admin.appTranslations.languageCodeAlreadyExists' | translate
-    " />
+    [errorMessageRequired]="'admin.appTranslations.languageCodeRequired' | translate"
+    [errorMessageInvalid]="'admin.appTranslations.languageCodeInvalid' | translate"
+    [errorMessageAlreadyExists]="'admin.appTranslations.languageCodeAlreadyExists' | translate"
+  />
 </mat-dialog-content>
 
 <mat-dialog-actions>
   <button mat-button (click)="cancel()">
-    {{ "admin.appTranslations.cancel" | translate }}
+    {{ 'admin.appTranslations.cancel' | translate }}
   </button>
 
   <button
@@ -33,7 +28,8 @@
     color="primary"
     class="button-color-primary"
     (click)="submit()"
-    [disabled]="form.invalid">
-    {{ "admin.appTranslations.add" | translate }}
+    [disabled]="form.invalid"
+  >
+    {{ 'admin.appTranslations.add' | translate }}
   </button>
 </mat-dialog-actions>

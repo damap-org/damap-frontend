@@ -8,7 +8,8 @@
       [dmpsLoaded]="dmpsLoaded()"
       (createDocument)="getDocument($event)"
       (createJsonFile)="getJsonFile($event)"
-      (dmpToDelete)="deleteDmp($event)" />
+      (dmpToDelete)="deleteDmp($event)"
+    />
   </div>
   @if (dmpsLoaded() === LoadingState.LOADING) {
     <div>
@@ -30,6 +31,7 @@
       (createDocument)="getDocument($event)"
       [admin]="true"
       (createJsonFile)="getJsonFile($event)"
-      (dmpToDelete)="deleteDmp($event)" />
+      (dmpToDelete)="deleteDmp($event)"
+    />
   }
 </div>

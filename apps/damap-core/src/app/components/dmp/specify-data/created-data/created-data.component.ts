@@ -1,12 +1,5 @@
 import { Observable } from 'rxjs';
-import {
-  Component,
-  Input,
-  inject,
-  ChangeDetectionStrategy,
-  input,
-  output,
-} from '@angular/core';
+import { Component, Input, inject, ChangeDetectionStrategy, input, output } from '@angular/core';
 
 import { AbstractBaseDataComponent } from '../abstract-base-data.component';
 import { Config } from '../../../../domain/config';
@@ -66,7 +59,7 @@ export class CreatedDataComponent extends AbstractBaseDataComponent {
       data: { dataset: { source: this.datasetSource.NEW } },
     });
 
-    dialogRef.afterClosed().subscribe(dataset => {
+    dialogRef.afterClosed().subscribe((dataset) => {
       if (dataset) {
         this.datasetToAdd.emit(dataset);
       }
@@ -84,7 +77,7 @@ export class CreatedDataComponent extends AbstractBaseDataComponent {
       },
     });
 
-    dialogRef.afterClosed().subscribe(dataset => {
+    dialogRef.afterClosed().subscribe((dataset) => {
       if (dataset) {
         this.datasetToAdd.emit(dataset);
       }

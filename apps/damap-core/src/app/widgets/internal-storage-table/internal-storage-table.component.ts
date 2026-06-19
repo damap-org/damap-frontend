@@ -108,13 +108,11 @@ export class InternalStorageTableComponent implements AfterViewInit, OnChanges {
   }
 
   toggleActivation(id: number) {
-    const storage = this.internalStorages.find(s => s.id === id);
+    const storage = this.internalStorages.find((s) => s.id === id);
     const storageCopy = { ...storage };
     storageCopy.active = !storage.active;
     this.backendService.updateInternalStorage(storageCopy).subscribe(() => {
-      this.internalStorages = this.internalStorages.map(s =>
-        s.id === id ? storageCopy : s,
-      );
+      this.internalStorages = this.internalStorages.map((s) => (s.id === id ? storageCopy : s));
       this.dataSource.data = this.internalStorages;
     });
   }
@@ -126,23 +124,19 @@ export class InternalStorageTableComponent implements AfterViewInit, OnChanges {
       })
       .afterClosed()
       .subscribe({
-        next: response => {
+        next: (response) => {
           if (response) {
             this.backendService.deleteInternalStorage(id).subscribe(
               () => {
-                this.internalStorages = this.internalStorages.filter(
-                  s => s.id !== id,
-                );
+                this.internalStorages = this.internalStorages.filter((s) => s.id !== id);
                 this.dataSource.data = this.internalStorages;
                 this.feedbackService.success('http.success.storage.delete');
                 this.editTranslations(null);
               },
-              error => {
+              (error) => {
                 if (error.status === 409) {
                   this.feedbackService.error(
-                    this.translateService.instant(
-                      'http.error.storageErrors.stillInUse',
-                    ),
+                    this.translateService.instant('http.error.storageErrors.stillInUse'),
                   );
                   return;
                 } else {
@@ -156,7 +150,7 @@ export class InternalStorageTableComponent implements AfterViewInit, OnChanges {
   }
 
   editStorage(id: number) {
-    const storage = this.internalStorages.find(s => s.id === id);
+    const storage = this.internalStorages.find((s) => s.id === id);
 
     const dialogRef = this.dialog.open(InternalStorageDialogComponent, {
       width: '75%',
@@ -164,7 +158,7 @@ export class InternalStorageTableComponent implements AfterViewInit, OnChanges {
       data: { storage: { ...storage }, mode: 'edit' },
     });
 
-    dialogRef.afterClosed().subscribe(storage => {
+    dialogRef.afterClosed().subscribe((storage) => {
       if (storage) {
         if (!this.isValidUrl(storage.url)) {
           this.feedbackService.error('http.error.storageErrors.invalidUrl');
@@ -172,14 +166,14 @@ export class InternalStorageTableComponent implements AfterViewInit, OnChanges {
         }
         this.backendService.updateInternalStorage(storage).subscribe(
           () => {
-            this.internalStorages = this.internalStorages.map(s =>
+            this.internalStorages = this.internalStorages.map((s) =>
               s.id === storage.id ? storage : s,
             );
             this.dataSource.data = this.internalStorages;
             this.selectInternalStorage.emit(storage.id);
             this.feedbackService.success('http.success.storage.edit');
           },
-          error => {
+          (error) => {
             this.feedbackService.error(error.message);
           },
         );

@@ -1,37 +1,33 @@
 @if (dmp) {
-  <h2>{{ dmp.project?.title || "DMP: " + dmp.id }}</h2>
+  <h2>{{ dmp.project?.title || 'DMP: ' + dmp.id }}</h2>
 }
 <div class="action-buttons">
   <button mat-raised-button [routerLink]="'/plans'">
     <mat-icon>chevron_left</mat-icon>
-    {{ "access.button.plans" | translate }}
+    {{ 'access.button.plans' | translate }}
   </button>
 </div>
 @if (versions) {
   <div class="mat-elevation-z8">
-    <table
-      mat-table
-      [dataSource]="versions"
-      aria-label="DMP Versions"
-      class="zebra-table">
+    <table mat-table [dataSource]="versions" aria-label="DMP Versions" class="zebra-table">
       <!-- Version Column -->
       <ng-container matColumnDef="version">
         <th mat-header-cell *matHeaderCellDef>
-          {{ "dmp.versions.versionId" | translate }}
+          {{ 'dmp.versions.versionId' | translate }}
         </th>
         <td mat-cell *matCellDef="let element; index as i">{{ i + 1 }}</td>
       </ng-container>
       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>
-          {{ "dmp.versions.versionName" | translate }}
+          {{ 'dmp.versions.versionName' | translate }}
         </th>
         <td mat-cell *matCellDef="let element">{{ element.versionName }}</td>
       </ng-container>
       <!-- Date Column -->
       <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef>
-          {{ "dmp.versions.versionDate" | translate }}
+          {{ 'dmp.versions.versionDate' | translate }}
         </th>
         <td mat-cell *matCellDef="let element">
           {{ element.versionDate | date }}
@@ -40,7 +36,7 @@
       <!-- Editor Column -->
       <ng-container matColumnDef="editor">
         <th mat-header-cell *matHeaderCellDef>
-          {{ "dmp.versions.editor" | translate }}
+          {{ 'dmp.versions.editor' | translate }}
         </th>
         <td mat-cell *matCellDef="let element">{{ element.editor }}</td>
       </ng-container>
@@ -48,10 +44,11 @@
       <tr
         mat-row
         *matRowDef="let row; columns: displayedColumns"
-        (click)="viewVersion(row.revisionNumber)"></tr>
+        (click)="viewVersion(row.revisionNumber)"
+      ></tr>
       <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell" colspan="4">
-          {{ "dmp.versions.list.no.data" | translate }}
+          {{ 'dmp.versions.list.no.data' | translate }}
         </td>
       </tr>
     </table>

@@ -1,9 +1,4 @@
-import {
-  Component,
-  signal,
-  viewChild,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, signal, viewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
@@ -43,10 +38,10 @@ export class DmpInstructionsComponent {
   }
 
   nextStep() {
-    this.step.update(i => i + 1);
+    this.step.update((i) => i + 1);
   }
 
   prevStep() {
-    this.step.update(i => i - 1);
+    this.step.update((i) => i - 1);
   }
 }

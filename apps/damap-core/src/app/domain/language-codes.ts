@@ -193,5 +193,5 @@ export const LANGUAGE_CODE_OPTIONS: LanguageCodeOption[] = [
 ];
 
 export function isValidCode(code: string): boolean {
-  return LANGUAGE_CODE_OPTIONS.some(option => option.code === code);
+  return LANGUAGE_CODE_OPTIONS.some((option) => option.code === code);
 }

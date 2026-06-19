@@ -1,30 +1,30 @@
 <div class="form-column" style="margin-top: 20px">
-  <mat-label
-    class="label-title mat-title-large"
-    id="example-radio-group-label"
-    >{{
-      "dmp.steps.summary.people.contributor.additional" | translate
-    }}</mat-label
-  >
+  <mat-label class="label-title mat-title-large" id="example-radio-group-label">{{
+    'dmp.steps.summary.people.contributor.additional' | translate
+  }}</mat-label>
   <mat-card class="card-container" appearance="raised">
     <mat-card-content>
       <div [formGroup]="form" class="form-row">
         <app-input-wrapper
           [label]="'dmp.steps.people.manual.input.question.firstname'"
           [control]="firstName()"
-          class="input-wrapper" />
+          class="input-wrapper"
+        />
         <app-input-wrapper
           [label]="'dmp.steps.people.manual.input.question.lastname'"
           [control]="lastName()"
-          class="input-wrapper" />
+          class="input-wrapper"
+        />
         <app-input-wrapper
           [label]="'dmp.steps.people.manual.input.question.mbox'"
           [control]="mbox()"
-          class="input-wrapper" />
+          class="input-wrapper"
+        />
         <app-input-wrapper
           [label]="'dmp.steps.people.manual.input.question.orcid'"
           [control]="identifier()"
-          class="input-wrapper" />
+          class="input-wrapper"
+        />
       </div>
       <div class="button-row">
         <button
@@ -32,22 +32,24 @@
           mat-flat-button
           [disabled]="form.invalid"
           (click)="changeContactPerson()"
-          title="{{ 'dmp.steps.people.contact.add' | translate }}">
+          title="{{ 'dmp.steps.people.contact.add' | translate }}"
+        >
           <mat-icon [class.material-icon-on-secondary-container]="form.invalid"
             >contact_mail</mat-icon
           >
-          {{ "dmp.steps.people.contact.add" | translate }}
+          {{ 'dmp.steps.people.contact.add' | translate }}
         </button>
         <button
           class="action-button"
           mat-flat-button
           [disabled]="form.invalid"
           (click)="addContributor()"
-          title="{{ 'dmp.steps.people.contributor.add' | translate }}">
+          title="{{ 'dmp.steps.people.contributor.add' | translate }}"
+        >
           <mat-icon [class.material-icon-on-secondary-container]="form.invalid"
             >person_add</mat-icon
           >
-          {{ "dmp.steps.people.contributor.add" | translate }}
+          {{ 'dmp.steps.people.contributor.add' | translate }}
         </button>
       </div>
     </mat-card-content>

@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  ViewChild,
-  ChangeDetectionStrategy,
-  output,
-} from '@angular/core';
+import { Component, Input, ViewChild, ChangeDetectionStrategy, output } from '@angular/core';
 
 import { Contributor } from '../../domain/contributor';
 import {

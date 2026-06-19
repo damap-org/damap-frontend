@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  OnInit,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 
 import { filter, switchMap, take } from 'rxjs/operators';
 
@@ -71,9 +65,7 @@ export class EditRepositoriesPageComponent implements OnInit {
   async loadAllRepositories(): Promise<void> {
     this.loadingState.set(LoadingState.LOADING);
     try {
-      const repositories = await firstValueFrom(
-        this.backendService.getRepositories(),
-      );
+      const repositories = await firstValueFrom(this.backendService.getRepositories());
       this.allRepositories.set(repositories);
       this.loadingState.set(LoadingState.LOADED);
     } catch (error) {
@@ -90,12 +82,8 @@ export class EditRepositoriesPageComponent implements OnInit {
     };
 
     try {
-      await firstValueFrom(
-        this.backendService.createAdminRecommendedRepository(repositoryData),
-      );
-      this.feedbackService.success(
-        'Repository "' + repository.name + '" added successfully',
-      );
+      await firstValueFrom(this.backendService.createAdminRecommendedRepository(repositoryData));
+      this.feedbackService.success('Repository "' + repository.name + '" added successfully');
       await this.loadRepositories();
     } catch (error: any) {
       console.error('Error adding repository:', error);
@@ -116,24 +104,18 @@ export class EditRepositoriesPageComponent implements OnInit {
       .pipe(
         take(1),
         filter((confirmed): confirmed is true => confirmed === true),
-        switchMap(() =>
-          this.backendService.deleteAdminRecommendedRepository(repository.id),
-        ),
+        switchMap(() => this.backendService.deleteAdminRecommendedRepository(repository.id)),
       )
       .subscribe({
         next: () => {
-          this.feedbackService.success(
-            'http.success.recommended-repositories.delete',
-          );
+          this.feedbackService.success('http.success.recommended-repositories.delete');
           void this.loadRepositories();
         },
         error: (error: any) => {
           if (error.error?.message) {
             this.feedbackService.error(error.error.message);
           } else {
-            this.feedbackService.error(
-              'http.error.recommended-repositories.delete',
-            );
+            this.feedbackService.error('http.error.recommended-repositories.delete');
           }
         },
       });
@@ -143,13 +125,13 @@ export class EditRepositoriesPageComponent implements OnInit {
     if (!repo.description) {
       // Load repository details from backend
       this.backendService.getRepositoryById(repo.id).subscribe({
-        next: result => {
-          const updatedRepos = this.allRepositories().map(r =>
+        next: (result) => {
+          const updatedRepos = this.allRepositories().map((r) =>
             r.id === result.id ? { ...r, ...result.changes } : r,
           );
           this.allRepositories.set(updatedRepos);
         },
-        error: error => {
+        error: (error) => {
           console.error('Error loading repository details:', error);
         },
       });

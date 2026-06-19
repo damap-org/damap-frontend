@@ -1,7 +1,7 @@
 <div class="step-container">
-  @if (selectedView === "primaryView") {
+  @if (selectedView === 'primaryView') {
     <div>
-      @if (selectedView === "primaryView") {
+      @if (selectedView === 'primaryView') {
         <app-created-data
           [specifyDataStep]="specifyDataStep"
           [datasets]="datasets"
@@ -11,41 +11,41 @@
           (updateDataset)="update($event)"
           (removeDataset)="remove($event)"
           (fileToAnalyse)="analyseFile($event)"
-          (uploadToCancel)="cancelUpload($event)" />
+          (uploadToCancel)="cancelUpload($event)"
+        />
       }
     </div>
   }
-  @if (selectedView === "secondaryView") {
+  @if (selectedView === 'secondaryView') {
     <div>
       <app-reused-data
         [specifyDataStep]="specifyDataStep"
         [datasets]="datasets"
         (datasetToAdd)="add($event)"
         (updateDataset)="update($event)"
-        (removeDataset)="remove($event)" />
+        (removeDataset)="remove($event)"
+      />
     </div>
   }
   @if (
     specifyDataStep.value.kind === dataKind.NONE &&
-    specifyDataStep.value["reusedKind"] === dataKind.NONE
+    specifyDataStep.value['reusedKind'] === dataKind.NONE
   ) {
     <app-textarea-wrapper
       [label]="'dmp.steps.data.specify.question.short.noData'"
       [longLabel]="'dmp.steps.data.specify.question.long.noData'"
-      [control]="explanation" />
+      [control]="explanation"
+    />
   }
 
   @if (
-    (selectedView === "primaryView" &&
-      specifyDataStep.value.kind === dataKind.SPECIFY) ||
-    (selectedView === "secondaryView" &&
-      specifyDataStep.value["reusedKind"] === dataKind.SPECIFY)
+    (selectedView === 'primaryView' && specifyDataStep.value.kind === dataKind.SPECIFY) ||
+    (selectedView === 'secondaryView' && specifyDataStep.value['reusedKind'] === dataKind.SPECIFY)
   ) {}
 </div>
 
-<mat-hint>{{
-  "dmp.steps.data.specify.question.long.dataGeneration" | translate
-}}</mat-hint>
+<mat-hint>{{ 'dmp.steps.data.specify.question.long.dataGeneration' | translate }}</mat-hint>
 <app-textarea-wrapper
   [label]="'dmp.steps.data.specify.question.short.dataGeneration'"
-  [control]="dataGeneration" />
+  [control]="dataGeneration"
+/>

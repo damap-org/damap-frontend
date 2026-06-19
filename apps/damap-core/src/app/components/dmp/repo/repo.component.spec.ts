@@ -113,7 +113,7 @@ describe('RepoComponent', () => {
     const { component } = await createComponent();
     const repo: RepositoryDetails = { id: 'r1', name: 'Zenodo' };
     const emitted: RepositoryDetails[] = [];
-    component.repositoryToAdd.subscribe(value => emitted.push(value));
+    component.repositoryToAdd.subscribe((value) => emitted.push(value));
 
     component.addRepository(repo);
 
@@ -123,7 +123,7 @@ describe('RepoComponent', () => {
   it('emits the index of the repository to remove', async () => {
     const { component } = await createComponent();
     const emitted: number[] = [];
-    component.repositoryToRemove.subscribe(value => emitted.push(value));
+    component.repositoryToRemove.subscribe((value) => emitted.push(value));
 
     component.removeRepository(2);
 

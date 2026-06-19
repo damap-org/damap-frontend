@@ -1,9 +1,4 @@
-import {
-  Component,
-  OnInit,
-  inject,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BackendService } from '../../services/backend.service';
 import { Observable } from 'rxjs';
@@ -14,12 +9,7 @@ import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'damap-gdpr',
-  imports: [
-    CommonModule,
-    TranslatePipe,
-    TranslateDirective,
-    MatExpansionModule,
-  ],
+  imports: [CommonModule, TranslatePipe, TranslateDirective, MatExpansionModule],
   templateUrl: './gdpr.component.html',
   styleUrls: ['./gdpr.component.css'],
   changeDetection: ChangeDetectionStrategy.Eager,

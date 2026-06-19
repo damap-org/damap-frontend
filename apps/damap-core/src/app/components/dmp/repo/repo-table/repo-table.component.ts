@@ -26,13 +26,7 @@ import {
 import { RepositoryDetails } from '../../../../domain/repository-details';
 import { LoadingState } from '../../../../domain/enum/loading-state.enum';
 import { MatPaginator } from '@angular/material/paginator';
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Repository } from '../../../../domain/repository';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { SearchFieldComponent } from '../../../../shared/search-field/search-field.component';
@@ -55,10 +49,7 @@ import { KeyValuePipe } from '@angular/common';
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),
       state('expanded', style({ height: '*' })),
-      transition(
-        'expanded <=> collapsed',
-        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'),
-      ),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -120,7 +111,7 @@ export class RepoTableComponent implements OnChanges, AfterViewInit {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.repositories || changes.selectedRepos) {
       // Timeout needed for paginator init
-      setTimeout(_ => this.filterRepos(), 1);
+      setTimeout((_) => this.filterRepos(), 1);
     }
   }
 
@@ -157,7 +148,7 @@ export class RepoTableComponent implements OnChanges, AfterViewInit {
   private filterRepos(): void {
     this.repoList = Object.assign([], this.repositories());
     for (const entry of this.selectedRepos()) {
-      this.repoList = this.repoList.filter(e => e.id !== entry.repositoryId);
+      this.repoList = this.repoList.filter((e) => e.id !== entry.repositoryId);
     }
     this.dataSource.paginator = this.paginator;
     this.dataSource.data = this.repoList;

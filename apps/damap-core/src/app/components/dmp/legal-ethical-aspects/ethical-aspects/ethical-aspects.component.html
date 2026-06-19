@@ -2,157 +2,118 @@
   <mat-card-content>
     <div [formGroup]="legalEthicalStep">
       <label id="humanParticipants">
-        {{ "dmp.steps.legal.question.humanParticipants" | translate }}
+        {{ 'dmp.steps.legal.question.humanParticipants' | translate }}
       </label>
       <app-tooltip [tooltip]="'dmp.steps.legal.help.humanParticipants'" />
       <div class="flex-radio">
         <app-cris-tag
-          [cris]="
-            $safeNavigationMigration(
-              legalEthicalStep?.value.humanParticipantsCris
-            )
-          " />
-        <mat-radio-group
-          aria-labelledby="humanParticipants"
-          formControlName="humanParticipants">
+          [cris]="$safeNavigationMigration(legalEthicalStep?.value.humanParticipantsCris)"
+        />
+        <mat-radio-group aria-labelledby="humanParticipants" formControlName="humanParticipants">
           <mat-radio-button class="boolean-mat-radio-button" [value]="true">
-            {{ "dmp.steps.legal.question.answer.yes" | translate }}
+            {{ 'dmp.steps.legal.question.answer.yes' | translate }}
           </mat-radio-button>
           <mat-radio-button class="boolean-mat-radio-button" [value]="false">
-            {{ "dmp.steps.legal.question.answer.no" | translate }}
+            {{ 'dmp.steps.legal.question.answer.no' | translate }}
           </mat-radio-button>
         </mat-radio-group>
       </div>
       @if (legalEthicalStep.controls.humanParticipants.value) {
         <app-info-message>
-          {{ "dmp.steps.legal.info.humanParticipants.prefix" | translate }}
+          {{ 'dmp.steps.legal.info.humanParticipants.prefix' | translate }}
           <a
             href="{{
-              'dmp.steps.legal.info.humanParticipants.researchEthicsCoordination.link'
-                | translate
+              'dmp.steps.legal.info.humanParticipants.researchEthicsCoordination.link' | translate
             }}"
             target="_blank"
             rel="noopener"
             >{{
-              "dmp.steps.legal.info.humanParticipants.researchEthicsCoordination.text"
-                | translate
+              'dmp.steps.legal.info.humanParticipants.researchEthicsCoordination.text' | translate
             }}</a
           >
-          {{ "dmp.steps.legal.info.humanParticipants.middle" | translate }}
+          {{ 'dmp.steps.legal.info.humanParticipants.middle' | translate }}
           <a
-            href="{{
-              'dmp.steps.legal.info.humanParticipants.researchEthics.link'
-                | translate
-            }}"
+            href="{{ 'dmp.steps.legal.info.humanParticipants.researchEthics.link' | translate }}"
             target="_blank"
             rel="noopener"
-            >{{
-              "dmp.steps.legal.info.humanParticipants.researchEthics.text"
-                | translate
-            }}</a
+            >{{ 'dmp.steps.legal.info.humanParticipants.researchEthics.text' | translate }}</a
           >
           .
         </app-info-message>
       }
 
       <label id="ethicalIssues">
-        {{ "dmp.steps.legal.question.ethicalIssues" | translate }}
+        {{ 'dmp.steps.legal.question.ethicalIssues' | translate }}
       </label>
       <app-tooltip [tooltip]="'dmp.steps.legal.help.ethicalIssues'" />
       <div class="flex-radio">
-        <mat-radio-group
-          aria-labelledby="ethicalIssues"
-          formControlName="ethicalIssues">
+        <mat-radio-group aria-labelledby="ethicalIssues" formControlName="ethicalIssues">
           <app-cris-tag
-            [cris]="
-              $safeNavigationMigration(
-                legalEthicalStep?.value.ethicalIssuesCris
-              )
-            " />
+            [cris]="$safeNavigationMigration(legalEthicalStep?.value.ethicalIssuesCris)"
+          />
           <mat-radio-button class="boolean-mat-radio-button" [value]="true">
-            {{ "dmp.steps.legal.question.answer.yes" | translate }}
+            {{ 'dmp.steps.legal.question.answer.yes' | translate }}
           </mat-radio-button>
           <mat-radio-button class="boolean-mat-radio-button" [value]="false">
-            {{ "dmp.steps.legal.question.answer.no" | translate }}
+            {{ 'dmp.steps.legal.question.answer.no' | translate }}
           </mat-radio-button>
         </mat-radio-group>
       </div>
       @if (legalEthicalStep.controls.ethicalIssues.value) {
         <app-info-message>
-          {{ "dmp.steps.legal.info.ethicalIssues.text" | translate }}
+          {{ 'dmp.steps.legal.info.ethicalIssues.text' | translate }}
           <a
-            href="{{
-              'dmp.steps.legal.info.ethicalIssues.researchEthics.link'
-                | translate
-            }}"
+            href="{{ 'dmp.steps.legal.info.ethicalIssues.researchEthics.link' | translate }}"
             target="_blank"
             rel="noopener"
-            >{{
-              "dmp.steps.legal.info.ethicalIssues.researchEthics.text"
-                | translate
-            }}</a
+            >{{ 'dmp.steps.legal.info.ethicalIssues.researchEthics.text' | translate }}</a
           >
           .
         </app-info-message>
       }
 
       <label id="committeeReviewed">
-        {{ "dmp.steps.legal.question.committeeReviewed.prefix" | translate }}
+        {{ 'dmp.steps.legal.question.committeeReviewed.prefix' | translate }}
         <a
           href="{{
-            'dmp.steps.legal.question.committeeReviewed.researchCommittee.link'
-              | translate
+            'dmp.steps.legal.question.committeeReviewed.researchCommittee.link' | translate
           }}"
           target="_blank"
           rel="noopener"
-          >{{
-            "dmp.steps.legal.question.committeeReviewed.researchCommittee.text"
-              | translate
-          }}</a
+          >{{ 'dmp.steps.legal.question.committeeReviewed.researchCommittee.text' | translate }}</a
         >
-        {{ "dmp.steps.legal.question.committeeReviewed.suffix" | translate }}
+        {{ 'dmp.steps.legal.question.committeeReviewed.suffix' | translate }}
       </label>
       <div class="flex-radio">
         <app-cris-tag
-          [cris]="
-            $safeNavigationMigration(
-              legalEthicalStep?.value.committeeReviewedCris
-            )
-          " />
-        <mat-radio-group
-          aria-labelledby="committeeReviewed"
-          formControlName="committeeReviewed">
+          [cris]="$safeNavigationMigration(legalEthicalStep?.value.committeeReviewedCris)"
+        />
+        <mat-radio-group aria-labelledby="committeeReviewed" formControlName="committeeReviewed">
           <mat-radio-button class="boolean-mat-radio-button" [value]="true">
-            {{ "dmp.steps.legal.question.answer.yes" | translate }}
+            {{ 'dmp.steps.legal.question.answer.yes' | translate }}
           </mat-radio-button>
           <mat-radio-button class="boolean-mat-radio-button" [value]="false">
-            {{ "dmp.steps.legal.question.answer.no" | translate }}
+            {{ 'dmp.steps.legal.question.answer.no' | translate }}
           </mat-radio-button>
         </mat-radio-group>
       </div>
-      @if (
-        legalEthicalStep.controls.committeeReviewed.value &&
-        ethicalReportEnabled()
-      ) {
+      @if (legalEthicalStep.controls.committeeReviewed.value && ethicalReportEnabled()) {
         <div>
           <app-input-wrapper
             [label]="'dmp.steps.legal.question.ethicalIssueReport'"
             [maxLength]="255"
-            [control]="ethicalIssuesReport" />
+            [control]="ethicalIssuesReport"
+          />
         </div>
       }
       <app-info-message>
-        {{ "dmp.steps.legal.info.committeeReviewed.prefix" | translate }}
+        {{ 'dmp.steps.legal.info.committeeReviewed.prefix' | translate }}
         <a
-          href="{{
-            'dmp.steps.legal.info.committeeReviewed.mail.link' | translate
-          }}"
+          href="{{ 'dmp.steps.legal.info.committeeReviewed.mail.link' | translate }}"
           rel="noopener"
-          >{{
-            "dmp.steps.legal.info.committeeReviewed.mail.text" | translate
-          }}</a
+          >{{ 'dmp.steps.legal.info.committeeReviewed.mail.text' | translate }}</a
         >
-        {{ "dmp.steps.legal.info.committeeReviewed.suffix" | translate }}
+        {{ 'dmp.steps.legal.info.committeeReviewed.suffix' | translate }}
       </app-info-message>
     </div>
   </mat-card-content>

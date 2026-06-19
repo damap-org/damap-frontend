@@ -1,9 +1,5 @@
 import { Component, ChangeDetectionStrategy, input } from '@angular/core';
-import {
-  UntypedFormControl,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { UntypedFormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataKind } from '../../../../domain/enum/data-kind.enum';
 import { MatLabel } from '@angular/material/form-field';
 import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';

@@ -1,10 +1,5 @@
 import { Observable } from 'rxjs';
-import {
-  Component,
-  ChangeDetectionStrategy,
-  input,
-  output,
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output } from '@angular/core';
 
 import { AbstractBaseDataComponent } from './abstract-base-data.component';
 import { Config } from '../../../domain/config';

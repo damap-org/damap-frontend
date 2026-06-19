@@ -1,9 +1,4 @@
-import {
-  Component,
-  Input,
-  ChangeDetectionStrategy,
-  output,
-} from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, output } from '@angular/core';
 import { Dataset } from '../../../domain/dataset';
 import { DataSource } from '../../../domain/enum/data-source.enum';
 import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';

@@ -13,18 +13,20 @@
         #input
         [matChipInputFor]="chipList"
         [matAutocomplete]="auto"
-        (keyup)="applyFilter($event)" />
+        (keyup)="applyFilter($event)"
+      />
     </mat-chip-grid>
     <mat-autocomplete #auto="matAutocomplete" class="tree-select-list">
       <mat-option disabled="true">{{
-        "dmp.steps.repositories.filter.options" | translate
+        'dmp.steps.repositories.filter.options' | translate
       }}</mat-option>
       <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
         <mat-tree-node
           *matTreeNodeDef="let node"
           matTreeNodeToggle
           matTreeNodePadding
-          [class.hidden]="!node.visible">
+          [class.hidden]="!node.visible"
+        >
           <button mat-icon-button disabled="true"></button>
           <mat-checkbox
             class="checklist-leaf-node"
@@ -37,19 +39,19 @@
         <mat-tree-node
           *matTreeNodeDef="let node; when: hasNoContent"
           matTreeNodePadding
-          [class.hidden]="!node.visible">
+          [class.hidden]="!node.visible"
+        >
           <button mat-icon-button disabled="true"></button>
         </mat-tree-node>
 
         <mat-tree-node
           *matTreeNodeDef="let node; when: hasChild"
           matTreeNodePadding
-          [class.hidden]="!node.visible">
+          [class.hidden]="!node.visible"
+        >
           <button mat-icon-button matTreeNodeToggle>
             <mat-icon class="mat-icon-rtl-mirror">
-              {{
-                treeControl.isExpanded(node) ? "expand_more" : "chevron_right"
-              }}
+              {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
             </mat-icon>
           </button>
           <mat-checkbox

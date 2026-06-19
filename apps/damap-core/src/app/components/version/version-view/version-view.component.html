@@ -3,10 +3,10 @@
     <div class="action-buttons">
       <button mat-raised-button [routerLink]="'/dmp/' + id + '/version'">
         <mat-icon>chevron_left</mat-icon>
-        {{ "dmp.versions.view.button.versions" | translate }}
+        {{ 'dmp.versions.view.button.versions' | translate }}
       </button>
       <button mat-flat-button [routerLink]="'/dmp/' + id">
-        {{ "dmp.versions.view.button.goto.latest" | translate }}
+        {{ 'dmp.versions.view.button.goto.latest' | translate }}
       </button>
     </div>
     @if (versions$ | async; as versions) {
@@ -14,10 +14,10 @@
     }
     <div class="action-buttons">
       <button mat-button (click)="accordion.openAll()">
-        {{ "dmp.versions.view.button.expand" | translate }}
+        {{ 'dmp.versions.view.button.expand' | translate }}
       </button>
       <button mat-button (click)="accordion.closeAll()">
-        {{ "dmp.versions.view.button.collapse" | translate }}
+        {{ 'dmp.versions.view.button.collapse' | translate }}
       </button>
     </div>
     <mat-accordion class="headers-align" multi>
@@ -26,7 +26,7 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{ "dmp.versions.view.project.heading" | translate }}
+              {{ 'dmp.versions.view.project.heading' | translate }}
             </mat-panel-title>
           </mat-expansion-panel-header>
           <app-version-view-project [project]="dmp.project" />
@@ -37,7 +37,7 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{ "dmp.versions.view.contributors.heading" | translate }}
+              {{ 'dmp.versions.view.contributors.heading' | translate }}
             </mat-panel-title>
           </mat-expansion-panel-header>
           <app-version-view-contributors [contributors]="dmp.contributors" />
@@ -48,7 +48,7 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{ "dmp.versions.view.datasets.heading" | translate }}
+              {{ 'dmp.versions.view.datasets.heading' | translate }}
             </mat-panel-title>
             <mat-panel-description />
           </mat-expansion-panel-header>
@@ -57,20 +57,20 @@
             [reusedDataKind]="dmp.reusedDataKind"
             [dataGeneration]="dmp.dataGeneration"
             [noDataExplanation]="dmp.noDataExplanation"
-            [datasets]="dmp.datasets" />
+            [datasets]="dmp.datasets"
+          />
         </mat-expansion-panel>
       }
       <!-- Only display sections if datasets are defined -->
       @if (
-        (dmp.dataKind === dataKind.SPECIFY ||
-          dmp.reusedDataKind === dataKind.SPECIFY) &&
+        (dmp.dataKind === dataKind.SPECIFY || dmp.reusedDataKind === dataKind.SPECIFY) &&
         dmp.datasets?.length > 0
       ) {
         <!-- Documentation -->
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{ "dmp.versions.view.documentation.heading" | translate }}
+              {{ 'dmp.versions.view.documentation.heading' | translate }}
             </mat-panel-title>
             <mat-panel-description />
           </mat-expansion-panel-header>
@@ -80,7 +80,7 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{ "dmp.versions.view.legal.heading" | translate }}
+              {{ 'dmp.versions.view.legal.heading' | translate }}
             </mat-panel-title>
             <mat-panel-description />
           </mat-expansion-panel-header>
@@ -90,32 +90,34 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{ "dmp.versions.view.storage.heading" | translate }}
+              {{ 'dmp.versions.view.storage.heading' | translate }}
             </mat-panel-title>
             <mat-panel-description />
           </mat-expansion-panel-header>
           <app-version-view-storages
             [storages]="dmp.storage"
             [externalStorages]="dmp.externalStorage"
-            [datasets]="dmp.datasets" />
+            [datasets]="dmp.datasets"
+          />
         </mat-expansion-panel>
         <!-- Repositories -->
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{ "dmp.versions.view.repositories.heading" | translate }}
+              {{ 'dmp.versions.view.repositories.heading' | translate }}
             </mat-panel-title>
             <mat-panel-description />
           </mat-expansion-panel-header>
           <app-version-view-repositories
             [repositories]="dmp.repositories"
-            [datasets]="dmp.datasets" />
+            [datasets]="dmp.datasets"
+          />
         </mat-expansion-panel>
         <!-- Reuse -->
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{ "dmp.versions.view.reuse.heading" | translate }}
+              {{ 'dmp.versions.view.reuse.heading' | translate }}
             </mat-panel-title>
             <mat-panel-description />
           </mat-expansion-panel-header>
@@ -125,19 +127,18 @@
             [restrictedDataAccess]="dmp.restrictedDataAccess"
             [restrictedAccessInfo]="dmp.restrictedAccessInfo"
             [closedAccessInfo]="dmp.closedAccessInfo"
-            [datasets]="dmp.datasets" />
+            [datasets]="dmp.datasets"
+          />
         </mat-expansion-panel>
         <!-- Costs -->
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{ "dmp.versions.view.costs.heading" | translate }}
+              {{ 'dmp.versions.view.costs.heading' | translate }}
             </mat-panel-title>
             <mat-panel-description />
           </mat-expansion-panel-header>
-          <app-version-view-costs
-            [costsExist]="dmp.costsExist"
-            [costs]="dmp.costs" />
+          <app-version-view-costs [costsExist]="dmp.costsExist" [costs]="dmp.costs" />
         </mat-expansion-panel>
       }
     </mat-accordion>

@@ -1,9 +1,4 @@
-import {
-  Component,
-  OnInit,
-  inject,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import {
   LanguageSummary,
   TranslationEntry,
@@ -90,25 +85,20 @@ export class TranslationManagementComponent implements OnInit {
       this.applyFilters(true);
     });
 
-    this.backendService.getLanguageDetails().subscribe(details => {
-      const list =
-        details.length > 0 ? details : [{ language: 'en', active: true }];
+    this.backendService.getLanguageDetails().subscribe((details) => {
+      const list = details.length > 0 ? details : [{ language: 'en', active: true }];
       this.applyLanguageDetails(list);
       const currentLang = this.translate.getCurrentLang() ?? 'en';
       this.selectedLanguage = this.languages.includes(currentLang)
         ? currentLang
         : this.languages[0];
-      this.languages.forEach(l =>
-        this.translationLoader.registerAvailableLanguage(l),
-      );
+      this.languages.forEach((l) => this.translationLoader.registerAvailableLanguage(l));
       this.loadTranslations(this.selectedLanguage);
     });
   }
 
   private applyLanguageDetails(details: LanguageSummary[]): void {
-    this.languageActiveMap = new Map(
-      details.map(d => [d.language, d.active] as const),
-    );
+    this.languageActiveMap = new Map(details.map((d) => [d.language, d.active] as const));
     this.languages = [...this.languageActiveMap.keys()].sort();
   }
 
@@ -125,11 +115,7 @@ export class TranslationManagementComponent implements OnInit {
   }
 
   get isRemoveLanguageDisabled(): boolean {
-    return (
-      this.languageLoading ||
-      this.languages.length <= 1 ||
-      this.selectedLanguage === 'en'
-    );
+    return this.languageLoading || this.languages.length <= 1 || this.selectedLanguage === 'en';
   }
 
   get isToggleActiveDisabled(): boolean {
@@ -175,7 +161,7 @@ export class TranslationManagementComponent implements OnInit {
           );
           window.location.reload();
         },
-        error: err => {
+        error: (err) => {
           const message = err?.error?.message;
           this.feedbackService.error(
             message ||
@@ -188,10 +174,7 @@ export class TranslationManagementComponent implements OnInit {
   }
 
   get totalPages(): number {
-    return Math.max(
-      1,
-      Math.ceil(this.filteredTranslations.length / this.pageSize),
-    );
+    return Math.max(1, Math.ceil(this.filteredTranslations.length / this.pageSize));
   }
 
   private loadTranslations(language?: string): void {
@@ -215,9 +198,9 @@ export class TranslationManagementComponent implements OnInit {
         }),
       )
       .subscribe({
-        next: data => {
+        next: (data) => {
           const filteredData = (data ?? []).filter(
-            t => (t.language || '').toLowerCase() === langToLoad.toLowerCase(),
+            (t) => (t.language || '').toLowerCase() === langToLoad.toLowerCase(),
           );
           this.translations = filteredData;
           if (this.translations.length > 0) {
@@ -228,13 +211,11 @@ export class TranslationManagementComponent implements OnInit {
             }
           }
           this.sections = Array.from(
-            new Set(
-              this.translations.map(t => this.sectionForKey(t.translationKey)),
-            ),
+            new Set(this.translations.map((t) => this.sectionForKey(t.translationKey))),
           ).sort();
           this.applyFilters(true);
         },
-        error: err => {
+        error: (err) => {
           this.translations = [];
           this.sections = [];
           this.applyFilters(true);
@@ -309,9 +290,7 @@ export class TranslationManagementComponent implements OnInit {
       return;
     }
     const nextCustom =
-      this.customValue && this.customValue.trim().length > 0
-        ? this.customValue
-        : null;
+      this.customValue && this.customValue.trim().length > 0 ? this.customValue : null;
     const payload: TranslationUpdatePayload = {
       id: this.selectedTranslation.id,
       translationKey: this.selectedTranslation.translationKey,
@@ -324,10 +303,8 @@ export class TranslationManagementComponent implements OnInit {
       .updateTranslation(payload)
       .pipe(finalize(() => (this.saving = false)))
       .subscribe({
-        next: updated => {
-          this.translations = this.translations.map(t =>
-            t.id === updated.id ? updated : t,
-          );
+        next: (updated) => {
+          this.translations = this.translations.map((t) => (t.id === updated.id ? updated : t));
           this.applyFilters();
           this.selectedTranslation = updated;
           this.customValue = updated.custom ?? '';
@@ -336,11 +313,9 @@ export class TranslationManagementComponent implements OnInit {
             this.feedbackService.success('http.success.translations.update');
           });
         },
-        error: err => {
+        error: (err) => {
           const message = err?.error?.message;
-          this.feedbackService.error(
-            message || 'http.error.translations.update',
-          );
+          this.feedbackService.error(message || 'http.error.translations.update');
         },
       });
   }
@@ -351,7 +326,7 @@ export class TranslationManagementComponent implements OnInit {
       data: { existing: this.languages },
     });
 
-    dialogRef.afterClosed().subscribe(languageCode => {
+    dialogRef.afterClosed().subscribe((languageCode) => {
       if (!languageCode) {
         return;
       }
@@ -367,16 +342,12 @@ export class TranslationManagementComponent implements OnInit {
         .subscribe({
           next: () => {
             this.translate.use(normalizedCode);
-            this.feedbackService.success(
-              'http.success.translations.language.add',
-            );
+            this.feedbackService.success('http.success.translations.language.add');
             window.location.reload();
           },
-          error: err => {
+          error: (err) => {
             const message = err?.error?.message;
-            this.feedbackService.error(
-              message || 'http.error.translations.language.create',
-            );
+            this.feedbackService.error(message || 'http.error.translations.language.create');
           },
         });
     });
@@ -387,7 +358,7 @@ export class TranslationManagementComponent implements OnInit {
       width: '420px',
     });
 
-    dialogRef.afterClosed().subscribe(confirmed => {
+    dialogRef.afterClosed().subscribe((confirmed) => {
       if (!confirmed) {
         return;
       }
@@ -400,16 +371,12 @@ export class TranslationManagementComponent implements OnInit {
             if (this.translate.getCurrentLang() === language) {
               this.translate.use('en');
             }
-            this.feedbackService.success(
-              'http.success.translations.language.delete',
-            );
+            this.feedbackService.success('http.success.translations.language.delete');
             window.location.reload();
           },
-          error: err => {
+          error: (err) => {
             const message = err?.error?.message;
-            this.feedbackService.error(
-              message || 'http.error.translations.language.delete',
-            );
+            this.feedbackService.error(message || 'http.error.translations.language.delete');
           },
         });
     });
@@ -420,29 +387,25 @@ export class TranslationManagementComponent implements OnInit {
     let items = [...this.translations];
 
     if (term) {
-      items = items.filter(item => {
-        const searchPool = [
-          item.translationKey,
-          item.custom ?? '',
-          item.defaultValue ?? '',
-        ]
+      items = items.filter((item) => {
+        const searchPool = [item.translationKey, item.custom ?? '', item.defaultValue ?? '']
           .filter(Boolean)
-          .map(text => text.toLowerCase());
-        return searchPool.some(text => text.includes(term));
+          .map((text) => text.toLowerCase());
+        return searchPool.some((text) => text.includes(term));
       });
     }
 
     if (this.sectionFilter !== 'all') {
       items = items.filter(
-        item => this.sectionForKey(item.translationKey) === this.sectionFilter,
+        (item) => this.sectionForKey(item.translationKey) === this.sectionFilter,
       );
     }
 
     const statusFilter = this.statusFilterControl.value;
     if (statusFilter === 'custom') {
-      items = items.filter(item => this.isCustomValue(item));
+      items = items.filter((item) => this.isCustomValue(item));
     } else if (statusFilter === 'default') {
-      items = items.filter(item => !this.isCustomValue(item));
+      items = items.filter((item) => !this.isCustomValue(item));
     }
 
     this.filteredTranslations = items;

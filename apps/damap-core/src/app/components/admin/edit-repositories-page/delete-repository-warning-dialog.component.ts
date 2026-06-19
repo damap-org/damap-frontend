@@ -26,8 +26,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   ],
 })
 export class DeleteRepositoryWarningDialogComponent extends DeleteWarningDialogComponent {
-  dialogRef =
-    inject<MatDialogRef<DeleteRepositoryWarningDialogComponent>>(MatDialogRef);
+  dialogRef = inject<MatDialogRef<DeleteRepositoryWarningDialogComponent>>(MatDialogRef);
   data = inject<{
     repository: RecommendedRepository;
   }>(MAT_DIALOG_DATA);

@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, Input, OnChanges, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -47,8 +41,7 @@ export class InfoCardComponent implements OnInit, OnChanges {
       this.instructions = this.infoLabel.instructions;
     } else {
       this.icon = 'info';
-      this.instructions =
-        "You can create a new DMP by clicking the 'Create New DMP' button";
+      this.instructions = "You can create a new DMP by clicking the 'Create New DMP' button";
     }
   }
 

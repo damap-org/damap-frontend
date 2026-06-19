@@ -14,10 +14,7 @@ import {
   MatDialogActions,
 } from '@angular/material/dialog';
 import { InternalStorage } from '../../../domain/internal-storage';
-import {
-  isValidCode,
-  LANGUAGE_CODE_OPTIONS,
-} from '../../../domain/language-codes';
+import { isValidCode, LANGUAGE_CODE_OPTIONS } from '../../../domain/language-codes';
 import { FormService } from '../../../services/form.service';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { InputWrapperComponent } from '../../../shared/input-wrapper/input-wrapper.component';
@@ -48,8 +45,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   ],
 })
 export class InternalStorageDialogComponent {
-  dialogRef =
-    inject<MatDialogRef<InternalStorageDialogComponent>>(MatDialogRef);
+  dialogRef = inject<MatDialogRef<InternalStorageDialogComponent>>(MatDialogRef);
   private formService = inject(FormService);
   data = inject<{
     storage: InternalStorage;
@@ -71,8 +67,7 @@ export class InternalStorageDialogComponent {
       this.storage.patchValue(data.storage);
     }
 
-    this.storageTranslation =
-      this.formService.createInternalStorageTranslationFormGroup();
+    this.storageTranslation = this.formService.createInternalStorageTranslationFormGroup();
 
     this.languageCode.addValidators([
       Validators.required,
@@ -143,8 +138,7 @@ export class InternalStorageDialogComponent {
 
   isDisabled(): boolean {
     return (
-      (this.mode === 'add' &&
-        (this.storage.invalid || this.storageTranslation.invalid)) ||
+      (this.mode === 'add' && (this.storage.invalid || this.storageTranslation.invalid)) ||
       (this.mode === 'edit' && this.storage.invalid)
     );
   }

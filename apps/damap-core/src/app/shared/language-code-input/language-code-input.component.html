@@ -7,11 +7,13 @@
     matInput
     autocomplete="off"
     [formControl]="control()"
-    [matAutocomplete]="languageAutocomplete" />
+    [matAutocomplete]="languageAutocomplete"
+  />
 
   <mat-autocomplete
     #languageAutocomplete="matAutocomplete"
-    [displayWith]="getLanguageDisplayValue.bind(this)">
+    [displayWith]="getLanguageDisplayValue.bind(this)"
+  >
     @for (language of filteredLanguageOptions$ | async; track language.code) {
       <mat-option [value]="language.code">
         {{ language.name }} ({{ language.code | uppercase }})
@@ -23,21 +25,19 @@
     {{ hint() }}
   </mat-hint>
 
-  @if (control()?.hasError("required") && errorMessageRequired) {
+  @if (control()?.hasError('required') && errorMessageRequired) {
     <mat-error>
       {{ errorMessageRequired }}
     </mat-error>
   }
 
-  @if (control()?.hasError("invalidLanguageCode") && errorMessageInvalid) {
+  @if (control()?.hasError('invalidLanguageCode') && errorMessageInvalid) {
     <mat-error>
       {{ errorMessageInvalid }}
     </mat-error>
   }
 
-  @if (
-    control()?.hasError("languageAlreadyExists") && errorMessageAlreadyExists
-  ) {
+  @if (control()?.hasError('languageAlreadyExists') && errorMessageAlreadyExists) {
     <mat-error>
       {{ errorMessageAlreadyExists }}
     </mat-error>

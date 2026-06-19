@@ -9,24 +9,14 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { AuthService, BackendService } from '@damap-frontend-core';
-import {
-  NavigationEnd,
-  Router,
-  RouterOutlet,
-  RouterLink,
-  RouterLinkActive,
-} from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { Subscription, filter, take } from 'rxjs';
 
 import { AdminComponent } from '@damap-frontend-core/app/components/admin/admin.component';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ConfigService } from '../../services/config.service';
 import { DmpComponent } from '@damap-frontend-core/app/components/dmp/dmp.component';
-import {
-  MatSidenav,
-  MatSidenavContainer,
-  MatSidenavContent,
-} from '@angular/material/sidenav';
+import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav';
 import { SafeUrl } from '@angular/platform-browser';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import pkg from '../../../../../../package.json';
@@ -112,19 +102,15 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     this.name = this.auth.getDisplayName();
-    this.langChangeSubscription = this.translate.onLangChange.subscribe(
-      event => {
-        this.lang = event.lang.toUpperCase();
-        this.handleRouteChange();
-      },
-    );
+    this.langChangeSubscription = this.translate.onLangChange.subscribe((event) => {
+      this.lang = event.lang.toUpperCase();
+      this.handleRouteChange();
+    });
     this.backendService.getLanguages().subscribe({
-      next: langs => {
+      next: (langs) => {
         this.availableLanguages = langs.length ? langs : ['en'];
         const savedLang = localStorage.getItem('lang');
-        const browserLang = (
-          this.translate.getBrowserLang() ?? 'en'
-        ).toLowerCase();
+        const browserLang = (this.translate.getBrowserLang() ?? 'en').toLowerCase();
         const preferred = savedLang ?? browserLang;
         const selected = this.availableLanguages.includes(preferred)
           ? preferred
@@ -141,7 +127,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
     });
 
     // the breakpoint (1300px) here can be adjusted based on design requirements or device-specific considerations.
-    this.observer.observe(['(max-width: 480px)']).subscribe(result => {
+    this.observer.observe(['(max-width: 480px)']).subscribe((result) => {
       setTimeout(() => {
         this.isCollapsed = result.matches;
         this.cdr.detectChanges();
@@ -154,7 +140,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
     setTimeout(() => {
       this.handleRouteChange();
       this.routerEventsSubscription = this.router.events
-        .pipe(filter(event => event instanceof NavigationEnd))
+        .pipe(filter((event) => event instanceof NavigationEnd))
         .subscribe(() => {
           this.handleRouteChange();
         });
@@ -207,7 +193,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
     if (componentInstance instanceof DmpComponent) {
       // DMP component. Should listen to step changes and update text
       const dmpComponent = componentInstance as DmpComponent;
-      this.dataInfoService = dmpComponent.instructionStep$.subscribe(value => {
+      this.dataInfoService = dmpComponent.instructionStep$.subscribe((value) => {
         this.greeting = this.replaceFirstname(this.name, value.greeting);
         this.summaryLine = value.summaryLine;
       });
@@ -219,13 +205,9 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
       this.greetingSubscription = this.translate
         .get(['layout.menu.greeting', 'admin.dashboard.greeting'])
         .pipe(take(1))
-        .subscribe(t => {
+        .subscribe((t) => {
           this.greeting =
-            t['layout.menu.greeting'] +
-            ' ' +
-            this.name +
-            ' ' +
-            t['admin.dashboard.greeting'];
+            t['layout.menu.greeting'] + ' ' + this.name + ' ' + t['admin.dashboard.greeting'];
         });
     }
   }

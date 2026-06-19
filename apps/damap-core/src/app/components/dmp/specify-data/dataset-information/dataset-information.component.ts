@@ -51,21 +51,19 @@ export class DatasetInformationComponent {
   }
 
   mapFileSize(fileSize: number): string {
-    const size = FILE_SIZES.find(size => fileSize == size.size);
+    const size = FILE_SIZES.find((size) => fileSize == size.size);
     return size ? size.label : 'Default';
   }
 
   getDataType(dataset: Dataset): string {
     let type = '';
     dataset.type.forEach((t, index) => {
-      this.translate
-        .get(`enum.dataset.type.${t}`)
-        .subscribe((translated: string) => {
-          type += translated;
-          if (index < dataset.type.length - 1) {
-            type += ', ';
-          }
-        });
+      this.translate.get(`enum.dataset.type.${t}`).subscribe((translated: string) => {
+        type += translated;
+        if (index < dataset.type.length - 1) {
+          type += ', ';
+        }
+      });
     });
     return type;
   }

@@ -1,17 +1,7 @@
-import {
-  Component,
-  OnInit,
-  inject,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Banner } from '../../domain/banner';
 import { BackendService } from '../../services/backend.service';
-import {
-  MatCard,
-  MatCardHeader,
-  MatCardTitle,
-  MatCardContent,
-} from '@angular/material/card';
+import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 
 import { MatIcon } from '@angular/material/icon';
 
@@ -34,7 +24,7 @@ export class AppBannerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.backendService.getAppBanner().subscribe(banner => {
+    this.backendService.getAppBanner().subscribe((banner) => {
       if (banner) {
         this.banner = banner;
         this.bannerVisible = true;

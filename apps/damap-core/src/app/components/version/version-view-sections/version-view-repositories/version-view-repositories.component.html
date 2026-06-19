@@ -2,9 +2,7 @@
   <div>
     <h3>{{ repo.title }}</h3>
     <div>
-      <span class="headings"
-        >{{ "dmp.versions.view.repositories.datasets" | translate }}:</span
-      >
+      <span class="headings">{{ 'dmp.versions.view.repositories.datasets' | translate }}:</span>
       <ul>
         @for (dataset of getDatasetsForRepository(repo); track dataset.id) {
           <li>

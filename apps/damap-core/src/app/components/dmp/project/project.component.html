@@ -1,11 +1,9 @@
 <!-- Selected project -->
 @if (projectStep?.value) {
   <div>
-    <mat-label
-      class="label-title mat-title-large"
-      id="example-radio-group-label"
-      >{{ "dmp.steps.project.selected" | translate }}</mat-label
-    >
+    <mat-label class="label-title mat-title-large" id="example-radio-group-label">{{
+      'dmp.steps.project.selected' | translate
+    }}</mat-label>
     <mat-card appearance="raised" class="card-selected">
       <mat-card-header>
         <mat-card-title>
@@ -16,14 +14,11 @@
         <div class="mat-card-container">
           <p>
             <mat-icon class="mat-icon-style">date_range</mat-icon>
-            {{ projectStep.value.start | date: "dd/MMMM/yy" }} -
-            {{ projectStep.value.end | date: "dd/MMMM/yy" }}
+            {{ projectStep.value.start | date: 'dd/MMMM/yy' }} -
+            {{ projectStep.value.end | date: 'dd/MMMM/yy' }}
           </p>
           <div>
-            <button
-              class="button-position"
-              mat-icon-button
-              (click)="changeProject(null)">
+            <button class="button-position" mat-icon-button (click)="changeProject(null)">
               <mat-icon>delete</mat-icon>
             </button>
           </div>
@@ -33,18 +28,20 @@
   </div>
 }
 
-@if (selectedView === "primaryView") {
+@if (selectedView === 'primaryView') {
   <div>
     <app-project-list
       [selectedProject]="$safeNavigationMigration(projectStep?.value)"
-      (projectToSet)="changeProject($event)" />
+      (projectToSet)="changeProject($event)"
+    />
   </div>
 }
 
-@if (selectedView === "secondaryView") {
+@if (selectedView === 'secondaryView') {
   <div>
     <app-manual-project-input
       [project]="$safeNavigationMigration(projectStep?.value)"
-      (projectUpdate)="changeProject($event)" />
+      (projectUpdate)="changeProject($event)"
+    />
   </div>
 }

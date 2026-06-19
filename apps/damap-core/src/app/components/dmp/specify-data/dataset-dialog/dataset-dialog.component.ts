@@ -150,10 +150,7 @@ export class DatasetDialogComponent {
     }
 
     if (dataset.license === null && dataset.source == this.datasetSource.NEW) {
-      if (
-        dataset.type.includes(DataType.SOURCE_CODE) &&
-        dataset.type.length === 1
-      ) {
+      if (dataset.type.includes(DataType.SOURCE_CODE) && dataset.type.length === 1) {
         dataset.license = mit.id;
       } else {
         dataset.license = ccBy.id;

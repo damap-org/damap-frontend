@@ -1,8 +1,8 @@
 <h1 mat-dialog-title>
-  @if (mode === "edit") {
-    {{ "dmp.steps.data.specify.dialog.edit" | translate }}
+  @if (mode === 'edit') {
+    {{ 'dmp.steps.data.specify.dialog.edit' | translate }}
   } @else {
-    {{ "dmp.steps.data.specify.dialog.title.create" | translate }}
+    {{ 'dmp.steps.data.specify.dialog.title.create' | translate }}
   }
 </h1>
 
@@ -10,18 +10,14 @@
   <div [formGroup]="dataset">
     <app-input-wrapper
       [label]="'dmp.steps.data.specify.dialog.field.title' | translate"
-      [control]="title" />
+      [control]="title"
+    />
     @if (dataset.controls.source.value === datasetSource.NEW) {
       <div class="dialogRow">
         <mat-form-field>
-          <mat-label>{{
-            "dmp.steps.data.specify.dialog.type" | translate
-          }}</mat-label>
+          <mat-label>{{ 'dmp.steps.data.specify.dialog.type' | translate }}</mat-label>
           <mat-select formControlName="type" required multiple>
-            @for (
-              type of FILE_TYPES | keyvalue: originalOrder;
-              track type.key
-            ) {
+            @for (type of FILE_TYPES | keyvalue: originalOrder; track type.key) {
               <mat-option [value]="type.value.id">
                 {{ type.value.label }}
                 @if (type.value.description) {
@@ -36,9 +32,7 @@
     @if (dataset.controls.source.value === datasetSource.REUSED) {
       <div class="dialogRow">
         <mat-form-field>
-          <mat-label>{{
-            "dmp.steps.data.specify.dialog.source" | translate
-          }}</mat-label>
+          <mat-label>{{ 'dmp.steps.data.specify.dialog.source' | translate }}</mat-label>
           <input matInput [(ngModel)]="datasetId.identifier" maxlength="255" />
         </mat-form-field>
       </div>
@@ -47,19 +41,16 @@
       <app-input-wrapper
         [label]="'dmp.steps.data.specify.dialog.fileFormat.label' | translate"
         [info]="'dmp.steps.data.specify.dialog.fileFormat.info' | translate"
-        [control]="fileFormat" />
+        [control]="fileFormat"
+      />
     }
     @if (dataset.controls.source.value === datasetSource.NEW) {
       <div class="dialogRow">
         <mat-form-field>
-          <mat-label>{{
-            "dmp.steps.data.specify.dialog.size" | translate
-          }}</mat-label>
+          <mat-label>{{ 'dmp.steps.data.specify.dialog.size' | translate }}</mat-label>
           <mat-select formControlName="size">
             @for (size of FILE_SIZES; track size.label) {
-              <mat-option [value]="size.size">
-                {{ size.label }}<br />
-              </mat-option>
+              <mat-option [value]="size.size"> {{ size.label }}<br /> </mat-option>
             }
           </mat-select>
         </mat-form-field>
@@ -69,9 +60,7 @@
     @if (dataset.controls.source.value === datasetSource.REUSED) {
       <div class="dialogRowLicense">
         <mat-form-field class="full-width">
-          <mat-label>{{
-            "dmp.steps.licensing.question.license.existing" | translate
-          }}</mat-label>
+          <mat-label>{{ 'dmp.steps.licensing.question.license.existing' | translate }}</mat-label>
           <mat-select formControlName="license">
             @for (license of licenses; track license.id) {
               <mat-option [value]="license.id">
@@ -82,43 +71,36 @@
         </mat-form-field>
         <app-license-wizard
           style="margin-top: 5px"
-          (selectedLicense)="setLicenseSelectorResult($event)" />
+          (selectedLicense)="setLicenseSelectorResult($event)"
+        />
       </div>
     }
 
     <app-textarea-wrapper
       [label]="'dmp.steps.data.specify.dialog.description' | translate"
       [control]="description"
-      [maxLength]="4000" />
+      [maxLength]="4000"
+    />
     @if (dataset.controls.source.value === datasetSource.NEW) {
       <div class="dialogRow">
         <div formArrayName="technicalResources">
           <hr />
-          @for (
-            resource of technicalResources.controls;
-            track resource;
-            let i = $index
-          ) {
+          @for (resource of technicalResources.controls; track resource; let i = $index) {
             <div [formGroupName]="i" class="resource-row">
               <app-textarea-wrapper
                 [label]="'dmp.steps.data.specify.dialog.technicalResource'"
                 [labelSuffix]="' ' + (i + 1)"
                 [control]="resource.get('name')"
-                [maxLength]="255" />
+                [maxLength]="255"
+              />
               <button mat-icon-button (click)="removeTechnicalResource(i)">
                 <mat-icon>delete</mat-icon>
               </button>
             </div>
           }
         </div>
-        <button
-          mat-flat-button
-          class="action-button"
-          (click)="addTechnicalResource()">
-          {{
-            "dmp.steps.data.specify.dialog.button.addTechnicalResource"
-              | translate
-          }}
+        <button mat-flat-button class="action-button" (click)="addTechnicalResource()">
+          {{ 'dmp.steps.data.specify.dialog.button.addTechnicalResource' | translate }}
         </button>
       </div>
     }
@@ -127,17 +109,14 @@
 
 <mat-dialog-actions>
   <button mat-button (click)="onNoClick()">
-    {{ "dmp.steps.data.specify.dialog.button.cancel" | translate }}
+    {{ 'dmp.steps.data.specify.dialog.button.cancel' | translate }}
   </button>
-  <button
-    (click)="onDialogClose()"
-    mat-flat-button
-    [disabled]="dataset.invalid">
-    @if (mode === "edit") {
-      {{ "dmp.steps.data.specify.dialog.button.update" | translate }}
+  <button (click)="onDialogClose()" mat-flat-button [disabled]="dataset.invalid">
+    @if (mode === 'edit') {
+      {{ 'dmp.steps.data.specify.dialog.button.update' | translate }}
     }
-    @if (mode === "add") {
-      {{ "dmp.steps.data.specify.dialog.button.add" | translate }}
+    @if (mode === 'add') {
+      {{ 'dmp.steps.data.specify.dialog.button.add' | translate }}
     }
   </button>
 </mat-dialog-actions>

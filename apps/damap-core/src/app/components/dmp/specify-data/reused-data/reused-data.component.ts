@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnDestroy,
-  OnInit,
-  inject,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { Subject, Subscription, switchMap } from 'rxjs';
 import { Dataset } from '../../../../domain/dataset';
@@ -35,10 +29,7 @@ import { InfoMessageComponent } from '../../../../widgets/info-message/info-mess
     InfoMessageComponent,
   ],
 })
-export class ReusedDataComponent
-  extends AbstractBaseDataComponent
-  implements OnInit, OnDestroy
-{
+export class ReusedDataComponent extends AbstractBaseDataComponent implements OnInit, OnDestroy {
   private backendService = inject(BackendService);
   dialog = inject(MatDialog);
 
@@ -108,7 +99,7 @@ export class ReusedDataComponent
       data: { dataset: { source: this.datasetSource.REUSED } },
     });
 
-    dialogRef.afterClosed().subscribe(dataset => {
+    dialogRef.afterClosed().subscribe((dataset) => {
       if (dataset) {
         this.datasetToAdd.emit(dataset);
       }

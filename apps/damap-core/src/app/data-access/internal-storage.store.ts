@@ -9,9 +9,9 @@ import { InternalStorageApi } from './internal-storage.api';
 export class InternalStorageStore {
   private readonly api = inject(InternalStorageApi);
 
-  private readonly internalStoragesResource = httpResource<
-    SearchResult<InternalStorage>
-  >(() => this.api.baseUrl);
+  private readonly internalStoragesResource = httpResource<SearchResult<InternalStorage>>(
+    () => this.api.baseUrl,
+  );
 
   readonly internalStorages = computed<InternalStorage[]>(() => {
     const resource = this.internalStoragesResource;
