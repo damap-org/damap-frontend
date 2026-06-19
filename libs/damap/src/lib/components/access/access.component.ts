@@ -70,7 +70,6 @@ import { TooltipComponent } from '../../widgets/tooltip/tooltip.component';
   templateUrl: './access.component.html',
   styleUrls: ['./access.component.css'],
   changeDetection: ChangeDetectionStrategy.Eager,
-  standalone: true,
 })
 export class AccessComponent implements OnInit {
   private route = inject(ActivatedRoute);

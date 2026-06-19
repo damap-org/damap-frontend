@@ -10,7 +10,6 @@ import { AuthService } from '@damap/core';
   templateUrl: './no-tenant.component.html',
   styleUrl: './no-tenant.component.css',
   changeDetection: ChangeDetectionStrategy.Eager,
-  standalone: true,
 })
 export class NoTenantComponent {
   authService = inject(AuthService);

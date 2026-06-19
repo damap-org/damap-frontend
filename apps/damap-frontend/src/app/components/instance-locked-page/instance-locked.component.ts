@@ -8,7 +8,6 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrls: ['./instance-locked.component.scss'],
   imports: [TranslatePipe, MatIconModule],
   changeDetection: ChangeDetectionStrategy.Eager,
-  standalone: true,
 })
 export class InstanceLockedComponent {
   private translate = inject(TranslateService);

@@ -28,7 +28,6 @@ import { ImageThemeService } from '../../services/image-theme.service';
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.css',
   changeDetection: ChangeDetectionStrategy.Eager,
-  standalone: true,
 })
 export class LandingPageComponent implements OnInit {
   private translate = inject(TranslateService);

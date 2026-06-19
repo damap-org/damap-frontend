@@ -23,7 +23,6 @@ import { DeleteWarningDialogComponent } from '../../delete-warning-dialog/delete
     </mat-dialog-actions>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
-  standalone: true,
 })
 export class DeleteStorageWarningDialogComponent extends DeleteWarningDialogComponent {
   override getDeleteContent(): string {

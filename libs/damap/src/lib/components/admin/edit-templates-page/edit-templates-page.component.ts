@@ -25,7 +25,6 @@ import { ConfigService } from '../../../../../../../apps/damap-frontend/src/app/
   selector: 'app-admin-templates',
   templateUrl: './edit-templates-page.component.html',
   styleUrls: ['./edit-templates-page.component.css'],
-  standalone: true,
   imports: [
     ReactiveFormsModule,
     FormsModule,

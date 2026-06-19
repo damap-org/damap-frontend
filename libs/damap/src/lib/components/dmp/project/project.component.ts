@@ -1,7 +1,7 @@
 import {
   Component,
-  Input,
   inject,
+  Input,
   ChangeDetectionStrategy,
   output,
 } from '@angular/core';
@@ -9,6 +9,11 @@ import {
 import { Project } from '../../../domain/project';
 import { UntypedFormControl } from '@angular/forms';
 import { ConfigService } from '../../../../../../../apps/damap-frontend/src/app/services/config.service';
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+} from '@angular/material/core';
 import { MatLabel } from '@angular/material/form-field';
 import {
   MatCard,
@@ -22,6 +27,11 @@ import { ProjectListComponent } from './project-list/project-list.component';
 import { ManualProjectInputComponent } from './manual-project-input/manual-project-input.component';
 import { DatePipe } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
+import {
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+  MAT_MOMENT_DATE_FORMATS,
+  MomentDateAdapter,
+} from '@angular/material-moment-adapter';
 
 @Component({
   selector: 'app-dmp-project',
@@ -40,6 +50,16 @@ import { TranslatePipe } from '@ngx-translate/core';
     ManualProjectInputComponent,
     DatePipe,
     TranslatePipe,
+  ],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
+    },
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
   ],
 })
 export class ProjectComponent {

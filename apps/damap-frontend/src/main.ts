@@ -9,7 +9,12 @@ import {
 import { environment } from './environments/environment';
 import { ConfigService } from './app/services/config.service';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { AuthGuard, BackendTranslateLoader, TenantGuard } from '@damap/core';
+import {
+  AuthGuard,
+  BackendTranslateLoader,
+  provideDamap,
+  TenantGuard,
+} from '@damap/core';
 import { ConsentGuard } from './app/guard/consent.guard';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -32,6 +37,7 @@ if (environment.production) {
 bootstrapApplication(AppComponent, {
   providers: [
     provideZoneChangeDetection(),
+    provideDamap(environment),
     importProvidersFrom(
       BrowserModule,
       HttpClientModule,

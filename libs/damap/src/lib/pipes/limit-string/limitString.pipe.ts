@@ -2,7 +2,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'limitString',
-  standalone: true,
 })
 export class LimitStringPipe implements PipeTransform {
   transform(text: string, limit: number): string {

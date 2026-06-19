@@ -22,7 +22,6 @@ import { FormService } from '../../../services/form.service';
   selector: 'app-admin-color-picker',
   templateUrl: './edit-theme-page.component.html',
   styleUrls: ['./edit-theme-page.component.css'],
-  standalone: true,
   imports: [
     FormsModule,
     MatCheckbox,

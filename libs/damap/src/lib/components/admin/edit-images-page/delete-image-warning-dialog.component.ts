@@ -23,7 +23,6 @@ import { DeleteWarningDialogComponent } from '../../../widgets/delete-warning-di
     </mat-dialog-actions>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
-  standalone: true,
 })
 export class DeleteImageWarningDialogComponent extends DeleteWarningDialogComponent {
   override getDeleteContent(): string {
