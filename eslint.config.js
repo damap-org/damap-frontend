@@ -50,7 +50,7 @@ module.exports = [
     },
   },
   {
-    files: ['libs/damap/**/*.ts'],
+    files: ['apps/damap-core/**/*.ts'],
     rules: {
       '@angular-eslint/directive-selector': [
         'error',

@@ -39,3 +39,7 @@ jobs:
       - name: Merge - Build all projects
         if: ${{ env.is-master-branch == 'true' || env.is-next-branch == 'true' }}
         run: npm run ci:build
+
+      - name: Merge - Test all projects
+        if: ${{ env.is-master-branch == 'true' || env.is-next-branch == 'true' }}
+        run: npm run ci:test
