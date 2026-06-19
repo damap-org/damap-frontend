@@ -3,13 +3,26 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   margin: 0 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--primary-lightest);
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
 }
 
 .close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 1;
+  position: relative;
   background: transparent;
   border: none;
   color: var(--custom-neutral-color-medium-light);
@@ -70,6 +83,29 @@
   font-weight: 300;
   color: var(--custom-user-navbar-color);
   padding: 16px 16px;
+}
+
+.info-box.collapsed {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.info-box.collapsed .flex-row-container {
+  justify-content: center;
+}
+
+.info-box.collapsed .info-box-container {
+  display: none;
+}
+
+.expand-collapse-btn {
+  background: transparent;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
 }
 
 .mat-content {
