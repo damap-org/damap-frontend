@@ -18,7 +18,6 @@ import { TranslatePipe } from '@ngx-translate/core';
   templateUrl: './info-card.component.html',
   styleUrl: './info-card.component.css',
   changeDetection: ChangeDetectionStrategy.Eager,
-  standalone: true,
 })
 export class InfoCardComponent implements OnInit, OnChanges {
   @Input() infoLabel: InfoBoxDetails = {};
@@ -28,6 +27,10 @@ export class InfoCardComponent implements OnInit, OnChanges {
   public summaryLine: string;
   public isIntroShow: boolean = true;
   public icon: string | number;
+
+  public get isNumberIcon(): boolean {
+    return typeof this.icon === 'number' && this.icon > 0;
+  }
 
   ngOnInit(): void {
     this.setContentCard();

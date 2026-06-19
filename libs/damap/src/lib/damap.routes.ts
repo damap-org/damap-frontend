@@ -1,7 +1,4 @@
-import {
-  EnvironmentProviders,
-  makeEnvironmentProviders,
-} from '@angular/core';
+import { EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';
 import { Route } from '@angular/router';
 
 import { APP_ENV } from './constants';
