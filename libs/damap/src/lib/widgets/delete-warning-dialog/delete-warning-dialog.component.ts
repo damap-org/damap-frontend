@@ -22,7 +22,6 @@ import { TranslatePipe } from '@ngx-translate/core';
     </mat-dialog-actions>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
-  standalone: true,
 })
 export class DeleteWarningDialogComponent {
   getDeleteContent(): string {

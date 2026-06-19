@@ -32,7 +32,6 @@ import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
   templateUrl: './dmp-instructions.component.html',
   styleUrl: './dmp-instructions.component.css',
   changeDetection: ChangeDetectionStrategy.Eager,
-  standalone: true,
 })
 export class DmpInstructionsComponent {
   readonly panelOpenState = signal(false);

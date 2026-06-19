@@ -23,7 +23,6 @@ import { AuthService } from '../../auth/auth.service';
   templateUrl: './gdpr.component.html',
   styleUrls: ['./gdpr.component.css'],
   changeDetection: ChangeDetectionStrategy.Eager,
-  standalone: true,
 })
 export class GdprComponent implements OnInit {
   private backendService = inject(BackendService);

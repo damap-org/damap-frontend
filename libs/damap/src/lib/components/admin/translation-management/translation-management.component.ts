@@ -19,7 +19,7 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { TranslationLoaderService } from '@damap/core';
+import { TranslationLoaderService } from '../../../services/translation-loader.service';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/autocomplete';

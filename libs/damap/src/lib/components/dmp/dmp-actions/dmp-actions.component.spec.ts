@@ -9,7 +9,7 @@ import { Subject, of } from 'rxjs';
 import { BackendService } from '../../../services/backend.service';
 import { DmpFormStore } from '../../../data-access/dmp-form.store';
 import { DmpStore } from '../../../data-access/dmp.store';
-import { ExportWarningModule } from '../../../widgets/export-warning-dialog/export-warning.module';
+import { ExportWarningDialogComponent } from '../../../widgets/export-warning-dialog/export-warning-dialog.component';
 import { FormTestingModule } from '../../../testing/form-testing/form-testing.module';
 import { FormsModule } from '@angular/forms';
 import { HarnessLoader } from '@angular/cdk/testing';
@@ -59,7 +59,7 @@ describe('DmpActionsComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        ExportWarningModule,
+        ExportWarningDialogComponent,
         MatButtonModule,
         MatDialogModule,
         FormsModule,

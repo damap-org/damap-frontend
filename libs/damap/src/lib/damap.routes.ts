@@ -1,24 +1,27 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { Route, RouterModule } from '@angular/router';
+import {
+  EnvironmentProviders,
+  makeEnvironmentProviders,
+} from '@angular/core';
+import { Route } from '@angular/router';
 
 import { APP_ENV } from './constants';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminGuard } from './guards/admin.guard';
-import { AdminModule } from './components/admin/admin.module';
-import { CommonModule } from '@angular/common';
 import { DamapInfoComponent } from './components/damap-info/damap-info.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-
 import { DmpInstructionsComponent } from './components/dmp-instructions/dmp-instructions.component';
 import { EditImagesPageComponent } from './components/admin/edit-images-page/edit-images-page.component';
 import { EditRepositoriesPageComponent } from './components/admin/edit-repositories-page/edit-repositories-page.component';
+import { EditTemplatesPageComponent } from './components/admin/edit-templates-page/edit-templates-page.component';
 import { EditThemePageComponent } from './components/admin/edit-theme-page/edit-theme-page.component';
 import { EditTranslationsPageComponent } from './components/admin/edit-translations-page/edit-translations-page.component';
 import { GdprComponent } from './components/gdpr/gdpr.component';
 import { PlansComponent } from './components/plans/plans.component';
-import { PlansModule } from './components/plans/plans.module';
-import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
-import { EditTemplatesPageComponent } from './components/admin/edit-templates-page/edit-templates-page.component';
+
+export interface DamapEnvironment {
+  production: boolean;
+  backendurl: string;
+}
 
 export const DAMAP_ROUTES: Route[] = [
   {
@@ -45,7 +48,7 @@ export const DAMAP_ROUTES: Route[] = [
   {
     path: 'dmp',
     loadChildren: () =>
-      import('./components/dmp/dmp.module').then(m => m.DmpModule),
+      import('./components/dmp/dmp.routes').then(m => m.DMP_ROUTES),
   },
   {
     path: 'gdpr',
@@ -79,25 +82,9 @@ export const DAMAP_ROUTES: Route[] = [
   },
 ];
 
-const MODULES = [PlansModule, AdminModule];
+export function provideDamap(env: DamapEnvironment): EnvironmentProviders {
+  APP_ENV.production = env.production;
+  APP_ENV.backendurl = env.backendurl;
 
-@NgModule({
-  imports: [
-    CommonModule,
-    TranslatePipe,
-    TranslateDirective,
-    RouterModule.forChild(DAMAP_ROUTES),
-    ...MODULES,
-  ],
-})
-export class DamapModule {
-  static forRoot(env: {
-    production: boolean;
-    backendurl: string;
-  }): ModuleWithProviders<DamapModule> {
-    return {
-      ngModule: DamapModule,
-      providers: [{ provide: APP_ENV, useValue: env }],
-    };
-  }
+  return makeEnvironmentProviders([]);
 }

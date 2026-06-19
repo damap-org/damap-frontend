@@ -1,10 +1,11 @@
-// Modules
-export * from './lib/damap.module';
+// Routes and providers
+export * from './lib/damap.routes';
 export * from './lib/testing/translate-testing/translate-testing.module';
 
 export * from './lib/widgets/env-banner/env-banner.component';
 export * from './lib/components/dashboard';
-export * from './lib/components/dmp/dmp.module';
+export * from './lib/components/dmp/dmp.routes';
+export * from './lib/components/dmp/dmp.component';
 
 // Services & Guards
 export * from './lib/guards/auth.guard';
