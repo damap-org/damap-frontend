@@ -145,31 +145,6 @@
         }
       }
     },
-    "damap-frontend-e2e": {
-      "root": "apps/damap-frontend-e2e",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "devServerTarget": "damap-frontend:serve",
-            "testingType": "e2e",
-            "configFile": "apps/damap-frontend-e2e/cypress.config.ts"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "damap-frontend:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": ["apps/damap-frontend-e2e/**/*.ts"]
-          }
-        }
-      }
-    },
     "damap": {
       "projectType": "library",
       "root": "libs/damap",
