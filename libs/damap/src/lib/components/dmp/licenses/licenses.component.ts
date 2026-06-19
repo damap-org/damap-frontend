@@ -13,6 +13,11 @@ import { DataSource } from '../../../domain/enum/data-source.enum';
 import { LicenseDetails } from '../../../domain/license-details';
 import { LicenseDefinitions } from '../../../widgets/license-wizard/license-wizard-list';
 import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+} from '@angular/material/core';
+import {
   MatLabel,
   MatFormField,
   MatSuffix,
@@ -37,6 +42,11 @@ import { DataDeletionComponent } from '../data-deletion/data-deletion.component'
 import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
 import { KeyValuePipe } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
+import {
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+  MAT_MOMENT_DATE_FORMATS,
+  MomentDateAdapter,
+} from '@angular/material-moment-adapter';
 
 @Component({
   selector: 'app-dmp-licenses',
@@ -65,6 +75,16 @@ import { TranslatePipe } from '@ngx-translate/core';
     TextareaWrapperComponent,
     KeyValuePipe,
     TranslatePipe,
+  ],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
+    },
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
   ],
 })
 export class LicensesComponent {

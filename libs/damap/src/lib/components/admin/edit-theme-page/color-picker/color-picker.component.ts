@@ -12,7 +12,6 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-color-picker',
-  standalone: true,
   templateUrl: './color-picker.component.html',
   styleUrls: ['./color-picker.component.css'],
   changeDetection: ChangeDetectionStrategy.Eager,

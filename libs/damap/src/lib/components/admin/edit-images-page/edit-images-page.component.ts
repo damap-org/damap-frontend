@@ -44,7 +44,6 @@ const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
   selector: 'app-admin-images',
   templateUrl: './edit-images-page.component.html',
   styleUrls: ['./edit-images-page.component.css'],
-  standalone: true,
   imports: [
     ReactiveFormsModule,
     FormsModule,

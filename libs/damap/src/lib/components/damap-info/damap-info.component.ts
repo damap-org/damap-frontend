@@ -24,7 +24,6 @@ import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
   templateUrl: './damap-info.component.html',
   styleUrl: './damap-info.component.css',
   changeDetection: ChangeDetectionStrategy.Eager,
-  standalone: true,
 })
 export class DamapInfoComponent {
   readonly panelOpenState = signal(true);

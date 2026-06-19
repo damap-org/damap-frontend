@@ -29,7 +29,6 @@ import { RepoTableComponent } from '../../dmp/repo/repo-table/repo-table.compone
   selector: 'app-edit-repositories-page',
   templateUrl: './edit-repositories-page.component.html',
   styleUrls: ['./edit-repositories-page.component.css'],
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatButtonModule,

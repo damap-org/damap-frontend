@@ -6,7 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
 import { TranslatePipe } from '@ngx-translate/core';
-import { Access } from '@damap/core';
+import { Access } from '../../domain/access';
 import { OrcidComponent } from '../orcid/orcid.component';
 
 /**
@@ -21,7 +21,6 @@ import { OrcidComponent } from '../orcid/orcid.component';
   templateUrl: './person-card.component.html',
   styleUrls: [],
   changeDetection: ChangeDetectionStrategy.Eager,
-  standalone: true,
 })
 export class PersonCardComponent {
   @Input() person: Contributor | Access;

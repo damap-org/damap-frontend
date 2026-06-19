@@ -35,7 +35,6 @@ import { filter, switchMap } from 'rxjs/operators';
   selector: 'app-language-code-input',
   templateUrl: './language-code-input.component.html',
   styleUrl: './language-code-input.component.css',
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatHint,
