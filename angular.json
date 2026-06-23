@@ -126,7 +126,8 @@
           "options": {
             "tsConfig": "tsconfig.spec.json",
             "buildTarget": "damap-frontend:build:testing",
-            "runnerConfig": "vitest.config.ts"
+            "runnerConfig": "vitest.config.ts",
+            "include": ["**/*.spec.ts", "../../damap-core/src/**/*.spec.ts"]
           }
         },
         "lint": {
