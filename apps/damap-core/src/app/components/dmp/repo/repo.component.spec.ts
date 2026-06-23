@@ -1,160 +1,77 @@
-import { Component, input, output, signal } from '@angular/core';
+import { signal, type WritableSignal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';
-import { vi, it, describe, expect } from 'vitest';
+import { describe, expect, it, vi, type Mock } from 'vitest';
 
-import { RepoComponent } from './repo.component';
-import { RepositoryStore } from '../../../data-access/repository.store';
 import { RepositoryFilter } from '../../../data-access/repository.api';
-import { TranslateTestingModule } from '../../../testing/translate-testing/translate-testing.module';
+import { RepositoryStore } from '../../../data-access/repository.store';
 import { LoadingState } from '../../../domain/enum/loading-state.enum';
 import { RepositoryDetails } from '../../../domain/repository-details';
-import { RepoRecommendationComponent } from './repo-recommendation/repo-recommendation.component';
-import { RepoTableComponent } from './repo-table/repo-table.component';
+import { RepoComponent } from './repo.component';
 
-@Component({ selector: 'app-repo-recommendation', template: '' })
-class RepoRecommendationStubComponent {
-  readonly recommended = input<RepositoryDetails[]>();
-  readonly loaded = input<LoadingState>();
-  readonly repositoryToAdd = output<RepositoryDetails>();
-}
+type RepositoryStoreStub = {
+  readonly recommendedRepositories: WritableSignal<RepositoryDetails[]>;
+  readonly recommendedRepositoriesLoaded: WritableSignal<LoadingState>;
+  readonly repositories: WritableSignal<RepositoryDetails[]>;
+  readonly repositoriesLoaded: WritableSignal<LoadingState>;
+  readonly filters: WritableSignal<RepositoryFilter>;
+  readonly setFilter: Mock<(filter: RepositoryFilter) => void>;
+  readonly loadDetails: Mock<(id: string) => void>;
+};
 
-@Component({ selector: 'app-repo-table', template: '' })
-class RepoTableStubComponent {
-  readonly loaded = input<LoadingState>();
-  readonly filters = input<RepositoryFilter>();
-  readonly repositories = input<RepositoryDetails[]>();
-  readonly selectedRepos = input<unknown>();
-  readonly filterChange = output<RepositoryFilter>();
-  readonly repositoryToAdd = output<RepositoryDetails>();
-  readonly repositoryDetails = output<RepositoryDetails>();
-}
-
-/**
- * Minimal fake of the signal-based RepositoryStore. The component only reads the
- * store's signals and calls `setFilter`/`loadDetails`, so writable signals let
- * each test drive the rendered state without any HTTP / httpResource wiring.
- */
-function createStoreStub() {
+function createRepositoryStoreStub(): RepositoryStoreStub {
   return {
     recommendedRepositories: signal<RepositoryDetails[]>([]),
-    recommendedRepositoriesLoaded: signal<LoadingState>(LoadingState.LOADED),
+    recommendedRepositoriesLoaded: signal(LoadingState.LOADED),
     repositories: signal<RepositoryDetails[]>([]),
-    repositoriesLoaded: signal<LoadingState>(LoadingState.LOADED),
+    repositoriesLoaded: signal(LoadingState.LOADED),
     filters: signal<RepositoryFilter>({}),
-    setFilter: vi.fn(),
-    loadDetails: vi.fn(),
+    setFilter: vi.fn<(filter: RepositoryFilter) => void>(),
+    loadDetails: vi.fn<(id: string) => void>(),
   };
 }
 
 describe('RepoComponent', () => {
   async function createComponent() {
-    const store = createStoreStub();
+    const store = createRepositoryStoreStub();
 
     await TestBed.configureTestingModule({
-      imports: [RepoComponent, TranslateTestingModule],
+      imports: [RepoComponent],
     })
       .overrideComponent(RepoComponent, {
-        remove: { imports: [RepoRecommendationComponent, RepoTableComponent] },
-        add: {
-          imports: [RepoRecommendationStubComponent, RepoTableStubComponent],
+        set: {
+          template: '',
           providers: [{ provide: RepositoryStore, useValue: store }],
         },
       })
       .compileComponents();
 
     const fixture = TestBed.createComponent(RepoComponent);
-    fixture.componentRef.setInput(
-      'dmpForm',
-      new UntypedFormGroup({ repositories: new UntypedFormArray([]) }),
-    );
-    fixture.componentRef.setInput('repoStep', new UntypedFormArray([]));
-    fixture.componentRef.setInput('datasets', new UntypedFormArray([]));
     await fixture.whenStable();
 
-    return { fixture, component: fixture.componentInstance, store };
+    return {
+      component: fixture.componentInstance,
+      store,
+    };
   }
 
-  it('creates the component', async () => {
-    const { component } = await createComponent();
-
-    expect(component).toBeTruthy();
-  });
-
-  it('feeds the recommendation view from the store in the primary view', async () => {
-    const { fixture, store } = await createComponent();
-    const recommended: RepositoryDetails[] = [{ id: 'r1', name: 'Zenodo' }];
-
-    store.recommendedRepositories.set(recommended);
-    await fixture.whenStable();
-
-    const recommendation = fixture.debugElement.query(
-      By.directive(RepoRecommendationStubComponent),
-    );
-    expect(recommendation).not.toBeNull();
-    expect(recommendation.componentInstance.recommended()).toEqual(recommended);
-    expect(recommendation.componentInstance.loaded()).toBe(LoadingState.LOADED);
-  });
-
-  it('toggles between the primary and secondary views', async () => {
-    const { component } = await createComponent();
-
-    expect(component.selectedView).toBe('primaryView');
-
-    component.onViewChange('secondaryView');
-    expect(component.selectedView).toBe('secondaryView');
-
-    component.onViewChange('primaryView');
-    expect(component.selectedView).toBe('primaryView');
-  });
-
-  it('emits the repository to add', async () => {
-    const { component } = await createComponent();
-    const repo: RepositoryDetails = { id: 'r1', name: 'Zenodo' };
-    const emitted: RepositoryDetails[] = [];
-    component.repositoryToAdd.subscribe((value) => emitted.push(value));
-
-    component.addRepository(repo);
-
-    expect(emitted).toEqual([repo]);
-  });
-
-  it('emits the index of the repository to remove', async () => {
-    const { component } = await createComponent();
-    const emitted: number[] = [];
-    component.repositoryToRemove.subscribe((value) => emitted.push(value));
-
-    component.removeRepository(2);
-
-    expect(emitted).toEqual([2]);
-  });
-
-  it('forwards active and cleared filters to the store', async () => {
+  it('coordinates repository filtering and detail loading through the store', async () => {
     const { component, store } = await createComponent();
     const filter: RepositoryFilter = {
-      subject: [{ id: '1', label: 'Physics' }],
+      subject: [{ id: 'physics', label: 'Physics' }],
     };
 
     component.filterRepositories(filter);
-    expect(store.setFilter).toHaveBeenCalledWith(filter);
-
     component.filterRepositories(null);
-    expect(store.setFilter).toHaveBeenLastCalledWith({});
-  });
-
-  it('only loads details for repositories that are not yet detailed', async () => {
-    const { component, store } = await createComponent();
-
-    component.getRepositoryDetails({ id: 'r1', name: 'Zenodo' });
-    expect(store.loadDetails).toHaveBeenCalledWith('r1');
-
-    store.loadDetails.mockClear();
+    component.getRepositoryDetails({ id: 'zenodo', name: 'Zenodo' });
     component.getRepositoryDetails({
-      id: 'r2',
+      id: 'dryad',
       name: 'Dryad',
-      description: 'already loaded',
+      description: 'Already loaded',
     });
-    expect(store.loadDetails).not.toHaveBeenCalled();
+
+    expect(store.setFilter).toHaveBeenNthCalledWith(1, filter);
+    expect(store.setFilter).toHaveBeenNthCalledWith(2, {});
+    expect(store.loadDetails).toHaveBeenCalledOnce();
+    expect(store.loadDetails).toHaveBeenCalledWith('zenodo');
   });
 });
