@@ -90,7 +90,7 @@ export class DmpStore {
           revisionNumber: undefined,
           versionDate: undefined,
           versionName,
-          dmpId: savedDmp.id,
+          dmpId: this.requireDmpId(savedDmp),
           editor: undefined,
         };
 
@@ -111,10 +111,11 @@ export class DmpStore {
 
   exportDmp(dmp: Dmp, changed: boolean | undefined, templateType?: number): Observable<Dmp | null> {
     const exportSavedDmp = (savedDmp: Dmp): void => {
+      const dmpId = this.requireDmpId(savedDmp);
       const export$ =
         templateType !== undefined
-          ? this.api.exportDmpTemplate(savedDmp.id, templateType)
-          : this.api.exportDmp(savedDmp.id);
+          ? this.api.exportDmpTemplate(dmpId, templateType)
+          : this.api.exportDmp(dmpId);
 
       export$
         .pipe(
@@ -145,6 +146,14 @@ export class DmpStore {
 
     exportSavedDmp(dmp);
     return of(null);
+  }
+
+  private requireDmpId(dmp: Dmp): number {
+    if (dmp.id == null) {
+      throw new Error('A persisted DMP id is required for this operation.');
+    }
+
+    return dmp.id;
   }
 
   private toLoadingState(status: ResourceStatus): LoadingState {
