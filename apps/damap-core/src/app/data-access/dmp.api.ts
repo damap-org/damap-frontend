@@ -66,6 +66,10 @@ export class DmpApi {
   }
 
   private downloadFile(response: HttpResponse<Blob>): void {
+    if (!response.body) {
+      throw new Error('Cannot download an empty DMP export response.');
+    }
+
     const contentDisposition = response.headers.get('content-disposition');
     const filename = contentDisposition
       ? contentDisposition.substring(contentDisposition.lastIndexOf('filename=') + 9)
