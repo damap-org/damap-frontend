@@ -6,8 +6,9 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "skipLibCheck": true,
-    "strict": true
+    "strict": true,
+    "types": ["vitest"]
   },
-  "include": ["apps/**/*store.ts", "apps/**/*api.ts"],
+  "include": ["apps/**/*.spec.ts"],
   "exclude": ["node_modules", "tmp"]
 }

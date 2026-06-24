@@ -21,29 +21,7 @@ This repository contains the source code for the frontend of DAMAP and needs to 
 with [damap-backend](https://github.com/damap-org/damap-backend).
 The project is based on [Angular](https://angular.io/) and uses the standard Angular CLI as a build system.
 
-### Development server
-
-Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload
-if you change any of the source files.
-
-### Build
-
-Run `npm build` to build the project. The build artifacts will be stored in the `dist/` directory. For a production build, use `--configuration=production`.
-
-### Running unit tests
-
-Run `npm test` to execute the unit tests for the application.
-
-### Running end-to-end tests
-
-Playwright e2e tests start the Angular dev server automatically, but they require the real local backend stack to already be running:
-
-- Quarkus dev backend at `http://localhost:8080`
-- Keycloak realm `damap` at `http://localhost:8087`
-
-Run `npm run e2e:install` once to install Chromium and its dependencies. Then run `npm run e2e` for the default headless Chromium suite, `npm run e2e:headed` for a visible browser, or `npm run e2e:ui` for Playwright UI mode.
-
-The default login credentials are `admin` / `admin`. Override them with `DAMAP_E2E_USERNAME` and `DAMAP_E2E_PASSWORD`.
+For local development commands, builds, tests, linting, formatting, and e2e setup, see [DEVELOPMENT.md](./DEVELOPMENT.md).
 
 ### Run the project with docker
 
