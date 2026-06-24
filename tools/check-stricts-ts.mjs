@@ -2,7 +2,7 @@ import path from 'node:path';
 import process from 'node:process';
 import ts from 'typescript';
 
-const configPath = 'tsconfig.strict.json';
+const configPath = process.argv[2] ?? 'tsconfig.strict.json';
 
 const host = ts.sys;
 const parsedConfig = ts.getParsedCommandLineOfConfigFile(
