@@ -3,11 +3,6 @@ name: test
 permissions:
   contents: read
 
-env:
-  is-master-branch: ${{ github.ref == 'refs/heads/master' }}
-  is-next-branch: ${{ github.ref == 'refs/heads/next' }}
-  is-pull-request: ${{ github.event_name == 'pull_request' }}
-
 on:
   push:
     branches:
@@ -25,21 +20,24 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Use Node.js ${{ matrix.node-version }}
+
+      - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 22
+          cache: npm
 
       - name: Install dependencies
         run: npm run ci:install
 
-      - run: npm run ci:format
-      - run: npm run ci:lint
+      - name: Check formatting
+        run: npm run ci:format
 
-      - name: Merge - Build all projects
-        if: ${{ env.is-master-branch == 'true' || env.is-next-branch == 'true' }}
+      - name: Lint and typecheck
+        run: npm run ci:lint
+
+      - name: Build
         run: npm run ci:build
 
-      - name: Merge - Test all projects
-        if: ${{ env.is-master-branch == 'true' || env.is-next-branch == 'true' }}
+      - name: Run spec tests
         run: npm run ci:test:spec
