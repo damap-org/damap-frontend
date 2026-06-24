@@ -10,6 +10,9 @@
     },
     {
       "path": "./tsconfig.strict.json"
+    },
+    {
+      "path": "./tsconfig.e2e.json"
     }
   ]
 }
