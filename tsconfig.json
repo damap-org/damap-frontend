@@ -12,6 +12,9 @@
       "path": "./tsconfig.strict.json"
     },
     {
+      "path": "./tsconfig.strict.spec.json"
+    },
+    {
       "path": "./tsconfig.e2e.json"
     }
   ]
