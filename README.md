@@ -34,6 +34,17 @@ Run `npm build` to build the project. The build artifacts will be stored in the 
 
 Run `npm test` to execute the unit tests for the application.
 
+### Running end-to-end tests
+
+Playwright e2e tests start the Angular dev server automatically, but they require the real local backend stack to already be running:
+
+- Quarkus dev backend at `http://localhost:8080`
+- Keycloak realm `damap` at `http://localhost:8087`
+
+Run `npm run e2e:install` once to install Chromium and its dependencies. Then run `npm run e2e` for the default headless Chromium suite, `npm run e2e:headed` for a visible browser, or `npm run e2e:ui` for Playwright UI mode.
+
+The default login credentials are `admin` / `admin`. Override them with `DAMAP_E2E_USERNAME` and `DAMAP_E2E_PASSWORD`.
+
 ### Run the project with docker
 
 For running the project in conjunction with the backend in a dockerized setup or on kubernetes,

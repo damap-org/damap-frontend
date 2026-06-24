@@ -5,6 +5,9 @@ node_modules/
 dist/
 coverage/
 tmp/
+playwright-report/
+test-results/
+e2e/.auth/
 
 # Tool caches and local editor state
 .angular/
