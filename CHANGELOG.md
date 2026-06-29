@@ -7,13 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] -
 
-## [5.0.0] - 2026-29-06
+## [5.0.1] - 2026-29-06
 
-### Fixed 
+### Fixed
 
 - Fixed a bug where affiliation separators other than dots would cause the tenant to not be registered [#559](https://github.com/damap-org/damap-frontend/pull/559)
 - Fixed a bug in the info section where one line would be displayed as its text key [#565](https://github.com/damap-org/damap-frontend/pull/565)
-
 
 ## [5.0.0] - 2026-06-05
 
