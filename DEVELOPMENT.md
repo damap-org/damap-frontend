@@ -11,6 +11,7 @@ This document describes the DAMAP frontend development workflow, including local
 | `npm run build`              | Builds the DAMAP frontend with the default Angular build configuration.       |
 | `npm run build:prod`         | Builds the DAMAP frontend with the production Angular configuration.          |
 | `npm run build:openshift`    | Builds the DAMAP frontend with the OpenShift Angular configuration.           |
+| `npm run prepare`            | Installs Lefthook Git hooks.                                                  |
 | `npm run test:spec`          | Runs Angular spec tests once with watch mode disabled.                        |
 | `npm run test:spec:watch`    | Runs Angular spec tests in watch mode.                                        |
 | `npm run test:e2e`           | Runs the Playwright end-to-end suite headlessly.                              |
@@ -89,3 +90,14 @@ Formatting is handled by Prettier. Run `npm run format` locally to format the wo
 CI uses `npm run ci:format`, which runs `npx prettier --check .` without changing files. If CI reports formatting failures, run `npm run format` locally and commit the resulting changes.
 
 Generated and local-only files are excluded through `.prettierignore`, including dependencies, build output, coverage output, Angular cache files, Playwright reports, and saved e2e auth state.
+
+## Git Hooks
+
+Git hooks are managed with Lefthook. Hooks are installed by `npm run prepare`, which also runs automatically after `npm install`.
+
+The pre-commit hook runs only:
+
+- `npm run format`
+- `npm run lint`
+
+Formatting changes are staged automatically by Lefthook through `stage_fixed: true`.
