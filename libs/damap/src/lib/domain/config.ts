@@ -29,4 +29,5 @@ export interface Config {
   readonly templates: any[];
   readonly publicAvailable: boolean;
   readonly consentFormEnabled: boolean;
+  readonly footerAccessibilityUrl?: string;
 }
