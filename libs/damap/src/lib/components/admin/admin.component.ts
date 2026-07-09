@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  AbstractControl,
+  UntypedFormControl,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { BackendService } from '../../services/backend.service';
 import { AuthService } from '../../auth/auth.service';
 import {
@@ -39,6 +45,15 @@ export class AdminComponent implements OnInit {
   selectedInternalStorageUrl: string;
 
   instanceConfig: InstanceConfig | null = null;
+  footerAccessibilityEnabled = false;
+  footerAccessibilityUrlControl: UntypedFormControl = new UntypedFormControl(
+    '',
+    [
+      Validators.maxLength(2048),
+      (control: AbstractControl): ValidationErrors | null =>
+        !control.value || this.isValidUrl(control.value) ? null : { url: true },
+    ],
+  );
 
   appBanner: Banner | null = null;
 
@@ -57,6 +72,10 @@ export class AdminComponent implements OnInit {
     this.backendService.getInstanceConfig().subscribe({
       next: config => {
         this.instanceConfig = config;
+        this.footerAccessibilityEnabled = !!config.footerAccessibilityUrl;
+        this.footerAccessibilityUrlControl.setValue(
+          config.footerAccessibilityUrl ?? '',
+        );
       },
       error: error => {
         if (error.error?.message) {
@@ -314,6 +333,102 @@ export class AdminComponent implements OnInit {
           ...this.instanceConfig!,
           consentFormEnabled: !consentFormEnabled,
         };
+      },
+    });
+  }
+
+  onFooterAccessibilityEnabledToggle(enabled: boolean) {
+    this.footerAccessibilityEnabled = enabled;
+    if (!enabled && this.instanceConfig?.footerAccessibilityUrl) {
+      this.removeFooterAccessibilityUrl();
+    }
+  }
+
+  saveFooterAccessibilityUrl() {
+    if (!this.instanceConfig) {
+      return;
+    }
+
+    if (this.footerAccessibilityUrlControl.invalid) {
+      this.footerAccessibilityUrlControl.markAsTouched();
+      return;
+    }
+
+    const trimmed = (this.footerAccessibilityUrlControl.value ?? '').trim();
+    if (!trimmed) {
+      this.feedbackService.error(
+        'admin.instance-config.footer-accessibility-url-empty',
+      );
+      return;
+    }
+
+    const previousUrl = this.instanceConfig.footerAccessibilityUrl ?? '';
+    if (trimmed === previousUrl) {
+      return;
+    }
+
+    const updatedConfig: InstanceConfig = {
+      ...this.instanceConfig,
+      footerAccessibilityUrl: trimmed,
+    };
+
+    this.backendService.updateInstanceConfig(updatedConfig).subscribe({
+      next: config => {
+        this.instanceConfig = config;
+        this.footerAccessibilityEnabled = true;
+        this.footerAccessibilityUrlControl.setValue(
+          config.footerAccessibilityUrl ?? '',
+        );
+        this.feedbackService.success('http.success.instance-config.update');
+      },
+      error: error => {
+        if (error.error?.message) {
+          this.feedbackService.error(error.error.message);
+        } else {
+          this.feedbackService.error(error.message);
+        }
+
+        this.instanceConfig = {
+          ...this.instanceConfig!,
+          footerAccessibilityUrl: previousUrl,
+        };
+        this.footerAccessibilityUrlControl.setValue(previousUrl);
+      },
+    });
+  }
+
+  removeFooterAccessibilityUrl() {
+    if (!this.instanceConfig) {
+      return;
+    }
+
+    const previousUrl = this.instanceConfig.footerAccessibilityUrl ?? '';
+
+    const updatedConfig: InstanceConfig = {
+      ...this.instanceConfig,
+      footerAccessibilityUrl: '',
+    };
+
+    this.backendService.updateInstanceConfig(updatedConfig).subscribe({
+      next: config => {
+        this.instanceConfig = config;
+        this.footerAccessibilityEnabled = false;
+        this.footerAccessibilityUrlControl.setValue('');
+        this.feedbackService.success('http.success.instance-config.update');
+      },
+      error: error => {
+        if (error.error?.message) {
+          this.feedbackService.error(error.error.message);
+        } else {
+          this.feedbackService.error(error.message);
+        }
+
+        this.instanceConfig = {
+          ...this.instanceConfig!,
+          footerAccessibilityUrl: previousUrl,
+        };
+        this.footerAccessibilityEnabled = !!previousUrl;
+        this.footerAccessibilityUrlControl.setValue(previousUrl);
       },
     });
   }
