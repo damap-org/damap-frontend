@@ -20,6 +20,8 @@
     "sidebar.footer.version": "Version",
     "sidebar.footer.data-protection-declaration": "Data Protection Declaration",
     "sidebar.footer.data-protection-declaration.link": "#",
+    "sidebar.footer.accessibility-statement": "Accessibility Statement",
+    "sidebar.footer.accessibility-statement.label": "Accessibility Statement",
     "sidebar.footer.collapsed.hint": "Expand the menu to access legal information",
     "dashboard.home.section-intro": "Welcome to DAMAP, a service that helps you create a Data Management Plan (DMP) for your project.",
     "dashboard.cards.instructions-info": "You can create a new DMP by clicking the 'Create New DMP' button.",

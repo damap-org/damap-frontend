@@ -50,6 +50,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   public isIntroShow: boolean = true;
 
   readonly env: string;
+  readonly footerAccessibilityUrl?: string;
 
   constructor(
     private auth: AuthService,
@@ -62,6 +63,8 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
     private cdr: ChangeDetectorRef,
   ) {
     this.env = this.configService.getEnvironment();
+    this.footerAccessibilityUrl =
+      this.configService.getFooterAccessibilityUrl();
     this.logoUrl = this.imageThemeService.getImage(IMAGE_KEYS.LOGO);
   }
 
