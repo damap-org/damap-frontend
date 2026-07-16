@@ -376,8 +376,6 @@ export class AdminComponent implements OnInit {
       return;
     }
 
-    const previousUrl = this.instanceConfig.footerAccessibilityUrl ?? '';
-
     const updatedConfig: InstanceConfig = {
       ...this.instanceConfig,
       footerAccessibilityUrl: '',
@@ -390,19 +388,10 @@ export class AdminComponent implements OnInit {
         this.footerAccessibilityUrlControl.setValue('');
         this.feedbackService.success('http.success.instance-config.update');
       },
-      error: error => {
-        if (error.error?.message) {
-          this.feedbackService.error(error.error.message);
-        } else {
-          this.feedbackService.error(error.message);
-        }
-
-        this.instanceConfig = {
-          ...this.instanceConfig!,
-          footerAccessibilityUrl: previousUrl,
-        };
-        this.footerAccessibilityEnabled = !!previousUrl;
-        this.footerAccessibilityUrlControl.setValue(previousUrl);
+      error: () => {
+        // re-sync the eagerly toggled flag so the form stays visible if the update failed
+        this.footerAccessibilityEnabled =
+          !!this.instanceConfig?.footerAccessibilityUrl;
       },
     });
   }
