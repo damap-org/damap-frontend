@@ -51,7 +51,9 @@ export class AdminComponent implements OnInit {
     [
       Validators.maxLength(2048),
       (control: AbstractControl): ValidationErrors | null =>
-        !control.value || this.isValidUrl(control.value) ? null : { url: true },
+        !control.value || this.isValidUrl(control.value, true)
+          ? null
+          : { url: true },
     ],
   );
 
@@ -190,10 +192,10 @@ export class AdminComponent implements OnInit {
       });
   }
 
-  isValidUrl(url: string): boolean {
+  isValidUrl(url: string, requireProtocol = false): boolean {
     return validator.isURL(url, {
       protocols: ['http', 'https'],
-      require_protocol: false,
+      require_protocol: requireProtocol,
       require_valid_protocol: true,
       allow_underscores: false,
       allow_trailing_dot: false,
@@ -359,16 +361,16 @@ export class AdminComponent implements OnInit {
       footerAccessibilityUrl: url,
     };
 
-    this.backendService.updateInstanceConfig(updatedConfig).subscribe(
-      config => {
+    this.backendService
+      .updateInstanceConfig(updatedConfig)
+      .subscribe(config => {
         this.instanceConfig = config;
         this.footerAccessibilityEnabled = true;
         this.footerAccessibilityUrlControl.setValue(
           config.footerAccessibilityUrl ?? '',
         );
         this.feedbackService.success('http.success.instance-config.update');
-      },
-    );
+      });
   }
 
   removeFooterAccessibilityUrl() {
