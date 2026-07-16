@@ -191,7 +191,10 @@
           <button
             type="submit"
             mat-flat-button
-            [disabled]="footerAccessibilityUrlControl.invalid">
+            [disabled]="
+              footerAccessibilityUrlControl.invalid ||
+              !footerAccessibilityUrlControl.value
+            ">
             {{ "admin.instance-config.footer-accessibility-save" | translate }}
           </button>
           <button

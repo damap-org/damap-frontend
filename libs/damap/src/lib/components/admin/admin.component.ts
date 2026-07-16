@@ -349,31 +349,18 @@ export class AdminComponent implements OnInit {
       return;
     }
 
-    if (this.footerAccessibilityUrlControl.invalid) {
-      this.footerAccessibilityUrlControl.markAsTouched();
-      return;
-    }
-
-    const trimmed = (this.footerAccessibilityUrlControl.value ?? '').trim();
-    if (!trimmed) {
-      this.feedbackService.error(
-        'admin.instance-config.footer-accessibility-url-empty',
-      );
-      return;
-    }
-
-    const previousUrl = this.instanceConfig.footerAccessibilityUrl ?? '';
-    if (trimmed === previousUrl) {
+    const url = this.footerAccessibilityUrlControl.value;
+    if (url === (this.instanceConfig.footerAccessibilityUrl ?? '')) {
       return;
     }
 
     const updatedConfig: InstanceConfig = {
       ...this.instanceConfig,
-      footerAccessibilityUrl: trimmed,
+      footerAccessibilityUrl: url,
     };
 
-    this.backendService.updateInstanceConfig(updatedConfig).subscribe({
-      next: config => {
+    this.backendService.updateInstanceConfig(updatedConfig).subscribe(
+      config => {
         this.instanceConfig = config;
         this.footerAccessibilityEnabled = true;
         this.footerAccessibilityUrlControl.setValue(
@@ -381,20 +368,7 @@ export class AdminComponent implements OnInit {
         );
         this.feedbackService.success('http.success.instance-config.update');
       },
-      error: error => {
-        if (error.error?.message) {
-          this.feedbackService.error(error.error.message);
-        } else {
-          this.feedbackService.error(error.message);
-        }
-
-        this.instanceConfig = {
-          ...this.instanceConfig!,
-          footerAccessibilityUrl: previousUrl,
-        };
-        this.footerAccessibilityUrlControl.setValue(previousUrl);
-      },
-    });
+    );
   }
 
   removeFooterAccessibilityUrl() {
