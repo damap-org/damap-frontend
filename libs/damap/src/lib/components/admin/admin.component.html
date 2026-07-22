@@ -163,5 +163,51 @@
         ) | translate
       }}
     </p>
+
+    <mat-slide-toggle
+      [checked]="footerAccessibilityEnabled"
+      (change)="onFooterAccessibilityEnabledToggle($event.checked)">
+      {{ "admin.instance-config.footer-accessibility-enabled" | translate }}
+    </mat-slide-toggle>
+
+    <p class="instance-config-hint">
+      {{
+        (footerAccessibilityEnabled
+          ? "admin.instance-config.footer-accessibility-enabled-on"
+          : "admin.instance-config.footer-accessibility-enabled-off"
+        ) | translate
+      }}
+    </p>
+
+    @if (footerAccessibilityEnabled) {
+      <form (ngSubmit)="saveFooterAccessibilityUrl()">
+        <app-input-wrapper
+          [label]="'admin.instance-config.footer-accessibility-url' | translate"
+          [control]="footerAccessibilityUrlControl"
+          [type]="'url'"
+          [maxLength]="2048"></app-input-wrapper>
+
+        <div class="instance-config-actions">
+          <button
+            type="submit"
+            mat-flat-button
+            [disabled]="
+              footerAccessibilityUrlControl.invalid ||
+              !footerAccessibilityUrlControl.value
+            ">
+            {{ "admin.instance-config.footer-accessibility-save" | translate }}
+          </button>
+          <button
+            type="button"
+            mat-stroked-button
+            [disabled]="!instanceConfig?.footerAccessibilityUrl"
+            (click)="removeFooterAccessibilityUrl()">
+            {{
+              "admin.instance-config.footer-accessibility-remove" | translate
+            }}
+          </button>
+        </div>
+      </form>
+    }
   </div>
 </div>

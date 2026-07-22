@@ -226,4 +226,8 @@ export class ConfigService {
   public isConsentFormEnabled(): boolean {
     return this.config?.consentFormEnabled || false;
   }
+
+  public getFooterAccessibilityUrl(): string | undefined {
+    return this.config?.footerAccessibilityUrl || undefined;
+  }
 }

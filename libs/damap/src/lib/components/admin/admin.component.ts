@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  AbstractControl,
+  UntypedFormControl,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { BackendService } from '../../services/backend.service';
 import { AuthService } from '../../auth/auth.service';
 import {
@@ -39,6 +45,17 @@ export class AdminComponent implements OnInit {
   selectedInternalStorageUrl: string;
 
   instanceConfig: InstanceConfig | null = null;
+  footerAccessibilityEnabled = false;
+  footerAccessibilityUrlControl: UntypedFormControl = new UntypedFormControl(
+    '',
+    [
+      Validators.maxLength(2048),
+      (control: AbstractControl): ValidationErrors | null =>
+        !control.value || this.isValidUrl(control.value, true)
+          ? null
+          : { url: true },
+    ],
+  );
 
   appBanner: Banner | null = null;
 
@@ -57,6 +74,10 @@ export class AdminComponent implements OnInit {
     this.backendService.getInstanceConfig().subscribe({
       next: config => {
         this.instanceConfig = config;
+        this.footerAccessibilityEnabled = !!config.footerAccessibilityUrl;
+        this.footerAccessibilityUrlControl.setValue(
+          config.footerAccessibilityUrl ?? '',
+        );
       },
       error: error => {
         if (error.error?.message) {
@@ -171,10 +192,10 @@ export class AdminComponent implements OnInit {
       });
   }
 
-  isValidUrl(url: string): boolean {
+  isValidUrl(url: string, requireProtocol = false): boolean {
     return validator.isURL(url, {
       protocols: ['http', 'https'],
-      require_protocol: false,
+      require_protocol: requireProtocol,
       require_valid_protocol: true,
       allow_underscores: false,
       allow_trailing_dot: false,
@@ -314,6 +335,65 @@ export class AdminComponent implements OnInit {
           ...this.instanceConfig!,
           consentFormEnabled: !consentFormEnabled,
         };
+      },
+    });
+  }
+
+  onFooterAccessibilityEnabledToggle(enabled: boolean) {
+    this.footerAccessibilityEnabled = enabled;
+    if (!enabled && this.instanceConfig?.footerAccessibilityUrl) {
+      this.removeFooterAccessibilityUrl();
+    }
+  }
+
+  saveFooterAccessibilityUrl() {
+    if (!this.instanceConfig) {
+      return;
+    }
+
+    const url = this.footerAccessibilityUrlControl.value;
+    if (url === (this.instanceConfig.footerAccessibilityUrl ?? '')) {
+      return;
+    }
+
+    const updatedConfig: InstanceConfig = {
+      ...this.instanceConfig,
+      footerAccessibilityUrl: url,
+    };
+
+    this.backendService
+      .updateInstanceConfig(updatedConfig)
+      .subscribe(config => {
+        this.instanceConfig = config;
+        this.footerAccessibilityEnabled = true;
+        this.footerAccessibilityUrlControl.setValue(
+          config.footerAccessibilityUrl ?? '',
+        );
+        this.feedbackService.success('http.success.instance-config.update');
+      });
+  }
+
+  removeFooterAccessibilityUrl() {
+    if (!this.instanceConfig) {
+      return;
+    }
+
+    const updatedConfig: InstanceConfig = {
+      ...this.instanceConfig,
+      footerAccessibilityUrl: '',
+    };
+
+    this.backendService.updateInstanceConfig(updatedConfig).subscribe({
+      next: config => {
+        this.instanceConfig = config;
+        this.footerAccessibilityEnabled = false;
+        this.footerAccessibilityUrlControl.setValue('');
+        this.feedbackService.success('http.success.instance-config.update');
+      },
+      error: () => {
+        // re-sync the eagerly toggled flag so the form stays visible if the update failed
+        this.footerAccessibilityEnabled =
+          !!this.instanceConfig?.footerAccessibilityUrl;
       },
     });
   }
