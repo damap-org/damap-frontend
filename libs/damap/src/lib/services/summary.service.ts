@@ -123,7 +123,7 @@ export class SummaryService {
       if (dmp[kind] === DataKind.NONE) {
         datasetLevel.completeness += 50;
         datasetLevel.status.push(
-          `dmp.steps.summary.data.specify.datasets.none.${datakind}`,
+          `dmp.steps.summary.specifyData.datasets.none.${datakind}`,
         );
       } else if (dmp[kind] === DataKind.SPECIFY) {
         // check if datasets exist
@@ -134,12 +134,12 @@ export class SummaryService {
           datasetLevel.completeness += 50;
         }
         datasetLevel.status.push(
-          `dmp.steps.summary.data.specify.datasets.${datakind}`,
+          `dmp.steps.summary.specifyData.datasets.${datakind}`,
         );
         datasetLevel.status.push(`${datasets.length}. `);
       } else if (dmp[kind] === DataKind.UNKNOWN) {
         datasetLevel.status.push(
-          `dmp.steps.summary.data.specify.datasets.unknown.${datakind}`,
+          `dmp.steps.summary.specifyData.datasets.unknown.${datakind}`,
         );
       }
     }
@@ -152,7 +152,7 @@ export class SummaryService {
       if (!dmp.noDataExplanation) {
         datasetLevel.completeness -= 50;
         datasetLevel.status.push(
-          'dmp.steps.summary.data.specify.datasets.missingexplanation',
+          'dmp.steps.summary.specifyData.missingExplanation',
         );
       }
     } else if (
@@ -164,12 +164,12 @@ export class SummaryService {
           datasetLevel.completeness >= 20
             ? datasetLevel.completeness - 20
             : datasetLevel.completeness;
-        datasetLevel.status.push(
-          'dmp.steps.summary.data.specify.datasets.datageneration',
-        );
+        datasetLevel.status.push('dmp.steps.summary.specifyData.missingSource');
       }
     } else if (!dmp.dataKind && !dmp.reusedDataKind) {
-      datasetLevel.status.push('dmp.steps.summary.data.specify.none.none');
+      datasetLevel.status.push(
+        'dmp.steps.summary.specifyData.newData.unspecified',
+      );
     }
 
     return datasetLevel;
