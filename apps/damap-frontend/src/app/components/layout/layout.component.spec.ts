@@ -72,6 +72,7 @@ describe('LayoutComponent', () => {
       'getNameClaim',
       'getEmailClaim',
       'getUserRolesClaimPath',
+      'getFooterAccessibilityUrl',
     ]);
     configSpy.getEnvironment.and.returnValue('DEV');
     configSpy.getGivenNameClaim.and.returnValue('given_name');
@@ -79,6 +80,9 @@ describe('LayoutComponent', () => {
     configSpy.getNameClaim.and.returnValue('name');
     configSpy.getEmailClaim.and.returnValue('email');
     configSpy.getUserRolesClaimPath.and.returnValue('roles');
+    configSpy.getFooterAccessibilityUrl.and.returnValue(
+      'https://www.google.com/',
+    );
 
     const breakpointObserverSpy = jasmine.createSpyObj('BreakpointObserver', [
       'observe',
