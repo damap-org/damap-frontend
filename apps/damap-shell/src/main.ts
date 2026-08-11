@@ -9,14 +9,12 @@ import {
 import { environment } from './environments/environment';
 import { ConfigService } from './app/services/config.service';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { AuthGuard, BackendTranslateLoader, provideDamap, TenantGuard } from '@damap-frontend-core';
-import { ConsentGuard } from './app/guard/consent.guard';
+import { BackendTranslateLoader, provideDamap } from '@damap-frontend-core';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideRouter } from '@angular/router';
 import { APP_ROUTES } from './app/app.routes';
-import { provideAnimations } from '@angular/platform-browser/animations';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { provideTranslateLoader, provideTranslateService } from '@ngx-translate/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -30,9 +28,9 @@ bootstrapApplication(AppComponent, {
   providers: [
     provideZoneChangeDetection(),
     provideDamap(environment),
+    provideHttpClient(withInterceptorsFromDi()),
     importProvidersFrom(
       BrowserModule,
-      HttpClientModule,
       ReactiveFormsModule,
       OAuthModule.forRoot({
         resourceServer: {
@@ -59,10 +57,6 @@ bootstrapApplication(AppComponent, {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: { appearance: 'outline' },
     },
-    AuthGuard,
-    TenantGuard,
-    ConsentGuard,
     provideRouter(APP_ROUTES),
-    provideAnimations(),
   ],
 }).catch((err) => console.error(err));

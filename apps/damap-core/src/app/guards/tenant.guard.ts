@@ -3,7 +3,7 @@ import { CanActivate, Router, UrlTree } from '@angular/router';
 import { ConfigService } from '@damap-frontend-shell/app/services/config.service';
 import { AuthService } from '../auth/auth.service';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class TenantGuard implements CanActivate {
   private configService = inject(ConfigService);
   private authService = inject(AuthService);
