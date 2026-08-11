@@ -5,7 +5,7 @@ import { ConsentComponent } from '../components/consent/consent.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfigService } from '../services/config.service';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ConsentGuard implements CanActivate {
   private backendService = inject(BackendService);
   private dialog = inject(MatDialog);
