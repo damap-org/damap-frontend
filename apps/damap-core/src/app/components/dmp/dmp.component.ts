@@ -61,7 +61,6 @@ import { TranslatePipe } from '@ngx-translate/core';
   templateUrl: './dmp.component.html',
   styleUrls: ['./dmp.component.css'],
   providers: [
-    DmpFormStore,
     {
       provide: STEPPER_GLOBAL_OPTIONS,
       useValue: { displayDefaultIndicatorType: false },

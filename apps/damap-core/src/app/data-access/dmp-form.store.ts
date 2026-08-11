@@ -76,7 +76,7 @@ function equals(a: unknown, b: unknown): boolean {
   return aKeys.every((key) => equals(a[key], b[key]));
 }
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class DmpFormStore {
   private readonly dmpState = signal<Dmp>(initialDmp());
   private readonly changedState = signal<boolean | undefined>(undefined);

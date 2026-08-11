@@ -1,6 +1,6 @@
 {
   "name": "damap-frontend",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve damap-frontend",
