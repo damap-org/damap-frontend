@@ -19,6 +19,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { provideTranslateLoader, provideTranslateService } from '@ngx-translate/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AppComponent } from './app/app.component';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 if (environment.production) {
   enableProdMode();
@@ -58,5 +59,6 @@ bootstrapApplication(AppComponent, {
       useValue: { appearance: 'outline' },
     },
     provideRouter(APP_ROUTES),
+    provideAnimations(),
   ],
 }).catch((err) => console.error(err));

@@ -60,8 +60,6 @@ describe('RepoComponent', () => {
       subject: [{ id: 'physics', label: 'Physics' }],
     };
 
-    component.filterRepositories(filter);
-    component.filterRepositories(null);
     component.getRepositoryDetails({ id: 'zenodo', name: 'Zenodo' });
     component.getRepositoryDetails({
       id: 'dryad',

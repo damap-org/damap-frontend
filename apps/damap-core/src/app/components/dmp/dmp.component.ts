@@ -119,6 +119,8 @@ export class DmpComponent implements OnInit, OnDestroy {
   ethicalReportEnabled: boolean = true;
 
   selectedViewStorage: 'primaryView' | 'secondaryView' = 'primaryView';
+  @ViewChild(RepoInstructionComponent)
+  repoInstruction: RepoInstructionComponent;
 
   get displayName(): string {
     return this.auth.getDisplayName();
@@ -369,6 +371,10 @@ export class DmpComponent implements OnInit, OnDestroy {
 
   onViewChangeStorage(view: 'primaryView' | 'secondaryView'): void {
     this.selectedViewStorage = view;
+  }
+
+  onViewChangeRepo(view: 'primaryView' | 'secondaryView'): void {
+    this.repoInstruction?.onSelectionChange(view);
   }
 
   private getDmpById() {

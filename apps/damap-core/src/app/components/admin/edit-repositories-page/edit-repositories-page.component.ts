@@ -1,11 +1,17 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 
 import { filter, switchMap, take } from 'rxjs/operators';
 
 import { BackendService } from '../../../services/backend.service';
 import { DeleteRepositoryWarningDialogComponent } from './delete-repository-warning-dialog.component';
 import { FeedbackService } from '../../../services/feedback.service';
-import { LoadingState } from '../../../domain/enum/loading-state.enum';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -39,40 +45,27 @@ export class EditRepositoriesPageComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly dialog = inject(MatDialog);
 
-  readonly repositories = signal<RecommendedRepository[]>([]);
-  readonly allRepositories = signal<RepositoryDetails[]>([]);
-  readonly loadingState = signal<LoadingState>(LoadingState.NOT_LOADED);
-
-  readonly LoadingState = LoadingState;
+  readonly recommendedRepositories = signal<RecommendedRepository[]>([]);
+  // Repo table needs repository objects and not recommend repositories
+  readonly mappedRepositories = computed(() =>
+    this.recommendedRepositories().map((repo) => {
+      return {
+        id: undefined,
+        repositoryId: repo.repositoryId,
+        title: repo.name,
+      };
+    }),
+  );
 
   ngOnInit(): void {
     this.loadRepositories();
-    this.loadAllRepositories();
   }
 
   async loadRepositories(): Promise<void> {
-    try {
-      const repositories = await firstValueFrom(
-        this.backendService.getAdminRecommendedRepositories(),
-      );
-      this.repositories.set(repositories);
-    } catch (error) {
-      console.error('Error loading repositories:', error);
-      this.feedbackService.error('http.error.recommended-repositories.load');
-    }
-  }
-
-  async loadAllRepositories(): Promise<void> {
-    this.loadingState.set(LoadingState.LOADING);
-    try {
-      const repositories = await firstValueFrom(this.backendService.getRepositories());
-      this.allRepositories.set(repositories);
-      this.loadingState.set(LoadingState.LOADED);
-    } catch (error) {
-      console.error('Error loading all repositories:', error);
-      this.loadingState.set(LoadingState.FAILED);
-      this.feedbackService.error('http.error.repositories.all');
-    }
+    const repositories = await firstValueFrom(
+      this.backendService.getAdminRecommendedRepositories(),
+    );
+    this.recommendedRepositories.set(repositories);
   }
 
   async addRepository(repository: RepositoryDetails): Promise<void> {
@@ -119,23 +112,6 @@ export class EditRepositoriesPageComponent implements OnInit {
           }
         },
       });
-  }
-
-  getRepositoryDetails(repo: RepositoryDetails): void {
-    if (!repo.description) {
-      // Load repository details from backend
-      this.backendService.getRepositoryById(repo.id).subscribe({
-        next: (result) => {
-          const updatedRepos = this.allRepositories().map((r) =>
-            r.id === result.id ? { ...r, ...result.changes } : r,
-          );
-          this.allRepositories.set(updatedRepos);
-        },
-        error: (error) => {
-          console.error('Error loading repository details:', error);
-        },
-      });
-    }
   }
 
   navigateBack(): void {

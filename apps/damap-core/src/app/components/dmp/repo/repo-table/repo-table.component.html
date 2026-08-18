@@ -4,7 +4,7 @@
       <app-search-field
         [label]="'dmp.steps.repositories.filters'"
         [placeholder]="'Search Repository'"
-        (searchChange)="applyFilter($event)"
+        (searchChange)="applySearch($event)"
       />
       <span class="repo-filter-container">
         <button
@@ -16,15 +16,15 @@
           {{ 'dmp.steps.repositories.filter.reset' | translate }}
           <mat-icon iconPositionEnd>cached</mat-icon>
         </button>
-        <app-repo-filter [filters]="filters" (filterChange)="onFilterChange($event)" />
+        <app-repo-filter [filters]="filters()" (filterChange)="onFilterChange($event)" />
       </span>
     </div>
 
     <div class="scrollable-repo-content">
-      @if ((filters | keyvalue).length) {
+      @if ((filters() | keyvalue).length) {
         <div>
           {{ 'dmp.steps.repositories.filters' | translate }}:
-          @for (filter of filters | keyvalue; track filter.key) {
+          @for (filter of filters() | keyvalue; track filter.key) {
             @for (item of filter.value; track item.id) {
               <app-tag background="var(--custom-green-tag)">
                 {{ item.label }}
