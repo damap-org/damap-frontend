@@ -70,10 +70,6 @@ export class RepositoryStore {
     this.filterState.set(filter);
   }
 
-  loadAll(): void {
-    this.filterState.set({});
-  }
-
   loadDetails(id: string): void {
     const detail = this.repositoryDetailResource.value();
     if (detail?.id === id) {

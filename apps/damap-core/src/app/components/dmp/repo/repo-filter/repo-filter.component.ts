@@ -57,10 +57,8 @@ export class RepoFilterComponent {
 @Component({
   selector: 'filter-dialog',
   templateUrl: './filter-dialog.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
-    CdkScrollable,
     MatDialogContent,
     TreeSelectFormFieldComponent,
     MatDialogActions,

@@ -1,4 +1,13 @@
-import { Component, Input, inject, ChangeDetectionStrategy, input, output } from '@angular/core';
+import {
+  Component,
+  Input,
+  inject,
+  ChangeDetectionStrategy,
+  input,
+  output,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import {
   UntypedFormArray,
   UntypedFormGroup,
@@ -61,6 +70,7 @@ export class RepoComponent {
   readonly dmpForm = input<UntypedFormGroup>(undefined);
   @Input() repoStep: UntypedFormArray;
   @Input() datasets: UntypedFormArray;
+  @Output() viewChange = new EventEmitter<'primaryView' | 'secondaryView'>();
 
   readonly repositoryToAdd = output<any>();
   readonly repositoryToRemove = output<any>();
@@ -68,14 +78,10 @@ export class RepoComponent {
   readonly datasetSource: any = DataSource;
   readonly LoadingState = LoadingState;
 
-  selectedTabIndex = 0;
   selectedView: 'primaryView' | 'secondaryView' = 'primaryView';
 
   readonly recommended = this.store.recommendedRepositories;
   readonly recommendedLoaded = this.store.recommendedRepositoriesLoaded;
-  readonly repositories = this.store.repositories;
-  readonly repositoriesLoaded = this.store.repositoriesLoaded;
-  readonly filters = this.store.filters;
 
   addRepository(repo: RepositoryDetails) {
     this.repositoryToAdd.emit(repo);
@@ -88,14 +94,6 @@ export class RepoComponent {
   getRepositoryDetails(repo: RepositoryDetails) {
     if (!repo.description) {
       this.store.loadDetails(repo.id);
-    }
-  }
-
-  filterRepositories(filter: { [key: string]: { id: string; label: string }[] } | null) {
-    if (filter) {
-      this.store.setFilter(filter);
-    } else {
-      this.store.setFilter({});
     }
   }
 
@@ -118,5 +116,6 @@ export class RepoComponent {
 
   onViewChange(view: 'primaryView' | 'secondaryView'): void {
     this.selectedView = view;
+    this.viewChange.emit(view);
   }
 }

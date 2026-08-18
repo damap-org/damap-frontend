@@ -1,14 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  Input,
-  OnChanges,
-  SimpleChanges,
-  ViewChild,
-  ChangeDetectionStrategy,
-  input,
-  output,
-} from '@angular/core';
+import { Component, ViewChild, input, output, computed, effect, inject } from '@angular/core';
 import {
   MatTableDataSource,
   MatTable,
@@ -40,19 +30,20 @@ import { MatProgressBar } from '@angular/material/progress-bar';
 import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { ErrorMessageComponent } from '../../../../widgets/error-message/error-message.component';
 import { KeyValuePipe } from '@angular/common';
+import { RepositoryStore } from '@damap-frontend-core/app/data-access/repository.store';
 
 @Component({
   selector: 'app-repo-table',
   templateUrl: './repo-table.component.html',
   styleUrls: ['./repo-table.component.css'],
+  providers: [RepositoryStore],
   animations: [
     trigger('detailExpand', [
-      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('collapsed', style({ height: '0px', minHeight: '0', overflow: 'hidden' })),
       state('expanded', style({ height: '*' })),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatCard,
     MatCardContent,
@@ -82,42 +73,40 @@ import { KeyValuePipe } from '@angular/common';
     KeyValuePipe,
   ],
 })
-export class RepoTableComponent implements OnChanges, AfterViewInit {
+export class RepoTableComponent {
+  private readonly store = inject(RepositoryStore);
   readonly selectedRepos = input<Repository[]>(undefined);
-  readonly loaded = input<LoadingState>(undefined);
-  @Input() filters: { [key: string]: { id: string; label: string }[] } = {};
-  readonly repositories = input<RepositoryDetails[]>(undefined); // Repo list loaded from backend
+  readonly loaded = this.store.repositoriesLoaded;
+  readonly filters = this.store.filters;
+  readonly repositories = this.store.repositories; // Repo list loaded from backend
   repoList: any = []; // Filtered repo list (repo list minus selected repos)
 
   readonly repositoryToAdd = output<any>();
-  readonly repositoryDetails = output<any>();
-  readonly filterChange = output<{
-    [key: string]: {
-      id: string;
-      label: string;
-    }[];
-  }>();
 
-  readonly LoadingState = LoadingState;
   readonly tableHeaders: string[] = ['expand', 'title', 'add'];
   expandedElement: string | null;
   dataSource = new MatTableDataSource<RepositoryDetails>();
-  input: string = '';
+  input: string = ''; // TODO: Refactor using signal or model
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  filtersActive = () => this.filters && Object.keys(this.filters).length > 0;
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.repositories || changes.selectedRepos) {
-      // Timeout needed for paginator init
-      setTimeout((_) => this.filterRepos(), 1);
+  @ViewChild(MatPaginator)
+  set paginator(paginator: MatPaginator | undefined) {
+    if (paginator) {
+      this.dataSource.paginator = paginator;
     }
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
+  filtersActive = computed(() => Object.keys(this.filters()).length > 0);
+
+  private readonly syncRepositories = effect(() => {
+    const repositories = this.repositories();
+    const selectedRepos = this.selectedRepos();
+
+    this.repoList = repositories.filter(
+      (repo) => !selectedRepos.some((selected) => selected.repositoryId === repo.id),
+    );
+
+    this.dataSource.data = this.repoList;
+  });
 
   expandRow(repo: RepositoryDetails) {
     this.expandedElement = this.expandedElement === repo.id ? null : repo.id;
@@ -126,39 +115,37 @@ export class RepoTableComponent implements OnChanges, AfterViewInit {
     }
   }
 
+  getRepoDetails(repo: RepositoryDetails) {
+    if (!repo.description) {
+      this.store.loadDetails(repo.id);
+    }
+  }
+
   addRepository(repo: RepositoryDetails) {
     this.repositoryToAdd.emit(repo);
   }
 
   // Table Search Filter
-  applyFilter(filterValue: string) {
-    this.input = filterValue;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  applySearch(searchValue: string) {
+    this.input = searchValue;
+    this.dataSource.filter = searchValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
 
-  private getRepoDetails(repo: RepositoryDetails) {
-    this.repositoryDetails.emit(repo);
-  }
-
-  // Filter selected repos from repo list
-  private filterRepos(): void {
-    this.repoList = Object.assign([], this.repositories());
-    for (const entry of this.selectedRepos()) {
-      this.repoList = this.repoList.filter((e) => e.id !== entry.repositoryId);
-    }
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.data = this.repoList;
-  }
-
   onFilterChange(filter: { [key: string]: { id: string; label: string }[] }) {
-    this.filterChange.emit(filter);
+    if (filter) {
+      this.store.setFilter(filter);
+    } else {
+      this.store.setFilter({});
+    }
   }
 
   resetFilter() {
-    this.filterChange.emit(null);
+    this.store.setFilter({});
   }
+
+  protected readonly LoadingState = LoadingState;
 }
