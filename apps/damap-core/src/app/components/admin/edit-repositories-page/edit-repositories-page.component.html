@@ -11,11 +11,8 @@
   <div class="search-and-current">
     <section>
       <app-repo-table
-        [repositories]="allRepositories()"
-        [selectedRepos]="repositories()"
-        [loaded]="loadingState()"
+        [selectedRepos]="mappedRepositories()"
         (repositoryToAdd)="addRepository($event)"
-        (repositoryDetails)="getRepositoryDetails($event)"
       />
     </section>
 
@@ -26,7 +23,7 @@
             {{ 'admin.recommended-repositories.current' | translate }}
           </mat-card-title>
         </mat-card-header>
-        @for (repository of repositories(); track repository.id) {
+        @for (repository of recommendedRepositories(); track repository.id) {
           <mat-card class="repository-card">
             <div>
               <div class="repository-name">

@@ -315,6 +315,7 @@
           [datasets]="datasets"
           (repositoryToAdd)="addRepository($event)"
           (repositoryToRemove)="removeRepository($event)"
+          (viewChange)="onViewChangeRepo($event)"
         />
         @if (repoStep.invalid) {
           <div class="error-message">
