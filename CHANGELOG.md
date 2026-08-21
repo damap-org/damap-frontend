@@ -7,7 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] -
 
-## [5.0.1] - 2026-29-06
+## [5.0.2] - 2026-08-21
+
+### Added
+
+- Added options for Admins to add an accessibility statement link to the impressum — the webpage the link leads to has to be hosted separately [#570](https://github.com/damap-org/damap-frontend/pull/570)
+
+### Fixed
+
+- Added a missing key for the translation table header and renamed a summary translation key [#571](https://github.com/damap-org/damap-frontend/pull/571)
+
+## [5.0.1] - 2026-06-29
 
 ### Fixed
 
