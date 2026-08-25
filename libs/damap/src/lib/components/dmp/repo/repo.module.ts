@@ -9,6 +9,7 @@ import { ErrorMessageModule } from '../../../widgets/error-message/error-message
 import { InfoMessageModule } from '../../../widgets/info-message/info-message.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -57,6 +58,7 @@ import { TreeSelectFormFieldModule } from '../../../widgets/tree-select-form-fie
     MatFormFieldModule,
     MatSelectModule,
     MatButtonModule,
+    MatCheckboxModule,
     MatTabsModule,
     MatTableModule,
     MatInputModule,

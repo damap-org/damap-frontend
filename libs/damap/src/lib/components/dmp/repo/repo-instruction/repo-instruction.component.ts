@@ -17,6 +17,10 @@ export class RepoInstructionComponent {
     this.emitSelection(view);
   }
 
+  onViewChange(view: 'primaryView' | 'secondaryView'): void {
+    this.selectedView = view;
+  }
+
   private emitSelection(view: 'primaryView' | 'secondaryView'): void {
     this.selectionChange.emit(view);
   }

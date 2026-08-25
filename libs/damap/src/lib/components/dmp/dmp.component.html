@@ -317,7 +317,8 @@
           [repoStep]="repoStep"
           [datasets]="datasets"
           (repositoryToAdd)="addRepository($event)"
-          (repositoryToRemove)="removeRepository($event)">
+          (repositoryToRemove)="removeRepository($event)"
+          (viewChange)="onRepoViewChange($event)">
         </app-dmp-repo>
         <div *ngIf="repoStep.invalid" class="error-message">
           {{ "dmp.steps.repositories.error" | translate }}
