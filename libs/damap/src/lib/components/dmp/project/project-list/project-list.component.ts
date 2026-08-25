@@ -45,6 +45,7 @@ export class ProjectListComponent implements OnInit, AfterViewInit {
 
   private searchTerms = new Subject<string>();
   searchResult$: Observable<SearchResult<Project>>;
+  loading = false;
 
   constructor(
     private backendService: BackendService,
@@ -68,7 +69,10 @@ export class ProjectListComponent implements OnInit, AfterViewInit {
             : this.backendService.getProjectSearchResult(term),
         ),
       )
-      .subscribe(results => (this.searchResult$ = of(results)));
+      .subscribe(results => {
+        this.loading = false;
+        this.searchResult$ = of(results);
+      });
   }
 
   ngAfterViewInit(): void {
@@ -80,6 +84,7 @@ export class ProjectListComponent implements OnInit, AfterViewInit {
   }
 
   search(term: string) {
+    this.loading = true;
     this.searchTerms.next(term);
   }
 
