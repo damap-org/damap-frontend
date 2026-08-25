@@ -138,9 +138,11 @@ export class PeopleComponent implements OnInit, OnDestroy {
       this.currentUpdateContributorIdx = -1;
     } else {
       this.currentUpdateContributorIdx = idx;
+      const personId = this.contributors.at(idx).value.personId;
       this.form.patchValue({
         mbox: this.contributors.at(idx).value.mbox,
-        personId: this.contributors.at(idx).value.personId.identifier,
+        personId:
+          personId?.type === IdentifierType.ORCID ? personId.identifier : '',
       });
     }
   }
@@ -155,13 +157,19 @@ export class PeopleComponent implements OnInit, OnDestroy {
       return;
     }
 
+    const current = this.contributors.at(idx).value;
+    const orcid = this.form.value.personId;
+    let personId = current.personId;
+    if (orcid) {
+      personId = { identifier: orcid, type: IdentifierType.ORCID };
+    } else if (current.personId?.type === IdentifierType.ORCID) {
+      personId = null;
+    }
+
     const newContributor = {
-      ...this.contributors.at(idx).value,
+      ...current,
       mbox: this.form.value.mbox,
-      personId: {
-        identifier: this.form.value.personId,
-        type: IdentifierType.ORCID,
-      },
+      personId: personId,
       roles: this.form.value.roles,
     };
 
