@@ -1,9 +1,10 @@
-import { computed, inject, Injectable } from '@angular/core';
+import { computed, effect, inject, Injectable } from '@angular/core';
 import { httpResource } from '@angular/common/http';
 
 import { InternalStorage } from '../domain/internal-storage';
 import { SearchResult } from '../domain/search/search-result';
 import { InternalStorageApi } from './internal-storage.api';
+import { handleError } from '@damap-frontend-core';
 
 @Injectable({ providedIn: 'root' })
 export class InternalStorageStore {
@@ -19,9 +20,12 @@ export class InternalStorageStore {
   });
 
   readonly loading = computed(() => this.internalStoragesResource.isLoading());
-  readonly error = computed(() => this.internalStoragesResource.error());
 
-  reload(): void {
-    this.internalStoragesResource.reload();
-  }
+  private readonly errorEffect = effect(() => {
+    const error = this.internalStoragesResource.error();
+
+    if (error) {
+      handleError();
+    }
+  });
 }
