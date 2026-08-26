@@ -1,9 +1,10 @@
-import { computed, inject, Injectable, type ResourceStatus, signal } from '@angular/core';
+import { computed, effect, inject, Injectable, type ResourceStatus, signal } from '@angular/core';
 import { httpResource } from '@angular/common/http';
 
 import { LoadingState } from '../domain/enum/loading-state.enum';
 import { RepositoryDetails } from '../domain/repository-details';
 import { RepositoryApi, RepositoryFilter } from './repository.api';
+import { handleError } from '@damap-frontend-core';
 
 function hasActiveFilters(filter: RepositoryFilter): boolean {
   return Object.keys(filter).some((key) => filter[key]?.length > 0);
@@ -61,10 +62,18 @@ export class RepositoryStore {
     this.toLoadingState(this.repositoriesResource.status()),
   );
 
-  readonly recommendedRepositoriesError = computed(() =>
-    this.recommendedRepositoriesResource.error(),
-  );
-  readonly repositoriesError = computed(() => this.repositoriesResource.error());
+  private readonly errorEffect = effect(() => {
+    const repositoriesError = this.repositoriesResource.error();
+    const recommendedError = this.recommendedRepositoriesResource.error();
+
+    if (repositoriesError) {
+      handleError();
+    }
+
+    if (recommendedError) {
+      handleError();
+    }
+  });
 
   setFilter(filter: RepositoryFilter): void {
     this.filterState.set(filter);

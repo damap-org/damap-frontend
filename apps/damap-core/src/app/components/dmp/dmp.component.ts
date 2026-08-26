@@ -34,7 +34,6 @@ import { RepoComponent } from './repo/repo.component';
 import { SpecifyDataComponent } from './specify-data/specify-data.component';
 import { StepperSelectionEvent, STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Dmp } from '../../domain/dmp';
-import { DmpFormStore } from '../../data-access/dmp-form.store';
 import { Completeness, SummaryService } from '../../services/summary.service';
 import { InfoCardComponent } from '../../widgets/info-card/info-card.component';
 import { MatIcon } from '@angular/material/icon';
@@ -101,7 +100,6 @@ export class DmpComponent implements OnInit, OnDestroy {
   private logger = inject(LoggerService);
   private auth = inject(AuthService);
   private formService = inject(FormService);
-  private formStore = inject(DmpFormStore);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private backendService = inject(BackendService);
@@ -167,7 +165,7 @@ export class DmpComponent implements OnInit, OnDestroy {
     this.dmpForm = this.formService.dmpForm;
 
     effect(() => {
-      const value = this.formStore.dmp();
+      const value = this.formService.currentDmp();
       if (value) {
         this.dmpFormVal = value;
         this.dataSource = SummaryService.dmpSummary(value);
@@ -196,7 +194,6 @@ export class DmpComponent implements OnInit, OnDestroy {
       this.dmpForm.valueChanges.subscribe(() => this.cdr.detectChanges());
       this.dmpForm.valueChanges.subscribe((value) => {
         this.logger.debug(value);
-        this.formStore.formDiff(value);
       });
 
       this.projectStep = this.dmpForm.get('project') as UntypedFormControl;
@@ -230,7 +227,6 @@ export class DmpComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.formService.resetForm();
-    this.formStore.reset();
   }
 
   get showStepIfNewDatasets() {
@@ -385,7 +381,6 @@ export class DmpComponent implements OnInit, OnDestroy {
     this.backendService.getDmpById(id).subscribe((dmp) => {
       if (dmp != null) {
         this.formService.mapDmpToForm(dmp);
-        this.formStore.setFormValue(dmp);
         if (dmp.project?.universityId) {
           this.getProjectMembers(dmp.project.universityId);
         }

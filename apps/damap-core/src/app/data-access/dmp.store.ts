@@ -8,6 +8,7 @@ import { DmpListItem } from '../domain/dmp-list-item';
 import { LoadingState } from '../domain/enum/loading-state.enum';
 import { FeedbackService } from '../services/feedback.service';
 import { FormService } from '../services/form.service';
+import { handleError } from '@damap-frontend-core';
 
 @Injectable({ providedIn: 'root' })
 export class DmpStore {
@@ -109,7 +110,7 @@ export class DmpStore {
     );
   }
 
-  exportDmp(dmp: Dmp, changed: boolean | undefined, templateType?: number): Observable<Dmp | null> {
+  exportDmp(dmp: Dmp, templateType?: number): Observable<Dmp | null> {
     const exportSavedDmp = (savedDmp: Dmp): void => {
       const dmpId = this.requireDmpId(savedDmp);
       const export$ =
@@ -127,25 +128,20 @@ export class DmpStore {
         .subscribe();
     };
 
-    if (changed !== false) {
-      this.savingDmpState.set(true);
-      const saveDmp$ = dmp.id ? this.api.updateDmp(dmp) : this.api.createDmp(dmp);
+    this.savingDmpState.set(true);
+    const saveDmp$ = dmp.id ? this.api.updateDmp(dmp) : this.api.createDmp(dmp);
 
-      return saveDmp$.pipe(
-        tap((savedDmp) => {
-          this.formService.mapDmpToForm(savedDmp);
-          exportSavedDmp(savedDmp);
-        }),
-        catchError((error: Error) => {
-          this.feedbackService.error('dmp.save.error', error);
-          return EMPTY;
-        }),
-        finalize(() => this.savingDmpState.set(false)),
-      );
-    }
-
-    exportSavedDmp(dmp);
-    return of(null);
+    return saveDmp$.pipe(
+      tap((savedDmp) => {
+        this.formService.mapDmpToForm(savedDmp);
+        exportSavedDmp(savedDmp);
+      }),
+      catchError((error: Error) => {
+        this.feedbackService.error('dmp.save.error', error);
+        return EMPTY;
+      }),
+      finalize(() => this.savingDmpState.set(false)),
+    );
   }
 
   private requireDmpId(dmp: Dmp): number {

@@ -9,7 +9,6 @@ import {
   input,
 } from '@angular/core';
 import { Dmp } from '../../../domain/dmp';
-import { DmpFormStore } from '../../../data-access/dmp-form.store';
 import { Contributor } from '../../../domain/contributor';
 import { SummaryService } from '../../../services/summary.service';
 import { MatStepper } from '@angular/material/stepper';
@@ -45,6 +44,7 @@ import {
 } from '@angular/material/expansion';
 import { MatIcon } from '@angular/material/icon';
 import { TranslatePipe } from '@ngx-translate/core';
+import { FormService } from '@damap-frontend-core/app/services/form.service';
 
 type LoadingState = 'idle' | 'loading' | 'loaded' | 'failed';
 type EvalState = 'idle' | 'loading' | 'done' | 'failed';
@@ -86,7 +86,7 @@ type EvalState = 'idle' | 'loading' | 'done' | 'failed';
   ],
 })
 export class SummaryComponent implements OnInit {
-  private formStore = inject(DmpFormStore);
+  private formService = inject(FormService);
   private backendService = inject(BackendService);
 
   private readonly DEFAULT_BENCHMARK_ID = '69ef5cdfcde500798dbd1af8'; // FWF Benchmark
@@ -132,8 +132,8 @@ export class SummaryComponent implements OnInit {
 
   constructor() {
     effect(() => {
-      this.contact = this.formStore.contact();
-      const value = this.formStore.dmp();
+      this.contact = this.formService.contact();
+      const value = this.formService.currentDmp();
       if (value) {
         this.dmpForm = value;
         this.dataSource = SummaryService.dmpSummary(value);
