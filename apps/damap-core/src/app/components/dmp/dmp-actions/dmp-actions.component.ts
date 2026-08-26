@@ -1,27 +1,25 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   inject,
   Input,
+  input,
   OnDestroy,
   OnInit,
-  ChangeDetectionStrategy,
-  input,
 } from '@angular/core';
 import { FormGroup, UntypedFormControl } from '@angular/forms';
 import {
   MatDialog,
-  MatDialogRef,
-  MatDialogTitle,
-  MatDialogContent,
   MatDialogActions,
   MatDialogClose,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle,
 } from '@angular/material/dialog';
 import { Subject, Subscription } from 'rxjs';
 
 import { BackendService } from '../../../services/backend.service';
-import { DmpFormStore } from '../../../data-access/dmp-form.store';
 import { DmpStore } from '../../../data-access/dmp.store';
-import { ETemplateType } from '../../../domain/enum/export-template-type.enum';
 import { ExportWarningDialogComponent } from '../../../widgets/export-warning-dialog/export-warning-dialog.component';
 import { FeedbackService } from '../../../services/feedback.service';
 import { FormService } from '../../../services/form.service';
@@ -35,11 +33,10 @@ import {
   MatExpansionPanelTitle,
 } from '@angular/material/expansion';
 import { MatButton } from '@angular/material/button';
-import { RouterLinkActive, RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { SaveStatusComponent } from '../../../widgets/save-status/save-status.component';
 import { MatTooltip } from '@angular/material/tooltip';
 import { TranslatePipe } from '@ngx-translate/core';
-import { CdkScrollable } from '@angular/cdk/scrolling';
 import { InputWrapperComponent } from '../../../shared/input-wrapper/input-wrapper.component';
 
 @Component({
@@ -68,7 +65,6 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
   private feedbackService = inject(FeedbackService);
   private configService = inject(ConfigService);
 
-  private readonly formStore = inject(DmpFormStore);
   private readonly dmpStore = inject(DmpStore);
 
   @Input() stepChanged$: Subject<any>;
@@ -77,7 +73,6 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
 
   dmpForm: FormGroup;
 
-  readonly formChanged = this.formStore.changed;
   readonly savingDmp = this.dmpStore.savingDmp;
 
   exportDmpType: number;
@@ -100,13 +95,12 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
   }
 
   saveDmp() {
-    if (this.dmpForm.valid && this.formChanged() && !this.savingDmp()) {
+    if (this.dmpForm.valid && !this.savingDmp()) {
       const dmp = this.formService.exportFormToDmp();
       if (this.dmpForm.value.id) {
-        this.dmpStore.updateDmp(dmp).subscribe((savedDmp) => this.formStore.setFormValue(savedDmp));
+        this.dmpStore.updateDmp(dmp).subscribe();
       } else {
         this.dmpStore.createDmp(dmp).subscribe((savedDmp) => {
-          this.formStore.setFormValue(savedDmp);
           if (savedDmp.id) {
             this.location.go(`/dmp/${savedDmp.id}`);
           }
@@ -122,9 +116,7 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe((versionName) => {
       if (versionName && versionName.length <= 255) {
-        this.dmpStore
-          .saveDmpVersion(this.formService.exportFormToDmp(), versionName)
-          .subscribe((savedDmp) => this.formStore.setFormValue(savedDmp));
+        this.dmpStore.saveDmpVersion(this.formService.exportFormToDmp(), versionName).subscribe();
       } else if (versionName?.length > 255) {
         this.feedbackService.error('Version name is too long');
       }
@@ -132,13 +124,7 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
   }
 
   dispatchExportDmp(): void {
-    this.dmpStore
-      .exportDmp(this.formService.exportFormToDmp(), this.formChanged())
-      .subscribe((savedDmp) => {
-        if (savedDmp) {
-          this.formStore.setFormValue(savedDmp);
-        }
-      });
+    this.dmpStore.exportDmp(this.formService.exportFormToDmp()).subscribe();
   }
 
   exportDmpTemplate(): void {
@@ -160,15 +146,8 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result && result !== 'cancel') {
-        const template = result;
-        this.exportDmpType = template;
-        this.dmpStore
-          .exportDmp(this.formService.exportFormToDmp(), this.formChanged(), this.exportDmpType)
-          .subscribe((savedDmp) => {
-            if (savedDmp) {
-              this.formStore.setFormValue(savedDmp);
-            }
-          });
+        this.exportDmpType = result;
+        this.dmpStore.exportDmp(this.formService.exportFormToDmp(), this.exportDmpType).subscribe();
       }
     });
   }
@@ -209,7 +188,6 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
-    CdkScrollable,
     MatDialogContent,
     InputWrapperComponent,
     MatDialogActions,

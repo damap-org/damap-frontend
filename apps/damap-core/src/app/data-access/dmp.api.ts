@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { map, Observable, retry, tap } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 
 import { APP_ENV } from '../constants';
 import { Dmp } from '../domain/dmp';
@@ -20,15 +20,15 @@ export class DmpApi {
   readonly dmps = `${this.dmpUrl}/list`;
 
   createDmp(dmp: Dmp): Observable<Dmp> {
-    return this.http.post<Dmp>(this.dmpUrl, dmp, this.jsonOptions).pipe(retry(3));
+    return this.http.post<Dmp>(this.dmpUrl, dmp, this.jsonOptions);
   }
 
   updateDmp(dmp: Dmp): Observable<Dmp> {
-    return this.http.put<Dmp>(`${this.dmpUrl}/${dmp.id}`, dmp, this.jsonOptions).pipe(retry(3));
+    return this.http.put<Dmp>(`${this.dmpUrl}/${dmp.id}`, dmp, this.jsonOptions);
   }
 
   saveDmpVersion(version: DmpVersionDraft): Observable<Version> {
-    return this.http.put<Version>(this.versionUrl, version, this.jsonOptions).pipe(retry(3));
+    return this.http.put<Version>(this.versionUrl, version, this.jsonOptions);
   }
 
   exportDmpTemplate(dmpId: number, template: number): Observable<void> {

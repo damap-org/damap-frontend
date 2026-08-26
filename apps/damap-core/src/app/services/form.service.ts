@@ -28,7 +28,7 @@ import { DataSource } from '../domain/enum/data-source.enum';
 import { Dataset } from '../domain/dataset';
 import { Dmp } from '../domain/dmp';
 import { ExternalStorage } from '../domain/external-storage';
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, computed } from '@angular/core';
 import { InternalStorage } from '../domain/internal-storage';
 import { Repository } from '../domain/repository';
 import { Storage } from '../domain/storage';
@@ -37,6 +37,8 @@ import { currencyValidator } from '../validators/currency.validator';
 import { notEmptyValidator } from '../validators/not-empty.validator';
 import { uriValidator } from '../validators/uri.validator';
 import { urlValidator } from '../validators/url.validator';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map, startWith } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -48,11 +50,22 @@ export class FormService {
   private TEXT_MAX_LENGTH = 4000;
   private TEXT_SHORT_LENGTH = 255;
   private readonly DEFAULT_BANNER_COLOR = '#E6F3FF';
-  private readonly form: UntypedFormGroup;
+  private readonly form = this.createDmpForm();
   private readonly initialFormValue;
 
+  // current form value transformed into DMP
+  readonly currentDmp = toSignal(
+    this.form.valueChanges.pipe(
+      startWith(this.form.getRawValue()),
+      map(() => this.exportFormToDmp()),
+    ),
+    { initialValue: this.exportFormToDmp() },
+  );
+  readonly contact = computed(() =>
+    this.currentDmp().contributors?.find((contributor) => contributor.contact),
+  );
+
   constructor() {
-    this.form = this.createDmpForm();
     this.initialFormValue = this.form.getRawValue();
   }
 
