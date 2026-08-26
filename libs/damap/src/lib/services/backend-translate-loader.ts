@@ -6,6 +6,19 @@ import { TranslationEntry } from '../domain/translation';
 import { inject } from '@angular/core';
 
 export class BackendTranslateLoader implements TranslateLoader {
+  private static readonly landingFallbackTranslations: Record<string, string> =
+    {
+      'landing.servers-down':
+        'Our servers seem to be down at the moment. Please try again later.',
+      'landing.servers-down-retrying':
+        'Failed to establish connection to our servers. Retrying...',
+      'landing.servers-up':
+        'Connection to our servers has been re-established.',
+      'landing.introduction': 'Introduction',
+      'landing.start': 'Start now',
+      'landing.title': 'DAMAP - a tool for machine actionable DMPs',
+    };
+
   private httpClient = inject(HttpClient);
 
   constructor(private readonly backendUrl: string) {}
@@ -14,8 +27,10 @@ export class BackendTranslateLoader implements TranslateLoader {
     return this.httpClient
       .get<TranslationEntry[]>(`${this.backendUrl}languages/${lang}`)
       .pipe(
-        map(entries => this.entriesToNested(entries)),
-        catchError(() => of({})),
+        map(entries =>
+          this.withLandingFallbackTranslations(this.entriesToNested(entries)),
+        ),
+        catchError(() => of(this.withLandingFallbackTranslations({}))),
       );
   }
 
@@ -45,5 +60,34 @@ export class BackendTranslateLoader implements TranslateLoader {
       current = current[parts[i]];
     }
     current[parts[parts.length - 1]] = value;
+  }
+
+  private withLandingFallbackTranslations(
+    translations: Record<string, any>,
+  ): Record<string, any> {
+    for (const [key, value] of Object.entries(
+      BackendTranslateLoader.landingFallbackTranslations,
+    )) {
+      if (!this.hasNestedValue(translations, key)) {
+        this.setNestedValue(translations, key, value);
+      }
+    }
+    return translations;
+  }
+
+  private hasNestedValue(obj: Record<string, any>, key: string): boolean {
+    const parts = key.split('.');
+    let current: any = obj;
+    for (const part of parts) {
+      if (
+        typeof current !== 'object' ||
+        current === null ||
+        !Object.prototype.hasOwnProperty.call(current, part)
+      ) {
+        return false;
+      }
+      current = current[part];
+    }
+    return true;
   }
 }
