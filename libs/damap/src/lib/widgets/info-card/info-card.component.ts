@@ -1,9 +1,10 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
+
 import { CommonModule } from '@angular/common';
+import { InfoBoxDetails } from '../../domain/infoBox-details';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { InfoBoxDetails } from '../../domain/infoBox-details';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
@@ -26,6 +27,7 @@ export class InfoCardComponent implements OnInit, OnChanges {
   public instructions: string;
   public summaryLine: string;
   public isIntroShow: boolean = true;
+  public isCollapsed: boolean = false;
   public icon: string | number;
 
   ngOnInit(): void {
@@ -54,5 +56,9 @@ export class InfoCardComponent implements OnInit, OnChanges {
 
   openIntro(): void {
     this.isIntroShow = true;
+  }
+
+  toggleCollapse(): void {
+    this.isCollapsed = !this.isCollapsed;
   }
 }
