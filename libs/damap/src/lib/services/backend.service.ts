@@ -26,6 +26,7 @@ import { EvaluationResult } from '../domain/evaluation-result';
 import { Contributor } from '../domain/contributor';
 import { Dataset } from '../domain/dataset';
 import { Dmp } from '../domain/dmp';
+import { DmpImportResponse } from '../domain/dmp-import-response';
 import { DmpListItem } from '../domain/dmp-list-item';
 import { FeedbackService } from './feedback.service';
 import { Gdpr } from '../domain/gdpr';
@@ -117,6 +118,15 @@ export class BackendService {
     return this.http
       .delete<Dmp>(`${this.dmpBackendUrl}/${id}`)
       .pipe(retry(3), catchError(this.handleError('http.error.plans.delete')));
+  }
+
+  importDmpJsonFile(file: File): Observable<DmpImportResponse> {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return this.http
+      .post<DmpImportResponse>(`${this.dmpBackendUrl}/import`, formData)
+      .pipe(retry(3), catchError(this.handleError('http.error.plans.import')));
   }
 
   getDmpByIdAndRevision(id: number, revision: number): Observable<Dmp> {
@@ -726,7 +736,9 @@ export class BackendService {
     message = this.translate.instant(message);
     return async (error: HttpErrorResponse) => {
       if (error.status === 0) {
-        this.translate.instant('http.error.0');
+        message += this.translate.instant('http.error.0');
+      } else if (error.status === 400) {
+        message += this.translate.instant('http.error.400');
       } else if (error.status === 404) {
         message += this.translate.instant('http.error.404');
       } else if (error.status === 500) {
@@ -739,7 +751,11 @@ export class BackendService {
       // Currently, all endpoints that talk with external API's return custom error codes
       // All other endpoints are using the http codes
       let errorPayload = error.error;
-      if (errorPayload.errorCode) {
+      if (
+        errorPayload &&
+        typeof errorPayload === 'object' &&
+        errorPayload.errorCode
+      ) {
         // means we are using the new system
         message = this.translate.instant(
           'http.error.errorCodes.' + errorPayload.errorCode,

@@ -6,8 +6,10 @@
     <app-dmp-table
       [dmps]="dmps$ | async"
       [dmpsLoaded]="dmpsLoaded$"
+      [importInProgress]="importInProgress"
       (createDocument)="getDocument($event)"
       (createJsonFile)="getJsonFile($event)"
+      (importJsonFile)="importJsonFile($event)"
       (dmpToDelete)="deleteDmp($event)"></app-dmp-table>
   </div>
   <div *ngIf="(dmpsLoaded$ | async) === LoadingState.LOADING">
@@ -26,7 +28,9 @@
       [dmpsLoaded]="dmpsLoaded$"
       (createDocument)="getDocument($event)"
       [admin]="true"
+      [importInProgress]="importInProgress"
       (createJsonFile)="getJsonFile($event)"
+      (importJsonFile)="importJsonFile($event)"
       (dmpToDelete)="deleteDmp($event)"></app-dmp-table>
   </ng-container>
 </div>
