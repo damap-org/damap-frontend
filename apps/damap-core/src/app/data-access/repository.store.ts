@@ -1,10 +1,10 @@
 import { computed, effect, inject, Injectable, type ResourceStatus, signal } from '@angular/core';
-import { httpResource } from '@angular/common/http';
+import { HttpErrorResponse, httpResource } from '@angular/common/http';
 
 import { LoadingState } from '../domain/enum/loading-state.enum';
 import { RepositoryDetails } from '../domain/repository-details';
 import { RepositoryApi, RepositoryFilter } from './repository.api';
-import { handleError } from '@damap-frontend-core';
+import { ErrorHandlerService } from '@damap-frontend-core/app/services/error-handler.service';
 
 function hasActiveFilters(filter: RepositoryFilter): boolean {
   return Object.keys(filter).some((key) => filter[key]?.length > 0);
@@ -13,6 +13,7 @@ function hasActiveFilters(filter: RepositoryFilter): boolean {
 @Injectable()
 export class RepositoryStore {
   private readonly api = inject(RepositoryApi);
+  private errorHandlerService = inject(ErrorHandlerService);
 
   private readonly filterState = signal<RepositoryFilter>({});
   private readonly detailId = signal<string | null>(null);
@@ -63,15 +64,15 @@ export class RepositoryStore {
   );
 
   private readonly errorEffect = effect(() => {
-    const repositoriesError = this.repositoriesResource.error();
-    const recommendedError = this.recommendedRepositoriesResource.error();
+    const repositoriesError = this.repositoriesResource.error() as HttpErrorResponse;
+    const recommendedError = this.recommendedRepositoriesResource.error() as HttpErrorResponse;
 
     if (repositoriesError) {
-      handleError();
+      this.errorHandlerService.handleError()(repositoriesError);
     }
 
     if (recommendedError) {
-      handleError();
+      this.errorHandlerService.handleError()(recommendedError);
     }
   });
 
