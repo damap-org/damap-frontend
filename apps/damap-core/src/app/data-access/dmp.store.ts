@@ -1,5 +1,5 @@
-import { computed, inject, Injectable, type ResourceStatus, signal } from '@angular/core';
-import { httpResource } from '@angular/common/http';
+import { computed, effect, inject, Injectable, type ResourceStatus, signal } from '@angular/core';
+import { HttpErrorResponse, httpResource } from '@angular/common/http';
 import { catchError, EMPTY, finalize, map, Observable, of, switchMap, tap } from 'rxjs';
 
 import { DmpApi } from './dmp.api';
@@ -8,13 +8,14 @@ import { DmpListItem } from '../domain/dmp-list-item';
 import { LoadingState } from '../domain/enum/loading-state.enum';
 import { FeedbackService } from '../services/feedback.service';
 import { FormService } from '../services/form.service';
-import { handleError } from '@damap-frontend-core';
+import { ErrorHandlerService } from '@damap-frontend-core/app/services/error-handler.service';
 
 @Injectable({ providedIn: 'root' })
 export class DmpStore {
   private readonly api = inject(DmpApi);
   private readonly formService = inject(FormService);
   private readonly feedbackService = inject(FeedbackService);
+  private readonly errorHandlerService = inject(ErrorHandlerService);
 
   private readonly dmpsLoadRequested = signal(false);
   private readonly savingDmpState = signal(false);
@@ -27,6 +28,14 @@ export class DmpStore {
   readonly dmps = computed(() => this.dmpsResource.value());
   readonly dmpsLoaded = computed(() => this.toLoadingState(this.dmpsResource.status()));
   readonly savingDmp = this.savingDmpState.asReadonly();
+
+  private readonly errorEffect = effect(() => {
+    const error = this.dmpsResource.error() as HttpErrorResponse;
+
+    if (error) {
+      this.errorHandlerService.handleError()(error);
+    }
+  });
 
   dmpById(id: number): DmpListItem | undefined {
     return this.dmps().find((dmp) => dmp.id === id);
@@ -57,10 +66,7 @@ export class DmpStore {
         this.feedbackService.success('dmp.success.save');
         this.loadDmps(false);
       }),
-      catchError((error: Error) => {
-        this.feedbackService.error('dmp.save.error', error);
-        return EMPTY;
-      }),
+      catchError(this.errorHandlerService.handleError('http.error.plans.save')),
       finalize(() => this.savingDmpState.set(false)),
     );
   }
@@ -72,10 +78,7 @@ export class DmpStore {
         this.formService.mapDmpToForm(savedDmp);
         this.feedbackService.success('dmp.success.update');
       }),
-      catchError((error: Error) => {
-        this.feedbackService.error('dmp.save.error', error);
-        return EMPTY;
-      }),
+      catchError(this.errorHandlerService.handleError('http.error.plans.update')),
       finalize(() => this.savingDmpState.set(false)),
     );
   }
@@ -102,10 +105,7 @@ export class DmpStore {
         this.feedbackService.success('dmp.success.version.save');
         this.loadDmps(true);
       }),
-      catchError((error: Error) => {
-        this.feedbackService.error('dmp.save.error', error);
-        return EMPTY;
-      }),
+      catchError(this.errorHandlerService.handleError('http.error.versions.save')),
       finalize(() => this.savingDmpState.set(false)),
     );
   }
@@ -119,12 +119,7 @@ export class DmpStore {
           : this.api.exportDmp(dmpId);
 
       export$
-        .pipe(
-          catchError((error: Error) => {
-            this.feedbackService.error('http.error.document', error);
-            return EMPTY;
-          }),
-        )
+        .pipe(catchError(this.errorHandlerService.handleError('http.error.document')))
         .subscribe();
     };
 
@@ -136,10 +131,7 @@ export class DmpStore {
         this.formService.mapDmpToForm(savedDmp);
         exportSavedDmp(savedDmp);
       }),
-      catchError((error: Error) => {
-        this.feedbackService.error('dmp.save.error', error);
-        return EMPTY;
-      }),
+      catchError(this.errorHandlerService.handleError('dmp.save.error')),
       finalize(() => this.savingDmpState.set(false)),
     );
   }

@@ -33,11 +33,8 @@ import { Injectable, inject, computed } from '@angular/core';
 import { InternalStorage } from '../domain/internal-storage';
 import { Repository } from '../domain/repository';
 import { Storage } from '../domain/storage';
-import { ccBy } from '../widgets/license-wizard/license-wizard-list';
 import { currencyValidator } from '../validators/currency.validator';
 import { notEmptyValidator } from '../validators/not-empty.validator';
-import { uriValidator } from '../validators/uri.validator';
-import { urlValidator } from '../validators/url.validator';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, map, startWith } from 'rxjs';
 
