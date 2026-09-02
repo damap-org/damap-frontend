@@ -192,9 +192,6 @@ export class DmpComponent implements OnInit, OnDestroy {
         this.cdr.detectChanges();
       });
       this.dmpForm.valueChanges.subscribe(() => this.cdr.detectChanges());
-      this.dmpForm.valueChanges.subscribe((value) => {
-        this.logger.debug(value);
-      });
 
       this.projectStep = this.dmpForm.get('project') as UntypedFormControl;
       this.contributorStep = this.dmpForm.get('contributors') as UntypedFormArray;
