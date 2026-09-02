@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   inject,
   Input,
   input,
@@ -74,6 +75,11 @@ export class DmpActionsComponent implements OnInit, OnDestroy {
   dmpForm: FormGroup;
 
   readonly savingDmp = this.dmpStore.savingDmp;
+  formChanged = this.formService.formChanged();
+
+  private readonly syncChanged = effect(() => {
+    this.formChanged = this.formService.formChanged();
+  });
 
   exportDmpType: number;
 

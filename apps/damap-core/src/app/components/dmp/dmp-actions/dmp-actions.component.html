@@ -10,7 +10,7 @@
         class="action-button"
         mat-button
         [routerLink]="'/plans'"
-        [disabled]="!formChanged()"
+        [disabled]="!formChanged"
         routerLinkActive="active"
       >
         {{ 'actions-bar.buttons.discard' | translate }}
@@ -19,7 +19,7 @@
         class="action-button"
         mat-flat-button
         (click)="saveDmp()"
-        [disabled]="dmpForm.invalid || !formChanged() || savingDmp()"
+        [disabled]="dmpForm.invalid || !formChanged || savingDmp()"
       >
         {{ 'actions-bar.buttons.save' | translate }}
       </button>
@@ -44,13 +44,13 @@
 </mat-accordion>
 
 <div class="actions-bar desktop-actions">
-  <app-save-status [saved]="!formChanged()" />
+  <app-save-status [saved]="!formChanged" />
   <div id="save-dmp">
     <button
       class="action-button"
       mat-button
       [routerLink]="'/plans'"
-      [disabled]="!formChanged()"
+      [disabled]="!formChanged"
       routerLinkActive="active"
     >
       {{ 'actions-bar.buttons.discard' | translate }}
@@ -59,7 +59,7 @@
       class="action-button"
       mat-flat-button
       (click)="saveDmp()"
-      [disabled]="dmpForm.invalid || !formChanged() || savingDmp()"
+      [disabled]="dmpForm.invalid || !formChanged || savingDmp()"
     >
       {{ 'actions-bar.buttons.save' | translate }}
     </button>

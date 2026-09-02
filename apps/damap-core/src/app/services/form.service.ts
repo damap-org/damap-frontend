@@ -4,6 +4,7 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
+  PristineChangeEvent,
   UntypedFormArray,
   UntypedFormBuilder,
   UntypedFormControl,
@@ -38,7 +39,7 @@ import { notEmptyValidator } from '../validators/not-empty.validator';
 import { uriValidator } from '../validators/uri.validator';
 import { urlValidator } from '../validators/url.validator';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { map, startWith } from 'rxjs';
+import { filter, map, startWith } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -63,6 +64,14 @@ export class FormService {
   );
   readonly contact = computed(() =>
     this.currentDmp().contributors?.find((contributor) => contributor.contact),
+  );
+  readonly formChanged = toSignal(
+    this.form.events.pipe(
+      filter((event): event is PristineChangeEvent => event instanceof PristineChangeEvent),
+      map((event) => !event.pristine),
+      startWith(this.form.dirty),
+    ),
+    { initialValue: this.form.dirty },
   );
 
   constructor() {
