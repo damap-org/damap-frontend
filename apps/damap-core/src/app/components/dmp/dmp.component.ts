@@ -252,10 +252,7 @@ export class DmpComponent implements OnInit, OnDestroy {
       if (project.universityId) {
         this.getProjectMembers(project.universityId);
       }
-      this.projectStep.setValue(project);
-      if (project.end != null) {
-        this.formService.presetStartDateOnDatasets();
-      }
+      this.formService.changeProject(project);
     } else {
       this.projectMembers.length = 0;
       this.projectStep.reset();
@@ -275,7 +272,7 @@ export class DmpComponent implements OnInit, OnDestroy {
   }
 
   updateContributorDetails(event: { idx: number; contributor: Contributor }) {
-    this.formService.upadteContributorOfForm(event.idx, event.contributor);
+    this.formService.updateContributorOfForm(event.idx, event.contributor);
   }
 
   addDataset(dataset: Dataset) {

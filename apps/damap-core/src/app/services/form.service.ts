@@ -29,7 +29,7 @@ import { DataSource } from '../domain/enum/data-source.enum';
 import { Dataset } from '../domain/dataset';
 import { Dmp } from '../domain/dmp';
 import { ExternalStorage } from '../domain/external-storage';
-import { Injectable, inject, computed } from '@angular/core';
+import { Injectable, inject, computed, effect } from '@angular/core';
 import { InternalStorage } from '../domain/internal-storage';
 import { Repository } from '../domain/repository';
 import { Storage } from '../domain/storage';
@@ -37,6 +37,7 @@ import { currencyValidator } from '../validators/currency.validator';
 import { notEmptyValidator } from '../validators/not-empty.validator';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, map, startWith } from 'rxjs';
+import { Project } from '@damap-frontend-core';
 
 @Injectable({
   providedIn: 'root',
@@ -304,10 +305,21 @@ export class FormService {
     this.form.setValue(this.initialFormValue);
   }
 
+  public changeProject(project: Project) {
+    const projectControl = this.form.get('project');
+    projectControl?.patchValue(project);
+    projectControl?.markAsDirty();
+
+    if (project.end != null) {
+      this.presetStartDateOnDatasets();
+    }
+  }
+
   public changeContactPerson(contact: Contributor) {
     // Remove old contact
     const contributorFormArray = this.form.get('contributors') as UntypedFormArray;
     contributorFormArray.controls.forEach((c) => c.patchValue({ contact: false }));
+    contributorFormArray.markAsDirty();
 
     // Add/set new contact
     if (contact) {
@@ -316,6 +328,7 @@ export class FormService {
       );
       if (existingContact) {
         existingContact.patchValue({ contact: true });
+        existingContact.markAsDirty();
       } else {
         this.addContributorToForm(contact, true);
       }
@@ -326,16 +339,19 @@ export class FormService {
     contributor.contact = contact;
     const contributorFormGroup = this.mapContributorToFormGroup(contributor);
     (this.form.get('contributors') as UntypedFormArray).push(contributorFormGroup);
+    (this.form.get('contributors') as UntypedFormArray).markAsDirty();
   }
 
   public removeContributorFromForm(index: number) {
     (this.form.get('contributors') as UntypedFormArray).removeAt(index);
+    (this.form.get('contributors') as UntypedFormArray).markAsDirty();
   }
 
-  public upadteContributorOfForm(index: number, contributor: Contributor) {
+  public updateContributorOfForm(index: number, contributor: Contributor) {
     const contributor_ = (this.form.get('contributors') as UntypedFormArray).at(index);
 
     contributor_.patchValue(contributor);
+    contributor_.markAsDirty();
   }
 
   public addDatasetToForm(dataset: Dataset) {
@@ -344,22 +360,26 @@ export class FormService {
     const formGroup = this.mapDatasetToFormGroup(dataset);
 
     (this.form.get('datasets') as UntypedFormArray).push(formGroup);
+    (this.form.get('datasets') as UntypedFormArray).markAsDirty();
   }
 
   public updateDatasetOfForm(index: number, update: Dataset) {
     const dataset = (this.form.get('datasets') as UntypedFormArray).at(index);
     dataset.patchValue(update);
+    dataset.markAsDirty();
 
     const technicalResourceArray = dataset.get('technicalResources') as FormArray;
     technicalResourceArray.clear();
     update.technicalResources?.forEach((resource) => {
       technicalResourceArray.push(this.createTechnicalResource(resource.name));
+      technicalResourceArray.markAsDirty();
     });
   }
 
   public removeDatasetFromForm(index: number) {
     this.removeDatasetReferences(index);
     (this.form.get('datasets') as UntypedFormArray).removeAt(index);
+    (this.form.get('datasets') as UntypedFormArray).markAsDirty();
   }
 
   public addStorageToForm(storage: InternalStorage) {
@@ -377,21 +397,25 @@ export class FormService {
       title: title,
     });
     (this.form.get('storage') as UntypedFormArray).push(storageFormGroup);
+    (this.form.get('storage') as UntypedFormArray).markAsDirty();
   }
 
   public removeStorageFromForm(index: number) {
     (this.form.get('storage') as UntypedFormArray).removeAt(index);
+    (this.form.get('storage') as UntypedFormArray).markAsDirty();
   }
 
   public addExternalStorageToForm() {
     const externalStorageFormGroup = this.createExternalStorageFormGroup();
     const storage = this.form.get('externalStorage') as UntypedFormArray;
     storage.push(externalStorageFormGroup);
+    storage.markAsDirty();
   }
 
   public removeExternalStorageFromForm(index: number) {
     const storage = this.form.get('externalStorage') as UntypedFormArray;
     storage.removeAt(index);
+    storage.markAsDirty();
   }
 
   public addRepositoryToForm(repo: { id: string; name: string }) {
@@ -401,10 +425,12 @@ export class FormService {
       title: repo.name,
     });
     (this.form.get('repositories') as UntypedFormArray).push(repoFormGroup);
+    (this.form.get('repositories') as UntypedFormArray).markAsDirty();
   }
 
   public removeRepositoryFromForm(index: number) {
     (this.form.get('repositories') as UntypedFormArray).removeAt(index);
+    (this.form.get('repositories') as UntypedFormArray).markAsDirty();
   }
 
   public addCostToForm() {
@@ -412,10 +438,12 @@ export class FormService {
     ((this.form.get('costs') as UntypedFormGroup).get('list') as UntypedFormArray).push(
       costFormGroup,
     );
+    (this.form.get('costs') as UntypedFormGroup).markAsDirty();
   }
 
   public removeCostFromForm(index: number) {
     ((this.form.get('costs') as UntypedFormGroup).get('list') as UntypedFormArray).removeAt(index);
+    (this.form.get('costs') as UntypedFormGroup).markAsDirty();
   }
 
   public createDatasetFormGroup(title: string): UntypedFormGroup {
@@ -564,6 +592,7 @@ export class FormService {
           datasets.at(i).patchValue({
             startDate: startDate,
           });
+          datasets.markAsDirty();
         }
       }
     }
