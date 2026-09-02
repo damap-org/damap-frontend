@@ -1,7 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject, Observable, Subject, Subscription, take } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import {
-  ChangeDetectorRef,
   Component,
   effect,
   OnDestroy,
@@ -104,7 +103,6 @@ export class DmpComponent implements OnInit, OnDestroy {
   private router = inject(Router);
   private backendService = inject(BackendService);
   private infoLabelService = inject(InfoLabelService);
-  private cdr = inject(ChangeDetectorRef);
 
   config$: Observable<Config> = new Observable<Config>();
   @ViewChild('projectComponent') projectComponent: ProjectComponent;
@@ -175,7 +173,6 @@ export class DmpComponent implements OnInit, OnDestroy {
 
   onNewDatasetClick() {
     this.stepper.selectedIndex = 2;
-    this.cdr.detectChanges();
   }
 
   onStepChange(selectedStep: number) {
@@ -183,31 +180,27 @@ export class DmpComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.getInstruction(0);
-      this.config$ = this.backendService.loadServiceConfig();
-      this.config$.subscribe((config) => {
-        this.livePreviewEnabled = config.livePreviewAvailable;
-        this.ethicalReportEnabled = config.ethicalReportEnabled;
-        this.cdr.detectChanges();
-      });
-      this.dmpForm.valueChanges.subscribe(() => this.cdr.detectChanges());
-
-      this.projectStep = this.dmpForm.get('project') as UntypedFormControl;
-      this.contributorStep = this.dmpForm.get('contributors') as UntypedFormArray;
-      this.specifyDataStep = this.dmpForm.get('data') as UntypedFormGroup;
-      this.datasets = this.dmpForm.get('datasets') as UntypedFormArray;
-      this.docDataStep = this.dmpForm.get('documentation') as UntypedFormGroup;
-      this.legalEthicalStep = this.dmpForm.get('legal') as UntypedFormGroup;
-      this.storageStep = this.dmpForm.get('storage') as UntypedFormArray;
-      this.externalStorageStep = this.dmpForm.get('externalStorage') as UntypedFormArray;
-      this.externalStorageInfo = this.dmpForm.get('externalStorageInfo') as UntypedFormControl;
-      this.repoStep = this.dmpForm.get('repositories') as UntypedFormArray;
-      this.reuseStep = this.dmpForm.get('reuse') as UntypedFormGroup;
-      this.costsStep = this.dmpForm.get('costs') as UntypedFormGroup;
-
-      this.getDmpById();
+    this.getInstruction(0);
+    this.config$ = this.backendService.loadServiceConfig();
+    this.config$.subscribe((config) => {
+      this.livePreviewEnabled = config.livePreviewAvailable;
+      this.ethicalReportEnabled = config.ethicalReportEnabled;
     });
+
+    this.projectStep = this.dmpForm.get('project') as UntypedFormControl;
+    this.contributorStep = this.dmpForm.get('contributors') as UntypedFormArray;
+    this.specifyDataStep = this.dmpForm.get('data') as UntypedFormGroup;
+    this.datasets = this.dmpForm.get('datasets') as UntypedFormArray;
+    this.docDataStep = this.dmpForm.get('documentation') as UntypedFormGroup;
+    this.legalEthicalStep = this.dmpForm.get('legal') as UntypedFormGroup;
+    this.storageStep = this.dmpForm.get('storage') as UntypedFormArray;
+    this.externalStorageStep = this.dmpForm.get('externalStorage') as UntypedFormArray;
+    this.externalStorageInfo = this.dmpForm.get('externalStorageInfo') as UntypedFormControl;
+    this.repoStep = this.dmpForm.get('repositories') as UntypedFormArray;
+    this.reuseStep = this.dmpForm.get('reuse') as UntypedFormGroup;
+    this.costsStep = this.dmpForm.get('costs') as UntypedFormGroup;
+
+    this.getDmpById();
   }
 
   changeStepPosition(event: StepperSelectionEvent) {
@@ -246,7 +239,6 @@ export class DmpComponent implements OnInit, OnDestroy {
   changeStep($event: StepperSelectionEvent) {
     this.stepChanged$.next($event);
     this.getInstruction($event.selectedIndex);
-    this.cdr.detectChanges();
   }
 
   handleStepChange(event: StepperSelectionEvent) {
@@ -381,7 +373,6 @@ export class DmpComponent implements OnInit, OnDestroy {
         if (dmp.project?.universityId) {
           this.getProjectMembers(dmp.project.universityId);
         }
-        this.cdr.detectChanges();
       } else {
         this.router.navigate(['plans']);
       }
