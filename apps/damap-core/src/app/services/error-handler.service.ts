@@ -12,7 +12,7 @@ export class ErrorHandlerService {
     message = this.translate.instant(message);
     return async (error: HttpErrorResponse) => {
       if (error.status === 0) {
-        this.translate.instant('http.error.0');
+        message += this.translate.instant('http.error.0');
       } else if (error.status === 404) {
         message += this.translate.instant('http.error.404');
       } else if (error.status === 500) {
