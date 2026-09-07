@@ -1,0 +1,198 @@
+import { describe, expect, it, vi, beforeEach, afterEach, type MockedObject } from 'vitest';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { NO_ERRORS_SCHEMA, isDevMode } from '@angular/core';
+
+import { ConfigService } from './config.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { OAuthService } from 'angular-oauth2-oidc';
+import { Router } from '@angular/router';
+import { TestBed } from '@angular/core/testing';
+import { environment } from '../../environments/environment';
+import { Config, FeedbackService } from '@damap-frontend-core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
+
+describe('ConfigService', () => {
+  let service: ConfigService;
+  let httpMock: HttpTestingController;
+  let mockOAuthService: MockedObject<OAuthService>;
+  const mockFeedbackService = {
+    error: vi.fn().mockName('FeedbackService.error'),
+    success: vi.fn().mockName('FeedbackService.success'),
+  };
+  let mockConfig: Config = {
+    issuer: 'https://issuer',
+    clientID: 'client-id',
+    scope: 'scope',
+    userRolesClaimPath: 'roles',
+    userIdClaim: 'sub',
+    nameClaim: 'name',
+    givenNameClaim: 'given_name',
+    familyNameClaim: 'family_name',
+    emailClaim: 'email',
+    affiliationClaim: 'affiliation',
+    adminRoleName: 'damap-super-admin',
+    responseType: 'code',
+    env: 'test-env',
+    appTitle: 'Test App Title',
+    personSearchServiceConfigs: [],
+    projectSearchServiceConfig: null,
+    livePreviewAvailable: true,
+    ethicalReportEnabled: true,
+    evaluationAvailable: true,
+    multitenancyEnabled: false,
+    tenants: [],
+    templates: [],
+    images: [
+      {
+        id: 1,
+        imageKey: 'logo',
+        filesize: 150,
+        mimeType: 'png',
+        data: '1100010001',
+      },
+    ],
+    colorTheme: {
+      id: 1,
+      exactColors: true,
+      colors: null,
+    },
+    publicAvailable: true,
+    consentFormEnabled: true,
+  };
+
+  beforeEach(() => {
+    vi.spyOn(console, 'warn').mockReturnValue(undefined);
+    vi.spyOn(console, 'error').mockReturnValue(undefined);
+    vi.spyOn(console, 'log').mockReturnValue(undefined);
+
+    const oauthSpy = {
+      configure: vi.fn().mockName('OAuthService.configure'),
+      setupAutomaticSilentRefresh: vi.fn().mockName('OAuthService.setupAutomaticSilentRefresh'),
+      loadDiscoveryDocumentAndTryLogin: vi
+        .fn()
+        .mockName('OAuthService.loadDiscoveryDocumentAndTryLogin'),
+      hasValidIdToken: vi.fn().mockName('OAuthService.hasValidIdToken'),
+      hasValidAccessToken: vi.fn().mockName('OAuthService.hasValidAccessToken'),
+    };
+
+    const routerSpy = {
+      navigateByUrl: vi.fn().mockName('Router.navigateByUrl'),
+    };
+
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule, TranslateDirective, TranslatePipe, MatSnackBarModule],
+      schemas: [NO_ERRORS_SCHEMA],
+      providers: [
+        ConfigService,
+        { provide: OAuthService, useValue: oauthSpy },
+        { provide: Router, useValue: routerSpy },
+        { provide: FeedbackService, useValue: mockFeedbackService },
+      ],
+    });
+
+    service = TestBed.inject(ConfigService);
+    httpMock = TestBed.inject(HttpTestingController);
+    mockOAuthService = TestBed.inject(OAuthService) as MockedObject<OAuthService>;
+  });
+
+  afterEach(() => {
+    httpMock.verify();
+  });
+
+  describe('#initializeApp', () => {
+    it('should load config and set up OAuthService correctly', async () => {
+      mockOAuthService.loadDiscoveryDocumentAndTryLogin.mockResolvedValue(true);
+      mockOAuthService.hasValidIdToken.mockReturnValue(true);
+      mockOAuthService.hasValidAccessToken.mockReturnValue(true);
+
+      const initializePromise = service.initializeApp();
+
+      const req = httpMock.expectOne(`${environment.backendurl}config`);
+      expect(req.request.method).toBe('GET');
+      req.flush(mockConfig);
+
+      await new Promise((resolve) => setTimeout(resolve, 0));
+
+      const req2 = httpMock.expectOne(`${environment.backendurl}config`);
+      req2.flush(mockConfig);
+
+      await initializePromise;
+
+      expect(mockOAuthService.configure).toHaveBeenCalledWith({
+        issuer: mockConfig.issuer,
+        clientId: mockConfig.clientID,
+        redirectUri: window.location.origin,
+        logoutUrl: window.location.origin,
+        oidc: true,
+        scope: mockConfig.scope,
+        responseType: 'code',
+        showDebugInformation: isDevMode(),
+      });
+
+      expect(mockOAuthService.setupAutomaticSilentRefresh).toHaveBeenCalled();
+    });
+
+    it('should log a warning if appTitle is missing', async () => {
+      const mockConfig = {
+        issuer: 'https://issuer',
+        clientID: 'client-id',
+        scope: 'scope',
+        env: 'test-env',
+        appTitle: null,
+        personSearchServiceConfigs: [],
+        livePreviewAvailable: true,
+      };
+
+      mockOAuthService.loadDiscoveryDocumentAndTryLogin.mockResolvedValue(true);
+      mockOAuthService.hasValidIdToken.mockReturnValue(true);
+      mockOAuthService.hasValidAccessToken.mockReturnValue(true);
+
+      const initializePromise = service.initializeApp();
+      const req = httpMock.expectOne(`${environment.backendurl}config`);
+      req.flush(mockConfig);
+
+      await new Promise((resolve) => setTimeout(resolve, 0));
+
+      const req2 = httpMock.expectOne(`${environment.backendurl}config`);
+      req2.flush(mockConfig);
+
+      await initializePromise;
+      // eslint-disable-next-line no-console
+      expect(console.warn).toHaveBeenCalledWith('App title is missing in the config');
+    });
+  });
+
+  describe('#getAppTitle', () => {
+    it('should return the appTitle from the loaded config', () => {
+      service['config'] = mockConfig;
+
+      const appTitle = service.getAppTitle();
+      expect(appTitle).toEqual('Test App Title');
+    });
+
+    it('should return the default title if appTitle is missing', () => {
+      service['config'] = null;
+
+      const appTitle = service.getAppTitle();
+      expect(appTitle).toEqual('DAMAP Frontend');
+    });
+  });
+
+  describe('initializeApp with no config', () => {
+    it('should return false and log error when config is missing', async () => {
+      mockOAuthService.loadDiscoveryDocumentAndTryLogin.mockResolvedValue(true);
+      mockOAuthService.hasValidIdToken.mockReturnValue(true);
+      mockOAuthService.hasValidAccessToken.mockReturnValue(true);
+
+      const initializePromise = service.initializeApp();
+      const req = httpMock.expectOne(`${environment.backendurl}config`);
+      req.error(new ErrorEvent('Network error'));
+
+      await initializePromise;
+      // eslint-disable-next-line no-console
+      expect(console.error).toHaveBeenCalledWith(
+        'Failed to load config - please make sure your backend is up and running!',
+      );
+    });
+  });
+});
