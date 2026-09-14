@@ -8,6 +8,7 @@
   <app-search-field
     [label]="'dmp.steps.project.search' | translate"
     (searchChange)="search($event)"></app-search-field>
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
   <div class="list-container" *ngIf="!selectedProject">
     <mat-selection-list
       hideSingleSelectionIndicator
