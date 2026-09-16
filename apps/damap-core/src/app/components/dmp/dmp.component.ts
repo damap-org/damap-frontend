@@ -125,7 +125,7 @@ export class DmpComponent implements OnInit, OnDestroy {
     return this.auth.isAdmin();
   }
 
-  @ViewChild('stepper') stepper: MatStepper;
+  @ViewChild('stepper') stepper?: MatStepper;
   dmpForm: UntypedFormGroup;
 
   formChanged: boolean;
@@ -426,7 +426,7 @@ export class DmpComponent implements OnInit, OnDestroy {
     if (
       icon === 'text_snippet' &&
       index === 10 &&
-      this.stepper.selectedIndex !== index &&
+      this.stepper?.selectedIndex !== index &&
       this.checkCompletenessForm() === 'completed'
     )
       return true;

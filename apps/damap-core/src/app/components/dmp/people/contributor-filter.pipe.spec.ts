@@ -20,6 +20,18 @@ describe('ContributorFilterPipe', () => {
     expect(filteredContributors[0]).toBe(mockContributor2);
   });
 
+  it('should return all project members when no contributors are added', () => {
+    const pipe = new ContributorFilterPipe();
+    const addedContributors = [];
+    const contributorSearchResult = [mockContributor1, mockContributor2];
+
+    const filteredContributors = pipe.transform(contributorSearchResult, addedContributors);
+    expect(filteredContributors);
+    expect(filteredContributors.length).toBe(2);
+    expect(filteredContributors[0]).toBe(mockContributor1);
+    expect(filteredContributors[1]).toBe(mockContributor2);
+  });
+
   it('should compare contributors', () => {
     let c2 = mockContributor2;
     expect(compareContributors(c2, c2)).toBeTruthy();

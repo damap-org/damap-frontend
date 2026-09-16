@@ -17,11 +17,17 @@ import { completeDmp } from '../mocks/dmp-mocks';
 import { mockAccess } from '../mocks/access-mocks';
 import { mockProject } from '../mocks/project-mocks';
 import { mockProjectSearchResult } from '../mocks/search';
+import { OAuthService, provideOAuthClient } from 'angular-oauth2-oidc';
 
 describe('BackendService', () => {
   let service: BackendService;
   let httpTestingController: HttpTestingController;
   const backendUrl = APP_ENV.backendurl;
+
+  const oauthServiceSpy = {
+    getAccessToken: vi.fn(),
+    hasValidAccessToken: vi.fn(),
+  };
 
   beforeEach(() => {
     const spy = {
@@ -30,7 +36,11 @@ describe('BackendService', () => {
     };
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, TranslateTestingModule],
-      providers: [{ provide: FeedbackService, useValue: spy }],
+      providers: [
+        { provide: FeedbackService, useValue: spy },
+        { provide: OAuthService, useValue: oauthServiceSpy },
+        BackendService,
+      ],
     });
     service = TestBed.inject(BackendService);
     TestBed.inject(FeedbackService) as MockedObject<FeedbackService>;

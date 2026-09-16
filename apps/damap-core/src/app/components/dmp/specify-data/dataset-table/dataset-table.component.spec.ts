@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
@@ -14,12 +14,16 @@ describe('DatasetTableComponent', () => {
   let formGroup1: UntypedFormGroup;
   let formGroup2: UntypedFormGroup;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [MatDialogModule, TranslateTestingModule, NoopAnimationsModule],
-      declarations: [DatasetTableComponent],
+      imports: [
+        MatDialogModule,
+        TranslateTestingModule,
+        NoopAnimationsModule,
+        DatasetTableComponent,
+      ],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DatasetTableComponent);
@@ -40,7 +44,7 @@ describe('DatasetTableComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should open DatasetDialogComponent', waitForAsync(async () => {
+  it('should open DatasetDialogComponent', async () => {
     vi.spyOn(component.updateDataset, 'emit').mockReturnValue(undefined);
     vi.spyOn(component.dialog, 'open').mockReturnValue({
       afterClosed: () => of(formGroup2.getRawValue()),
@@ -51,7 +55,7 @@ describe('DatasetTableComponent', () => {
       index: 1,
       update: formGroup2.getRawValue(),
     });
-  }));
+  });
 
   it('should remove dataset', () => {
     vi.spyOn(component.removeDataset, 'emit').mockReturnValue(undefined);

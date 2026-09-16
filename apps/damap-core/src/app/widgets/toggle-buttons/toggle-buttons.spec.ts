@@ -3,7 +3,8 @@ import { describe, expect, it, vi, beforeEach } from 'vitest';
 
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ToggleButtonsComponent } from './toggle-buttons.component';
-import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { TranslateTestingModule } from '@damap-frontend-core';
 
 describe('ToggleButtonsComponent', () => {
   let component: ToggleButtonsComponent;
@@ -11,8 +12,7 @@ describe('ToggleButtonsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ToggleButtonsComponent],
-      imports: [TranslateDirective, TranslatePipe],
+      imports: [TranslateDirective, TranslatePipe, TranslateTestingModule, ToggleButtonsComponent],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 

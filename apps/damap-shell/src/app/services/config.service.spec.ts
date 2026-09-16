@@ -10,6 +10,7 @@ import { TestBed } from '@angular/core/testing';
 import { environment } from '../../environments/environment';
 import { Config, FeedbackService } from '@damap-frontend-core';
 import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
+import { TranslateTestingModule } from '@damap-frontend-core';
 
 describe('ConfigService', () => {
   let service: ConfigService;
@@ -80,7 +81,7 @@ describe('ConfigService', () => {
     };
 
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, TranslateDirective, TranslatePipe, MatSnackBarModule],
+      imports: [HttpClientTestingModule, TranslateDirective, TranslatePipe, TranslateTestingModule, MatSnackBarModule],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         ConfigService,

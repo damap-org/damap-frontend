@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { NO_ERRORS_SCHEMA, SimpleChange } from '@angular/core';
 
@@ -15,7 +15,7 @@ describe('DoiSearchComponent', () => {
   let component: DoiSearchComponent;
   let fixture: ComponentFixture<DoiSearchComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         TranslateTestingModule,
@@ -23,11 +23,11 @@ describe('DoiSearchComponent', () => {
         MatInputModule,
         MatIconModule,
         NoopAnimationsModule,
+        DoiSearchComponent,
       ],
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [DoiSearchComponent],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DoiSearchComponent);

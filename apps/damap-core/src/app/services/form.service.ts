@@ -336,8 +336,11 @@ export class FormService {
   }
 
   public addContributorToForm(contributor: Contributor, contact = false) {
-    contributor.contact = contact;
-    const contributorFormGroup = this.mapContributorToFormGroup(contributor);
+    const contributorWithContact = {
+      ...contributor,
+      contact,
+    };
+    const contributorFormGroup = this.mapContributorToFormGroup(contributorWithContact);
     (this.form.get('contributors') as UntypedFormArray).push(contributorFormGroup);
     (this.form.get('contributors') as UntypedFormArray).markAsDirty();
   }

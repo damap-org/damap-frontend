@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
@@ -16,13 +16,17 @@ describe('CreatedDataComponent', () => {
   let component: CreatedDataComponent;
   let fixture: ComponentFixture<CreatedDataComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [MatDialogModule, TranslateTestingModule],
+      imports: [
+        MatDialogModule,
+        TranslateTestingModule,
+        CreatedDataComponent,
+        DatasetDialogComponent,
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [CreatedDataComponent, DatasetDialogComponent],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CreatedDataComponent);

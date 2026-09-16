@@ -33,7 +33,7 @@
       <div class="dialogRow">
         <mat-form-field>
           <mat-label>{{ 'dmp.steps.data.specify.dialog.source' | translate }}</mat-label>
-          <input matInput [(ngModel)]="datasetId.identifier" maxlength="255" />
+          <input matInput [(ngModel)]="datasetId.identifier" [ngModelOptions]="{ standalone: true }" maxlength="255" />
         </mat-form-field>
       </div>
     }

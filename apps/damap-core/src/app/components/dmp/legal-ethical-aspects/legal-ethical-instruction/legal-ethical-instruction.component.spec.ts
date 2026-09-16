@@ -4,6 +4,7 @@ import { describe, expect, it, vi, beforeEach, afterEach, type MockedObject } fr
 import { LegalEthicalInstructionComponent } from './legal-ethical-instruction.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
+import { TranslateTestingModule } from '@damap-frontend-core';
 
 describe('LegalEthicalInstructionComponent', () => {
   let component: LegalEthicalInstructionComponent;
@@ -11,8 +12,12 @@ describe('LegalEthicalInstructionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LegalEthicalInstructionComponent],
-      imports: [TranslateDirective, TranslatePipe],
+      imports: [
+        TranslateDirective,
+        TranslatePipe,
+        TranslateTestingModule,
+        LegalEthicalInstructionComponent,
+      ],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 

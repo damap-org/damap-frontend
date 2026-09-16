@@ -163,8 +163,8 @@ export class PeopleComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
-    this.configSubscription.unsubscribe();
+    this.subscriptions.forEach((subscription) => subscription?.unsubscribe());
+    this.configSubscription?.unsubscribe();
   }
 
   changeContactPerson(contact: Contributor): void {

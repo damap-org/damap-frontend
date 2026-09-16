@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { describe, expect, it, beforeEach } from 'vitest';
 
 import { UntypedFormArray, UntypedFormBuilder, FormBuilder } from '@angular/forms';
-import { Contributor } from '../domain/contributor';
+import { Contributor } from '@damap-frontend-core';
 import { mockContributor1, mockContributor2 } from '../mocks/contributor-mocks';
 import { completeDmp, noDataDmp } from '../mocks/dmp-mocks';
 import { FormService } from './form.service';

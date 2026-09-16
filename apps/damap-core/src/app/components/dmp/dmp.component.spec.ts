@@ -1,7 +1,7 @@
 import { describe, expect, it, vi, beforeEach, type MockedObject } from 'vitest';
 import { ActivatedRoute } from '@angular/router';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 import { Subject, of } from 'rxjs';
 
@@ -23,6 +23,8 @@ import { TranslateTestingModule } from '../../testing/translate-testing/translat
 import { completeDmp } from '../../mocks/dmp-mocks';
 import { configMockData } from '../../mocks/config-service-mocks';
 import { mockContributor1 } from '../../mocks/contributor-mocks';
+import { OAuthService } from 'angular-oauth2-oidc';
+import { HttpEvent, HttpEventType } from '@angular/common/http';
 
 describe('DmpComponent', () => {
   let component: DmpComponent;
@@ -32,13 +34,18 @@ describe('DmpComponent', () => {
   let backendSpy: MockedObject<BackendService>;
   let loadServiceConfigSpy;
   let feedbackSpy;
+  const oauthServiceSpy = {
+    getAccessToken: vi.fn().mockReturnValue('test-token'),
+    hasValidAccessToken: vi.fn().mockReturnValue(true),
+    logOut: vi.fn(),
+  };
   const initialState = {
     damap: {
       form: { dmp: null, changed: false },
     },
   };
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     authSpy = {
       getDisplayName: vi.fn().mockName('AuthService.getDisplayName'),
       isAdmin: vi.fn().mockName('AuthService.isAdmin'),
@@ -57,8 +64,9 @@ describe('DmpComponent', () => {
     loadServiceConfigSpy = backendSpy.loadServiceConfig.mockReturnValue(of(configMockData));
     backendSpy.getDmpById.mockReturnValue(of(completeDmp));
     backendSpy.getProjectMembers.mockReturnValue(of([mockContributor1]));
+    backendSpy.analyseFileData.mockReturnValue(of(null));
 
-    TestBed.configureTestingModule({
+    await TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
         MatStepperModule,
@@ -69,8 +77,8 @@ describe('DmpComponent', () => {
         ]),
         TranslateTestingModule,
         FormTestingModule,
+        DmpComponent,
       ],
-      declarations: [DmpComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: AuthService, useValue: authSpy },
@@ -82,18 +90,23 @@ describe('DmpComponent', () => {
         },
         { provide: BackendService, useValue: backendSpy },
         { provide: FeedbackService, useValue: feedbackSpy },
+        {
+          provide: OAuthService,
+          useValue: oauthServiceSpy,
+        },
       ],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(async () => {
     fixture = TestBed.createComponent(DmpComponent);
     component = fixture.componentInstance;
     component.config$ = new Subject<Config>();
+
+    fixture.detectChanges();
     await fixture.whenStable();
 
     loader = TestbedHarnessEnvironment.loader(fixture);
-    fixture.detectChanges();
   });
 
   it('should create', async () => {
@@ -109,14 +122,14 @@ describe('DmpComponent', () => {
     });
   });
 
-  it('should load all stepper harnesses and get steps of stepper', waitForAsync(async () => {
+  it('should load all stepper harnesses and get steps of stepper', async () => {
     const steppers = await loader.getAllHarnesses(MatStepperHarness);
     expect(steppers.length).toBe(1);
 
     const stepper = await loader.getHarness(MatStepperHarness);
     const steps = await stepper.getSteps();
     expect(steps.length).toEqual(11);
-  }));
+  });
 
   it('should handle step change correctly', () => {
     const event: StepperSelectionEvent = {

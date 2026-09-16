@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
@@ -8,23 +8,23 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ReusedDataComponent } from './reused-data.component';
 import { of } from 'rxjs';
 import { restrictedDatasetMock } from '../../../../mocks/dataset-mocks';
+import { TranslateTestingModule } from '@damap-frontend-core';
 
 describe('ReusedDataComponent', () => {
   let component: ReusedDataComponent;
   let fixture: ComponentFixture<ReusedDataComponent>;
   let backendSpy;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     backendSpy = {
       searchDataset: vi.fn().mockName('BackendService.searchDataset'),
     };
     TestBed.configureTestingModule({
-      imports: [MatDialogModule],
-      declarations: [ReusedDataComponent],
+      imports: [MatDialogModule, ReusedDataComponent, TranslateTestingModule],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [{ provide: BackendService, useValue: backendSpy }],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ReusedDataComponent);

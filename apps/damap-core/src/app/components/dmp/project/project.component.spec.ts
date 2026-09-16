@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 
 import { BackendService } from '../../../services/backend.service';
@@ -12,13 +12,20 @@ import { mockProject } from '../../../mocks/project-mocks';
 import { mockRecommendedProjectSearchResult } from '../../../mocks/search';
 import { of } from 'rxjs';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 describe('ProjectComponent', () => {
   let component: ProjectComponent;
   let fixture: ComponentFixture<ProjectComponent>;
   let backendSpy;
 
-  beforeEach(waitForAsync(() => {
+  const oauthServiceSpy = {
+    getAccessToken: vi.fn().mockReturnValue('test-token'),
+    hasValidAccessToken: vi.fn().mockReturnValue(true),
+    logOut: vi.fn(),
+  };
+
+  beforeEach(async () => {
     backendSpy = {
       getRecommendedProjects: vi.fn().mockName('BackendService.getRecommendedProjects'),
     };
@@ -26,16 +33,28 @@ describe('ProjectComponent', () => {
     backendSpy.getRecommendedProjects.mockReturnValue(of(mockRecommendedProjectSearchResult));
 
     TestBed.configureTestingModule({
-      imports: [TranslateTestingModule, MatIconModule, MatDialogModule, ReactiveFormsModule],
+      imports: [
+        TranslateTestingModule,
+        MatIconModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        ProjectComponent,
+        ProjectListComponent,
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ProjectComponent, ProjectListComponent],
-      providers: [{ provide: BackendService, useValue: backendSpy }],
+      providers: [
+        { provide: BackendService, useValue: backendSpy },
+        {
+          provide: OAuthService,
+          useValue: oauthServiceSpy,
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProjectComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();

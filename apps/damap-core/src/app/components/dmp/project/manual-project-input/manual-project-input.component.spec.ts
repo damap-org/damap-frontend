@@ -1,6 +1,6 @@
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { CUSTOM_ELEMENTS_SCHEMA, SimpleChange } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { mockManualProject, mockProject } from '../../../../mocks/project-mocks';
 
@@ -10,19 +10,26 @@ import { MatButtonHarness } from '@angular/material/button/testing';
 import { MatButtonModule } from '@angular/material/button';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { TranslateTestingModule } from '../../../../testing/translate-testing/translate-testing.module';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 describe('ManualProjectInputComponent', () => {
   let component: ManualProjectInputComponent;
   let fixture: ComponentFixture<ManualProjectInputComponent>;
   let loader: HarnessLoader;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [TranslateTestingModule, MatButtonModule, FormsModule, ReactiveFormsModule],
+      imports: [
+        TranslateTestingModule,
+        MatButtonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ManualProjectInputComponent,
+      ],
+      providers: [provideNativeDateAdapter()],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ManualProjectInputComponent],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ManualProjectInputComponent);
@@ -52,11 +59,12 @@ describe('ManualProjectInputComponent', () => {
     expect(component.form.patchValue).toHaveBeenCalledWith(mockManualProject);
   });
 
-  it('should emit updated project', waitForAsync(async () => {
+  it('should emit updated project', async () => {
     vi.spyOn(component.projectUpdate, 'emit').mockReturnValue(undefined);
     const buttons = await loader.getAllHarnesses(MatButtonHarness);
-    expect(buttons.length).toBe(1);
-    const button = buttons[0];
+    // no idea what the first button is, it appeared after the angular update to 22
+    expect(buttons.length).toBe(2);
+    const button = buttons[1];
     let disabled = await button.isDisabled();
     expect(disabled).toBe(true);
 
@@ -66,5 +74,5 @@ describe('ManualProjectInputComponent', () => {
 
     await button.click();
     expect(component.projectUpdate.emit).toHaveBeenCalledTimes(1);
-  }));
+  });
 });

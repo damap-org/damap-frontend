@@ -14,6 +14,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { TranslationManagementComponent } from './translation-management.component';
 import { of } from 'rxjs';
+import { TranslateTestingModule } from '@damap-frontend-core';
 
 describe('TranslationManagementComponent', () => {
   let component: TranslationManagementComponent;
@@ -25,6 +26,7 @@ describe('TranslationManagementComponent', () => {
     updateTranslation: vi.fn().mockName('BackendService.updateTranslation'),
     createLanguage: vi.fn().mockName('BackendService.createLanguage'),
     deleteLanguage: vi.fn().mockName('BackendService.deleteLanguage'),
+    getLanguageDetails: vi.fn().mockReturnValue(of({language: "en", active: true})),
   };
   const feedbackServiceMock = {
     success: vi.fn().mockName('FeedbackService.success'),
@@ -39,18 +41,18 @@ describe('TranslationManagementComponent', () => {
   const sampleTranslations = [
     {
       id: 1,
-      key: 'step1.title',
+      translationKey: 'step1.title',
       language: 'en',
       defaultValue: 'Choose project',
-      value: null,
+      custom: null,
       active: true,
     },
     {
       id: 2,
-      key: 'step1.button_right',
+      translationKey: 'step1.button_right',
       language: 'en',
       defaultValue: 'Input project manually',
-      value: 'Input project by hand',
+      custom: 'Input project by hand',
       active: true,
     },
   ];
@@ -59,7 +61,6 @@ describe('TranslationManagementComponent', () => {
     backendServiceMock.getLanguages.mockReturnValue(of(['en']));
     backendServiceMock.getTranslations.mockReturnValue(of(sampleTranslations));
     await TestBed.configureTestingModule({
-      declarations: [TranslationManagementComponent],
       imports: [
         BrowserAnimationsModule,
         TranslateDirective,
@@ -70,6 +71,8 @@ describe('TranslationManagementComponent', () => {
         MatButtonModule,
         MatIconModule,
         MatTooltipModule,
+        TranslationManagementComponent,
+        TranslateTestingModule,
       ],
       providers: [
         { provide: BackendService, useValue: backendServiceMock },

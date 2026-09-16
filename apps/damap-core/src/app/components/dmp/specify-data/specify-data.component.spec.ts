@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import {
   ReactiveFormsModule,
@@ -19,13 +19,19 @@ describe('SpecifyDataComponent', () => {
   let component: SpecifyDataComponent;
   let fixture: ComponentFixture<SpecifyDataComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, MatTabsModule, MatRadioModule, TranslateTestingModule],
+      imports: [
+        ReactiveFormsModule,
+        MatTabsModule,
+        MatRadioModule,
+        TranslateTestingModule,
+        SpecifyDataComponent,
+        StepIntroComponent,
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [SpecifyDataComponent, StepIntroComponent],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SpecifyDataComponent);
@@ -33,6 +39,7 @@ describe('SpecifyDataComponent', () => {
     component.specifyDataStep = new UntypedFormGroup({
       kind: new UntypedFormControl(null),
       explanation: new UntypedFormControl(''),
+      dataGeneration: new UntypedFormControl(''),
     });
     component.datasets = new UntypedFormArray([]);
     fixture.detectChanges();

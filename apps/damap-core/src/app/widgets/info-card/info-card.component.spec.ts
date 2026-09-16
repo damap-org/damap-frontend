@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
+import { TranslateTestingModule } from '@damap-frontend-core';
 
 describe('InfoCardComponent', () => {
   let component: InfoCardComponent;
@@ -18,6 +19,7 @@ describe('InfoCardComponent', () => {
         MatCardModule,
         MatIconModule,
         MatButtonModule,
+        TranslateTestingModule,
         TranslateDirective,
         TranslatePipe,
         InfoCardComponent,
@@ -49,7 +51,7 @@ describe('InfoCardComponent', () => {
     expect(component.isIntroShow).toBe(true);
   });
 
-  it('should setIcon info in teh card', () => {
+  it('should setIcon info in the card', () => {
     component.infoLabel = {};
     component.setContentCard();
     expect(component.icon).toBe('info');

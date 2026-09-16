@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { Router, RouterModule } from '@angular/router';
 
@@ -12,17 +12,22 @@ describe('FlipCardComponent', () => {
   let fixture: ComponentFixture<FlipCardComponent>;
   let routerSpy;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     routerSpy = {
       navigate: vi.fn().mockName('Router.navigate'),
     };
 
     TestBed.configureTestingModule({
-      declarations: [FlipCardComponent],
-      imports: [RouterModule, TranslateTestingModule, MatCardModule, MatIconModule],
+      imports: [
+        RouterModule,
+        TranslateTestingModule,
+        MatCardModule,
+        MatIconModule,
+        FlipCardComponent,
+      ],
       providers: [{ provide: Router, useValue: routerSpy }],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FlipCardComponent);

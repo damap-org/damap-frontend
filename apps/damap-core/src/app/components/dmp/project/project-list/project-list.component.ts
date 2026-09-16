@@ -79,10 +79,10 @@ export class ProjectListComponent implements OnInit, AfterViewInit {
           }
           return previous === current;
         }),
-        switchMap((term: string) =>
-          term === null || term.length === 0
+        switchMap((term: string) => {
+          return term === null || term.length === 0
             ? this.backendService.getRecommendedProjects()
-            : this.backendService.getProjectSearchResult(term),
+            : this.backendService.getProjectSearchResult(term)}
         ),
       )
       .subscribe((results) => (this.searchResult$ = of(results)));
