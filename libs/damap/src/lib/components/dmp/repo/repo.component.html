@@ -1,79 +1,122 @@
-<!-- SELECTED REPOS-->
+<!-- SELECTED REPOS -->
 <mat-label class="label-title mat-title-large" id="example-radio-group-label">{{
   "dmp.steps.repositories.heading" | translate
 }}</mat-label>
 
-<div *ngIf="!datasets.controls.length; else retentionPeriod">
-  {{ "dmps.nodatasets" | translate }}
-</div>
-<!-- RETENTION PERIOD-->
-<ng-template #retentionPeriod>
-  <app-retention-period
-    [dmpForm]="dmpForm"
-    [datasets]="datasets"></app-retention-period>
-</ng-template>
-
-<div *ngIf="repoStep.controls.length" [formGroup]="dmpForm">
-  <mat-label
-    class="label-title mat-title-large"
-    id="example-radio-group-label"
-    >{{ "dmp.steps.repositories.selected" | translate }}</mat-label
-  >
-  <mat-card
-    appearance="raised"
+<div *ngIf="repoStep.controls.length">
+  <mat-label class="label-title mat-title-large">{{
+    "dmp.steps.repositories.selected" | translate
+  }}</mat-label>
+  <mat-expansion-panel
     *ngFor="let repo of repoStep.controls; index as i"
-    class="card-selected">
-    <mat-card-content>
-      <ng-container formArrayName="repositories">
-        <div class="mat-card-container">
-          <div class="mat-card-left">
-            <h4>{{ repo.value.title }}</h4>
-          </div>
-          <div class="mat-card-right">
-            <button mat-icon-button (click)="removeRepository(i)">
-              <mat-icon>cancel</mat-icon>
-            </button>
-          </div>
-        </div>
-        <div [formGroupName]="i">
-          <div class="mat-card-container">
-            <mat-form-field>
-              <mat-label>{{
-                "dmp.steps.repositories.question.datasets" | translate
-              }}</mat-label>
-              <mat-select multiple formControlName="datasets">
-                <mat-option
-                  *ngFor="
-                    let dataset of datasets.value
-                      | datasetSource: datasetSource.NEW
-                  "
-                  [value]="dataset.referenceHash">
-                  {{ dataset.title }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div class="mat-card-container">
-            <app-error-message
-              *ngIf="getDatasetsMarkedForDeletion(i).length > 0"
-              [data]="getDatasetsMarkedForDeletionAsString(i)"
-              [message]="
-                'dmp.steps.repositories.warning.deletion'
-              "></app-error-message>
-          </div>
-        </div>
+    class="card-selected"
+    [expanded]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{ repo.value.title }}</mat-panel-title>
+      <button
+        mat-icon-button
+        (click)="$event.stopPropagation(); removeRepository(i)">
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-expansion-panel-header>
+
+    <!-- Dataset assignment + retention period table -->
+    <table
+      mat-table
+      [dataSource]="newDatasets"
+      class="dataset-assignment-table"
+      aria-label="Dataset assignment">
+      <!-- Dataset column -->
+      <ng-container matColumnDef="dataset">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "dmp.steps.repositories.table.header.dataset" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let dataset">
+          {{ dataset.value.title }}
+        </td>
       </ng-container>
-    </mat-card-content>
-  </mat-card>
+
+      <!-- Deposit checkbox column -->
+      <ng-container matColumnDef="deposit">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "dmp.steps.repositories.table.header.deposit" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let dataset">
+          <mat-checkbox
+            [checked]="isDatasetInRepo(i, dataset.value.referenceHash)"
+            (change)="toggleDatasetInRepo(i, dataset.value.referenceHash)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!-- Retention period column -->
+      <ng-container matColumnDef="retention">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "dmp.steps.repositories.table.header.retention" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let dataset">
+          <ng-container
+            *ngIf="
+              getRetentionControl(dataset.value.referenceHash) as retControl
+            ">
+            <div
+              [matTooltip]="
+                !isDatasetAssigned(dataset.value.referenceHash)
+                  ? ('dmp.steps.repositories.retention.unassigned' | translate)
+                  : ('dmp.steps.repositories.retention.assigned' | translate)
+              "
+              matTooltipPosition="above">
+              <mat-form-field
+                appearance="outline"
+                class="retention-field"
+                subscriptSizing="dynamic">
+                <!--
+                  binding [value]/(selectionChange) instead of
+                  [formControl] keeps all cards in sync.
+                -->
+                <mat-select
+                  [value]="retControl.value"
+                  [disabled]="retControl.disabled"
+                  (selectionChange)="retControl.setValue($event.value)">
+                  <mat-option
+                    *ngFor="let option of retentionOptions"
+                    [value]="option">
+                    {{ option }}
+                    {{ "dmp.steps.retentionPeriod.years" | translate }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="datasetTableHeaders"></tr>
+      <tr mat-row *matRowDef="let row; columns: datasetTableHeaders"></tr>
+    </table>
+
+    <!-- Deletion warning -->
+    <div class="mat-card-container">
+      <app-error-message
+        *ngIf="getDatasetsMarkedForDeletion(i).length > 0"
+        [data]="getDatasetsMarkedForDeletionAsString(i)"
+        [message]="
+          'dmp.steps.repositories.warning.deletion'
+        "></app-error-message>
+    </div>
+  </mat-expansion-panel>
 </div>
 
+<!-- RECOMMENDED REPOS / SEARCH -->
 <ng-container *ngIf="recommended$ | async as recommended">
   <div *ngIf="selectedView === 'primaryView'">
     <mat-card class="repository-recommendations-card card-shadow">
+      <mat-card-header>
+        <mat-card-title>{{
+          "dmp.steps.repositories.recommended.headline" | translate
+        }}</mat-card-title>
+      </mat-card-header>
       <mat-card-content>
-        <ng-template mat-tab-label>
-          {{ "dmp.steps.repositories.recommended" | translate }}
-        </ng-template>
         <ng-container
           *ngIf="
             (recommended | repo: repoStep.value).length;
@@ -87,7 +130,7 @@
         </ng-container>
         <ng-template #noRecommended>
           <p translate>dmp.steps.repositories.recommended.none</p>
-          <button mat-flat-button (click)="selectedTabIndex = 1">
+          <button mat-flat-button (click)="onViewChange('secondaryView')">
             {{ "dmp.steps.repositories.find.other" | translate }}
             <mat-icon iconPositionEnd>search</mat-icon>
           </button>
@@ -96,7 +139,6 @@
     </mat-card>
   </div>
   <div *ngIf="selectedView === 'secondaryView'">
-    <!-- Repository list -->
     <ng-template mat-tab-label>
       {{ "dmp.steps.repositories.find" | translate }}
     </ng-template>
