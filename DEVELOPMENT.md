@@ -101,3 +101,77 @@ The pre-commit hook runs only:
 - `npm run lint`
 
 Formatting changes are staged automatically by Lefthook through `stage_fixed: true`.
+
+---
+**NOTE**
+
+The below documentation is not meant to stay in this form and will be moved into a dedicated Angular developer styleguide
+
+---
+
+# Angular Migration Notes
+This project upgraded from Angular 17 to 22 and not everything was migrated with the migration PR to save on time. 
+Below are the points listed that should be done over time, when developers get the chance to.
+
+## Change Detection And Zoneless Migration
+
+Angular 22 uses `ChangeDetectionStrategy.OnPush` as the default for components.
+Existing components may still explicitly declare:
+
+```ts
+changeDetection: ChangeDetectionStrategy.Eager;
+```
+
+This was added by the Angular migration to preserve the previous behavior for
+components that do not yet notify Angular about state changes in an
+OnPush-compatible way. Whenever you work on a file with `changeDetection: ChangeDetectionStrategy.Eager;`,
+you should try to remove it. Most files allow for a simple deletion.
+
+`ChangeDetectionStrategy.Eager` is needed for components that still rely on
+plain mutable component state, imperative subscriptions, timers, callbacks, or
+other state updates that are not surfaced through signals, the async pipe, input
+changes, template/host events, or explicit change-detection notifications.
+
+Components that rely on signals for state can remove the `changeDetection` row
+from the component declaration. With Angular 22, omitting this row uses the
+default `ChangeDetectionStrategy.OnPush`.
+
+After the entire project has been updated so that components are
+OnPush-compatible and zoneless-compatible, `zone.js` can be removed. This also
+requires removing `zone.js` and `zone.js/testing` from the build and test
+polyfills/configuration before uninstalling the package.
+
+## State Management
+
+Newer Angular versions use signals for reactive state management, for passing data between components
+and for performing non-mutating HTTP operations. 
+Unlike traditional observable-based patterns, Signals can be read directly in components and templates, 
+while Angular automatically tracks their dependencies and updates affected parts of the application when
+their values change.
+Signals also simplify the management of derived state through computed signals, which automatically update when
+their dependencies change. 
+This reduces reactive boilerplate and makes relationships between different pieces of state more explicit.
+
+Where possible, replace state tracking in a file you are currently working on with signals (if that has not already happened).
+Use `computed()` and `effect()` for deriving state from signals.
+
+Signals do not replace RxJS entirely. Observables remain useful for asynchronous operations and event streams, 
+while Signals are particularly well suited for managing application and UI state. 
+Angular provides interoperability between both approaches, allowing them to be used together where appropriate.
+
+## HTTP Connections
+
+With the upgrade, the api - store pattern got introduced.
+This pattern works by splitting responsibilities of interacting with the backend API in two files.
+The api file includes the bare bones endpoint definitions used to interact with the backend.
+It exposes convenient interfaces for the store to call - it itself doesnt handle the responses or error at all.
+The store uses the methods exposed by the api file to call the backend, processes the response, handles errors and
+takes care of managing state changes like loading states, which it exposes through signals.
+Stores also define HttpResources.
+Angular HTTP Resources provide a reactive way to load data from HTTP endpoints using Signals.
+They manage the request lifecycle and expose the result, loading state, and errors as Signals, reducing the need 
+for manual subscriptions and state management.
+They can only be used for GET operations, but are very useful in this usecase, especially fpr searches.
+An example are the `dmp.api.ts` and `dmp.store.ts` files.
+We should upgrade to this pattern, whenever there is state to manage thats connected to backend operations.
+We should also take care to gradually replace the GET operations in `backend.service` with HTTP Resources.
