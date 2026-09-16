@@ -1,0 +1,30 @@
+import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { RouterModule } from '@angular/router';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
+
+@Component({
+  selector: 'damap-damap-info',
+  imports: [
+    TranslatePipe,
+    TranslateDirective,
+    RouterModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatTooltipModule,
+    MatDividerModule,
+    MatExpansionModule,
+  ],
+  templateUrl: './damap-info.component.html',
+  styleUrl: './damap-info.component.css',
+  changeDetection: ChangeDetectionStrategy.Eager,
+})
+export class DamapInfoComponent {
+  readonly panelOpenState = signal(true);
+}

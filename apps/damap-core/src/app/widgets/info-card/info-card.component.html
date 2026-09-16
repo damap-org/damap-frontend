@@ -1,0 +1,32 @@
+@if (isIntroShow) {
+  <mat-card appearance="outlined" class="info-box mat-icon-shadow custom-card">
+    <button (click)="closeIntro()" mat-icon-button class="close-button">
+      <mat-icon class="material-icon-primary close-icon" matSuffix> close </mat-icon>
+    </button>
+    <mat-card-content class="mat-content">
+      <div class="flex-row-container">
+        <section>
+          <div
+            [class]="{
+              'info-icon-background': icon === 'info',
+              'number-icon-background': isNumberIcon,
+            }"
+          >
+            @if (icon === 'info') {
+              <mat-icon class="page-info-icon material-icon-primary outline" aria-hidden="true">
+                {{ icon }}
+              </mat-icon>
+            } @else if (isNumberIcon) {
+              <span class="page-info-icon material-icon-white-background-primary number-icon">
+                {{ icon }}
+              </span>
+            }
+          </div>
+        </section>
+        <div class="info-box-container mat-title-medium">
+          {{ instructions | translate }}
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+}

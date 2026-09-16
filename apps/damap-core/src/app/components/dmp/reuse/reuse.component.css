@@ -1,0 +1,26 @@
+.full-width {
+  width: 100%;
+}
+
+.close-button-container {
+  display: flex;
+  align-items: center;
+}
+
+.suggestions-label {
+  font-size: 14px;
+  color: var(--mat-theme-primary);
+  /* margin-right: 5px; */
+  margin-left: 10px;
+}
+
+.close-button-dp {
+  background-color: var(--mat-form-field-filled-container-color);
+  padding: 0%;
+  border-radius: 30%;
+  border: var(--mat-theme-primary);
+}
+
+.restricted-data-field {
+  width: 100%;
+}

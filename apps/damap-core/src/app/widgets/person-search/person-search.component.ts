@@ -1,0 +1,57 @@
+import { Component, Input, ViewChild, ChangeDetectionStrategy, output } from '@angular/core';
+
+import { Contributor } from '../../domain/contributor';
+import {
+  MatSelectionListChange,
+  MatSelectionList,
+  MatListOption,
+  MatListItemTitle,
+  MatListItemLine,
+} from '@angular/material/list';
+import { SearchFieldComponent } from '../../shared/search-field/search-field.component';
+import { FormsModule } from '@angular/forms';
+import { MatIcon } from '@angular/material/icon';
+
+@Component({
+  selector: 'app-person-search',
+  templateUrl: './person-search.component.html',
+  styleUrls: ['./person-search.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [
+    FormsModule,
+    SearchFieldComponent,
+    MatSelectionList,
+    MatListOption,
+    MatListItemTitle,
+    MatListItemLine,
+    MatIcon,
+  ],
+})
+export class PersonSearchComponent {
+  @Input() result: Contributor[] = [];
+  readonly termToSearch = output<string>();
+  readonly personToAdd = output<Contributor>();
+
+  @ViewChild('contributorSearchField') searchField!: SearchFieldComponent;
+
+  currentSearchTerm: string = '';
+
+  search(term: string) {
+    this.currentSearchTerm = term.trim();
+    if (this.currentSearchTerm) {
+      this.termToSearch.emit(this.currentSearchTerm);
+    } else {
+      this.termToSearch.emit('');
+      this.result = [];
+    }
+  }
+
+  selectPerson(event: MatSelectionListChange): void {
+    let person = event.source.selectedOptions.selected[0]?.value;
+    if (person) {
+      this.personToAdd.emit(person);
+      this.searchField.control.setValue('');
+      this.currentSearchTerm = '';
+    }
+  }
+}

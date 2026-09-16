@@ -1,0 +1,33 @@
+import { Directive, HostBinding, HostListener, output } from '@angular/core';
+
+@Directive({ selector: '[appDragdrop]' })
+export class DragdropDirective {
+  @HostBinding('class.fileover') fileOver: boolean;
+
+  readonly fileDropped = output<any>();
+
+  @HostListener('dragover', ['$event'])
+  public onDragOver(event) {
+    event.preventDefault(); // Prevent file from being opened
+    event.stopPropagation();
+    this.fileOver = true;
+  }
+
+  @HostListener('dragleave', ['$event'])
+  public onDragLeave(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.fileOver = false;
+  }
+
+  @HostListener('drop', ['$event'])
+  public onDrop(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.fileOver = false;
+    const files = event.dataTransfer.files;
+    if (files.length > 0) {
+      this.fileDropped.emit(files);
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist/out-tsc/spec"
+  },
+  "include": ["apps/**/*.spec.ts", "apps/**/*.d.ts"],
+  "angularCompilerOptions": {
+    "strictTemplates": false
+  }
+}

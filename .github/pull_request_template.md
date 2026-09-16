@@ -33,4 +33,11 @@
 - [ ] E2e tests created
 - [ ] Successfully ran e2e tests before merge
 
+### Ongoing Migrations Checklist
+
+- [ ] `ChangeDetectionStrategy.Eager` removed
+- [ ] Signals used and non-signal state management replaced
+- [ ] Api - store pattern applied when requests are connected to state (like loading)
+- [ ] Http-resource used instead of normal Rxjs where applicable
+
 closes GH-<!-- insert issue number -->

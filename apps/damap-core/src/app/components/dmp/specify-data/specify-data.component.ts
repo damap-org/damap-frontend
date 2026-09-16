@@ -1,0 +1,60 @@
+import { Observable } from 'rxjs';
+import { Component, ChangeDetectionStrategy, input, output } from '@angular/core';
+
+import { AbstractBaseDataComponent } from './abstract-base-data.component';
+import { Config } from '../../../domain/config';
+import { UntypedFormControl } from '@angular/forms';
+import { CreatedDataComponent } from './created-data/created-data.component';
+import { ReusedDataComponent } from './reused-data/reused-data.component';
+import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
+import { MatHint } from '@angular/material/form-field';
+import { TranslatePipe } from '@ngx-translate/core';
+
+@Component({
+  selector: 'app-dmp-specify-data',
+  templateUrl: './specify-data.component.html',
+  styleUrls: ['./specify-data.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [
+    CreatedDataComponent,
+    ReusedDataComponent,
+    TextareaWrapperComponent,
+    MatHint,
+    TranslatePipe,
+  ],
+})
+export class SpecifyDataComponent extends AbstractBaseDataComponent {
+  readonly fileUpload = input<
+    {
+      file: File;
+      progress: number;
+      finalized: boolean;
+    }[]
+  >(undefined);
+  readonly config$ = input<Observable<Config>>(undefined);
+
+  readonly fileToAnalyse = output<File>();
+  readonly uploadToCancel = output<number>();
+
+  selectedView: 'primaryView' | 'secondaryView' = 'primaryView';
+
+  get dataGeneration(): UntypedFormControl {
+    return this.specifyDataStep.get('dataGeneration') as UntypedFormControl;
+  }
+
+  get explanation(): UntypedFormControl {
+    return this.specifyDataStep.get('explanation') as UntypedFormControl;
+  }
+
+  analyseFile(file: File) {
+    this.fileToAnalyse.emit(file);
+  }
+
+  cancelUpload(index: number) {
+    this.uploadToCancel.emit(index);
+  }
+
+  onViewChange(view: 'primaryView' | 'secondaryView'): void {
+    this.selectedView = view;
+  }
+}

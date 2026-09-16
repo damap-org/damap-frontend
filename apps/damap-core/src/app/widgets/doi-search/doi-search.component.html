@@ -1,0 +1,26 @@
+<form [formGroup]="form">
+  <div class="form-row">
+    <app-search-field
+      class="full-width"
+      [label]="'dmp.steps.data.specify.doi.search'"
+      [placeholder]="'10.5281/zenodo.3885730'"
+      [control]="form.get('doi')"
+      [errorMessage]="'validation.error.doi'"
+      (searchChange)="searchChange($event)"
+    />
+    <button
+      mat-flat-button
+      type="submit"
+      (click)="search()"
+      [disabled]="form.invalid || loading === loadingState.LOADING"
+    >
+      {{ 'dmp.steps.data.specify.button.addFromDoi' | translate }}
+    </button>
+  </div>
+</form>
+@if (result === null) {
+  <app-error-message message="dmp.steps.data.specify.doi.notFound" />
+}
+@if (duplicate()) {
+  <app-error-message message="validation.error.doiDuplicate" />
+}

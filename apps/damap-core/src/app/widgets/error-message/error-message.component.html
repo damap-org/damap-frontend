@@ -1,0 +1,10 @@
+@if (data) {
+  <div class="error-message">
+    <mat-icon class="outline">error</mat-icon>&nbsp;{{ message() | translate: { value: data } }}
+  </div>
+}
+@if (!data) {
+  <div class="error-message">
+    <mat-icon class="outline">error</mat-icon>&nbsp;{{ message() | translate }}
+  </div>
+}
