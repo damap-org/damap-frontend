@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { mockContributor1, mockContributor2 } from '../../mocks/contributor-mocks';
 
@@ -19,7 +19,7 @@ describe('PersonSearchComponent', () => {
   let component: PersonSearchComponent;
   let fixture: ComponentFixture<PersonSearchComponent>;
   let loader: HarnessLoader;
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         TranslateTestingModule,
@@ -28,10 +28,11 @@ describe('PersonSearchComponent', () => {
         MatIconModule,
         MatListModule,
         NoopAnimationsModule,
+        PersonSearchComponent,
+        SearchFieldComponent,
       ],
-      declarations: [PersonSearchComponent, SearchFieldComponent],
     }).compileComponents();
-  }));
+  });
   beforeEach(() => {
     fixture = TestBed.createComponent(PersonSearchComponent);
     component = fixture.componentInstance;
@@ -42,7 +43,7 @@ describe('PersonSearchComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should emit contributor on selection', waitForAsync(async () => {
+  it('should emit contributor on selection', async () => {
     vi.spyOn(component.personToAdd, 'emit').mockReturnValue(undefined);
 
     const inputElement = fixture.debugElement.query(By.css('input')).nativeElement;
@@ -57,9 +58,9 @@ describe('PersonSearchComponent', () => {
 
     await options[0].select();
     expect(component.personToAdd.emit).toHaveBeenCalledWith(mockContributor1);
-  }));
+  });
 
-  it('should clear results when input is empty', waitForAsync(async () => {
+  it('should clear results when input is empty', async () => {
     vi.spyOn(component.termToSearch, 'emit').mockReturnValue(undefined);
 
     const inputElement = fixture.debugElement.query(By.css('input')).nativeElement;
@@ -79,5 +80,5 @@ describe('PersonSearchComponent', () => {
     options = await itemList.getItems();
     expect(options.length).toBe(2);
     expect(component.result.length).toBe(0);
-  }));
+  });
 });

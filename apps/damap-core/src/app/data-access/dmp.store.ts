@@ -1,6 +1,6 @@
 import { computed, effect, inject, Injectable, type ResourceStatus, signal } from '@angular/core';
 import { HttpErrorResponse, httpResource } from '@angular/common/http';
-import { catchError, EMPTY, finalize, map, Observable, of, switchMap, tap } from 'rxjs';
+import { catchError, finalize, map, Observable, switchMap, tap } from 'rxjs';
 
 import { DmpApi } from './dmp.api';
 import { Dmp } from '../domain/dmp';

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import {
   FormsModule,
@@ -19,13 +19,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateTestingModule } from '../../../../testing/translate-testing/translate-testing.module';
 import { closedDatasetMock } from '../../../../mocks/dataset-mocks';
+import { Dataset } from '@damap-frontend-core';
 
 describe('DatasetDialogComponent', () => {
   let component: DatasetDialogComponent;
   let fixture: ComponentFixture<DatasetDialogComponent>;
   let formServiceStub: Partial<FormService>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     formServiceStub = {
       createDatasetFormGroup(title: string): UntypedFormGroup {
         return new UntypedFormGroup({
@@ -39,8 +40,18 @@ describe('DatasetDialogComponent', () => {
           }),
         });
       },
+      mapDatasetToFormGroup(dataset: Dataset): UntypedFormGroup {
+        return new UntypedFormGroup({
+          title: new UntypedFormControl(dataset.title),
+          source: new UntypedFormControl(dataset.source),
+          type: new UntypedFormControl(dataset.type),
+          size: new UntypedFormControl(dataset.size),
+          datasetId: new UntypedFormControl(dataset.datasetId),
+          license: new UntypedFormControl(dataset.license),
+        });
+      },
     };
-    TestBed.configureTestingModule({
+    await TestBed.configureTestingModule({
       imports: [
         MatDialogModule,
         MatSelectModule,
@@ -50,9 +61,9 @@ describe('DatasetDialogComponent', () => {
         ReactiveFormsModule,
         TranslateTestingModule,
         NoopAnimationsModule,
+        DatasetDialogComponent,
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [DatasetDialogComponent],
       providers: [
         { provide: MatDialogRef, useValue: { close: (value?: any) => value } },
         { provide: FormService, useValue: formServiceStub },
@@ -62,12 +73,11 @@ describe('DatasetDialogComponent', () => {
         },
       ],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DatasetDialogComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -89,6 +99,7 @@ describe('DatasetDialogComponent', () => {
       type: closedDatasetMock.type,
       size: closedDatasetMock.size,
       datasetId: closedDatasetMock.datasetId,
+      license: closedDatasetMock.license,
     });
   });
 });

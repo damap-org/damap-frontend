@@ -1,5 +1,5 @@
 import { describe, expect, it, vi, beforeEach, type MockedObject } from 'vitest';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableModule } from '@angular/material/table';
@@ -14,7 +14,7 @@ describe('SummaryComponent', () => {
   let fixture: ComponentFixture<SummaryComponent>;
   let backendSpy: Partial<MockedObject<BackendService>>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     backendSpy = {
       loadServiceConfig: vi.fn().mockName('BackendService.loadServiceConfig'),
       getBenchmarks: vi.fn().mockName('BackendService.getBenchmarks'),
@@ -23,11 +23,10 @@ describe('SummaryComponent', () => {
     backendSpy.getBenchmarks.mockReturnValue(of([]));
 
     TestBed.configureTestingModule({
-      imports: [MatTableModule, MatProgressBarModule, TranslateTestingModule],
-      declarations: [SummaryComponent],
+      imports: [MatTableModule, MatProgressBarModule, TranslateTestingModule, SummaryComponent],
       providers: [{ provide: BackendService, useValue: backendSpy }],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SummaryComponent);

@@ -1,5 +1,5 @@
 import { describe, expect, it, vi, beforeEach, type MockedObject } from 'vitest';
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -10,19 +10,19 @@ describe('AppComponent', () => {
   let titleService: Title;
   let mockConfigService: Pick<MockedObject<ConfigService>, 'getAppTitle'>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     mockConfigService = {
       getAppTitle: vi.fn().mockName('ConfigService.getAppTitle'),
     };
 
     TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      imports: [AppComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [Title, { provide: ConfigService, useValue: mockConfigService }],
     }).compileComponents();
 
     titleService = TestBed.inject(Title);
-  }));
+  });
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);

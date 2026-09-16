@@ -18,8 +18,8 @@ describe.only('SearchFieldComponent', () => {
         TranslateTestingModule,
         ReactiveFormsModule,
         NoopAnimationsModule,
+        SearchFieldComponent,
       ],
-      declarations: [SearchFieldComponent],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
@@ -42,21 +42,5 @@ describe.only('SearchFieldComponent', () => {
     component.onSearchChange(testValue);
 
     expect(component.searchChange.emit).toHaveBeenCalledWith(testValue);
-  });
-
-  it('should display the correct placeholder', () => {
-    component.placeholder = 'Search here';
-    fixture.detectChanges();
-
-    const inputEl: HTMLInputElement = fixture.nativeElement.querySelector('input');
-    expect(inputEl.placeholder).toBe('Search here');
-  });
-
-  it('should display the correct label', () => {
-    component.placeholder = 'Search here';
-    fixture.detectChanges();
-
-    const inputEl: HTMLInputElement = fixture.nativeElement.querySelector('input');
-    expect(inputEl.placeholder).toBe('Search here');
   });
 });

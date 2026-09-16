@@ -1,5 +1,5 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { describe, expect, it, vi, beforeEach } from 'vitest';
+import { ComponentFixture, TestBed} from '@angular/core/testing';
+import { describe, expect, it,  beforeEach } from 'vitest';
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 
 import { ContributorManualComponent } from './contributor-manual.component';
@@ -13,7 +13,7 @@ describe('ContributorManualComponent', () => {
   let component: ContributorManualComponent;
   let fixture: ComponentFixture<ContributorManualComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         MatButtonModule,
@@ -21,10 +21,10 @@ describe('ContributorManualComponent', () => {
         MatCardModule,
         ReactiveFormsModule,
         TranslateTestingModule,
+        ContributorManualComponent,
       ],
-      declarations: [ContributorManualComponent],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ContributorManualComponent);

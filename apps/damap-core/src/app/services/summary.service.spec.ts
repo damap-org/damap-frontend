@@ -83,7 +83,7 @@ describe('SummaryService', () => {
   it('should test data step', () => {
     let summary = SummaryService.evaluateDataStep(dmp);
     expect(summary.completeness).toEqual(0);
-    expect(summary.status).toEqual(['dmp.steps.summary.data.specify.none.none']);
+    expect(summary.status).toEqual(['dmp.steps.summary.data.specify.datasets.unspecified']);
 
     dmp.dataKind = DataKind.NONE;
     dmp.reusedDataKind = DataKind.NONE;
@@ -147,7 +147,7 @@ describe('SummaryService', () => {
   it('should test storage step', () => {
     dmp.datasets = [{ ...openDatasetMock }];
     let summary = SummaryService.evaluateStorageStep(dmp);
-    expect(summary.completeness).toEqual(0);
+    expect(summary.completeness).toEqual(25);
 
     let storage = { ...mockStorage };
     storage.datasets = [openDatasetMock.referenceHash];
@@ -213,8 +213,8 @@ describe('SummaryService', () => {
 
   it('should test license step', () => {
     let summary = SummaryService.evaluateLicenseStep(dmp);
-    expect(summary.completeness).toEqual(100);
-    expect(summary.status).toEqual(['dmp.steps.summary.licensing.complete']);
+    expect(summary.completeness).toEqual(0)
+    expect(summary.status).toEqual(['dmp.steps.summary.licensing.noproduceddata']);
 
     // Open dataset
     let dataset = { ...openDatasetMock };

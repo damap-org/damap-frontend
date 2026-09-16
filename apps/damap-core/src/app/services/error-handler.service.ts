@@ -25,7 +25,7 @@ export class ErrorHandlerService {
       // Currently, all endpoints that talk with external API's return custom error codes
       // All other endpoints are using the http codes
       let errorPayload = error.error;
-      if (errorPayload.errorCode) {
+      if (errorPayload?.errorCode) {
         // means we are using the new system
         message = this.translate.instant('http.error.errorCodes.' + errorPayload.errorCode);
         console.log(error);

@@ -3,10 +3,20 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { TestBed } from '@angular/core/testing';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
+import { TranslateTestingModule } from '@damap-frontend-core';
+import { ConfigService } from '@damap-frontend-shell/app/services/config.service';
 
 describe('AuthService', () => {
   let service: AuthService;
   let spy;
+  const configServiceSpy = {
+    getNameClaim: vi.fn().mockReturnValue('name'),
+    getGivenNameClaim: vi.fn().mockReturnValue('given_name'),
+    getFamilyNameClaim: vi.fn().mockReturnValue('family_name'),
+    getEmailClaim: vi.fn().mockReturnValue('email'),
+    getUserRolesClaimPath: vi.fn().mockReturnValue('roles'),
+    getAdminRoleName: vi.fn().mockReturnValue('damap-super-admin'),
+  };
 
   beforeEach(() => {
     spy = {
@@ -18,7 +28,11 @@ describe('AuthService', () => {
     };
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      providers: [{ provide: OAuthService, useValue: spy }],
+      imports: [TranslateTestingModule],
+      providers: [
+        { provide: OAuthService, useValue: spy },
+        { provide: ConfigService, useValue: configServiceSpy },
+      ],
     });
     service = TestBed.inject(AuthService);
   });

@@ -39,10 +39,6 @@ export class TranslateServiceStub {
     return of(key);
   }
 
-  public getTranslation(lang: string): Observable<any> {
-    return of({});
-  }
-
   public getTranslations(_lang: string): Record<string, never> {
     return {};
   }

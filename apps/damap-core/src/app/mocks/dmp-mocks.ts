@@ -123,6 +123,7 @@ export const noDataDmp: Dmp = {
       backupLocation: null,
       datasets: ['39608ko19edx5'],
       id: null,
+      isManagedInternally: false,
       storageLocation: null,
       title: 'OtherStorage',
       url: 'github.com',

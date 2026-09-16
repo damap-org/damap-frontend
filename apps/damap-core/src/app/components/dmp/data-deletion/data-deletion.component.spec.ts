@@ -1,5 +1,5 @@
 import { describe, expect, it, beforeEach } from 'vitest';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { mockContributor1, mockContributor2 } from '../../../mocks/contributor-mocks';
 
@@ -7,18 +7,19 @@ import { DataDeletionComponent } from './data-deletion.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { TranslateTestingModule } from '../../../testing/translate-testing/translate-testing.module';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 describe('DataDeletionComponent', () => {
   let component: DataDeletionComponent;
   let fixture: ComponentFixture<DataDeletionComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [MatSliderModule, TranslateTestingModule],
+      imports: [MatSliderModule, TranslateTestingModule, DataDeletionComponent],
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [DataDeletionComponent],
+      providers: [provideNativeDateAdapter()],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DataDeletionComponent);
@@ -27,6 +28,7 @@ describe('DataDeletionComponent', () => {
       delete: new UntypedFormControl(true),
       dateOfDeletion: new UntypedFormControl(null),
       reasonForDeletion: new UntypedFormControl('reason'),
+      deletionPerson: new UntypedFormControl(null),
     });
     component.dmpForm = new UntypedFormGroup({
       repositories: new UntypedFormArray([]),

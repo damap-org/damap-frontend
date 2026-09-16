@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it, vi, beforeEach, type MockedObject } from 'vitest';
 import { DmpActionsComponent, SaveVersionDialogComponent } from './dmp-actions.component';
 import { Subject, of } from 'rxjs';
@@ -17,6 +17,9 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { TranslateTestingModule } from '../../../testing/translate-testing/translate-testing.module';
+import { OAuthService } from "angular-oauth2-oidc";
+import { ActivatedRoute } from "@angular/router";
+import { completeDmp } from "@damap-frontend-core/app/mocks/dmp-mocks";
 
 describe('DmpActionsComponent', () => {
   let component: DmpActionsComponent;
@@ -29,7 +32,12 @@ describe('DmpActionsComponent', () => {
     openFromComponent: vi.fn().mockName('MatSnackBar.openFromComponent'),
   };
 
-  beforeEach(waitForAsync(() => {
+  const oauthServiceSpy = {
+    getAccessToken: vi.fn(),
+    hasValidAccessToken: vi.fn(),
+  };
+
+  beforeEach(async () => {
     backendSpy = Object.fromEntries(
       Object.getOwnPropertyNames(BackendService.prototype)
         .filter((name) => name !== 'constructor')
@@ -44,15 +52,23 @@ describe('DmpActionsComponent', () => {
         NoopAnimationsModule,
         TranslateTestingModule,
         FormTestingModule,
+        DmpActionsComponent,
+        SaveVersionDialogComponent,
       ],
-      declarations: [DmpActionsComponent, SaveVersionDialogComponent],
       providers: [
         { provide: BackendService, useValue: backendSpy },
         { provide: MatSnackBar, useValue: matSnackBarSpy },
+        { provide: OAuthService, useValue: oauthServiceSpy },
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: { paramMap: { get: (id: number) => 0 } },
+          },
+        },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DmpActionsComponent);
@@ -66,7 +82,7 @@ describe('DmpActionsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should save dmp on step and form change', waitForAsync(async () => {
+  it('should save dmp on step and form change', async () => {
     vi.spyOn(component, 'saveDmp');
 
     component.stepChanged$.next(null);
@@ -77,9 +93,9 @@ describe('DmpActionsComponent', () => {
     component.stepChanged$.next(null);
 
     expect(component.saveDmp).toHaveBeenCalledTimes(2);
-  }));
+  });
 
-  it('should dispatch save dmp version action', waitForAsync(async () => {
+  it('should dispatch save dmp version action', async () => {
     let dialogs = await loader.getAllHarnesses(MatDialogHarness);
     expect(dialogs.length).toBe(0);
 
@@ -93,7 +109,7 @@ describe('DmpActionsComponent', () => {
     await inputs[0].setValue('test');
 
     const buttons = await loader.getAllHarnesses(MatButtonHarness);
-    expect(buttons.length).toBe(11);
+    expect(buttons.length).toBe(10);
 
     expect(await buttons[5].getText()).toBe('actions-bar.buttons.save');
     expect(await buttons[5].isDisabled()).toBe(true);
@@ -101,9 +117,9 @@ describe('DmpActionsComponent', () => {
     await buttons[6].click();
     dialogs = await loader.getAllHarnesses(MatDialogHarness);
     expect(dialogs.length).toBe(2);
-  }));
+  });
 
-  it('should call dispatchExportDmp if funderSupported is true', waitForAsync(async () => {
+  it('should call dispatchExportDmp if funderSupported is true', async () => {
     vi.spyOn(component, 'dispatchExportDmp');
     vi.spyOn(component, 'exportDmpTemplate');
 
@@ -123,9 +139,9 @@ describe('DmpActionsComponent', () => {
 
     expect(component.exportDmpTemplate).toHaveBeenCalledTimes(1);
     expect(component.dispatchExportDmp).toHaveBeenCalledTimes(1);
-  }));
+  });
 
-  it('should call dispatchExportDmp if funderSupported is false', waitForAsync(async () => {
+  it('should call dispatchExportDmp if funderSupported is false', async () => {
     vi.spyOn(component, 'dispatchExportDmp');
     vi.spyOn(component, 'exportDmpTemplate');
 
@@ -149,5 +165,5 @@ describe('DmpActionsComponent', () => {
     expect(component.dispatchExportDmp).not.toHaveBeenCalled();
     expect((component as any).dialog.open).toHaveBeenCalled();
     expect(component.dmpForm.controls.project.getRawValue).toHaveBeenCalled();
-  }));
+  });
 });

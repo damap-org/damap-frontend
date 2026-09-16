@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateTestingModule } from '@damap-frontend-core';
 
 describe('DmpInstructionsComponent', () => {
   let component: DmpInstructionsComponent;
@@ -21,6 +22,7 @@ describe('DmpInstructionsComponent', () => {
       imports: [
         RouterTestingModule.withRoutes([]),
         DmpInstructionsComponent,
+        TranslateTestingModule,
         TranslateDirective,
         TranslatePipe,
         MatCardModule,
