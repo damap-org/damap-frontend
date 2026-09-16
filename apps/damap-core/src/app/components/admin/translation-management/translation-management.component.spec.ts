@@ -26,7 +26,7 @@ describe('TranslationManagementComponent', () => {
     updateTranslation: vi.fn().mockName('BackendService.updateTranslation'),
     createLanguage: vi.fn().mockName('BackendService.createLanguage'),
     deleteLanguage: vi.fn().mockName('BackendService.deleteLanguage'),
-    getLanguageDetails: vi.fn().mockReturnValue(of({language: "en", active: true})),
+    getLanguageDetails: vi.fn().mockReturnValue(of({ language: 'en', active: true })),
   };
   const feedbackServiceMock = {
     success: vi.fn().mockName('FeedbackService.success'),

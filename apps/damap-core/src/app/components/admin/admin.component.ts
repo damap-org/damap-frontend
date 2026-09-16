@@ -1,15 +1,5 @@
-import {
-  Component,
-  OnInit,
-  inject,
-  ChangeDetectionStrategy,
-} from '@angular/core';
-import {
-  AbstractControl,
-  UntypedFormControl,
-  ValidationErrors,
-  Validators,
-} from '@angular/forms';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
+import { AbstractControl, UntypedFormControl, ValidationErrors, Validators } from '@angular/forms';
 import { BackendService } from '../../services/backend.service';
 import { AuthService } from '../../auth/auth.service';
 import { InternalStorage, InternalStorageTranslation } from '../../domain/internal-storage';
@@ -61,16 +51,11 @@ export class AdminComponent implements OnInit {
 
   instanceConfig: InstanceConfig | null = null;
   footerAccessibilityEnabled = false;
-  footerAccessibilityUrlControl: UntypedFormControl = new UntypedFormControl(
-    '',
-    [
-      Validators.maxLength(2048),
-      (control: AbstractControl): ValidationErrors | null =>
-        !control.value || this.isValidUrl(control.value, true)
-          ? null
-          : { url: true },
-    ],
-  );
+  footerAccessibilityUrlControl: UntypedFormControl = new UntypedFormControl('', [
+    Validators.maxLength(2048),
+    (control: AbstractControl): ValidationErrors | null =>
+      !control.value || this.isValidUrl(control.value, true) ? null : { url: true },
+  ]);
 
   appBanner: Banner | null = null;
 
@@ -90,9 +75,7 @@ export class AdminComponent implements OnInit {
       next: (config) => {
         this.instanceConfig = config;
         this.footerAccessibilityEnabled = !!config.footerAccessibilityUrl;
-        this.footerAccessibilityUrlControl.setValue(
-          config.footerAccessibilityUrl ?? '',
-        );
+        this.footerAccessibilityUrlControl.setValue(config.footerAccessibilityUrl ?? '');
       },
       error: (error) => {
         if (error.error?.message) {
@@ -365,16 +348,12 @@ export class AdminComponent implements OnInit {
       footerAccessibilityUrl: url,
     };
 
-    this.backendService
-      .updateInstanceConfig(updatedConfig)
-      .subscribe(config => {
-        this.instanceConfig = config;
-        this.footerAccessibilityEnabled = true;
-        this.footerAccessibilityUrlControl.setValue(
-          config.footerAccessibilityUrl ?? '',
-        );
-        this.feedbackService.success('http.success.instance-config.update');
-      });
+    this.backendService.updateInstanceConfig(updatedConfig).subscribe((config) => {
+      this.instanceConfig = config;
+      this.footerAccessibilityEnabled = true;
+      this.footerAccessibilityUrlControl.setValue(config.footerAccessibilityUrl ?? '');
+      this.feedbackService.success('http.success.instance-config.update');
+    });
   }
 
   removeFooterAccessibilityUrl() {
@@ -388,7 +367,7 @@ export class AdminComponent implements OnInit {
     };
 
     this.backendService.updateInstanceConfig(updatedConfig).subscribe({
-      next: config => {
+      next: (config) => {
         this.instanceConfig = config;
         this.footerAccessibilityEnabled = false;
         this.footerAccessibilityUrlControl.setValue('');
@@ -396,8 +375,7 @@ export class AdminComponent implements OnInit {
       },
       error: () => {
         // re-sync the eagerly toggled flag so the form stays visible if the update failed
-        this.footerAccessibilityEnabled =
-          !!this.instanceConfig?.footerAccessibilityUrl;
+        this.footerAccessibilityEnabled = !!this.instanceConfig?.footerAccessibilityUrl;
       },
     });
   }

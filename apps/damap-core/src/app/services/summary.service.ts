@@ -149,9 +149,7 @@ export class SummaryService {
         datasetLevel.status.push('dmp.steps.summary.data.specify.datasets.datageneration');
       }
     } else if (!dmp.dataKind && !dmp.reusedDataKind) {
-      datasetLevel.status.push(
-        'dmp.steps.summary.data.specify.datasets.unspecified',
-      );
+      datasetLevel.status.push('dmp.steps.summary.data.specify.datasets.unspecified');
     }
 
     return datasetLevel;
