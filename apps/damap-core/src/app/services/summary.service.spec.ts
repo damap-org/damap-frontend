@@ -213,7 +213,7 @@ describe('SummaryService', () => {
 
   it('should test license step', () => {
     let summary = SummaryService.evaluateLicenseStep(dmp);
-    expect(summary.completeness).toEqual(0)
+    expect(summary.completeness).toEqual(0);
     expect(summary.status).toEqual(['dmp.steps.summary.licensing.noproduceddata']);
 
     // Open dataset

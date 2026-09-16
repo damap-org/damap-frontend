@@ -17,9 +17,9 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { TranslateTestingModule } from '../../../testing/translate-testing/translate-testing.module';
-import { OAuthService } from "angular-oauth2-oidc";
-import { ActivatedRoute } from "@angular/router";
-import { completeDmp } from "@damap-frontend-core/app/mocks/dmp-mocks";
+import { OAuthService } from 'angular-oauth2-oidc';
+import { ActivatedRoute } from '@angular/router';
+import { completeDmp } from '@damap-frontend-core/app/mocks/dmp-mocks';
 
 describe('DmpActionsComponent', () => {
   let component: DmpActionsComponent;

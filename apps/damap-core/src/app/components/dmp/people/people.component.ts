@@ -183,8 +183,7 @@ export class PeopleComponent implements OnInit, OnDestroy {
       const personId = this.contributors.at(idx).value.personId;
       this.form.patchValue({
         mbox: this.contributors.at(idx).value.mbox,
-        personId:
-          personId?.type === IdentifierType.ORCID ? personId.identifier : '',
+        personId: personId?.type === IdentifierType.ORCID ? personId.identifier : '',
       });
     }
   }

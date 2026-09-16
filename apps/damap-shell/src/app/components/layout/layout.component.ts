@@ -98,8 +98,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor() {
     this.env = this.configService.getEnvironment();
-    this.footerAccessibilityUrl =
-      this.configService.getFooterAccessibilityUrl();
+    this.footerAccessibilityUrl = this.configService.getFooterAccessibilityUrl();
     this.logoUrl = this.imageThemeService.getImage(IMAGE_KEYS.LOGO);
   }
 

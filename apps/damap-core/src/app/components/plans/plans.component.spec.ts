@@ -21,7 +21,7 @@ import { mockDmpList } from '../../mocks/dmp-list-mocks';
 import { of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { completeDmp } from '@damap-frontend-core/app/mocks/dmp-mocks';
-import { OAuthService } from "angular-oauth2-oidc";
+import { OAuthService } from 'angular-oauth2-oidc';
 import { DmpStore } from '@damap-frontend-core/app/data-access/dmp.store';
 import { signal } from '@angular/core';
 import { DmpListItem } from '@damap-frontend-core';
@@ -42,62 +42,61 @@ describe.skip('PlansComponent', () => {
     hasValidAccessToken: vi.fn(),
   };
 
-  beforeEach(
-    async () => {
-      vi.useFakeTimers();
-      dmpStoreSpy = {
-        dmpById: vi.fn().mockName('DmpStore.dmpbyId'),
-        loadDmps: vi.fn().mockName('DmpStore.loadDmps'),
-        removeDmp: vi.fn().mockName('DmpStore.removeDmp'),
-        createDmp: vi.fn().mockName('DmpStore.createDmp'),
-        updateDmp: vi.fn().mockName('DmpStore.updateDmp'),
-        exportDmp: vi.fn().mockName('DmpStore.exportDmp'),
-        dmps: signal<DmpListItem[]>(mockDmpList),
-        dmpsLoaded: signal(LoadingState.LOADED),
-      };
-      backendSpy = {
-        getDmpDocument: vi.fn().mockName('BackendService.getDmpDocument'),
-        getMaDmpJsonFile: vi.fn().mockName('BackendService.getMaDmpJsonFile'),
-        getAllDmps: vi.fn().mockName('BackendService.getAllDmps'),
-        getDmpById: vi.fn().mockName('BackendService.getDmpbyId'),
-        deleteDmp: vi.fn().mockName('BackendService.deleteDmp'),
-      };
-      backendSpy.getAllDmps.mockReturnValue(of(mockDmpList));
-      authSpy = {
-        hasValidAccessToken: vi.fn().mockName('AuthService.hasValidAccessToken'),
-        isAdmin: vi.fn().mockName('AuthService.isAdmin'),
-      };
-      TestBed.configureTestingModule({
-        imports: [
-          MatIconModule,
-          MatProgressBarModule,
-          MatDialogModule,
-          MatButtonModule,
-          TranslateTestingModule,
-          DeleteWarningDialogComponent,
-          NoopAnimationsModule,
-          PlansComponent,
-        ],
-        providers: [
-          { provide: BackendService, useValue: backendSpy },
-          { provide: DmpStore, useValue: dmpStoreSpy },
-          { provide: AuthService, useValue: authSpy },
-          { provide: OAuthService, useValue: oauthServiceSpy },
-          {
-            provide: ActivatedRoute,
-            useValue: {
-              snapshot: { paramMap: { get: (id: number) => 1 } },
-            },
+  beforeEach(async () => {
+    vi.useFakeTimers();
+    dmpStoreSpy = {
+      dmpById: vi.fn().mockName('DmpStore.dmpbyId'),
+      loadDmps: vi.fn().mockName('DmpStore.loadDmps'),
+      removeDmp: vi.fn().mockName('DmpStore.removeDmp'),
+      createDmp: vi.fn().mockName('DmpStore.createDmp'),
+      updateDmp: vi.fn().mockName('DmpStore.updateDmp'),
+      exportDmp: vi.fn().mockName('DmpStore.exportDmp'),
+      dmps: signal<DmpListItem[]>(mockDmpList),
+      dmpsLoaded: signal(LoadingState.LOADED),
+    };
+    backendSpy = {
+      getDmpDocument: vi.fn().mockName('BackendService.getDmpDocument'),
+      getMaDmpJsonFile: vi.fn().mockName('BackendService.getMaDmpJsonFile'),
+      getAllDmps: vi.fn().mockName('BackendService.getAllDmps'),
+      getDmpById: vi.fn().mockName('BackendService.getDmpbyId'),
+      deleteDmp: vi.fn().mockName('BackendService.deleteDmp'),
+    };
+    backendSpy.getAllDmps.mockReturnValue(of(mockDmpList));
+    authSpy = {
+      hasValidAccessToken: vi.fn().mockName('AuthService.hasValidAccessToken'),
+      isAdmin: vi.fn().mockName('AuthService.isAdmin'),
+    };
+    TestBed.configureTestingModule({
+      imports: [
+        MatIconModule,
+        MatProgressBarModule,
+        MatDialogModule,
+        MatButtonModule,
+        TranslateTestingModule,
+        DeleteWarningDialogComponent,
+        NoopAnimationsModule,
+        PlansComponent,
+      ],
+      providers: [
+        { provide: BackendService, useValue: backendSpy },
+        { provide: DmpStore, useValue: dmpStoreSpy },
+        { provide: AuthService, useValue: authSpy },
+        { provide: OAuthService, useValue: oauthServiceSpy },
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: { paramMap: { get: (id: number) => 1 } },
           },
-          UntypedFormBuilder,
-          FormService,
-        ],
-      }).compileComponents();
-      fixture = TestBed.createComponent(PlansComponent);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
-      loader = TestbedHarnessEnvironment.documentRootLoader(fixture);
-    });
+        },
+        UntypedFormBuilder,
+        FormService,
+      ],
+    }).compileComponents();
+    fixture = TestBed.createComponent(PlansComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    loader = TestbedHarnessEnvironment.documentRootLoader(fixture);
+  });
 
   afterEach(() => {
     vi.clearAllTimers();

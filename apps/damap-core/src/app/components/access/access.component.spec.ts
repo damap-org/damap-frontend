@@ -24,7 +24,7 @@ describe('AccessComponent', () => {
   const oauthServiceSpy = {
     getAccessToken: vi.fn(),
     hasValidAccessToken: vi.fn(),
-    getIdentityClaims: vi.fn().mockReturnValue("test"),
+    getIdentityClaims: vi.fn().mockReturnValue('test'),
   };
 
   beforeEach(async () => {

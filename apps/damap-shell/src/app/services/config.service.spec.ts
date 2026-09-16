@@ -81,7 +81,13 @@ describe('ConfigService', () => {
     };
 
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, TranslateDirective, TranslatePipe, TranslateTestingModule, MatSnackBarModule],
+      imports: [
+        HttpClientTestingModule,
+        TranslateDirective,
+        TranslatePipe,
+        TranslateTestingModule,
+        MatSnackBarModule,
+      ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         ConfigService,

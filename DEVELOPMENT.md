@@ -103,6 +103,7 @@ The pre-commit hook runs only:
 Formatting changes are staged automatically by Lefthook through `stage_fixed: true`.
 
 ---
+
 **NOTE**
 
 The below documentation is not meant to stay in this form and will be moved into a dedicated Angular developer styleguide
@@ -110,7 +111,8 @@ The below documentation is not meant to stay in this form and will be moved into
 ---
 
 # Angular Migration Notes
-This project upgraded from Angular 17 to 22 and not everything was migrated with the migration PR to save on time. 
+
+This project upgraded from Angular 17 to 22 and not everything was migrated with the migration PR to save on time.
 Below are the points listed that should be done over time, when developers get the chance to.
 
 ## Change Detection And Zoneless Migration
@@ -144,19 +146,19 @@ polyfills/configuration before uninstalling the package.
 ## State Management
 
 Newer Angular versions use signals for reactive state management, for passing data between components
-and for performing non-mutating HTTP operations. 
-Unlike traditional observable-based patterns, Signals can be read directly in components and templates, 
+and for performing non-mutating HTTP operations.
+Unlike traditional observable-based patterns, Signals can be read directly in components and templates,
 while Angular automatically tracks their dependencies and updates affected parts of the application when
 their values change.
 Signals also simplify the management of derived state through computed signals, which automatically update when
-their dependencies change. 
+their dependencies change.
 This reduces reactive boilerplate and makes relationships between different pieces of state more explicit.
 
 Where possible, replace state tracking in a file you are currently working on with signals (if that has not already happened).
 Use `computed()` and `effect()` for deriving state from signals.
 
-Signals do not replace RxJS entirely. Observables remain useful for asynchronous operations and event streams, 
-while Signals are particularly well suited for managing application and UI state. 
+Signals do not replace RxJS entirely. Observables remain useful for asynchronous operations and event streams,
+while Signals are particularly well suited for managing application and UI state.
 Angular provides interoperability between both approaches, allowing them to be used together where appropriate.
 
 ## HTTP Connections
@@ -169,7 +171,7 @@ The store uses the methods exposed by the api file to call the backend, processe
 takes care of managing state changes like loading states, which it exposes through signals.
 Stores also define HttpResources.
 Angular HTTP Resources provide a reactive way to load data from HTTP endpoints using Signals.
-They manage the request lifecycle and expose the result, loading state, and errors as Signals, reducing the need 
+They manage the request lifecycle and expose the result, loading state, and errors as Signals, reducing the need
 for manual subscriptions and state management.
 They can only be used for GET operations, but are very useful in this usecase, especially fpr searches.
 An example are the `dmp.api.ts` and `dmp.store.ts` files.
