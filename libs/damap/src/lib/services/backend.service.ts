@@ -300,8 +300,9 @@ export class BackendService {
   }
 
   searchDataset(term: string): Observable<Dataset> {
+    const doi = term.trim().replace(/^(doi:|https:\/\/doi\.org\/)/i, '');
     return this.http
-      .get<Dataset>(`${this.backendUrl}openaire?doi=${term}`)
+      .get<Dataset>(`${this.backendUrl}openaire`, { params: { doi } })
       .pipe(retry(3), catchError(this.handleError()));
   }
 
