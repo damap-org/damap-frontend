@@ -227,17 +227,34 @@ describe('BackendService', () => {
     });
   });
 
-  it('should search dataset by doi', () => {
-    const doi = '10.1234/test';
-    service.searchDataset(doi).subscribe(value => {
-      expect(value).toBeTruthy();
-      expect(value).toBe(closedDatasetMock);
+  [
+    '10.12345/12345',
+    'https://doi.org/10.12345/12345',
+    'doi:10.12345/12345',
+    '  doi:10.12345/12345  ',
+  ].forEach(input => {
+    it(`should search dataset using the bare DOI for ${input}`, () => {
+      service.searchDataset(input).subscribe(value => {
+        expect(value).toBe(closedDatasetMock);
+      });
+
+      const req = httpTestingController.expectOne(
+        `${backendUrl}openaire?doi=10.12345/12345`,
+      );
+      expect(req.request.method).toBe('GET');
+      expect(req.request.params.get('doi')).toBe('10.12345/12345');
+      req.flush(closedDatasetMock);
     });
+  });
+
+  it('should encode special characters in DOI query parameters', () => {
+    const doi = '10.1234/test&part#section';
+    service.searchDataset(`https://doi.org/${doi}`).subscribe();
 
     const req = httpTestingController.expectOne(
-      `${backendUrl}openaire?doi=${doi}`,
+      `${backendUrl}openaire?doi=10.1234/test%26part%23section`,
     );
-    expect(req.request.method).toBe('GET');
+    expect(req.request.params.get('doi')).toBe(doi);
     req.flush(closedDatasetMock);
   });
 
