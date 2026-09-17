@@ -45,6 +45,7 @@ export * from './lib/domain/contributor';
 export * from './lib/domain/cost';
 export * from './lib/domain/dataset';
 export * from './lib/domain/dmp';
+export * from './lib/domain/dmp-import-response';
 export * from './lib/domain/dmp-list-item';
 export * from './lib/domain/external-storage';
 export * from './lib/domain/funding';
