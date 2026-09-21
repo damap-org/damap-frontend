@@ -120,7 +120,7 @@ describe('PeopleComponent', () => {
 
     expect(orcidOption).toBeTruthy();
 
-    await orcidOption.click();
+    await orcidOption!.click();
     fixture.detectChanges();
 
     expect(component.serviceConfigType).toEqual(serviceConfigMockData[1]);
@@ -191,7 +191,7 @@ describe('PeopleComponent', () => {
         contributors: new UntypedFormArray([
           new UntypedFormGroup({
             mbox: new UntypedFormControl('test@example.com'),
-            personId: new UntypedFormControl({ identifier: '123' }),
+            personId: new UntypedFormControl({ identifier: '123', type: 'ORCID' }),
           }),
         ]),
       });
@@ -237,7 +237,7 @@ describe('PeopleComponent', () => {
 
     describe('updateContributorDetails', () => {
       it('should not update if form is invalid', () => {
-        component.form.get('mbox').setErrors({ required: true });
+        component.form.get('mbox')!.setErrors({ required: true });
         vi.spyOn(component.contributorToUpdate, 'emit').mockReturnValue(undefined);
 
         component.updateContributorDetails(0);

@@ -13,7 +13,7 @@ import { TranslateTestingModule } from '@damap-frontend-core';
 describe('ReusedDataComponent', () => {
   let component: ReusedDataComponent;
   let fixture: ComponentFixture<ReusedDataComponent>;
-  let backendSpy;
+  let backendSpy: any;
 
   beforeEach(async () => {
     backendSpy = {

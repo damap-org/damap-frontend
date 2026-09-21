@@ -19,8 +19,8 @@ describe('SummaryComponent', () => {
       loadServiceConfig: vi.fn().mockName('BackendService.loadServiceConfig'),
       getBenchmarks: vi.fn().mockName('BackendService.getBenchmarks'),
     };
-    backendSpy.loadServiceConfig.mockReturnValue(of({ evaluationAvailable: true } as any));
-    backendSpy.getBenchmarks.mockReturnValue(of([]));
+    backendSpy.loadServiceConfig!.mockReturnValue(of({ evaluationAvailable: true } as any));
+    backendSpy.getBenchmarks!.mockReturnValue(of([]));
 
     TestBed.configureTestingModule({
       imports: [MatTableModule, MatProgressBarModule, TranslateTestingModule, SummaryComponent],
@@ -39,7 +39,7 @@ describe('SummaryComponent', () => {
   });
 
   it('should default to the FWF benchmark if it exists', () => {
-    backendSpy.getBenchmarks.mockReturnValue(
+    backendSpy.getBenchmarks!.mockReturnValue(
       of([
         { identifier: 'bench-2', title: 'Benchmark 2' },
         { identifier: '69ef5cdfcde500798dbd1af8', title: 'FWF Benchmark' },
@@ -50,7 +50,7 @@ describe('SummaryComponent', () => {
   });
 
   it('should fallback to the first benchmark if FWF benchmark does not exist', () => {
-    backendSpy.getBenchmarks.mockReturnValue(
+    backendSpy.getBenchmarks!.mockReturnValue(
       of([
         { identifier: 'bench-2', title: 'Benchmark 2' },
         { identifier: 'bench-3', title: 'Benchmark 3' },

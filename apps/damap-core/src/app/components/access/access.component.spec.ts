@@ -19,7 +19,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
 describe('AccessComponent', () => {
   let component: AccessComponent;
   let fixture: ComponentFixture<AccessComponent>;
-  let backendSpy;
+  let backendSpy: any;
 
   const oauthServiceSpy = {
     getAccessToken: vi.fn(),

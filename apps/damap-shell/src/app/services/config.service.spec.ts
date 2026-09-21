@@ -36,7 +36,7 @@ describe('ConfigService', () => {
     env: 'test-env',
     appTitle: 'Test App Title',
     personSearchServiceConfigs: [],
-    projectSearchServiceConfig: null,
+    projectSearchServiceConfig: '',
     livePreviewAvailable: true,
     ethicalReportEnabled: true,
     evaluationAvailable: true,
@@ -55,7 +55,7 @@ describe('ConfigService', () => {
     colorTheme: {
       id: 1,
       exactColors: true,
-      colors: null,
+      colors: null as any,
     },
     publicAvailable: true,
     consentFormEnabled: true,
@@ -178,7 +178,7 @@ describe('ConfigService', () => {
     });
 
     it('should return the default title if appTitle is missing', () => {
-      service['config'] = null;
+      service['config'] = {} as Config;
 
       const appTitle = service.getAppTitle();
       expect(appTitle).toEqual('DAMAP Frontend');

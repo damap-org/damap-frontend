@@ -32,7 +32,7 @@ describe('DmpComponent', () => {
   let loader: HarnessLoader;
   let authSpy;
   let backendSpy: MockedObject<BackendService>;
-  let loadServiceConfigSpy;
+  let loadServiceConfigSpy: any;
   let feedbackSpy;
   const oauthServiceSpy = {
     getAccessToken: vi.fn().mockReturnValue('test-token'),
@@ -64,7 +64,7 @@ describe('DmpComponent', () => {
     loadServiceConfigSpy = backendSpy.loadServiceConfig.mockReturnValue(of(configMockData));
     backendSpy.getDmpById.mockReturnValue(of(completeDmp));
     backendSpy.getProjectMembers.mockReturnValue(of([mockContributor1]));
-    backendSpy.analyseFileData.mockReturnValue(of(null));
+    backendSpy.analyseFileData.mockReturnValue(of(null as any));
 
     await TestBed.configureTestingModule({
       imports: [

@@ -51,14 +51,14 @@ export class ProjectListComponent implements OnInit, AfterViewInit {
   dialog = inject(MatDialog);
 
   readonly projectToSet = output<Project>();
-  private _selectedProject: Project;
+  private _selectedProject: Project | null;
 
   @Input()
   get selectedProject(): Project {
     return this._selectedProject;
   }
 
-  set selectedProject(project: Project) {
+  set selectedProject(project: Project | null) {
     this._selectedProject = project;
     if (project === null) {
       this.fetchRecommendedProjects();

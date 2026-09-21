@@ -123,7 +123,7 @@ describe('DmpActionsComponent', () => {
     vi.spyOn(component, 'dispatchExportDmp');
     vi.spyOn(component, 'exportDmpTemplate');
 
-    vi.spyOn(component.dmpForm.controls.project, 'getRawValue').mockReturnValue({
+    vi.spyOn(component.dmpForm.controls['project'], 'getRawValue').mockReturnValue({
       funderSupported: true,
     });
 
@@ -145,7 +145,7 @@ describe('DmpActionsComponent', () => {
     vi.spyOn(component, 'dispatchExportDmp');
     vi.spyOn(component, 'exportDmpTemplate');
 
-    vi.spyOn(component.dmpForm.controls.project, 'getRawValue').mockReturnValue({
+    vi.spyOn(component.dmpForm.controls['project'], 'getRawValue').mockReturnValue({
       funderSupported: false,
     });
 
@@ -164,6 +164,6 @@ describe('DmpActionsComponent', () => {
 
     expect(component.dispatchExportDmp).not.toHaveBeenCalled();
     expect((component as any).dialog.open).toHaveBeenCalled();
-    expect(component.dmpForm.controls.project.getRawValue).toHaveBeenCalled();
+    expect(component.dmpForm.controls['project'].getRawValue).toHaveBeenCalled();
   });
 });

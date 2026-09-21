@@ -27,7 +27,7 @@ describe('ProjectListComponent', () => {
   let component: ProjectListComponent;
   let fixture: ComponentFixture<ProjectListComponent>;
   let loader: HarnessLoader;
-  let backendSpy;
+  let backendSpy: any;
 
   beforeEach(async () => {
     vi.useFakeTimers();
