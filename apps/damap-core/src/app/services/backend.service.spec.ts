@@ -1,6 +1,6 @@
 import { describe, expect, it, vi, beforeEach, afterEach, type MockedObject } from 'vitest';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { HttpEventType, HttpHeaders } from '@angular/common/http';
+import { HttpEventType, HttpHeaders, HttpResponse } from '@angular/common/http';
 
 import { APP_ENV } from '../constants';
 import { BackendService } from './backend.service';
@@ -63,7 +63,7 @@ describe('BackendService', () => {
   });
 
   it('should get all accesses for dmp', () => {
-    service.getAccess(completeDmp.id).subscribe((accesses) => {
+    service.getAccess(completeDmp.id as number).subscribe((accesses) => {
       expect(accesses).toBeTruthy();
       expect(accesses.length).toBe(1);
     });
@@ -134,16 +134,15 @@ describe('BackendService', () => {
     const req = httpTestingController.expectOne(`${backendUrl}file-analysis/examine`);
     expect(req.request.method).toEqual('POST');
     req.event({ type: HttpEventType.UploadProgress, loaded: 7, total: 10 });
-    req.event({
-      type: HttpEventType.Response,
-      body: { title: 'file' },
-      status: 200,
-      headers: new HttpHeaders(),
-      statusText: 'OK',
-      url: '',
-      ok: true,
-      clone: null,
-    });
+    req.event(
+      new HttpResponse({
+        body: { title: 'file' },
+        status: 200,
+        headers: new HttpHeaders(),
+        statusText: 'OK',
+        url: '',
+      }),
+    );
   });
 
   it('should search dataset by doi', () => {
@@ -164,7 +163,7 @@ describe('BackendService', () => {
       expect(gdpr.length).toBe(1);
 
       const consent = gdpr.find((item) => item.entity === 'Consent');
-      expect(consent.entries.length).toBe(1);
+      expect(consent!.entries.length).toBe(1);
     });
 
     const req = httpTestingController.expectOne(`${backendUrl}gdpr/extended`);

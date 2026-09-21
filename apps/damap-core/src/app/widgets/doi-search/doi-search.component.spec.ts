@@ -42,33 +42,33 @@ describe('DoiSearchComponent', () => {
   });
 
   it('should en-/disable the form control depending on the loading state', () => {
-    const doiControl = component.form.get('doi');
-    vi.spyOn(doiControl, 'setValue').mockReturnValue(undefined);
-    vi.spyOn(doiControl, 'enable').mockReturnValue(undefined);
-    vi.spyOn(doiControl, 'disable').mockReturnValue(undefined);
+    const doiControl = component.form.get('doi')!;
+    vi.spyOn(doiControl, 'setValue');
+    vi.spyOn(doiControl, 'enable');
+    vi.spyOn(doiControl, 'disable');
 
     component.loading = LoadingState.NOT_LOADED;
-    expect(doiControl.disabled).toBe(false);
+    expect(doiControl?.disabled).toBe(false);
 
     component.loading = LoadingState.LOADING;
     component.ngOnChanges({
       loading: new SimpleChange(LoadingState.NOT_LOADED, LoadingState.LOADING, true),
     });
     expect(component.loading).toBe(LoadingState.LOADING);
-    expect(doiControl.disable).toHaveBeenCalledTimes(1);
+    expect(doiControl?.disable).toHaveBeenCalledTimes(1);
 
     component.loading = LoadingState.LOADED;
     component.ngOnChanges({
       loading: new SimpleChange(LoadingState.LOADING, LoadingState.LOADED, false),
     });
-    expect(doiControl.setValue).toHaveBeenCalledTimes(1);
-    expect(doiControl.enable).toHaveBeenCalledTimes(1);
+    expect(doiControl?.setValue).toHaveBeenCalledTimes(1);
+    expect(doiControl?.enable).toHaveBeenCalledTimes(1);
   });
 
   it('should emit search term when form is valid', () => {
     vi.spyOn(component.termToSearch, 'emit').mockReturnValue(undefined);
     const doi = '10.12345/12345';
-    component.form.get('doi').setValue(doi);
+    component.form.get('doi')?.setValue(doi);
     component.search();
     expect(component.termToSearch.emit).toHaveBeenCalledTimes(1);
     expect(component.termToSearch.emit).toHaveBeenCalledWith(doi);
@@ -77,7 +77,7 @@ describe('DoiSearchComponent', () => {
   it('should not emit search term when form is invalid', () => {
     vi.spyOn(component.termToSearch, 'emit').mockReturnValue(undefined);
     const invalidDoi = 'invalid-doi';
-    component.form.get('doi').setValue(invalidDoi);
+    component.form.get('doi')?.setValue(invalidDoi);
     component.search();
     expect(component.termToSearch.emit).not.toHaveBeenCalled();
   });

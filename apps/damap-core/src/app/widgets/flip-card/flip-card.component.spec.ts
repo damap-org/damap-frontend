@@ -10,7 +10,7 @@ import { TranslateTestingModule } from '../../testing/translate-testing/translat
 describe('FlipCardComponent', () => {
   let component: FlipCardComponent;
   let fixture: ComponentFixture<FlipCardComponent>;
-  let routerSpy;
+  let routerSpy: any;
 
   beforeEach(async () => {
     routerSpy = {
@@ -46,7 +46,7 @@ describe('FlipCardComponent', () => {
   });
 
   it('should not navigate if navigateRoute is undefined', () => {
-    component.navigateRoute = undefined;
+    component.navigateRoute = undefined as unknown as any;
     component.navigateTo();
     expect(routerSpy.navigate).not.toHaveBeenCalled();
   });

@@ -33,9 +33,9 @@ describe.skip('PlansComponent', () => {
   let component: PlansComponent;
   let fixture: ComponentFixture<PlansComponent>;
   let loader: HarnessLoader;
-  let authSpy;
-  let backendSpy;
-  let dmpStoreSpy;
+  let authSpy: any;
+  let backendSpy: any;
+  let dmpStoreSpy: any;
 
   const oauthServiceSpy = {
     getAccessToken: vi.fn(),

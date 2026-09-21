@@ -8,7 +8,7 @@ import { ConfigService } from '@damap-frontend-shell/app/services/config.service
 
 describe('AuthService', () => {
   let service: AuthService;
-  let spy;
+  let spy: any;
   const configServiceSpy = {
     getNameClaim: vi.fn().mockReturnValue('name'),
     getGivenNameClaim: vi.fn().mockReturnValue('given_name'),

@@ -15,6 +15,7 @@ import { SecurityMeasure } from '../domain/enum/security-measure.enum';
 import { SummaryService } from './summary.service';
 import { TestBed } from '@angular/core/testing';
 import { mockStorage } from '../mocks/storage-mocks';
+import { FundingState, IdentifierType, Project } from '@damap-frontend-core';
 
 describe('SummaryService', () => {
   let service: SummaryService;
@@ -31,30 +32,43 @@ describe('SummaryService', () => {
   });
 
   it('should test project step', () => {
-    const project = {
+    const funding = {
+      id: 1,
+      fundingName: 'Test Funding',
+      fundingProgram: 'Test Program',
+      funderId: {
+        identifier: '100',
+        type: IdentifierType.OTHER,
+      },
+      grantId: {
+        identifier: '200',
+        type: IdentifierType.OTHER,
+      },
+      fundingStatus: FundingState.UNSPECIFIED,
+    };
+    const project: Project = {
+      title: 'test',
       description: '',
       dmpExists: false,
-      end: undefined,
-      funding: undefined,
+      end: new Date('2026-12-31'),
+      funding: funding,
       id: 0,
-      start: undefined,
-      title: '',
+      start: new Date('2026-01-01'),
       universityId: 0,
       funderSupported: false,
       acronym: '',
     };
-    let summary = SummaryService.evaluateProjectStep(null);
+    let summary = SummaryService.evaluateProjectStep(null as unknown as Project);
     expect(summary.completeness).toEqual(0);
     expect(summary.status).toEqual(['dmp.steps.summary.project.none']);
 
-    project.title = 'test';
     summary = SummaryService.evaluateProjectStep(project);
     expect(summary.completeness).toEqual(100);
     expect(summary.status).toEqual([`Project: ${project.title}.`]);
   });
 
   it('should test contributor step', () => {
-    const contributors = [];
+    const contributors: any[] = [];
     let summary = SummaryService.evaluatePeopleStep(contributors);
     expect(summary.completeness).toEqual(0);
     expect(summary.status).toEqual([
@@ -287,7 +301,7 @@ describe('SummaryService', () => {
   });
 
   it('should test cost step', () => {
-    dmp.costsExist = undefined;
+    dmp.costsExist = null;
     let summary = SummaryService.evaluateCostStep(dmp);
     expect(summary.completeness).toEqual(0);
 
@@ -350,7 +364,7 @@ describe('SummaryService', () => {
     costsExist: false,
     costsExistCris: false,
     dataGeneration: '',
-    dataKind: undefined,
+    dataKind: null,
     dataQuality: [],
     dataRightsAndAccessControl: '',
     datasets: [],
@@ -379,7 +393,7 @@ describe('SummaryService', () => {
     repositories: [],
     restrictedAccessInfo: '',
     restrictedDataAccess: '',
-    reusedDataKind: undefined,
+    reusedDataKind: null,
     sensitiveData: false,
     sensitiveDataAccess: '',
     sensitiveDataCris: false,

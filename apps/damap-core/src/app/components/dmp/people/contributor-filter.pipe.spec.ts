@@ -22,10 +22,13 @@ describe('ContributorFilterPipe', () => {
 
   it('should return all project members when no contributors are added', () => {
     const pipe = new ContributorFilterPipe();
-    const addedContributors = [];
-    const contributorSearchResult = [mockContributor1, mockContributor2];
+    const addedContributors: Contributor[] = [];
+    const contributorSearchResult: Contributor[] = [mockContributor1, mockContributor2];
 
-    const filteredContributors = pipe.transform(contributorSearchResult, addedContributors);
+    const filteredContributors: Contributor[] = pipe.transform(
+      contributorSearchResult,
+      addedContributors,
+    );
     expect(filteredContributors);
     expect(filteredContributors.length).toBe(2);
     expect(filteredContributors[0]).toBe(mockContributor1);
@@ -35,10 +38,10 @@ describe('ContributorFilterPipe', () => {
   it('should compare contributors', () => {
     let c2 = mockContributor2;
     expect(compareContributors(c2, c2)).toBeTruthy();
-    expect(compareContributors(null, c2)).toBeFalsy();
-    expect(compareContributors(c2, null)).toBeFalsy();
+    expect(compareContributors(null as unknown as Contributor, c2)).toBeFalsy();
+    expect(compareContributors(c2, null as unknown as Contributor)).toBeFalsy();
 
-    let c2NoUniversityID: Contributor = { ...c2, universityId: null };
+    let c2NoUniversityID: Contributor = { ...c2, universityId: '' };
     expect(compareContributors(c2NoUniversityID, c2NoUniversityID)).toBeTruthy();
   });
 });
