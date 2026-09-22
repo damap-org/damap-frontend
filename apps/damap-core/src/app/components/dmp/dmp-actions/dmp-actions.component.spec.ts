@@ -152,7 +152,7 @@ describe('DmpActionsComponent', () => {
     const dialogRefMock: Partial<MatDialogRef<unknown, string>> = {
       componentInstance: { funderSupported: false },
       beforeClosed: () => of('show popup'),
-      afterClosed: () => of("test"),
+      afterClosed: () => of('test'),
       close: () => {},
     };
 

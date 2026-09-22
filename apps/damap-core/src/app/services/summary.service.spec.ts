@@ -16,7 +16,7 @@ import { SummaryService } from './summary.service';
 import { TestBed } from '@angular/core/testing';
 import { mockStorage } from '../mocks/storage-mocks';
 import { FundingState, IdentifierType, Project } from '@damap-frontend-core';
-import { Contributor } from "@damap-frontend-core";
+import { Contributor } from '@damap-frontend-core';
 
 describe('SummaryService', () => {
   let service: SummaryService;

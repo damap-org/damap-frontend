@@ -27,7 +27,7 @@ describe('SummaryComponent', () => {
       ...configMockData,
       evaluationAvailable: true,
     };
-    backendSpy.loadServiceConfig!.mockReturnValue(of( evalAvailableConfig ));
+    backendSpy.loadServiceConfig!.mockReturnValue(of(evalAvailableConfig));
     backendSpy.getBenchmarks!.mockReturnValue(of([]));
 
     TestBed.configureTestingModule({
