@@ -7,7 +7,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-describe.only('SearchFieldComponent', () => {
+describe('SearchFieldComponent', () => {
   let component: SearchFieldComponent;
   let fixture: ComponentFixture<SearchFieldComponent>;
 
