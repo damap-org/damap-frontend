@@ -127,7 +127,8 @@ describe('BackendService', () => {
         expect(response.total).toEqual(10);
       }
       if (response.type === HttpEventType.Response) {
-        expect(response.body.title).toEqual('file');
+        const body = response.body as { title: string };
+        expect(body.title).toEqual('file');
       }
     });
 

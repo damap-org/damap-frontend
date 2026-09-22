@@ -23,7 +23,7 @@ export interface Config {
   readonly ethicalReportEnabled: boolean;
   readonly evaluationAvailable: boolean;
   readonly images: BackendImage[];
-  readonly colorTheme: ColorTheme;
+  readonly colorTheme: ColorTheme | null;
   readonly multitenancyEnabled: boolean;
   readonly tenants: string[];
   readonly templates: any[];

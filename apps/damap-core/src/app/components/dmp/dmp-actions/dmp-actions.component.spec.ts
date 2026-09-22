@@ -10,7 +10,7 @@ import { HarnessLoader } from '@angular/cdk/testing';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogHarness } from '@angular/material/dialog/testing';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatInputHarness } from '@angular/material/input/testing';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -19,7 +19,7 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { TranslateTestingModule } from '../../../testing/translate-testing/translate-testing.module';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { ActivatedRoute } from '@angular/router';
-import { completeDmp } from '@damap-frontend-core/app/mocks/dmp-mocks';
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
 
 describe('DmpActionsComponent', () => {
   let component: DmpActionsComponent;
@@ -73,7 +73,7 @@ describe('DmpActionsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DmpActionsComponent);
     component = fixture.componentInstance;
-    component.stepChanged$ = new Subject<any>();
+    component.stepChanged$ = new Subject<StepperSelectionEvent>();
     fixture.detectChanges();
     loader = TestbedHarnessEnvironment.documentRootLoader(fixture);
   });
@@ -149,21 +149,23 @@ describe('DmpActionsComponent', () => {
       funderSupported: false,
     });
 
-    const dialogRefMock = {
+    const dialogRefMock: Partial<MatDialogRef<unknown, string>> = {
       componentInstance: { funderSupported: false },
       beforeClosed: () => of('show popup'),
-      afterClosed: () => of(null),
+      afterClosed: () => of("test"),
       close: () => {},
     };
 
-    vi.spyOn((component as any).dialog, 'open').mockReturnValue(dialogRefMock);
+    const dialog = TestBed.inject(MatDialog);
+
+    vi.spyOn(dialog, 'open').mockReturnValue(dialogRefMock as MatDialogRef<unknown, unknown>);
 
     component.exportDmpTemplate();
 
     await fixture.whenStable();
 
     expect(component.dispatchExportDmp).not.toHaveBeenCalled();
-    expect((component as any).dialog.open).toHaveBeenCalled();
+    expect(dialog.open).toHaveBeenCalled();
     expect(component.dmpForm.controls['project'].getRawValue).toHaveBeenCalled();
   });
 });

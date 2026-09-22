@@ -16,6 +16,7 @@ import { SummaryService } from './summary.service';
 import { TestBed } from '@angular/core/testing';
 import { mockStorage } from '../mocks/storage-mocks';
 import { FundingState, IdentifierType, Project } from '@damap-frontend-core';
+import { Contributor } from "@damap-frontend-core";
 
 describe('SummaryService', () => {
   let service: SummaryService;
@@ -68,7 +69,7 @@ describe('SummaryService', () => {
   });
 
   it('should test contributor step', () => {
-    const contributors: any[] = [];
+    const contributors: Contributor[] = [];
     let summary = SummaryService.evaluatePeopleStep(contributors);
     expect(summary.completeness).toEqual(0);
     expect(summary.status).toEqual([

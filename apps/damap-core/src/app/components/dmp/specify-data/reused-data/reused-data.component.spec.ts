@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { describe, expect, it, vi, beforeEach } from 'vitest';
+import { describe, expect, it, vi, beforeEach, MockedObject } from 'vitest';
 import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 import { BackendService } from '../../../../services/backend.service';
@@ -13,7 +13,7 @@ import { TranslateTestingModule } from '@damap-frontend-core';
 describe('ReusedDataComponent', () => {
   let component: ReusedDataComponent;
   let fixture: ComponentFixture<ReusedDataComponent>;
-  let backendSpy: any;
+  let backendSpy: Partial<MockedObject<BackendService>>;
 
   beforeEach(async () => {
     backendSpy = {
@@ -42,7 +42,7 @@ describe('ReusedDataComponent', () => {
 
   it('should search and add dataset with doi', () => {
     vi.spyOn(component.datasetToAdd, 'emit').mockReturnValue(undefined);
-    backendSpy.searchDataset.mockReturnValue(of(restrictedDatasetMock));
+    backendSpy.searchDataset!.mockReturnValue(of(restrictedDatasetMock));
     component.searchDataset('doi:10.12345/12345');
 
     expect(backendSpy.searchDataset).toHaveBeenCalledTimes(1);
@@ -53,7 +53,7 @@ describe('ReusedDataComponent', () => {
   });
 
   it('should remove duplicate DOI datasets', () => {
-    backendSpy.searchDataset.mockReturnValue(of(restrictedDatasetMock));
+    backendSpy.searchDataset!.mockReturnValue(of(restrictedDatasetMock));
 
     expect(component.duplicate).toBe(false);
     expect(component.result).toBeUndefined();

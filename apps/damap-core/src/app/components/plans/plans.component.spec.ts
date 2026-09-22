@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
+import { describe, expect, it, vi, beforeEach, afterEach, MockedObject } from 'vitest';
 
 import { AuthService } from '../../auth/auth.service';
 import { BackendService } from '../../services/backend.service';
@@ -9,7 +9,7 @@ import { HarnessLoader } from '@angular/cdk/testing';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogHarness } from '@angular/material/dialog/testing';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,8 +24,10 @@ import { completeDmp } from '@damap-frontend-core/app/mocks/dmp-mocks';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { DmpStore } from '@damap-frontend-core/app/data-access/dmp.store';
 import { signal } from '@angular/core';
-import { DmpListItem } from '@damap-frontend-core';
+import { DmpListItem, Project } from '@damap-frontend-core';
 import { LoadingState } from '@damap-frontend-core';
+import { Dmp } from '@damap-frontend-core';
+import { mockProject } from '@damap-frontend-core/app/mocks/project-mocks';
 
 // TODO: These tests broke during the Angular migration to 22
 // They should be fixed after the backendservice get dmp functions and the the dmp store have been unified to make mocking easier
@@ -33,9 +35,9 @@ describe.skip('PlansComponent', () => {
   let component: PlansComponent;
   let fixture: ComponentFixture<PlansComponent>;
   let loader: HarnessLoader;
-  let authSpy: any;
-  let backendSpy: any;
-  let dmpStoreSpy: any;
+  let authSpy: Partial<MockedObject<AuthService>>;
+  let backendSpy: Partial<MockedObject<BackendService>>;
+  let dmpStoreSpy: Partial<DmpStore>;
 
   const oauthServiceSpy = {
     getAccessToken: vi.fn(),
@@ -55,15 +57,13 @@ describe.skip('PlansComponent', () => {
       dmpsLoaded: signal(LoadingState.LOADED),
     };
     backendSpy = {
-      getDmpDocument: vi.fn().mockName('BackendService.getDmpDocument'),
       getMaDmpJsonFile: vi.fn().mockName('BackendService.getMaDmpJsonFile'),
       getAllDmps: vi.fn().mockName('BackendService.getAllDmps'),
       getDmpById: vi.fn().mockName('BackendService.getDmpbyId'),
       deleteDmp: vi.fn().mockName('BackendService.deleteDmp'),
     };
-    backendSpy.getAllDmps.mockReturnValue(of(mockDmpList));
+    backendSpy.getAllDmps!.mockReturnValue(of(mockDmpList));
     authSpy = {
-      hasValidAccessToken: vi.fn().mockName('AuthService.hasValidAccessToken'),
       isAdmin: vi.fn().mockName('AuthService.isAdmin'),
     };
     TestBed.configureTestingModule({
@@ -108,10 +108,10 @@ describe.skip('PlansComponent', () => {
   });
 
   it('should remove dmps', async () => {
-    authSpy.isAdmin.mockReturnValue(true);
-    backendSpy.deleteDmp.mockReturnValue(of({ status: 204 }));
+    authSpy.isAdmin!.mockReturnValue(true);
+    backendSpy.deleteDmp!.mockReturnValue(of( completeDmp ));
 
-    component.deleteDmp(1);
+    component.deleteDmp(76);
     const dialogs = await loader.getAllHarnesses(MatDialogHarness);
     expect(dialogs.length).toBe(1);
 
@@ -124,7 +124,14 @@ describe.skip('PlansComponent', () => {
   it('should call getDmpDocument if funderSupported is true', async () => {
     vi.spyOn(component, 'getDocument');
     vi.spyOn(component, 'openExportWarningDialog');
-    backendSpy.getDmpById.mockReturnValue(of({ project: { funderSupported: true } }));
+    const funderSupportedDmp: Dmp = {
+      ...completeDmp,
+      project: {
+        ...mockProject,
+        funderSupported: true,
+      },
+    };
+    backendSpy.getDmpById!.mockReturnValue(of( funderSupportedDmp ));
 
     const id = 1;
     component.getDocument(id);
@@ -137,22 +144,31 @@ describe.skip('PlansComponent', () => {
   it('should call exportDmpTemplate and getDmpDocument if funderSupported is false', async () => {
     vi.spyOn(component, 'getDocument');
     vi.spyOn(component, 'openExportWarningDialog');
-    backendSpy.getDmpById.mockReturnValue(of({ project: { funderSupported: false } }));
+    const funderNotSupportedDmp: Dmp = {
+      ...completeDmp,
+      project: {
+        ...mockProject,
+        funderSupported: false,
+      },
+    };
+    backendSpy.getDmpById!.mockReturnValue(of( funderNotSupportedDmp ));
 
     const id = 1;
-    const dialogRefMock = {
+    const dialogRefMock: Partial<MatDialogRef<unknown, string>> = {
       componentInstance: { funderSupported: false },
       beforeClosed: () => of('some_template'),
       close: () => {},
     };
 
-    vi.spyOn((component as any).dialog, 'open').mockReturnValue(dialogRefMock);
+    const dialog = TestBed.inject(MatDialog);
+
+    vi.spyOn(dialog, 'open').mockReturnValue(dialogRefMock as MatDialogRef<unknown, unknown>);
 
     component.getDocument(id);
     await fixture.whenStable();
 
     expect(component.getDocument).toHaveBeenCalledTimes(1);
     expect(component.openExportWarningDialog).toHaveBeenCalledWith(false, id);
-    expect(backendSpy.exportDmpTemplate).toHaveBeenCalledWith(id, 'some_template');
+    expect(dmpStoreSpy.exportDmp).toHaveBeenCalledWith(id, 'some_template');
   });
 });
