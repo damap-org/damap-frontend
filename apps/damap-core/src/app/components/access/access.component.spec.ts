@@ -1,6 +1,6 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { describe, expect, it, vi, beforeEach } from 'vitest';
+import { describe, expect, it, vi, beforeEach, MockedObject } from 'vitest';
 import { EMPTY, of } from 'rxjs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
@@ -19,7 +19,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
 describe('AccessComponent', () => {
   let component: AccessComponent;
   let fixture: ComponentFixture<AccessComponent>;
-  let backendSpy: any;
+  let backendSpy: Partial<MockedObject<BackendService>>;
 
   const oauthServiceSpy = {
     getAccessToken: vi.fn(),
@@ -34,8 +34,8 @@ describe('AccessComponent', () => {
       createAccess: vi.fn().mockReturnValue(of(mockAccess)),
       deleteAccess: vi.fn().mockName('BackendService.deleteAccess'),
     };
-    backendSpy.getDmpById.mockReturnValue(of([completeDmp]));
-    backendSpy.getAccess.mockReturnValue(of([mockAccess]));
+    backendSpy.getDmpById!.mockReturnValue(of(completeDmp));
+    backendSpy.getAccess!.mockReturnValue(of([mockAccess]));
 
     TestBed.configureTestingModule({
       imports: [
@@ -70,7 +70,7 @@ describe('AccessComponent', () => {
   });
 
   it('should create editor', () => {
-    backendSpy.createAccess.mockReturnValue(of(mockAccess));
+    backendSpy.createAccess!.mockReturnValue(of(mockAccess));
     const $event = {
       value: mockAccess,
     } as MatRadioChange;
@@ -79,7 +79,7 @@ describe('AccessComponent', () => {
   });
 
   it('should delete editor', () => {
-    backendSpy.deleteAccess.mockReturnValue(EMPTY);
+    backendSpy.deleteAccess!.mockReturnValue(EMPTY);
     const $event = {
       value: mockAccessToRemove.role,
     } as MatRadioChange;

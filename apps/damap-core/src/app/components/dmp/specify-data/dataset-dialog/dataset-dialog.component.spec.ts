@@ -65,7 +65,7 @@ describe('DatasetDialogComponent', () => {
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
-        { provide: MatDialogRef, useValue: { close: (value?: any) => value } },
+        { provide: MatDialogRef, useValue: { close: (value?: Dataset) => value } },
         { provide: FormService, useValue: formServiceStub },
         {
           provide: MAT_DIALOG_DATA,

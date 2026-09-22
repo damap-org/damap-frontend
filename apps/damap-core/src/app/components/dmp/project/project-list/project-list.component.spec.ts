@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, tick } from '@angular/core/testing';
-import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
+import { describe, expect, it, vi, beforeEach, afterEach, MockedObject } from 'vitest';
 import {
   mockProjectSearchResult,
   mockRecommendedProjectSearchResult,
@@ -27,7 +27,7 @@ describe('ProjectListComponent', () => {
   let component: ProjectListComponent;
   let fixture: ComponentFixture<ProjectListComponent>;
   let loader: HarnessLoader;
-  let backendSpy: any;
+  let backendSpy: Partial<MockedObject<BackendService>>;
 
   beforeEach(async () => {
     vi.useFakeTimers();

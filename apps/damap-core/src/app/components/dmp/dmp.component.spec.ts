@@ -17,14 +17,14 @@ import { MatStepperHarness } from '@angular/material/stepper/testing';
 import { MatStepperModule } from '@angular/material/stepper';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import { CdkStep, StepperSelectionEvent } from '@angular/cdk/stepper';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { TranslateTestingModule } from '../../testing/translate-testing/translate-testing.module';
 import { completeDmp } from '../../mocks/dmp-mocks';
 import { configMockData } from '../../mocks/config-service-mocks';
 import { mockContributor1 } from '../../mocks/contributor-mocks';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { HttpEvent, HttpEventType } from '@angular/common/http';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 describe('DmpComponent', () => {
   let component: DmpComponent;
@@ -32,7 +32,6 @@ describe('DmpComponent', () => {
   let loader: HarnessLoader;
   let authSpy;
   let backendSpy: MockedObject<BackendService>;
-  let loadServiceConfigSpy: any;
   let feedbackSpy;
   const oauthServiceSpy = {
     getAccessToken: vi.fn().mockReturnValue('test-token'),
@@ -61,10 +60,10 @@ describe('DmpComponent', () => {
         .filter((name) => name !== 'constructor')
         .map((name) => [name, vi.fn().mockName(`BackendService.${name}`)]),
     ) as unknown as MockedObject<BackendService>;
-    loadServiceConfigSpy = backendSpy.loadServiceConfig.mockReturnValue(of(configMockData));
+    backendSpy.loadServiceConfig.mockReturnValue(of(configMockData));
     backendSpy.getDmpById.mockReturnValue(of(completeDmp));
     backendSpy.getProjectMembers.mockReturnValue(of([mockContributor1]));
-    backendSpy.analyseFileData.mockReturnValue(of(null as any));
+    backendSpy.analyseFileData.mockReturnValue(of(new HttpResponse({ status: 200 })));
 
     await TestBed.configureTestingModule({
       imports: [
@@ -117,7 +116,7 @@ describe('DmpComponent', () => {
     it('should load service config and publish he result into config$ observable', () => {
       fixture.detectChanges();
       component.ngOnInit();
-      expect(loadServiceConfigSpy).toHaveBeenCalled();
+      expect(backendSpy.loadServiceConfig).toHaveBeenCalled();
       component.config$.subscribe((config) => expect(config).toEqual(configMockData));
     });
   });
@@ -135,8 +134,8 @@ describe('DmpComponent', () => {
     const event: StepperSelectionEvent = {
       selectedIndex: 2,
       previouslySelectedIndex: 1,
-      selectedStep: {} as any,
-      previouslySelectedStep: {} as any,
+      selectedStep: {} as CdkStep,
+      previouslySelectedStep: {} as CdkStep,
     };
 
     vi.spyOn(component, 'changeStep').mockReturnValue(undefined);

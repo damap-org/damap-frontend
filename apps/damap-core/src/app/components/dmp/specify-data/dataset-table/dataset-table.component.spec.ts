@@ -7,6 +7,7 @@ import { DatasetTableComponent } from './dataset-table.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateTestingModule } from '../../../../testing/translate-testing/translate-testing.module';
 import { of } from 'rxjs';
+import { Dataset } from '@damap-frontend-core';
 
 describe('DatasetTableComponent', () => {
   let component: DatasetTableComponent;
@@ -53,7 +54,7 @@ describe('DatasetTableComponent', () => {
     expect(component.updateDataset.emit).toHaveBeenCalledTimes(1);
     expect(component.updateDataset.emit).toHaveBeenCalledWith({
       index: 1,
-      update: formGroup2.getRawValue(),
+      update: formGroup2.getRawValue() as Dataset,
     });
   });
 

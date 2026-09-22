@@ -55,7 +55,7 @@ describe('ConfigService', () => {
     colorTheme: {
       id: 1,
       exactColors: true,
-      colors: null as any,
+      colors: null,
     },
     publicAvailable: true,
     consentFormEnabled: true,

@@ -48,7 +48,6 @@ import { TranslatePipe } from '@ngx-translate/core';
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
-    CdkScrollable,
     MatDialogContent,
     FormsModule,
     ReactiveFormsModule,

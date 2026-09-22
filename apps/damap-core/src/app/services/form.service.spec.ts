@@ -70,7 +70,7 @@ describe('FormService', () => {
   });
 
   function getContributorFromForm(index: number): Contributor {
-    return getContributorFormArray().at(index).getRawValue();
+    return getContributorFormArray().at(index).getRawValue() as Contributor;
   }
 
   function getContributorFormArray() {

@@ -46,7 +46,7 @@ export class DataDeletionComponent {
   @Input() dataset: UntypedFormGroup;
   @Input() dmpForm: UntypedFormGroup;
 
-  getSelection = (contributor1: Contributor, contributor2: Contributor) =>
+  getSelection = (contributor1: Contributor | null, contributor2: Contributor | null) =>
     contributor1?.id === contributor2?.id;
 
   setDateOfDeletion($event: MatSlideToggleChange) {
