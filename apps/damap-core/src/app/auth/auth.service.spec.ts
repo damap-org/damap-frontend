@@ -99,7 +99,9 @@ describe('AuthService', () => {
     );
     expect(service.isAdmin()).toBe(true);
 
-    oAuthSpy.getAccessToken!.mockReturnValue('.' + window.btoa('{ "realm_access": { "roles": [] }}'));
+    oAuthSpy.getAccessToken!.mockReturnValue(
+      '.' + window.btoa('{ "realm_access": { "roles": [] }}'),
+    );
     expect(service.isAdmin()).toBe(false);
   });
 

@@ -46,7 +46,8 @@ describe('PersonSearchComponent', () => {
   it('should emit contributor on selection', async () => {
     vi.spyOn(component.personToAdd, 'emit').mockReturnValue(undefined);
 
-    const inputElement = fixture.debugElement.query(By.css('input')).nativeElement as HTMLInputElement;
+    const inputElement = fixture.debugElement.query(By.css('input'))
+      .nativeElement as HTMLInputElement;
     inputElement.value = mockContributor1.firstName;
     inputElement.dispatchEvent(new Event('input'));
     fixture.detectChanges();
@@ -63,7 +64,8 @@ describe('PersonSearchComponent', () => {
   it('should clear results when input is empty', async () => {
     vi.spyOn(component.termToSearch, 'emit').mockReturnValue(undefined);
 
-    const inputElement = fixture.debugElement.query(By.css('input')).nativeElement as HTMLInputElement;
+    const inputElement = fixture.debugElement.query(By.css('input'))
+      .nativeElement as HTMLInputElement;
     inputElement.value = 'Some text';
     inputElement.dispatchEvent(new Event('input'));
     fixture.detectChanges();

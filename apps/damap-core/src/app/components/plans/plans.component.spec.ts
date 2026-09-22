@@ -109,7 +109,7 @@ describe.skip('PlansComponent', () => {
 
   it('should remove dmps', async () => {
     authSpy.isAdmin!.mockReturnValue(true);
-    backendSpy.deleteDmp!.mockReturnValue(of( completeDmp ));
+    backendSpy.deleteDmp!.mockReturnValue(of(completeDmp));
 
     component.deleteDmp(76);
     const dialogs = await loader.getAllHarnesses(MatDialogHarness);
@@ -131,7 +131,7 @@ describe.skip('PlansComponent', () => {
         funderSupported: true,
       },
     };
-    backendSpy.getDmpById!.mockReturnValue(of( funderSupportedDmp ));
+    backendSpy.getDmpById!.mockReturnValue(of(funderSupportedDmp));
 
     const id = 1;
     component.getDocument(id);
@@ -151,7 +151,7 @@ describe.skip('PlansComponent', () => {
         funderSupported: false,
       },
     };
-    backendSpy.getDmpById!.mockReturnValue(of( funderNotSupportedDmp ));
+    backendSpy.getDmpById!.mockReturnValue(of(funderNotSupportedDmp));
 
     const id = 1;
     const dialogRefMock: Partial<MatDialogRef<unknown, string>> = {
