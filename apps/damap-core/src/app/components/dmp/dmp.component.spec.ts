@@ -1,9 +1,9 @@
-import { describe, expect, it, vi, beforeEach, type MockedObject } from 'vitest';
+import { describe, expect, it, vi, beforeEach, type MockedObject, afterEach } from 'vitest';
 import { ActivatedRoute } from '@angular/router';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
-import { Subject, of } from 'rxjs';
+import { Subject, of, take } from 'rxjs';
 
 import { AuthService } from '../../auth/auth.service';
 import { BackendService } from '../../services/backend.service';
@@ -24,7 +24,8 @@ import { completeDmp } from '../../mocks/dmp-mocks';
 import { configMockData } from '../../mocks/config-service-mocks';
 import { mockContributor1 } from '../../mocks/contributor-mocks';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
+import { DmpStore } from '@damap-frontend-core/app/data-access/dmp.store';
 
 describe('DmpComponent', () => {
   let component: DmpComponent;
@@ -38,10 +39,10 @@ describe('DmpComponent', () => {
     hasValidAccessToken: vi.fn().mockReturnValue(true),
     logOut: vi.fn(),
   };
-  const initialState = {
-    damap: {
-      form: { dmp: null, changed: false },
-    },
+  const dmpStoreSpy = {
+    exportDmp: vi.fn().mockReturnValue(of(null)),
+    savingDmp: signal(false),
+    createDmp: vi.fn().mockReturnValue(of(completeDmp)),
   };
 
   beforeEach(async () => {
@@ -64,6 +65,20 @@ describe('DmpComponent', () => {
     backendSpy.getDmpById.mockReturnValue(of(completeDmp));
     backendSpy.getProjectMembers.mockReturnValue(of([mockContributor1]));
     backendSpy.analyseFileData.mockReturnValue(of(new HttpResponse({ status: 200 })));
+    backendSpy.getRecommendedProjects.mockReturnValue(
+      of({
+        search: {
+          pagination: {
+            page: 0,
+            perPage: 0,
+            hasNext: false,
+            hasPrevious: false,
+          },
+          query: '',
+        },
+        items: [],
+      }),
+    );
 
     await TestBed.configureTestingModule({
       imports: [
@@ -93,6 +108,10 @@ describe('DmpComponent', () => {
           provide: OAuthService,
           useValue: oauthServiceSpy,
         },
+        {
+          provide: DmpStore,
+          useValue: dmpStoreSpy,
+        },
       ],
     }).compileComponents();
   });
@@ -113,11 +132,11 @@ describe('DmpComponent', () => {
   });
 
   describe('ngOnInit', () => {
-    it('should load service config and publish he result into config$ observable', () => {
-      fixture.detectChanges();
-      component.ngOnInit();
+    it('should load service config and publish the result into config$ observable', () => {
       expect(backendSpy.loadServiceConfig).toHaveBeenCalled();
-      component.config$.subscribe((config) => expect(config).toEqual(configMockData));
+      component.config$.pipe(take(1)).subscribe((config) => {
+        expect(config).toEqual(configMockData);
+      });
     });
   });
 
@@ -138,9 +157,9 @@ describe('DmpComponent', () => {
       previouslySelectedStep: {} as CdkStep,
     };
 
-    vi.spyOn(component, 'changeStep').mockReturnValue(undefined);
-    vi.spyOn(component, 'changeStepPosition').mockReturnValue(undefined);
-    vi.spyOn(component, 'onStepChange').mockReturnValue(undefined);
+    vi.spyOn(component, 'changeStep');
+    vi.spyOn(component, 'changeStepPosition').mockImplementation(() => {});
+    vi.spyOn(component, 'onStepChange');
 
     component.handleStepChange(event);
 
