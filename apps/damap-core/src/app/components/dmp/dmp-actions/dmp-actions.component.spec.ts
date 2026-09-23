@@ -13,13 +13,15 @@ import { MatDialogHarness } from '@angular/material/dialog/testing';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatInputHarness } from '@angular/material/input/testing';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { TranslateTestingModule } from '../../../testing/translate-testing/translate-testing.module';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { ActivatedRoute } from '@angular/router';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import { DmpStore } from '@damap-frontend-core/app/data-access/dmp.store';
+import { completeDmp } from '@damap-frontend-core/app/mocks/dmp-mocks';
 
 describe('DmpActionsComponent', () => {
   let component: DmpActionsComponent;
@@ -35,6 +37,13 @@ describe('DmpActionsComponent', () => {
   const oauthServiceSpy = {
     getAccessToken: vi.fn(),
     hasValidAccessToken: vi.fn(),
+  };
+
+  const dmpStoreSpy = {
+    exportDmp: vi.fn().mockReturnValue(of(null)),
+    savingDmp: signal(false),
+    dmpsLoadRequested: signal(false),
+    createDmp: vi.fn().mockReturnValue(of(completeDmp)),
   };
 
   beforeEach(async () => {
@@ -59,6 +68,7 @@ describe('DmpActionsComponent', () => {
         { provide: BackendService, useValue: backendSpy },
         { provide: MatSnackBar, useValue: matSnackBarSpy },
         { provide: OAuthService, useValue: oauthServiceSpy },
+        { provide: DmpStore, useValue: dmpStoreSpy },
         {
           provide: ActivatedRoute,
           useValue: {
