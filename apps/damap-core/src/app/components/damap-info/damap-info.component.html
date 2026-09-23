@@ -1,0 +1,51 @@
+<div class="action-buttons">
+  <button mat-flat-button [routerLink]="'/dashboard'">
+    <mat-icon class="outline">home</mat-icon>
+    {{ 'Home' | translate }}
+  </button>
+</div>
+
+<div id="damap-info">
+  <mat-card class="info-card">
+    <mat-card-content>
+      <div>
+        <div>
+          <h2 mat-card-title translate>
+            <a
+              class="customLink"
+              [href]="'info.about.link' | translate"
+              target="_blank"
+              rel="noopener"
+            >
+              {{ 'info.how-to-create.tool.heading' | translate }}
+            </a>
+          </h2>
+          <ul class="mat-list">
+            <li class="mat-list-item">
+              {{ 'info.about.bulletpoints.dmp.text' | translate }}
+              <a [href]="'info.about.bulletpoints.dmp.sepg.link' | translate" target="_blank">
+                {{ 'info.about.bulletpoints.dmp.sepg.text' | translate }}</a
+              >
+            </li>
+            <li class="mat-list-item" translate>info.about.bulletpoints.document</li>
+            <li class="mat-list-item" translate>info.about.bulletpoints.supports</li>
+            <li class="mat-list-item" translate>
+              info.about.bulletpoints.benefits.text
+              <ul class="mat-sublist">
+                <li class="mat-list-item" translate>info.about.bulletpoints.benefits.one</li>
+                <li class="mat-list-item" translate>info.about.bulletpoints.benefits.two</li>
+                <li class="mat-list-item" translate>info.about.bulletpoints.benefits.three</li>
+              </ul>
+            </li>
+            <li class="mat-list-item">
+              {{ 'info.about.bulletpoints.madmp.prefix' | translate }}
+              <a [href]="'info.about.bulletpoints.madmp.rda.link' | translate" target="_blank">
+                {{ 'info.about.bulletpoints.madmp.rda.text' | translate }}</a
+              >{{ 'info.about.bulletpoints.madmp.suffix' | translate }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

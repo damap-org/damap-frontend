@@ -10,33 +10,35 @@
           "style": "scss"
         }
       },
-      "root": "apps/damap-frontend",
-      "sourceRoot": "apps/damap-frontend/src",
+      "root": "apps/damap-shell",
+      "sourceRoot": "apps/damap-shell/src",
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/damap-frontend",
-            "index": "apps/damap-frontend/src/index.html",
-            "main": "apps/damap-frontend/src/main.ts",
-            "polyfills": "apps/damap-frontend/src/polyfills.ts",
-            "tsConfig": "apps/damap-frontend/tsconfig.app.json",
+            "outputPath": {
+              "base": "dist/damap-frontend"
+            },
+            "index": "apps/damap-shell/src/index.html",
+            "polyfills": ["apps/damap-shell/src/polyfills.ts"],
+            "tsConfig": "tsconfig.app.json",
             "assets": [
-              "apps/damap-frontend/src/favicon.ico",
-              "apps/damap-frontend/src/assets",
+              "apps/damap-shell/src/favicon.ico",
+              "apps/damap-shell/src/assets",
               {
                 "glob": "**/*",
-                "input": "libs/damap/src/assets/",
-                "output": "./assets/damap-core/"
+                "input": "apps/damap-core/src/assets/",
+                "output": "./assets/damap/"
               }
             ],
             "styles": [
-              "apps/damap-frontend/src/styles.scss",
-              "libs/damap/src/assets/styles.scss"
+              "apps/damap-shell/src/styles.scss",
+              "apps/damap-core/src/assets/styles.scss"
             ],
             "scripts": [],
-            "allowedCommonJsDependencies": ["validator", "moment"]
+            "allowedCommonJsDependencies": ["validator", "moment"],
+            "browser": "apps/damap-shell/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -54,20 +56,18 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "apps/damap-frontend/src/environments/environment.ts",
-                  "with": "apps/damap-frontend/src/environments/environment.prod.ts"
+                  "replace": "apps/damap-shell/src/environments/environment.ts",
+                  "with": "apps/damap-shell/src/environments/environment.prod.ts"
                 },
                 {
-                  "replace": "libs/damap/src/lib/constants.ts",
-                  "with": "libs/damap/src/lib/constants.prod.ts"
+                  "replace": "apps/damap-core/src/app/constants.ts",
+                  "with": "apps/damap-core/src/app/constants.prod.ts"
                 }
               ],
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -87,17 +87,24 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "apps/damap-frontend/src/environments/environment.ts",
-                  "with": "apps/damap-frontend/src/environments/environment.openshift.ts"
+                  "replace": "apps/damap-shell/src/environments/environment.ts",
+                  "with": "apps/damap-shell/src/environments/environment.openshift.ts"
                 }
               ],
               "outputHashing": "all"
+            },
+            "testing": {
+              "aot": false,
+              "optimization": false,
+              "extractLicenses": false,
+              "polyfills": [],
+              "assets": ["apps/damap-shell/src/favicon.ico", "apps/damap-shell/src/assets"]
             }
           },
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
               "buildTarget": "damap-frontend:build:production"
@@ -109,98 +116,29 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "@angular/build:extract-i18n",
           "options": {
             "buildTarget": "damap-frontend:build"
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "main": "apps/damap-frontend/src/test.ts",
-            "polyfills": "apps/damap-frontend/src/polyfills.ts",
-            "tsConfig": "apps/damap-frontend/tsconfig.spec.json",
-            "karmaConfig": "apps/damap-frontend/karma.conf.js",
-            "assets": [
-              "apps/damap-frontend/src/favicon.ico",
-              "apps/damap-frontend/src/assets"
-            ],
-            "styles": [
-              "apps/damap-frontend/src/styles.scss",
-              "libs/damap/src/assets/styles.scss"
-            ],
-            "scripts": []
+            "tsConfig": "tsconfig.spec.json",
+            "buildTarget": "damap-frontend:build:testing",
+            "runnerConfig": "vitest.config.ts",
+            "include": ["**/*.spec.ts", "../../damap-core/src/**/*.spec.ts"]
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "apps/damap-frontend/src/**/*.ts",
-              "apps/damap-frontend/src/**/*.html"
+              "apps/damap-shell/src/**/*.ts",
+              "apps/damap-shell/src/**/*.html",
+              "apps/damap-core/src/**/*.ts",
+              "apps/damap-core/src/**/*.html"
             ]
-          }
-        }
-      }
-    },
-    "damap-frontend-e2e": {
-      "root": "apps/damap-frontend-e2e",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "devServerTarget": "damap-frontend:serve",
-            "testingType": "e2e",
-            "configFile": "apps/damap-frontend-e2e/cypress.config.ts"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "damap-frontend:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": ["apps/damap-frontend-e2e/**/*.ts"]
-          }
-        }
-      }
-    },
-    "damap": {
-      "projectType": "library",
-      "root": "libs/damap",
-      "sourceRoot": "libs/damap/src",
-      "prefix": "damap",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "libs/damap/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/damap/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/damap/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "libs/damap/src/test.ts",
-            "tsConfig": "libs/damap/tsconfig.spec.json",
-            "karmaConfig": "libs/damap/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": ["libs/damap/**/*.ts", "libs/damap/**/*.html"]
           }
         }
       }
@@ -216,6 +154,30 @@
     },
     "@angular-eslint/schematics:library": {
       "setParserOptionsProject": true
+    },
+    "@schematics/angular:component": {
+      "type": "component"
+    },
+    "@schematics/angular:directive": {
+      "type": "directive"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
     }
   }
 }

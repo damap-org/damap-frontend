@@ -1,0 +1,127 @@
+<mat-card class="repo-table-card card-shadow">
+  <mat-card-content>
+    <div class="repo-search-bar">
+      <app-search-field
+        [label]="'dmp.steps.repositories.filters'"
+        [placeholder]="'Search Repository'"
+        (searchChange)="applySearch($event)"
+      />
+      <span class="repo-filter-container">
+        <button
+          class="w-full"
+          mat-raised-button
+          (click)="resetFilter()"
+          [disabled]="!filtersActive()"
+        >
+          {{ 'dmp.steps.repositories.filter.reset' | translate }}
+          <mat-icon iconPositionEnd>cached</mat-icon>
+        </button>
+        <app-repo-filter [filters]="filters()" (filterChange)="onFilterChange($event)" />
+      </span>
+    </div>
+
+    <div class="scrollable-repo-content">
+      @if ((filters() | keyvalue).length) {
+        <div>
+          {{ 'dmp.steps.repositories.filters' | translate }}:
+          @for (filter of filters() | keyvalue; track filter.key) {
+            @for (item of filter.value; track item.id) {
+              <app-tag background="var(--custom-green-tag)">
+                {{ item.label }}
+              </app-tag>
+            }
+          }
+        </div>
+      }
+
+      @if (loaded() === LoadingState.LOADED) {
+        <table
+          mat-table
+          [dataSource]="dataSource"
+          multiTemplateDataRows="true"
+          aria-label="Table of data repositories"
+        >
+          <ng-container matColumnDef="expand">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element" (click)="expandRow(element)">
+              @if (element.id === expandedElement) {
+                <mat-icon class="material-icon-primary">expand_less</mat-icon>
+              }
+              @if (element.id !== expandedElement) {
+                <mat-icon class="material-icon-primary">expand_more</mat-icon>
+              }
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ 'dmp.steps.repositories.table.header.title' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element" (click)="expandRow(element)">
+              <h3>{{ element.name }}</h3>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="add">
+            <th mat-header-cell *matHeaderCellDef>
+              <span class="sr-only">{{ 'dmp.steps.repositories.add' | translate }}</span>
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-flat-button (click)="addRepository(element)">
+                {{ 'dmp.steps.repositories.use' | translate }}
+              </button>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="tableHeaders.length">
+              <div
+                class="element-detail"
+                [@detailExpand]="element.id === expandedElement ? 'expanded' : 'collapsed'"
+              >
+                @if (element.description) {
+                  <mat-divider />
+                  <app-repo-details [repo]="element" />
+                } @else {
+                  <mat-progress-bar mode="indeterminate" />
+                }
+              </div>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="tableHeaders"></tr>
+          <tr
+            mat-row
+            *matRowDef="let element; columns: tableHeaders"
+            class="element-row"
+            [class.expanded-row]="expandedElement === element.id"
+          ></tr>
+          <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+          <tr class="mat-row" *matNoDataRow>
+            @if (this.input.length > 0) {
+              <td class="mat-cell" colspan="4">
+                {{ 'dmp.steps.repositories.nodatafilter' | translate: { value: this.input } }}"
+              </td>
+            } @else {
+              <td class="mat-cell" colspan="4">
+                {{ 'dmp.steps.repositories.norepositories' | translate }}
+              </td>
+            }
+          </tr>
+        </table>
+        <mat-paginator
+          class="mat-elevation-z8"
+          [pageSize]="10"
+          [pageSizeOptions]="[10, 15, 20]"
+          showFirstLastButtons="true"
+        />
+      }
+
+      @if (loaded() === LoadingState.LOADING) {
+        <p translate>dmp.steps.repositories.loading.load.all</p>
+        <mat-progress-bar mode="indeterminate" />
+      }
+      @if (loaded() === LoadingState.FAILED) {
+        <app-error-message
+          message="{{ 'dmp.steps.repositories.loading.failed.all' | translate }}"
+        />
+      }
+    </div>
+  </mat-card-content>
+</mat-card>

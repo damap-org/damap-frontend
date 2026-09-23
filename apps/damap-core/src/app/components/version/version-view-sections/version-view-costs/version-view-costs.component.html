@@ -1,0 +1,19 @@
+@if (costsExist()) {
+  {{ 'dmp.steps.costs.question.exist.yes' | translate }}
+  @for (cost of costs(); track cost.id) {
+    <div>
+      <hr />
+      <h3>{{ cost.title }}</h3>
+      <div>{{ cost.description }}</div>
+      @if (cost.type) {
+        {{ 'enum.costs.' + cost.type | translate }}:
+        @if (cost.type === costType.OTHER) {
+          {{ cost.customType }}
+        }
+      }
+      {{ cost.value | currency: cost.currencyCode }}
+    </div>
+  }
+} @else {
+  {{ 'dmp.steps.costs.question.exist.no' | translate }}
+}

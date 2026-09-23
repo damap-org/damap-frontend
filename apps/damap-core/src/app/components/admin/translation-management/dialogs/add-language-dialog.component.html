@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>
+  {{ 'admin.appTranslations.addLanguage' | translate }}
+</h1>
+
+<mat-dialog-content class="dialog-content">
+  <p class="hint">
+    {{ 'admin.appTranslations.addLanguageHint' | translate }}
+  </p>
+
+  <app-language-code-input
+    class="input-full"
+    [label]="'admin.appTranslations.languageCode' | translate"
+    [hint]="'admin.appTranslations.languageCodeHint' | translate"
+    [control]="form.controls.language"
+    [errorMessageRequired]="'admin.appTranslations.languageCodeRequired' | translate"
+    [errorMessageInvalid]="'admin.appTranslations.languageCodeInvalid' | translate"
+    [errorMessageAlreadyExists]="'admin.appTranslations.languageCodeAlreadyExists' | translate"
+  />
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="cancel()">
+    {{ 'admin.appTranslations.cancel' | translate }}
+  </button>
+
+  <button
+    mat-raised-button
+    color="primary"
+    class="button-color-primary"
+    (click)="submit()"
+    [disabled]="form.invalid"
+  >
+    {{ 'admin.appTranslations.add' | translate }}
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,7 @@
+<div class="content">
+  <app-version-table
+    [dmp]="dmp()"
+    [versions]="versions$ | async"
+    (versionToView)="onViewVersion($event)"
+  />
+</div>
