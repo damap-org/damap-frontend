@@ -38,6 +38,7 @@ import { PeopleComponent } from './people/people.component';
 import { Project } from '../../domain/project';
 import { ProjectComponent } from './project/project.component';
 import { RepoComponent } from './repo/repo.component';
+import { RepoInstructionComponent } from './repo/repo-instruction/repo-instruction.component';
 import { SpecifyDataComponent } from './specify-data/specify-data.component';
 import {
   StepperSelectionEvent,
@@ -68,6 +69,8 @@ export class DmpComponent implements OnInit, OnDestroy {
   @ViewChild('legalEthicalAspects')
   legalEthicalAspectsComponent: LegalEthicalAspectsComponent;
   @ViewChild('repo') repoComponent: RepoComponent;
+  @ViewChild(RepoInstructionComponent)
+  repoInstruction: RepoInstructionComponent;
   livePreviewEnabled: boolean = true;
   ethicalReportEnabled: boolean = true;
 
@@ -341,6 +344,10 @@ export class DmpComponent implements OnInit, OnDestroy {
 
   onViewChangeStorage(view: 'primaryView' | 'secondaryView'): void {
     this.selectedViewStorage = view;
+  }
+
+  onRepoViewChange(view: 'primaryView' | 'secondaryView'): void {
+    this.repoInstruction?.onViewChange(view);
   }
 
   private getDmpById() {
