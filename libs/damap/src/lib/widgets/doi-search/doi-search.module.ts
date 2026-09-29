@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { ErrorMessageModule } from '../error-message/error-message.module';
 import { SharedModule } from '../../shared/shared.module';
+import { InfoMessageModule } from '../info-message/info-message.module';
 
 @NgModule({
   declarations: [DoiSearchComponent],
@@ -27,6 +28,7 @@ import { SharedModule } from '../../shared/shared.module';
     MatIconModule,
     MatOptionModule,
     MatButtonModule,
+    InfoMessageModule,
   ],
   exports: [
     CommonModule,
