@@ -15,7 +15,7 @@ COPY . .
 RUN npm run build
 
 # create a second container running a webserver and holding the built frontend application
-FROM nginxinc/nginx-unprivileged AS runner
+FROM nginxinc/nginx-unprivileged:1-alpine-slim AS runner
 
 # Metadata annotations as defined by the Open Container Initiative:
 # https://github.com/opencontainers/image-spec/blob/main/annotations.md
@@ -27,7 +27,7 @@ LABEL org.opencontainers.image.title="DAMAP-frontend" \
     org.opencontainers.image.vendor="Technische Universität Wien" \
     org.opencontainers.image.licenses="MIT" \
     org.opencontainers.image.authors="DAMAP Development Team" \
-    org.opencontainers.image.base.name="nginxinc/nginx-unprivileged"
+    org.opencontainers.image.base.name="nginxinc/nginx-unprivileged:1-alpine-slim"
 
 COPY docker/conf.d/* /etc/nginx/conf.d
 
