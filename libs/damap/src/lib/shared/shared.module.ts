@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { TooltipModule } from '../widgets/tooltip/tooltip.module';
 import { SearchFieldComponent } from './search-field/search-field.component';
 import { MatIconButton } from '@angular/material/button';
+import { InfoMessageModule } from '../widgets/info-message/info-message.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { MatIconButton } from '@angular/material/button';
     MatInputModule,
     MatAutocompleteModule,
     MatIconButton,
+    InfoMessageModule,
   ],
   exports: [
     CommonModule,
