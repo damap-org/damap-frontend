@@ -1,19 +1,25 @@
 import {
-  AfterViewInit,
+  BehaviorSubject,
+  Observable,
+  Subject,
+  Subscription,
+  catchError,
+  debounceTime,
+  distinctUntilChanged,
+  finalize,
+  merge,
+  of,
+  shareReplay,
+  switchMap,
+} from 'rxjs';
+import {
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
 } from '@angular/core';
-import {
-  Observable,
-  Subject,
-  debounceTime,
-  distinctUntilChanged,
-  of,
-  switchMap,
-} from 'rxjs';
 
 import { BackendService } from '../../../../services/backend.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -27,7 +33,7 @@ import { SearchResult } from '../../../../domain/search/search-result';
   styleUrls: ['./project-list.component.css'],
   standalone: false,
 })
-export class ProjectListComponent implements OnInit, AfterViewInit {
+export class ProjectListComponent implements OnInit, OnDestroy {
   @Output() projectToSet = new EventEmitter<Project>();
   private _selectedProject: Project;
 
@@ -44,35 +50,72 @@ export class ProjectListComponent implements OnInit, AfterViewInit {
   }
 
   private searchTerms = new Subject<string>();
-  searchResult$: Observable<SearchResult<Project>>;
+  private recommendedProjects$: Observable<SearchResult<Project>>;
+  private loadingSubject = new BehaviorSubject<boolean>(true);
+  private searchResultSubscription: Subscription;
+  loading$: Observable<boolean> = this.loadingSubject.asObservable();
+  searchResult$: Observable<SearchResult<Project>> = of({
+    items: [],
+  } as SearchResult<Project>);
 
   constructor(
     private backendService: BackendService,
     public dialog: MatDialog,
-  ) {}
-
-  ngOnInit(): void {
-    this.searchTerms
+  ) {
+    this.recommendedProjects$ = this.backendService
+      .getRecommendedProjects()
       .pipe(
-        debounceTime(300),
-        distinctUntilChanged((previous, current) => {
-          if (previous === null && current === null) {
-            // search for recommended projects
-            return false;
-          }
-          return previous === current;
+        catchError(error => {
+          console.error('Error fetching recommended projects:', error);
+          return of({ items: [] } as SearchResult<Project>);
         }),
-        switchMap((term: string) =>
-          term === null || term.length === 0
-            ? this.backendService.getRecommendedProjects()
-            : this.backendService.getProjectSearchResult(term),
-        ),
-      )
-      .subscribe(results => (this.searchResult$ = of(results)));
+      );
   }
 
-  ngAfterViewInit(): void {
-    this.fetchRecommendedProjects();
+  ngOnInit(): void {
+    const debouncedSearchTerms$ = this.searchTerms.pipe(debounceTime(300));
+
+    this.searchResult$ = merge(of(null), debouncedSearchTerms$).pipe(
+      distinctUntilChanged((previous, current) => {
+        const prevIsEmpty =
+          previous === null || previous === undefined || previous === '';
+        const currIsEmpty =
+          current === null || current === undefined || current === '';
+        if (prevIsEmpty && currIsEmpty) {
+          return true;
+        }
+        return previous === current;
+      }),
+      switchMap((term: string) => {
+        this.loadingSubject.next(true);
+        const normalizedTerm =
+          term === null ||
+          term === undefined ||
+          (typeof term === 'string' && term.trim().length === 0)
+            ? null
+            : term;
+
+        if (normalizedTerm === null) {
+          return this.recommendedProjects$.pipe(
+            finalize(() => this.loadingSubject.next(false)),
+          );
+        }
+        return this.backendService.getProjectSearchResult(normalizedTerm).pipe(
+          catchError(error => {
+            console.error('Error searching projects:', error);
+            return of({ items: [] } as SearchResult<Project>);
+          }),
+          finalize(() => this.loadingSubject.next(false)),
+        );
+      }),
+      shareReplay(1),
+    );
+
+    this.searchResultSubscription = this.searchResult$.subscribe();
+  }
+
+  ngOnDestroy(): void {
+    this.searchResultSubscription?.unsubscribe();
   }
 
   fetchRecommendedProjects(): void {

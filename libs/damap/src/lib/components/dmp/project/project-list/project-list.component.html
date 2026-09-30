@@ -9,30 +9,35 @@
     [label]="'dmp.steps.project.search' | translate"
     (searchChange)="search($event)"></app-search-field>
   <div class="list-container" *ngIf="!selectedProject">
-    <mat-selection-list
-      hideSingleSelectionIndicator
-      [multiple]="false"
-      style="overflow: hidden"
-      (selectionChange)="changeProject($event)">
-      <mat-list-option
-        *ngFor="let project of (searchResult$ | async)?.items ?? []"
-        [style]="'height: auto;'"
-        [selected]="project.universityId === selectedProject?.universityId"
-        [value]="project">
-        <div matListItemTitle>
-          <strong>{{ project.title }}</strong>
-        </div>
-        <div matListItemLine>
-          <mat-icon class="mat-icon-style">date_range</mat-icon>
-          {{ project.start | date }} - {{ project.end | date }}
-          <mat-icon
-            *ngIf="project.dmpExists"
-            matTooltip="{{ 'dmp.steps.project.warning.dmp' | translate }}"
-            class="material-icon-warning mat-list-option-right">
-            warning
-          </mat-icon>
-        </div>
-      </mat-list-option>
-    </mat-selection-list>
+    <ng-container *ngIf="loading$ | async; else listTpl">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </ng-container>
+    <ng-template #listTpl>
+      <mat-selection-list
+        hideSingleSelectionIndicator
+        [multiple]="false"
+        style="overflow: hidden"
+        (selectionChange)="changeProject($event)">
+        <mat-list-option
+          *ngFor="let project of (searchResult$ | async)?.items ?? []"
+          [style]="'height: auto;'"
+          [selected]="project.universityId === selectedProject?.universityId"
+          [value]="project">
+          <div matListItemTitle>
+            <strong>{{ project.title }}</strong>
+          </div>
+          <div matListItemLine>
+            <mat-icon class="mat-icon-style">date_range</mat-icon>
+            {{ project.start | date }} - {{ project.end | date }}
+            <mat-icon
+              *ngIf="project.dmpExists"
+              matTooltip="{{ 'dmp.steps.project.warning.dmp' | translate }}"
+              class="material-icon-warning mat-list-option-right">
+              warning
+            </mat-icon>
+          </div>
+        </mat-list-option>
+      </mat-selection-list>
+    </ng-template>
   </div>
 </ng-container>
