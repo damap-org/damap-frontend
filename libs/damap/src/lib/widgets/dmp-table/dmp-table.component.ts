@@ -7,6 +7,7 @@ import {
   Output,
   SimpleChanges,
   ViewChild,
+  inject,
 } from '@angular/core';
 
 import { DmpListItem } from '../../domain/dmp-list-item';
@@ -16,6 +17,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { LoadingState } from '../../domain/enum/loading-state.enum';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { BackendService } from '@damap/core';
 
 @Component({
   selector: 'app-dmp-table',
@@ -38,6 +41,7 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
 
   length: number;
   searchTerm: string = '';
+  importInProgress = false;
 
   readonly tableHeaders: string[] = [
     'title',
@@ -48,6 +52,8 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
     'edit',
   ];
   readonly FUNCTION_ROLES = FunctionRole;
+  private backendService = inject(BackendService);
+  private router = inject(Router);
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.dmps) {
@@ -98,6 +104,25 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
 
   getJsonFile(id: number) {
     this.createJsonFile.emit(id);
+  }
+
+  importJsonFile(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    input.value = '';
+
+    if (file) {
+      this.importInProgress = true;
+      this.backendService.importDmpJsonFile(file).subscribe({
+        next: response => {
+          this.importInProgress = false;
+          this.router.navigate(['/dmp', response.id]);
+        },
+        error: () => {
+          this.importInProgress = false;
+        },
+      });
+    }
   }
 
   deleteDmp(id: number) {

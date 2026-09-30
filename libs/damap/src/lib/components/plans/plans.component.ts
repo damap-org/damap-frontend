@@ -11,7 +11,6 @@ import { AuthService } from '../../auth/auth.service';
 import { BackendService } from '../../services/backend.service';
 import { DeleteWarningDialogComponent } from '../../widgets/delete-warning-dialog/delete-warning-dialog.component';
 import { DmpListItem } from '../../domain/dmp-list-item';
-import { ETemplateType } from '../../domain/enum/export-template-type.enum';
 import { ExportWarningDialogComponent } from '../../widgets/export-warning-dialog/export-warning-dialog.component';
 import { FormGroup } from '@angular/forms';
 import { FormService } from '../../services/form.service';
