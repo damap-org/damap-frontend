@@ -11,14 +11,12 @@ import { AuthService } from '../../auth/auth.service';
 import { BackendService } from '../../services/backend.service';
 import { DeleteWarningDialogComponent } from '../../widgets/delete-warning-dialog/delete-warning-dialog.component';
 import { DmpListItem } from '../../domain/dmp-list-item';
-import { ETemplateType } from '../../domain/enum/export-template-type.enum';
 import { ExportWarningDialogComponent } from '../../widgets/export-warning-dialog/export-warning-dialog.component';
 import { FormGroup } from '@angular/forms';
 import { FormService } from '../../services/form.service';
 import { LoadingState } from '../../domain/enum/loading-state.enum';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-plan',
@@ -32,7 +30,6 @@ export class PlansComponent implements OnInit {
   LoadingState = LoadingState;
   exportDmpType: number;
   dmpForm: FormGroup;
-  importInProgress = false;
 
   allDmps$: Observable<DmpListItem[]>;
 
@@ -42,7 +39,6 @@ export class PlansComponent implements OnInit {
     private authService: AuthService,
     private formService: FormService,
     private dialog: MatDialog,
-    private router: Router,
   ) {
     this.dmps$ = this.store.pipe(select(selectDmps));
     this.dmpsLoaded$ = this.store.pipe(select(selectDmpsLoaded));
@@ -92,19 +88,6 @@ export class PlansComponent implements OnInit {
 
   getJsonFile(id: number) {
     this.backendService.getMaDmpJsonFile(id);
-  }
-
-  importJsonFile(file: File) {
-    this.importInProgress = true;
-    this.backendService.importDmpJsonFile(file).subscribe({
-      next: response => {
-        this.importInProgress = false;
-        this.router.navigate(['/dmp', response.id]);
-      },
-      error: () => {
-        this.importInProgress = false;
-      },
-    });
   }
 
   deleteDmp(id: number) {

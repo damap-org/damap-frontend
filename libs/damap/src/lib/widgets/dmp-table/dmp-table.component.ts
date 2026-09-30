@@ -7,6 +7,7 @@ import {
   Output,
   SimpleChanges,
   ViewChild,
+  inject,
 } from '@angular/core';
 
 import { DmpListItem } from '../../domain/dmp-list-item';
@@ -16,6 +17,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { LoadingState } from '../../domain/enum/loading-state.enum';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { BackendService } from '@damap/core';
 
 @Component({
   selector: 'app-dmp-table',
@@ -27,12 +30,10 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
   @Input() dmps: DmpListItem[];
   @Input() admin = false;
   @Input() dmpsLoaded: Observable<LoadingState>;
-  @Input() importInProgress = false;
   dataSource = new MatTableDataSource();
 
   @Output() createDocument = new EventEmitter<number>();
   @Output() createJsonFile = new EventEmitter<number>();
-  @Output() importJsonFile = new EventEmitter<File>();
   @Output() dmpToDelete = new EventEmitter<number>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -40,6 +41,7 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
 
   length: number;
   searchTerm: string = '';
+  importInProgress = false;
 
   readonly tableHeaders: string[] = [
     'title',
@@ -50,6 +52,8 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
     'edit',
   ];
   readonly FUNCTION_ROLES = FunctionRole;
+  private backendService = inject(BackendService);
+  private router = inject(Router);
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.dmps) {
@@ -102,15 +106,23 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
     this.createJsonFile.emit(id);
   }
 
-  importFileSelected(event: Event) {
+  importJsonFile(event: Event) {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];
+    input.value = '';
 
     if (file) {
-      this.importJsonFile.emit(file);
+      this.importInProgress = true;
+      this.backendService.importDmpJsonFile(file).subscribe({
+        next: response => {
+          this.importInProgress = false;
+          this.router.navigate(['/dmp', response.id]);
+        },
+        error: () => {
+          this.importInProgress = false;
+        },
+      });
     }
-
-    input.value = '';
   }
 
   deleteDmp(id: number) {
