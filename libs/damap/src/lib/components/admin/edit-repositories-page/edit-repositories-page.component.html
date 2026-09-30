@@ -14,8 +14,10 @@
         [repositories]="allRepositories()"
         [selectedRepos]="repositories()"
         [loaded]="loadingState()"
+        [filters]="filters()"
         (repositoryToAdd)="addRepository($event)"
-        (repositoryDetails)="getRepositoryDetails($event)">
+        (repositoryDetails)="getRepositoryDetails($event)"
+        (filterChange)="filterRepositories($event)">
       </app-repo-table>
     </section>
 

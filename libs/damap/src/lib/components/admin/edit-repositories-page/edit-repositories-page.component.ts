@@ -48,6 +48,9 @@ export class EditRepositoriesPageComponent implements OnInit {
   readonly repositories = signal<RecommendedRepository[]>([]);
   readonly allRepositories = signal<RepositoryDetails[]>([]);
   readonly loadingState = signal<LoadingState>(LoadingState.NOT_LOADED);
+  readonly filters = signal<{ [key: string]: { id: string; label: string }[] }>(
+    {},
+  );
 
   readonly LoadingState = LoadingState;
 
@@ -78,6 +81,30 @@ export class EditRepositoriesPageComponent implements OnInit {
       this.loadingState.set(LoadingState.LOADED);
     } catch (error) {
       console.error('Error loading all repositories:', error);
+      this.loadingState.set(LoadingState.FAILED);
+      this.feedbackService.error('http.error.repositories.all');
+    }
+  }
+
+  async filterRepositories(filter: {
+    [key: string]: { id: string; label: string }[];
+  }): Promise<void> {
+    this.filters.set(filter ?? {});
+    const hasActive =
+      filter && Object.keys(filter).some(key => filter[key]?.length > 0);
+    if (!hasActive) {
+      await this.loadAllRepositories();
+      return;
+    }
+    this.loadingState.set(LoadingState.LOADING);
+    try {
+      const repositories = await firstValueFrom(
+        this.backendService.searchRepository(filter),
+      );
+      this.allRepositories.set(repositories);
+      this.loadingState.set(LoadingState.LOADED);
+    } catch (error) {
+      console.error('Error searching repositories:', error);
       this.loadingState.set(LoadingState.FAILED);
       this.feedbackService.error('http.error.repositories.all');
     }
