@@ -164,7 +164,6 @@ describe('ConfigService', () => {
       req2.flush(mockConfig);
 
       await initializePromise;
-      // eslint-disable-next-line no-console
       expect(console.warn).toHaveBeenCalledWith('App title is missing in the config');
     });
   });
@@ -196,7 +195,6 @@ describe('ConfigService', () => {
       req.error(new ErrorEvent('Network error'));
 
       await initializePromise;
-      // eslint-disable-next-line no-console
       expect(console.error).toHaveBeenCalledWith(
         'Failed to load config - please make sure your backend is up and running!',
       );

@@ -7,21 +7,13 @@ import { UntypedFormControl } from '@angular/forms';
 import { CreatedDataComponent } from './created-data/created-data.component';
 import { ReusedDataComponent } from './reused-data/reused-data.component';
 import { TextareaWrapperComponent } from '../../../shared/textarea-wrapper/textarea-wrapper.component';
-import { MatHint } from '@angular/material/form-field';
-import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dmp-specify-data',
   templateUrl: './specify-data.component.html',
   styleUrls: ['./specify-data.component.css'],
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    CreatedDataComponent,
-    ReusedDataComponent,
-    TextareaWrapperComponent,
-    MatHint,
-    TranslatePipe,
-  ],
+  imports: [CreatedDataComponent, ReusedDataComponent, TextareaWrapperComponent],
 })
 export class SpecifyDataComponent extends AbstractBaseDataComponent {
   readonly fileUpload = input<
