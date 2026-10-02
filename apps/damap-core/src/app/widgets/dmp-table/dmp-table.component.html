@@ -1,4 +1,4 @@
-<div class="table-actions">
+<div class="button-and-search">
   <div class="table-actions">
     <button [routerLink]="'/dmp'" mat-flat-button>
       <mat-icon>add</mat-icon>
@@ -9,16 +9,18 @@
       mat-stroked-button
       type="button"
       [disabled]="importInProgress"
-      (click)="jsonImportInput.click()">
+      (click)="jsonImportInput.click()"
+    >
       <mat-icon>upload_file</mat-icon>
-      {{ "plans.import.dmp" | translate }}
+      {{ 'plans.import.dmp' | translate }}
     </button>
     <input
       #jsonImportInput
       class="file-input"
       type="file"
       accept=".json,application/json"
-      (change)="importJsonFile($event)" />
+      (change)="importJsonFile($event)"
+    />
   </div>
 
   @if (dmpsLoaded() === LoadingState.LOADED) {

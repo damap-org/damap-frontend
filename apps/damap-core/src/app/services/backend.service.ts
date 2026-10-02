@@ -84,7 +84,7 @@ export class BackendService {
 
     return this.http
       .post<DmpImportResponse>(`${this.dmpBackendUrl}/import`, formData)
-      .pipe(retry(3), catchError(this.handleError('http.error.plans.import')));
+      .pipe(retry(3), catchError(this.errorHandlerService.handleError('http.error.plans.import')));
   }
 
   getDmpByIdAndRevision(id: number, revision: number): Observable<Dmp> {
@@ -196,7 +196,7 @@ export class BackendService {
     const doi = term.trim().replace(/^(doi:|https:\/\/doi\.org\/)/i, '');
     return this.http
       .get<Dataset>(`${this.backendUrl}openaire`, { params: { doi } })
-      .pipe(retry(3), catchError(this.handleError()));
+      .pipe(retry(3), catchError(this.errorHandlerService.handleError()));
   }
 
   getPreviewPDF(dmpId: number, template: number): Observable<Blob> {

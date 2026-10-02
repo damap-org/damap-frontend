@@ -22,6 +22,7 @@ import { SearchFieldComponent } from '../../shared/search-field/search-field.com
 import { MatButton } from '@angular/material/button';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
 import { TranslatePipe } from '@ngx-translate/core';
+import { InfoMessageComponent } from '@damap-frontend-core/app/widgets/info-message/info-message.component';
 
 @Component({
   selector: 'app-doi-search',
@@ -35,6 +36,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     MatButton,
     ErrorMessageComponent,
     TranslatePipe,
+    InfoMessageComponent,
   ],
 })
 export class DoiSearchComponent implements OnChanges {

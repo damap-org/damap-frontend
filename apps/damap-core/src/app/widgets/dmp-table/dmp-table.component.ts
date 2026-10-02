@@ -29,9 +29,7 @@ import {
   MatNoDataRow,
 } from '@angular/material/table';
 import { LoadingState } from '../../domain/enum/loading-state.enum';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { BackendService } from '@damap/core';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
@@ -40,6 +38,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
 import { DatePipe } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
+import { BackendService } from '@damap-frontend-core';
 
 @Component({
   selector: 'app-dmp-table',
@@ -153,7 +152,7 @@ export class DmpTableComponent implements OnChanges, AfterViewInit {
     if (file) {
       this.importInProgress = true;
       this.backendService.importDmpJsonFile(file).subscribe({
-        next: response => {
+        next: (response) => {
           this.importInProgress = false;
           this.router.navigate(['/dmp', response.id]);
         },

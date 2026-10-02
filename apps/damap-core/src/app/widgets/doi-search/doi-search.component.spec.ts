@@ -65,13 +65,14 @@ describe('DoiSearchComponent', () => {
     expect(doiControl?.enable).toHaveBeenCalledTimes(1);
   });
 
-  it('should emit search term when form is valid', () => {
-    vi.spyOn(component.termToSearch, 'emit').mockReturnValue(undefined);
-    const doi = '10.12345/12345';
-    component.form.get('doi')?.setValue(doi);
-    component.search();
-    expect(component.termToSearch.emit).toHaveBeenCalledTimes(1);
-    expect(component.termToSearch.emit).toHaveBeenCalledWith(doi);
+  ['10.12345/12345', 'https://doi.org/10.12345/12345', 'doi:10.12345/12345'].forEach((doi) => {
+    it(`should accept and emit ${doi}`, () => {
+      vi.spyOn(component.termToSearch, 'emit');
+      component.form.get('doi')?.setValue(doi);
+      expect(component.form.valid).toBe(true);
+      component.search();
+      expect(component.termToSearch.emit).toHaveBeenCalledExactlyOnceWith(doi);
+    });
   });
 
   it('should not emit search term when form is invalid', () => {
