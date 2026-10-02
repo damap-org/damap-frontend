@@ -1,0 +1,132 @@
+import { Component, Input, inject, ChangeDetectionStrategy, input, output } from '@angular/core';
+import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';
+
+import { DataSource } from '../../../../domain/enum/data-source.enum';
+import { Dataset } from '../../../../domain/dataset';
+import { DatasetDialogComponent } from '../dataset-dialog/dataset-dialog.component';
+import { FILE_SIZES } from '../data-specs';
+import { MatDialog } from '@angular/material/dialog';
+import { DatasetInformationComponent } from '../dataset-information/dataset-information.component';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { StepIntroComponent } from '../../../../widgets/step-intro/step-intro.component';
+import {
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { DatasetSourcePipe } from '../../../../pipes/dataset-source/dataset-source.pipe';
+import { LimitStringPipe } from '../../../../pipes/limit-string/limitString.pipe';
+
+@Component({
+  selector: 'app-dataset-table',
+  templateUrl: './dataset-table.component.html',
+  styleUrls: ['./dataset-table.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [
+    StepIntroComponent,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatIconButton,
+    MatIcon,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    TranslatePipe,
+    DatasetSourcePipe,
+    LimitStringPipe,
+  ],
+})
+export class DatasetTableComponent {
+  dialog = inject(MatDialog);
+  private translate = inject(TranslateService);
+
+  readonly FILE_SIZES = FILE_SIZES;
+  @Input() datasets: UntypedFormArray;
+  @Input() sourceType: DataSource = DataSource.NEW;
+
+  readonly tableHeaders = input<string[]>(['dataset', 'actions']);
+  @Input() tableHeading: string;
+  readonly tableIntro = input('dmp.steps.data.specify.intro.default');
+
+  readonly removeDataset = output<number>();
+  readonly updateDataset = output<{
+    index: number;
+    update: Dataset;
+  }>();
+
+  readonly datasetSource: any = DataSource;
+
+  getSizeLabel(size: number): string {
+    if (size === -1) {
+      return "I don't know yet";
+    }
+    const foundSize = this.FILE_SIZES.find((option) => size <= option.size);
+    return foundSize ? foundSize.label : 'Size not defined';
+  }
+
+  openDatasetDialog(dataset: Dataset) {
+    const index = this.findFormArrayIndex(dataset);
+    const datasetGroup = this.datasets.at(index) as UntypedFormGroup;
+    const dialogRef = this.dialog.open(DatasetDialogComponent, {
+      width: '75%',
+      maxWidth: '800px',
+      data: { dataset: datasetGroup.getRawValue(), mode: 'edit' },
+    });
+
+    dialogRef.afterClosed().subscribe((update) => {
+      if (update) {
+        this.updateDataset.emit({ index, update });
+      }
+    });
+  }
+
+  openInformationDialog(dataset: Dataset) {
+    const index = this.findFormArrayIndex(dataset);
+    const datasetGroup = this.datasets.at(index) as UntypedFormGroup;
+    const dialogRef = this.dialog.open(DatasetInformationComponent, {
+      width: '75%',
+      maxWidth: '800px',
+      data: {
+        dataset: datasetGroup.getRawValue(),
+        sourceType: this.sourceType,
+      },
+    });
+  }
+
+  remove(dataset: Dataset): void {
+    const index = this.findFormArrayIndex(dataset);
+    this.removeDataset.emit(index);
+  }
+
+  getDataType(dataset: Dataset): string {
+    let type = '';
+    dataset.type.forEach((t, index) => {
+      this.translate.get(`enum.dataset.type.${t}`).subscribe((translated: string) => {
+        type += translated;
+        if (index < dataset.type.length - 1) {
+          type += ', ';
+        }
+      });
+    });
+    return type;
+  }
+  private findFormArrayIndex(dataset: Dataset): number {
+    return this.datasets.value.findIndex((d) =>
+      d.id ? d.id === dataset.id : d.referenceHash === dataset.referenceHash,
+    );
+  }
+}

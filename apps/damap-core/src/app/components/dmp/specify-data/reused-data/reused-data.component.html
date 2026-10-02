@@ -1,0 +1,41 @@
+<app-data-mc
+  [control]="reusedKind"
+  questionLabel="dmp.steps.data.specify.question.reused"
+  answerLabelNone="dmp.steps.data.specify.answer.kind.reuse.none]"
+/>
+
+@if (reusedKind.value === dataKind.SPECIFY) {
+  <button class="button-position" mat-flat-button (click)="openDatasetDialog()">
+    {{ 'dmp.steps.data.specify.button.addManual' | translate }}
+  </button>
+  <p translate>or</p>
+  <app-doi-search
+    [result]="result"
+    [loading]="loading"
+    [duplicate]="duplicate"
+    (termToSearch)="searchDataset($event)"
+    (datasetToAdd)="add($event)"
+  />
+  <!-- TABLE -->
+  @if (datasets.controls.length) {
+    <app-dataset-table
+      [datasets]="datasets"
+      tableIntro="dmp.steps.data.specify.intro.reused"
+      [tableHeaders]="tableHeaders"
+      [sourceType]="datasetSource.REUSED"
+      (updateDataset)="update($event)"
+      (removeDataset)="remove($event)"
+    />
+  }
+}
+
+@if (reusedKind.value === dataKind.NONE) {
+  <app-info-message>
+    <span [innerHTML]="'dmp.steps.data.specify.info.none' | translate"></span>
+  </app-info-message>
+}
+@if (reusedKind.value === dataKind.UNKNOWN) {
+  <app-info-message>
+    {{ 'info.dataset.unknown' | translate }}
+  </app-info-message>
+}

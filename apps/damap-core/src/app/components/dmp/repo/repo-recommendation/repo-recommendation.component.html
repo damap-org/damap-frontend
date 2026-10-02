@@ -1,0 +1,24 @@
+<div class="scrollable-recommendation-content">
+  @if (loaded() === LoadingState.LOADED) {
+    @for (repo of recommended; track repo.id) {
+      <mat-card appearance="raised" class="recommendation-card">
+        <mat-card-header>
+          <mat-card-title>{{ repo.name }}</mat-card-title>
+        </mat-card-header>
+        <app-repo-details [repo]="repo" />
+        <mat-card-actions align="end">
+          <button mat-flat-button (click)="addRepository(repo)">Use repository</button>
+        </mat-card-actions>
+      </mat-card>
+    }
+  }
+  @if (loaded() === LoadingState.LOADING) {
+    <p translate>dmp.steps.repositories.loading.load.recommended</p>
+    <mat-progress-bar mode="indeterminate" />
+  }
+  @if (loaded() === LoadingState.FAILED) {
+    <app-error-message
+      message="{{ 'dmp.steps.repositories.loading.failed.recommended' | translate }}"
+    />
+  }
+</div>

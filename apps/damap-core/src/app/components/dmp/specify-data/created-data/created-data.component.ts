@@ -1,0 +1,97 @@
+import { Observable } from 'rxjs';
+import { Component, Input, inject, ChangeDetectionStrategy, input, output } from '@angular/core';
+
+import { AbstractBaseDataComponent } from '../abstract-base-data.component';
+import { Config } from '../../../../domain/config';
+import { DatasetDialogComponent } from '../dataset-dialog/dataset-dialog.component';
+import { DatasetDialogUploadComponent } from '../dataset-dialog/dataset-dialog-upload.component';
+import { MatDialog } from '@angular/material/dialog';
+import { UntypedFormControl } from '@angular/forms';
+import { DataMcComponent } from '../data-mc/data-mc.component';
+import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { DatasetTableComponent } from '../dataset-table/dataset-table.component';
+import { InfoMessageComponent } from '../../../../widgets/info-message/info-message.component';
+import { TranslatePipe } from '@ngx-translate/core';
+
+@Component({
+  selector: 'app-created-data',
+  templateUrl: './created-data.component.html',
+  styleUrls: ['./created-data.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [
+    DataMcComponent,
+    MatButton,
+    MatIcon,
+    DatasetTableComponent,
+    InfoMessageComponent,
+    TranslatePipe,
+  ],
+})
+export class CreatedDataComponent extends AbstractBaseDataComponent {
+  dialog = inject(MatDialog);
+
+  readonly fileUpload = input<
+    {
+      file: File;
+      progress: number;
+      finalized: boolean;
+    }[]
+  >(undefined);
+  @Input() config$: Observable<Config>;
+
+  readonly fileToAnalyse = output<File>();
+  readonly uploadToCancel = output<number>();
+
+  readonly tableHeaders: string[] = [
+    'dataset',
+    'datatype',
+    'fileFormat',
+    'size',
+    'description',
+    'actions',
+  ];
+
+  openDatasetDialog() {
+    const dialogRef = this.dialog.open(DatasetDialogComponent, {
+      width: '75%',
+      maxWidth: '800px',
+      data: { dataset: { source: this.datasetSource.NEW } },
+    });
+
+    dialogRef.afterClosed().subscribe((dataset) => {
+      if (dataset) {
+        this.datasetToAdd.emit(dataset);
+      }
+    });
+  }
+
+  openUploadDialog() {
+    const dialogRef = this.dialog.open(DatasetDialogUploadComponent, {
+      width: '75%',
+      maxWidth: '800px',
+      data: {
+        fileUpload: this.fileUpload(),
+        analyseFile: (file: File) => this.analyseFile(file),
+        cancelUpload: (index: number) => this.cancelUpload(index),
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((dataset) => {
+      if (dataset) {
+        this.datasetToAdd.emit(dataset);
+      }
+    });
+  }
+  get kind(): UntypedFormControl {
+    return this.specifyDataStep.get('kind') as UntypedFormControl;
+  }
+
+  analyseFile(file: File) {
+    this.fileToAnalyse.emit(file);
+  }
+
+  cancelUpload(index: number) {
+    this.uploadToCancel.emit(index);
+  }
+}

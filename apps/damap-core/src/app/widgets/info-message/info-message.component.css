@@ -1,0 +1,13 @@
+.info-message {
+  display: flex;
+  margin: 1rem 0;
+  padding: 1rem;
+  align-items: flex-start;
+  border-radius: 5px;
+  color: var(--mat-theme-on-secondary-container);
+  background-color: var(--mat-theme-secondary-container);
+}
+
+.mat-icon {
+  font-size: 16pt;
+}

@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.base.json",
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    },
+    {
+      "path": "./tsconfig.strict.json"
+    },
+    {
+      "path": "./tsconfig.strict.spec.json"
+    },
+    {
+      "path": "./tsconfig.e2e.json"
+    }
+  ]
+}

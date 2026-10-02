@@ -1,0 +1,8 @@
+mat-panel-title:hover,
+mat-expansion-panel-header:hover {
+  color: var(--mat-theme-primary);
+}
+
+mat-expansion-panel > div {
+  display: flex;
+}

@@ -1,0 +1,38 @@
+import { Component, Input, ChangeDetectionStrategy, output } from '@angular/core';
+import { Dataset } from '../../../domain/dataset';
+import { DataSource } from '../../../domain/enum/data-source.enum';
+import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';
+import { DataKind } from '../../../domain/enum/data-kind.enum';
+
+@Component({
+  selector: 'app-base-data',
+  template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
+})
+export abstract class AbstractBaseDataComponent {
+  @Input() specifyDataStep: UntypedFormGroup;
+  @Input() datasets: UntypedFormArray;
+
+  readonly datasetToAdd = output<Dataset>();
+  readonly updateDataset = output<{
+    index: number;
+    update: Dataset;
+  }>();
+  readonly removeDataset = output<number>();
+
+  readonly dataKind: any = DataKind;
+  readonly datasetSource: any = DataSource;
+
+  add(dataset: Dataset): void {
+    this.datasetToAdd.emit(dataset);
+  }
+
+  update(update: { index: number; update: Dataset }) {
+    this.updateDataset.emit(update);
+  }
+
+  remove(index: number): void {
+    this.removeDataset.emit(index);
+  }
+}

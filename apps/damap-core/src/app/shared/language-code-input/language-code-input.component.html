@@ -1,0 +1,45 @@
+<mat-form-field>
+  <mat-label>
+    {{ label() }}
+  </mat-label>
+
+  <input
+    matInput
+    autocomplete="off"
+    [formControl]="control()"
+    [matAutocomplete]="languageAutocomplete"
+  />
+
+  <mat-autocomplete
+    #languageAutocomplete="matAutocomplete"
+    [displayWith]="getLanguageDisplayValue.bind(this)"
+  >
+    @for (language of filteredLanguageOptions$ | async; track language.code) {
+      <mat-option [value]="language.code">
+        {{ language.name }} ({{ language.code | uppercase }})
+      </mat-option>
+    }
+  </mat-autocomplete>
+
+  <mat-hint>
+    {{ hint() }}
+  </mat-hint>
+
+  @if (control()?.hasError('required') && errorMessageRequired) {
+    <mat-error>
+      {{ errorMessageRequired }}
+    </mat-error>
+  }
+
+  @if (control()?.hasError('invalidLanguageCode') && errorMessageInvalid) {
+    <mat-error>
+      {{ errorMessageInvalid }}
+    </mat-error>
+  }
+
+  @if (control()?.hasError('languageAlreadyExists') && errorMessageAlreadyExists) {
+    <mat-error>
+      {{ errorMessageAlreadyExists }}
+    </mat-error>
+  }
+</mat-form-field>

@@ -1,0 +1,37 @@
+<app-info-card />
+<div id="content" style="max-width: 1440px">
+  <h2 translate>dashboard.cards.my-dmps.front-side</h2>
+
+  <div>
+    <app-dmp-table
+      [dmps]="dmps()"
+      [dmpsLoaded]="dmpsLoaded()"
+      (createDocument)="getDocument($event)"
+      (createJsonFile)="getJsonFile($event)"
+      (dmpToDelete)="deleteDmp($event)"
+    />
+  </div>
+  @if (dmpsLoaded() === LoadingState.LOADING) {
+    <div>
+      <p translate>plans.loading.load</p>
+      <mat-progress-bar mode="indeterminate" />
+    </div>
+  }
+  @if (dmpsLoaded() === LoadingState.FAILED) {
+    <div>
+      <app-error-message message="{{ 'plans.loading.failed' | translate }}" />
+    </div>
+  }
+
+  @if (isAdmin()) {
+    <h2 translate>plans.alldmps</h2>
+    <app-dmp-table
+      [dmps]="allDmps$ | async"
+      [dmpsLoaded]="dmpsLoaded()"
+      (createDocument)="getDocument($event)"
+      [admin]="true"
+      (createJsonFile)="getJsonFile($event)"
+      (dmpToDelete)="deleteDmp($event)"
+    />
+  }
+</div>
