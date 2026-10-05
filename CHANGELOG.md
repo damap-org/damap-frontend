@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] -
 
+## [5.1.0] - 2026-10-05
+
+### Added
+
+- Added a warning that licenses may be inaccurate when searching for dataset over OpenAire [#580](https://github.com/damap-org/damap-frontend/pull/580)
+- Added button to import a Common Standard maDMP JSON to create a DMP [#562](https://github.com/damap-org/damap-frontend/pull/562)
+
+### Security
+
+- Updated from Angular 17 to 22 and fixed vulnerabilities through outdated dependencies [#561](https://github.com/damap-org/damap-frontend/pull/561)
+
+### Fixed
+
+- Fixed a bug where non ORCID identifiers would be stored as ORCIDs when contributors got fetched over PURE [#576](https://github.com/damap-org/damap-frontend/pull/576)
+- Fixed an inconsistency where dataset search hint would say that doi in the format of "https://doi.org/10.48436/n2d1v-gqb91" was allowed but would fail the search instead [#579](https://github.com/damap-org/damap-frontend/pull/579)
+
 ## [5.0.2] - 2026-08-21
 
 ### Added
