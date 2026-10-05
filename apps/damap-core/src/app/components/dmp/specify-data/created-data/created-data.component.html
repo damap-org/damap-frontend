@@ -1,0 +1,44 @@
+<app-data-mc [control]="kind" />
+@if (kind.value === dataKind.SPECIFY) {
+  <section>
+    <div class="example-button-column">
+      <div class="example-flex-container">
+        <div class="example-button-container">
+          <button mat-flat-button (click)="openDatasetDialog()">
+            <mat-icon>edit</mat-icon>
+            {{ 'dmp.steps.data.specify.button.addManual' | translate }}
+          </button>
+        </div>
+        <div class="example-button-container">
+          <button mat-flat-button (click)="openUploadDialog()">
+            <mat-icon>cloud_upload</mat-icon>
+            {{ 'dmp.steps.data.specify.button.upload' | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- TABLE -->
+  <div class="scrollable-table-wrapper">
+    @if (datasets.controls.length) {
+      <div class="scrollable-table-container">
+        <app-dataset-table
+          [datasets]="datasets"
+          [tableHeaders]="tableHeaders"
+          (updateDataset)="update($event)"
+          (removeDataset)="remove($event)"
+        />
+      </div>
+    }
+  </div>
+}
+@if (kind.value === dataKind.NONE) {
+  <app-info-message>
+    <span [innerHTML]="'dmp.steps.data.specify.info.none' | translate"></span>
+  </app-info-message>
+}
+@if (kind.value === dataKind.UNKNOWN) {
+  <app-info-message>
+    {{ 'info.dataset.unknown' | translate }}
+  </app-info-message>
+}

@@ -21,18 +21,7 @@ This repository contains the source code for the frontend of DAMAP and needs to 
 with [damap-backend](https://github.com/damap-org/damap-backend).
 The project is based on [Angular](https://angular.io/) and uses the standard Angular CLI as a build system.
 
-### Development server
-
-Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload
-if you change any of the source files.
-
-### Build
-
-Run `npm build` to build the project. The build artifacts will be stored in the `dist/` directory. For a production build, use `--configuration=production`.
-
-### Running unit tests
-
-Run `npm test` to execute the unit tests for the application.
+For local development commands, builds, tests, linting, formatting, and e2e setup, see [DEVELOPMENT.md](./DEVELOPMENT.md).
 
 ### Run the project with docker
 

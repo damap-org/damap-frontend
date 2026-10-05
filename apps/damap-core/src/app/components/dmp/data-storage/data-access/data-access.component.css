@@ -1,0 +1,33 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.one {
+  grid-column: 1;
+}
+
+.two {
+  grid-column: 2;
+}
+
+.three {
+  grid-column: 3;
+}
+
+.four {
+  grid-column: 4;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.mat-expansion-panel {
+  outline: 1px solid var(--mat-theme-primary);
+}
+
+.mat-panel-title {
+  font-weight: 500;
+}

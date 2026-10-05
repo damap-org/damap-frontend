@@ -2,34 +2,33 @@
 
 # Create a first stage container to build the application, this container image will be dropped once
 # the runner is built
-FROM trion/ng-cli:18.0.3 AS deps
+FROM node:22-bookworm-slim AS deps
 
-# This Dockerfile uses labels from the label-schema namespace from http://label-schema.org/rc1/
-LABEL maintainer="clara.schuster@tuwien.ac.at" \
-    org.label-schema.name="DAMAP-frontend" \
-    org.label-schema.description="DAMAP is a tool that aims to facilitate the creation of data management plans (DMPs) for researchers." \
-    org.label-schema.usage="https://github.com/tuwien-csd/damap-frontend/tree/master/README.md" \
-    org.label-schema.vendor="Technische Universität Wien" \
-    org.label-schema.url="https://github.com/tuwien-csd/damap-frontend" \
-    org.label-schema.vcs-url="https://github.com/tuwien-csd/damap-frontend" \
-    org.label-schema.schema-version="1.0" \
-    org.label-schema.docker.cmd="docker run -d -p 8080:8080 damap"
+WORKDIR /app
 
-COPY package.json package-lock.json /app/
+COPY package.json package-lock.json ./
 
-COPY . /app
-
-# angular-cli is installed locally, thus we point PATH to its binary folder
-ENV PATH="$PATH:/app/node_modules/@angular/cli/bin/"
-
-# install and build the application on the builder container
+# Install dependencies separately so source changes can reuse this layer.
 RUN npm ci --ignore-scripts
+
+COPY . .
 RUN npm run build
 
-ARG APP=damap-frontend
-
 # create a second container running a webserver and holding the built frontend application
-FROM nginxinc/nginx-unprivileged AS runner
+FROM nginxinc/nginx-unprivileged:1-alpine-slim AS runner
+
+# Metadata annotations as defined by the Open Container Initiative:
+# https://github.com/opencontainers/image-spec/blob/main/annotations.md
+LABEL org.opencontainers.image.title="DAMAP-frontend" \
+    org.opencontainers.image.description="DAMAP is a tool that aims to facilitate the creation of data management plans (DMPs) for researchers." \
+    org.opencontainers.image.url="https://github.com/damap-org/damap-frontend" \
+    org.opencontainers.image.source="https://github.com/damap-org/damap-frontend" \
+    org.opencontainers.image.documentation="https://github.com/damap-org/damap-frontend/blob/next/README.md" \
+    org.opencontainers.image.vendor="Technische Universität Wien" \
+    org.opencontainers.image.licenses="MIT" \
+    org.opencontainers.image.authors="DAMAP Development Team" \
+    org.opencontainers.image.base.name="nginxinc/nginx-unprivileged:1-alpine-slim"
+
 COPY docker/conf.d/* /etc/nginx/conf.d
 
-COPY --from=deps --chown=1001:0 /app/dist/damap-frontend/ /usr/share/nginx/html/
+COPY --from=deps --chown=1001:0 /app/dist/damap-frontend/browser/ /usr/share/nginx/html/
