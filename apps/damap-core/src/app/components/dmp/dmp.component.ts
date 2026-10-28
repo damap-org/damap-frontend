@@ -52,7 +52,7 @@ import { ReuseComponent } from './reuse/reuse.component';
 import { CostsComponent } from './costs/costs.component';
 import { SummaryComponent } from './summary/summary.component';
 import { DmpActionsComponent } from './dmp-actions/dmp-actions.component';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dmp',
@@ -103,6 +103,7 @@ export class DmpComponent implements OnInit, OnDestroy {
   private router = inject(Router);
   private backendService = inject(BackendService);
   private infoLabelService = inject(InfoLabelService);
+  private translate = inject(TranslateService);
 
   config$: Observable<Config> = new Observable<Config>();
   @ViewChild('projectComponent') projectComponent: ProjectComponent;
@@ -166,7 +167,7 @@ export class DmpComponent implements OnInit, OnDestroy {
       const value = this.formService.currentDmp();
       if (value) {
         this.dmpFormVal = value;
-        this.dataSource = SummaryService.dmpSummary(value);
+        this.dataSource = SummaryService.dmpSummary(value, this.translate);
       }
     });
   }
@@ -316,7 +317,7 @@ export class DmpComponent implements OnInit, OnDestroy {
 
   removeDataset(index: number) {
     this.formService.removeDatasetFromForm(index);
-    this.dataSource = SummaryService.dmpSummary(this.dmpForm.getRawValue());
+    this.dataSource = SummaryService.dmpSummary(this.dmpForm.getRawValue(), this.translate);
   }
 
   addStorage(storage: InternalStorage) {
