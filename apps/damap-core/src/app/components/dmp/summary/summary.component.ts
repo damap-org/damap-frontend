@@ -43,7 +43,7 @@ import {
   MatExpansionPanelTitle,
 } from '@angular/material/expansion';
 import { MatIcon } from '@angular/material/icon';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { FormService } from '@damap-frontend-core/app/services/form.service';
 
 type LoadingState = 'idle' | 'loading' | 'loaded' | 'failed';
@@ -131,12 +131,13 @@ export class SummaryComponent implements OnInit {
   });
 
   constructor() {
+    const translate = inject(TranslateService);
     effect(() => {
       this.contact = this.formService.contact();
       const value = this.formService.currentDmp();
       if (value) {
         this.dmpForm = value;
-        this.dataSource = SummaryService.dmpSummary(value);
+        this.dataSource = SummaryService.dmpSummary(value, translate);
       }
     });
 
