@@ -1,4 +1,4 @@
-import { describe, expect, it, beforeEach } from 'vitest';
+import { describe, expect, it, beforeEach, MockedObject, vi } from 'vitest';
 import { closedDatasetMock, openDatasetMock, restrictedDatasetMock } from '../mocks/dataset-mocks';
 import { completeDmp, noDataDmp } from '../mocks/dmp-mocks';
 import { mockContact, mockContributor1 } from '../mocks/contributor-mocks';
@@ -15,16 +15,25 @@ import { SecurityMeasure } from '../domain/enum/security-measure.enum';
 import { SummaryService } from './summary.service';
 import { TestBed } from '@angular/core/testing';
 import { mockStorage } from '../mocks/storage-mocks';
-import { FundingState, IdentifierType, Project } from '@damap-frontend-core';
+import {
+  FundingState,
+  IdentifierType,
+  Project,
+  TranslateTestingModule,
+} from '@damap-frontend-core';
 import { Contributor } from '@damap-frontend-core';
+import { TranslateService } from '@ngx-translate/core';
 
 describe('SummaryService', () => {
   let service: SummaryService;
   let dmp: Dmp;
-
+  let translate: TranslateService;
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [TranslateTestingModule],
+    });
     service = TestBed.inject(SummaryService);
+    translate = TestBed.inject(TranslateService);
     dmp = { ...baseDmp };
   });
 
@@ -303,15 +312,15 @@ describe('SummaryService', () => {
 
   it('should test cost step', () => {
     dmp.costsExist = null;
-    let summary = SummaryService.evaluateCostStep(dmp);
+    let summary = SummaryService.evaluateCostStep(dmp, translate);
     expect(summary.completeness).toEqual(0);
 
     dmp.costsExist = false;
-    summary = SummaryService.evaluateCostStep(dmp);
+    summary = SummaryService.evaluateCostStep(dmp, translate);
     expect(summary.completeness).toEqual(100);
 
     dmp.costsExist = true;
-    summary = SummaryService.evaluateCostStep(dmp);
+    summary = SummaryService.evaluateCostStep(dmp, translate);
     expect(summary.completeness).toEqual(0);
 
     dmp.costs = [
@@ -325,19 +334,19 @@ describe('SummaryService', () => {
         value: 123,
       },
     ];
-    summary = SummaryService.evaluateCostStep(dmp);
+    summary = SummaryService.evaluateCostStep(dmp, translate);
     expect(summary.completeness).toEqual(100);
   });
 
   it('should produce a complete summary', () => {
-    let summary = SummaryService.dmpSummary(completeDmp);
+    let summary = SummaryService.dmpSummary(completeDmp, translate);
     for (const item of summary) {
       expect(item.completeness).toBeGreaterThanOrEqual(100);
     }
   });
 
   it('should test a no data summary', () => {
-    let summary = SummaryService.dmpSummary(noDataDmp);
+    let summary = SummaryService.dmpSummary(noDataDmp, translate);
     for (const item of summary.slice(3)) {
       expect(item.completeness).toEqual(0);
     }

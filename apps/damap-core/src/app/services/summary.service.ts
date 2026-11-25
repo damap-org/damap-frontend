@@ -11,6 +11,7 @@ import { ComplianceType } from '../domain/enum/compliance-type.enum';
 import { Agreement } from '../domain/enum/agreement.enum';
 import { DataAccessType } from '../domain/enum/data-access-type.enum';
 import { DataQualityType } from '../domain/enum/data-quality-type.enum';
+import { TranslateService } from '@ngx-translate/core';
 
 export interface Completeness {
   step: string;
@@ -22,7 +23,8 @@ export interface Completeness {
   providedIn: 'root',
 })
 export class SummaryService {
-  static dmpSummary(dmp: Dmp): Completeness[] {
+  // translate as an argument is only needed due to the static method
+  static dmpSummary(dmp: Dmp, translate: TranslateService): Completeness[] {
     const projectStep = this.evaluateProjectStep(dmp.project);
     const peopleStep = this.evaluatePeopleStep(dmp.contributors);
     const dataStep = this.evaluateDataStep(dmp);
@@ -42,7 +44,7 @@ export class SummaryService {
     const licenseStep = this.evaluateLicenseStep(dmp);
     const repositoryStep = this.evaluateRepositoryStep(dmp);
     const reuseStep = this.evaluateReuseStep(dmp);
-    const costStep = this.evaluateCostStep(dmp);
+    const costStep = this.evaluateCostStep(dmp, translate);
     return [
       projectStep,
       peopleStep,
@@ -408,7 +410,7 @@ export class SummaryService {
     return reuseLevel;
   }
 
-  static evaluateCostStep(dmp: Dmp): Completeness {
+  static evaluateCostStep(dmp: Dmp, translate: TranslateService): Completeness {
     const costsLevel: Completeness = {
       step: 'dmp.steps.costs.label',
       completeness: 0,
@@ -416,13 +418,18 @@ export class SummaryService {
     };
     if (dmp.costsExist == null) {
       costsLevel.completeness = 0;
-      costsLevel.status.push('dmp.steps.summary.notspecified');
+      costsLevel.status.push('dmp.steps.summary.costs.notspecified');
     } else if (!dmp.costsExist) {
       costsLevel.completeness = 100;
       costsLevel.status.push('dmp.steps.summary.costs.none');
     } else {
       costsLevel.completeness = dmp.costs.length ? 100 : 0;
-      costsLevel.status.push(`${dmp.costs.length} cost items specified.`);
+      // This method is static and therefore needs the translate passed as an argument
+      // The receiver of this status value tries to call translate on this value, which fails, since its already translated
+      // As a fallback it will return the inout value, which returns the correct result, but it is a bandaid solution
+      costsLevel.status.push(
+        `${dmp.costs.length} ` + translate.instant('dmp.steps.summary.costs.specified'),
+      );
     }
     return costsLevel;
   }

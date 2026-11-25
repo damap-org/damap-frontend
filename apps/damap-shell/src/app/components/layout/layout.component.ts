@@ -205,11 +205,10 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
           ? 'admin.dashboard.section-intro'
           : 'layout.section-intro';
       this.greetingSubscription = this.translate
-        .get(['layout.menu.greeting', 'admin.dashboard.greeting'])
+        .get(['admin.dashboard.greeting'])
         .pipe(take(1))
         .subscribe((t) => {
-          this.greeting =
-            t['layout.menu.greeting'] + ' ' + this.name + ' ' + t['admin.dashboard.greeting'];
+          this.greeting = this.replaceFirstname(this.name, t['admin.dashboard.greeting']);
         });
     }
   }
